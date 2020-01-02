@@ -1,0 +1,90 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.register_tensor_conversion_function" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.register_tensor_conversion_function</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_conversion_registry.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Registers a function for converting objects of <code>base_type</code> to <code>Tensor</code>.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.register_tensor_conversion_function</code></li>
+<li><code>tf.compat.v2.register_tensor_conversion_function</code></li>
+</ul>
+
+
+<p><code>python
+tf.register_tensor_conversion_function(
+    base_type,
+    conversion_func,
+    priority=100
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>The conversion function must have the following signature:</p>
+
+<p><code>python
+    def conversion_func(value, dtype=None, name=None, as_ref=False):
+      # ...
+</code></p>
+
+<p>It must return a <code>Tensor</code> with the given <code>dtype</code> if specified. If the
+conversion function creates a new <code>Tensor</code>, it should use the given
+<code>name</code> if specified. All exceptions will be propagated to the caller.</p>
+
+<p>The conversion function may return <code>NotImplemented</code> for some
+inputs. In this case, the conversion process will continue to try
+subsequent conversion functions.</p>
+
+<p>If <code>as_ref</code> is true, the function must return a <code>Tensor</code> reference,
+such as a <code>Variable</code>.</p>
+
+<p>NOTE: The conversion functions will execute in order of priority,
+followed by order of registration. To ensure that a conversion function
+<code>F</code> runs before another conversion function <code>G</code>, ensure that <code>F</code> is
+registered with a smaller priority than <code>G</code>.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>base_type</code></b>: The base type or tuple of base types for all objects that
+<code>conversion_func</code> accepts.</li>
+<li><b><code>conversion_func</code></b>: A function that converts instances of <code>base_type</code> to
+<code>Tensor</code>.</li>
+<li><b><code>priority</code></b>: Optional integer that indicates the priority for applying this
+conversion function. Conversion functions with smaller priority values run
+earlier than conversion functions with larger priority values. Defaults to
+
+<ol>
+<li></li>
+</ol>
+</li>
+</ul>
+
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>TypeError</code></b>: If the arguments do not have the appropriate type.</li>
+</ul>
+

@@ -1,0 +1,65 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.math.asinh" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.math.asinh</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p>Defined in generated file: <code>python/ops/gen_math_ops.py</code></p>
+
+<!-- Start diff -->
+
+
+<p>Computes inverse hyperbolic sine of x element-wise.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.asinh</code></li>
+<li><code>tf.compat.v1.asinh</code></li>
+<li><code>tf.compat.v1.math.asinh</code></li>
+<li><code>tf.compat.v2.asinh</code></li>
+<li><code>tf.compat.v2.math.asinh</code></li>
+</ul>
+
+
+<p><code>python
+tf.math.asinh(
+    x,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>  Given an input tensor, this function computes inverse hyperbolic sine
+  for every element in the tensor. Both input and output has a range of
+  <code>[-inf, inf]</code>.</p>
+
+<p>  <code>python
+  x = tf.constant([-float("inf"), -2, -0.5, 1, 1.2, 200, 10000, float("inf")])
+  tf.math.asinh(x) ==&gt; [-inf -1.4436355 -0.4812118 0.8813736 1.0159732 5.991471 9.903487 inf]
+ </code></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>bfloat16</code>, <code>half</code>, <code>float32</code>, <code>float64</code>, <code>complex64</code>, <code>complex128</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code>. Has the same type as <code>x</code>.</p>

@@ -1,0 +1,73 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.quantization.quantized_concat" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.quantization.quantized_concat</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p>Defined in generated file: <code>python/ops/gen_array_ops.py</code></p>
+
+<!-- Start diff -->
+
+
+<p>Concatenates quantized tensors along one dimension.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.quantization.quantized_concat</code></li>
+<li><code>tf.compat.v1.quantized_concat</code></li>
+<li><code>tf.compat.v2.quantization.quantized_concat</code></li>
+</ul>
+
+
+<p><code>python
+tf.quantization.quantized_concat(
+    concat_dim,
+    values,
+    input_mins,
+    input_maxes,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>concat_dim</code></b>: A <code>Tensor</code> of type <code>int32</code>.
+0-D.  The dimension along which to concatenate.  Must be in the
+range [0, rank(values)).</li>
+<li><b><code>values</code></b>: A list of at least 2 <code>Tensor</code> objects with the same type.
+The <code>N</code> Tensors to concatenate. Their ranks and types must match,
+and their sizes must match in all dimensions except <code>concat_dim</code>.</li>
+<li><b><code>input_mins</code></b>: A list with the same length as <code>values</code> of <code>Tensor</code> objects with type <code>float32</code>.
+The minimum scalar values for each of the input tensors.</li>
+<li><b><code>input_maxes</code></b>: A list with the same length as <code>values</code> of <code>Tensor</code> objects with type <code>float32</code>.
+The maximum scalar values for each of the input tensors.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A tuple of <code>Tensor</code> objects (output, output_min, output_max).</p>
+
+<ul>
+<li><b><code>output</code></b>: A <code>Tensor</code>. Has the same type as <code>values</code>.</li>
+<li><b><code>output_min</code></b>: A <code>Tensor</code> of type <code>float32</code>.</li>
+<li><b><code>output_max</code></b>: A <code>Tensor</code> of type <code>float32</code>.</li>
+</ul>
+

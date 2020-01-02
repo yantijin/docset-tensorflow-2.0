@@ -1,0 +1,68 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.backend.dtype" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.keras.backend.dtype</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/backend.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Returns the dtype of a Keras tensor or variable, as a string.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.keras.backend.dtype</code></li>
+<li><code>tf.compat.v2.keras.backend.dtype</code></li>
+</ul>
+
+
+<p><code>python
+tf.keras.backend.dtype(x)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>x</code></b>: Tensor or variable.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>String, dtype of <code>x</code>.</p>
+
+<h4>Examples:</h4>
+
+<p><code>python
+    &gt;&gt;&gt; from keras import backend as K
+    &gt;&gt;&gt; K.dtype(K.placeholder(shape=(2,4,5)))
+    'float32'
+    &gt;&gt;&gt; K.dtype(K.placeholder(shape=(2,4,5), dtype='float32'))
+    'float32'
+    &gt;&gt;&gt; K.dtype(K.placeholder(shape=(2,4,5), dtype='float64'))
+    'float64'
+    # Keras variable
+    &gt;&gt;&gt; kvar = K.variable(np.array([[1, 2], [3, 4]]))
+    &gt;&gt;&gt; K.dtype(kvar)
+    'float32'
+    &gt;&gt;&gt; kvar = K.variable(np.array([[1, 2], [3, 4]]), dtype='float32')
+    &gt;&gt;&gt; K.dtype(kvar)
+    'float32'
+</code></p>

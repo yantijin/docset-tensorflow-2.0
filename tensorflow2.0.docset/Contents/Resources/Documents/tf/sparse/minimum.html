@@ -1,0 +1,73 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.sparse.minimum" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.sparse.minimum</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/sparse_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Returns the element-wise min of two SparseTensors.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.sparse.minimum</code></li>
+<li><code>tf.compat.v1.sparse_minimum</code></li>
+<li><code>tf.compat.v2.sparse.minimum</code></li>
+</ul>
+
+
+<p><code>python
+tf.sparse.minimum(
+    sp_a,
+    sp_b,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Assumes the two SparseTensors have the same shape, i.e., no broadcasting.
+Example:</p>
+
+<p>```python
+sp_zero = sparse_tensor.SparseTensor([[0]], [0], [7])
+sp_one = sparse_tensor.SparseTensor([[1]], [1], [7])
+res = tf.sparse.minimum(sp_zero, sp_one).eval()</p>
+
+<h1>&ldquo;res&rdquo; should be equal to SparseTensor([[0], [1]], [0, 0], [7]).</h1>
+
+<p>```</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>sp_a</code></b>: a <code>SparseTensor</code> operand whose dtype is real, and indices
+lexicographically ordered.</li>
+<li><b><code>sp_b</code></b>: the other <code>SparseTensor</code> operand with the same requirements (and the
+same shape).</li>
+<li><b><code>name</code></b>: optional name of the operation.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<ul>
+<li><b><code>output</code></b>: the output SparseTensor.</li>
+</ul>
+

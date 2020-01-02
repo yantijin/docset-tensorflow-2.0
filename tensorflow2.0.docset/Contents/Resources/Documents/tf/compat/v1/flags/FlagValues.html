@@ -1,0 +1,691 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.flags.FlagValues" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__call__"/>
+<meta itemprop="property" content="__contains__"/>
+<meta itemprop="property" content="__getitem__"/>
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="__iter__"/>
+<meta itemprop="property" content="__len__"/>
+<meta itemprop="property" content="append_flag_values"/>
+<meta itemprop="property" content="append_flags_into_file"/>
+<meta itemprop="property" content="find_module_defining_flag"/>
+<meta itemprop="property" content="find_module_id_defining_flag"/>
+<meta itemprop="property" content="flag_values_dict"/>
+<meta itemprop="property" content="flags_by_module_dict"/>
+<meta itemprop="property" content="flags_by_module_id_dict"/>
+<meta itemprop="property" content="flags_into_string"/>
+<meta itemprop="property" content="get_flag_value"/>
+<meta itemprop="property" content="get_help"/>
+<meta itemprop="property" content="get_key_flags_for_module"/>
+<meta itemprop="property" content="is_gnu_getopt"/>
+<meta itemprop="property" content="is_parsed"/>
+<meta itemprop="property" content="key_flags_by_module_dict"/>
+<meta itemprop="property" content="main_module_help"/>
+<meta itemprop="property" content="mark_as_parsed"/>
+<meta itemprop="property" content="module_help"/>
+<meta itemprop="property" content="read_flags_from_files"/>
+<meta itemprop="property" content="register_flag_by_module"/>
+<meta itemprop="property" content="register_flag_by_module_id"/>
+<meta itemprop="property" content="register_key_flag_for_module"/>
+<meta itemprop="property" content="remove_flag_values"/>
+<meta itemprop="property" content="set_default"/>
+<meta itemprop="property" content="set_gnu_getopt"/>
+<meta itemprop="property" content="unparse_flags"/>
+<meta itemprop="property" content="write_help_in_xml_format"/>
+</div>
+
+
+<h1>tf.compat.v1.flags.FlagValues</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<h2>Class <code>FlagValues</code></h2>
+
+<!-- Start diff -->
+
+
+<p>Registry of &lsquo;Flag&rsquo; objects.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li>Class <code>tf.compat.v1.app.flags.FlagValues</code></li>
+</ul>
+
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>A &lsquo;FlagValues&rsquo; can then scan command line arguments, passing flag
+arguments through to the &lsquo;Flag&rsquo; objects that it owns.  It also
+provides easy access to the flag values.  Typically only one
+&lsquo;FlagValues&rsquo; object is needed by an application: flags.FLAGS</p>
+
+<p>This class is heavily overloaded:</p>
+
+<p>&lsquo;Flag&rsquo; objects are registered via <strong>setitem</strong>:
+     FLAGS[&lsquo;longname&rsquo;] = x   # register a new flag</p>
+
+<p>The .value attribute of the registered &lsquo;Flag&rsquo; objects can be accessed
+as attributes of this &lsquo;FlagValues&rsquo; object, through <strong>getattr</strong>.  Both
+the long and short name of the original &lsquo;Flag&rsquo; objects can be used to
+access its value:
+     FLAGS.longname          # parsed flag value
+     FLAGS.x                 # parsed flag value (short name)</p>
+
+<p>Command line arguments are scanned and passed to the registered &lsquo;Flag&rsquo;
+objects through the <strong>call</strong> method.  Unparsed arguments, including
+argv[0] (e.g. the program name) are returned.
+     argv = FLAGS(sys.argv)  # scan command line arguments</p>
+
+<p>The original registered Flag objects can be retrieved through the use
+of the dictionary-like operator, <strong>getitem</strong>:
+     x = FLAGS[&lsquo;longname&rsquo;]   # access the registered Flag object</p>
+
+<p>The str() operator of a &lsquo;FlagValues&rsquo; object provides help for all of
+the registered &lsquo;Flag&rsquo; objects.</p>
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+
+<p><code>python
+__init__()
+</code></p>
+
+<p>Initialize self.  See help(type(self)) for accurate signature.</p>
+
+<h2>Methods</h2>
+
+<h3 id="__call__"><code>__call__</code></h3>
+
+
+<p><code>python
+__call__(
+    argv,
+    known_only=False
+)
+</code></p>
+
+<p>Parses flags from argv; stores parsed flags into this FlagValues object.</p>
+
+<p>All unparsed arguments are returned.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>argv</code></b>: a tuple/list of strings.</li>
+<li><b><code>known_only</code></b>: bool, if True, parse and remove known flags; return the rest
+  untouched. Unknown flags specified by &ndash;undefok are not returned.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>The list of arguments not parsed as options, including argv[0].</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>Error</code></b>: Raised on any parsing error.</li>
+<li><b><code>TypeError</code></b>: Raised on passing wrong type of arguments.</li>
+<li><b><code>ValueError</code></b>: Raised on flag value parsing error.</li>
+</ul>
+
+
+<h3 id="__contains__"><code>__contains__</code></h3>
+
+
+<p><code>python
+__contains__(name)
+</code></p>
+
+<p>Returns True if name is a value (flag) in the dict.</p>
+
+<h3 id="__getitem__"><code>__getitem__</code></h3>
+
+
+<p><code>python
+__getitem__(name)
+</code></p>
+
+<p>Returns the Flag object for the flag &ndash;name.</p>
+
+<h3 id="__iter__"><code>__iter__</code></h3>
+
+
+<p><code>python
+__iter__()
+</code></p>
+
+<h3 id="__len__"><code>__len__</code></h3>
+
+
+<p><code>python
+__len__()
+</code></p>
+
+<h3 id="append_flag_values"><code>append_flag_values</code></h3>
+
+
+<p><code>python
+append_flag_values(flag_values)
+</code></p>
+
+<p>Appends flags registered in another FlagValues instance.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>flag_values</code></b>: FlagValues, the FlagValues instance from which to copy flags.</li>
+</ul>
+
+
+<h3 id="append_flags_into_file"><code>append_flags_into_file</code></h3>
+
+
+<p><code>python
+append_flags_into_file(filename)
+</code></p>
+
+<p>Appends all flags assignments from this FlagInfo object to a file.</p>
+
+<p>Output will be in the format of a flagfile.</p>
+
+<p>NOTE: MUST mirror the behavior of the C++ AppendFlagsIntoFile
+from https://github.com/gflags/gflags.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>filename</code></b>: str, name of the file.</li>
+</ul>
+
+
+<h3 id="find_module_defining_flag"><code>find_module_defining_flag</code></h3>
+
+
+<p><code>python
+find_module_defining_flag(
+    flagname,
+    default=None
+)
+</code></p>
+
+<p>Return the name of the module defining this flag, or default.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>flagname</code></b>: str, name of the flag to lookup.</li>
+<li><b><code>default</code></b>: Value to return if flagname is not defined. Defaults
+  to None.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>The name of the module which registered the flag with this name.
+If no such module exists (i.e. no flag with this name exists),
+we return default.</p>
+
+<h3 id="find_module_id_defining_flag"><code>find_module_id_defining_flag</code></h3>
+
+
+<p><code>python
+find_module_id_defining_flag(
+    flagname,
+    default=None
+)
+</code></p>
+
+<p>Return the ID of the module defining this flag, or default.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>flagname</code></b>: str, name of the flag to lookup.</li>
+<li><b><code>default</code></b>: Value to return if flagname is not defined. Defaults
+  to None.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>The ID of the module which registered the flag with this name.
+If no such module exists (i.e. no flag with this name exists),
+we return default.</p>
+
+<h3 id="flag_values_dict"><code>flag_values_dict</code></h3>
+
+
+<p><code>python
+flag_values_dict()
+</code></p>
+
+<p>Returns a dictionary that maps flag names to flag values.</p>
+
+<h3 id="flags_by_module_dict"><code>flags_by_module_dict</code></h3>
+
+
+<p><code>python
+flags_by_module_dict()
+</code></p>
+
+<p>Returns the dictionary of module_name -> list of defined flags.</p>
+
+<h4>Returns:</h4>
+
+<p>A dictionary.  Its keys are module names (strings).  Its values
+are lists of Flag objects.</p>
+
+<h3 id="flags_by_module_id_dict"><code>flags_by_module_id_dict</code></h3>
+
+
+<p><code>python
+flags_by_module_id_dict()
+</code></p>
+
+<p>Returns the dictionary of module_id -> list of defined flags.</p>
+
+<h4>Returns:</h4>
+
+<p>A dictionary.  Its keys are module IDs (ints).  Its values
+are lists of Flag objects.</p>
+
+<h3 id="flags_into_string"><code>flags_into_string</code></h3>
+
+
+<p><code>python
+flags_into_string()
+</code></p>
+
+<p>Returns a string with the flags assignments from this FlagValues object.</p>
+
+<p>This function ignores flags whose value is None.  Each flag
+assignment is separated by a newline.</p>
+
+<p>NOTE: MUST mirror the behavior of the C++ CommandlineFlagsIntoString
+from https://github.com/gflags/gflags.</p>
+
+<h4>Returns:</h4>
+
+<p>str, the string with the flags assignments from this FlagValues object.
+The flags are ordered by (module_name, flag_name).</p>
+
+<h3 id="get_flag_value"><code>get_flag_value</code></h3>
+
+
+<p><code>python
+get_flag_value(
+    name,
+    default
+)
+</code></p>
+
+<p>Returns the value of a flag (if not None) or a default value.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>name</code></b>: str, the name of a flag.</li>
+<li><b><code>default</code></b>: Default value to use if the flag value is None.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>Requested flag value or default.</p>
+
+<h3 id="get_help"><code>get_help</code></h3>
+
+
+<p><code>python
+get_help(
+    prefix='',
+    include_special_flags=True
+)
+</code></p>
+
+<p>Returns a help string for all known flags.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>prefix</code></b>: str, per-line output prefix.</li>
+<li><b><code>include_special_flags</code></b>: bool, whether to include description of
+SPECIAL_FLAGS, i.e. &ndash;flagfile and &ndash;undefok.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>str, formatted help message.</p>
+
+<h3 id="get_key_flags_for_module"><code>get_key_flags_for_module</code></h3>
+
+
+<p><code>python
+get_key_flags_for_module(module)
+</code></p>
+
+<p>Returns the list of key flags for a module.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>module</code></b>: module|str, the module to get key flags from.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>[Flag], a new list of Flag instances.  Caller may update this list as</p>
+
+<ul>
+<li><b><code>desired</code></b>: none of those changes will affect the internals of this
+FlagValue instance.</li>
+</ul>
+
+
+<h3 id="is_gnu_getopt"><code>is_gnu_getopt</code></h3>
+
+
+<p><code>python
+is_gnu_getopt()
+</code></p>
+
+<h3 id="is_parsed"><code>is_parsed</code></h3>
+
+
+<p><code>python
+is_parsed()
+</code></p>
+
+<p>Returns whether flags were parsed.</p>
+
+<h3 id="key_flags_by_module_dict"><code>key_flags_by_module_dict</code></h3>
+
+
+<p><code>python
+key_flags_by_module_dict()
+</code></p>
+
+<p>Returns the dictionary of module_name -> list of key flags.</p>
+
+<h4>Returns:</h4>
+
+<p>A dictionary.  Its keys are module names (strings).  Its values
+are lists of Flag objects.</p>
+
+<h3 id="main_module_help"><code>main_module_help</code></h3>
+
+
+<p><code>python
+main_module_help()
+</code></p>
+
+<p>Describes the key flags of the main module.</p>
+
+<h4>Returns:</h4>
+
+<p>str, describing the key flags of the main module.</p>
+
+<h3 id="mark_as_parsed"><code>mark_as_parsed</code></h3>
+
+
+<p><code>python
+mark_as_parsed()
+</code></p>
+
+<p>Explicitly marks flags as parsed.</p>
+
+<p>Use this when the caller knows that this FlagValues has been parsed as if
+a <strong>call</strong>() invocation has happened.  This is only a public method for
+use by things like appcommands which do additional command like parsing.</p>
+
+<h3 id="module_help"><code>module_help</code></h3>
+
+
+<p><code>python
+module_help(module)
+</code></p>
+
+<p>Describes the key flags of a module.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>module</code></b>: module|str, the module to describe the key flags for.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>str, describing the key flags of a module.</p>
+
+<h3 id="read_flags_from_files"><code>read_flags_from_files</code></h3>
+
+
+<p><code>python
+read_flags_from_files(
+    argv,
+    force_gnu=True
+)
+</code></p>
+
+<p>Processes command line args, but also allow args to be read from file.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>argv</code></b>: [str], a list of strings, usually sys.argv[1:], which may contain
+  one or more flagfile directives of the form &ndash;flagfile=&ldquo;./filename&rdquo;.
+  Note that the name of the program (sys.argv[0]) should be omitted.</li>
+<li><b><code>force_gnu</code></b>: bool, if False, &ndash;flagfile parsing obeys the
+  FLAGS.is_gnu_getopt() value. If True, ignore the value and always
+  follow gnu_getopt semantics.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A new list which has the original list combined with what we read
+from any flagfile(s).</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>IllegalFlagValueError</code></b>: Raised when &ndash;flagfile is provided with no
+  argument.</li>
+</ul>
+
+
+<p>This function is called by FLAGS(argv).
+It scans the input list for a flag that looks like:
+&ndash;flagfile=<somefile>. Then it opens <somefile>, reads all valid key
+and value pairs and inserts them into the input list in exactly the
+place where the &ndash;flagfile arg is found.</p>
+
+<p>Note that your application&rsquo;s flags are still defined the usual way
+using absl.flags DEFINE_flag() type functions.</p>
+
+<p>Notes (assuming we&rsquo;re getting a commandline of some sort as our input):
+&ndash;> For duplicate flags, the last one we hit should &ldquo;win&rdquo;.
+&ndash;> Since flags that appear later win, a flagfile&rsquo;s settings can be &ldquo;weak&rdquo;
+    if the &ndash;flagfile comes at the beginning of the argument sequence,
+    and it can be &ldquo;strong&rdquo; if the &ndash;flagfile comes at the end.
+&ndash;> A further &ldquo;&ndash;flagfile=&lt;otherfile.cfg>&rdquo; CAN be nested in a flagfile.
+    It will be expanded in exactly the spot where it is found.
+&ndash;> In a flagfile, a line beginning with # or // is a comment.
+&ndash;> Entirely blank lines <em>should</em> be ignored.</p>
+
+<h3 id="register_flag_by_module"><code>register_flag_by_module</code></h3>
+
+
+<p><code>python
+register_flag_by_module(
+    module_name,
+    flag
+)
+</code></p>
+
+<p>Records the module that defines a specific flag.</p>
+
+<p>We keep track of which flag is defined by which module so that we
+can later sort the flags by module.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>module_name</code></b>: str, the name of a Python module.</li>
+<li><b><code>flag</code></b>: Flag, the Flag instance that is key to the module.</li>
+</ul>
+
+
+<h3 id="register_flag_by_module_id"><code>register_flag_by_module_id</code></h3>
+
+
+<p><code>python
+register_flag_by_module_id(
+    module_id,
+    flag
+)
+</code></p>
+
+<p>Records the module that defines a specific flag.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>module_id</code></b>: int, the ID of the Python module.</li>
+<li><b><code>flag</code></b>: Flag, the Flag instance that is key to the module.</li>
+</ul>
+
+
+<h3 id="register_key_flag_for_module"><code>register_key_flag_for_module</code></h3>
+
+
+<p><code>python
+register_key_flag_for_module(
+    module_name,
+    flag
+)
+</code></p>
+
+<p>Specifies that a flag is a key flag for a module.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>module_name</code></b>: str, the name of a Python module.</li>
+<li><b><code>flag</code></b>: Flag, the Flag instance that is key to the module.</li>
+</ul>
+
+
+<h3 id="remove_flag_values"><code>remove_flag_values</code></h3>
+
+
+<p><code>python
+remove_flag_values(flag_values)
+</code></p>
+
+<p>Remove flags that were previously appended from another FlagValues.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>flag_values</code></b>: FlagValues, the FlagValues instance containing flags to
+  remove.</li>
+</ul>
+
+
+<h3 id="set_default"><code>set_default</code></h3>
+
+
+<p><code>python
+set_default(
+    name,
+    value
+)
+</code></p>
+
+<p>Changes the default value of the named flag object.</p>
+
+<p>The flag&rsquo;s current value is also updated if the flag is currently using
+the default value, i.e. not specified in the command line, and not set
+by FLAGS.name = value.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>name</code></b>: str, the name of the flag to modify.</li>
+<li><b><code>value</code></b>: The new default value.</li>
+</ul>
+
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>UnrecognizedFlagError</code></b>: Raised when there is no registered flag named name.</li>
+<li><b><code>IllegalFlagValueError</code></b>: Raised when value is not valid.</li>
+</ul>
+
+
+<h3 id="set_gnu_getopt"><code>set_gnu_getopt</code></h3>
+
+
+<p><code>python
+set_gnu_getopt(gnu_getopt=True)
+</code></p>
+
+<p>Sets whether or not to use GNU style scanning.</p>
+
+<p>GNU style allows mixing of flag and non-flag arguments. See
+http://docs.python.org/library/getopt.html#getopt.gnu_getopt</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>gnu_getopt</code></b>: bool, whether or not to use GNU style scanning.</li>
+</ul>
+
+
+<h3 id="unparse_flags"><code>unparse_flags</code></h3>
+
+
+<p><code>python
+unparse_flags()
+</code></p>
+
+<p>Unparses all flags to the point before any FLAGS(argv) was called.</p>
+
+<h3 id="write_help_in_xml_format"><code>write_help_in_xml_format</code></h3>
+
+
+<p><code>python
+write_help_in_xml_format(outfile=None)
+</code></p>
+
+<p>Outputs flag documentation in XML format.</p>
+
+<p>NOTE: We use element names that are consistent with those used by
+the C++ command-line flag library, from
+https://github.com/gflags/gflags.
+We also use a few new elements (e.g., <key>), but we do not
+interfere / overlap with existing XML elements used by the C++
+library.  Please maintain this consistency.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>outfile</code></b>: File object we write to.  Default None means sys.stdout.</li>
+</ul>
+

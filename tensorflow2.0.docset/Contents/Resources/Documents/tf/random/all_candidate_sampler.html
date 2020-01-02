@@ -1,0 +1,81 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.random.all_candidate_sampler" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.random.all_candidate_sampler</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/candidate_sampling_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Generate the set of all classes.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.nn.all_candidate_sampler</code></li>
+<li><code>tf.compat.v1.random.all_candidate_sampler</code></li>
+<li><code>tf.compat.v2.nn.all_candidate_sampler</code></li>
+<li><code>tf.compat.v2.random.all_candidate_sampler</code></li>
+<li><code>tf.nn.all_candidate_sampler</code></li>
+</ul>
+
+
+<p><code>python
+tf.random.all_candidate_sampler(
+    true_classes,
+    num_true,
+    num_sampled,
+    unique,
+    seed=None,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Deterministically generates and returns the set of all possible classes.
+For testing purposes.  There is no need to use this, since you might as
+well use full softmax or full logistic regression.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>true_classes</code></b>: A <code>Tensor</code> of type <code>int64</code> and shape <code>[batch_size,
+num_true]</code>. The target classes.</li>
+<li><b><code>num_true</code></b>: An <code>int</code>.  The number of target classes per training example.</li>
+<li><b><code>num_sampled</code></b>: An <code>int</code>.  The number of possible classes.</li>
+<li><b><code>unique</code></b>: A <code>bool</code>. Ignored.
+unique.</li>
+<li><b><code>seed</code></b>: An <code>int</code>. An operation-specific seed. Default is 0.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<ul>
+<li><b><code>sampled_candidates</code></b>: A tensor of type <code>int64</code> and shape <code>[num_sampled]</code>.
+This operation deterministically returns the entire range
+<code>[0, num_sampled]</code>.</li>
+<li><b><code>true_expected_count</code></b>: A tensor of type <code>float</code>.  Same shape as
+<code>true_classes</code>. The expected counts under the sampling distribution
+of each of <code>true_classes</code>. All returned values are 1.0.</li>
+<li><b><code>sampled_expected_count</code></b>: A tensor of type <code>float</code>. Same shape as
+<code>sampled_candidates</code>. The expected counts under the sampling distribution
+of each of <code>sampled_candidates</code>. All returned values are 1.0.</li>
+</ul>
+

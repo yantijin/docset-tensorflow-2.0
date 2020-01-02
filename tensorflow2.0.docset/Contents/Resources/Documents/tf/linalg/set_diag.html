@@ -1,0 +1,134 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.linalg.set_diag" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.linalg.set_diag</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/array_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Returns a batched matrix tensor with new batched diagonal values.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.linalg.set_diag</code></li>
+<li><code>tf.compat.v1.matrix_set_diag</code></li>
+<li><code>tf.compat.v2.linalg.set_diag</code></li>
+</ul>
+
+
+<p><code>python
+tf.linalg.set_diag(
+    input,
+    diagonal,
+    name='set_diag',
+    k=0
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Given <code>input</code> and <code>diagonal</code>, this operation returns a tensor with the
+same shape and values as <code>input</code>, except for the specified diagonals of the
+innermost matrices. These will be overwritten by the values in <code>diagonal</code>.</p>
+
+<p><code>input</code> has <code>r+1</code> dimensions <code>[I, J, ..., L, M, N]</code>. When <code>k</code> is scalar or
+<code>k[0] == k[1]</code>, <code>diagonal</code> has <code>r</code> dimensions <code>[I, J, ..., L, max_diag_len]</code>.
+Otherwise, it has <code>r+1</code> dimensions <code>[I, J, ..., L, num_diags, max_diag_len]</code>.
+<code>num_diags</code> is the number of diagonals, <code>num_diags = k[1] - k[0] + 1</code>.
+<code>max_diag_len</code> is the longest diagonal in the range <code>[k[0], k[1]]</code>,
+<code>max_diag_len = min(M + min(k[1], 0), N + min(-k[0], 0))</code></p>
+
+<p>The output is a tensor of rank <code>k+1</code> with dimensions <code>[I, J, ..., L, M, N]</code>.
+If <code>k</code> is scalar or <code>k[0] == k[1]</code>:</p>
+
+<p><code>
+output[i, j, ..., l, m, n]
+  = diagonal[i, j, ..., l, n-max(k[1], 0)] ; if n - m == k[1]
+    output[i, j, ..., l, m, n]             ; otherwise
+</code></p>
+
+<p>Otherwise,</p>
+
+<p><code>
+output[i, j, ..., l, m, n]
+  = diagonal[i, j, ..., l, k[1]-d, n-max(d, 0)] ; if d_lower &lt;= d &lt;= d_upper
+    input[i, j, ..., l, m, n]                   ; otherwise
+</code>
+where <code>d = n - m</code></p>
+
+<h4>For example:</h4>
+
+<p>```</p>
+
+<h1>The main diagonal.</h1>
+
+<p>input = np.array([[[7, 7, 7, 7],              # Input shape: (2, 3, 4)
+                   [7, 7, 7, 7],
+                   [7, 7, 7, 7]],
+                  [[7, 7, 7, 7],
+                   [7, 7, 7, 7],
+                   [7, 7, 7, 7]]])
+diagonal = np.array([[1, 2, 3],               # Diagonal shape: (2, 3)
+                     [4, 5, 6]])
+tf.matrix_diag(diagonal) ==> [[[1, 7, 7, 7],  # Output shape: (2, 3, 4)
+                               [7, 2, 7, 7],
+                               [7, 7, 3, 7]],
+                              [[4, 7, 7, 7],
+                               [7, 5, 7, 7],
+                               [7, 7, 6, 7]]]</p>
+
+<h1>A superdiagonal (per batch).</h1>
+
+<p>tf.matrix_diag(diagonal, k = 1)
+  ==> [[[7, 1, 7, 7],  # Output shape: (2, 3, 4)
+        [7, 7, 2, 7],
+        [7, 7, 7, 3]],
+       [[7, 4, 7, 7],
+        [7, 7, 5, 7],
+        [7, 7, 7, 6]]]</p>
+
+<h1>A band of diagonals.</h1>
+
+<p>diagonals = np.array([[[1, 2, 3],  # Diagonal shape: (2, 2, 3)
+                       [4, 5, 0]],
+                      [[6, 1, 2],
+                       [3, 4, 0]]])
+tf.matrix_diag(diagonals, k = (-1, 0))
+  ==> [[[1, 7, 7, 7],  # Output shape: (2, 3, 4)
+        [4, 2, 7, 7],
+        [0, 5, 3, 7]],
+       [[6, 7, 7, 7],
+        [3, 1, 7, 7],
+        [7, 4, 2, 7]]]</p>
+
+<p>```</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>input</code></b>: A <code>Tensor</code> with rank <code>k + 1</code>, where <code>k &gt;= 1</code>.</li>
+<li><b><code>diagonal</code></b>:  A <code>Tensor</code> with rank <code>k</code>, when <code>d_lower == d_upper</code>, or <code>k + 1</code>,
+otherwise. <code>k &gt;= 1</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+<li><b><code>k</code></b>: Diagonal offset(s). Positive value means superdiagonal, 0 refers to the
+main diagonal, and negative value means subdiagonals. <code>k</code> can be a single
+integer (for a single diagonal) or a pair of integers specifying the low
+and high ends of a matrix band. <code>k[0]</code> must not be larger than <code>k[1]</code>.</li>
+</ul>
+

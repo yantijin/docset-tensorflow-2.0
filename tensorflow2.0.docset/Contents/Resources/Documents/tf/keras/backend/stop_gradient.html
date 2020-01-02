@@ -1,0 +1,51 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.backend.stop_gradient" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.keras.backend.stop_gradient</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/backend.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Returns <code>variables</code> but with zero gradient w.r.t. every other variable.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.keras.backend.stop_gradient</code></li>
+<li><code>tf.compat.v2.keras.backend.stop_gradient</code></li>
+</ul>
+
+
+<p><code>python
+tf.keras.backend.stop_gradient(variables)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>variables</code></b>: Tensor or list of tensors to consider constant with respect
+to any other variable.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A single tensor or a list of tensors (depending on the passed argument)
+that has no gradient with respect to any other variable.</p>

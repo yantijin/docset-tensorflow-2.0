@@ -1,0 +1,74 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.backend.zeros" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.keras.backend.zeros</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/backend.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Instantiates an all-zeros variable and returns it.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.keras.backend.zeros</code></li>
+<li><code>tf.compat.v2.keras.backend.zeros</code></li>
+</ul>
+
+
+<p><code>python
+tf.keras.backend.zeros(
+    shape,
+    dtype=None,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>shape</code></b>: Tuple or list of integers, shape of returned Keras variable</li>
+<li><b><code>dtype</code></b>: data type of returned Keras variable</li>
+<li><b><code>name</code></b>: name of returned Keras variable</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A variable (including Keras metadata), filled with <code>0.0</code>.
+Note that if <code>shape</code> was symbolic, we cannot return a variable,
+and will return a dynamically-shaped tensor instead.</p>
+
+<h4>Example:</h4>
+
+<p>```python
+from tensorflow.keras import backend as K
+kvar = K.zeros((3,4))
+K.eval(kvar)</p>
+
+<h1>array([[ 0.,  0.,  0.,  0.], [ 0.,  0.,  0.,  0.],</h1>
+
+<h1>[ 0.,  0.,  0.,  0.]], dtype=float32)</h1>
+
+<p>A = tf.constant([1,2,3])
+kvar2 = K.zeros(A.shape) # [0., 0., 0.] float32 by default
+kvar3 = K.zeros(A.shape,dtype=tf.int32) # [0, 0, 0] with int32 dtype
+kvar4 = K.zeros([2,3]) # [[0., 0., 0.], [0., 0., 0.]]
+```</p>

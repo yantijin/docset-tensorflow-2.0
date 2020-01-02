@@ -1,0 +1,64 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.assert_type" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.assert_type</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/check_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Statically asserts that the given <code>Tensor</code> is of the specified type.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.debugging.assert_type</code></li>
+</ul>
+
+
+<p><code>python
+tf.compat.v1.assert_type(
+    tensor,
+    tf_type,
+    message=None,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>tensor</code></b>: A <code>Tensor</code>.</li>
+<li><b><code>tf_type</code></b>: A tensorflow type (<code>dtypes.float32</code>, <a href="../../../tf.html#int64"><code>tf.int64</code></a>, <code>dtypes.bool</code>,
+etc).</li>
+<li><b><code>message</code></b>: A string to prefix to the default message.</li>
+<li><b><code>name</code></b>:  A name to give this <code>Op</code>.  Defaults to &ldquo;assert_type&rdquo;</li>
+</ul>
+
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>TypeError</code></b>: If the tensors data type doesn&rsquo;t match <code>tf_type</code>.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>no_op</code> that does nothing.  Type can be determined statically.</p>

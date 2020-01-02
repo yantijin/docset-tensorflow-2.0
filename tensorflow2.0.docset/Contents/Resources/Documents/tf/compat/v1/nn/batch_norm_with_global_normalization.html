@@ -1,0 +1,73 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.nn.batch_norm_with_global_normalization" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.nn.batch_norm_with_global_normalization</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/nn_impl.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Batch normalization.</p>
+
+<p><code>python
+tf.compat.v1.nn.batch_norm_with_global_normalization(
+    t=None,
+    m=None,
+    v=None,
+    beta=None,
+    gamma=None,
+    variance_epsilon=None,
+    scale_after_normalization=None,
+    name=None,
+    input=None,
+    mean=None,
+    variance=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>This op is deprecated. See <a href="../../../../tf/nn/batch_normalization.html"><code>tf.nn.batch_normalization</code></a>.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>t</code></b>: A 4D input Tensor.</li>
+<li><b><code>m</code></b>: A 1D mean Tensor with size matching the last dimension of t.
+This is the first output from tf.nn.moments,
+or a saved moving average thereof.</li>
+<li><b><code>v</code></b>: A 1D variance Tensor with size matching the last dimension of t.
+This is the second output from tf.nn.moments,
+or a saved moving average thereof.</li>
+<li><b><code>beta</code></b>: A 1D beta Tensor with size matching the last dimension of t.
+An offset to be added to the normalized tensor.</li>
+<li><b><code>gamma</code></b>: A 1D gamma Tensor with size matching the last dimension of t.
+If &ldquo;scale_after_normalization&rdquo; is true, this tensor will be multiplied
+with the normalized tensor.</li>
+<li><b><code>variance_epsilon</code></b>: A small float number to avoid dividing by 0.</li>
+<li><b><code>scale_after_normalization</code></b>: A bool indicating whether the resulted tensor
+needs to be multiplied with gamma.</li>
+<li><b><code>name</code></b>: A name for this operation (optional).</li>
+<li><b><code>input</code></b>: Alias for t.</li>
+<li><b><code>mean</code></b>: Alias for m.</li>
+<li><b><code>variance</code></b>: Alias for v.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A batch-normalized <code>t</code>.</p>

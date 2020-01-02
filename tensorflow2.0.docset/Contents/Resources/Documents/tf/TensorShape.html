@@ -1,0 +1,646 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.TensorShape" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="dims"/>
+<meta itemprop="property" content="ndims"/>
+<meta itemprop="property" content="rank"/>
+<meta itemprop="property" content="__add__"/>
+<meta itemprop="property" content="__bool__"/>
+<meta itemprop="property" content="__concat__"/>
+<meta itemprop="property" content="__eq__"/>
+<meta itemprop="property" content="__getitem__"/>
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="__iter__"/>
+<meta itemprop="property" content="__len__"/>
+<meta itemprop="property" content="__ne__"/>
+<meta itemprop="property" content="__nonzero__"/>
+<meta itemprop="property" content="__radd__"/>
+<meta itemprop="property" content="as_list"/>
+<meta itemprop="property" content="as_proto"/>
+<meta itemprop="property" content="assert_has_rank"/>
+<meta itemprop="property" content="assert_is_compatible_with"/>
+<meta itemprop="property" content="assert_is_fully_defined"/>
+<meta itemprop="property" content="assert_same_rank"/>
+<meta itemprop="property" content="concatenate"/>
+<meta itemprop="property" content="is_compatible_with"/>
+<meta itemprop="property" content="is_fully_defined"/>
+<meta itemprop="property" content="merge_with"/>
+<meta itemprop="property" content="most_specific_compatible_shape"/>
+<meta itemprop="property" content="num_elements"/>
+<meta itemprop="property" content="with_rank"/>
+<meta itemprop="property" content="with_rank_at_least"/>
+<meta itemprop="property" content="with_rank_at_most"/>
+</div>
+
+
+<h1>tf.TensorShape</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<h2>Class <code>TensorShape</code></h2>
+
+<!-- Start diff -->
+
+
+<p>Represents the shape of a <code>Tensor</code>.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li>Class <code>tf.compat.v1.TensorShape</code></li>
+<li>Class <code>tf.compat.v2.TensorShape</code></li>
+</ul>
+
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>A <code>TensorShape</code> represents a possibly-partial shape specification for a
+<code>Tensor</code>. It may be one of the following:</p>
+
+<ul>
+<li><em>Fully-known shape:</em> has a known number of dimensions and a known size
+for each dimension. e.g. <code>TensorShape([16, 256])</code></li>
+<li><em>Partially-known shape:</em> has a known number of dimensions, and an unknown
+size for one or more dimension. e.g. <code>TensorShape([None, 256])</code></li>
+<li><em>Unknown shape:</em> has an unknown number of dimensions, and an unknown
+size in all dimensions. e.g. <code>TensorShape(None)</code></li>
+</ul>
+
+
+<p>If a tensor is produced by an operation of type <code>"Foo"</code>, its shape
+may be inferred if there is a registered shape function for
+<code>"Foo"</code>. See <a href="https://tensorflow.org/extend/adding_an_op#shape_functions_in_c">Shape
+functions</a>
+for details of shape functions and how to register them. Alternatively,
+the shape may be set explicitly using <a href="../tf/Tensor.html#set_shape"><code>tf.Tensor.set_shape</code></a>.</p>
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+__init__(dims)
+</code></p>
+
+<p>Creates a new TensorShape with the given dimensions.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>dims</code></b>: A list of Dimensions, or None if the shape is unspecified.</li>
+</ul>
+
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>TypeError</code></b>: If dims cannot be converted to a list of dimensions.</li>
+</ul>
+
+
+<h2>Properties</h2>
+
+<h3 id="dims"><code>dims</code></h3>
+
+
+<p>Returns a list of Dimensions, or None if the shape is unspecified.</p>
+
+<h3 id="ndims"><code>ndims</code></h3>
+
+
+<p>Deprecated accessor for <code>rank</code>.</p>
+
+<h3 id="rank"><code>rank</code></h3>
+
+
+<p>Returns the rank of this shape, or None if it is unspecified.</p>
+
+<h2>Methods</h2>
+
+<h3 id="__add__"><code>__add__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+__add__(other)
+</code></p>
+
+<h3 id="__bool__"><code>__bool__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+__bool__()
+</code></p>
+
+<p>Returns True if this shape contains non-zero information.</p>
+
+<h3 id="__concat__"><code>__concat__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+__concat__(other)
+</code></p>
+
+<h3 id="__eq__"><code>__eq__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+__eq__(other)
+</code></p>
+
+<p>Returns True if <code>self</code> is equivalent to <code>other</code>.</p>
+
+<h3 id="__getitem__"><code>__getitem__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+__getitem__(key)
+</code></p>
+
+<p>Returns the value of a dimension or a shape, depending on the key.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>key</code></b>: If <code>key</code> is an integer, returns the dimension at that index;
+otherwise if <code>key</code> is a slice, returns a TensorShape whose dimensions
+are those selected by the slice from <code>self</code>.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>An integer if <code>key</code> is an integer, or a <code>TensorShape</code> if <code>key</code> is a
+slice.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If <code>key</code> is a slice and <code>self</code> is completely unknown and
+the step is set.</li>
+</ul>
+
+
+<h3 id="__iter__"><code>__iter__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+__iter__()
+</code></p>
+
+<p>Returns <code>self.dims</code> if the rank is known, otherwise raises ValueError.</p>
+
+<h3 id="__len__"><code>__len__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+__len__()
+</code></p>
+
+<p>Returns the rank of this shape, or raises ValueError if unspecified.</p>
+
+<h3 id="__ne__"><code>__ne__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+__ne__(other)
+</code></p>
+
+<p>Returns True if <code>self</code> is known to be different from <code>other</code>.</p>
+
+<h3 id="__nonzero__"><code>__nonzero__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+__nonzero__()
+</code></p>
+
+<p>Returns True if this shape contains non-zero information.</p>
+
+<h3 id="__radd__"><code>__radd__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+__radd__(other)
+</code></p>
+
+<h3 id="as_list"><code>as_list</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+as_list()
+</code></p>
+
+<p>Returns a list of integers or <code>None</code> for each dimension.</p>
+
+<h4>Returns:</h4>
+
+<p>A list of integers or <code>None</code> for each dimension.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If <code>self</code> is an unknown shape with an unknown rank.</li>
+</ul>
+
+
+<h3 id="as_proto"><code>as_proto</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+as_proto()
+</code></p>
+
+<p>Returns this shape as a <code>TensorShapeProto</code>.</p>
+
+<h3 id="assert_has_rank"><code>assert_has_rank</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+assert_has_rank(rank)
+</code></p>
+
+<p>Raises an exception if <code>self</code> is not compatible with the given <code>rank</code>.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>rank</code></b>: An integer.</li>
+</ul>
+
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If <code>self</code> does not represent a shape with the given <code>rank</code>.</li>
+</ul>
+
+
+<h3 id="assert_is_compatible_with"><code>assert_is_compatible_with</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+assert_is_compatible_with(other)
+</code></p>
+
+<p>Raises exception if <code>self</code> and <code>other</code> do not represent the same shape.</p>
+
+<p>This method can be used to assert that there exists a shape that both
+<code>self</code> and <code>other</code> represent.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>other</code></b>: Another TensorShape.</li>
+</ul>
+
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If <code>self</code> and <code>other</code> do not represent the same shape.</li>
+</ul>
+
+
+<h3 id="assert_is_fully_defined"><code>assert_is_fully_defined</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+assert_is_fully_defined()
+</code></p>
+
+<p>Raises an exception if <code>self</code> is not fully defined in every dimension.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If <code>self</code> does not have a known value for every dimension.</li>
+</ul>
+
+
+<h3 id="assert_same_rank"><code>assert_same_rank</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+assert_same_rank(other)
+</code></p>
+
+<p>Raises an exception if <code>self</code> and <code>other</code> do not have compatible ranks.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>other</code></b>: Another <code>TensorShape</code>.</li>
+</ul>
+
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If <code>self</code> and <code>other</code> do not represent shapes with the
+same rank.</li>
+</ul>
+
+
+<h3 id="concatenate"><code>concatenate</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+concatenate(other)
+</code></p>
+
+<p>Returns the concatenation of the dimension in <code>self</code> and <code>other</code>.</p>
+
+<p><em>N.B.</em> If either <code>self</code> or <code>other</code> is completely unknown,
+concatenation will discard information about the other shape. In
+future, we might support concatenation that preserves this
+information for use with slicing.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>other</code></b>: Another <code>TensorShape</code>.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>TensorShape</code> whose dimensions are the concatenation of the
+dimensions in <code>self</code> and <code>other</code>.</p>
+
+<h3 id="is_compatible_with"><code>is_compatible_with</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+is_compatible_with(other)
+</code></p>
+
+<p>Returns True iff <code>self</code> is compatible with <code>other</code>.</p>
+
+<p>Two possibly-partially-defined shapes are compatible if there
+exists a fully-defined shape that both shapes can represent. Thus,
+compatibility allows the shape inference code to reason about
+partially-defined shapes. For example:</p>
+
+<ul>
+<li><p>TensorShape(None) is compatible with all shapes.</p></li>
+<li><p>TensorShape([None, None]) is compatible with all two-dimensional
+shapes, such as TensorShape([32, 784]), and also TensorShape(None). It is
+not compatible with, for example, TensorShape([None]) or
+TensorShape([None, None, None]).</p></li>
+<li><p>TensorShape([32, None]) is compatible with all two-dimensional shapes
+with size 32 in the 0th dimension, and also TensorShape([None, None])
+and TensorShape(None). It is not compatible with, for example,
+TensorShape([32]), TensorShape([32, None, 1]) or TensorShape([64, None]).</p></li>
+<li><p>TensorShape([32, 784]) is compatible with itself, and also
+TensorShape([32, None]), TensorShape([None, 784]), TensorShape([None,
+None]) and TensorShape(None). It is not compatible with, for example,
+TensorShape([32, 1, 784]) or TensorShape([None]).</p></li>
+</ul>
+
+
+<p>The compatibility relation is reflexive and symmetric, but not
+transitive. For example, TensorShape([32, 784]) is compatible with
+TensorShape(None), and TensorShape(None) is compatible with
+TensorShape([4, 4]), but TensorShape([32, 784]) is not compatible with
+TensorShape([4, 4]).</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>other</code></b>: Another TensorShape.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>True iff <code>self</code> is compatible with <code>other</code>.</p>
+
+<h3 id="is_fully_defined"><code>is_fully_defined</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+is_fully_defined()
+</code></p>
+
+<p>Returns True iff <code>self</code> is fully defined in every dimension.</p>
+
+<h3 id="merge_with"><code>merge_with</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+merge_with(other)
+</code></p>
+
+<p>Returns a <code>TensorShape</code> combining the information in <code>self</code> and <code>other</code>.</p>
+
+<p>The dimensions in <code>self</code> and <code>other</code> are merged elementwise,
+according to the rules defined for <code>Dimension.merge_with()</code>.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>other</code></b>: Another <code>TensorShape</code>.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>TensorShape</code> containing the combined information of <code>self</code> and
+<code>other</code>.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If <code>self</code> and <code>other</code> are not compatible.</li>
+</ul>
+
+
+<h3 id="most_specific_compatible_shape"><code>most_specific_compatible_shape</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+most_specific_compatible_shape(other)
+</code></p>
+
+<p>Returns the most specific TensorShape compatible with <code>self</code> and <code>other</code>.</p>
+
+<ul>
+<li><p>TensorShape([None, 1]) is the most specific TensorShape compatible with
+both TensorShape([2, 1]) and TensorShape([5, 1]). Note that
+TensorShape(None) is also compatible with above mentioned TensorShapes.</p></li>
+<li><p>TensorShape([1, 2, 3]) is the most specific TensorShape compatible with
+both TensorShape([1, 2, 3]) and TensorShape([1, 2, 3]). There are more
+less specific TensorShapes compatible with above mentioned TensorShapes,
+e.g. TensorShape([1, 2, None]), TensorShape(None).</p></li>
+</ul>
+
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>other</code></b>: Another <code>TensorShape</code>.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>TensorShape</code> which is the most specific compatible shape of <code>self</code>
+and <code>other</code>.</p>
+
+<h3 id="num_elements"><code>num_elements</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+num_elements()
+</code></p>
+
+<p>Returns the total number of elements, or none for incomplete shapes.</p>
+
+<h3 id="with_rank"><code>with_rank</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+with_rank(rank)
+</code></p>
+
+<p>Returns a shape based on <code>self</code> with the given rank.</p>
+
+<p>This method promotes a completely unknown shape to one with a
+known rank.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>rank</code></b>: An integer.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A shape that is at least as specific as <code>self</code> with the given rank.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If <code>self</code> does not represent a shape with the given <code>rank</code>.</li>
+</ul>
+
+
+<h3 id="with_rank_at_least"><code>with_rank_at_least</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+with_rank_at_least(rank)
+</code></p>
+
+<p>Returns a shape based on <code>self</code> with at least the given rank.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>rank</code></b>: An integer.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A shape that is at least as specific as <code>self</code> with at least the given
+rank.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If <code>self</code> does not represent a shape with at least the given
+<code>rank</code>.</li>
+</ul>
+
+
+<h3 id="with_rank_at_most"><code>with_rank_at_most</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+with_rank_at_most(rank)
+</code></p>
+
+<p>Returns a shape based on <code>self</code> with at most the given rank.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>rank</code></b>: An integer.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A shape that is at least as specific as <code>self</code> with at most the given
+rank.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If <code>self</code> does not represent a shape with at most the given
+<code>rank</code>.</li>
+</ul>
+

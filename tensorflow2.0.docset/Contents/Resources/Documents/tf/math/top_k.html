@@ -1,0 +1,78 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.math.top_k" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.math.top_k</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/nn_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Finds values and indices of the <code>k</code> largest entries for the last dimension.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.math.top_k</code></li>
+<li><code>tf.compat.v1.nn.top_k</code></li>
+<li><code>tf.compat.v2.math.top_k</code></li>
+<li><code>tf.compat.v2.nn.top_k</code></li>
+<li><code>tf.nn.top_k</code></li>
+</ul>
+
+
+<p><code>python
+tf.math.top_k(
+    input,
+    k=1,
+    sorted=True,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>If the input is a vector (rank=1), finds the <code>k</code> largest entries in the vector
+and outputs their values and indices as vectors.  Thus <code>values[j]</code> is the
+<code>j</code>-th largest entry in <code>input</code>, and its index is <code>indices[j]</code>.</p>
+
+<p>For matrices (resp. higher rank input), computes the top <code>k</code> entries in each
+row (resp. vector along the last dimension).  Thus,</p>
+
+<pre><code>values.shape = indices.shape = input.shape[:-1] + [k]
+</code></pre>
+
+<p>If two elements are equal, the lower-index element appears first.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>input</code></b>: 1-D or higher <code>Tensor</code> with last dimension at least <code>k</code>.</li>
+<li><b><code>k</code></b>: 0-D <code>int32</code> <code>Tensor</code>.  Number of top elements to look for along the last
+dimension (along each row for matrices).</li>
+<li><b><code>sorted</code></b>: If true the resulting <code>k</code> elements will be sorted by the values in
+descending order.</li>
+<li><b><code>name</code></b>: Optional name for the operation.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<ul>
+<li><b><code>values</code></b>: The <code>k</code> largest elements along each last dimensional slice.</li>
+<li><b><code>indices</code></b>: The indices of <code>values</code> within the last dimension of <code>input</code>.</li>
+</ul>
+

@@ -1,0 +1,86 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.autograph.experimental.Feature" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="ALL"/>
+<meta itemprop="property" content="ASSERT_STATEMENTS"/>
+<meta itemprop="property" content="AUTO_CONTROL_DEPS"/>
+<meta itemprop="property" content="BUILTIN_FUNCTIONS"/>
+<meta itemprop="property" content="EQUALITY_OPERATORS"/>
+<meta itemprop="property" content="LISTS"/>
+<meta itemprop="property" content="NAME_SCOPES"/>
+</div>
+
+
+<h1>tf.autograph.experimental.Feature</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/autograph/core/converter.py">View source</a></p>
+
+<h2>Class <code>Feature</code></h2>
+
+<!-- Start diff -->
+
+
+<p>This enumeration represents optional conversion options.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li>Class <code>tf.compat.v1.autograph.experimental.Feature</code></li>
+<li>Class <code>tf.compat.v2.autograph.experimental.Feature</code></li>
+</ul>
+
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>These conversion options are experimental. They are subject to change without
+notice and offer no guarantees.</p>
+
+<p><em>Example Usage</em></p>
+
+<p><code>python
+optionals= tf.autograph.experimental.Feature.EQUALITY_OPERATORS
+@tf.function(experimental_autograph_options=optionals)
+def f(i):
+  if i == 0:  # EQUALITY_OPERATORS allows the use of == here.
+    tf.print('i is zero')
+</code></p>
+
+<h4>Attributes:</h4>
+
+<ul>
+<li><b><code>ALL</code></b>: Enable all features.</li>
+<li><b><code>AUTO_CONTROL_DEPS</code></b>: Insert of control dependencies in the generated code.</li>
+<li><b><code>ASSERT_STATEMENTS</code></b>: Convert Tensor-dependent assert statements to tf.Assert.</li>
+<li><b><code>BUILTIN_FUNCTIONS</code></b>: Convert builtin functions applied to Tensors to
+their TF counterparts.</li>
+<li><b><code>EQUALITY_OPERATORS</code></b>: Whether to convert the comparison operators, like
+equality. This is soon to be deprecated as support is being added to the
+Tensor class.</li>
+<li><b><code>LISTS</code></b>: Convert list idioms, like initializers, slices, append, etc.</li>
+<li><b><code>NAME_SCOPES</code></b>: Insert name scopes that name ops according to context, like the
+function they were defined in.</li>
+</ul>
+
+
+<h2>Class Members</h2>
+
+<ul>
+<li><code>ALL</code> <a id="ALL"></a></li>
+<li><code>ASSERT_STATEMENTS</code> <a id="ASSERT_STATEMENTS"></a></li>
+<li><code>AUTO_CONTROL_DEPS</code> <a id="AUTO_CONTROL_DEPS"></a></li>
+<li><code>BUILTIN_FUNCTIONS</code> <a id="BUILTIN_FUNCTIONS"></a></li>
+<li><code>EQUALITY_OPERATORS</code> <a id="EQUALITY_OPERATORS"></a></li>
+<li><code>LISTS</code> <a id="LISTS"></a></li>
+<li><code>NAME_SCOPES</code> <a id="NAME_SCOPES"></a></li>
+</ul>
+

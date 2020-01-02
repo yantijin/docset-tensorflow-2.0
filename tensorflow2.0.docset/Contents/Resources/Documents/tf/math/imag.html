@@ -1,0 +1,66 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.math.imag" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.math.imag</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/math_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Returns the imaginary part of a complex (or real) tensor.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.imag</code></li>
+<li><code>tf.compat.v1.math.imag</code></li>
+<li><code>tf.compat.v2.math.imag</code></li>
+</ul>
+
+
+<p><code>python
+tf.math.imag(
+    input,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Given a tensor <code>input</code>, this operation returns a tensor of type <code>float</code> that
+is the imaginary part of each element in <code>input</code> considered as a complex
+number. If <code>input</code> is real, a tensor of all zeros is returned.</p>
+
+<h4>For example:</h4>
+
+<p><code>python
+x = tf.constant([-2.25 + 4.75j, 3.25 + 5.75j])
+tf.math.imag(x)  # [4.75, 5.75]
+</code></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>input</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>float</code>, <code>double</code>,
+<code>complex64</code>, <code>complex128</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> of type <code>float32</code> or <code>float64</code>.</p>

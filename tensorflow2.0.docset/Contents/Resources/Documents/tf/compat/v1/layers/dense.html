@@ -1,0 +1,99 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.layers.dense" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.layers.dense</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/layers/core.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Functional interface for the densely-connected layer. (deprecated)</p>
+
+<p><code>python
+tf.compat.v1.layers.dense(
+    inputs,
+    units,
+    activation=None,
+    use_bias=True,
+    kernel_initializer=None,
+    bias_initializer=tf.zeros_initializer(),
+    kernel_regularizer=None,
+    bias_regularizer=None,
+    activity_regularizer=None,
+    kernel_constraint=None,
+    bias_constraint=None,
+    trainable=True,
+    name=None,
+    reuse=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
+Instructions for updating:
+Use keras.layers.Dense instead.</p>
+
+<p>This layer implements the operation:
+<code>outputs = activation(inputs * kernel + bias)</code>
+where <code>activation</code> is the activation function passed as the <code>activation</code>
+argument (if not <code>None</code>), <code>kernel</code> is a weights matrix created by the layer,
+and <code>bias</code> is a bias vector created by the layer
+(only if <code>use_bias</code> is <code>True</code>).</p>
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>inputs</code></b>: Tensor input.</li>
+<li><b><code>units</code></b>: Integer or Long, dimensionality of the output space.</li>
+<li><b><code>activation</code></b>: Activation function (callable). Set it to None to maintain a
+linear activation.</li>
+<li><b><code>use_bias</code></b>: Boolean, whether the layer uses a bias.</li>
+<li><b><code>kernel_initializer</code></b>: Initializer function for the weight matrix.
+If <code>None</code> (default), weights are initialized using the default
+initializer used by <a href="../../../../tf/compat/v1/get_variable.html"><code>tf.compat.v1.get_variable</code></a>.</li>
+<li><b><code>bias_initializer</code></b>: Initializer function for the bias.</li>
+<li><b><code>kernel_regularizer</code></b>: Regularizer function for the weight matrix.</li>
+<li><b><code>bias_regularizer</code></b>: Regularizer function for the bias.</li>
+<li><b><code>activity_regularizer</code></b>: Regularizer function for the output.</li>
+<li><b><code>kernel_constraint</code></b>: An optional projection function to be applied to the
+  kernel after being updated by an <code>Optimizer</code> (e.g. used to implement
+  norm constraints or value constraints for layer weights). The function
+  must take as input the unprojected variable and must return the
+  projected variable (which must have the same shape). Constraints are
+  not safe to use when doing asynchronous distributed training.</li>
+<li><b><code>bias_constraint</code></b>: An optional projection function to be applied to the
+  bias after being updated by an <code>Optimizer</code>.</li>
+<li><b><code>trainable</code></b>: Boolean, if <code>True</code> also add variables to the graph collection
+<code>GraphKeys.TRAINABLE_VARIABLES</code> (see <a href="../../../../tf/Variable.html"><code>tf.Variable</code></a>).</li>
+<li><b><code>name</code></b>: String, the name of the layer.</li>
+<li><b><code>reuse</code></b>: Boolean, whether to reuse the weights of a previous layer
+by the same name.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>Output tensor the same shape as <code>inputs</code> except the last dimension is of
+size <code>units</code>.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: if eager execution is enabled.</li>
+</ul>
+

@@ -1,0 +1,73 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.backend.repeat" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.keras.backend.repeat</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/backend.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Repeats a 2D tensor.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.keras.backend.repeat</code></li>
+<li><code>tf.compat.v2.keras.backend.repeat</code></li>
+</ul>
+
+
+<p><code>python
+tf.keras.backend.repeat(
+    x,
+    n
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>if <code>x</code> has shape (samples, dim) and <code>n</code> is <code>2</code>,
+the output will have shape <code>(samples, 2, dim)</code>.</p>
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>x</code></b>: Tensor or variable.</li>
+<li><b><code>n</code></b>: Python integer, number of times to repeat.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A tensor.</p>
+
+<h4>Example:</h4>
+
+<p>```python</p>
+
+<blockquote><blockquote><blockquote><p>b = tf.constant([[1, 2], [3, 4]])
+b
+  &lt;tf.Tensor: id=78, shape=(2, 2), dtype=int32, numpy=
+  array([[1, 2],
+         [3, 4]], dtype=int32)>
+tf.keras.backend.repeat(b, n=2)
+  &lt;tf.Tensor: id=82, shape=(2, 2, 2), dtype=int32, numpy=
+  array([[[1, 2],
+          [1, 2]],
+         [[3, 4],
+          [3, 4]]], dtype=int32)>
+```</p></blockquote></blockquote></blockquote>

@@ -1,0 +1,129 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.nn.pool" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.nn.pool</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/nn_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Performs an N-D pooling operation.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v2.nn.pool</code></li>
+</ul>
+
+
+<p><code>python
+tf.nn.pool(
+    input,
+    window_shape,
+    pooling_type,
+    strides=None,
+    padding='VALID',
+    data_format=None,
+    dilations=None,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>In the case that <code>data_format</code> does not start with &ldquo;NC&rdquo;, computes for
+    0 &lt;= b &lt; batch_size,
+    0 &lt;= x[i] &lt; output_spatial_shape[i],
+    0 &lt;= c &lt; num_channels:</p>
+
+<p><code>
+  output[b, x[0], ..., x[N-1], c] =
+    REDUCE_{z[0], ..., z[N-1]}
+      input[b,
+            x[0] * strides[0] - pad_before[0] + dilation_rate[0]*z[0],
+            ...
+            x[N-1]*strides[N-1] - pad_before[N-1] + dilation_rate[N-1]*z[N-1],
+            c],
+</code></p>
+
+<p>where the reduction function REDUCE depends on the value of <code>pooling_type</code>,
+and pad_before is defined based on the value of <code>padding</code> as described in
+the &ldquo;returns&rdquo; section of <a href="../../tf/nn/convolution.html"><code>tf.nn.convolution</code></a> for details.
+The reduction never includes out-of-bounds positions.</p>
+
+<p>In the case that <code>data_format</code> starts with <code>"NC"</code>, the <code>input</code> and output are
+simply transposed as follows:</p>
+
+<p><code>
+  pool(input, data_format, **kwargs) =
+    tf.transpose(pool(tf.transpose(input, [0] + range(2,N+2) + [1]),
+                      **kwargs),
+                 [0, N+1] + range(1, N+1))
+</code></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>input</code></b>: Tensor of rank N+2, of shape <code>[batch_size] + input_spatial_shape +
+[num_channels]</code> if data_format does not start with &ldquo;NC&rdquo; (default), or
+<code>[batch_size, num_channels] + input_spatial_shape</code> if data_format starts
+with &ldquo;NC&rdquo;.  Pooling happens over the spatial dimensions only.</li>
+<li><b><code>window_shape</code></b>: Sequence of N ints >= 1.</li>
+<li><b><code>pooling_type</code></b>: Specifies pooling operation, must be &ldquo;AVG&rdquo; or &ldquo;MAX&rdquo;.</li>
+<li><b><code>strides</code></b>: Optional. Sequence of N ints >= 1.  Defaults to [1]*N. If any value of
+strides is > 1, then all values of dilation_rate must be 1.</li>
+<li><b><code>padding</code></b>: The padding algorithm, must be &ldquo;SAME&rdquo; or &ldquo;VALID&rdquo;. Defaults to &ldquo;SAME&rdquo;.
+See the &ldquo;returns&rdquo; section of <a href="../../tf/nn/convolution.html"><code>tf.nn.convolution</code></a> for details.</li>
+<li><b><code>data_format</code></b>: A string or None.  Specifies whether the channel dimension of
+the <code>input</code> and output is the last dimension (default, or if <code>data_format</code>
+does not start with &ldquo;NC&rdquo;), or the second dimension (if <code>data_format</code>
+starts with &ldquo;NC&rdquo;).  For N=1, the valid values are &ldquo;NWC&rdquo; (default) and
+&ldquo;NCW&rdquo;.  For N=2, the valid values are &ldquo;NHWC&rdquo; (default) and &ldquo;NCHW&rdquo;. For
+N=3, the valid values are &ldquo;NDHWC&rdquo; (default) and &ldquo;NCDHW&rdquo;.</li>
+<li><b><code>dilations</code></b>: Optional.  Dilation rate.  List of N ints >= 1. Defaults to
+[1]*N.  If any value of dilation_rate is > 1, then all values of strides
+must be 1.</li>
+<li><b><code>name</code></b>: Optional. Name of the op.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>Tensor of rank N+2, of shape
+  [batch_size] + output_spatial_shape + [num_channels]</p>
+
+<p>if data_format is None or does not start with &ldquo;NC&rdquo;, or</p>
+
+<p>  [batch_size, num_channels] + output_spatial_shape</p>
+
+<p>if data_format starts with &ldquo;NC&rdquo;,
+where <code>output_spatial_shape</code> depends on the value of padding:</p>
+
+<p>If padding = &ldquo;SAME&rdquo;:
+  output_spatial_shape[i] = ceil(input_spatial_shape[i] / strides[i])</p>
+
+<p>If padding = &ldquo;VALID&rdquo;:
+  output_spatial_shape[i] =
+    ceil((input_spatial_shape[i] - (window_shape[i] - 1) * dilation_rate[i])
+         / strides[i]).</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: if arguments are invalid.</li>
+</ul>
+

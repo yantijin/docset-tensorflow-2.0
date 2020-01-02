@@ -1,0 +1,84 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.grad_pass_through" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.grad_pass_through</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/custom_gradient.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Creates a grad-pass-through op with the forward behavior provided in f.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.grad_pass_through</code></li>
+<li><code>tf.compat.v2.grad_pass_through</code></li>
+</ul>
+
+
+<p><code>python
+tf.grad_pass_through(f)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Use this function to wrap any op, maintaining its behavior in the forward
+pass, but replacing the original op in the backward graph with an identity.
+For example:</p>
+
+<p>```python
+x = tf.Variable(1.0, name=&ldquo;x&rdquo;)
+z = tf.Variable(3.0, name=&ldquo;z&rdquo;)</p>
+
+<p>with tf.GradientTape() as tape:
+  # y will evaluate to 9.0
+  y = tf.grad_pass_through(x.assign)(z**2)</p>
+
+<h1>grads will evaluate to 6.0</h1>
+
+<p>grads = tape.gradient(y, z)
+```</p>
+
+<p>Another example is a &lsquo;differentiable&rsquo; moving average approximation, where
+gradients are allowed to flow into the last value fed to the moving average,
+but the moving average is still used for the forward pass:</p>
+
+<p>```python
+x = &hellip; # Some scalar value</p>
+
+<h1>A moving average object, we don&rsquo;t need to know how this is implemented</h1>
+
+<p>moving_average = MovingAverage()
+with backprop.GradientTape() as tape:
+  # mavg_x will evaluate to the current running average value
+  mavg_x = tf.grad_pass_through(moving_average)(x)
+grads = tape.gradient(mavg_x, x) # grads will evaluate to 1.0
+```</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>f</code></b>: function <code>f(*x)</code> that returns a <code>Tensor</code> or nested structure of <code>Tensor</code>
+outputs.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A function <code>h(x)</code> which returns the same values as <code>f(x)</code> and whose
+gradients are the same as those of an identity function.</p>

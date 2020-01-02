@@ -1,0 +1,218 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.lookup.StaticHashTable" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="default_value"/>
+<meta itemprop="property" content="initializer"/>
+<meta itemprop="property" content="key_dtype"/>
+<meta itemprop="property" content="name"/>
+<meta itemprop="property" content="resource_handle"/>
+<meta itemprop="property" content="value_dtype"/>
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="export"/>
+<meta itemprop="property" content="lookup"/>
+<meta itemprop="property" content="size"/>
+</div>
+
+
+<h1>tf.compat.v1.lookup.StaticHashTable</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/lookup_ops.py">View source</a></p>
+
+<h2>Class <code>StaticHashTable</code></h2>
+
+<!-- Start diff -->
+
+
+<p>A generic hash table that is immutable once initialized.</p>
+
+<p>Inherits From: <a href="../../../../tf/lookup/StaticHashTable.html"><code>StaticHashTable</code></a></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>When running in graph mode, you must evaluate the tensor returned by
+<code>tf.tables_initializer()</code> before evaluating the tensor returned by
+this class&rsquo;s <code>lookup()</code> method. Example usage in graph mode:</p>
+
+<p><code>python
+keys_tensor = tf.constant([1, 2])
+vals_tensor = tf.constant([3, 4])
+input_tensor = tf.constant([1, 5])
+table = tf.lookup.StaticHashTable(
+    tf.lookup.KeyValueTensorInitializer(keys_tensor, vals_tensor), -1)
+out = table.lookup(input_tensor)
+with tf.Session() as sess:
+    sess.run(tf.tables_initializer())
+    print(sess.run(out))
+</code></p>
+
+<p>In eager mode, no special code is needed to initialize the table.
+Example usage in eager mode:</p>
+
+<p><code>python
+tf.enable_eager_execution()
+keys_tensor = tf.constant([1, 2])
+vals_tensor = tf.constant([3, 4])
+input_tensor = tf.constant([1, 5])
+table = tf.lookup.StaticHashTable(
+    tf.lookup.KeyValueTensorInitializer(keys_tensor, vals_tensor), -1)
+print(table.lookup(input_tensor))
+</code></p>
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/lookup_ops.py">View source</a></p>
+
+<p><code>python
+__init__(
+    initializer,
+    default_value,
+    name=None
+)
+</code></p>
+
+<p>Creates a non-initialized <code>HashTable</code> object.</p>
+
+<p>Creates a table, the type of its keys and values are specified by the
+initializer.
+Before using the table you will have to initialize it. After initialization
+the table will be immutable.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>initializer</code></b>: The table initializer to use. See <code>HashTable</code> kernel for
+supported key and value types.</li>
+<li><b><code>default_value</code></b>: The value to use if a key is missing in the table.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>HashTable</code> object.</p>
+
+<h2>Properties</h2>
+
+<h3 id="default_value"><code>default_value</code></h3>
+
+
+<p>The default value of the table.</p>
+
+<h3 id="initializer"><code>initializer</code></h3>
+
+
+
+
+<h3 id="key_dtype"><code>key_dtype</code></h3>
+
+
+<p>The table key dtype.</p>
+
+<h3 id="name"><code>name</code></h3>
+
+
+<p>The name of the table.</p>
+
+<h3 id="resource_handle"><code>resource_handle</code></h3>
+
+
+<p>Returns the resource handle associated with this Resource.</p>
+
+<h3 id="value_dtype"><code>value_dtype</code></h3>
+
+
+<p>The table value dtype.</p>
+
+<h2>Methods</h2>
+
+<h3 id="export"><code>export</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/lookup_ops.py">View source</a></p>
+
+<p><code>python
+export(name=None)
+</code></p>
+
+<p>Returns tensors of all keys and values in the table.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A pair of tensors with the first tensor containing all keys and the
+  second tensors containing all values in the table.</p>
+
+<h3 id="lookup"><code>lookup</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/lookup_ops.py">View source</a></p>
+
+<p><code>python
+lookup(
+    keys,
+    name=None
+)
+</code></p>
+
+<p>Looks up <code>keys</code> in a table, outputs the corresponding values.</p>
+
+<p>The <code>default_value</code> is used for keys not present in the table.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>keys</code></b>: Keys to look up. May be either a <code>SparseTensor</code> or dense <code>Tensor</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>SparseTensor</code> if keys are sparse, otherwise a dense <code>Tensor</code>.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>TypeError</code></b>: when <code>keys</code> or <code>default_value</code> doesn&rsquo;t match the table data
+types.</li>
+</ul>
+
+
+<h3 id="size"><code>size</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/lookup_ops.py">View source</a></p>
+
+<p><code>python
+size(name=None)
+</code></p>
+
+<p>Compute the number of elements in this table.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A scalar tensor containing the number of elements in this table.</p>

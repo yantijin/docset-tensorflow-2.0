@@ -1,0 +1,59 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.train.basic_train_loop" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.train.basic_train_loop</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/basic_loops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Basic loop to train a model.</p>
+
+<p><code>python
+tf.compat.v1.train.basic_train_loop(
+    supervisor,
+    train_step_fn,
+    args=None,
+    kwargs=None,
+    master=''
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Calls <code>train_step_fn</code> in a loop to train a model.  The function is called as:</p>
+
+<p><code>python
+train_step_fn(session, *args, **kwargs)
+</code></p>
+
+<p>It is passed a <a href="../../../../tf/compat/v1/Session.html"><code>tf.compat.v1.Session</code></a> in addition to <code>args</code> and <code>kwargs</code>.  The
+function
+typically runs one training step in the session.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>supervisor</code></b>: <a href="../../../../tf/compat/v1/train/Supervisor.html"><code>tf.compat.v1.train.Supervisor</code></a> to run the training services.</li>
+<li><b><code>train_step_fn</code></b>: Callable to execute one training step.  Called repeatedly as
+<code>train_step_fn(session, *args **kwargs)</code>.</li>
+<li><b><code>args</code></b>: Optional positional arguments passed to <code>train_step_fn</code>.</li>
+<li><b><code>kwargs</code></b>: Optional keyword arguments passed to <code>train_step_fn</code>.</li>
+<li><b><code>master</code></b>: Master to use to create the training session.  Defaults to <code>""</code>
+which causes the session to be created in the local process.</li>
+</ul>
+

@@ -1,0 +1,87 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.train.string_input_producer" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.train.string_input_producer</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/input.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Output strings (e.g. filenames) to a queue for an input pipeline. (deprecated)</p>
+
+<p><code>python
+tf.compat.v1.train.string_input_producer(
+    string_tensor,
+    num_epochs=None,
+    shuffle=True,
+    seed=None,
+    capacity=32,
+    shared_name=None,
+    name=None,
+    cancel_op=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by <a href="../../../../tf/data.html"><code>tf.data</code></a>. Use <code>tf.data.Dataset.from_tensor_slices(string_tensor).shuffle(tf.shape(input_tensor, out_type=tf.int64)[0]).repeat(num_epochs)</code>. If <code>shuffle=False</code>, omit the <code>.shuffle(...)</code>.</p>
+
+<p>Note: if <code>num_epochs</code> is not <code>None</code>, this function creates local counter
+<code>epochs</code>. Use <code>local_variables_initializer()</code> to initialize local variables.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>string_tensor</code></b>: A 1-D string tensor with the strings to produce.</li>
+<li><b><code>num_epochs</code></b>: An integer (optional). If specified, <code>string_input_producer</code>
+produces each string from <code>string_tensor</code> <code>num_epochs</code> times before
+generating an <code>OutOfRange</code> error. If not specified,
+<code>string_input_producer</code> can cycle through the strings in <code>string_tensor</code>
+an unlimited number of times.</li>
+<li><b><code>shuffle</code></b>: Boolean. If true, the strings are randomly shuffled within each
+epoch.</li>
+<li><b><code>seed</code></b>: An integer (optional). Seed used if shuffle == True.</li>
+<li><b><code>capacity</code></b>: An integer. Sets the queue capacity.</li>
+<li><b><code>shared_name</code></b>: (optional). If set, this queue will be shared under the given
+name across multiple sessions. All sessions open to the device which has
+this queue will be able to access it via the shared_name. Using this in
+a distributed setting means each name will only be seen by one of the
+sessions which has access to this operation.</li>
+<li><b><code>name</code></b>: A name for the operations (optional).</li>
+<li><b><code>cancel_op</code></b>: Cancel op for the queue (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A queue with the output strings.  A <code>QueueRunner</code> for the Queue
+is added to the current <code>Graph</code>&rsquo;s <code>QUEUE_RUNNER</code> collection.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If the string_tensor is a null Python list.  At runtime,
+will fail with an assertion if string_tensor becomes a null tensor.</li>
+</ul>
+
+
+<h4>Eager Compatibility</h4>
+
+<p>Input pipelines based on Queues are not supported when eager execution is
+enabled. Please use the <a href="../../../../tf/data.html"><code>tf.data</code></a> API to ingest data under eager execution.</p>

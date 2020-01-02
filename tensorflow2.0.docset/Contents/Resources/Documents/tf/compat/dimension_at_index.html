@@ -1,0 +1,93 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.dimension_at_index" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.dimension_at_index</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Compatibility utility required to allow for both V1 and V2 behavior in TF.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.compat.dimension_at_index</code></li>
+<li><code>tf.compat.v1.dimension_at_index</code></li>
+<li><code>tf.compat.v2.compat.dimension_at_index</code></li>
+</ul>
+
+
+<p><code>python
+tf.compat.dimension_at_index(
+    shape,
+    index
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Until the release of TF 2.0, we need the legacy behavior of <code>TensorShape</code> to
+coexist with the new behavior. This utility is a bridge between the two.</p>
+
+<p>If you want to retrieve the Dimension instance corresponding to a certain
+index in a TensorShape instance, use this utility, like this:</p>
+
+<p>```</p>
+
+<h1>If you had this in your V1 code:</h1>
+
+<p>dim = tensor_shape[i]</p>
+
+<h1>Use <code>dimension_at_index</code> as direct replacement compatible with both V1 &amp; V2:</h1>
+
+<p>dim = dimension_at_index(tensor_shape, i)</p>
+
+<h1>Another possibility would be this, but WARNING: it only works if the</h1>
+
+<h1>tensor_shape instance has a defined rank.</h1>
+
+<p>dim = tensor_shape.dims[i]  # <code>dims</code> may be None if the rank is undefined!</p>
+
+<h1>In native V2 code, we recommend instead being more explicit:</h1>
+
+<p>if tensor_shape.rank is None:
+  dim = Dimension(None)
+else:
+  dim = tensor_shape.dims[i]</p>
+
+<h1>Being more explicit will save you from the following trap (present in V1):</h1>
+
+<h1>you might do in-place modifications to <code>dim</code> and expect them to be reflected</h1>
+
+<h1>in <code>tensor_shape[i]</code>, but they would not be (as the Dimension object was</h1>
+
+<h1>instantiated on the fly.</h1>
+
+<p>```</p>
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>shape</code></b>: A TensorShape instance.</li>
+<li><b><code>index</code></b>: An integer index.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A dimension object.</p>

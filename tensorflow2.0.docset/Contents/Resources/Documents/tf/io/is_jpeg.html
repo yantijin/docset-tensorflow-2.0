@@ -1,0 +1,57 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.io.is_jpeg" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.io.is_jpeg</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/image_ops_impl.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Convenience function to check if the &lsquo;contents&rsquo; encodes a JPEG image.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.image.is_jpeg</code></li>
+<li><code>tf.compat.v1.io.is_jpeg</code></li>
+<li><code>tf.compat.v2.image.is_jpeg</code></li>
+<li><code>tf.compat.v2.io.is_jpeg</code></li>
+<li><code>tf.image.is_jpeg</code></li>
+</ul>
+
+
+<p><code>python
+tf.io.is_jpeg(
+    contents,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>contents</code></b>: 0-D <code>string</code>. The encoded image bytes.</li>
+<li><b><code>name</code></b>: A name for the operation (optional)</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A scalar boolean tensor indicating if &lsquo;contents&rsquo; may be a JPEG image.
+is_jpeg is susceptible to false positives.</p>

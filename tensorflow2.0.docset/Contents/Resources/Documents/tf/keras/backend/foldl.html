@@ -1,0 +1,58 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.backend.foldl" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.keras.backend.foldl</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/backend.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Reduce elems using fn to combine them from left to right.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.keras.backend.foldl</code></li>
+<li><code>tf.compat.v2.keras.backend.foldl</code></li>
+</ul>
+
+
+<p><code>python
+tf.keras.backend.foldl(
+    fn,
+    elems,
+    initializer=None,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>fn</code></b>: Callable that will be called upon each element in elems and an
+  accumulator, for instance <code>lambda acc, x: acc + x</code></li>
+<li><b><code>elems</code></b>: tensor</li>
+<li><b><code>initializer</code></b>: The first value used (<code>elems[0]</code> in case of None)</li>
+<li><b><code>name</code></b>: A string name for the foldl node in the graph</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>Tensor with same type and shape as <code>initializer</code>.</p>

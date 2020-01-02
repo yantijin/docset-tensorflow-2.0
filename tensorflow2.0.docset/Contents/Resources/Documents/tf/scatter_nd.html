@@ -1,0 +1,149 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.scatter_nd" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.scatter_nd</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p>Defined in generated file: <code>python/ops/gen_array_ops.py</code></p>
+
+<!-- Start diff -->
+
+
+<p>Scatter <code>updates</code> into a new tensor according to <code>indices</code>.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.manip.scatter_nd</code></li>
+<li><code>tf.compat.v1.scatter_nd</code></li>
+<li><code>tf.compat.v2.scatter_nd</code></li>
+</ul>
+
+
+<p><code>python
+tf.scatter_nd(
+    indices,
+    updates,
+    shape,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Creates a new tensor by applying sparse <code>updates</code> to individual values or
+slices within a tensor (initially zero for numeric, empty for string) of
+the given <code>shape</code> according to indices.  This operator is the inverse of the
+<a href="../tf/gather_nd.html"><code>tf.gather_nd</code></a> operator which extracts values or slices from a given tensor.</p>
+
+<p>This operation is similar to tensor_scatter_add, except that the tensor is
+zero-initialized. Calling <a href="../tf/scatter_nd.html"><code>tf.scatter_nd(indices, values, shape)</code></a> is identical
+to <code>tensor_scatter_add(tf.zeros(shape, values.dtype), indices, values)</code></p>
+
+<p>If <code>indices</code> contains duplicates, then their updates are accumulated (summed).</p>
+
+<p><strong>WARNING</strong>: The order in which updates are applied is nondeterministic, so the
+output will be nondeterministic if <code>indices</code> contains duplicates &ndash; because
+of some numerical approximation issues, numbers summed in different order
+may yield different results.</p>
+
+<p><code>indices</code> is an integer tensor containing indices into a new tensor of shape
+<code>shape</code>.  The last dimension of <code>indices</code> can be at most the rank of <code>shape</code>:</p>
+
+<pre><code>indices.shape[-1] &lt;= shape.rank
+</code></pre>
+
+<p>The last dimension of <code>indices</code> corresponds to indices into elements
+(if <code>indices.shape[-1] = shape.rank</code>) or slices
+(if <code>indices.shape[-1] &lt; shape.rank</code>) along dimension <code>indices.shape[-1]</code> of
+<code>shape</code>.  <code>updates</code> is a tensor with shape</p>
+
+<pre><code>indices.shape[:-1] + shape[indices.shape[-1]:]
+</code></pre>
+
+<p>The simplest form of scatter is to insert individual elements in a tensor by
+index. For example, say we want to insert 4 scattered elements in a rank-1
+tensor with 8 elements.</p>
+
+<div style="width:70%; margin:auto; margin-bottom:10px; margin-top:20px;">
+<img style="width:100%" src="https://www.tensorflow.org/images/ScatterNd1.png" alt>
+</div>
+
+
+<p>In Python, this scatter operation would look like this:</p>
+
+<p><code>python
+    indices = tf.constant([[4], [3], [1], [7]])
+    updates = tf.constant([9, 10, 11, 12])
+    shape = tf.constant([8])
+    scatter = tf.scatter_nd(indices, updates, shape)
+    with tf.Session() as sess:
+      print(sess.run(scatter))
+</code></p>
+
+<p>The resulting tensor would look like this:</p>
+
+<pre><code>[0, 11, 0, 10, 9, 0, 0, 12]
+</code></pre>
+
+<p>We can also, insert entire slices of a higher rank tensor all at once. For
+example, if we wanted to insert two slices in the first dimension of a
+rank-3 tensor with two matrices of new values.</p>
+
+<div style="width:70%; margin:auto; margin-bottom:10px; margin-top:20px;">
+<img style="width:100%" src="https://www.tensorflow.org/images/ScatterNd2.png" alt>
+</div>
+
+
+<p>In Python, this scatter operation would look like this:</p>
+
+<p><code>python
+    indices = tf.constant([[0], [2]])
+    updates = tf.constant([[[5, 5, 5, 5], [6, 6, 6, 6],
+                            [7, 7, 7, 7], [8, 8, 8, 8]],
+                           [[5, 5, 5, 5], [6, 6, 6, 6],
+                            [7, 7, 7, 7], [8, 8, 8, 8]]])
+    shape = tf.constant([4, 4, 4])
+    scatter = tf.scatter_nd(indices, updates, shape)
+    with tf.Session() as sess:
+      print(sess.run(scatter))
+</code></p>
+
+<p>The resulting tensor would look like this:</p>
+
+<pre><code>[[[5, 5, 5, 5], [6, 6, 6, 6], [7, 7, 7, 7], [8, 8, 8, 8]],
+ [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]],
+ [[5, 5, 5, 5], [6, 6, 6, 6], [7, 7, 7, 7], [8, 8, 8, 8]],
+ [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]]
+</code></pre>
+
+<p>Note that on CPU, if an out of bound index is found, an error is returned.
+On GPU, if an out of bound index is found, the index is ignored.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>indices</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>int32</code>, <code>int64</code>.
+Index tensor.</li>
+<li><b><code>updates</code></b>: A <code>Tensor</code>. Updates to scatter into output.</li>
+<li><b><code>shape</code></b>: A <code>Tensor</code>. Must have the same type as <code>indices</code>.
+1-D. The shape of the resulting tensor.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code>. Has the same type as <code>updates</code>.</p>

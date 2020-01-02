@@ -1,0 +1,60 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.autograph.trace" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.autograph.trace</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/autograph/utils/ag_logging.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Traces argument information at compilation time.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.autograph.trace</code></li>
+<li><code>tf.compat.v2.autograph.trace</code></li>
+</ul>
+
+
+<p><code>python
+tf.autograph.trace(*args)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p><code>trace</code> is useful when debugging, and it always executes during the tracing
+phase, that is, when the TF graph is constructed.</p>
+
+<p><em>Example usage</em></p>
+
+<p>```python
+import tensorflow as tf</p>
+
+<p>for i in tf.range(10):
+  tf.autograph.trace(i)</p>
+
+<h1>Output: <Tensor ...></h1>
+
+<p>```</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>*args</code></b>: Arguments to print to <code>sys.stdout</code>.</li>
+</ul>
+

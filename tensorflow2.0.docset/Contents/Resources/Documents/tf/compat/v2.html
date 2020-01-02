@@ -1,0 +1,587 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v2" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__version__"/>
+<meta itemprop="property" content="bfloat16"/>
+<meta itemprop="property" content="bool"/>
+<meta itemprop="property" content="complex128"/>
+<meta itemprop="property" content="complex64"/>
+<meta itemprop="property" content="double"/>
+<meta itemprop="property" content="float16"/>
+<meta itemprop="property" content="float32"/>
+<meta itemprop="property" content="float64"/>
+<meta itemprop="property" content="half"/>
+<meta itemprop="property" content="int16"/>
+<meta itemprop="property" content="int32"/>
+<meta itemprop="property" content="int64"/>
+<meta itemprop="property" content="int8"/>
+<meta itemprop="property" content="qint16"/>
+<meta itemprop="property" content="qint32"/>
+<meta itemprop="property" content="qint8"/>
+<meta itemprop="property" content="quint16"/>
+<meta itemprop="property" content="quint8"/>
+<meta itemprop="property" content="resource"/>
+<meta itemprop="property" content="string"/>
+<meta itemprop="property" content="uint16"/>
+<meta itemprop="property" content="uint32"/>
+<meta itemprop="property" content="uint64"/>
+<meta itemprop="property" content="uint8"/>
+<meta itemprop="property" content="variant"/>
+</div>
+
+
+<h1>Module: tf.compat.v2</h1>
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p>Bring in all of the public TensorFlow interface into this module.</p>
+
+<h2>Modules</h2>
+
+<p><a href="../../tf/compat/v2/audio.html"><code>audio</code></a> module: Public API for tf.audio namespace.</p>
+
+<p><a href="../../tf/compat/v2/autograph.html"><code>autograph</code></a> module: Conversion of plain Python into TensorFlow graph code.</p>
+
+<p><a href="../../tf/compat/v2/bitwise.html"><code>bitwise</code></a> module: Operations for manipulating the binary representations of integers.</p>
+
+<p><a href="../../tf/compat/v2/compat.html"><code>compat</code></a> module: Functions for Python 2 vs. 3 compatibility.</p>
+
+<p><a href="../../tf/compat/v2/config.html"><code>config</code></a> module: Public API for tf.config namespace.</p>
+
+<p><a href="../../tf/compat/v2/data.html"><code>data</code></a> module: <a href="../../tf/data/Dataset.html"><code>tf.data.Dataset</code></a> API for input pipelines.</p>
+
+<p><a href="../../tf/compat/v2/debugging.html"><code>debugging</code></a> module: Public API for tf.debugging namespace.</p>
+
+<p><a href="../../tf/compat/v2/distribute.html"><code>distribute</code></a> module: Library for running a computation across multiple devices.</p>
+
+<p><a href="../../tf/compat/v2/dtypes.html"><code>dtypes</code></a> module: Public API for tf.dtypes namespace.</p>
+
+<p><a href="../../tf/compat/v2/errors.html"><code>errors</code></a> module: Exception types for TensorFlow errors.</p>
+
+<p><a href="../../tf/compat/v2/estimator.html"><code>estimator</code></a> module: Estimator: High level tools for working with models.</p>
+
+<p><a href="../../tf/compat/v2/experimental.html"><code>experimental</code></a> module: Public API for tf.experimental namespace.</p>
+
+<p><a href="../../tf/compat/v2/feature_column.html"><code>feature_column</code></a> module: Public API for tf.feature_column namespace.</p>
+
+<p><a href="../../tf/compat/v2/graph_util.html"><code>graph_util</code></a> module: Helpers to manipulate a tensor graph in python.</p>
+
+<p><a href="../../tf/compat/v2/image.html"><code>image</code></a> module: Image processing and decoding ops.</p>
+
+<p><a href="../../tf/compat/v2/keras/initializers.html"><code>initializers</code></a> module: Keras initializer serialization / deserialization.</p>
+
+<p><a href="../../tf/compat/v2/io.html"><code>io</code></a> module: Public API for tf.io namespace.</p>
+
+<p><a href="../../tf/compat/v2/keras.html"><code>keras</code></a> module: Implementation of the Keras API meant to be a high-level API for TensorFlow.</p>
+
+<p><a href="../../tf/compat/v2/linalg.html"><code>linalg</code></a> module: Operations for linear algebra.</p>
+
+<p><a href="../../tf/compat/v2/lite.html"><code>lite</code></a> module: Public API for tf.lite namespace.</p>
+
+<p><a href="../../tf/compat/v2/lookup.html"><code>lookup</code></a> module: Public API for tf.lookup namespace.</p>
+
+<p><a href="../../tf/compat/v2/keras/losses.html"><code>losses</code></a> module: Built-in loss functions.</p>
+
+<p><a href="../../tf/compat/v2/math.html"><code>math</code></a> module: Math Operations.</p>
+
+<p><a href="../../tf/compat/v2/keras/metrics.html"><code>metrics</code></a> module: Built-in metrics.</p>
+
+<p><a href="../../tf/compat/v2/nest.html"><code>nest</code></a> module: Public API for tf.nest namespace.</p>
+
+<p><a href="../../tf/compat/v2/nn.html"><code>nn</code></a> module: Wrappers for primitive Neural Net (NN) Operations.</p>
+
+<p><a href="../../tf/compat/v2/keras/optimizers.html"><code>optimizers</code></a> module: Built-in optimizer classes.</p>
+
+<p><a href="../../tf/compat/v2/quantization.html"><code>quantization</code></a> module: Public API for tf.quantization namespace.</p>
+
+<p><a href="../../tf/compat/v2/queue.html"><code>queue</code></a> module: Public API for tf.queue namespace.</p>
+
+<p><a href="../../tf/compat/v2/ragged.html"><code>ragged</code></a> module: Ragged Tensors.</p>
+
+<p><a href="../../tf/compat/v2/random.html"><code>random</code></a> module: Public API for tf.random namespace.</p>
+
+<p><a href="../../tf/compat/v2/raw_ops.html"><code>raw_ops</code></a> module: Public API for tf.raw_ops namespace.</p>
+
+<p><a href="../../tf/compat/v2/saved_model.html"><code>saved_model</code></a> module: Public API for tf.saved_model namespace.</p>
+
+<p><a href="../../tf/compat/v2/sets.html"><code>sets</code></a> module: Tensorflow set operations.</p>
+
+<p><a href="../../tf/compat/v2/signal.html"><code>signal</code></a> module: Signal processing operations.</p>
+
+<p><a href="../../tf/compat/v2/sparse.html"><code>sparse</code></a> module: Sparse Tensor Representation.</p>
+
+<p><a href="../../tf/compat/v2/strings.html"><code>strings</code></a> module: Operations for working with string Tensors.</p>
+
+<p><a href="../../tf/summary.html"><code>summary</code></a> module: Operations for writing summary data, for use in analysis and visualization.</p>
+
+<p><a href="../../tf/compat/v2/sysconfig.html"><code>sysconfig</code></a> module: System configuration library.</p>
+
+<p><a href="../../tf/compat/v2/test.html"><code>test</code></a> module: Testing.</p>
+
+<p><a href="../../tf/compat/v2/tpu.html"><code>tpu</code></a> module: Ops related to Tensor Processing Units.</p>
+
+<p><a href="../../tf/compat/v2/train.html"><code>train</code></a> module: Support for training models.</p>
+
+<p><a href="../../tf/compat/v2/version.html"><code>version</code></a> module: Public API for tf.version namespace.</p>
+
+<p><a href="../../tf/compat/v2/xla.html"><code>xla</code></a> module: Public API for tf.xla namespace.</p>
+
+<h2>Classes</h2>
+
+<p><a href="../../tf/AggregationMethod.html"><code>class AggregationMethod</code></a>: A class listing aggregation methods used to combine gradients.</p>
+
+<p><a href="../../tf/CriticalSection.html"><code>class CriticalSection</code></a>: Critical section.</p>
+
+<p><a href="../../tf/dtypes/DType.html"><code>class DType</code></a>: Represents the type of the elements in a <code>Tensor</code>.</p>
+
+<p><a href="../../tf/DeviceSpec.html"><code>class DeviceSpec</code></a>: Represents a (possibly partial) specification for a TensorFlow device.</p>
+
+<p><a href="../../tf/GradientTape.html"><code>class GradientTape</code></a>: Record operations for automatic differentiation.</p>
+
+<p><a href="../../tf/Graph.html"><code>class Graph</code></a>: A TensorFlow computation, represented as a dataflow graph.</p>
+
+<p><a href="../../tf/IndexedSlices.html"><code>class IndexedSlices</code></a>: A sparse representation of a set of tensor slices at given indices.</p>
+
+<p><a href="../../tf/IndexedSlicesSpec.html"><code>class IndexedSlicesSpec</code></a>: Type specification for a <a href="../../tf/IndexedSlices.html"><code>tf.IndexedSlices</code></a>.</p>
+
+<p><a href="../../tf/Module.html"><code>class Module</code></a>: Base neural network module class.</p>
+
+<p><a href="../../tf/Operation.html"><code>class Operation</code></a>: Represents a graph node that performs computation on tensors.</p>
+
+<p><a href="../../tf/OptionalSpec.html"><code>class OptionalSpec</code></a>: Represents an optional potentially containing a structured value.</p>
+
+<p><a href="../../tf/RaggedTensor.html"><code>class RaggedTensor</code></a>: Represents a ragged tensor.</p>
+
+<p><a href="../../tf/RaggedTensorSpec.html"><code>class RaggedTensorSpec</code></a>: Type specification for a <a href="../../tf/RaggedTensor.html"><code>tf.RaggedTensor</code></a>.</p>
+
+<p><a href="../../tf/RegisterGradient.html"><code>class RegisterGradient</code></a>: A decorator for registering the gradient function for an op type.</p>
+
+<p><a href="../../tf/sparse/SparseTensor.html"><code>class SparseTensor</code></a>: Represents a sparse tensor.</p>
+
+<p><a href="../../tf/SparseTensorSpec.html"><code>class SparseTensorSpec</code></a>: Type specification for a <a href="../../tf/sparse/SparseTensor.html"><code>tf.SparseTensor</code></a>.</p>
+
+<p><a href="../../tf/Tensor.html"><code>class Tensor</code></a>: Represents one of the outputs of an <code>Operation</code>.</p>
+
+<p><a href="../../tf/TensorArray.html"><code>class TensorArray</code></a>: Class wrapping dynamic-sized, per-time-step, write-once Tensor arrays.</p>
+
+<p><a href="../../tf/TensorArraySpec.html"><code>class TensorArraySpec</code></a>: Type specification for a <a href="../../tf/TensorArray.html"><code>tf.TensorArray</code></a>.</p>
+
+<p><a href="../../tf/TensorShape.html"><code>class TensorShape</code></a>: Represents the shape of a <code>Tensor</code>.</p>
+
+<p><a href="../../tf/TensorSpec.html"><code>class TensorSpec</code></a>: Describes a tf.Tensor.</p>
+
+<p><a href="../../tf/TypeSpec.html"><code>class TypeSpec</code></a>: Specifies a TensorFlow value type.</p>
+
+<p><a href="../../tf/UnconnectedGradients.html"><code>class UnconnectedGradients</code></a>: Controls how gradient computation behaves when y does not depend on x.</p>
+
+<p><a href="../../tf/Variable.html"><code>class Variable</code></a>: See the <a href="https://tensorflow.org/guide/variables">Variables Guide</a>.</p>
+
+<p><a href="../../tf/VariableAggregation.html"><code>class VariableAggregation</code></a>: Indicates how a distributed variable will be aggregated.</p>
+
+<p><a href="../../tf/VariableSynchronization.html"><code>class VariableSynchronization</code></a>: Indicates when a distributed variable will be synced.</p>
+
+<p><a href="../../tf/constant_initializer.html"><code>class constant_initializer</code></a>: Initializer that generates tensors with constant values.</p>
+
+<p><a href="../../tf/name_scope.html"><code>class name_scope</code></a>: A context manager for use when defining a Python op.</p>
+
+<p><a href="../../tf/ones_initializer.html"><code>class ones_initializer</code></a>: Initializer that generates tensors initialized to 1.</p>
+
+<p><a href="../../tf/random_normal_initializer.html"><code>class random_normal_initializer</code></a>: Initializer that generates tensors with a normal distribution.</p>
+
+<p><a href="../../tf/random_uniform_initializer.html"><code>class random_uniform_initializer</code></a>: Initializer that generates tensors with a uniform distribution.</p>
+
+<p><a href="../../tf/zeros_initializer.html"><code>class zeros_initializer</code></a>: Initializer that generates tensors initialized to 0.</p>
+
+<h2>Functions</h2>
+
+<p><a href="../../tf/debugging/Assert.html"><code>Assert(...)</code></a>: Asserts that the given condition is true.</p>
+
+<p><a href="../../tf/math/abs.html"><code>abs(...)</code></a>: Computes the absolute value of a tensor.</p>
+
+<p><a href="../../tf/math/acos.html"><code>acos(...)</code></a>: Computes acos of x element-wise.</p>
+
+<p><a href="../../tf/math/acosh.html"><code>acosh(...)</code></a>: Computes inverse hyperbolic cosine of x element-wise.</p>
+
+<p><a href="../../tf/math/add.html"><code>add(...)</code></a>: Returns x + y element-wise.</p>
+
+<p><a href="../../tf/math/add_n.html"><code>add_n(...)</code></a>: Adds all input tensors element-wise.</p>
+
+<p><a href="../../tf/math/argmax.html"><code>argmax(...)</code></a>: Returns the index with the largest value across axes of a tensor.</p>
+
+<p><a href="../../tf/math/argmin.html"><code>argmin(...)</code></a>: Returns the index with the smallest value across axes of a tensor.</p>
+
+<p><a href="../../tf/argsort.html"><code>argsort(...)</code></a>: Returns the indices of a tensor that give its sorted order along an axis.</p>
+
+<p><a href="../../tf/dtypes/as_dtype.html"><code>as_dtype(...)</code></a>: Converts the given <code>type_value</code> to a <code>DType</code>.</p>
+
+<p><a href="../../tf/strings/as_string.html"><code>as_string(...)</code></a>: Converts each entry in the given tensor to strings.</p>
+
+<p><a href="../../tf/math/asin.html"><code>asin(...)</code></a>: Computes the trignometric inverse sine of x element-wise.</p>
+
+<p><a href="../../tf/math/asinh.html"><code>asinh(...)</code></a>: Computes inverse hyperbolic sine of x element-wise.</p>
+
+<p><a href="../../tf/debugging/assert_equal.html"><code>assert_equal(...)</code></a>: Assert the condition <code>x == y</code> holds element-wise.</p>
+
+<p><a href="../../tf/debugging/assert_greater.html"><code>assert_greater(...)</code></a>: Assert the condition <code>x &gt; y</code> holds element-wise.</p>
+
+<p><a href="../../tf/debugging/assert_less.html"><code>assert_less(...)</code></a>: Assert the condition <code>x &lt; y</code> holds element-wise.</p>
+
+<p><a href="../../tf/debugging/assert_rank.html"><code>assert_rank(...)</code></a>: Assert that <code>x</code> has rank equal to <code>rank</code>.</p>
+
+<p><a href="../../tf/math/atan.html"><code>atan(...)</code></a>: Computes the trignometric inverse tangent of x element-wise.</p>
+
+<p><a href="../../tf/math/atan2.html"><code>atan2(...)</code></a>: Computes arctangent of <code>y/x</code> element-wise, respecting signs of the arguments.</p>
+
+<p><a href="../../tf/math/atanh.html"><code>atanh(...)</code></a>: Computes inverse hyperbolic tangent of x element-wise.</p>
+
+<p><a href="../../tf/batch_to_space.html"><code>batch_to_space(...)</code></a>: BatchToSpace for N-D tensors of type T.</p>
+
+<p><a href="../../tf/bitcast.html"><code>bitcast(...)</code></a>: Bitcasts a tensor from one type to another without copying data.</p>
+
+<p><a href="../../tf/boolean_mask.html"><code>boolean_mask(...)</code></a>: Apply boolean mask to tensor.</p>
+
+<p><a href="../../tf/broadcast_dynamic_shape.html"><code>broadcast_dynamic_shape(...)</code></a>: Computes the shape of a broadcast given symbolic shapes.</p>
+
+<p><a href="../../tf/broadcast_static_shape.html"><code>broadcast_static_shape(...)</code></a>: Computes the shape of a broadcast given known shapes.</p>
+
+<p><a href="../../tf/broadcast_to.html"><code>broadcast_to(...)</code></a>: Broadcast an array for a compatible shape.</p>
+
+<p><a href="../../tf/case.html"><code>case(...)</code></a>: Create a case operation.</p>
+
+<p><a href="../../tf/dtypes/cast.html"><code>cast(...)</code></a>: Casts a tensor to a new type.</p>
+
+<p><a href="../../tf/clip_by_global_norm.html"><code>clip_by_global_norm(...)</code></a>: Clips values of multiple tensors by the ratio of the sum of their norms.</p>
+
+<p><a href="../../tf/clip_by_norm.html"><code>clip_by_norm(...)</code></a>: Clips tensor values to a maximum L2-norm.</p>
+
+<p><a href="../../tf/clip_by_value.html"><code>clip_by_value(...)</code></a>: Clips tensor values to a specified min and max.</p>
+
+<p><a href="../../tf/dtypes/complex.html"><code>complex(...)</code></a>: Converts two real numbers to a complex number.</p>
+
+<p><a href="../../tf/concat.html"><code>concat(...)</code></a>: Concatenates tensors along one dimension.</p>
+
+<p><a href="../../tf/cond.html"><code>cond(...)</code></a>: Return <code>true_fn()</code> if the predicate <code>pred</code> is true else <code>false_fn()</code>.</p>
+
+<p><a href="../../tf/constant.html"><code>constant(...)</code></a>: Creates a constant tensor.</p>
+
+<p><a href="../../tf/control_dependencies.html"><code>control_dependencies(...)</code></a>: Wrapper for <code>Graph.control_dependencies()</code> using the default graph.</p>
+
+<p><a href="../../tf/convert_to_tensor.html"><code>convert_to_tensor(...)</code></a>: Converts the given <code>value</code> to a <code>Tensor</code>.</p>
+
+<p><a href="../../tf/math/cos.html"><code>cos(...)</code></a>: Computes cos of x element-wise.</p>
+
+<p><a href="../../tf/math/cosh.html"><code>cosh(...)</code></a>: Computes hyperbolic cosine of x element-wise.</p>
+
+<p><a href="../../tf/math/cumsum.html"><code>cumsum(...)</code></a>: Compute the cumulative sum of the tensor <code>x</code> along <code>axis</code>.</p>
+
+<p><a href="../../tf/custom_gradient.html"><code>custom_gradient(...)</code></a>: Decorator to define a function with a custom gradient.</p>
+
+<p><a href="../../tf/device.html"><code>device(...)</code></a>: Specifies the device for ops created/executed in this context.</p>
+
+<p><a href="../../tf/math/divide.html"><code>divide(...)</code></a>: Computes Python style division of <code>x</code> by <code>y</code>.</p>
+
+<p><a href="../../tf/dynamic_partition.html"><code>dynamic_partition(...)</code></a>: Partitions <code>data</code> into <code>num_partitions</code> tensors using indices from <code>partitions</code>.</p>
+
+<p><a href="../../tf/dynamic_stitch.html"><code>dynamic_stitch(...)</code></a>: Interleave the values from the <code>data</code> tensors into a single tensor.</p>
+
+<p><a href="../../tf/edit_distance.html"><code>edit_distance(...)</code></a>: Computes the Levenshtein distance between sequences.</p>
+
+<p><a href="../../tf/einsum.html"><code>einsum(...)</code></a>: A generalized contraction between tensors of arbitrary dimension.</p>
+
+<p><a href="../../tf/compat/v1/enable_v2_behavior.html"><code>enable_v2_behavior(...)</code></a>: Enables TensorFlow 2.x behaviors.</p>
+
+<p><a href="../../tf/ensure_shape.html"><code>ensure_shape(...)</code></a>: Updates the shape of a tensor and checks at runtime that the shape holds.</p>
+
+<p><a href="../../tf/math/equal.html"><code>equal(...)</code></a>: Returns the truth value of (x == y) element-wise.</p>
+
+<p><a href="../../tf/executing_eagerly.html"><code>executing_eagerly(...)</code></a>: Returns True if the current thread has eager execution enabled.</p>
+
+<p><a href="../../tf/math/exp.html"><code>exp(...)</code></a>: Computes exponential of x element-wise.  \(y = e<sup>x</sup>\).</p>
+
+<p><a href="../../tf/expand_dims.html"><code>expand_dims(...)</code></a>: Inserts a dimension of 1 into a tensor&rsquo;s shape.</p>
+
+<p><a href="../../tf/extract_volume_patches.html"><code>extract_volume_patches(...)</code></a>: Extract <code>patches</code> from <code>input</code> and put them in the &ldquo;depth&rdquo; output dimension. 3D extension of <code>extract_image_patches</code>.</p>
+
+<p><a href="../../tf/eye.html"><code>eye(...)</code></a>: Construct an identity matrix, or a batch of matrices.</p>
+
+<p><a href="../../tf/fill.html"><code>fill(...)</code></a>: Creates a tensor filled with a scalar value.</p>
+
+<p><a href="../../tf/fingerprint.html"><code>fingerprint(...)</code></a>: Generates fingerprint values.</p>
+
+<p><a href="../../tf/math/floor.html"><code>floor(...)</code></a>: Returns element-wise largest integer not greater than x.</p>
+
+<p><a href="../../tf/foldl.html"><code>foldl(...)</code></a>: foldl on the list of tensors unpacked from <code>elems</code> on dimension 0.</p>
+
+<p><a href="../../tf/foldr.html"><code>foldr(...)</code></a>: foldr on the list of tensors unpacked from <code>elems</code> on dimension 0.</p>
+
+<p><a href="../../tf/function.html"><code>function(...)</code></a>: Creates a callable TensorFlow graph from a Python function.</p>
+
+<p><a href="../../tf/gather.html"><code>gather(...)</code></a>: Gather slices from params axis axis according to indices.</p>
+
+<p><a href="../../tf/gather_nd.html"><code>gather_nd(...)</code></a>: Gather slices from <code>params</code> into a Tensor with shape specified by <code>indices</code>.</p>
+
+<p><a href="../../tf/get_logger.html"><code>get_logger(...)</code></a>: Return TF logger instance.</p>
+
+<p><a href="../../tf/get_static_value.html"><code>get_static_value(...)</code></a>: Returns the constant value of the given tensor, if efficiently calculable.</p>
+
+<p><a href="../../tf/grad_pass_through.html"><code>grad_pass_through(...)</code></a>: Creates a grad-pass-through op with the forward behavior provided in f.</p>
+
+<p><a href="../../tf/gradients.html"><code>gradients(...)</code></a>: Constructs symbolic derivatives of sum of <code>ys</code> w.r.t. x in <code>xs</code>.</p>
+
+<p><a href="../../tf/math/greater.html"><code>greater(...)</code></a>: Returns the truth value of (x > y) element-wise.</p>
+
+<p><a href="../../tf/math/greater_equal.html"><code>greater_equal(...)</code></a>: Returns the truth value of (x >= y) element-wise.</p>
+
+<p><a href="../../tf/group.html"><code>group(...)</code></a>: Create an op that groups multiple operations.</p>
+
+<p><a href="../../tf/guarantee_const.html"><code>guarantee_const(...)</code></a>: Gives a guarantee to the TF runtime that the input tensor is a constant.</p>
+
+<p><a href="../../tf/hessians.html"><code>hessians(...)</code></a>: Constructs the Hessian of sum of <code>ys</code> with respect to <code>x</code> in <code>xs</code>.</p>
+
+<p><a href="../../tf/histogram_fixed_width.html"><code>histogram_fixed_width(...)</code></a>: Return histogram of values.</p>
+
+<p><a href="../../tf/histogram_fixed_width_bins.html"><code>histogram_fixed_width_bins(...)</code></a>: Bins the given values for use in a histogram.</p>
+
+<p><a href="../../tf/identity.html"><code>identity(...)</code></a>: Return a tensor with the same shape and contents as input.</p>
+
+<p><a href="../../tf/identity_n.html"><code>identity_n(...)</code></a>: Returns a list of tensors with the same shapes and contents as the input</p>
+
+<p><a href="../../tf/graph_util/import_graph_def.html"><code>import_graph_def(...)</code></a>: Imports the graph from <code>graph_def</code> into the current default <code>Graph</code>. (deprecated arguments)</p>
+
+<p><a href="../../tf/init_scope.html"><code>init_scope(...)</code></a>: A context manager that lifts ops out of control-flow scopes and function-building graphs.</p>
+
+<p><a href="../../tf/is_tensor.html"><code>is_tensor(...)</code></a>: Checks whether <code>x</code> is a tensor or &ldquo;tensor-like&rdquo;.</p>
+
+<p><a href="../../tf/math/less.html"><code>less(...)</code></a>: Returns the truth value of (x &lt; y) element-wise.</p>
+
+<p><a href="../../tf/math/less_equal.html"><code>less_equal(...)</code></a>: Returns the truth value of (x &lt;= y) element-wise.</p>
+
+<p><a href="../../tf/linspace.html"><code>linspace(...)</code></a>: Generates values in an interval.</p>
+
+<p><a href="../../tf/load_library.html"><code>load_library(...)</code></a>: Loads a TensorFlow plugin.</p>
+
+<p><a href="../../tf/load_op_library.html"><code>load_op_library(...)</code></a>: Loads a TensorFlow plugin, containing custom ops and kernels.</p>
+
+<p><a href="../../tf/math/logical_and.html"><code>logical_and(...)</code></a>: Returns the truth value of x AND y element-wise.</p>
+
+<p><a href="../../tf/math/logical_not.html"><code>logical_not(...)</code></a>: Returns the truth value of NOT x element-wise.</p>
+
+<p><a href="../../tf/math/logical_or.html"><code>logical_or(...)</code></a>: Returns the truth value of x OR y element-wise.</p>
+
+<p><a href="../../tf/make_ndarray.html"><code>make_ndarray(...)</code></a>: Create a numpy ndarray from a tensor.</p>
+
+<p><a href="../../tf/make_tensor_proto.html"><code>make_tensor_proto(...)</code></a>: Create a TensorProto.</p>
+
+<p><a href="../../tf/map_fn.html"><code>map_fn(...)</code></a>: map on the list of tensors unpacked from <code>elems</code> on dimension 0.</p>
+
+<p><a href="../../tf/linalg/matmul.html"><code>matmul(...)</code></a>: Multiplies matrix <code>a</code> by matrix <code>b</code>, producing <code>a</code> * <code>b</code>.</p>
+
+<p><a href="../../tf/linalg/sqrtm.html"><code>matrix_square_root(...)</code></a>: Computes the matrix square root of one or more square matrices:</p>
+
+<p><a href="../../tf/math/maximum.html"><code>maximum(...)</code></a>: Returns the max of x and y (i.e. x > y ? x : y) element-wise.</p>
+
+<p><a href="../../tf/meshgrid.html"><code>meshgrid(...)</code></a>: Broadcasts parameters for evaluation on an N-D grid.</p>
+
+<p><a href="../../tf/math/minimum.html"><code>minimum(...)</code></a>: Returns the min of x and y (i.e. x &lt; y ? x : y) element-wise.</p>
+
+<p><a href="../../tf/math/multiply.html"><code>multiply(...)</code></a>: Returns x * y element-wise.</p>
+
+<p><a href="../../tf/math/negative.html"><code>negative(...)</code></a>: Computes numerical negative value element-wise.</p>
+
+<p><a href="../../tf/no_gradient.html"><code>no_gradient(...)</code></a>: Specifies that ops of type <code>op_type</code> is not differentiable.</p>
+
+<p><a href="../../tf/no_op.html"><code>no_op(...)</code></a>: Does nothing. Only useful as a placeholder for control edges.</p>
+
+<p><a href="../../tf/nondifferentiable_batch_function.html"><code>nondifferentiable_batch_function(...)</code></a>: Batches the computation done by the decorated function.</p>
+
+<p><a href="../../tf/norm.html"><code>norm(...)</code></a>: Computes the norm of vectors, matrices, and tensors.</p>
+
+<p><a href="../../tf/math/not_equal.html"><code>not_equal(...)</code></a>: Returns the truth value of (x != y) element-wise.</p>
+
+<p><a href="../../tf/numpy_function.html"><code>numpy_function(...)</code></a>: Wraps a python function and uses it as a TensorFlow op.</p>
+
+<p><a href="../../tf/one_hot.html"><code>one_hot(...)</code></a>: Returns a one-hot tensor.</p>
+
+<p><a href="../../tf/ones.html"><code>ones(...)</code></a>: Creates a tensor with all elements set to 1.</p>
+
+<p><a href="../../tf/ones_like.html"><code>ones_like(...)</code></a>: Creates a tensor with all elements set to one.</p>
+
+<p><a href="../../tf/pad.html"><code>pad(...)</code></a>: Pads a tensor.</p>
+
+<p><a href="../../tf/parallel_stack.html"><code>parallel_stack(...)</code></a>: Stacks a list of rank-<code>R</code> tensors into one rank-<code>(R+1)</code> tensor in parallel.</p>
+
+<p><a href="../../tf/math/pow.html"><code>pow(...)</code></a>: Computes the power of one value to another.</p>
+
+<p><a href="../../tf/print.html"><code>print(...)</code></a>: Print the specified inputs.</p>
+
+<p><a href="../../tf/py_function.html"><code>py_function(...)</code></a>: Wraps a python function into a TensorFlow op that executes it eagerly.</p>
+
+<p><a href="../../tf/range.html"><code>range(...)</code></a>: Creates a sequence of numbers.</p>
+
+<p><a href="../../tf/rank.html"><code>rank(...)</code></a>: Returns the rank of a tensor.</p>
+
+<p><a href="../../tf/realdiv.html"><code>realdiv(...)</code></a>: Returns x / y element-wise for real types.</p>
+
+<p><a href="../../tf/recompute_grad.html"><code>recompute_grad(...)</code></a>: An eager-compatible version of recompute_grad.</p>
+
+<p><a href="../../tf/reduce_all.html"><code>reduce_all(...)</code></a>: Computes the &ldquo;logical and&rdquo; of elements across dimensions of a tensor.</p>
+
+<p><a href="../../tf/math/reduce_any.html"><code>reduce_any(...)</code></a>: Computes the &ldquo;logical or&rdquo; of elements across dimensions of a tensor.</p>
+
+<p><a href="../../tf/math/reduce_logsumexp.html"><code>reduce_logsumexp(...)</code></a>: Computes log(sum(exp(elements across dimensions of a tensor))).</p>
+
+<p><a href="../../tf/math/reduce_max.html"><code>reduce_max(...)</code></a>: Computes the maximum of elements across dimensions of a tensor.</p>
+
+<p><a href="../../tf/math/reduce_mean.html"><code>reduce_mean(...)</code></a>: Computes the mean of elements across dimensions of a tensor.</p>
+
+<p><a href="../../tf/math/reduce_min.html"><code>reduce_min(...)</code></a>: Computes the minimum of elements across dimensions of a tensor.</p>
+
+<p><a href="../../tf/math/reduce_prod.html"><code>reduce_prod(...)</code></a>: Computes the product of elements across dimensions of a tensor.</p>
+
+<p><a href="../../tf/math/reduce_sum.html"><code>reduce_sum(...)</code></a>: Computes the sum of elements across dimensions of a tensor.</p>
+
+<p><a href="../../tf/register_tensor_conversion_function.html"><code>register_tensor_conversion_function(...)</code></a>: Registers a function for converting objects of <code>base_type</code> to <code>Tensor</code>.</p>
+
+<p><a href="../../tf/required_space_to_batch_paddings.html"><code>required_space_to_batch_paddings(...)</code></a>: Calculate padding required to make block_shape divide input_shape.</p>
+
+<p><a href="../../tf/reshape.html"><code>reshape(...)</code></a>: Reshapes a tensor.</p>
+
+<p><a href="../../tf/reverse.html"><code>reverse(...)</code></a>: Reverses specific dimensions of a tensor.</p>
+
+<p><a href="../../tf/reverse_sequence.html"><code>reverse_sequence(...)</code></a>: Reverses variable length slices.</p>
+
+<p><a href="../../tf/roll.html"><code>roll(...)</code></a>: Rolls the elements of a tensor along an axis.</p>
+
+<p><a href="../../tf/math/round.html"><code>round(...)</code></a>: Rounds the values of a tensor to the nearest integer, element-wise.</p>
+
+<p><a href="../../tf/dtypes/saturate_cast.html"><code>saturate_cast(...)</code></a>: Performs a safe saturating cast of <code>value</code> to <code>dtype</code>.</p>
+
+<p><a href="../../tf/math/scalar_mul.html"><code>scalar_mul(...)</code></a>: Multiplies a scalar times a <code>Tensor</code> or <code>IndexedSlices</code> object.</p>
+
+<p><a href="../../tf/scan.html"><code>scan(...)</code></a>: scan on the list of tensors unpacked from <code>elems</code> on dimension 0.</p>
+
+<p><a href="../../tf/scatter_nd.html"><code>scatter_nd(...)</code></a>: Scatter <code>updates</code> into a new tensor according to <code>indices</code>.</p>
+
+<p><a href="../../tf/searchsorted.html"><code>searchsorted(...)</code></a>: Searches input tensor for values on the innermost dimension.</p>
+
+<p><a href="../../tf/sequence_mask.html"><code>sequence_mask(...)</code></a>: Returns a mask tensor representing the first N positions of each cell.</p>
+
+<p><a href="../../tf/shape.html"><code>shape(...)</code></a>: Returns the shape of a tensor.</p>
+
+<p><a href="../../tf/shape_n.html"><code>shape_n(...)</code></a>: Returns shape of tensors.</p>
+
+<p><a href="../../tf/math/sigmoid.html"><code>sigmoid(...)</code></a>: Computes sigmoid of <code>x</code> element-wise.</p>
+
+<p><a href="../../tf/math/sign.html"><code>sign(...)</code></a>: Returns an element-wise indication of the sign of a number.</p>
+
+<p><a href="../../tf/math/sin.html"><code>sin(...)</code></a>: Computes sine of x element-wise.</p>
+
+<p><a href="../../tf/math/sinh.html"><code>sinh(...)</code></a>: Computes hyperbolic sine of x element-wise.</p>
+
+<p><a href="../../tf/size.html"><code>size(...)</code></a></p>
+
+<p><a href="../../tf/slice.html"><code>slice(...)</code></a>: Extracts a slice from a tensor.</p>
+
+<p><a href="../../tf/sort.html"><code>sort(...)</code></a>: Sorts a tensor.</p>
+
+<p><a href="../../tf/space_to_batch.html"><code>space_to_batch(...)</code></a>: SpaceToBatch for N-D tensors of type T.</p>
+
+<p><a href="../../tf/space_to_batch_nd.html"><code>space_to_batch_nd(...)</code></a>: SpaceToBatch for N-D tensors of type T.</p>
+
+<p><a href="../../tf/split.html"><code>split(...)</code></a>: Splits a tensor into sub tensors.</p>
+
+<p><a href="../../tf/math/sqrt.html"><code>sqrt(...)</code></a>: Computes square root of x element-wise.</p>
+
+<p><a href="../../tf/math/square.html"><code>square(...)</code></a>: Computes square of x element-wise.</p>
+
+<p><a href="../../tf/squeeze.html"><code>squeeze(...)</code></a>: Removes dimensions of size 1 from the shape of a tensor.</p>
+
+<p><a href="../../tf/stack.html"><code>stack(...)</code></a>: Stacks a list of rank-<code>R</code> tensors into one rank-<code>(R+1)</code> tensor.</p>
+
+<p><a href="../../tf/stop_gradient.html"><code>stop_gradient(...)</code></a>: Stops gradient computation.</p>
+
+<p><a href="../../tf/strided_slice.html"><code>strided_slice(...)</code></a>: Extracts a strided slice of a tensor (generalized python array indexing).</p>
+
+<p><a href="../../tf/math/subtract.html"><code>subtract(...)</code></a>: Returns x - y element-wise.</p>
+
+<p><a href="../../tf/switch_case.html"><code>switch_case(...)</code></a>: Create a switch/case operation, i.e. an integer-indexed conditional.</p>
+
+<p><a href="../../tf/math/tan.html"><code>tan(...)</code></a>: Computes tan of x element-wise.</p>
+
+<p><a href="../../tf/math/tanh.html"><code>tanh(...)</code></a>: Computes hyperbolic tangent of <code>x</code> element-wise.</p>
+
+<p><a href="../../tf/tensor_scatter_nd_add.html"><code>tensor_scatter_nd_add(...)</code></a>: Adds sparse <code>updates</code> to an existing tensor according to <code>indices</code>.</p>
+
+<p><a href="../../tf/tensor_scatter_nd_sub.html"><code>tensor_scatter_nd_sub(...)</code></a>: Subtracts sparse <code>updates</code> from an existing tensor according to <code>indices</code>.</p>
+
+<p><a href="../../tf/tensor_scatter_nd_update.html"><code>tensor_scatter_nd_update(...)</code></a>: Scatter <code>updates</code> into an existing tensor according to <code>indices</code>.</p>
+
+<p><a href="../../tf/tensordot.html"><code>tensordot(...)</code></a>: Tensor contraction of a and b along specified axes.</p>
+
+<p><a href="../../tf/tile.html"><code>tile(...)</code></a>: Constructs a tensor by tiling a given tensor.</p>
+
+<p><a href="../../tf/timestamp.html"><code>timestamp(...)</code></a>: Provides the time since epoch in seconds.</p>
+
+<p><a href="../../tf/transpose.html"><code>transpose(...)</code></a>: Transposes <code>a</code>.</p>
+
+<p><a href="../../tf/math/truediv.html"><code>truediv(...)</code></a>: Divides x / y elementwise (using Python 3 division operator semantics).</p>
+
+<p><a href="../../tf/truncatediv.html"><code>truncatediv(...)</code></a>: Returns x / y element-wise for integer types.</p>
+
+<p><a href="../../tf/truncatemod.html"><code>truncatemod(...)</code></a>: Returns element-wise remainder of division. This emulates C semantics in that</p>
+
+<p><a href="../../tf/tuple.html"><code>tuple(...)</code></a>: Group tensors together.</p>
+
+<p><a href="../../tf/unique.html"><code>unique(...)</code></a>: Finds unique elements in a 1-D tensor.</p>
+
+<p><a href="../../tf/unique_with_counts.html"><code>unique_with_counts(...)</code></a>: Finds unique elements in a 1-D tensor.</p>
+
+<p><a href="../../tf/unravel_index.html"><code>unravel_index(...)</code></a>: Converts a flat index or array of flat indices into a tuple of</p>
+
+<p><a href="../../tf/unstack.html"><code>unstack(...)</code></a>: Unpacks the given dimension of a rank-<code>R</code> tensor into rank-<code>(R-1)</code> tensors.</p>
+
+<p><a href="../../tf/variable_creator_scope.html"><code>variable_creator_scope(...)</code></a>: Scope which defines a variable creation function to be used by variable().</p>
+
+<p><a href="../../tf/vectorized_map.html"><code>vectorized_map(...)</code></a>: Parallel map on the list of tensors unpacked from <code>elems</code> on dimension 0.</p>
+
+<p><a href="../../tf/where.html"><code>where(...)</code></a>: Return the elements, either from <code>x</code> or <code>y</code>, depending on the <code>condition</code>.</p>
+
+<p><a href="../../tf/while_loop.html"><code>while_loop(...)</code></a>: Repeat <code>body</code> while the condition <code>cond</code> is true.</p>
+
+<p><a href="../../tf/zeros.html"><code>zeros(...)</code></a>: Creates a tensor with all elements set to zero.</p>
+
+<p><a href="../../tf/zeros_like.html"><code>zeros_like(...)</code></a>: Creates a tensor with all elements set to zero.</p>
+
+<h2>Other Members</h2>
+
+<ul>
+<li><code>__version__ = '2.0.0'</code> <a id="__version__"></a></li>
+<li><code>bfloat16</code> <a id="bfloat16"></a></li>
+<li><code>bool</code> <a id="bool"></a></li>
+<li><code>complex128</code> <a id="complex128"></a></li>
+<li><code>complex64</code> <a id="complex64"></a></li>
+<li><code>double</code> <a id="double"></a></li>
+<li><code>float16</code> <a id="float16"></a></li>
+<li><code>float32</code> <a id="float32"></a></li>
+<li><code>float64</code> <a id="float64"></a></li>
+<li><code>half</code> <a id="half"></a></li>
+<li><code>int16</code> <a id="int16"></a></li>
+<li><code>int32</code> <a id="int32"></a></li>
+<li><code>int64</code> <a id="int64"></a></li>
+<li><code>int8</code> <a id="int8"></a></li>
+<li><code>qint16</code> <a id="qint16"></a></li>
+<li><code>qint32</code> <a id="qint32"></a></li>
+<li><code>qint8</code> <a id="qint8"></a></li>
+<li><code>quint16</code> <a id="quint16"></a></li>
+<li><code>quint8</code> <a id="quint8"></a></li>
+<li><code>resource</code> <a id="resource"></a></li>
+<li><code>string</code> <a id="string"></a></li>
+<li><code>uint16</code> <a id="uint16"></a></li>
+<li><code>uint32</code> <a id="uint32"></a></li>
+<li><code>uint64</code> <a id="uint64"></a></li>
+<li><code>uint8</code> <a id="uint8"></a></li>
+<li><code>variant</code> <a id="variant"></a></li>
+</ul>
+

@@ -1,0 +1,135 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.ConditionalAccumulatorBase" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="accumulator_ref"/>
+<meta itemprop="property" content="dtype"/>
+<meta itemprop="property" content="name"/>
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="num_accumulated"/>
+<meta itemprop="property" content="set_global_step"/>
+</div>
+
+
+<h1>tf.compat.v1.ConditionalAccumulatorBase</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/data_flow_ops.py">View source</a></p>
+
+<h2>Class <code>ConditionalAccumulatorBase</code></h2>
+
+<!-- Start diff -->
+
+
+<p>A conditional accumulator for aggregating gradients.</p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Up-to-date gradients (i.e., time step at which gradient was computed is
+equal to the accumulator&rsquo;s time step) are added to the accumulator.</p>
+
+<p>Extraction of the average gradient is blocked until the required number of
+gradients has been accumulated.</p>
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/data_flow_ops.py">View source</a></p>
+
+<p><code>python
+__init__(
+    dtype,
+    shape,
+    accumulator_ref
+)
+</code></p>
+
+<p>Creates a new ConditionalAccumulator.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>dtype</code></b>: Datatype of the accumulated gradients.</li>
+<li><b><code>shape</code></b>: Shape of the accumulated gradients.</li>
+<li><b><code>accumulator_ref</code></b>: A handle to the conditional accumulator, created by sub-
+classes</li>
+</ul>
+
+
+<h2>Properties</h2>
+
+<h3 id="accumulator_ref"><code>accumulator_ref</code></h3>
+
+
+<p>The underlying accumulator reference.</p>
+
+<h3 id="dtype"><code>dtype</code></h3>
+
+
+<p>The datatype of the gradients accumulated by this accumulator.</p>
+
+<h3 id="name"><code>name</code></h3>
+
+
+<p>The name of the underlying accumulator.</p>
+
+<h2>Methods</h2>
+
+<h3 id="num_accumulated"><code>num_accumulated</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/data_flow_ops.py">View source</a></p>
+
+<p><code>python
+num_accumulated(name=None)
+</code></p>
+
+<p>Number of gradients that have currently been aggregated in accumulator.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>name</code></b>: Optional name for the operation.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>Number of accumulated gradients currently in accumulator.</p>
+
+<h3 id="set_global_step"><code>set_global_step</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/data_flow_ops.py">View source</a></p>
+
+<p><code>python
+set_global_step(
+    new_global_step,
+    name=None
+)
+</code></p>
+
+<p>Sets the global time step of the accumulator.</p>
+
+<p>The operation logs a warning if we attempt to set to a time step that is
+lower than the accumulator&rsquo;s own time step.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>new_global_step</code></b>: Value of new time step. Can be a variable or a constant</li>
+<li><b><code>name</code></b>: Optional name for the operation.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>Operation that sets the accumulator&rsquo;s time step.</p>

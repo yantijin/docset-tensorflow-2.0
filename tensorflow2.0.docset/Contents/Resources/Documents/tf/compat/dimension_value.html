@@ -1,0 +1,71 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.dimension_value" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.dimension_value</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Compatibility utility required to allow for both V1 and V2 behavior in TF.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.compat.dimension_value</code></li>
+<li><code>tf.compat.v1.dimension_value</code></li>
+<li><code>tf.compat.v2.compat.dimension_value</code></li>
+</ul>
+
+
+<p><code>python
+tf.compat.dimension_value(dimension)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Until the release of TF 2.0, we need the legacy behavior of <code>TensorShape</code> to
+coexist with the new behavior. This utility is a bridge between the two.</p>
+
+<p>When accessing the value of a TensorShape dimension,
+use this utility, like this:</p>
+
+<p>```</p>
+
+<h1>If you had this in your V1 code:</h1>
+
+<p>value = tensor_shape[i].value</p>
+
+<h1>Use <code>dimension_value</code> as direct replacement compatible with both V1 &amp; V2:</h1>
+
+<p>value = dimension_value(tensor_shape[i])</p>
+
+<h1>This would be the V2 equivalent:</h1>
+
+<p>value = tensor_shape[i]  # Warning: this will return the dim value in V2!
+```</p>
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>dimension</code></b>: Either a <code>Dimension</code> instance, an integer, or None.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A plain value, i.e. an integer or None.</p>

@@ -1,0 +1,79 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.unique" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.unique</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/array_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Finds unique elements in a 1-D tensor.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.unique</code></li>
+<li><code>tf.compat.v2.unique</code></li>
+</ul>
+
+
+<p><code>python
+tf.unique(
+    x,
+    out_idx=tf.dtypes.int32,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>This operation returns a tensor <code>y</code> containing all of the unique elements of <code>x</code>
+sorted in the same order that they occur in <code>x</code>. This operation also returns a
+tensor <code>idx</code> the same size as <code>x</code> that contains the index of each value of <code>x</code>
+in the unique output <code>y</code>. In other words:</p>
+
+<p><code>y[idx[i]] = x[i] for i in [0, 1,...,rank(x) - 1]</code></p>
+
+<h4>For example:</h4>
+
+<p>```</p>
+
+<h1>tensor &lsquo;x&rsquo; is [1, 1, 2, 4, 4, 4, 7, 8, 8]</h1>
+
+<p>y, idx = unique(x)
+y ==> [1, 2, 4, 7, 8]
+idx ==> [0, 0, 1, 2, 2, 2, 3, 4, 4]
+```</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code>. 1-D.</li>
+<li><b><code>out_idx</code></b>: An optional <a href="../tf/dtypes/DType.html"><code>tf.DType</code></a> from: <code>tf.int32, tf.int64</code>. Defaults to <a href="../tf.html#int32"><code>tf.int32</code></a>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A tuple of <code>Tensor</code> objects (y, idx).</p>
+
+<ul>
+<li><b><code>y</code></b>: A <code>Tensor</code>. Has the same type as <code>x</code>.</li>
+<li><b><code>idx</code></b>: A <code>Tensor</code> of type <code>out_idx</code>.</li>
+</ul>
+

@@ -1,0 +1,82 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.math.abs" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.math.abs</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/math_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Computes the absolute value of a tensor.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.RaggedTensor.__abs__</code></li>
+<li><code>tf.Tensor.__abs__</code></li>
+<li><code>tf.abs</code></li>
+<li><code>tf.compat.v1.RaggedTensor.__abs__</code></li>
+<li><code>tf.compat.v1.Tensor.__abs__</code></li>
+<li><code>tf.compat.v1.abs</code></li>
+<li><code>tf.compat.v1.math.abs</code></li>
+<li><code>tf.compat.v2.RaggedTensor.__abs__</code></li>
+<li><code>tf.compat.v2.Tensor.__abs__</code></li>
+<li><code>tf.compat.v2.abs</code></li>
+<li><code>tf.compat.v2.math.abs</code></li>
+</ul>
+
+
+<p><code>python
+tf.math.abs(
+    x,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Given a tensor of integer or floating-point values, this operation returns a
+tensor of the same type, where each element contains the absolute value of the
+corresponding element in the input.</p>
+
+<p>Given a tensor <code>x</code> of complex numbers, this operation returns a tensor of type
+<code>float32</code> or <code>float64</code> that is the absolute value of each element in <code>x</code>. All
+elements in <code>x</code> must be complex numbers of the form \(a + bj\). The
+absolute value is computed as \( \sqrt{a<sup>2</sup> + b<sup>2</sup>}\).  For example:
+<code>python
+x = tf.constant([[-2.25 + 4.75j], [-3.25 + 5.75j]])
+tf.abs(x)  # [5.25594902, 6.60492229]
+</code></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code> or <code>SparseTensor</code> of type <code>float16</code>, <code>float32</code>, <code>float64</code>,
+<code>int32</code>, <code>int64</code>, <code>complex64</code> or <code>complex128</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> or <code>SparseTensor</code> the same size, type, and sparsity as <code>x</code> with
+  absolute values.
+Note, for <code>complex64</code> or <code>complex128</code> input, the returned <code>Tensor</code> will be
+  of type <code>float32</code> or <code>float64</code>, respectively.</p>
+
+<p>If <code>x</code> is a <code>SparseTensor</code>, returns
+<code>SparseTensor(x.indices, tf.math.abs(x.values, ...), x.dense_shape)</code></p>

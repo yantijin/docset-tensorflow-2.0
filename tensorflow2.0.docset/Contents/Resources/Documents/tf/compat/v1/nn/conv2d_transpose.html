@@ -1,0 +1,91 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.nn.conv2d_transpose" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.nn.conv2d_transpose</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/nn_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>The transpose of <code>conv2d</code>.</p>
+
+<p><code>python
+tf.compat.v1.nn.conv2d_transpose(
+    value=None,
+    filter=None,
+    output_shape=None,
+    strides=None,
+    padding='SAME',
+    data_format='NHWC',
+    name=None,
+    input=None,
+    filters=None,
+    dilations=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>This operation is sometimes called &ldquo;deconvolution&rdquo; after <a href="https://www.matthewzeiler.com/mattzeiler/deconvolutionalnetworks.pdf">Deconvolutional
+Networks</a>,
+but is really the transpose (gradient) of <code>conv2d</code> rather than an actual
+deconvolution.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>value</code></b>: A 4-D <code>Tensor</code> of type <code>float</code> and shape
+<code>[batch, height, width, in_channels]</code> for <code>NHWC</code> data format or
+<code>[batch, in_channels, height, width]</code> for <code>NCHW</code> data format.</li>
+<li><b><code>filter</code></b>: A 4-D <code>Tensor</code> with the same type as <code>value</code> and shape
+<code>[height, width, output_channels, in_channels]</code>.  <code>filter</code>&rsquo;s
+<code>in_channels</code> dimension must match that of <code>value</code>.</li>
+<li><b><code>output_shape</code></b>: A 1-D <code>Tensor</code> representing the output shape of the
+deconvolution op.</li>
+<li><b><code>strides</code></b>: An int or list of <code>ints</code> that has length <code>1</code>, <code>2</code> or <code>4</code>.  The
+stride of the sliding window for each dimension of <code>input</code>. If a single
+value is given it is replicated in the <code>H</code> and <code>W</code> dimension. By default
+the <code>N</code> and <code>C</code> dimensions are set to 0. The dimension order is determined
+by the value of <code>data_format</code>, see below for details.</li>
+<li><b><code>padding</code></b>: A string, either <code>'VALID'</code> or <code>'SAME'</code>. The padding algorithm.
+See the &ldquo;returns&rdquo; section of <a href="../../../../tf/nn/convolution.html"><code>tf.nn.convolution</code></a> for details.</li>
+<li><b><code>data_format</code></b>: A string. &lsquo;NHWC&rsquo; and &lsquo;NCHW&rsquo; are supported.</li>
+<li><b><code>name</code></b>: Optional name for the returned tensor.</li>
+<li><b><code>input</code></b>: Alias for value.</li>
+<li><b><code>filters</code></b>: Alias for filter.</li>
+<li><b><code>dilations</code></b>: An int or list of <code>ints</code> that has length <code>1</code>, <code>2</code> or <code>4</code>,
+defaults to 1. The dilation factor for each dimension of<code>input</code>. If a
+single value is given it is replicated in the <code>H</code> and <code>W</code> dimension. By
+default the <code>N</code> and <code>C</code> dimensions are set to 1. If set to k > 1, there
+will be k-1 skipped cells between each filter element on that dimension.
+The dimension order is determined by the value of <code>data_format</code>, see above
+for details. Dilations in the batch and depth dimensions if a 4-d tensor
+must be 1.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> with the same type as <code>value</code>.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If input/output depth does not match <code>filter</code>&rsquo;s shape, or if
+padding is other than <code>'VALID'</code> or <code>'SAME'</code>.</li>
+</ul>
+

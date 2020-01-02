@@ -1,0 +1,80 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.dtypes.complex" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.dtypes.complex</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/math_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Converts two real numbers to a complex number.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.complex</code></li>
+<li><code>tf.compat.v1.dtypes.complex</code></li>
+<li><code>tf.compat.v2.complex</code></li>
+<li><code>tf.compat.v2.dtypes.complex</code></li>
+<li><code>tf.complex</code></li>
+</ul>
+
+
+<p><code>python
+tf.dtypes.complex(
+    real,
+    imag,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Given a tensor <code>real</code> representing the real part of a complex number, and a
+tensor <code>imag</code> representing the imaginary part of a complex number, this
+operation returns complex numbers elementwise of the form \(a + bj\), where
+<em>a</em> represents the <code>real</code> part and <em>b</em> represents the <code>imag</code> part.</p>
+
+<p>The input tensors <code>real</code> and <code>imag</code> must have the same shape.</p>
+
+<h4>For example:</h4>
+
+<p><code>python
+real = tf.constant([2.25, 3.25])
+imag = tf.constant([4.75, 5.75])
+tf.complex(real, imag)  # [[2.25 + 4.75j], [3.25 + 5.75j]]
+</code></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>real</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>float32</code>, <code>float64</code>.</li>
+<li><b><code>imag</code></b>: A <code>Tensor</code>. Must have the same type as <code>real</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> of type <code>complex64</code> or <code>complex128</code>.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>TypeError</code></b>: Real and imag must be correct types</li>
+</ul>
+

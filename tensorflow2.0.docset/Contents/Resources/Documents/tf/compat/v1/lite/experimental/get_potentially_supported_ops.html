@@ -1,0 +1,42 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.lite.experimental.get_potentially_supported_ops" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.lite.experimental.get_potentially_supported_ops</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/lite/experimental/tensorboard/ops_util.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Returns operations potentially supported by TensorFlow Lite.</p>
+
+<p><code>python
+tf.compat.v1.lite.experimental.get_potentially_supported_ops()
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>The potentially support list contains a list of ops that are partially or
+fully supported, which is derived by simply scanning op names to check whether
+they can be handled without real conversion and specific parameters.</p>
+
+<p>Given that some ops may be partially supported, the optimal way to determine
+if a model&rsquo;s operations are supported is by converting using the TensorFlow
+Lite converter.</p>
+
+<h4>Returns:</h4>
+
+<p>A list of SupportedOp.</p>

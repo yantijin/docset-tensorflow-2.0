@@ -1,0 +1,51 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.tpu.initialize_system" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.tpu.initialize_system</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/tpu/tpu.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Initializes a distributed TPU system for use with TensorFlow.</p>
+
+<p><code>python
+tf.compat.v1.tpu.initialize_system(
+    embedding_config=None,
+    job=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>embedding_config</code></b>: If not None, a <code>TPUEmbeddingConfiguration</code> proto
+describing the desired configuration of the hardware embedding lookup
+tables. If embedding_config is None, no hardware embeddings can be used.</li>
+<li><b><code>job</code></b>: The job (the XXX in TensorFlow device specification /job:XXX) that
+contains the TPU devices that will be initialized. If job=None it is
+assumed there is only one job in the TensorFlow flock, and an error will
+be returned if this assumption does not hold.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A serialized <code>TopologyProto</code> that describes the TPU system. Note:
+  the topology must be evaluated using <code>Session.run</code> before it can be used.</p>

@@ -1,0 +1,153 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.GraphKeys" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="ACTIVATIONS"/>
+<meta itemprop="property" content="ASSET_FILEPATHS"/>
+<meta itemprop="property" content="BIASES"/>
+<meta itemprop="property" content="CONCATENATED_VARIABLES"/>
+<meta itemprop="property" content="COND_CONTEXT"/>
+<meta itemprop="property" content="EVAL_STEP"/>
+<meta itemprop="property" content="GLOBAL_STEP"/>
+<meta itemprop="property" content="GLOBAL_VARIABLES"/>
+<meta itemprop="property" content="INIT_OP"/>
+<meta itemprop="property" content="LOCAL_INIT_OP"/>
+<meta itemprop="property" content="LOCAL_RESOURCES"/>
+<meta itemprop="property" content="LOCAL_VARIABLES"/>
+<meta itemprop="property" content="LOSSES"/>
+<meta itemprop="property" content="METRIC_VARIABLES"/>
+<meta itemprop="property" content="MODEL_VARIABLES"/>
+<meta itemprop="property" content="MOVING_AVERAGE_VARIABLES"/>
+<meta itemprop="property" content="QUEUE_RUNNERS"/>
+<meta itemprop="property" content="READY_FOR_LOCAL_INIT_OP"/>
+<meta itemprop="property" content="READY_OP"/>
+<meta itemprop="property" content="REGULARIZATION_LOSSES"/>
+<meta itemprop="property" content="RESOURCES"/>
+<meta itemprop="property" content="SAVEABLE_OBJECTS"/>
+<meta itemprop="property" content="SAVERS"/>
+<meta itemprop="property" content="SUMMARIES"/>
+<meta itemprop="property" content="SUMMARY_OP"/>
+<meta itemprop="property" content="TABLE_INITIALIZERS"/>
+<meta itemprop="property" content="TRAINABLE_RESOURCE_VARIABLES"/>
+<meta itemprop="property" content="TRAINABLE_VARIABLES"/>
+<meta itemprop="property" content="TRAIN_OP"/>
+<meta itemprop="property" content="UPDATE_OPS"/>
+<meta itemprop="property" content="VARIABLES"/>
+<meta itemprop="property" content="WEIGHTS"/>
+<meta itemprop="property" content="WHILE_CONTEXT"/>
+</div>
+
+
+<h1>tf.compat.v1.GraphKeys</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/ops.py">View source</a></p>
+
+<h2>Class <code>GraphKeys</code></h2>
+
+<!-- Start diff -->
+
+
+<p>Standard names to use for graph collections.</p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>The standard library uses various well-known names to collect and
+retrieve values associated with a graph. For example, the
+<code>tf.Optimizer</code> subclasses default to optimizing the variables
+collected under <code>tf.GraphKeys.TRAINABLE_VARIABLES</code> if none is
+specified, but it is also possible to pass an explicit list of
+variables.</p>
+
+<p>The following standard keys are defined:</p>
+
+<ul>
+<li><code>GLOBAL_VARIABLES</code>: the default collection of <code>Variable</code> objects, shared
+across distributed environment (model variables are subset of these). See
+<a href="../../../tf/compat/v1/global_variables.html"><code>tf.compat.v1.global_variables</code></a>
+for more details.
+Commonly, all <code>TRAINABLE_VARIABLES</code> variables will be in <code>MODEL_VARIABLES</code>,
+and all <code>MODEL_VARIABLES</code> variables will be in <code>GLOBAL_VARIABLES</code>.</li>
+<li><code>LOCAL_VARIABLES</code>: the subset of <code>Variable</code> objects that are local to each
+machine. Usually used for temporarily variables, like counters.
+Note: use <code>tf.contrib.framework.local_variable</code> to add to this collection.</li>
+<li><code>MODEL_VARIABLES</code>: the subset of <code>Variable</code> objects that are used in the
+model for inference (feed forward). Note: use
+<code>tf.contrib.framework.model_variable</code> to add to this collection.</li>
+<li><code>TRAINABLE_VARIABLES</code>: the subset of <code>Variable</code> objects that will
+be trained by an optimizer. See
+<a href="../../../tf/compat/v1/trainable_variables.html"><code>tf.compat.v1.trainable_variables</code></a>
+for more details.</li>
+<li><code>SUMMARIES</code>: the summary <code>Tensor</code> objects that have been created in the
+graph. See
+<a href="../../../tf/compat/v1/summary/merge_all.html"><code>tf.compat.v1.summary.merge_all</code></a>
+for more details.</li>
+<li><code>QUEUE_RUNNERS</code>: the <code>QueueRunner</code> objects that are used to
+produce input for a computation. See
+<a href="../../../tf/compat/v1/train/start_queue_runners.html"><code>tf.compat.v1.train.start_queue_runners</code></a>
+for more details.</li>
+<li><code>MOVING_AVERAGE_VARIABLES</code>: the subset of <code>Variable</code> objects that will also
+keep moving averages.  See
+<a href="../../../tf/compat/v1/moving_average_variables.html"><code>tf.compat.v1.moving_average_variables</code></a>
+for more details.</li>
+<li><code>REGULARIZATION_LOSSES</code>: regularization losses collected during graph
+construction.</li>
+</ul>
+
+
+<p>The following standard keys are <em>defined</em>, but their collections are <strong>not</strong>
+automatically populated as many of the others are:</p>
+
+<ul>
+<li><code>WEIGHTS</code></li>
+<li><code>BIASES</code></li>
+<li><code>ACTIVATIONS</code></li>
+</ul>
+
+
+<h2>Class Members</h2>
+
+<ul>
+<li><code>ACTIVATIONS = 'activations'</code> <a id="ACTIVATIONS"></a></li>
+<li><code>ASSET_FILEPATHS = 'asset_filepaths'</code> <a id="ASSET_FILEPATHS"></a></li>
+<li><code>BIASES = 'biases'</code> <a id="BIASES"></a></li>
+<li><code>CONCATENATED_VARIABLES = 'concatenated_variables'</code> <a id="CONCATENATED_VARIABLES"></a></li>
+<li><code>COND_CONTEXT = 'cond_context'</code> <a id="COND_CONTEXT"></a></li>
+<li><code>EVAL_STEP = 'eval_step'</code> <a id="EVAL_STEP"></a></li>
+<li><code>GLOBAL_STEP = 'global_step'</code> <a id="GLOBAL_STEP"></a></li>
+<li><code>GLOBAL_VARIABLES = 'variables'</code> <a id="GLOBAL_VARIABLES"></a></li>
+<li><code>INIT_OP = 'init_op'</code> <a id="INIT_OP"></a></li>
+<li><code>LOCAL_INIT_OP = 'local_init_op'</code> <a id="LOCAL_INIT_OP"></a></li>
+<li><code>LOCAL_RESOURCES = 'local_resources'</code> <a id="LOCAL_RESOURCES"></a></li>
+<li><code>LOCAL_VARIABLES = 'local_variables'</code> <a id="LOCAL_VARIABLES"></a></li>
+<li><code>LOSSES = 'losses'</code> <a id="LOSSES"></a></li>
+<li><code>METRIC_VARIABLES = 'metric_variables'</code> <a id="METRIC_VARIABLES"></a></li>
+<li><code>MODEL_VARIABLES = 'model_variables'</code> <a id="MODEL_VARIABLES"></a></li>
+<li><code>MOVING_AVERAGE_VARIABLES = 'moving_average_variables'</code> <a id="MOVING_AVERAGE_VARIABLES"></a></li>
+<li><code>QUEUE_RUNNERS = 'queue_runners'</code> <a id="QUEUE_RUNNERS"></a></li>
+<li><code>READY_FOR_LOCAL_INIT_OP = 'ready_for_local_init_op'</code> <a id="READY_FOR_LOCAL_INIT_OP"></a></li>
+<li><code>READY_OP = 'ready_op'</code> <a id="READY_OP"></a></li>
+<li><code>REGULARIZATION_LOSSES = 'regularization_losses'</code> <a id="REGULARIZATION_LOSSES"></a></li>
+<li><code>RESOURCES = 'resources'</code> <a id="RESOURCES"></a></li>
+<li><code>SAVEABLE_OBJECTS = 'saveable_objects'</code> <a id="SAVEABLE_OBJECTS"></a></li>
+<li><code>SAVERS = 'savers'</code> <a id="SAVERS"></a></li>
+<li><code>SUMMARIES = 'summaries'</code> <a id="SUMMARIES"></a></li>
+<li><code>SUMMARY_OP = 'summary_op'</code> <a id="SUMMARY_OP"></a></li>
+<li><code>TABLE_INITIALIZERS = 'table_initializer'</code> <a id="TABLE_INITIALIZERS"></a></li>
+<li><code>TRAINABLE_RESOURCE_VARIABLES = 'trainable_resource_variables'</code> <a id="TRAINABLE_RESOURCE_VARIABLES"></a></li>
+<li><code>TRAINABLE_VARIABLES = 'trainable_variables'</code> <a id="TRAINABLE_VARIABLES"></a></li>
+<li><code>TRAIN_OP = 'train_op'</code> <a id="TRAIN_OP"></a></li>
+<li><code>UPDATE_OPS = 'update_ops'</code> <a id="UPDATE_OPS"></a></li>
+<li><code>VARIABLES = 'variables'</code> <a id="VARIABLES"></a></li>
+<li><code>WEIGHTS = 'weights'</code> <a id="WEIGHTS"></a></li>
+<li><code>WHILE_CONTEXT = 'while_context'</code> <a id="WHILE_CONTEXT"></a></li>
+</ul>
+

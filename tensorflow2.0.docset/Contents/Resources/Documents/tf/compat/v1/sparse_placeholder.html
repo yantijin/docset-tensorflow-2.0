@@ -1,0 +1,92 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.sparse_placeholder" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.sparse_placeholder</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/array_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Inserts a placeholder for a sparse tensor that will be always fed.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.sparse.placeholder</code></li>
+</ul>
+
+
+<p><code>python
+tf.compat.v1.sparse_placeholder(
+    dtype,
+    shape=None,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p><strong>Important</strong>: This sparse tensor will produce an error if evaluated.
+Its value must be fed using the <code>feed_dict</code> optional argument to
+<code>Session.run()</code>, <code>Tensor.eval()</code>, or <code>Operation.run()</code>.</p>
+
+<h4>For example:</h4>
+
+<p>```python
+x = tf.compat.v1.sparse.placeholder(tf.float32)
+y = tf.sparse.reduce_sum(x)</p>
+
+<p>with tf.compat.v1.Session() as sess:
+  print(sess.run(y))  # ERROR: will fail because x was not fed.</p>
+
+<p>  indices = np.array([[3, 2, 0], [4, 5, 1]], dtype=np.int64)
+  values = np.array([1.0, 2.0], dtype=np.float32)
+  shape = np.array([7, 9, 2], dtype=np.int64)
+  print(sess.run(y, feed_dict={
+    x: tf.compat.v1.SparseTensorValue(indices, values, shape)}))  # Will
+    succeed.
+  print(sess.run(y, feed_dict={
+    x: (indices, values, shape)}))  # Will succeed.</p>
+
+<p>  sp = tf.SparseTensor(indices=indices, values=values, dense_shape=shape)
+  sp_value = sp.eval(session=sess)
+  print(sess.run(y, feed_dict={x: sp_value}))  # Will succeed.
+```</p>
+
+<p>@compatibility{eager} Placeholders are not compatible with eager execution.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>dtype</code></b>: The type of <code>values</code> elements in the tensor to be fed.</li>
+<li><b><code>shape</code></b>: The shape of the tensor to be fed (optional). If the shape is not
+specified, you can feed a sparse tensor of any shape.</li>
+<li><b><code>name</code></b>: A name for prefixing the operations (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>SparseTensor</code> that may be used as a handle for feeding a value, but not
+evaluated directly.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>RuntimeError</code></b>: if eager execution is enabled</li>
+</ul>
+

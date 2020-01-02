@@ -1,0 +1,170 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.flags.EnumClassFlag" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="value"/>
+<meta itemprop="property" content="__eq__"/>
+<meta itemprop="property" content="__ge__"/>
+<meta itemprop="property" content="__gt__"/>
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="__le__"/>
+<meta itemprop="property" content="__lt__"/>
+<meta itemprop="property" content="flag_type"/>
+<meta itemprop="property" content="parse"/>
+<meta itemprop="property" content="serialize"/>
+<meta itemprop="property" content="unparse"/>
+</div>
+
+
+<h1>tf.compat.v1.flags.EnumClassFlag</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<h2>Class <code>EnumClassFlag</code></h2>
+
+<!-- Start diff -->
+
+
+<p>Basic enum flag; its value is an enum class&rsquo;s member.</p>
+
+<p>Inherits From: <a href="../../../../tf/compat/v1/flags/Flag.html"><code>Flag</code></a></p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li>Class <code>tf.compat.v1.app.flags.EnumClassFlag</code></li>
+</ul>
+
+
+<!-- Placeholder for "Used in" -->
+
+
+
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+
+<p><code>python
+__init__(
+    name,
+    default,
+    help,
+    enum_class,
+    short_name=None,
+    **args
+)
+</code></p>
+
+<p>Initialize self.  See help(type(self)) for accurate signature.</p>
+
+<h2>Properties</h2>
+
+<h3 id="value"><code>value</code></h3>
+
+
+<h2>Methods</h2>
+
+<h3 id="__eq__"><code>__eq__</code></h3>
+
+
+<p><code>python
+__eq__(other)
+</code></p>
+
+<p>Return self==value.</p>
+
+<h3 id="__ge__"><code>__ge__</code></h3>
+
+
+<p><code>python
+__ge__(
+    other,
+    NotImplemented=NotImplemented
+)
+</code></p>
+
+<p>Return a >= b.  Computed by @total_ordering from (not a &lt; b).</p>
+
+<h3 id="__gt__"><code>__gt__</code></h3>
+
+
+<p><code>python
+__gt__(
+    other,
+    NotImplemented=NotImplemented
+)
+</code></p>
+
+<p>Return a > b.  Computed by @total_ordering from (not a &lt; b) and (a != b).</p>
+
+<h3 id="__le__"><code>__le__</code></h3>
+
+
+<p><code>python
+__le__(
+    other,
+    NotImplemented=NotImplemented
+)
+</code></p>
+
+<p>Return a &lt;= b.  Computed by @total_ordering from (a &lt; b) or (a == b).</p>
+
+<h3 id="__lt__"><code>__lt__</code></h3>
+
+
+<p><code>python
+__lt__(other)
+</code></p>
+
+<p>Return self&lt;value.</p>
+
+<h3 id="flag_type"><code>flag_type</code></h3>
+
+
+<p><code>python
+flag_type()
+</code></p>
+
+<p>Returns a str that describes the type of the flag.</p>
+
+<p>NOTE: we use strings, and not the types.*Type constants because
+our flags can have more exotic types, e.g., &lsquo;comma separated list
+of strings&rsquo;, &lsquo;whitespace separated list of strings&rsquo;, etc.</p>
+
+<h3 id="parse"><code>parse</code></h3>
+
+
+<p><code>python
+parse(argument)
+</code></p>
+
+<p>Parses string and sets flag value.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>argument</code></b>: str or the correct flag value type, argument to be parsed.</li>
+</ul>
+
+
+<h3 id="serialize"><code>serialize</code></h3>
+
+
+<p><code>python
+serialize()
+</code></p>
+
+<p>Serializes the flag.</p>
+
+<h3 id="unparse"><code>unparse</code></h3>
+
+
+<p><code>python
+unparse()
+</code></p>

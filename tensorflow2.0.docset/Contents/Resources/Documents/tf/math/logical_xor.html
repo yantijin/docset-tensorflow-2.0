@@ -1,0 +1,74 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.math.logical_xor" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.math.logical_xor</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/math_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Logical XOR function.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.RaggedTensor.__xor__</code></li>
+<li><code>tf.compat.v1.RaggedTensor.__xor__</code></li>
+<li><code>tf.compat.v1.logical_xor</code></li>
+<li><code>tf.compat.v1.math.logical_xor</code></li>
+<li><code>tf.compat.v2.RaggedTensor.__xor__</code></li>
+<li><code>tf.compat.v2.math.logical_xor</code></li>
+</ul>
+
+
+<p><code>python
+tf.math.logical_xor(
+    x,
+    y,
+    name='LogicalXor'
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>x ^ y = (x | y) &amp; ~(x &amp; y)</p>
+
+<p>Inputs are tensor and if the tensors contains more than one element, an
+element-wise logical XOR is computed.</p>
+
+<h4>Usage:</h4>
+
+<p>```python
+x = tf.constant([False, False, True, True], dtype = tf.bool)
+y = tf.constant([False, True, False, True], dtype = tf.bool)
+z = tf.logical_xor(x, y, name=&ldquo;LogicalXor&rdquo;)</p>
+
+<h1>here z = [False  True  True False]</h1>
+
+<p>```</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code> type bool.</li>
+<li><b><code>y</code></b>: A <code>Tensor</code> of type bool.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> of type bool with the same size as that of x or y.</p>

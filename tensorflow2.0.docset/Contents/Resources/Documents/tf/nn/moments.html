@@ -1,0 +1,75 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.nn.moments" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.nn.moments</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/nn_impl.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Calculates the mean and variance of <code>x</code>.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v2.nn.moments</code></li>
+</ul>
+
+
+<p><code>python
+tf.nn.moments(
+    x,
+    axes,
+    shift=None,
+    keepdims=False,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>The mean and variance are calculated by aggregating the contents of <code>x</code>
+across <code>axes</code>.  If <code>x</code> is 1-D and <code>axes = [0]</code> this is just the mean
+and variance of a vector.</p>
+
+<p>Note: shift is currently not used; the true mean is computed and used.</p>
+
+<p>When using these moments for batch normalization (see
+<a href="../../tf/nn/batch_normalization.html"><code>tf.nn.batch_normalization</code></a>):</p>
+
+<ul>
+<li>for so-called &ldquo;global normalization&rdquo;, used with convolutional filters with
+shape <code>[batch, height, width, depth]</code>, pass <code>axes=[0, 1, 2]</code>.</li>
+<li>for simple batch normalization pass <code>axes=[0]</code> (batch only).</li>
+</ul>
+
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code>.</li>
+<li><b><code>axes</code></b>: Array of ints.  Axes along which to compute mean and
+variance.</li>
+<li><b><code>shift</code></b>: Not used in the current implementation.</li>
+<li><b><code>keepdims</code></b>: produce moments with the same dimensionality as the input.</li>
+<li><b><code>name</code></b>: Name used to scope the operations that compute the moments.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>Two <code>Tensor</code> objects: <code>mean</code> and <code>variance</code>.</p>

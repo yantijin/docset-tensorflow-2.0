@@ -1,0 +1,61 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.backend.in_test_phase" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.keras.backend.in_test_phase</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/backend.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Selects <code>x</code> in test phase, and <code>alt</code> otherwise.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.keras.backend.in_test_phase</code></li>
+<li><code>tf.compat.v2.keras.backend.in_test_phase</code></li>
+</ul>
+
+
+<p><code>python
+tf.keras.backend.in_test_phase(
+    x,
+    alt,
+    training=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Note that <code>alt</code> should have the <em>same shape</em> as <code>x</code>.</p>
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>x</code></b>: What to return in test phase
+  (tensor or callable that returns a tensor).</li>
+<li><b><code>alt</code></b>: What to return otherwise
+  (tensor or callable that returns a tensor).</li>
+<li><b><code>training</code></b>: Optional scalar tensor
+  (or Python boolean, or Python integer)
+  specifying the learning phase.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>Either <code>x</code> or <code>alt</code> based on <code>K.learning_phase</code>.</p>

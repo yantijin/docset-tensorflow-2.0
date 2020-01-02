@@ -1,0 +1,105 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.nn.weighted_cross_entropy_with_logits" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.nn.weighted_cross_entropy_with_logits</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/nn_impl.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Computes a weighted cross entropy.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v2.nn.weighted_cross_entropy_with_logits</code></li>
+</ul>
+
+
+<p><code>python
+tf.nn.weighted_cross_entropy_with_logits(
+    labels,
+    logits,
+    pos_weight,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>This is like <code>sigmoid_cross_entropy_with_logits()</code> except that <code>pos_weight</code>,
+allows one to trade off recall and precision by up- or down-weighting the
+cost of a positive error relative to a negative error.</p>
+
+<p>The usual cross-entropy cost is defined as:</p>
+
+<pre><code>labels * -log(sigmoid(logits)) +
+    (1 - labels) * -log(1 - sigmoid(logits))
+</code></pre>
+
+<p>A value <code>pos_weight &gt; 1</code> decreases the false negative count, hence increasing
+the recall.
+Conversely setting <code>pos_weight &lt; 1</code> decreases the false positive count and
+increases the precision.
+This can be seen from the fact that <code>pos_weight</code> is introduced as a
+multiplicative coefficient for the positive labels term
+in the loss expression:</p>
+
+<pre><code>labels * -log(sigmoid(logits)) * pos_weight +
+    (1 - labels) * -log(1 - sigmoid(logits))
+</code></pre>
+
+<p>For brevity, let <code>x = logits</code>, <code>z = labels</code>, <code>q = pos_weight</code>.
+The loss is:</p>
+
+<pre><code>  qz * -log(sigmoid(x)) + (1 - z) * -log(1 - sigmoid(x))
+= qz * -log(1 / (1 + exp(-x))) + (1 - z) * -log(exp(-x) / (1 + exp(-x)))
+= qz * log(1 + exp(-x)) + (1 - z) * (-log(exp(-x)) + log(1 + exp(-x)))
+= qz * log(1 + exp(-x)) + (1 - z) * (x + log(1 + exp(-x))
+= (1 - z) * x + (qz +  1 - z) * log(1 + exp(-x))
+= (1 - z) * x + (1 + (q - 1) * z) * log(1 + exp(-x))
+</code></pre>
+
+<p>Setting <code>l = (1 + (q - 1) * z)</code>, to ensure stability and avoid overflow,
+the implementation uses</p>
+
+<pre><code>(1 - z) * x + l * (log(1 + exp(-abs(x))) + max(-x, 0))
+</code></pre>
+
+<p><code>logits</code> and <code>labels</code> must have the same type and shape.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>labels</code></b>: A <code>Tensor</code> of the same type and shape as <code>logits</code>.</li>
+<li><b><code>logits</code></b>: A <code>Tensor</code> of type <code>float32</code> or <code>float64</code>.</li>
+<li><b><code>pos_weight</code></b>: A coefficient to use on the positive examples.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> of the same shape as <code>logits</code> with the componentwise
+weighted logistic losses.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If <code>logits</code> and <code>labels</code> do not have the same shape.</li>
+</ul>
+

@@ -1,0 +1,66 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.quantization.fake_quant_with_min_max_args_gradient" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.quantization.fake_quant_with_min_max_args_gradient</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p>Defined in generated file: <code>python/ops/gen_array_ops.py</code></p>
+
+<!-- Start diff -->
+
+
+<p>Compute gradients for a FakeQuantWithMinMaxArgs operation.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.fake_quant_with_min_max_args_gradient</code></li>
+<li><code>tf.compat.v1.quantization.fake_quant_with_min_max_args_gradient</code></li>
+<li><code>tf.compat.v2.quantization.fake_quant_with_min_max_args_gradient</code></li>
+</ul>
+
+
+<p><code>python
+tf.quantization.fake_quant_with_min_max_args_gradient(
+    gradients,
+    inputs,
+    min=-6,
+    max=6,
+    num_bits=8,
+    narrow_range=False,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>gradients</code></b>: A <code>Tensor</code> of type <code>float32</code>.
+Backpropagated gradients above the FakeQuantWithMinMaxArgs operation.</li>
+<li><b><code>inputs</code></b>: A <code>Tensor</code> of type <code>float32</code>.
+Values passed as inputs to the FakeQuantWithMinMaxArgs operation.</li>
+<li><b><code>min</code></b>: An optional <code>float</code>. Defaults to <code>-6</code>.</li>
+<li><b><code>max</code></b>: An optional <code>float</code>. Defaults to <code>6</code>.</li>
+<li><b><code>num_bits</code></b>: An optional <code>int</code>. Defaults to <code>8</code>.</li>
+<li><b><code>narrow_range</code></b>: An optional <code>bool</code>. Defaults to <code>False</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> of type <code>float32</code>.</p>

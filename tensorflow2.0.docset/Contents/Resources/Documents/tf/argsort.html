@@ -1,0 +1,89 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.argsort" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.argsort</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/sort_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Returns the indices of a tensor that give its sorted order along an axis.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.argsort</code></li>
+<li><code>tf.compat.v2.argsort</code></li>
+</ul>
+
+
+<p><code>python
+tf.argsort(
+    values,
+    axis=-1,
+    direction='ASCENDING',
+    stable=False,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>For a 1D tensor, <code>tf.gather(values, tf.argsort(values))</code> is equivalent to
+<a href="../tf/sort.html"><code>tf.sort(values)</code></a>. For higher dimensions, the output has the same shape as
+<code>values</code>, but along the given axis, values represent the index of the sorted
+element in that slice of the tensor at the given position.</p>
+
+<h4>Usage:</h4>
+
+<p>```python
+import tensorflow as tf
+a = [1, 10, 26.9, 2.8, 166.32, 62.3]
+b = tf.argsort(a,axis=-1,direction=&lsquo;ASCENDING&rsquo;,stable=False,name=None)
+c = tf.keras.backend.eval(b)</p>
+
+<h1>Here, c = [0 3 1 2 5 4]</h1>
+
+<p>```</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>values</code></b>: 1-D or higher numeric <code>Tensor</code>.</li>
+<li><b><code>axis</code></b>: The axis along which to sort. The default is -1, which sorts the last
+axis.</li>
+<li><b><code>direction</code></b>: The direction in which to sort the values (<code>'ASCENDING'</code> or
+<code>'DESCENDING'</code>).</li>
+<li><b><code>stable</code></b>: If True, equal elements in the original tensor will not be
+re-ordered in the returned order. Unstable sort is not yet implemented,
+but will eventually be the default for performance reasons. If you require
+a stable order, pass <code>stable=True</code> for forwards compatibility.</li>
+<li><b><code>name</code></b>: Optional name for the operation.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>An int32 <code>Tensor</code> with the same shape as <code>values</code>. The indices that would
+    sort each slice of the given <code>values</code> along the given <code>axis</code>.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If axis is not a constant scalar, or the direction is invalid.</li>
+</ul>
+

@@ -1,0 +1,561 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.optimizers.Optimizer" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="iterations"/>
+<meta itemprop="property" content="weights"/>
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="add_slot"/>
+<meta itemprop="property" content="add_weight"/>
+<meta itemprop="property" content="apply_gradients"/>
+<meta itemprop="property" content="from_config"/>
+<meta itemprop="property" content="get_config"/>
+<meta itemprop="property" content="get_gradients"/>
+<meta itemprop="property" content="get_slot"/>
+<meta itemprop="property" content="get_slot_names"/>
+<meta itemprop="property" content="get_updates"/>
+<meta itemprop="property" content="get_weights"/>
+<meta itemprop="property" content="minimize"/>
+<meta itemprop="property" content="set_weights"/>
+<meta itemprop="property" content="variables"/>
+</div>
+
+
+<h1>tf.keras.optimizers.Optimizer</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/optimizer_v2.py">View source</a></p>
+
+<h2>Class <code>Optimizer</code></h2>
+
+<!-- Start diff -->
+
+
+<p>Updated base class for optimizers.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li>Class <code>tf.compat.v1.keras.optimizers.Optimizer</code></li>
+<li>Class <code>tf.compat.v2.keras.optimizers.Optimizer</code></li>
+<li>Class <code>tf.compat.v2.optimizers.Optimizer</code></li>
+<li>Class <code>tf.optimizers.Optimizer</code></li>
+</ul>
+
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>This class defines the API to add Ops to train a model.  You never use this
+class directly, but instead instantiate one of its subclasses such as
+<a href="../../../tf/keras/optimizers/SGD.html"><code>tf.keras.optimizers.SGD</code></a>, <a href="../../../tf/keras/optimizers/Adam.html"><code>tf.keras.optimizers.Adam</code></a>.</p>
+
+<h3>Usage</h3>
+
+<p>```python</p>
+
+<h1>Create an optimizer with the desired parameters.</h1>
+
+<p>opt = tf.keras.optimizers.SGD(learning_rate=0.1)</p>
+
+<h1><code>loss</code> is a callable that takes no argument and returns the value</h1>
+
+<h1>to minimize.</h1>
+
+<p>loss = lambda: 3 * var1 * var1 + 2 * var2 * var2</p>
+
+<h1>In graph mode, returns op that minimizes the loss by updating the listed</h1>
+
+<h1>variables.</h1>
+
+<p>opt_op = opt.minimize(loss, var_list=[var1, var2])
+opt_op.run()</p>
+
+<h1>In eager mode, simply call minimize to update the list of variables.</h1>
+
+<p>opt.minimize(loss, var_list=[var1, var2])
+```</p>
+
+<h3>Custom training loop with Keras models</h3>
+
+<p>In Keras models, sometimes variables are created when the model is first
+called, instead of construction time. Examples include 1) sequential models
+without input shape pre-defined, or 2) subclassed models. Pass var_list as
+callable in these cases.</p>
+
+<h4>Example:</h4>
+
+<p><code>python
+opt = tf.keras.optimizers.SGD(learning_rate=0.1)
+model = tf.keras.Sequential()
+model.add(tf.keras.layers.Dense(num_hidden, activation='relu'))
+model.add(tf.keras.layers.Dense(num_classes, activation='sigmoid'))
+loss_fn = lambda: tf.keras.losses.mse(model(input), output)
+var_list_fn = lambda: model.trainable_weights
+for input, output in data:
+  opt.minimize(loss_fn, var_list_fn)
+</code></p>
+
+<h3>Processing gradients before applying them.</h3>
+
+<p>Calling <code>minimize()</code> takes care of both computing the gradients and
+applying them to the variables.  If you want to process the gradients
+before applying them you can instead use the optimizer in three steps:</p>
+
+<ol>
+<li>Compute the gradients with <a href="../../../tf/GradientTape.html"><code>tf.GradientTape</code></a>.</li>
+<li>Process the gradients as you wish.</li>
+<li>Apply the processed gradients with <code>apply_gradients()</code>.</li>
+</ol>
+
+
+<h4>Example:</h4>
+
+<p>```python</p>
+
+<h1>Create an optimizer.</h1>
+
+<p>opt = tf.keras.optimizers.SGD(learning_rate=0.1)</p>
+
+<h1>Compute the gradients for a list of variables.</h1>
+
+<p>with tf.GradientTape() as tape:
+  loss = &lt;call_loss_function>
+vars = &lt;list_of_variables>
+grads = tape.gradient(loss, vars)
+processed_grads = [process_gradient(g) for g in grads]
+grads_and_vars = zip(processed_grads, var_list)</p>
+
+<h1>grads_and_vars is a list of tuples (gradient, variable).  Do whatever you</h1>
+
+<h1>need to the &lsquo;gradient&rsquo; part, for example cap them, etc.</h1>
+
+<p>capped_grads_and_vars = [(MyCapper(gv[0]), gv[1]) for gv in grads_and_vars]</p>
+
+<h1>Ask the optimizer to apply the capped gradients.</h1>
+
+<p>opt.apply_gradients(capped_grads_and_vars)
+```</p>
+
+<h3>Use with <a href="../../../tf/distribute/Strategy.html"><code>tf.distribute.Strategy</code></a>.</h3>
+
+<p>This optimizer class is <a href="../../../tf/distribute/Strategy.html"><code>tf.distribute.Strategy</code></a> aware, which means it
+automatically sums gradients across all replicas. To average gradients,
+you divide your loss by the global batch size, which is done
+automatically if you use <a href="../../../tf/keras.html"><code>tf.keras</code></a> built-in training or evaluation loops.
+See the <code>reduction</code> argument of your loss which should be set to
+<a href="../../../tf/keras/losses/Reduction.html#SUM_OVER_BATCH_SIZE"><code>tf.keras.losses.Reduction.SUM_OVER_BATCH_SIZE</code></a> for averaging or
+<a href="../../../tf/keras/losses/Reduction.html#SUM"><code>tf.keras.losses.Reduction.SUM</code></a> for not.</p>
+
+<p>If you are not using these and you want to average gradients, you should use
+<a href="../../../tf/math/reduce_sum.html"><code>tf.math.reduce_sum</code></a> to add up your per-example losses and then divide by the
+global batch size. Note that when using <a href="../../../tf/distribute/Strategy.html"><code>tf.distribute.Strategy</code></a>, the first
+component of a tensor&rsquo;s shape is the <em>replica-local</em> batch size, which is off
+by a factor equal to the number of replicas being used to compute a single
+step. As a result, using <a href="../../../tf/math/reduce_mean.html"><code>tf.math.reduce_mean</code></a> will give the wrong answer,
+resulting in gradients that can be many times too big.</p>
+
+<h3>Variable Constraint</h3>
+
+<p>All Keras optimizers respect variable constraints. If constraint function is
+passed to any variable, the constraint will be applied to the variable after
+the gradient has been applied to the variable.
+Important: If gradient is sparse tensor, variable constraint is not supported.</p>
+
+<h3>Thread Compatibility</h3>
+
+<p>The entire optimizer is currently thread compatible, not thread-safe. The user
+needs to perform synchronization if necessary.</p>
+
+<h3>Slots</h3>
+
+<p>Many optimizer subclasses, such as <code>Adam</code> and <code>Adagrad</code> allocate and manage
+additional variables associated with the variables to train.  These are called
+<i>Slots</i>.  Slots have names and you can ask the optimizer for the names of
+the slots that it uses.  Once you have a slot name you can ask the optimizer
+for the variable it created to hold the slot value.</p>
+
+<p>This can be useful if you want to log debug a training algorithm, report stats
+about the slots, etc.</p>
+
+<h3>Hyper parameters</h3>
+
+<p>These are arguments passed to the optimizer subclass constructor
+(the <code>__init__</code> method), and then passed to <code>self._set_hyper()</code>.
+They can be either regular Python values (like 1.0), tensors, or
+callables. If they are callable, the callable will be called during
+<code>apply_gradients()</code> to get the value for the hyper parameter.</p>
+
+<p>Hyper parameters can be overwritten through user code:</p>
+
+<h4>Example:</h4>
+
+<p>```python</p>
+
+<h1>Create an optimizer with the desired parameters.</h1>
+
+<p>opt = tf.keras.optimizers.SGD(learning_rate=0.1)</p>
+
+<h1><code>loss</code> is a callable that takes no argument and returns the value</h1>
+
+<h1>to minimize.</h1>
+
+<p>loss = lambda: 3 * var1 + 2 * var2</p>
+
+<h1>In eager mode, simply call minimize to update the list of variables.</h1>
+
+<p>opt.minimize(loss, var_list=[var1, var2])</p>
+
+<h1>update learning rate</h1>
+
+<p>opt.learning_rate = 0.05
+opt.minimize(loss, var_list=[var1, var2])
+```</p>
+
+<h3>Write a customized optimizer.</h3>
+
+<p>If you intend to create your own optimization algorithm, simply inherit from
+this class and override the following methods:</p>
+
+<ul>
+<li>resource_apply_dense (update variable given gradient tensor is dense)</li>
+<li>resource_apply_sparse (update variable given gradient tensor is sparse)</li>
+<li>create_slots (if your optimizer algorithm requires additional variables)</li>
+<li>get_config (serialization of the optimizer, include all hyper parameters)</li>
+</ul>
+
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/optimizer_v2.py">View source</a></p>
+
+<p><code>python
+__init__(
+    name,
+    **kwargs
+)
+</code></p>
+
+<p>Create a new Optimizer.</p>
+
+<p>This must be called by the constructors of subclasses.
+Note that Optimizer instances should not bind to a single graph,
+and so shouldn&rsquo;t keep Tensors as member variables. Generally
+you should be able to use the _set_hyper()/state.get_hyper()
+facility instead.</p>
+
+<p>This class in stateful and thread-compatible.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>name</code></b>: A non-empty string.  The name to use for accumulators created
+for the optimizer.</li>
+<li><b><code>**kwargs</code></b>: keyword arguments. Allowed to be {<code>clipnorm</code>, <code>clipvalue</code>, <code>lr</code>,
+<code>decay</code>}. <code>clipnorm</code> is clip gradients by norm; <code>clipvalue</code> is clip
+gradients by value, <code>decay</code> is included for backward compatibility to
+allow time inverse decay of learning rate. <code>lr</code> is included for backward
+compatibility, recommended to use <code>learning_rate</code> instead.</li>
+</ul>
+
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If name is malformed.</li>
+<li><b><code>RuntimeError</code></b>: If <em>create_slots has been overridden instead of
+  </em>create_vars.</li>
+</ul>
+
+
+<h2>Properties</h2>
+
+<h3 id="iterations"><code>iterations</code></h3>
+
+
+<p>Variable. The number of training steps this Optimizer has run.</p>
+
+<h3 id="weights"><code>weights</code></h3>
+
+
+<p>Returns variables of this Optimizer based on the order created.</p>
+
+<h2>Methods</h2>
+
+<h3 id="add_slot"><code>add_slot</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/optimizer_v2.py">View source</a></p>
+
+<p><code>python
+add_slot(
+    var,
+    slot_name,
+    initializer='zeros'
+)
+</code></p>
+
+<p>Add a new slot variable for <code>var</code>.</p>
+
+<h3 id="add_weight"><code>add_weight</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/optimizer_v2.py">View source</a></p>
+
+<p><code>python
+add_weight(
+    name,
+    shape,
+    dtype=None,
+    initializer='zeros',
+    trainable=None,
+    synchronization=tf.VariableSynchronization.AUTO,
+    aggregation=tf.compat.v1.VariableAggregation.NONE
+)
+</code></p>
+
+<h3 id="apply_gradients"><code>apply_gradients</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/optimizer_v2.py">View source</a></p>
+
+<p><code>python
+apply_gradients(
+    grads_and_vars,
+    name=None
+)
+</code></p>
+
+<p>Apply gradients to variables.</p>
+
+<p>This is the second part of <code>minimize()</code>. It returns an <code>Operation</code> that
+applies gradients.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>grads_and_vars</code></b>: List of (gradient, variable) pairs.</li>
+<li><b><code>name</code></b>: Optional name for the returned operation.  Default to the name
+passed to the <code>Optimizer</code> constructor.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>An <code>Operation</code> that applies the specified gradients. If <code>global_step</code>
+was not None, that operation also increments <code>global_step</code>.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>TypeError</code></b>: If <code>grads_and_vars</code> is malformed.</li>
+<li><b><code>ValueError</code></b>: If none of the variables have gradients.</li>
+</ul>
+
+
+<h3 id="from_config"><code>from_config</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/optimizer_v2.py">View source</a></p>
+
+<p><code>python
+@classmethod
+from_config(
+    cls,
+    config,
+    custom_objects=None
+)
+</code></p>
+
+<p>Creates an optimizer from its config.</p>
+
+<p>This method is the reverse of <code>get_config</code>,
+capable of instantiating the same optimizer from the config
+dictionary.</p>
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>config</code></b>: A Python dictionary, typically the output of get_config.</li>
+<li><b><code>custom_objects</code></b>: A Python dictionary mapping names to additional Python
+objects used to create this optimizer, such as a function used for a
+hyperparameter.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>An optimizer instance.</p>
+
+<h3 id="get_config"><code>get_config</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/optimizer_v2.py">View source</a></p>
+
+<p><code>python
+get_config()
+</code></p>
+
+<p>Returns the config of the optimimizer.</p>
+
+<p>An optimizer config is a Python dictionary (serializable)
+containing the configuration of an optimizer.
+The same optimizer can be reinstantiated later
+(without any saved state) from this configuration.</p>
+
+<h4>Returns:</h4>
+
+<p>Python dictionary.</p>
+
+<h3 id="get_gradients"><code>get_gradients</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/optimizer_v2.py">View source</a></p>
+
+<p><code>python
+get_gradients(
+    loss,
+    params
+)
+</code></p>
+
+<p>Returns gradients of <code>loss</code> with respect to <code>params</code>.</p>
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>loss</code></b>: Loss tensor.</li>
+<li><b><code>params</code></b>: List of variables.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>List of gradient tensors.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: In case any gradient cannot be computed (e.g. if gradient
+function not implemented).</li>
+</ul>
+
+
+<h3 id="get_slot"><code>get_slot</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/optimizer_v2.py">View source</a></p>
+
+<p><code>python
+get_slot(
+    var,
+    slot_name
+)
+</code></p>
+
+<h3 id="get_slot_names"><code>get_slot_names</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/optimizer_v2.py">View source</a></p>
+
+<p><code>python
+get_slot_names()
+</code></p>
+
+<p>A list of names for this optimizer&rsquo;s slots.</p>
+
+<h3 id="get_updates"><code>get_updates</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/optimizer_v2.py">View source</a></p>
+
+<p><code>python
+get_updates(
+    loss,
+    params
+)
+</code></p>
+
+<h3 id="get_weights"><code>get_weights</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/optimizer_v2.py">View source</a></p>
+
+<p><code>python
+get_weights()
+</code></p>
+
+<h3 id="minimize"><code>minimize</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/optimizer_v2.py">View source</a></p>
+
+<p><code>python
+minimize(
+    loss,
+    var_list,
+    grad_loss=None,
+    name=None
+)
+</code></p>
+
+<p>Minimize <code>loss</code> by updating <code>var_list</code>.</p>
+
+<p>This method simply computes gradient using <a href="../../../tf/GradientTape.html"><code>tf.GradientTape</code></a> and calls
+<code>apply_gradients()</code>. If you want to process the gradient before applying
+then call <a href="../../../tf/GradientTape.html"><code>tf.GradientTape</code></a> and <code>apply_gradients()</code> explicitly instead
+of using this function.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>loss</code></b>: A callable taking no arguments which returns the value to minimize.</li>
+<li><b><code>var_list</code></b>: list or tuple of <code>Variable</code> objects to update to minimize
+<code>loss</code>, or a callable returning the list or tuple of <code>Variable</code> objects.
+Use callable when the variable list would otherwise be incomplete before
+<code>minimize</code> since the variables are created at the first time <code>loss</code> is
+called.</li>
+<li><b><code>grad_loss</code></b>: Optional. A <code>Tensor</code> holding the gradient computed for <code>loss</code>.</li>
+<li><b><code>name</code></b>: Optional name for the returned operation.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>An Operation that updates the variables in <code>var_list</code>.  If <code>global_step</code>
+was not <code>None</code>, that operation also increments <code>global_step</code>.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If some of the variables are not <code>Variable</code> objects.</li>
+</ul>
+
+
+<h3 id="set_weights"><code>set_weights</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/optimizer_v2.py">View source</a></p>
+
+<p><code>python
+set_weights(weights)
+</code></p>
+
+<h3 id="variables"><code>variables</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/optimizer_v2.py">View source</a></p>
+
+<p><code>python
+variables()
+</code></p>
+
+<p>Returns variables of this Optimizer based on the order created.</p>

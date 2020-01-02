@@ -1,0 +1,81 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.layers.GlobalMaxPool1D" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__init__"/>
+</div>
+
+
+<h1>tf.keras.layers.GlobalMaxPool1D</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/pooling.py">View source</a></p>
+
+<h2>Class <code>GlobalMaxPool1D</code></h2>
+
+<!-- Start diff -->
+
+
+<p>Global max pooling operation for temporal data.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li>Class <code>tf.compat.v1.keras.layers.GlobalMaxPool1D</code></li>
+<li>Class <code>tf.compat.v1.keras.layers.GlobalMaxPooling1D</code></li>
+<li>Class <code>tf.compat.v2.keras.layers.GlobalMaxPool1D</code></li>
+<li>Class <code>tf.compat.v2.keras.layers.GlobalMaxPooling1D</code></li>
+<li>Class <code>tf.keras.layers.GlobalMaxPooling1D</code></li>
+</ul>
+
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>data_format</code></b>: A string,
+one of <code>channels_last</code> (default) or <code>channels_first</code>.
+The ordering of the dimensions in the inputs.
+<code>channels_last</code> corresponds to inputs with shape
+<code>(batch, steps, features)</code> while <code>channels_first</code>
+corresponds to inputs with shape
+<code>(batch, features, steps)</code>.</li>
+</ul>
+
+
+<h4>Input shape:</h4>
+
+<ul>
+<li>If <code>data_format='channels_last'</code>:
+3D tensor with shape:
+<code>(batch_size, steps, features)</code></li>
+<li>If <code>data_format='channels_first'</code>:
+3D tensor with shape:
+<code>(batch_size, features, steps)</code></li>
+</ul>
+
+
+<h4>Output shape:</h4>
+
+<p>2D tensor with shape <code>(batch_size, features)</code>.</p>
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/pooling.py">View source</a></p>
+
+<p><code>python
+__init__(
+    data_format='channels_last',
+    **kwargs
+)
+</code></p>

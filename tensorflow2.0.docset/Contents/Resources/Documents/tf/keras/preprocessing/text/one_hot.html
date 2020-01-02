@@ -1,0 +1,64 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.preprocessing.text.one_hot" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.keras.preprocessing.text.one_hot</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+
+
+<!-- Start diff -->
+
+
+<p>One-hot encodes a text into a list of word indexes of size n.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.keras.preprocessing.text.one_hot</code></li>
+<li><code>tf.compat.v2.keras.preprocessing.text.one_hot</code></li>
+</ul>
+
+
+<p><code>python
+tf.keras.preprocessing.text.one_hot(
+    text,
+    n,
+    filters='!"#$%&amp;()*+,-./:;&lt;=&gt;?@[\\]^_`{|}~\t\n',
+    lower=True,
+    split=' '
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>This is a wrapper to the <code>hashing_trick</code> function using <code>hash</code> as the
+hashing function; unicity of word to index mapping non-guaranteed.</p>
+
+<h1>Arguments</h1>
+
+<pre><code>text: Input text (string).
+n: int. Size of vocabulary.
+filters: list (or concatenation) of characters to filter out, such as
+    punctuation. Default: ``!"#$%&amp;()*+,-./:;&lt;=&gt;?@[\]^_`{|}~\t\n``,
+    includes basic punctuation, tabs, and newlines.
+lower: boolean. Whether to set the text to lowercase.
+split: str. Separator for word splitting.
+</code></pre>
+
+<h1>Returns</h1>
+
+<pre><code>List of integers in [1, n]. Each integer encodes a word
+(unicity non-guaranteed).
+</code></pre>

@@ -1,0 +1,52 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.get_collection_ref" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.get_collection_ref</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Wrapper for <code>Graph.get_collection_ref()</code> using the default graph.</p>
+
+<p><code>python
+tf.compat.v1.get_collection_ref(key)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>See <a href="../../../tf/Graph.html#get_collection_ref"><code>tf.Graph.get_collection_ref</code></a>
+for more details.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>key</code></b>: The key for the collection. For example, the <code>GraphKeys</code> class contains
+many standard names for collections.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>The list of values in the collection with the given <code>name</code>, or an empty
+list if no value has been added to that collection.  Note that this returns
+the collection list itself, which can be modified in place to change the
+collection.</p>
+
+<h4>Eager Compatibility</h4>
+
+<p>Collections are not supported when eager execution is enabled.</p>

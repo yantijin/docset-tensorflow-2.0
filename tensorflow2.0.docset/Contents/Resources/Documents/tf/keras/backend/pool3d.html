@@ -1,0 +1,70 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.backend.pool3d" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.keras.backend.pool3d</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/backend.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>3D Pooling.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.keras.backend.pool3d</code></li>
+<li><code>tf.compat.v2.keras.backend.pool3d</code></li>
+</ul>
+
+
+<p><code>python
+tf.keras.backend.pool3d(
+    x,
+    pool_size,
+    strides=(1, 1, 1),
+    padding='valid',
+    data_format=None,
+    pool_mode='max'
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>x</code></b>: Tensor or variable.</li>
+<li><b><code>pool_size</code></b>: tuple of 3 integers.</li>
+<li><b><code>strides</code></b>: tuple of 3 integers.</li>
+<li><b><code>padding</code></b>: string, <code>"same"</code> or <code>"valid"</code>.</li>
+<li><b><code>data_format</code></b>: string, <code>"channels_last"</code> or <code>"channels_first"</code>.</li>
+<li><b><code>pool_mode</code></b>: string, <code>"max"</code> or <code>"avg"</code>.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A tensor, result of 3D pooling.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: if <code>data_format</code> is neither <code>"channels_last"</code> or
+<code>"channels_first"</code>.</li>
+<li><b><code>ValueError</code></b>: if <code>pool_mode</code> is neither <code>"max"</code> or <code>"avg"</code>.</li>
+</ul>
+

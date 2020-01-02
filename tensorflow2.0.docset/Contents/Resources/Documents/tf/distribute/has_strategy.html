@@ -1,0 +1,48 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.distribute.has_strategy" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.distribute.has_strategy</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/distribution_strategy_context.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Return if there is a current non-default <a href="../../tf/distribute/Strategy.html"><code>tf.distribute.Strategy</code></a>.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.distribute.has_strategy</code></li>
+<li><code>tf.compat.v2.distribute.has_strategy</code></li>
+</ul>
+
+
+<p><code>python
+tf.distribute.has_strategy()
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p><code>
+assert not tf.distribute.has_strategy()
+with strategy.scope():
+  assert tf.distribute.has_strategy()
+</code></p>
+
+<h4>Returns:</h4>
+
+<p>True if inside a <code>with strategy.scope():</code>.</p>

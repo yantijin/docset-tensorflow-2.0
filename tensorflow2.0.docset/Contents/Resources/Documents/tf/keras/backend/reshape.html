@@ -1,0 +1,70 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.backend.reshape" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.keras.backend.reshape</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/backend.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Reshapes a tensor to the specified shape.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.keras.backend.reshape</code></li>
+<li><code>tf.compat.v2.keras.backend.reshape</code></li>
+</ul>
+
+
+<p><code>python
+tf.keras.backend.reshape(
+    x,
+    shape
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>x</code></b>: Tensor or variable.</li>
+<li><b><code>shape</code></b>: Target shape tuple.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A tensor.</p>
+
+<h4>Example:</h4>
+
+<p>```python</p>
+
+<blockquote><blockquote><blockquote><p>a = tf.constant([[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]])
+a
+  &lt;tf.Tensor: id=32, shape=(4, 3), dtype=int32, numpy=
+  array([[ 1,  2,  3],
+         [ 4,  5,  6],
+         [ 7,  8,  9],
+         [10, 11, 12]], dtype=int32)>
+tf.keras.backend.reshape(a, shape=(2, 6))
+  &lt;tf.Tensor: id=35, shape=(2, 6), dtype=int32, numpy=
+  array([[ 1,  2,  3,  4,  5,  6],
+         [ 7,  8,  9, 10, 11, 12]], dtype=int32)>
+```</p></blockquote></blockquote></blockquote>

@@ -1,0 +1,70 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.random.shuffle" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.random.shuffle</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/random_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Randomly shuffles a tensor along its first dimension.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.random.shuffle</code></li>
+<li><code>tf.compat.v1.random_shuffle</code></li>
+<li><code>tf.compat.v2.random.shuffle</code></li>
+</ul>
+
+
+<p><code>python
+tf.random.shuffle(
+    value,
+    seed=None,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>The tensor is shuffled along dimension 0, such that each <code>value[j]</code> is mapped
+to one and only one <code>output[i]</code>. For example, a mapping that might occur for a
+3x2 tensor is:</p>
+
+<p><code>python
+[[1, 2],       [[5, 6],
+ [3, 4],  ==&gt;   [1, 2],
+ [5, 6]]        [3, 4]]
+</code></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>value</code></b>: A Tensor to be shuffled.</li>
+<li><b><code>seed</code></b>: A Python integer. Used to create a random seed for the distribution.
+See
+<a href="../../tf/compat/v1/set_random_seed.html"><code>tf.compat.v1.set_random_seed</code></a>
+for behavior.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A tensor of same shape and type as <code>value</code>, shuffled along its first
+dimension.</p>

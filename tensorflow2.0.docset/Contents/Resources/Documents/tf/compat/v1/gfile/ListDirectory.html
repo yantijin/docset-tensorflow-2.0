@@ -1,0 +1,48 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.gfile.ListDirectory" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.gfile.ListDirectory</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/lib/io/file_io.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Returns a list of entries contained within a directory.</p>
+
+<p><code>python
+tf.compat.v1.gfile.ListDirectory(dirname)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>The list is in arbitrary order. It does not contain the special entries &ldquo;.&rdquo;
+and &ldquo;..&rdquo;.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>dirname</code></b>: string, path to a directory</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>[filename1, filename2, &hellip; filenameN] as strings</p>
+
+<h4>Raises:</h4>
+
+<p>errors.NotFoundError if directory doesn&rsquo;t exist</p>

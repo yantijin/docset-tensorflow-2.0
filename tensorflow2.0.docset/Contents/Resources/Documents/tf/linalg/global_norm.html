@@ -1,0 +1,69 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.linalg.global_norm" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.linalg.global_norm</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/clip_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Computes the global norm of multiple tensors.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.global_norm</code></li>
+<li><code>tf.compat.v1.linalg.global_norm</code></li>
+<li><code>tf.compat.v2.linalg.global_norm</code></li>
+</ul>
+
+
+<p><code>python
+tf.linalg.global_norm(
+    t_list,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Given a tuple or list of tensors <code>t_list</code>, this operation returns the
+global norm of the elements in all tensors in <code>t_list</code>. The global norm is
+computed as:</p>
+
+<p><code>global_norm = sqrt(sum([l2norm(t)**2 for t in t_list]))</code></p>
+
+<p>Any entries in <code>t_list</code> that are of type None are ignored.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>t_list</code></b>: A tuple or list of mixed <code>Tensors</code>, <code>IndexedSlices</code>, or None.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A 0-D (scalar) <code>Tensor</code> of type <code>float</code>.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>TypeError</code></b>: If <code>t_list</code> is not a sequence.</li>
+</ul>
+

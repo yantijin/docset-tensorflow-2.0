@@ -1,0 +1,156 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.nn.rnn_cell.MultiRNNCell" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="graph"/>
+<meta itemprop="property" content="output_size"/>
+<meta itemprop="property" content="scope_name"/>
+<meta itemprop="property" content="state_size"/>
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="get_initial_state"/>
+<meta itemprop="property" content="zero_state"/>
+</div>
+
+
+<h1>tf.compat.v1.nn.rnn_cell.MultiRNNCell</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/rnn_cell_impl.py">View source</a></p>
+
+<h2>Class <code>MultiRNNCell</code></h2>
+
+<!-- Start diff -->
+
+
+<p>RNN cell composed sequentially of multiple simple cells.</p>
+
+<p>Inherits From: <a href="../../../../../tf/compat/v1/nn/rnn_cell/RNNCell.html"><code>RNNCell</code></a></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Example:</h4>
+
+<p><code>python
+num_units = [128, 64]
+cells = [BasicLSTMCell(num_units=n) for n in num_units]
+stacked_rnn_cell = MultiRNNCell(cells)
+</code></p>
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/rnn_cell_impl.py">View source</a></p>
+
+<p><code>python
+__init__(
+    cells,
+    state_is_tuple=True
+)
+</code></p>
+
+<p>Create a RNN cell composed sequentially of a number of RNNCells. (deprecated)</p>
+
+<p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
+Instructions for updating:
+This class is equivalent as tf.keras.layers.StackedRNNCells, and will be replaced by that in Tensorflow 2.0.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>cells</code></b>: list of RNNCells that will be composed in this order.</li>
+<li><b><code>state_is_tuple</code></b>: If True, accepted and returned states are n-tuples, where
+<code>n = len(cells)</code>.  If False, the states are all concatenated along the
+column axis.  This latter behavior will soon be deprecated.</li>
+</ul>
+
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: if cells is empty (not allowed), or at least one of the cells
+returns a state tuple but the flag <code>state_is_tuple</code> is <code>False</code>.</li>
+</ul>
+
+
+<h2>Properties</h2>
+
+<h3 id="graph"><code>graph</code></h3>
+
+
+<p>DEPRECATED FUNCTION</p>
+
+<p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
+Instructions for updating:
+Stop using this property because tf.layers layers no longer track their graph.</p>
+
+<h3 id="output_size"><code>output_size</code></h3>
+
+
+<p>Integer or TensorShape: size of outputs produced by this cell.</p>
+
+<h3 id="scope_name"><code>scope_name</code></h3>
+
+
+
+
+<h3 id="state_size"><code>state_size</code></h3>
+
+
+<p>size(s) of state(s) used by this cell.</p>
+
+<p>It can be represented by an Integer, a TensorShape or a tuple of Integers
+or TensorShapes.</p>
+
+<h2>Methods</h2>
+
+<h3 id="get_initial_state"><code>get_initial_state</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/rnn_cell_impl.py">View source</a></p>
+
+<p><code>python
+get_initial_state(
+    inputs=None,
+    batch_size=None,
+    dtype=None
+)
+</code></p>
+
+<h3 id="zero_state"><code>zero_state</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/rnn_cell_impl.py">View source</a></p>
+
+<p><code>python
+zero_state(
+    batch_size,
+    dtype
+)
+</code></p>
+
+<p>Return zero-filled state tensor(s).</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>batch_size</code></b>: int, float, or unit Tensor representing the batch size.</li>
+<li><b><code>dtype</code></b>: the data type to use for the state.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>If <code>state_size</code> is an int or TensorShape, then the return value is a
+<code>N-D</code> tensor of shape <code>[batch_size, state_size]</code> filled with zeros.</p>
+
+<p>If <code>state_size</code> is a nested list or tuple, then the return value is
+a nested list or tuple (of the same structure) of <code>2-D</code> tensors with
+the shapes <code>[batch_size, s]</code> for each s in <code>state_size</code>.</p>

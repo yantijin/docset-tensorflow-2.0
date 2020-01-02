@@ -1,0 +1,72 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.random.categorical" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.random.categorical</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/random_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Draws samples from a categorical distribution.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.random.categorical</code></li>
+<li><code>tf.compat.v2.random.categorical</code></li>
+</ul>
+
+
+<p><code>python
+tf.random.categorical(
+    logits,
+    num_samples,
+    dtype=None,
+    seed=None,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Example:</h4>
+
+<p>```python</p>
+
+<h1>samples has shape [1, 5], where each value is either 0 or 1 with equal</h1>
+
+<h1>probability.</h1>
+
+<p>samples = tf.random.categorical(tf.math.log([[0.5, 0.5]]), 5)
+```</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>logits</code></b>: 2-D Tensor with shape <code>[batch_size, num_classes]</code>.  Each slice
+<code>[i, :]</code> represents the unnormalized log-probabilities for all classes.</li>
+<li><b><code>num_samples</code></b>: 0-D.  Number of independent samples to draw for each row slice.</li>
+<li><b><code>dtype</code></b>: integer type to use for the output. Defaults to int64.</li>
+<li><b><code>seed</code></b>: A Python integer. Used to create a random seed for the distribution.
+See <a href="../../tf/compat/v1/set_random_seed.html"><code>tf.compat.v1.set_random_seed</code></a> for behavior.</li>
+<li><b><code>name</code></b>: Optional name for the operation.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>The drawn samples of shape <code>[batch_size, num_samples]</code>.</p>

@@ -1,0 +1,36 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.resource_loader.get_root_dir_with_all_resources" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.resource_loader.get_root_dir_with_all_resources</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/platform/resource_loader.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Get a root directory containing all the data attributes in the build rule.</p>
+
+<p><code>python
+tf.compat.v1.resource_loader.get_root_dir_with_all_resources()
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Returns:</h4>
+
+<p>The path to the specified file present in the data attribute of py_test
+or py_binary. Falls back to returning the same as get_data_files_path if it
+fails to detect a bazel runfiles directory.</p>

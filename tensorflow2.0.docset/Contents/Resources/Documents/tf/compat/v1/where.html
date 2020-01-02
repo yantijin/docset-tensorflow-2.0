@@ -1,0 +1,82 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.where" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.where</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/array_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Return the elements, either from <code>x</code> or <code>y</code>, depending on the <code>condition</code>.</p>
+
+<p><code>python
+tf.compat.v1.where(
+    condition,
+    x=None,
+    y=None,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>If both <code>x</code> and <code>y</code> are None, then this operation returns the coordinates of
+true elements of <code>condition</code>.  The coordinates are returned in a 2-D tensor
+where the first dimension (rows) represents the number of true elements, and
+the second dimension (columns) represents the coordinates of the true
+elements. Keep in mind, the shape of the output tensor can vary depending on
+how many true values there are in input. Indices are output in row-major
+order.</p>
+
+<p>If both non-None, <code>x</code> and <code>y</code> must have the same shape.
+The <code>condition</code> tensor must be a scalar if <code>x</code> and <code>y</code> are scalar.
+If <code>x</code> and <code>y</code> are tensors of higher rank, then <code>condition</code> must be either a
+vector with size matching the first dimension of <code>x</code>, or must have the same
+shape as <code>x</code>.</p>
+
+<p>The <code>condition</code> tensor acts as a mask that chooses, based on the value at each
+element, whether the corresponding element / row in the output should be taken
+from <code>x</code> (if true) or <code>y</code> (if false).</p>
+
+<p>If <code>condition</code> is a vector and <code>x</code> and <code>y</code> are higher rank matrices, then it
+chooses which row (outer dimension) to copy from <code>x</code> and <code>y</code>. If <code>condition</code>
+has the same shape as <code>x</code> and <code>y</code>, then it chooses which element to copy from
+<code>x</code> and <code>y</code>.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>condition</code></b>: A <code>Tensor</code> of type <code>bool</code></li>
+<li><b><code>x</code></b>: A Tensor which may have the same shape as <code>condition</code>. If <code>condition</code> is
+rank 1, <code>x</code> may have higher rank, but its first dimension must match the
+size of <code>condition</code>.</li>
+<li><b><code>y</code></b>: A <code>tensor</code> with the same shape and type as <code>x</code>.</li>
+<li><b><code>name</code></b>: A name of the operation (optional)</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> with the same type and shape as <code>x</code>, <code>y</code> if they are non-None.
+Otherwise, a <code>Tensor</code> with shape <code>(num_true, rank(condition))</code>.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: When exactly one of <code>x</code> or <code>y</code> is non-None.</li>
+</ul>
+

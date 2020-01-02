@@ -1,0 +1,92 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.layers.SpatialDropout1D" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__init__"/>
+</div>
+
+
+<h1>tf.keras.layers.SpatialDropout1D</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/core.py">View source</a></p>
+
+<h2>Class <code>SpatialDropout1D</code></h2>
+
+<!-- Start diff -->
+
+
+<p>Spatial 1D version of Dropout.</p>
+
+<p>Inherits From: <a href="../../../tf/keras/layers/Dropout.html"><code>Dropout</code></a></p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li>Class <code>tf.compat.v1.keras.layers.SpatialDropout1D</code></li>
+<li>Class <code>tf.compat.v2.keras.layers.SpatialDropout1D</code></li>
+</ul>
+
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>This version performs the same function as Dropout, however it drops
+entire 1D feature maps instead of individual elements. If adjacent frames
+within feature maps are strongly correlated (as is normally the case in
+early convolution layers) then regular dropout will not regularize the
+activations and will otherwise just result in an effective learning rate
+decrease. In this case, SpatialDropout1D will help promote independence
+between feature maps and should be used instead.</p>
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>rate</code></b>: Float between 0 and 1. Fraction of the input units to drop.</li>
+</ul>
+
+
+<h4>Call arguments:</h4>
+
+<ul>
+<li><b><code>inputs</code></b>: A 3D tensor.</li>
+<li><b><code>training</code></b>: Python boolean indicating whether the layer should behave in
+training mode (adding dropout) or in inference mode (doing nothing).</li>
+</ul>
+
+
+<h4>Input shape:</h4>
+
+<p>3D tensor with shape:
+<code>(samples, timesteps, channels)</code></p>
+
+<h4>Output shape:</h4>
+
+<p>Same as input.</p>
+
+<h4>References:</h4>
+
+<ul>
+<li><a href="https://arxiv.org/abs/1411.4280">Efficient Object Localization Using Convolutional
+Networks</a></li>
+</ul>
+
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/core.py">View source</a></p>
+
+<p><code>python
+__init__(
+    rate,
+    **kwargs
+)
+</code></p>

@@ -1,0 +1,89 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.layers.experimental.keras_style_scope" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.layers.experimental.keras_style_scope</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/layers/base.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Use Keras-style variable management.</p>
+
+<p><code>python
+tf.compat.v1.layers.experimental.keras_style_scope()
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>All tf.layers and tf RNN cells created in this scope use Keras-style
+variable management.  Creating such layers with a scope= argument is
+disallowed, and reuse=True is disallowed.</p>
+
+<p>The purpose of this scope is to allow users of existing layers to
+slowly transition to a Keras layers API without breaking existing
+functionality.</p>
+
+<p>One example of this is when using TensorFlow&rsquo;s RNN classes with Keras
+Models or Networks.  Because Keras models do not properly set variable
+scopes, users of RNNs may either accidentally share scopes between two
+different models, or get errors about variables that already exist.</p>
+
+<h4>Example:</h4>
+
+<p>```python
+class RNNModel(tf.keras.Model):</p>
+
+<p>  def <strong>init</strong>(self, name):
+    super(RNNModel, self).<strong>init</strong>(name=name)
+    self.rnn = tf.compat.v1.nn.rnn_cell.MultiRNNCell(
+      [tf.compat.v1.nn.rnn_cell.LSTMCell(64) for _ in range(2)])</p>
+
+<p>  def call(self, input, state):
+    return self.rnn(input, state)</p>
+
+<p>model_1 = RNNModel(&ldquo;model_1&rdquo;)
+model_2 = RNNModel(&ldquo;model_2&rdquo;)</p>
+
+<h1>OK</h1>
+
+<p>output_1, next_state_1 = model_1(input, state)</p>
+
+<h1>Raises an error about trying to create an already existing variable.</h1>
+
+<p>output_2, next_state_2 = model_2(input, state)
+```</p>
+
+<p>The solution is to wrap the model construction and execution in a keras-style
+scope:</p>
+
+<p>```python
+with keras_style_scope():
+  model_1 = RNNModel(&ldquo;model_1&rdquo;)
+  model_2 = RNNModel(&ldquo;model_2&rdquo;)</p>
+
+<p>  # model_1 and model_2 are guaranteed to create their own variables.
+  output_1, next_state_1 = model_1(input, state)
+  output_2, next_state_2 = model_2(input, state)</p>
+
+<p>  assert len(model_1.weights) > 0
+  assert len(model_2.weights) > 0
+  assert(model_1.weights != model_2.weights)
+```</p>
+
+<h4>Yields:</h4>
+
+<p>A keras layer style scope.</p>

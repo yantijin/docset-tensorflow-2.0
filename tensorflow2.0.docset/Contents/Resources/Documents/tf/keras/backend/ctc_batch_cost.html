@@ -1,0 +1,62 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.backend.ctc_batch_cost" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.keras.backend.ctc_batch_cost</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/backend.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Runs CTC loss algorithm on each batch element.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.keras.backend.ctc_batch_cost</code></li>
+<li><code>tf.compat.v2.keras.backend.ctc_batch_cost</code></li>
+</ul>
+
+
+<p><code>python
+tf.keras.backend.ctc_batch_cost(
+    y_true,
+    y_pred,
+    input_length,
+    label_length
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>y_true</code></b>: tensor <code>(samples, max_string_length)</code>
+  containing the truth labels.</li>
+<li><b><code>y_pred</code></b>: tensor <code>(samples, time_steps, num_categories)</code>
+  containing the prediction, or output of the softmax.</li>
+<li><b><code>input_length</code></b>: tensor <code>(samples, 1)</code> containing the sequence length for
+  each batch item in <code>y_pred</code>.</li>
+<li><b><code>label_length</code></b>: tensor <code>(samples, 1)</code> containing the sequence length for
+  each batch item in <code>y_true</code>.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>Tensor with shape (samples,1) containing the
+    CTC loss of each element.</p>

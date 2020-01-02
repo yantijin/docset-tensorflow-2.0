@@ -1,0 +1,95 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.debugging.assert_shapes" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.debugging.assert_shapes</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/check_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Assert tensor shapes and dimension size relationships between tensors.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v2.debugging.assert_shapes</code></li>
+</ul>
+
+
+<p><code>python
+tf.debugging.assert_shapes(
+    shapes,
+    data=None,
+    summarize=None,
+    message=None,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>This Op checks that a collection of tensors shape relationships
+satisfies given constraints.</p>
+
+<h4>Example:</h4>
+
+<p><code>python
+tf.assert_shapes([
+  (x: ('N', 'Q')),
+  (y: ('N', 'D')),
+  (param: ('Q',)),
+  (scalar: ()),
+])
+</code></p>
+
+<p>If <code>x</code>, <code>y</code>, <code>param</code> or <code>scalar</code> does not have a shape that satisfies
+all specified constraints, <code>message</code>, as well as the first <code>summarize</code> entries
+of the first encountered violating tensor are printed, and
+<code>InvalidArgumentError</code> is raised.</p>
+
+<p>Size entries in the specified shapes are checked against other entries by
+their <strong>hash</strong>, except:
+  - a size entry is interpreted as an explicit size if it can be parsed as an
+    integer primitive.
+  - a size entry is interpreted as <em>any</em> size if it is None or &lsquo;.&rsquo;.</p>
+
+<p>If the first entry of a shape is <code>...</code> (type <code>Ellipsis</code>) or &lsquo;*&rsquo; that indicates
+a variable number of outer dimensions of unspecified size, i.e. the constraint
+applies to the inner-most dimensions only.</p>
+
+<p>Scalar tensors and specified shapes of length zero (excluding the &lsquo;inner-most&rsquo;
+prefix) are both treated as having a single dimension of size one.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>shapes</code></b>: dictionary with (<code>Tensor</code> to shape) items. A shape must be an
+iterable.</li>
+<li><b><code>data</code></b>: The tensors to print out if the condition is False.  Defaults to error
+message and first few entries of the violating tensor.</li>
+<li><b><code>summarize</code></b>: Print this many entries of the tensor.</li>
+<li><b><code>message</code></b>: A string to prefix to the default message.</li>
+<li><b><code>name</code></b>: A name for this operation (optional).  Defaults to &ldquo;assert_shapes&rdquo;.</li>
+</ul>
+
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>:  If static checks determine any shape constraint is violated.</li>
+</ul>
+

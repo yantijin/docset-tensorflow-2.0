@@ -1,0 +1,89 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.nn.compute_accidental_hits" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.nn.compute_accidental_hits</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/candidate_sampling_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Compute the position ids in <code>sampled_candidates</code> matching <code>true_classes</code>.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.nn.compute_accidental_hits</code></li>
+<li><code>tf.compat.v2.nn.compute_accidental_hits</code></li>
+</ul>
+
+
+<p><code>python
+tf.nn.compute_accidental_hits(
+    true_classes,
+    sampled_candidates,
+    num_true,
+    seed=None,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>In Candidate Sampling, this operation facilitates virtually removing
+sampled classes which happen to match target classes.  This is done
+in Sampled Softmax and Sampled Logistic.</p>
+
+<p>See our <a href="http://www.tensorflow.org/extras/candidate_sampling.pdf">Candidate Sampling Algorithms
+Reference</a>.</p>
+
+<p>We presuppose that the <code>sampled_candidates</code> are unique.</p>
+
+<p>We call it an &lsquo;accidental hit&rsquo; when one of the target classes
+matches one of the sampled classes.  This operation reports
+accidental hits as triples <code>(index, id, weight)</code>, where <code>index</code>
+represents the row number in <code>true_classes</code>, <code>id</code> represents the
+position in <code>sampled_candidates</code>, and weight is <code>-FLOAT_MAX</code>.</p>
+
+<p>The result of this op should be passed through a <code>sparse_to_dense</code>
+operation, then added to the logits of the sampled classes. This
+removes the contradictory effect of accidentally sampling the true
+target classes as noise classes for the same example.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>true_classes</code></b>: A <code>Tensor</code> of type <code>int64</code> and shape <code>[batch_size,
+num_true]</code>. The target classes.</li>
+<li><b><code>sampled_candidates</code></b>: A tensor of type <code>int64</code> and shape <code>[num_sampled]</code>.
+The sampled_candidates output of CandidateSampler.</li>
+<li><b><code>num_true</code></b>: An <code>int</code>.  The number of target classes per training example.</li>
+<li><b><code>seed</code></b>: An <code>int</code>. An operation-specific seed. Default is 0.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<ul>
+<li><b><code>indices</code></b>: A <code>Tensor</code> of type <code>int32</code> and shape <code>[num_accidental_hits]</code>.
+Values indicate rows in <code>true_classes</code>.</li>
+<li><b><code>ids</code></b>: A <code>Tensor</code> of type <code>int64</code> and shape <code>[num_accidental_hits]</code>.
+Values indicate positions in <code>sampled_candidates</code>.</li>
+<li><b><code>weights</code></b>: A <code>Tensor</code> of type <code>float</code> and shape <code>[num_accidental_hits]</code>.
+Each value is <code>-FLOAT_MAX</code>.</li>
+</ul>
+

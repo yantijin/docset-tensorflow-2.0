@@ -1,0 +1,200 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.metrics.CategoricalCrossentropy" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="__new__"/>
+<meta itemprop="property" content="reset_states"/>
+<meta itemprop="property" content="result"/>
+<meta itemprop="property" content="update_state"/>
+</div>
+
+
+<h1>tf.keras.metrics.CategoricalCrossentropy</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/metrics.py">View source</a></p>
+
+<h2>Class <code>CategoricalCrossentropy</code></h2>
+
+<!-- Start diff -->
+
+
+<p>Computes the crossentropy metric between the labels and predictions.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li>Class <code>tf.compat.v1.keras.metrics.CategoricalCrossentropy</code></li>
+<li>Class <code>tf.compat.v2.keras.metrics.CategoricalCrossentropy</code></li>
+<li>Class <code>tf.compat.v2.metrics.CategoricalCrossentropy</code></li>
+<li>Class <code>tf.metrics.CategoricalCrossentropy</code></li>
+</ul>
+
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>This is the crossentropy metric class to be used when there are multiple
+label classes (2 or more). Here we assume that labels are given as a <code>one_hot</code>
+representation. eg., When labels values are [2, 0, 1],
+ <code>y_true</code> = [[0, 0, 1], [1, 0, 0], [0, 1, 0]].</p>
+
+<h4>Usage:</h4>
+
+<p>```python
+m = tf.keras.metrics.CategoricalCrossentropy()
+m.update_state([[0, 1, 0], [0, 0, 1]],
+               [[0.05, 0.95, 0], [0.1, 0.8, 0.1]])</p>
+
+<h1>EPSILON = 1e-7, y = y_true, y` = y_pred</h1>
+
+<h1>y` = clip_ops.clip_by_value(output, EPSILON, 1. - EPSILON)</h1>
+
+<h1>y` = [[0.05, 0.95, EPSILON], [0.1, 0.8, 0.1]]</h1>
+
+<h1>xent = -sum(y * log(y'), axis = -1)</h1>
+
+<h1>= -((log 0.95), (log 0.1))</h1>
+
+<h1>= [0.051, 2.302]</h1>
+
+<h1>Reduced xent = (0.051 + 2.302) / 2</h1>
+
+<p>print(&lsquo;Final result: &rsquo;, m.result().numpy())  # Final result: 1.176
+```</p>
+
+<p>Usage with tf.keras API:</p>
+
+<p><code>python
+model = tf.keras.Model(inputs, outputs)
+model.compile(
+  'sgd',
+  loss='mse',
+  metrics=[tf.keras.metrics.CategoricalCrossentropy()])
+</code></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>name</code></b>: (Optional) string name of the metric instance.</li>
+<li><b><code>dtype</code></b>: (Optional) data type of the metric result.</li>
+<li><b><code>from_logits</code></b>: (Optional ) Whether <code>y_pred</code> is expected to be a logits tensor.
+By default, we assume that <code>y_pred</code> encodes a probability distribution.</li>
+<li><b><code>label_smoothing</code></b>: Float in [0, 1]. When > 0, label values are smoothed,
+meaning the confidence on label values are relaxed. e.g.
+<code>label_smoothing=0.2</code> means that we will use a value of <code>0.1</code> for label
+<code>0</code> and <code>0.9</code> for label <code>1</code>"</li>
+</ul>
+
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/metrics.py">View source</a></p>
+
+<p><code>python
+__init__(
+    name='categorical_crossentropy',
+    dtype=None,
+    from_logits=False,
+    label_smoothing=0
+)
+</code></p>
+
+<p>Creates a <code>MeanMetricWrapper</code> instance.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>fn</code></b>: The metric function to wrap, with signature
+<code>fn(y_true, y_pred, **kwargs)</code>.</li>
+<li><b><code>name</code></b>: (Optional) string name of the metric instance.</li>
+<li><b><code>dtype</code></b>: (Optional) data type of the metric result.</li>
+<li><b><code>**kwargs</code></b>: The keyword arguments that are passed on to <code>fn</code>.</li>
+</ul>
+
+
+<h2 id="__new__"><code>__new__</code></h2>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/metrics.py">View source</a></p>
+
+<p><code>python
+__new__(
+    cls,
+    *args,
+    **kwargs
+)
+</code></p>
+
+<p>Create and return a new object.  See help(type) for accurate signature.</p>
+
+<h2>Methods</h2>
+
+<h3 id="reset_states"><code>reset_states</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/metrics.py">View source</a></p>
+
+<p><code>python
+reset_states()
+</code></p>
+
+<p>Resets all of the metric state variables.</p>
+
+<p>This function is called between epochs/steps,
+when a metric is evaluated during training.</p>
+
+<h3 id="result"><code>result</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/metrics.py">View source</a></p>
+
+<p><code>python
+result()
+</code></p>
+
+<p>Computes and returns the metric value tensor.</p>
+
+<p>Result computation is an idempotent operation that simply calculates the
+metric value using the state variables.</p>
+
+<h3 id="update_state"><code>update_state</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/metrics.py">View source</a></p>
+
+<p><code>python
+update_state(
+    y_true,
+    y_pred,
+    sample_weight=None
+)
+</code></p>
+
+<p>Accumulates metric statistics.</p>
+
+<p><code>y_true</code> and <code>y_pred</code> should have the same shape.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>y_true</code></b>: The ground truth values.</li>
+<li><b><code>y_pred</code></b>: The predicted values.</li>
+<li><b><code>sample_weight</code></b>: Optional weighting of each example. Defaults to 1. Can be
+a <code>Tensor</code> whose rank is either 0, or the same rank as <code>y_true</code>,
+and must be broadcastable to <code>y_true</code>.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>Update op.</p>

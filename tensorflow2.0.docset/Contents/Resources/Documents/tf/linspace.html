@@ -1,0 +1,71 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.linspace" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.linspace</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p>Defined in generated file: <code>python/ops/gen_math_ops.py</code></p>
+
+<!-- Start diff -->
+
+
+<p>Generates values in an interval.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.lin_space</code></li>
+<li><code>tf.compat.v1.linspace</code></li>
+<li><code>tf.compat.v2.linspace</code></li>
+</ul>
+
+
+<p><code>python
+tf.linspace(
+    start,
+    stop,
+    num,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>A sequence of <code>num</code> evenly-spaced values are generated beginning at <code>start</code>.
+If <code>num &gt; 1</code>, the values in the sequence increase by <code>stop - start / num - 1</code>,
+so that the last one is exactly <code>stop</code>.</p>
+
+<h4>For example:</h4>
+
+<p><code>
+tf.linspace(10.0, 12.0, 3, name="linspace") =&gt; [ 10.0  11.0  12.0]
+</code></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>start</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>bfloat16</code>, <code>float32</code>, <code>float64</code>.
+0-D tensor. First entry in the range.</li>
+<li><b><code>stop</code></b>: A <code>Tensor</code>. Must have the same type as <code>start</code>.
+0-D tensor. Last entry in the range.</li>
+<li><b><code>num</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>int32</code>, <code>int64</code>.
+0-D tensor. Number of values to generate.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code>. Has the same type as <code>start</code>.</p>

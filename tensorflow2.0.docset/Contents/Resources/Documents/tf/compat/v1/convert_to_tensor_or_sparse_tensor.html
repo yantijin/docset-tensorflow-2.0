@@ -1,0 +1,56 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.convert_to_tensor_or_sparse_tensor" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.convert_to_tensor_or_sparse_tensor</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/sparse_tensor.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Converts value to a <code>SparseTensor</code> or <code>Tensor</code>.</p>
+
+<p><code>python
+tf.compat.v1.convert_to_tensor_or_sparse_tensor(
+    value,
+    dtype=None,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>value</code></b>: A <code>SparseTensor</code>, <code>SparseTensorValue</code>, or an object whose type has a
+registered <code>Tensor</code> conversion function.</li>
+<li><b><code>dtype</code></b>: Optional element type for the returned tensor. If missing, the type
+is inferred from the type of <code>value</code>.</li>
+<li><b><code>name</code></b>: Optional name to use if a new <code>Tensor</code> is created.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>SparseTensor</code> or <code>Tensor</code> based on <code>value</code>.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>RuntimeError</code></b>: If result type is incompatible with <code>dtype</code>.</li>
+</ul>
+

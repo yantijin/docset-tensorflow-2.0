@@ -1,0 +1,80 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.parse_single_example" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.parse_single_example</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/parsing_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Parses a single <code>Example</code> proto.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.io.parse_single_example</code></li>
+</ul>
+
+
+<p><code>python
+tf.compat.v1.parse_single_example(
+    serialized,
+    features,
+    name=None,
+    example_names=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Similar to <code>parse_example</code>, except:</p>
+
+<p>For dense tensors, the returned <code>Tensor</code> is identical to the output of
+<code>parse_example</code>, except there is no batch dimension, the output shape is the
+same as the shape given in <code>dense_shape</code>.</p>
+
+<p>For <code>SparseTensor</code>s, the first (batch) column of the indices matrix is removed
+(the indices matrix is a column vector), the values vector is unchanged, and
+the first (<code>batch_size</code>) entry of the shape vector is removed (it is now a
+single element vector).</p>
+
+<p>One might see performance advantages by batching <code>Example</code> protos with
+<code>parse_example</code> instead of using this function directly.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>serialized</code></b>: A scalar string Tensor, a single serialized Example.
+See <code>_parse_single_example_raw</code> documentation for more details.</li>
+<li><b><code>features</code></b>: A <code>dict</code> mapping feature keys to <code>FixedLenFeature</code> or
+<code>VarLenFeature</code> values.</li>
+<li><b><code>name</code></b>: A name for this operation (optional).</li>
+<li><b><code>example_names</code></b>: (Optional) A scalar string Tensor, the associated name.
+See <code>_parse_single_example_raw</code> documentation for more details.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>dict</code> mapping feature keys to <code>Tensor</code> and <code>SparseTensor</code> values.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: if any feature is invalid.</li>
+</ul>
+

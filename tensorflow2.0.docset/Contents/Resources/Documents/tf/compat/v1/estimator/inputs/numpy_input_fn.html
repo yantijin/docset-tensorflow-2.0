@@ -1,0 +1,95 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.estimator.inputs.numpy_input_fn" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.estimator.inputs.numpy_input_fn</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+
+<td>
+  <a target="_blank" href="https://github.com/tensorflow/estimator/tree/master/tensorflow_estimator/python/estimator/inputs/numpy_io.py">
+    <img src="https://www.tensorflow.org/images/GitHub-Mark-32px.png" />
+    View source on GitHub
+  </a>
+</td></table>
+
+
+
+
+<!-- Start diff -->
+
+
+<p>Returns input function that would feed dict of numpy arrays into the model.</p>
+
+<p><code>python
+tf.compat.v1.estimator.inputs.numpy_input_fn(
+    x,
+    y=None,
+    batch_size=128,
+    num_epochs=1,
+    shuffle=None,
+    queue_capacity=1000,
+    num_threads=1
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>This returns a function outputting <code>features</code> and <code>targets</code> based on the dict
+of numpy arrays. The dict <code>features</code> has the same keys as the <code>x</code>. The dict
+<code>targets</code> has the same keys as the <code>y</code> if <code>y</code> is a dict.</p>
+
+<h4>Example:</h4>
+
+<p>```python
+age = np.arange(4) * 1.0
+height = np.arange(32, 36)
+x = {&lsquo;age&rsquo;: age, &lsquo;height&rsquo;: height}
+y = np.arange(-32, -28)</p>
+
+<p>with tf.Session() as session:
+  input_fn = numpy_io.numpy_input_fn(
+      x, y, batch_size=2, shuffle=False, num_epochs=1)
+```</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>: numpy array object or dict of numpy array objects. If an array,
+the array will be treated as a single feature.</li>
+<li><b><code>y</code></b>: numpy array object or dict of numpy array object. <code>None</code> if absent.</li>
+<li><b><code>batch_size</code></b>: Integer, size of batches to return.</li>
+<li><b><code>num_epochs</code></b>: Integer, number of epochs to iterate over data. If <code>None</code> will
+run forever.</li>
+<li><b><code>shuffle</code></b>: Boolean, if True shuffles the queue. Avoid shuffle at prediction
+time.</li>
+<li><b><code>queue_capacity</code></b>: Integer, size of queue to accumulate.</li>
+<li><b><code>num_threads</code></b>: Integer, number of threads used for reading and enqueueing. In
+order to have predicted and repeatable order of reading and enqueueing,
+such as in prediction and evaluation mode, <code>num_threads</code> should be 1.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>Function, that has signature of ()->(dict of <code>features</code>, <code>targets</code>)</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: if the shape of <code>y</code> mismatches the shape of values in <code>x</code> (i.e.,
+values in <code>x</code> have same shape).</li>
+<li><b><code>ValueError</code></b>: if duplicate keys are in both <code>x</code> and <code>y</code> when <code>y</code> is a dict.</li>
+<li><b><code>ValueError</code></b>: if x or y is an empty dict.</li>
+<li><b><code>TypeError</code></b>: <code>x</code> is not a dict or array.</li>
+<li><b><code>ValueError</code></b>: if &lsquo;shuffle&rsquo; is not provided or a bool.</li>
+</ul>
+

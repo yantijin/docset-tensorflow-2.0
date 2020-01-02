@@ -1,0 +1,84 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.AggregationMethod" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="ADD_N"/>
+<meta itemprop="property" content="DEFAULT"/>
+<meta itemprop="property" content="EXPERIMENTAL_ACCUMULATE_N"/>
+<meta itemprop="property" content="EXPERIMENTAL_TREE"/>
+</div>
+
+
+<h1>tf.AggregationMethod</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/gradients_util.py">View source</a></p>
+
+<h2>Class <code>AggregationMethod</code></h2>
+
+<!-- Start diff -->
+
+
+<p>A class listing aggregation methods used to combine gradients.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li>Class <code>tf.compat.v1.AggregationMethod</code></li>
+<li>Class <code>tf.compat.v2.AggregationMethod</code></li>
+</ul>
+
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Computing partial derivatives can require aggregating gradient
+contributions. This class lists the various methods that can
+be used to combine gradients in the graph.</p>
+
+<p>The following aggregation methods are part of the stable API for
+aggregating gradients:</p>
+
+<ul>
+<li><code>ADD_N</code>: All of the gradient terms are summed as part of one
+operation using the &ldquo;AddN&rdquo; op (see <a href="../tf/math/add_n.html"><code>tf.add_n</code></a>). This
+method has the property that all gradients must be ready and
+buffered separately in memory before any aggregation is performed.</li>
+<li><code>DEFAULT</code>: The system-chosen default aggregation method.</li>
+</ul>
+
+
+<p>The following aggregation methods are experimental and may not
+be supported in future releases:</p>
+
+<ul>
+<li><p><code>EXPERIMENTAL_TREE</code>: Gradient terms are summed in pairs using
+using the &ldquo;AddN&rdquo; op. This method of summing gradients may reduce
+performance, but it can improve memory utilization because the
+gradients can be released earlier.</p></li>
+<li><p><code>EXPERIMENTAL_ACCUMULATE_N</code>: Gradient terms are summed using the
+&ldquo;AccumulateN&rdquo; op (see <code>tf.accumulate_n</code>), which accumulates the
+overall sum in a single buffer that is shared across threads.
+This method of summing gradients can result in a lower memory footprint
+and lower latency at the expense of higher CPU/GPU utilization.
+For gradients of types that &ldquo;AccumulateN&rdquo; does not support, this
+summation method falls back on the behavior of <code>EXPERIMENTAL_TREE</code></p></li>
+</ul>
+
+
+<h2>Class Members</h2>
+
+<ul>
+<li><code>ADD_N = 0</code> <a id="ADD_N"></a></li>
+<li><code>DEFAULT = 0</code> <a id="DEFAULT"></a></li>
+<li><code>EXPERIMENTAL_ACCUMULATE_N = 2</code> <a id="EXPERIMENTAL_ACCUMULATE_N"></a></li>
+<li><code>EXPERIMENTAL_TREE = 1</code> <a id="EXPERIMENTAL_TREE"></a></li>
+</ul>
+

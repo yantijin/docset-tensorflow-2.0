@@ -1,0 +1,90 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.metrics.mean_absolute_error" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.metrics.mean_absolute_error</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/metrics_impl.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Computes the mean absolute error between the labels and predictions.</p>
+
+<p><code>python
+tf.compat.v1.metrics.mean_absolute_error(
+    labels,
+    predictions,
+    weights=None,
+    metrics_collections=None,
+    updates_collections=None,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>The <code>mean_absolute_error</code> function creates two local variables,
+<code>total</code> and <code>count</code> that are used to compute the mean absolute error. This
+average is weighted by <code>weights</code>, and it is ultimately returned as
+<code>mean_absolute_error</code>: an idempotent operation that simply divides <code>total</code> by
+<code>count</code>.</p>
+
+<p>For estimation of the metric over a stream of data, the function creates an
+<code>update_op</code> operation that updates these variables and returns the
+<code>mean_absolute_error</code>. Internally, an <code>absolute_errors</code> operation computes the
+absolute value of the differences between <code>predictions</code> and <code>labels</code>. Then
+<code>update_op</code> increments <code>total</code> with the reduced sum of the product of
+<code>weights</code> and <code>absolute_errors</code>, and it increments <code>count</code> with the reduced
+sum of <code>weights</code></p>
+
+<p>If <code>weights</code> is <code>None</code>, weights default to 1. Use weights of 0 to mask values.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>labels</code></b>: A <code>Tensor</code> of the same shape as <code>predictions</code>.</li>
+<li><b><code>predictions</code></b>: A <code>Tensor</code> of arbitrary shape.</li>
+<li><b><code>weights</code></b>: Optional <code>Tensor</code> whose rank is either 0, or the same rank as
+<code>labels</code>, and must be broadcastable to <code>labels</code> (i.e., all dimensions must
+be either <code>1</code>, or the same as the corresponding <code>labels</code> dimension).</li>
+<li><b><code>metrics_collections</code></b>: An optional list of collections that
+<code>mean_absolute_error</code> should be added to.</li>
+<li><b><code>updates_collections</code></b>: An optional list of collections that <code>update_op</code> should
+be added to.</li>
+<li><b><code>name</code></b>: An optional variable_scope name.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<ul>
+<li><b><code>mean_absolute_error</code></b>: A <code>Tensor</code> representing the current mean, the value of
+<code>total</code> divided by <code>count</code>.</li>
+<li><b><code>update_op</code></b>: An operation that increments the <code>total</code> and <code>count</code> variables
+appropriately and whose value matches <code>mean_absolute_error</code>.</li>
+</ul>
+
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If <code>predictions</code> and <code>labels</code> have mismatched shapes, or if
+<code>weights</code> is not <code>None</code> and its shape doesn&rsquo;t match <code>predictions</code>, or if
+either <code>metrics_collections</code> or <code>updates_collections</code> are not a list or
+tuple.</li>
+<li><b><code>RuntimeError</code></b>: If eager execution is enabled.</li>
+</ul>
+

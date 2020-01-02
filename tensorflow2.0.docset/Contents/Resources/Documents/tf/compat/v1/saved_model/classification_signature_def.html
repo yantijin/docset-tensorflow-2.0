@@ -1,0 +1,66 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.saved_model.classification_signature_def" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.saved_model.classification_signature_def</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/saved_model/signature_def_utils_impl.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Creates classification signature from given examples and predictions.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.saved_model.signature_def_utils.classification_signature_def</code></li>
+</ul>
+
+
+<p><code>python
+tf.compat.v1.saved_model.classification_signature_def(
+    examples,
+    classes,
+    scores
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>This function produces signatures intended for use with the TensorFlow Serving
+Classify API (tensorflow_serving/apis/prediction_service.proto), and so
+constrains the input and output types to those allowed by TensorFlow Serving.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>examples</code></b>: A string <code>Tensor</code>, expected to accept serialized tf.Examples.</li>
+<li><b><code>classes</code></b>: A string <code>Tensor</code>.  Note that the ClassificationResponse message
+requires that class labels are strings, not integers or anything else.</li>
+<li><b><code>scores</code></b>: a float <code>Tensor</code>.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A classification-flavored signature_def.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If examples is <code>None</code>.</li>
+</ul>
+

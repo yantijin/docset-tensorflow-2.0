@@ -1,0 +1,77 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.assert_rank_at_least" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.assert_rank_at_least</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/check_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Assert <code>x</code> has rank equal to <code>rank</code> or higher.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.debugging.assert_rank_at_least</code></li>
+</ul>
+
+
+<p><code>python
+tf.compat.v1.assert_rank_at_least(
+    x,
+    rank,
+    data=None,
+    summarize=None,
+    message=None,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Example of adding a dependency to an operation:</p>
+
+<p><code>python
+with tf.control_dependencies([tf.compat.v1.assert_rank_at_least(x, 2)]):
+  output = tf.reduce_sum(x)
+</code></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>:  Numeric <code>Tensor</code>.</li>
+<li><b><code>rank</code></b>:  Scalar <code>Tensor</code>.</li>
+<li><b><code>data</code></b>:  The tensors to print out if the condition is False.  Defaults to
+error message and first few entries of <code>x</code>.</li>
+<li><b><code>summarize</code></b>: Print this many entries of each tensor.</li>
+<li><b><code>message</code></b>: A string to prefix to the default message.</li>
+<li><b><code>name</code></b>: A name for this operation (optional).
+Defaults to &ldquo;assert_rank_at_least&rdquo;.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>Op raising <code>InvalidArgumentError</code> unless <code>x</code> has specified rank or higher.
+If static checks determine <code>x</code> has correct rank, a <code>no_op</code> is returned.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>:  If static checks determine <code>x</code> has wrong rank.</li>
+</ul>
+

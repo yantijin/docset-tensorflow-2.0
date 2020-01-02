@@ -1,0 +1,92 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.estimator.SessionRunValues" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="results"/>
+<meta itemprop="property" content="options"/>
+<meta itemprop="property" content="run_metadata"/>
+<meta itemprop="property" content="__new__"/>
+</div>
+
+
+<h1>tf.estimator.SessionRunValues</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/session_run_hook.py">View source</a></p>
+
+<h2>Class <code>SessionRunValues</code></h2>
+
+<!-- Start diff -->
+
+
+<p>Contains the results of <code>Session.run()</code>.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li>Class <code>tf.compat.v1.estimator.SessionRunValues</code></li>
+<li>Class <code>tf.compat.v1.train.SessionRunValues</code></li>
+<li>Class <code>tf.compat.v2.estimator.SessionRunValues</code></li>
+</ul>
+
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>In the future we may use this object to add more information about result of
+run without changing the Hook API.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>results</code></b>: The return values from <code>Session.run()</code> corresponding to the fetches
+attribute returned in the RunArgs. Note that this has the same shape as
+the RunArgs fetches.  For example:
+  fetches = global_step_tensor
+  => results = nparray(int)
+  fetches = [train_op, summary_op, global_step_tensor]
+  => results = [None, nparray(string), nparray(int)]
+  fetches = {&lsquo;step&rsquo;: global_step_tensor, &lsquo;summ&rsquo;: summary_op}
+  => results = {&lsquo;step&rsquo;: nparray(int), &lsquo;summ&rsquo;: nparray(string)}</li>
+<li><b><code>options</code></b>: <code>RunOptions</code> from the <code>Session.run()</code> call.</li>
+<li><b><code>run_metadata</code></b>: <code>RunMetadata</code> from the <code>Session.run()</code> call.</li>
+</ul>
+
+
+<h2 id="__new__"><code>__new__</code></h2>
+
+
+<p><code>python
+__new__(
+    _cls,
+    results,
+    options,
+    run_metadata
+)
+</code></p>
+
+<p>Create new instance of SessionRunValues(results, options, run_metadata)</p>
+
+<h2>Properties</h2>
+
+<h3 id="results"><code>results</code></h3>
+
+
+
+
+<h3 id="options"><code>options</code></h3>
+
+
+
+
+<h3 id="run_metadata"><code>run_metadata</code></h3>
+
+
+

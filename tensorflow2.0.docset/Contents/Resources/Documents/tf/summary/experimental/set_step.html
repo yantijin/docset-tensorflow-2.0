@@ -1,0 +1,53 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.summary.experimental.set_step" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.summary.experimental.set_step</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/summary_ops_v2.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Sets the default summary step for the current thread.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v2.summary.experimental.set_step</code></li>
+</ul>
+
+
+<p><code>python
+tf.summary.experimental.set_step(step)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>For convenience, this function sets a default value for the <code>step</code> parameter
+used in summary-writing functions elsewhere in the API so that it need not
+be explicitly passed in every such invocation. The value can be a constant
+or a variable, and can be retrieved via <a href="../../../tf/summary/experimental/get_step.html"><code>tf.summary.experimental.get_step()</code></a>.</p>
+
+<p>Note: when using this with @tf.functions, the step value will be captured at
+the time the function is traced, so changes to the step outside the function
+will not be reflected inside the function unless using a <a href="../../../tf/Variable.html"><code>tf.Variable</code></a> step.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>step</code></b>: An <code>int64</code>-castable default step value, or None to unset.</li>
+</ul>
+

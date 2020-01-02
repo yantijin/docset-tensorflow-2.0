@@ -1,0 +1,64 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.io.tf_record_iterator" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.io.tf_record_iterator</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/lib/io/tf_record.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>An iterator that read the records from a TFRecords file. (deprecated)</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.python_io.tf_record_iterator</code></li>
+</ul>
+
+
+<p><code>python
+tf.compat.v1.io.tf_record_iterator(
+    path,
+    options=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
+Instructions for updating:
+Use eager execution and:
+<a href="../../../../tf/data/TFRecordDataset.html"><code>tf.data.TFRecordDataset(path)</code></a></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>path</code></b>: The path to the TFRecords file.</li>
+<li><b><code>options</code></b>: (optional) A TFRecordOptions object.</li>
+</ul>
+
+
+<h4>Yields:</h4>
+
+<p>Strings.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>IOError</code></b>: If <code>path</code> cannot be opened for reading.</li>
+</ul>
+

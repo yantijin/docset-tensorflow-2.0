@@ -1,0 +1,289 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.keras.layers.LSTM" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="activation"/>
+<meta itemprop="property" content="bias_constraint"/>
+<meta itemprop="property" content="bias_initializer"/>
+<meta itemprop="property" content="bias_regularizer"/>
+<meta itemprop="property" content="dropout"/>
+<meta itemprop="property" content="implementation"/>
+<meta itemprop="property" content="kernel_constraint"/>
+<meta itemprop="property" content="kernel_initializer"/>
+<meta itemprop="property" content="kernel_regularizer"/>
+<meta itemprop="property" content="recurrent_activation"/>
+<meta itemprop="property" content="recurrent_constraint"/>
+<meta itemprop="property" content="recurrent_dropout"/>
+<meta itemprop="property" content="recurrent_initializer"/>
+<meta itemprop="property" content="recurrent_regularizer"/>
+<meta itemprop="property" content="states"/>
+<meta itemprop="property" content="unit_forget_bias"/>
+<meta itemprop="property" content="units"/>
+<meta itemprop="property" content="use_bias"/>
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="get_initial_state"/>
+<meta itemprop="property" content="reset_states"/>
+</div>
+
+
+<h1>tf.compat.v1.keras.layers.LSTM</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/recurrent.py">View source</a></p>
+
+<h2>Class <code>LSTM</code></h2>
+
+<!-- Start diff -->
+
+
+<p>Long Short-Term Memory layer - Hochreiter 1997.</p>
+
+<p>Inherits From: <a href="../../../../../tf/keras/layers/RNN.html"><code>RNN</code></a></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p> Note that this cell is not optimized for performance on GPU. Please use
+<a href="../../../../../tf/compat/v1/keras/layers/CuDNNLSTM.html"><code>tf.compat.v1.keras.layers.CuDNNLSTM</code></a> for better performance on GPU.</p>
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>units</code></b>: Positive integer, dimensionality of the output space.</li>
+<li><b><code>activation</code></b>: Activation function to use.
+Default: hyperbolic tangent (<code>tanh</code>).
+If you pass <code>None</code>, no activation is applied
+(ie. &ldquo;linear&rdquo; activation: <code>a(x) = x</code>).</li>
+<li><b><code>recurrent_activation</code></b>: Activation function to use
+for the recurrent step.
+Default: hard sigmoid (<code>hard_sigmoid</code>).
+If you pass <code>None</code>, no activation is applied
+(ie. &ldquo;linear&rdquo; activation: <code>a(x) = x</code>).</li>
+<li><b><code>use_bias</code></b>: Boolean, whether the layer uses a bias vector.</li>
+<li><b><code>kernel_initializer</code></b>: Initializer for the <code>kernel</code> weights matrix,
+used for the linear transformation of the inputs..</li>
+<li><b><code>recurrent_initializer</code></b>: Initializer for the <code>recurrent_kernel</code>
+weights matrix,
+used for the linear transformation of the recurrent state.</li>
+<li><b><code>bias_initializer</code></b>: Initializer for the bias vector.</li>
+<li><b><code>unit_forget_bias</code></b>: Boolean.
+If True, add 1 to the bias of the forget gate at initialization.
+Setting it to true will also force <code>bias_initializer="zeros"</code>.
+This is recommended in <a href="http://www.jmlr.org/proceedings/papers/v37/jozefowicz15.pdf">Jozefowicz et
+  al.</a>.</li>
+<li><b><code>kernel_regularizer</code></b>: Regularizer function applied to
+the <code>kernel</code> weights matrix.</li>
+<li><b><code>recurrent_regularizer</code></b>: Regularizer function applied to
+the <code>recurrent_kernel</code> weights matrix.</li>
+<li><b><code>bias_regularizer</code></b>: Regularizer function applied to the bias vector.</li>
+<li><b><code>activity_regularizer</code></b>: Regularizer function applied to
+the output of the layer (its &ldquo;activation&rdquo;)..</li>
+<li><b><code>kernel_constraint</code></b>: Constraint function applied to
+the <code>kernel</code> weights matrix.</li>
+<li><b><code>recurrent_constraint</code></b>: Constraint function applied to
+the <code>recurrent_kernel</code> weights matrix.</li>
+<li><b><code>bias_constraint</code></b>: Constraint function applied to the bias vector.</li>
+<li><b><code>dropout</code></b>: Float between 0 and 1.
+Fraction of the units to drop for
+the linear transformation of the inputs.</li>
+<li><b><code>recurrent_dropout</code></b>: Float between 0 and 1.
+Fraction of the units to drop for
+the linear transformation of the recurrent state.</li>
+<li><b><code>implementation</code></b>: Implementation mode, either 1 or 2.
+Mode 1 will structure its operations as a larger number of
+smaller dot products and additions, whereas mode 2 will
+batch them into fewer, larger operations. These modes will
+have different performance profiles on different hardware and
+for different applications.</li>
+<li><b><code>return_sequences</code></b>: Boolean. Whether to return the last output.
+in the output sequence, or the full sequence.</li>
+<li><b><code>return_state</code></b>: Boolean. Whether to return the last state
+in addition to the output.</li>
+<li><b><code>go_backwards</code></b>: Boolean (default False).
+If True, process the input sequence backwards and return the
+reversed sequence.</li>
+<li><b><code>stateful</code></b>: Boolean (default False). If True, the last state
+for each sample at index i in a batch will be used as initial
+state for the sample of index i in the following batch.</li>
+<li><b><code>unroll</code></b>: Boolean (default False).
+If True, the network will be unrolled,
+else a symbolic loop will be used.
+Unrolling can speed-up a RNN,
+although it tends to be more memory-intensive.
+Unrolling is only suitable for short sequences.</li>
+<li><b><code>time_major</code></b>: The shape format of the <code>inputs</code> and <code>outputs</code> tensors.
+If True, the inputs and outputs will be in shape
+<code>(timesteps, batch, ...)</code>, whereas in the False case, it will be
+<code>(batch, timesteps, ...)</code>. Using <code>time_major = True</code> is a bit more
+efficient because it avoids transposes at the beginning and end of the
+RNN calculation. However, most TensorFlow data is batch-major, so by
+default this function accepts input and emits output in batch-major
+form.</li>
+</ul>
+
+
+<h4>Call arguments:</h4>
+
+<ul>
+<li><b><code>inputs</code></b>: A 3D tensor.</li>
+<li><b><code>mask</code></b>: Binary tensor of shape <code>(samples, timesteps)</code> indicating whether
+a given timestep should be masked.</li>
+<li><b><code>training</code></b>: Python boolean indicating whether the layer should behave in
+training mode or in inference mode. This argument is passed to the cell
+when calling it. This is only relevant if <code>dropout</code> or
+<code>recurrent_dropout</code> is used.</li>
+<li><b><code>initial_state</code></b>: List of initial state tensors to be passed to the first
+call of the cell.</li>
+</ul>
+
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/recurrent.py">View source</a></p>
+
+<p><code>python
+__init__(
+    units,
+    activation='tanh',
+    recurrent_activation='hard_sigmoid',
+    use_bias=True,
+    kernel_initializer='glorot_uniform',
+    recurrent_initializer='orthogonal',
+    bias_initializer='zeros',
+    unit_forget_bias=True,
+    kernel_regularizer=None,
+    recurrent_regularizer=None,
+    bias_regularizer=None,
+    activity_regularizer=None,
+    kernel_constraint=None,
+    recurrent_constraint=None,
+    bias_constraint=None,
+    dropout=0.0,
+    recurrent_dropout=0.0,
+    implementation=1,
+    return_sequences=False,
+    return_state=False,
+    go_backwards=False,
+    stateful=False,
+    unroll=False,
+    **kwargs
+)
+</code></p>
+
+<h2>Properties</h2>
+
+<h3 id="activation"><code>activation</code></h3>
+
+
+
+
+<h3 id="bias_constraint"><code>bias_constraint</code></h3>
+
+
+
+
+<h3 id="bias_initializer"><code>bias_initializer</code></h3>
+
+
+
+
+<h3 id="bias_regularizer"><code>bias_regularizer</code></h3>
+
+
+
+
+<h3 id="dropout"><code>dropout</code></h3>
+
+
+
+
+<h3 id="implementation"><code>implementation</code></h3>
+
+
+
+
+<h3 id="kernel_constraint"><code>kernel_constraint</code></h3>
+
+
+
+
+<h3 id="kernel_initializer"><code>kernel_initializer</code></h3>
+
+
+
+
+<h3 id="kernel_regularizer"><code>kernel_regularizer</code></h3>
+
+
+
+
+<h3 id="recurrent_activation"><code>recurrent_activation</code></h3>
+
+
+
+
+<h3 id="recurrent_constraint"><code>recurrent_constraint</code></h3>
+
+
+
+
+<h3 id="recurrent_dropout"><code>recurrent_dropout</code></h3>
+
+
+
+
+<h3 id="recurrent_initializer"><code>recurrent_initializer</code></h3>
+
+
+
+
+<h3 id="recurrent_regularizer"><code>recurrent_regularizer</code></h3>
+
+
+
+
+<h3 id="states"><code>states</code></h3>
+
+
+
+
+<h3 id="unit_forget_bias"><code>unit_forget_bias</code></h3>
+
+
+
+
+<h3 id="units"><code>units</code></h3>
+
+
+
+
+<h3 id="use_bias"><code>use_bias</code></h3>
+
+
+<h2>Methods</h2>
+
+<h3 id="get_initial_state"><code>get_initial_state</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/recurrent.py">View source</a></p>
+
+<p><code>python
+get_initial_state(inputs)
+</code></p>
+
+<h3 id="reset_states"><code>reset_states</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/recurrent.py">View source</a></p>
+
+<p><code>python
+reset_states(states=None)
+</code></p>

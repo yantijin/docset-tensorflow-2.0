@@ -1,0 +1,72 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.config.experimental.set_visible_devices" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.config.experimental.set_visible_devices</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/config.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Set the list of visible devices.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.config.experimental.set_visible_devices</code></li>
+<li><code>tf.compat.v2.config.experimental.set_visible_devices</code></li>
+</ul>
+
+
+<p><code>python
+tf.config.experimental.set_visible_devices(
+    devices,
+    device_type=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Sets the list of PhysicalDevices to be marked as visible to the runtime. Any
+devices that are not marked as visible means TensorFlow will not allocate
+memory on it and will not be able to place any operations on it as no
+LogicalDevice will be created on it. By default all discovered devices are
+marked as visible.</p>
+
+<p>The following example demonstrates disabling the first GPU on the machine.</p>
+
+<p>```python
+physical_devices = config.experimental.list_physical_devices(&lsquo;GPU&rsquo;)
+assert len(physical_devices) > 0, &ldquo;Not enough GPU hardware devices available&rdquo;</p>
+
+<h1>Disable first GPU</h1>
+
+<p>tf.config.experimental.set_visible_devices(physical_devices[1:], &lsquo;GPU&rsquo;)
+logical_devices = config.experimental.list_logical_devices(&lsquo;GPU&rsquo;)</p>
+
+<h1>Logical device was not created for first GPU</h1>
+
+<p>assert len(logical_devices) == len(physical_devices) - 1
+```</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>devices</code></b>: (optional) List of PhysicalDevice objects to make visible</li>
+<li><b><code>device_type</code></b>: (optional) Device types to limit visibility configuration to.
+Other device types will be left unaltered.</li>
+</ul>
+

@@ -1,0 +1,64 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.signal.inverse_stft_window_fn" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.signal.inverse_stft_window_fn</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/signal/spectral_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Generates a window function that can be used in <code>inverse_stft</code>.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.signal.inverse_stft_window_fn</code></li>
+<li><code>tf.compat.v2.signal.inverse_stft_window_fn</code></li>
+</ul>
+
+
+<p><code>python
+tf.signal.inverse_stft_window_fn(
+    frame_step,
+    forward_window_fn=tf.signal.hann_window,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Constructs a window that is equal to the forward window with a further
+pointwise amplitude correction.  <code>inverse_stft_window_fn</code> is equivalent to
+<code>forward_window_fn</code> in the case where it would produce an exact inverse.</p>
+
+<p>See examples in <code>inverse_stft</code> documentation for usage.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>frame_step</code></b>: An integer scalar <code>Tensor</code>. The number of samples to step.</li>
+<li><b><code>forward_window_fn</code></b>: window_fn used in the forward transform, <code>stft</code>.</li>
+<li><b><code>name</code></b>: An optional name for the operation.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A callable that takes a window length and a <code>dtype</code> keyword argument and
+  returns a <code>[window_length]</code> <code>Tensor</code> of samples in the provided datatype.
+  The returned window is suitable for reconstructing original waveform in
+  inverse_stft.</p>

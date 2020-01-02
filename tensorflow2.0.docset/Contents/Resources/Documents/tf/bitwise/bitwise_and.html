@@ -1,0 +1,75 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.bitwise.bitwise_and" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.bitwise.bitwise_and</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p>Defined in generated file: <code>python/ops/gen_bitwise_ops.py</code></p>
+
+<!-- Start diff -->
+
+
+<p>Elementwise computes the bitwise AND of <code>x</code> and <code>y</code>.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.bitwise.bitwise_and</code></li>
+<li><code>tf.compat.v2.bitwise.bitwise_and</code></li>
+</ul>
+
+
+<p><code>python
+tf.bitwise.bitwise_and(
+    x,
+    y,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>The result will have those bits set, that are set in both <code>x</code> and <code>y</code>. The
+computation is performed on the underlying representations of <code>x</code> and <code>y</code>.</p>
+
+<h4>For example:</h4>
+
+<p>```python
+import tensorflow as tf
+from tensorflow.python.ops import bitwise_ops
+dtype_list = [tf.int8, tf.int16, tf.int32, tf.int64,
+              tf.uint8, tf.uint16, tf.uint32, tf.uint64]</p>
+
+<p>for dtype in dtype_list:
+  lhs = tf.constant([0, 5, 3, 14], dtype=dtype)
+  rhs = tf.constant([5, 0, 7, 11], dtype=dtype)
+  exp = tf.constant([0, 0, 3, 10], dtype=tf.float32)</p>
+
+<p>  res = bitwise_ops.bitwise_and(lhs, rhs)
+  tf.assert_equal(tf.cast(res, tf.float32), exp) # TRUE
+```</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>int8</code>, <code>int16</code>, <code>int32</code>, <code>int64</code>, <code>uint8</code>, <code>uint16</code>, <code>uint32</code>, <code>uint64</code>.</li>
+<li><b><code>y</code></b>: A <code>Tensor</code>. Must have the same type as <code>x</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code>. Has the same type as <code>x</code>.</p>

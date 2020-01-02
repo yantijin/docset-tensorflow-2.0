@@ -1,0 +1,64 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.shape" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.shape</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/array_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Returns the shape of a tensor.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v2.shape</code></li>
+</ul>
+
+
+<p><code>python
+tf.shape(
+    input,
+    out_type=tf.dtypes.int32,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>This operation returns a 1-D integer tensor representing the shape of <code>input</code>.</p>
+
+<h4>For example:</h4>
+
+<p><code>python
+t = tf.constant([[[1, 1, 1], [2, 2, 2]], [[3, 3, 3], [4, 4, 4]]])
+tf.shape(t)  # [2, 2, 3]
+</code></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>input</code></b>: A <code>Tensor</code> or <code>SparseTensor</code>.</li>
+<li><b><code>out_type</code></b>: (Optional) The specified output type of the operation (<code>int32</code> or
+<code>int64</code>). Defaults to <a href="../tf.html#int32"><code>tf.int32</code></a>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> of type <code>out_type</code>.</p>

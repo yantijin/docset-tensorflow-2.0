@@ -1,0 +1,177 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.distribute.cluster_resolver.ClusterResolver" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="environment"/>
+<meta itemprop="property" content="cluster_spec"/>
+<meta itemprop="property" content="master"/>
+<meta itemprop="property" content="num_accelerators"/>
+</div>
+
+
+<h1>tf.distribute.cluster_resolver.ClusterResolver</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/cluster_resolver/cluster_resolver.py">View source</a></p>
+
+<h2>Class <code>ClusterResolver</code></h2>
+
+<!-- Start diff -->
+
+
+<p>Abstract class for all implementations of ClusterResolvers.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li>Class <code>tf.compat.v1.distribute.cluster_resolver.ClusterResolver</code></li>
+<li>Class <code>tf.compat.v2.distribute.cluster_resolver.ClusterResolver</code></li>
+</ul>
+
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>This defines the skeleton for all implementations of ClusterResolvers.
+ClusterResolvers are a way for TensorFlow to communicate with various cluster
+management systems (e.g. GCE, AWS, etc&hellip;).</p>
+
+<p>By letting TensorFlow communicate with these systems, we will be able to
+automatically discover and resolve IP addresses for various TensorFlow
+workers. This will eventually allow us to automatically recover from
+underlying machine failures and scale TensorFlow worker clusters up and down.</p>
+
+<p>Note to Implementors: In addition to these abstract methods, you must also
+implement the task_type, task_id, and rpc_layer attributes. You may choose
+to implement them either as properties with getters or setters or directly
+set the attributes.</p>
+
+<ul>
+<li>task_type is the name of the server&rsquo;s current named job (e.g. &lsquo;worker&rsquo;,
+ &lsquo;ps&rsquo; in a distributed parameterized training job).</li>
+<li>task_id is the ordinal index of the server within the task type.</li>
+<li>rpc_layer is the protocol used by TensorFlow to communicate with other
+  TensorFlow servers in a distributed environment.</li>
+</ul>
+
+
+<h2>Properties</h2>
+
+<h3 id="environment"><code>environment</code></h3>
+
+
+<p>Returns the current environment which TensorFlow is running in.</p>
+
+<p>There are two possible return values, &ldquo;google&rdquo; (when TensorFlow is running
+in a Google-internal environment) or an empty string (when TensorFlow is
+running elsewhere).</p>
+
+<p>If you are implementing a ClusterResolver that works in both the Google
+environment and the open-source world (for instance, a TPU ClusterResolver
+or similar), you will have to return the appropriate string depending on the
+environment, which you will have to detect.</p>
+
+<p>Otherwise, if you are implementing a ClusterResolver that will only work
+in open-source TensorFlow, you do not need to implement this property.</p>
+
+<h2>Methods</h2>
+
+<h3 id="cluster_spec"><code>cluster_spec</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/cluster_resolver/cluster_resolver.py">View source</a></p>
+
+<p><code>python
+cluster_spec()
+</code></p>
+
+<p>Retrieve the current state of the cluster and return a ClusterSpec.</p>
+
+<h4>Returns:</h4>
+
+<p>A ClusterSpec representing the state of the cluster at the moment this
+function is called.</p>
+
+<p>Implementors of this function must take care in ensuring that the
+ClusterSpec returned is up-to-date at the time of calling this function.
+This usually means retrieving the information from the underlying cluster
+management system every time this function is invoked and reconstructing
+a cluster_spec, rather than attempting to cache anything.</p>
+
+<h3 id="master"><code>master</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/cluster_resolver/cluster_resolver.py">View source</a></p>
+
+<p><code>python
+master(
+    task_type=None,
+    task_id=None,
+    rpc_layer=None
+)
+</code></p>
+
+<p>Retrieves the name or URL of the session master.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>task_type</code></b>: (Optional) The type of the TensorFlow task of the master.</li>
+<li><b><code>task_id</code></b>: (Optional) The index of the TensorFlow task of the master.</li>
+<li><b><code>rpc_layer</code></b>: (Optional) The RPC protocol for the given cluster.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>The name or URL of the session master.</p>
+
+<p>Implementors of this function must take care in ensuring that the master
+returned is up-to-date at the time to calling this function. This usually
+means retrieving the master every time this function is invoked.</p>
+
+<h3 id="num_accelerators"><code>num_accelerators</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/cluster_resolver/cluster_resolver.py">View source</a></p>
+
+<p><code>python
+num_accelerators(
+    task_type=None,
+    task_id=None,
+    config_proto=None
+)
+</code></p>
+
+<p>Returns the number of accelerator cores per worker.</p>
+
+<p>This returns the number of accelerator cores (such as GPUs and TPUs)
+available per worker.</p>
+
+<p>Optionally, we allow callers to specify the task_type, and task_id, for
+if they want to target a specific TensorFlow process to query
+the number of accelerators. This is to support heterogenous environments,
+where the number of accelerators cores per host is different.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>task_type</code></b>: (Optional) The type of the TensorFlow task of the machine we
+want to query.</li>
+<li><b><code>task_id</code></b>: (Optional) The index of the TensorFlow task of the machine we
+want to query.</li>
+<li><b><code>config_proto</code></b>: (Optional) Configuration for starting a new session to
+query how many accelerator cores it has.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A map of accelerator types to number of cores.</p>

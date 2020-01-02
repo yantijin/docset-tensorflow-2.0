@@ -1,0 +1,64 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.math.acosh" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.math.acosh</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p>Defined in generated file: <code>python/ops/gen_math_ops.py</code></p>
+
+<!-- Start diff -->
+
+
+<p>Computes inverse hyperbolic cosine of x element-wise.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.acosh</code></li>
+<li><code>tf.compat.v1.acosh</code></li>
+<li><code>tf.compat.v1.math.acosh</code></li>
+<li><code>tf.compat.v2.acosh</code></li>
+<li><code>tf.compat.v2.math.acosh</code></li>
+</ul>
+
+
+<p><code>python
+tf.math.acosh(
+    x,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Given an input tensor, the function computes inverse hyperbolic cosine of every element.
+Input range is <code>[1, inf]</code>. It returns <code>nan</code> if the input lies outside the range.</p>
+
+<p><code>python
+x = tf.constant([-2, -0.5, 1, 1.2, 200, 10000, float("inf")])
+tf.math.acosh(x) ==&gt; [nan nan 0. 0.62236255 5.9914584 9.903487 inf]
+</code></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>bfloat16</code>, <code>half</code>, <code>float32</code>, <code>float64</code>, <code>complex64</code>, <code>complex128</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code>. Has the same type as <code>x</code>.</p>

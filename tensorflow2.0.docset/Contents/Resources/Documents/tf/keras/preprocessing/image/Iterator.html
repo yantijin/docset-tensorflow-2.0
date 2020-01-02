@@ -1,0 +1,152 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.preprocessing.image.Iterator" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__getitem__"/>
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="__iter__"/>
+<meta itemprop="property" content="__len__"/>
+<meta itemprop="property" content="next"/>
+<meta itemprop="property" content="on_epoch_end"/>
+<meta itemprop="property" content="reset"/>
+<meta itemprop="property" content="white_list_formats"/>
+</div>
+
+
+<h1>tf.keras.preprocessing.image.Iterator</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/preprocessing/image.py">View source</a></p>
+
+<h2>Class <code>Iterator</code></h2>
+
+<!-- Start diff -->
+
+
+<p>Base class for image data iterators.</p>
+
+<p>Inherits From: <a href="../../../../tf/keras/utils/Sequence.html"><code>Sequence</code></a></p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li>Class <code>tf.compat.v1.keras.preprocessing.image.Iterator</code></li>
+<li>Class <code>tf.compat.v2.keras.preprocessing.image.Iterator</code></li>
+</ul>
+
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Every <code>Iterator</code> must implement the <code>_get_batches_of_transformed_samples</code>
+method.</p>
+
+<h1>Arguments</h1>
+
+<pre><code>n: Integer, total number of samples in the dataset to loop over.
+batch_size: Integer, size of a batch.
+shuffle: Boolean, whether to shuffle the data between epochs.
+seed: Random seeding for data shuffling.
+</code></pre>
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+
+<p><code>python
+__init__(
+    n,
+    batch_size,
+    shuffle,
+    seed
+)
+</code></p>
+
+<p>Initialize self.  See help(type(self)) for accurate signature.</p>
+
+<h2>Methods</h2>
+
+<h3 id="__getitem__"><code>__getitem__</code></h3>
+
+
+<p><code>python
+__getitem__(idx)
+</code></p>
+
+<p>Gets batch at position <code>index</code>.</p>
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>index</code></b>: position of the batch in the Sequence.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A batch</p>
+
+<h3 id="__iter__"><code>__iter__</code></h3>
+
+
+<p><code>python
+__iter__()
+</code></p>
+
+<p>Create a generator that iterate over the Sequence.</p>
+
+<h3 id="__len__"><code>__len__</code></h3>
+
+
+<p><code>python
+__len__()
+</code></p>
+
+<p>Number of batch in the Sequence.</p>
+
+<h4>Returns:</h4>
+
+<p>The number of batches in the Sequence.</p>
+
+<h3 id="next"><code>next</code></h3>
+
+
+<p><code>python
+next()
+</code></p>
+
+<p>For python 2.x.</p>
+
+<h1>Returns</h1>
+
+<pre><code>The next batch.
+</code></pre>
+
+<h3 id="on_epoch_end"><code>on_epoch_end</code></h3>
+
+
+<p><code>python
+on_epoch_end()
+</code></p>
+
+<p>Method called at the end of every epoch.</p>
+
+<h3 id="reset"><code>reset</code></h3>
+
+
+<p><code>python
+reset()
+</code></p>
+
+<h2>Class Members</h2>
+
+<ul>
+<li><code>white_list_formats</code> <a id="white_list_formats"></a></li>
+</ul>
+

@@ -1,0 +1,86 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.preprocessing.sequence.pad_sequences" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.keras.preprocessing.sequence.pad_sequences</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+
+
+<!-- Start diff -->
+
+
+<p>Pads sequences to the same length.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.keras.preprocessing.sequence.pad_sequences</code></li>
+<li><code>tf.compat.v2.keras.preprocessing.sequence.pad_sequences</code></li>
+</ul>
+
+
+<p><code>python
+tf.keras.preprocessing.sequence.pad_sequences(
+    sequences,
+    maxlen=None,
+    dtype='int32',
+    padding='pre',
+    truncating='pre',
+    value=0.0
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>This function transforms a list of
+<code>num_samples</code> sequences (lists of integers)
+into a 2D Numpy array of shape <code>(num_samples, num_timesteps)</code>.
+<code>num_timesteps</code> is either the <code>maxlen</code> argument if provided,
+or the length of the longest sequence otherwise.</p>
+
+<p>Sequences that are shorter than <code>num_timesteps</code>
+are padded with <code>value</code> at the end.</p>
+
+<p>Sequences longer than <code>num_timesteps</code> are truncated
+so that they fit the desired length.
+The position where padding or truncation happens is determined by
+the arguments <code>padding</code> and <code>truncating</code>, respectively.</p>
+
+<p>Pre-padding is the default.</p>
+
+<h1>Arguments</h1>
+
+<pre><code>sequences: List of lists, where each element is a sequence.
+maxlen: Int, maximum length of all sequences.
+dtype: Type of the output sequences.
+    To pad sequences with variable length strings, you can use `object`.
+padding: String, 'pre' or 'post':
+    pad either before or after each sequence.
+truncating: String, 'pre' or 'post':
+    remove values from sequences larger than
+    `maxlen`, either at the beginning or at the end of the sequences.
+value: Float or String, padding value.
+</code></pre>
+
+<h1>Returns</h1>
+
+<pre><code>x: Numpy array with shape `(len(sequences), maxlen)`
+</code></pre>
+
+<h1>Raises</h1>
+
+<pre><code>ValueError: In case of invalid values for `truncating` or `padding`,
+    or in case of invalid shape for a `sequences` entry.
+</code></pre>

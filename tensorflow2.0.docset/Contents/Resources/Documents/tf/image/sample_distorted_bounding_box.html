@@ -1,0 +1,137 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.image.sample_distorted_bounding_box" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.image.sample_distorted_bounding_box</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/image_ops_impl.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Generate a single randomly distorted bounding box for an image.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v2.image.sample_distorted_bounding_box</code></li>
+</ul>
+
+
+<p><code>python
+tf.image.sample_distorted_bounding_box(
+    image_size,
+    bounding_boxes,
+    seed=0,
+    min_object_covered=0.1,
+    aspect_ratio_range=None,
+    area_range=None,
+    max_attempts=None,
+    use_image_if_no_bounding_boxes=None,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Bounding box annotations are often supplied in addition to ground-truth labels
+in image recognition or object localization tasks. A common technique for
+training such a system is to randomly distort an image while preserving
+its content, i.e. <em>data augmentation</em>. This Op outputs a randomly distorted
+localization of an object, i.e. bounding box, given an <code>image_size</code>,
+<code>bounding_boxes</code> and a series of constraints.</p>
+
+<p>The output of this Op is a single bounding box that may be used to crop the
+original image. The output is returned as 3 tensors: <code>begin</code>, <code>size</code> and
+<code>bboxes</code>. The first 2 tensors can be fed directly into <a href="../../tf/slice.html"><code>tf.slice</code></a> to crop the
+image. The latter may be supplied to <a href="../../tf/image/draw_bounding_boxes.html"><code>tf.image.draw_bounding_boxes</code></a> to
+visualize what the bounding box looks like.</p>
+
+<p>Bounding boxes are supplied and returned as <code>[y_min, x_min, y_max, x_max]</code>.
+The bounding box coordinates are floats in <code>[0.0, 1.0]</code> relative to the width
+and height of the underlying image.</p>
+
+<p>For example,</p>
+
+<p>```python
+    # Generate a single distorted bounding box.
+    begin, size, bbox_for_draw = tf.image.sample_distorted_bounding_box(
+        tf.shape(image),
+        bounding_boxes=bounding_boxes,
+        min_object_covered=0.1)</p>
+
+<pre><code># Draw the bounding box in an image summary.
+image_with_box = tf.image.draw_bounding_boxes(tf.expand_dims(image, 0),
+                                              bbox_for_draw)
+tf.compat.v1.summary.image('images_with_box', image_with_box)
+
+# Employ the bounding box to distort the image.
+distorted_image = tf.slice(image, begin, size)
+</code></pre>
+
+<p>```</p>
+
+<p>Note that if no bounding box information is available, setting
+<code>use_image_if_no_bounding_boxes = true</code> will assume there is a single implicit
+bounding box covering the whole image. If <code>use_image_if_no_bounding_boxes</code> is
+false and no bounding boxes are supplied, an error is raised.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>image_size</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>uint8</code>, <code>int8</code>,
+<code>int16</code>, <code>int32</code>, <code>int64</code>. 1-D, containing <code>[height, width, channels]</code>.</li>
+<li><b><code>bounding_boxes</code></b>: A <code>Tensor</code> of type <code>float32</code>. 3-D with shape <code>[batch, N, 4]</code>
+describing the N bounding boxes associated with the image.</li>
+<li><b><code>seed</code></b>: An optional <code>int</code>. Defaults to <code>0</code>. If <code>seed</code> is set to non-zero, the
+random number generator is seeded by the given <code>seed</code>.  Otherwise, it is
+seeded by a random seed.</li>
+<li><b><code>min_object_covered</code></b>: A Tensor of type <code>float32</code>. Defaults to <code>0.1</code>. The
+cropped area of the image must contain at least this fraction of any
+bounding box supplied. The value of this parameter should be non-negative.
+In the case of 0, the cropped area does not need to overlap any of the
+bounding boxes supplied.</li>
+<li><b><code>aspect_ratio_range</code></b>: An optional list of <code>floats</code>. Defaults to <code>[0.75,
+1.33]</code>. The cropped area of the image must have an aspect <code>ratio = width /
+height</code> within this range.</li>
+<li><b><code>area_range</code></b>: An optional list of <code>floats</code>. Defaults to <code>[0.05, 1]</code>. The
+cropped area of the image must contain a fraction of the supplied image
+within this range.</li>
+<li><b><code>max_attempts</code></b>: An optional <code>int</code>. Defaults to <code>100</code>. Number of attempts at
+generating a cropped region of the image of the specified constraints.
+After <code>max_attempts</code> failures, return the entire image.</li>
+<li><b><code>use_image_if_no_bounding_boxes</code></b>: An optional <code>bool</code>. Defaults to <code>False</code>.
+Controls behavior if no bounding boxes supplied. If true, assume an
+implicit bounding box covering the whole input. If false, raise an error.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A tuple of <code>Tensor</code> objects (begin, size, bboxes).</p>
+
+<ul>
+<li><b><code>begin</code></b>: A <code>Tensor</code>. Has the same type as <code>image_size</code>. 1-D, containing
+<code>[offset_height, offset_width, 0]</code>. Provide as input to
+<a href="../../tf/slice.html"><code>tf.slice</code></a>.</li>
+<li><b><code>size</code></b>: A <code>Tensor</code>. Has the same type as <code>image_size</code>. 1-D, containing
+<code>[target_height, target_width, -1]</code>. Provide as input to
+<a href="../../tf/slice.html"><code>tf.slice</code></a>.</li>
+<li><b><code>bboxes</code></b>: A <code>Tensor</code> of type <code>float32</code>. 3-D with shape <code>[1, 1, 4]</code> containing
+the distorted bounding box.
+Provide as input to <a href="../../tf/image/draw_bounding_boxes.html"><code>tf.image.draw_bounding_boxes</code></a>.</li>
+</ul>
+

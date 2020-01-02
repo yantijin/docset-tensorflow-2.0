@@ -1,0 +1,91 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.feature_column.categorical_column_with_hash_bucket" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.feature_column.categorical_column_with_hash_bucket</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/feature_column/feature_column_v2.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Represents sparse feature where ids are set by hashing.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.feature_column.categorical_column_with_hash_bucket</code></li>
+<li><code>tf.compat.v2.feature_column.categorical_column_with_hash_bucket</code></li>
+</ul>
+
+
+<p><code>python
+tf.feature_column.categorical_column_with_hash_bucket(
+    key,
+    hash_bucket_size,
+    dtype=tf.dtypes.string
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Use this when your sparse features are in string or integer format, and you
+want to distribute your inputs into a finite number of buckets by hashing.
+output_id = Hash(input_feature_string) % bucket_size for string type input.
+For int type input, the value is converted to its string representation first
+and then hashed by the same formula.</p>
+
+<p>For input dictionary <code>features</code>, <code>features[key]</code> is either <code>Tensor</code> or
+<code>SparseTensor</code>. If <code>Tensor</code>, missing values can be represented by <code>-1</code> for int
+and <code>''</code> for string, which will be dropped by this feature column.</p>
+
+<h4>Example:</h4>
+
+<p>```python
+keywords = categorical_column_with_hash_bucket(&ldquo;keywords&rdquo;, 10K)
+columns = [keywords, &hellip;]
+features = tf.io.parse_example(&hellip;, features=make_parse_example_spec(columns))
+linear_prediction = linear_model(features, columns)</p>
+
+<h1>or</h1>
+
+<p>keywords_embedded = embedding_column(keywords, 16)
+columns = [keywords_embedded, &hellip;]
+features = tf.io.parse_example(&hellip;, features=make_parse_example_spec(columns))
+dense_tensor = input_layer(features, columns)
+```</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>key</code></b>: A unique string identifying the input feature. It is used as the
+column name and the dictionary key for feature parsing configs, feature
+<code>Tensor</code> objects, and feature columns.</li>
+<li><b><code>hash_bucket_size</code></b>: An int > 1. The number of buckets.</li>
+<li><b><code>dtype</code></b>: The type of features. Only string and integer types are supported.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>HashedCategoricalColumn</code>.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: <code>hash_bucket_size</code> is not greater than 1.</li>
+<li><b><code>ValueError</code></b>: <code>dtype</code> is neither string nor integer.</li>
+</ul>
+

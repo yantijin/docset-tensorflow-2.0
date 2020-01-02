@@ -1,0 +1,145 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.utils.Sequence" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__getitem__"/>
+<meta itemprop="property" content="__iter__"/>
+<meta itemprop="property" content="__len__"/>
+<meta itemprop="property" content="on_epoch_end"/>
+</div>
+
+
+<h1>tf.keras.utils.Sequence</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/utils/data_utils.py">View source</a></p>
+
+<h2>Class <code>Sequence</code></h2>
+
+<!-- Start diff -->
+
+
+<p>Base object for fitting to a sequence of data, such as a dataset.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li>Class <code>tf.compat.v1.keras.utils.Sequence</code></li>
+<li>Class <code>tf.compat.v2.keras.utils.Sequence</code></li>
+</ul>
+
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Every <code>Sequence</code> must implement the <code>__getitem__</code> and the <code>__len__</code> methods.
+If you want to modify your dataset between epochs you may implement
+<code>on_epoch_end</code>.
+The method <code>__getitem__</code> should return a complete batch.</p>
+
+<h4>Notes:</h4>
+
+<p><code>Sequence</code> are a safer way to do multiprocessing. This structure guarantees
+that the network will only train once
+ on each sample per epoch which is not the case with generators.</p>
+
+<h4>Examples:</h4>
+
+<p>```python
+    from skimage.io import imread
+    from skimage.transform import resize
+    import numpy as np
+    import math</p>
+
+<pre><code># Here, `x_set` is list of path to the images
+# and `y_set` are the associated classes.
+
+class CIFAR10Sequence(Sequence):
+
+    def __init__(self, x_set, y_set, batch_size):
+        self.x, self.y = x_set, y_set
+        self.batch_size = batch_size
+
+    def __len__(self):
+        return math.ceil(len(self.x) / self.batch_size)
+
+    def __getitem__(self, idx):
+        batch_x = self.x[idx * self.batch_size:(idx + 1) *
+        self.batch_size]
+        batch_y = self.y[idx * self.batch_size:(idx + 1) *
+        self.batch_size]
+
+        return np.array([
+            resize(imread(file_name), (200, 200))
+               for file_name in batch_x]), np.array(batch_y)
+</code></pre>
+
+<p>```</p>
+
+<h2>Methods</h2>
+
+<h3 id="__getitem__"><code>__getitem__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/utils/data_utils.py">View source</a></p>
+
+<p><code>python
+__getitem__(index)
+</code></p>
+
+<p>Gets batch at position <code>index</code>.</p>
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>index</code></b>: position of the batch in the Sequence.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A batch</p>
+
+<h3 id="__iter__"><code>__iter__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/utils/data_utils.py">View source</a></p>
+
+<p><code>python
+__iter__()
+</code></p>
+
+<p>Create a generator that iterate over the Sequence.</p>
+
+<h3 id="__len__"><code>__len__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/utils/data_utils.py">View source</a></p>
+
+<p><code>python
+__len__()
+</code></p>
+
+<p>Number of batch in the Sequence.</p>
+
+<h4>Returns:</h4>
+
+<p>The number of batches in the Sequence.</p>
+
+<h3 id="on_epoch_end"><code>on_epoch_end</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/utils/data_utils.py">View source</a></p>
+
+<p><code>python
+on_epoch_end()
+</code></p>
+
+<p>Method called at the end of every epoch.</p>

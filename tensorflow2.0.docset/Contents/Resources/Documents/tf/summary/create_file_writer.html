@@ -1,0 +1,59 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.summary.create_file_writer" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.summary.create_file_writer</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/summary_ops_v2.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Creates a summary file writer for the given log directory.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v2.summary.create_file_writer</code></li>
+</ul>
+
+
+<p><code>python
+tf.summary.create_file_writer(
+    logdir,
+    max_queue=None,
+    flush_millis=None,
+    filename_suffix=None,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>logdir</code></b>: a string specifying the directory in which to write an event file.</li>
+<li><b><code>max_queue</code></b>: the largest number of summaries to keep in a queue; will
+flush once the queue gets bigger than this. Defaults to 10.</li>
+<li><b><code>flush_millis</code></b>: the largest interval between flushes. Defaults to 120,000.</li>
+<li><b><code>filename_suffix</code></b>: optional suffix for the event file name. Defaults to <code>.v2</code>.</li>
+<li><b><code>name</code></b>: a name for the op that creates the writer.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A SummaryWriter object.</p>

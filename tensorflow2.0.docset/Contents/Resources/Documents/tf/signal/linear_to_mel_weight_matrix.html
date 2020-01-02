@@ -1,0 +1,106 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.signal.linear_to_mel_weight_matrix" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.signal.linear_to_mel_weight_matrix</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/signal/mel_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Returns a matrix to warp linear scale spectrograms to the <a href="https://en.wikipedia.org/wiki/Mel_scale">mel scale</a>.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.signal.linear_to_mel_weight_matrix</code></li>
+<li><code>tf.compat.v2.signal.linear_to_mel_weight_matrix</code></li>
+</ul>
+
+
+<p><code>python
+tf.signal.linear_to_mel_weight_matrix(
+    num_mel_bins=20,
+    num_spectrogram_bins=129,
+    sample_rate=8000,
+    lower_edge_hertz=125.0,
+    upper_edge_hertz=3800.0,
+    dtype=tf.dtypes.float32,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Returns a weight matrix that can be used to re-weight a <code>Tensor</code> containing
+<code>num_spectrogram_bins</code> linearly sampled frequency information from
+<code>[0, sample_rate / 2]</code> into <code>num_mel_bins</code> frequency information from
+<code>[lower_edge_hertz, upper_edge_hertz]</code> on the <a href="https://en.wikipedia.org/wiki/Mel_scale">mel scale</a>.</p>
+
+<p>For example, the returned matrix <code>A</code> can be used to right-multiply a
+spectrogram <code>S</code> of shape <code>[frames, num_spectrogram_bins]</code> of linear
+scale spectrum values (e.g. STFT magnitudes) to generate a &ldquo;mel spectrogram&rdquo;
+<code>M</code> of shape <code>[frames, num_mel_bins]</code>.</p>
+
+<pre><code># `S` has shape [frames, num_spectrogram_bins]
+# `M` has shape [frames, num_mel_bins]
+M = tf.matmul(S, A)
+</code></pre>
+
+<p>The matrix can be used with <a href="../../tf/tensordot.html"><code>tf.tensordot</code></a> to convert an arbitrary rank
+<code>Tensor</code> of linear-scale spectral bins into the mel scale.</p>
+
+<pre><code># S has shape [..., num_spectrogram_bins].
+# M has shape [..., num_mel_bins].
+M = tf.tensordot(S, A, 1)
+# tf.tensordot does not support shape inference for this case yet.
+M.set_shape(S.shape[:-1].concatenate(A.shape[-1:]))
+</code></pre>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>num_mel_bins</code></b>: Python int. How many bands in the resulting mel spectrum.</li>
+<li><b><code>num_spectrogram_bins</code></b>: An integer <code>Tensor</code>. How many bins there are in the
+source spectrogram data, which is understood to be <code>fft_size // 2 + 1</code>,
+i.e. the spectrogram only contains the nonredundant FFT bins.</li>
+<li><b><code>sample_rate</code></b>: Python float. Samples per second of the input signal used to
+create the spectrogram. We need this to figure out the actual frequencies
+for each spectrogram bin, which dictates how they are mapped into the mel
+scale.</li>
+<li><b><code>lower_edge_hertz</code></b>: Python float. Lower bound on the frequencies to be
+included in the mel spectrum. This corresponds to the lower edge of the
+lowest triangular band.</li>
+<li><b><code>upper_edge_hertz</code></b>: Python float. The desired top edge of the highest
+frequency band.</li>
+<li><b><code>dtype</code></b>: The <code>DType</code> of the result matrix. Must be a floating point type.</li>
+<li><b><code>name</code></b>: An optional name for the operation.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> of shape <code>[num_spectrogram_bins, num_mel_bins]</code>.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If <code>num_mel_bins</code>/<code>num_spectrogram_bins</code>/<code>sample_rate</code> are not
+positive, <code>lower_edge_hertz</code> is negative, frequency edges are incorrectly
+ordered, <code>upper_edge_hertz</code> is larger than the Nyquist frequency, or
+<code>sample_rate</code> is neither a Python float nor a constant Tensor.</li>
+</ul>
+

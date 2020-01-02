@@ -1,0 +1,70 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.linalg.slogdet" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.linalg.slogdet</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p>Defined in generated file: <code>python/ops/gen_linalg_ops.py</code></p>
+
+<!-- Start diff -->
+
+
+<p>Computes the sign and the log of the absolute value of the determinant of</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.linalg.slogdet</code></li>
+<li><code>tf.compat.v2.linalg.slogdet</code></li>
+</ul>
+
+
+<p><code>python
+tf.linalg.slogdet(
+    input,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>one or more square matrices.</p>
+
+<p>The input is a tensor of shape <code>[N, M, M]</code> whose inner-most 2 dimensions
+form square matrices. The outputs are two tensors containing the signs and
+absolute values of the log determinants for all N input submatrices
+<code>[..., :, :]</code> such that the determinant = sign<em>exp(log_abs_determinant).
+The log_abs_determinant is computed as det(P)</em>sum(log(diag(LU))) where LU
+is the LU decomposition of the input and P is the corresponding
+permutation matrix.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>input</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>half</code>, <code>float32</code>, <code>float64</code>, <code>complex64</code>, <code>complex128</code>.
+Shape is <code>[N, M, M]</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A tuple of <code>Tensor</code> objects (sign, log_abs_determinant).</p>
+
+<ul>
+<li><b><code>sign</code></b>: A <code>Tensor</code>. Has the same type as <code>input</code>.</li>
+<li><b><code>log_abs_determinant</code></b>: A <code>Tensor</code>. Has the same type as <code>input</code>.</li>
+</ul>
+

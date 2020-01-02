@@ -1,0 +1,59 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.backend.one_hot" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.keras.backend.one_hot</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/backend.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Computes the one-hot representation of an integer tensor.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.keras.backend.one_hot</code></li>
+<li><code>tf.compat.v2.keras.backend.one_hot</code></li>
+</ul>
+
+
+<p><code>python
+tf.keras.backend.one_hot(
+    indices,
+    num_classes
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>indices</code></b>: nD integer tensor of shape
+  <code>(batch_size, dim1, dim2, ... dim(n-1))</code></li>
+<li><b><code>num_classes</code></b>: Integer, number of classes to consider.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>(n + 1)D one hot representation of the input
+with shape <code>(batch_size, dim1, dim2, ... dim(n-1), num_classes)</code></p>
+
+<h4>Returns:</h4>
+
+<p>The one-hot tensor.</p>

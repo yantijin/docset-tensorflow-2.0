@@ -1,0 +1,65 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.zeros" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.zeros</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/array_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Creates a tensor with all elements set to zero.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.zeros</code></li>
+<li><code>tf.compat.v2.zeros</code></li>
+</ul>
+
+
+<p><code>python
+tf.zeros(
+    shape,
+    dtype=tf.dtypes.float32,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>This operation returns a tensor of type <code>dtype</code> with shape <code>shape</code> and
+all elements set to zero.</p>
+
+<h4>For example:</h4>
+
+<p><code>python
+tf.zeros([3, 4], tf.int32)  # [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
+</code></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>shape</code></b>: A list of integers, a tuple of integers, or a 1-D <code>Tensor</code> of type
+<code>int32</code>.</li>
+<li><b><code>dtype</code></b>: The type of an element in the resulting <code>Tensor</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> with all elements set to zero.</p>

@@ -1,0 +1,75 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.hessians" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.hessians</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/gradients_impl.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Constructs the Hessian of sum of <code>ys</code> with respect to <code>x</code> in <code>xs</code>.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v2.hessians</code></li>
+</ul>
+
+
+<p><code>python
+tf.hessians(
+    ys,
+    xs,
+    gate_gradients=False,
+    aggregation_method=None,
+    name='hessians'
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p><code>hessians()</code> adds ops to the graph to output the Hessian matrix of <code>ys</code>
+with respect to <code>xs</code>.  It returns a list of <code>Tensor</code> of length <code>len(xs)</code>
+where each tensor is the Hessian of <code>sum(ys)</code>.</p>
+
+<p>The Hessian is a matrix of second-order partial derivatives of a scalar
+tensor (see https://en.wikipedia.org/wiki/Hessian_matrix for more details).</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>ys</code></b>: A <code>Tensor</code> or list of tensors to be differentiated.</li>
+<li><b><code>xs</code></b>: A <code>Tensor</code> or list of tensors to be used for differentiation.</li>
+<li><b><code>name</code></b>: Optional name to use for grouping all the gradient ops together.
+defaults to &lsquo;hessians&rsquo;.</li>
+<li><b><code>colocate_gradients_with_ops</code></b>: See <code>gradients()</code> documentation for details.</li>
+<li><b><code>gate_gradients</code></b>: See <code>gradients()</code> documentation for details.</li>
+<li><b><code>aggregation_method</code></b>: See <code>gradients()</code> documentation for details.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A list of Hessian matrices of <code>sum(ys)</code> for each <code>x</code> in <code>xs</code>.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>LookupError</code></b>: if one of the operations between <code>xs</code> and <code>ys</code> does not
+have a registered gradient function.</li>
+</ul>
+

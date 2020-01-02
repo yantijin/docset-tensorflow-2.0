@@ -1,0 +1,82 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.Print" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.Print</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/logging_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Prints a list of tensors. (deprecated)</p>
+
+<p><code>python
+tf.compat.v1.Print(
+    input_,
+    data,
+    message=None,
+    first_n=None,
+    summarize=None,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed after 2018-08-20.
+Instructions for updating:
+Use tf.print instead of tf.Print. Note that tf.print returns a no-output operator that directly prints the output. Outside of defuns or eager mode, this operator will not be executed unless it is directly specified in session.run or used as a control dependency for other operators. This is only a concern in graph mode. Below is an example of how to ensure tf.print executes in graph mode:</p>
+
+<p>This is an identity op (behaves like <a href="../../../tf/identity.html"><code>tf.identity</code></a>) with the side effect
+of printing <code>data</code> when evaluating.</p>
+
+<p>Note: This op prints to the standard error. It is not currently compatible
+  with jupyter notebook (printing to the notebook <em>server&rsquo;s</em> output, not into
+  the notebook).</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>input_</code></b>: A tensor passed through this op.</li>
+<li><b><code>data</code></b>: A list of tensors to print out when op is evaluated.</li>
+<li><b><code>message</code></b>: A string, prefix of the error message.</li>
+<li><b><code>first_n</code></b>: Only log <code>first_n</code> number of times. Negative numbers log always;
+this is the default.</li>
+<li><b><code>summarize</code></b>: Only print this many entries of each tensor. If None, then a
+maximum of 3 elements are printed per input tensor.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code>. Has the same type and contents as <code>input_</code>.</p>
+
+<pre><code>```python
+</code></pre>
+
+<p>sess = tf.compat.v1.Session()
+with sess.as_default():
+    tensor = tf.range(10)
+    print_op = tf.print(tensor)
+    with tf.control_dependencies([print_op]):
+      out = tf.add(tensor, tensor)
+    sess.run(out)
+    ```
+    Additionally, to use tf.print in python 2.7, users must make sure to import
+    the following:</p>
+
+<p><code>from __future__ import print_function</code></p>

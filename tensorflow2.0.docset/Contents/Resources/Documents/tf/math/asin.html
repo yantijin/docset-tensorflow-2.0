@@ -1,0 +1,74 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.math.asin" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.math.asin</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p>Defined in generated file: <code>python/ops/gen_math_ops.py</code></p>
+
+<!-- Start diff -->
+
+
+<p>Computes the trignometric inverse sine of x element-wise.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.asin</code></li>
+<li><code>tf.compat.v1.asin</code></li>
+<li><code>tf.compat.v1.math.asin</code></li>
+<li><code>tf.compat.v2.asin</code></li>
+<li><code>tf.compat.v2.math.asin</code></li>
+</ul>
+
+
+<p><code>python
+tf.math.asin(
+    x,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>The <a href="../../tf/math/asin.html"><code>tf.math.asin</code></a> operation returns the inverse of <a href="../../tf/math/sin.html"><code>tf.math.sin</code></a>, such that
+if <code>y = tf.math.sin(x)</code> then, <code>x = tf.math.asin(y)</code>.</p>
+
+<p><strong>Note</strong>: The output of <a href="../../tf/math/asin.html"><code>tf.math.asin</code></a> will lie within the invertible range
+of sine, i.e [-pi/2, pi/2].</p>
+
+<h4>For example:</h4>
+
+<p>```python</p>
+
+<h1>Note: [1.047, 0.785] ~= [(pi/3), (pi/4)]</h1>
+
+<p>x = tf.constant([1.047, 0.785])
+y = tf.math.sin(x) # [0.8659266, 0.7068252]</p>
+
+<p>tf.math.asin(y) # [1.047, 0.785] = x
+```</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>bfloat16</code>, <code>half</code>, <code>float32</code>, <code>float64</code>, <code>int32</code>, <code>int64</code>, <code>complex64</code>, <code>complex128</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code>. Has the same type as <code>x</code>.</p>

@@ -1,0 +1,56 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.saved_model.main_op_with_restore" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.saved_model.main_op_with_restore</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/saved_model/main_op_impl.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Returns a main op to init variables, tables and restore the graph. (deprecated)</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.saved_model.main_op.main_op_with_restore</code></li>
+</ul>
+
+
+<p><code>python
+tf.compat.v1.saved_model.main_op_with_restore(restore_op_name)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
+Instructions for updating:
+This function will only be available through the v1 compatibility library as tf.compat.v1.saved_model.main_op_with_restore or tf.compat.v1.saved_model.main_op.main_op_with_restore.</p>
+
+<p>Returns the main op including the group of ops that initializes all
+variables, initialize local variables, initialize all tables and the restore
+op name.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>restore_op_name</code></b>: Name of the op to use to restore the graph.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>The set of ops to be run as part of the main op upon the load operation.</p>

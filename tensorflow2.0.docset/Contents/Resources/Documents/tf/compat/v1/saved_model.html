@@ -1,0 +1,125 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.saved_model" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="ASSETS_DIRECTORY"/>
+<meta itemprop="property" content="ASSETS_KEY"/>
+<meta itemprop="property" content="CLASSIFY_INPUTS"/>
+<meta itemprop="property" content="CLASSIFY_METHOD_NAME"/>
+<meta itemprop="property" content="CLASSIFY_OUTPUT_CLASSES"/>
+<meta itemprop="property" content="CLASSIFY_OUTPUT_SCORES"/>
+<meta itemprop="property" content="DEFAULT_SERVING_SIGNATURE_DEF_KEY"/>
+<meta itemprop="property" content="GPU"/>
+<meta itemprop="property" content="LEGACY_INIT_OP_KEY"/>
+<meta itemprop="property" content="MAIN_OP_KEY"/>
+<meta itemprop="property" content="PREDICT_INPUTS"/>
+<meta itemprop="property" content="PREDICT_METHOD_NAME"/>
+<meta itemprop="property" content="PREDICT_OUTPUTS"/>
+<meta itemprop="property" content="REGRESS_INPUTS"/>
+<meta itemprop="property" content="REGRESS_METHOD_NAME"/>
+<meta itemprop="property" content="REGRESS_OUTPUTS"/>
+<meta itemprop="property" content="SAVED_MODEL_FILENAME_PB"/>
+<meta itemprop="property" content="SAVED_MODEL_FILENAME_PBTXT"/>
+<meta itemprop="property" content="SAVED_MODEL_SCHEMA_VERSION"/>
+<meta itemprop="property" content="SERVING"/>
+<meta itemprop="property" content="TPU"/>
+<meta itemprop="property" content="TRAINING"/>
+<meta itemprop="property" content="VARIABLES_DIRECTORY"/>
+<meta itemprop="property" content="VARIABLES_FILENAME"/>
+</div>
+
+
+<h1>Module: tf.compat.v1.saved_model</h1>
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p>Public API for tf.saved_model namespace.</p>
+
+<h2>Modules</h2>
+
+<p><a href="../../../tf/compat/v1/saved_model/builder.html"><code>builder</code></a> module: SavedModel builder.</p>
+
+<p><a href="../../../tf/compat/v1/saved_model/constants.html"><code>constants</code></a> module: Constants for SavedModel save and restore operations.</p>
+
+<p><a href="../../../tf/compat/v1/saved_model/experimental.html"><code>experimental</code></a> module: Public API for tf.saved_model.experimental namespace.</p>
+
+<p><a href="../../../tf/compat/v1/saved_model/loader.html"><code>loader</code></a> module: Loader functionality for SavedModel with hermetic, language-neutral exports.</p>
+
+<p><a href="../../../tf/compat/v1/saved_model/main_op.html"><code>main_op</code></a> module: SavedModel main op.</p>
+
+<p><a href="../../../tf/compat/v1/saved_model/signature_constants.html"><code>signature_constants</code></a> module: Signature constants for SavedModel save and restore operations.</p>
+
+<p><a href="../../../tf/compat/v1/saved_model/signature_def_utils.html"><code>signature_def_utils</code></a> module: SignatureDef utility functions.</p>
+
+<p><a href="../../../tf/compat/v1/saved_model/tag_constants.html"><code>tag_constants</code></a> module: Common tags used for graphs in SavedModel.</p>
+
+<p><a href="../../../tf/compat/v1/saved_model/utils.html"><code>utils</code></a> module: SavedModel utility functions.</p>
+
+<h2>Classes</h2>
+
+<p><a href="../../../tf/saved_model/Asset.html"><code>class Asset</code></a>: Represents a file asset to hermetically include in a SavedModel.</p>
+
+<p><a href="../../../tf/compat/v1/saved_model/Builder.html"><code>class Builder</code></a>: Builds the <code>SavedModel</code> protocol buffer and saves variables and assets.</p>
+
+<p><a href="../../../tf/saved_model/SaveOptions.html"><code>class SaveOptions</code></a>: Options for saving to SavedModel.</p>
+
+<h2>Functions</h2>
+
+<p><a href="../../../tf/compat/v1/saved_model/build_signature_def.html"><code>build_signature_def(...)</code></a>: Utility function to build a SignatureDef protocol buffer.</p>
+
+<p><a href="../../../tf/compat/v1/saved_model/build_tensor_info.html"><code>build_tensor_info(...)</code></a>: Utility function to build TensorInfo proto from a Tensor. (deprecated)</p>
+
+<p><a href="../../../tf/compat/v1/saved_model/classification_signature_def.html"><code>classification_signature_def(...)</code></a>: Creates classification signature from given examples and predictions.</p>
+
+<p><a href="../../../tf/compat/v1/saved_model/contains_saved_model.html"><code>contains_saved_model(...)</code></a>: Checks whether the provided export directory could contain a SavedModel.</p>
+
+<p><a href="../../../tf/compat/v1/saved_model/get_tensor_from_tensor_info.html"><code>get_tensor_from_tensor_info(...)</code></a>: Returns the Tensor or SparseTensor described by a TensorInfo proto. (deprecated)</p>
+
+<p><a href="../../../tf/compat/v1/saved_model/is_valid_signature.html"><code>is_valid_signature(...)</code></a>: Determine whether a SignatureDef can be served by TensorFlow Serving.</p>
+
+<p><a href="../../../tf/compat/v1/saved_model/load.html"><code>load(...)</code></a>: Loads the model from a SavedModel as specified by tags. (deprecated)</p>
+
+<p><a href="../../../tf/saved_model/load.html"><code>load_v2(...)</code></a>: Load a SavedModel from <code>export_dir</code>.</p>
+
+<p><a href="../../../tf/compat/v1/saved_model/main_op_with_restore.html"><code>main_op_with_restore(...)</code></a>: Returns a main op to init variables, tables and restore the graph. (deprecated)</p>
+
+<p><a href="../../../tf/compat/v1/saved_model/contains_saved_model.html"><code>maybe_saved_model_directory(...)</code></a>: Checks whether the provided export directory could contain a SavedModel.</p>
+
+<p><a href="../../../tf/compat/v1/saved_model/predict_signature_def.html"><code>predict_signature_def(...)</code></a>: Creates prediction signature from given inputs and outputs.</p>
+
+<p><a href="../../../tf/compat/v1/saved_model/regression_signature_def.html"><code>regression_signature_def(...)</code></a>: Creates regression signature from given examples and predictions.</p>
+
+<p><a href="../../../tf/saved_model/save.html"><code>save(...)</code></a>: Exports the Trackable object <code>obj</code> to <a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/python/saved_model/README.html">SavedModel format</a>.</p>
+
+<p><a href="../../../tf/compat/v1/saved_model/simple_save.html"><code>simple_save(...)</code></a>: Convenience function to build a SavedModel suitable for serving. (deprecated)</p>
+
+<h2>Other Members</h2>
+
+<ul>
+<li><code>ASSETS_DIRECTORY = 'assets'</code> <a id="ASSETS_DIRECTORY"></a></li>
+<li><code>ASSETS_KEY = 'saved_model_assets'</code> <a id="ASSETS_KEY"></a></li>
+<li><code>CLASSIFY_INPUTS = 'inputs'</code> <a id="CLASSIFY_INPUTS"></a></li>
+<li><code>CLASSIFY_METHOD_NAME = 'tensorflow/serving/classify'</code> <a id="CLASSIFY_METHOD_NAME"></a></li>
+<li><code>CLASSIFY_OUTPUT_CLASSES = 'classes'</code> <a id="CLASSIFY_OUTPUT_CLASSES"></a></li>
+<li><code>CLASSIFY_OUTPUT_SCORES = 'scores'</code> <a id="CLASSIFY_OUTPUT_SCORES"></a></li>
+<li><code>DEFAULT_SERVING_SIGNATURE_DEF_KEY = 'serving_default'</code> <a id="DEFAULT_SERVING_SIGNATURE_DEF_KEY"></a></li>
+<li><code>GPU = 'gpu'</code> <a id="GPU"></a></li>
+<li><code>LEGACY_INIT_OP_KEY = 'legacy_init_op'</code> <a id="LEGACY_INIT_OP_KEY"></a></li>
+<li><code>MAIN_OP_KEY = 'saved_model_main_op'</code> <a id="MAIN_OP_KEY"></a></li>
+<li><code>PREDICT_INPUTS = 'inputs'</code> <a id="PREDICT_INPUTS"></a></li>
+<li><code>PREDICT_METHOD_NAME = 'tensorflow/serving/predict'</code> <a id="PREDICT_METHOD_NAME"></a></li>
+<li><code>PREDICT_OUTPUTS = 'outputs'</code> <a id="PREDICT_OUTPUTS"></a></li>
+<li><code>REGRESS_INPUTS = 'inputs'</code> <a id="REGRESS_INPUTS"></a></li>
+<li><code>REGRESS_METHOD_NAME = 'tensorflow/serving/regress'</code> <a id="REGRESS_METHOD_NAME"></a></li>
+<li><code>REGRESS_OUTPUTS = 'outputs'</code> <a id="REGRESS_OUTPUTS"></a></li>
+<li><code>SAVED_MODEL_FILENAME_PB = 'saved_model.pb'</code> <a id="SAVED_MODEL_FILENAME_PB"></a></li>
+<li><code>SAVED_MODEL_FILENAME_PBTXT = 'saved_model.pbtxt'</code> <a id="SAVED_MODEL_FILENAME_PBTXT"></a></li>
+<li><code>SAVED_MODEL_SCHEMA_VERSION = 1</code> <a id="SAVED_MODEL_SCHEMA_VERSION"></a></li>
+<li><code>SERVING = 'serve'</code> <a id="SERVING"></a></li>
+<li><code>TPU = 'tpu'</code> <a id="TPU"></a></li>
+<li><code>TRAINING = 'train'</code> <a id="TRAINING"></a></li>
+<li><code>VARIABLES_DIRECTORY = 'variables'</code> <a id="VARIABLES_DIRECTORY"></a></li>
+<li><code>VARIABLES_FILENAME = 'variables'</code> <a id="VARIABLES_FILENAME"></a></li>
+</ul>
+

@@ -1,0 +1,66 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.backend.maximum" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.keras.backend.maximum</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/backend.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Element-wise maximum of two tensors.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.keras.backend.maximum</code></li>
+<li><code>tf.compat.v2.keras.backend.maximum</code></li>
+</ul>
+
+
+<p><code>python
+tf.keras.backend.maximum(
+    x,
+    y
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>x</code></b>: Tensor or variable.</li>
+<li><b><code>y</code></b>: Tensor or variable.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A tensor with the element wise maximum value(s) of <code>x</code> and <code>y</code>.</p>
+
+<h4>Examples:</h4>
+
+<p><code>python
+    # maximum of two tensors
+    &gt;&gt;&gt; x = tf.Variable([[1, 2], [3, 4]])
+    &gt;&gt;&gt; y = tf.Variable([[2, 1], [0, -1]])
+    &gt;&gt;&gt; m = tf.keras.backend.maximum(x, y)
+    &gt;&gt;&gt; m
+    &lt;tf.Tensor: id=42, shape=(2, 2), dtype=int32, numpy=
+    array([[2, 2],
+           [3, 4]], dtype=int32)&gt;
+</code></p>

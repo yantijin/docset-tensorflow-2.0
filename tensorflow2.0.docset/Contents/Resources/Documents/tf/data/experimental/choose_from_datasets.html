@@ -1,0 +1,82 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.data.experimental.choose_from_datasets" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.data.experimental.choose_from_datasets</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/data/experimental/ops/interleave_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Creates a dataset that deterministically chooses elements from <code>datasets</code>.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v2.data.experimental.choose_from_datasets</code></li>
+</ul>
+
+
+<p><code>python
+tf.data.experimental.choose_from_datasets(
+    datasets,
+    choice_dataset
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>For example, given the following datasets:</p>
+
+<p>```python
+datasets = [tf.data.Dataset.from_tensors(&ldquo;foo&rdquo;).repeat(),
+            tf.data.Dataset.from_tensors(&ldquo;bar&rdquo;).repeat(),
+            tf.data.Dataset.from_tensors(&ldquo;baz&rdquo;).repeat()]</p>
+
+<h1>Define a dataset containing <code>[0, 1, 2, 0, 1, 2, 0, 1, 2]</code>.</h1>
+
+<p>choice_dataset = tf.data.Dataset.range(3).repeat(3)</p>
+
+<p>result = tf.data.experimental.choose_from_datasets(datasets, choice_dataset)
+```</p>
+
+<p>The elements of <code>result</code> will be:</p>
+
+<p><code>
+"foo", "bar", "baz", "foo", "bar", "baz", "foo", "bar", "baz"
+</code></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>datasets</code></b>: A list of <a href="../../../tf/data/Dataset.html"><code>tf.data.Dataset</code></a> objects with compatible structure.</li>
+<li><b><code>choice_dataset</code></b>: A <a href="../../../tf/data/Dataset.html"><code>tf.data.Dataset</code></a> of scalar <a href="../../../tf.html#int64"><code>tf.int64</code></a> tensors between
+<code>0</code> and <code>len(datasets) - 1</code>.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A dataset that interleaves elements from <code>datasets</code> according to the values
+of <code>choice_dataset</code>.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>TypeError</code></b>: If the <code>datasets</code> or <code>choice_dataset</code> arguments have the wrong
+type.</li>
+</ul>
+

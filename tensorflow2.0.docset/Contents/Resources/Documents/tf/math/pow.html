@@ -1,0 +1,72 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.math.pow" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.math.pow</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/math_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Computes the power of one value to another.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.RaggedTensor.__pow__</code></li>
+<li><code>tf.compat.v1.RaggedTensor.__pow__</code></li>
+<li><code>tf.compat.v1.math.pow</code></li>
+<li><code>tf.compat.v1.pow</code></li>
+<li><code>tf.compat.v2.RaggedTensor.__pow__</code></li>
+<li><code>tf.compat.v2.math.pow</code></li>
+<li><code>tf.compat.v2.pow</code></li>
+<li><code>tf.pow</code></li>
+</ul>
+
+
+<p><code>python
+tf.math.pow(
+    x,
+    y,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Given a tensor <code>x</code> and a tensor <code>y</code>, this operation computes \(x<sup>y</sup>\) for
+corresponding elements in <code>x</code> and <code>y</code>. For example:</p>
+
+<p><code>python
+x = tf.constant([[2, 2], [3, 3]])
+y = tf.constant([[8, 16], [2, 3]])
+tf.pow(x, y)  # [[256, 65536], [9, 27]]
+</code></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code> of type <code>float16</code>, <code>float32</code>, <code>float64</code>, <code>int32</code>, <code>int64</code>,
+<code>complex64</code>, or <code>complex128</code>.</li>
+<li><b><code>y</code></b>: A <code>Tensor</code> of type <code>float16</code>, <code>float32</code>, <code>float64</code>, <code>int32</code>, <code>int64</code>,
+<code>complex64</code>, or <code>complex128</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code>.</p>

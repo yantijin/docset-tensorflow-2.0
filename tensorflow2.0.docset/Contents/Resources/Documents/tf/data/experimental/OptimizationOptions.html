@@ -1,0 +1,184 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.data.experimental.OptimizationOptions" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="apply_default_optimizations"/>
+<meta itemprop="property" content="autotune"/>
+<meta itemprop="property" content="autotune_algorithm"/>
+<meta itemprop="property" content="autotune_buffers"/>
+<meta itemprop="property" content="autotune_cpu_budget"/>
+<meta itemprop="property" content="filter_fusion"/>
+<meta itemprop="property" content="filter_with_random_uniform_fusion"/>
+<meta itemprop="property" content="hoist_random_uniform"/>
+<meta itemprop="property" content="map_and_batch_fusion"/>
+<meta itemprop="property" content="map_and_filter_fusion"/>
+<meta itemprop="property" content="map_fusion"/>
+<meta itemprop="property" content="map_parallelization"/>
+<meta itemprop="property" content="map_vectorization"/>
+<meta itemprop="property" content="noop_elimination"/>
+<meta itemprop="property" content="parallel_batch"/>
+<meta itemprop="property" content="shuffle_and_repeat_fusion"/>
+<meta itemprop="property" content="__eq__"/>
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="__ne__"/>
+</div>
+
+
+<h1>tf.data.experimental.OptimizationOptions</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/data/experimental/ops/optimization_options.py">View source</a></p>
+
+<h2>Class <code>OptimizationOptions</code></h2>
+
+<!-- Start diff -->
+
+
+<p>Represents options for dataset optimizations.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li>Class <code>tf.compat.v1.data.experimental.OptimizationOptions</code></li>
+<li>Class <code>tf.compat.v2.data.experimental.OptimizationOptions</code></li>
+</ul>
+
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>You can set the optimization options of a dataset through the
+<code>experimental_optimization</code> property of <a href="../../../tf/data/Options.html"><code>tf.data.Options</code></a>; the property is
+an instance of <a href="../../../tf/data/experimental/OptimizationOptions.html"><code>tf.data.experimental.OptimizationOptions</code></a>.</p>
+
+<p><code>python
+options = tf.data.Options()
+options.experimental_optimization.noop_elimination = True
+options.experimental_optimization.map_vectorization.enabled = True
+options.experimental_optimization.apply_default_optimizations = False
+dataset = dataset.with_options(options)
+</code></p>
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/data/util/options.py">View source</a></p>
+
+<p><code>python
+__init__()
+</code></p>
+
+<p>Initialize self.  See help(type(self)) for accurate signature.</p>
+
+<h2>Properties</h2>
+
+<h3 id="apply_default_optimizations"><code>apply_default_optimizations</code></h3>
+
+
+<p>Whether to apply default static optimizations. If False, only static optimizations that have been explicitly enabled will be applied.</p>
+
+<h3 id="autotune"><code>autotune</code></h3>
+
+
+<p>Whether to automatically tune performance knobs. If None, defaults to True.</p>
+
+<h3 id="autotune_algorithm"><code>autotune_algorithm</code></h3>
+
+
+<p>When autotuning is enabled (through <code>autotune</code>), identifies the algorithm to use for the autotuning optimization.</p>
+
+<h3 id="autotune_buffers"><code>autotune_buffers</code></h3>
+
+
+<p>When autotuning is enabled (through <code>autotune</code>), determines whether to also autotune buffer sizes for datasets with parallelism. If None, defaults to False.</p>
+
+<h3 id="autotune_cpu_budget"><code>autotune_cpu_budget</code></h3>
+
+
+<p>When autotuning is enabled (through <code>autotune</code>), determines the CPU budget to use. Values greater than the number of schedulable CPU cores are allowed but may result in CPU contention. If None, defaults to the number of schedulable CPU cores.</p>
+
+<h3 id="filter_fusion"><code>filter_fusion</code></h3>
+
+
+<p>Whether to fuse filter transformations. If None, defaults to False.</p>
+
+<h3 id="filter_with_random_uniform_fusion"><code>filter_with_random_uniform_fusion</code></h3>
+
+
+<p>Whether to fuse filter dataset that predicts random_uniform &lt; rate into a sampling dataset. If None, defaults to False.</p>
+
+<h3 id="hoist_random_uniform"><code>hoist_random_uniform</code></h3>
+
+
+<p>Whether to hoist <code>tf.random_uniform()</code> ops out of map transformations. If None, defaults to False.</p>
+
+<h3 id="map_and_batch_fusion"><code>map_and_batch_fusion</code></h3>
+
+
+<p>Whether to fuse map and batch transformations. If None, defaults to True.</p>
+
+<h3 id="map_and_filter_fusion"><code>map_and_filter_fusion</code></h3>
+
+
+<p>Whether to fuse map and filter transformations. If None, defaults to False.</p>
+
+<h3 id="map_fusion"><code>map_fusion</code></h3>
+
+
+<p>Whether to fuse map transformations. If None, defaults to False.</p>
+
+<h3 id="map_parallelization"><code>map_parallelization</code></h3>
+
+
+<p>Whether to parallelize stateless map transformations. If None, defaults to False.</p>
+
+<h3 id="map_vectorization"><code>map_vectorization</code></h3>
+
+
+<p>The map vectorization options associated with the dataset. See <a href="../../../tf/data/experimental/MapVectorizationOptions.html"><code>tf.data.experimental.MapVectorizationOptions</code></a> for more details.</p>
+
+<h3 id="noop_elimination"><code>noop_elimination</code></h3>
+
+
+<p>Whether to eliminate no-op transformations. If None, defaults to True.</p>
+
+<h3 id="parallel_batch"><code>parallel_batch</code></h3>
+
+
+<p>Whether to parallelize copying of batch elements. If None, defaults to False.</p>
+
+<h3 id="shuffle_and_repeat_fusion"><code>shuffle_and_repeat_fusion</code></h3>
+
+
+<p>Whether to fuse shuffle and repeat transformations. If None, defaults to True.</p>
+
+<h2>Methods</h2>
+
+<h3 id="__eq__"><code>__eq__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/data/util/options.py">View source</a></p>
+
+<p><code>python
+__eq__(other)
+</code></p>
+
+<p>Return self==value.</p>
+
+<h3 id="__ne__"><code>__ne__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/data/util/options.py">View source</a></p>
+
+<p><code>python
+__ne__(other)
+</code></p>
+
+<p>Return self!=value.</p>

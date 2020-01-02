@@ -1,0 +1,73 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.rank" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.rank</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/array_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Returns the rank of a tensor.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.rank</code></li>
+<li><code>tf.compat.v2.rank</code></li>
+</ul>
+
+
+<p><code>python
+tf.rank(
+    input,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Returns a 0-D <code>int32</code> <code>Tensor</code> representing the rank of <code>input</code>.</p>
+
+<h4>For example:</h4>
+
+<p>```python</p>
+
+<h1>shape of tensor &rsquo;t' is [2, 2, 3]</h1>
+
+<p>t = tf.constant([[[1, 1, 1], [2, 2, 2]], [[3, 3, 3], [4, 4, 4]]])
+tf.rank(t)  # 3
+```</p>
+
+<p><strong>Note</strong>: The rank of a tensor is not the same as the rank of a matrix. The
+rank of a tensor is the number of indices required to uniquely select each
+element of the tensor. Rank is also known as &ldquo;order&rdquo;, &ldquo;degree&rdquo;, or &ldquo;ndims.&rdquo;</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>input</code></b>: A <code>Tensor</code> or <code>SparseTensor</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> of type <code>int32</code>.</p>
+
+<h4>Numpy Compatibility</h4>
+
+<p>Equivalent to np.ndim</p>

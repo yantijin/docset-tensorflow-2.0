@@ -1,0 +1,55 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.nn.crelu" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.nn.crelu</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/nn_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Computes Concatenated ReLU.</p>
+
+<p><code>python
+tf.compat.v1.nn.crelu(
+    features,
+    name=None,
+    axis=-1
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Concatenates a ReLU which selects only the positive part of the activation
+with a ReLU which selects only the <em>negative</em> part of the activation.
+Note that as a result this non-linearity doubles the depth of the activations.
+Source: <a href="https://arxiv.org/abs/1603.05201">Understanding and Improving Convolutional Neural Networks via
+Concatenated Rectified Linear Units. W. Shang, et
+al.</a></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>features</code></b>: A <code>Tensor</code> with type <code>float</code>, <code>double</code>, <code>int32</code>, <code>int64</code>, <code>uint8</code>,
+<code>int16</code>, or <code>int8</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+<li><b><code>axis</code></b>: The axis that the output values are concatenated along. Default is -1.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> with the same type as <code>features</code>.</p>

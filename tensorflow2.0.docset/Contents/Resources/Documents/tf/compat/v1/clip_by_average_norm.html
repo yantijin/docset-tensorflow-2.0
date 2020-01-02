@@ -1,0 +1,65 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.clip_by_average_norm" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.clip_by_average_norm</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/clip_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Clips tensor values to a maximum average L2-norm. (deprecated)</p>
+
+<p><code>python
+tf.compat.v1.clip_by_average_norm(
+    t,
+    clip_norm,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
+Instructions for updating:
+clip_by_average_norm is deprecated in TensorFlow 2.0. Please use clip_by_norm(t, clip_norm * tf.cast(tf.size(t), tf.float32), name) instead.</p>
+
+<p>Given a tensor <code>t</code>, and a maximum clip value <code>clip_norm</code>, this operation
+normalizes <code>t</code> so that its average L2-norm is less than or equal to
+<code>clip_norm</code>. Specifically, if the average L2-norm is already less than or
+equal to <code>clip_norm</code>, then <code>t</code> is not modified. If the average L2-norm is
+greater than <code>clip_norm</code>, then this operation returns a tensor of the same
+type and shape as <code>t</code> with its values set to:</p>
+
+<p><code>t * clip_norm / l2norm_avg(t)</code></p>
+
+<p>In this case, the average L2-norm of the output tensor is <code>clip_norm</code>.</p>
+
+<p>This operation is typically used to clip gradients before applying them with
+an optimizer.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>t</code></b>: A <code>Tensor</code>.</li>
+<li><b><code>clip_norm</code></b>: A 0-D (scalar) <code>Tensor</code> > 0. A maximum clipping value.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A clipped <code>Tensor</code>.</p>

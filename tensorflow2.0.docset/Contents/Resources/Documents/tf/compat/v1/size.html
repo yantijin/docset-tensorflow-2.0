@@ -1,0 +1,62 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.size" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.size</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/array_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Returns the size of a tensor.</p>
+
+<p><code>python
+tf.compat.v1.size(
+    input,
+    name=None,
+    out_type=tf.dtypes.int32
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Returns a 0-D <code>Tensor</code> representing the number of elements in <code>input</code>
+of type <code>out_type</code>. Defaults to tf.int32.</p>
+
+<h4>For example:</h4>
+
+<p><code>python
+t = tf.constant([[[1, 1, 1], [2, 2, 2]], [[3, 3, 3], [4, 4, 4]]])
+tf.size(t)  # 12
+</code></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>input</code></b>: A <code>Tensor</code> or <code>SparseTensor</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+<li><b><code>out_type</code></b>: (Optional) The specified non-quantized numeric output type of the
+operation. Defaults to <a href="../../../tf.html#int32"><code>tf.int32</code></a>.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> of type <code>out_type</code>. Defaults to <a href="../../../tf.html#int32"><code>tf.int32</code></a>.</p>
+
+<h4>Numpy Compatibility</h4>
+
+<p>Equivalent to np.size()</p>

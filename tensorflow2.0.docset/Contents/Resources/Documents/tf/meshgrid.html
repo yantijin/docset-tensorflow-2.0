@@ -1,0 +1,101 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.meshgrid" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.meshgrid</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/array_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Broadcasts parameters for evaluation on an N-D grid.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.meshgrid</code></li>
+<li><code>tf.compat.v2.meshgrid</code></li>
+</ul>
+
+
+<p><code>python
+tf.meshgrid(
+    *args,
+    **kwargs
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Given N one-dimensional coordinate arrays <code>*args</code>, returns a list <code>outputs</code>
+of N-D coordinate arrays for evaluating expressions on an N-D grid.</p>
+
+<h4>Notes:</h4>
+
+<p><code>meshgrid</code> supports cartesian (&lsquo;xy&rsquo;) and matrix (&lsquo;ij&rsquo;) indexing conventions.
+When the <code>indexing</code> argument is set to &lsquo;xy&rsquo; (the default), the broadcasting
+instructions for the first two dimensions are swapped.</p>
+
+<h4>Examples:</h4>
+
+<p>Calling <code>X, Y = meshgrid(x, y)</code> with the tensors</p>
+
+<p>```python
+x = [1, 2, 3]
+y = [4, 5, 6]
+X, Y = tf.meshgrid(x, y)</p>
+
+<h1>X = [[1, 2, 3],</h1>
+
+<h1>[1, 2, 3],</h1>
+
+<h1>[1, 2, 3]]</h1>
+
+<h1>Y = [[4, 4, 4],</h1>
+
+<h1>[5, 5, 5],</h1>
+
+<h1>[6, 6, 6]]</h1>
+
+<p>```</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>*args</code></b>: <code>Tensor</code>s with rank 1.</li>
+<li><b><code>**kwargs</code></b>:   - indexing: Either &lsquo;xy&rsquo; or &lsquo;ij&rsquo; (optional, default: &lsquo;xy&rsquo;).
+
+<ul>
+<li>name: A name for the operation (optional).</li>
+</ul>
+</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<ul>
+<li><b><code>outputs</code></b>: A list of N <code>Tensor</code>s with rank N.</li>
+</ul>
+
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>TypeError</code></b>: When no keyword arguments (kwargs) are passed.</li>
+<li><b><code>ValueError</code></b>: When indexing keyword argument is not one of <code>xy</code> or <code>ij</code>.</li>
+</ul>
+

@@ -1,0 +1,65 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.sparse_matmul" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.sparse_matmul</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p>Defined in generated file: <code>python/ops/gen_math_ops.py</code></p>
+
+<!-- Start diff -->
+
+
+<p>Multiply matrix &ldquo;a&rdquo; by matrix &ldquo;b&rdquo;.</p>
+
+<p><code>python
+tf.compat.v1.sparse_matmul(
+    a,
+    b,
+    transpose_a=False,
+    transpose_b=False,
+    a_is_sparse=False,
+    b_is_sparse=False,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>The inputs must be two-dimensional matrices and the inner dimension of &ldquo;a&rdquo; must
+match the outer dimension of &ldquo;b&rdquo;. Both &ldquo;a&rdquo; and &ldquo;b&rdquo; must be <code>Tensor</code>s not
+<code>SparseTensor</code>s.  This op is optimized for the case where at least one of &ldquo;a&rdquo; or
+&ldquo;b&rdquo; is sparse, in the sense that they have a large proportion of zero values.
+The breakeven for using this versus a dense matrix multiply on one platform was
+30% zero values in the sparse matrix.</p>
+
+<p>The gradient computation of this operation will only take advantage of sparsity
+in the input gradient when that gradient comes from a Relu.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>a</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>float32</code>, <code>bfloat16</code>.</li>
+<li><b><code>b</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>float32</code>, <code>bfloat16</code>.</li>
+<li><b><code>transpose_a</code></b>: An optional <code>bool</code>. Defaults to <code>False</code>.</li>
+<li><b><code>transpose_b</code></b>: An optional <code>bool</code>. Defaults to <code>False</code>.</li>
+<li><b><code>a_is_sparse</code></b>: An optional <code>bool</code>. Defaults to <code>False</code>.</li>
+<li><b><code>b_is_sparse</code></b>: An optional <code>bool</code>. Defaults to <code>False</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> of type <code>float32</code>.</p>

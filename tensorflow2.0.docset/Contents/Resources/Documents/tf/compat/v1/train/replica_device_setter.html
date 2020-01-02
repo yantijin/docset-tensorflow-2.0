@@ -1,0 +1,105 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.train.replica_device_setter" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.train.replica_device_setter</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/device_setter.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Return a <code>device function</code> to use when building a Graph for replicas.</p>
+
+<p><code>python
+tf.compat.v1.train.replica_device_setter(
+    ps_tasks=0,
+    ps_device='/job:ps',
+    worker_device='/job:worker',
+    merge_devices=True,
+    cluster=None,
+    ps_ops=None,
+    ps_strategy=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Device Functions are used in <code>with tf.device(device_function):</code> statement to
+automatically assign devices to <code>Operation</code> objects as they are constructed,
+Device constraints are added from the inner-most context first, working
+outwards. The merging behavior adds constraints to fields that are yet unset
+by a more inner context. Currently the fields are (job, task, cpu/gpu).</p>
+
+<p>If <code>cluster</code> is <code>None</code>, and <code>ps_tasks</code> is 0, the returned function is a no-op.
+Otherwise, the value of <code>ps_tasks</code> is derived from <code>cluster</code>.</p>
+
+<p>By default, only Variable ops are placed on ps tasks, and the placement
+strategy is round-robin over all ps tasks. A custom <code>ps_strategy</code> may be used
+to do more intelligent placement, such as
+<code>tf.contrib.training.GreedyLoadBalancingStrategy</code>.</p>
+
+<p>For example,</p>
+
+<p>```python</p>
+
+<h1>To build a cluster with two ps jobs on hosts ps0 and ps1, and 3 worker</h1>
+
+<h1>jobs on hosts worker0, worker1 and worker2.</h1>
+
+<p>cluster_spec = {
+    &ldquo;ps&rdquo;: [&ldquo;ps0:2222&rdquo;, &ldquo;ps1:2222&rdquo;],
+    &ldquo;worker&rdquo;: [&ldquo;worker0:2222&rdquo;, &ldquo;worker1:2222&rdquo;, &ldquo;worker2:2222&rdquo;]}
+with
+tf.device(tf.compat.v1.train.replica_device_setter(cluster=cluster_spec)):
+  # Build your graph
+  v1 = tf.Variable(&hellip;)  # assigned to /job:ps/task:0
+  v2 = tf.Variable(&hellip;)  # assigned to /job:ps/task:1
+  v3 = tf.Variable(&hellip;)  # assigned to /job:ps/task:0</p>
+
+<h1>Run compute</h1>
+
+<p>```</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>ps_tasks</code></b>: Number of tasks in the <code>ps</code> job.  Ignored if <code>cluster</code> is
+provided.</li>
+<li><b><code>ps_device</code></b>: String.  Device of the <code>ps</code> job.  If empty no <code>ps</code> job is used.
+Defaults to <code>ps</code>.</li>
+<li><b><code>worker_device</code></b>: String.  Device of the <code>worker</code> job.  If empty no <code>worker</code>
+job is used.</li>
+<li><b><code>merge_devices</code></b>: <code>Boolean</code>. If <code>True</code>, merges or only sets a device if the
+device constraint is completely unset. merges device specification rather
+than overriding them.</li>
+<li><b><code>cluster</code></b>: <code>ClusterDef</code> proto or <code>ClusterSpec</code>.</li>
+<li><b><code>ps_ops</code></b>: List of strings representing <code>Operation</code> types that need to be
+placed on <code>ps</code> devices.  If <code>None</code>, defaults to <code>STANDARD_PS_OPS</code>.</li>
+<li><b><code>ps_strategy</code></b>: A callable invoked for every ps <code>Operation</code> (i.e. matched by
+<code>ps_ops</code>), that takes the <code>Operation</code> and returns the ps task index to
+use.  If <code>None</code>, defaults to a round-robin strategy across all <code>ps</code>
+devices.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A function to pass to <a href="../../../../tf/device.html"><code>tf.device()</code></a>.</p>
+
+<h4>Raises:</h4>
+
+<p>TypeError if <code>cluster</code> is not a dictionary or <code>ClusterDef</code> protocol buffer,
+or if <code>ps_strategy</code> is provided but not a callable.</p>

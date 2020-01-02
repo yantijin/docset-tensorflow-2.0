@@ -1,0 +1,62 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.summary.trace_on" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.summary.trace_on</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/summary_ops_v2.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Starts a trace to record computation graphs and profiling information.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v2.summary.trace_on</code></li>
+</ul>
+
+
+<p><code>python
+tf.summary.trace_on(
+    graph=True,
+    profiler=False
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Must be invoked in eager mode.</p>
+
+<p>When enabled, TensorFlow runtime will collection information that can later be
+exported and consumed by TensorBoard. The trace is activated across the entire
+TensorFlow runtime and affects all threads of execution.</p>
+
+<p>To stop the trace and export the collected information, use
+<a href="../../tf/summary/trace_export.html"><code>tf.summary.trace_export</code></a>. To stop the trace without exporting, use
+<a href="../../tf/summary/trace_off.html"><code>tf.summary.trace_off</code></a>.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>graph</code></b>: If True, enables collection of executed graphs. It includes ones from
+  tf.function invocation and ones from the legacy graph mode. The default
+  is True.</li>
+<li><b><code>profiler</code></b>: If True, enables the advanced profiler. Enabling profiler
+  implicitly enables the graph collection. The profiler may incur a high
+  memory overhead. The default is False.</li>
+</ul>
+

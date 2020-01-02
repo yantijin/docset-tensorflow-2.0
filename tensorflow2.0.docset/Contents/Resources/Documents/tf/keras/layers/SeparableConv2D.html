@@ -1,0 +1,152 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.layers.SeparableConv2D" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__init__"/>
+</div>
+
+
+<h1>tf.keras.layers.SeparableConv2D</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/convolutional.py">View source</a></p>
+
+<h2>Class <code>SeparableConv2D</code></h2>
+
+<!-- Start diff -->
+
+
+<p>Depthwise separable 2D convolution.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li>Class <code>tf.compat.v1.keras.layers.SeparableConv2D</code></li>
+<li>Class <code>tf.compat.v1.keras.layers.SeparableConvolution2D</code></li>
+<li>Class <code>tf.compat.v2.keras.layers.SeparableConv2D</code></li>
+<li>Class <code>tf.compat.v2.keras.layers.SeparableConvolution2D</code></li>
+<li>Class <code>tf.keras.layers.SeparableConvolution2D</code></li>
+</ul>
+
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Separable convolutions consist in first performing
+a depthwise spatial convolution
+(which acts on each input channel separately)
+followed by a pointwise convolution which mixes together the resulting
+output channels. The <code>depth_multiplier</code> argument controls how many
+output channels are generated per input channel in the depthwise step.</p>
+
+<p>Intuitively, separable convolutions can be understood as
+a way to factorize a convolution kernel into two smaller kernels,
+or as an extreme version of an Inception block.</p>
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>filters</code></b>: Integer, the dimensionality of the output space
+(i.e. the number of output filters in the convolution).</li>
+<li><b><code>kernel_size</code></b>: An integer or tuple/list of 2 integers, specifying the
+height and width of the 2D convolution window.
+Can be a single integer to specify the same value for
+all spatial dimensions.</li>
+<li><b><code>strides</code></b>: An integer or tuple/list of 2 integers,
+specifying the strides of the convolution along the height and width.
+Can be a single integer to specify the same value for
+all spatial dimensions.
+Specifying any stride value != 1 is incompatible with specifying
+any <code>dilation_rate</code> value != 1.</li>
+<li><b><code>padding</code></b>: one of <code>"valid"</code> or <code>"same"</code> (case-insensitive).</li>
+<li><b><code>data_format</code></b>: A string,
+one of <code>channels_last</code> (default) or <code>channels_first</code>.
+The ordering of the dimensions in the inputs.
+<code>channels_last</code> corresponds to inputs with shape
+<code>(batch, height, width, channels)</code> while <code>channels_first</code>
+corresponds to inputs with shape
+<code>(batch, channels, height, width)</code>.
+It defaults to the <code>image_data_format</code> value found in your
+Keras config file at <code>~/.keras/keras.json</code>.
+If you never set it, then it will be &ldquo;channels_last&rdquo;.</li>
+<li><b><code>dilation_rate</code></b>: An integer or tuple/list of 2 integers, specifying
+the dilation rate to use for dilated convolution.
+Currently, specifying any <code>dilation_rate</code> value != 1 is
+incompatible with specifying any <code>strides</code> value != 1.</li>
+<li><b><code>depth_multiplier</code></b>: The number of depthwise convolution output channels
+for each input channel.
+The total number of depthwise convolution output
+channels will be equal to <code>filters_in * depth_multiplier</code>.</li>
+<li><b><code>activation</code></b>: Activation function to use.
+If you don&rsquo;t specify anything, no activation is applied
+(ie. &ldquo;linear&rdquo; activation: <code>a(x) = x</code>).</li>
+<li><b><code>use_bias</code></b>: Boolean, whether the layer uses a bias vector.</li>
+<li><b><code>depthwise_initializer</code></b>: Initializer for the depthwise kernel matrix.</li>
+<li><b><code>pointwise_initializer</code></b>: Initializer for the pointwise kernel matrix.</li>
+<li><b><code>bias_initializer</code></b>: Initializer for the bias vector.</li>
+<li><b><code>depthwise_regularizer</code></b>: Regularizer function applied to
+the depthwise kernel matrix.</li>
+<li><b><code>pointwise_regularizer</code></b>: Regularizer function applied to
+the pointwise kernel matrix.</li>
+<li><b><code>bias_regularizer</code></b>: Regularizer function applied to the bias vector.</li>
+<li><b><code>activity_regularizer</code></b>: Regularizer function applied to
+the output of the layer (its &ldquo;activation&rdquo;)..</li>
+<li><b><code>depthwise_constraint</code></b>: Constraint function applied to
+the depthwise kernel matrix.</li>
+<li><b><code>pointwise_constraint</code></b>: Constraint function applied to
+the pointwise kernel matrix.</li>
+<li><b><code>bias_constraint</code></b>: Constraint function applied to the bias vector.</li>
+</ul>
+
+
+<h4>Input shape:</h4>
+
+<p>4D tensor with shape:
+<code>(batch, channels, rows, cols)</code> if data_format=&lsquo;channels_first&rsquo;
+or 4D tensor with shape:
+<code>(batch, rows, cols, channels)</code> if data_format=&lsquo;channels_last&rsquo;.</p>
+
+<h4>Output shape:</h4>
+
+<p>4D tensor with shape:
+<code>(batch, filters, new_rows, new_cols)</code> if data_format=&lsquo;channels_first&rsquo;
+or 4D tensor with shape:
+<code>(batch, new_rows, new_cols, filters)</code> if data_format=&lsquo;channels_last&rsquo;.
+<code>rows</code> and <code>cols</code> values might have changed due to padding.</p>
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/convolutional.py">View source</a></p>
+
+<p><code>python
+__init__(
+    filters,
+    kernel_size,
+    strides=(1, 1),
+    padding='valid',
+    data_format=None,
+    dilation_rate=(1, 1),
+    depth_multiplier=1,
+    activation=None,
+    use_bias=True,
+    depthwise_initializer='glorot_uniform',
+    pointwise_initializer='glorot_uniform',
+    bias_initializer='zeros',
+    depthwise_regularizer=None,
+    pointwise_regularizer=None,
+    bias_regularizer=None,
+    activity_regularizer=None,
+    depthwise_constraint=None,
+    pointwise_constraint=None,
+    bias_constraint=None,
+    **kwargs
+)
+</code></p>

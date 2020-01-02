@@ -1,0 +1,92 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.slice" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.slice</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/array_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Extracts a slice from a tensor.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.slice</code></li>
+<li><code>tf.compat.v2.slice</code></li>
+</ul>
+
+
+<p><code>python
+tf.slice(
+    input_,
+    begin,
+    size,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>This operation extracts a slice of size <code>size</code> from a tensor <code>input_</code> starting
+at the location specified by <code>begin</code>. The slice <code>size</code> is represented as a
+tensor shape, where <code>size[i]</code> is the number of elements of the &lsquo;i'th dimension
+of <code>input_</code> that you want to slice. The starting location (<code>begin</code>) for the
+slice is represented as an offset in each dimension of <code>input_</code>. In other
+words, <code>begin[i]</code> is the offset into the i'th dimension of <code>input_</code> that you
+want to slice from.</p>
+
+<p>Note that <a href="../tf/Tensor.html#__getitem__"><code>tf.Tensor.<strong>getitem</strong></code></a> is typically a more pythonic way to
+perform slices, as it allows you to write <code>foo[3:7, :-2]</code> instead of
+<code>tf.slice(foo, [3, 0], [4, foo.get_shape()[1]-2])</code>.</p>
+
+<p><code>begin</code> is zero-based; <code>size</code> is one-based. If <code>size[i]</code> is -1,
+all remaining elements in dimension i are included in the
+slice. In other words, this is equivalent to setting:</p>
+
+<p><code>size[i] = input_.dim_size(i) - begin[i]</code></p>
+
+<p>This operation requires that:</p>
+
+<p><code>0 &lt;= begin[i] &lt;= begin[i] + size[i] &lt;= Di  for i in [0, n]</code></p>
+
+<h4>For example:</h4>
+
+<p><code>python
+t = tf.constant([[[1, 1, 1], [2, 2, 2]],
+                 [[3, 3, 3], [4, 4, 4]],
+                 [[5, 5, 5], [6, 6, 6]]])
+tf.slice(t, [1, 0, 0], [1, 1, 3])  # [[[3, 3, 3]]]
+tf.slice(t, [1, 0, 0], [1, 2, 3])  # [[[3, 3, 3],
+                                   #   [4, 4, 4]]]
+tf.slice(t, [1, 0, 0], [2, 1, 3])  # [[[3, 3, 3]],
+                                   #  [[5, 5, 5]]]
+</code></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>input_</code></b>: A <code>Tensor</code>.</li>
+<li><b><code>begin</code></b>: An <code>int32</code> or <code>int64</code> <code>Tensor</code>.</li>
+<li><b><code>size</code></b>: An <code>int32</code> or <code>int64</code> <code>Tensor</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> the same type as <code>input_</code>.</p>

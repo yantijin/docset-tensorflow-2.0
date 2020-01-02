@@ -1,0 +1,69 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.flags.DEFINE_multi_enum_class" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.flags.DEFINE_multi_enum_class</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+
+
+<!-- Start diff -->
+
+
+<p>Registers a flag whose value can be a list of enum members.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.app.flags.DEFINE_multi_enum_class</code></li>
+</ul>
+
+
+<p><code>python
+tf.compat.v1.flags.DEFINE_multi_enum_class(
+    name,
+    default,
+    enum_class,
+    help,
+    flag_values=_flagvalues.FLAGS,
+    module_name=None,
+    **args
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Use the flag on the command line multiple times to place multiple
+enum values into the list.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>name</code></b>: str, the flag name.</li>
+<li><b><code>default</code></b>: Union[Iterable[Enum], Iterable[Text], Enum, Text, None], the
+  default value of the flag; see
+  <code>DEFINE_multi</code>; only differences are documented here. If the value is
+  a single Enum, it is treated as a single-item list of that Enum value.
+  If it is an iterable, text values within the iterable will be converted
+  to the equivalent Enum objects.</li>
+<li><b><code>enum_class</code></b>: class, the Enum class with all the possible values for the flag.
+  help: str, the help message.</li>
+<li><b><code>flag_values</code></b>: FlagValues, the FlagValues instance with which the flag will be
+registered. This should almost never need to be overridden.</li>
+<li><b><code>module_name</code></b>: A string, the name of the Python module declaring this flag. If
+not provided, it will be computed using the stack trace of this call.</li>
+<li><b><code>**args</code></b>: Dictionary with extra keyword args that are passed to the Flag
+<strong>init</strong>.</li>
+</ul>
+

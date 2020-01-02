@@ -1,0 +1,65 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.backend.switch" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.keras.backend.switch</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/backend.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Switches between two operations depending on a scalar value.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.keras.backend.switch</code></li>
+<li><code>tf.compat.v2.keras.backend.switch</code></li>
+</ul>
+
+
+<p><code>python
+tf.keras.backend.switch(
+    condition,
+    then_expression,
+    else_expression
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Note that both <code>then_expression</code> and <code>else_expression</code>
+should be symbolic tensors of the <em>same shape</em>.</p>
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>condition</code></b>: tensor (<code>int</code> or <code>bool</code>).</li>
+<li><b><code>then_expression</code></b>: either a tensor, or a callable that returns a tensor.</li>
+<li><b><code>else_expression</code></b>: either a tensor, or a callable that returns a tensor.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>The selected tensor.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If rank of <code>condition</code> is greater than rank of expressions.</li>
+</ul>
+

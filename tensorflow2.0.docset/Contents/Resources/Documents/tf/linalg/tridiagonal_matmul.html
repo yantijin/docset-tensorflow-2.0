@@ -1,0 +1,98 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.linalg.tridiagonal_matmul" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.linalg.tridiagonal_matmul</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/linalg/linalg_impl.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Multiplies tridiagonal matrix by matrix.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.linalg.tridiagonal_matmul</code></li>
+<li><code>tf.compat.v2.linalg.tridiagonal_matmul</code></li>
+</ul>
+
+
+<p><code>python
+tf.linalg.tridiagonal_matmul(
+    diagonals,
+    rhs,
+    diagonals_format='compact',
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p><code>diagonals</code> is representation of 3-diagonal NxN matrix, which depends on
+<code>diagonals_format</code>.</p>
+
+<p>In <code>matrix</code> format, <code>diagonals</code> must be a tensor of shape <code>[..., M, M]</code>, with
+two inner-most dimensions representing the square tridiagonal matrices.
+Elements outside of the three diagonals will be ignored.</p>
+
+<p>If <code>sequence</code> format, <code>diagonals</code> is list or tuple of three tensors:
+<code>[superdiag, maindiag, subdiag]</code>, each having shape [&hellip;, M]. Last element
+of <code>superdiag</code> first element of <code>subdiag</code> are ignored.</p>
+
+<p>In <code>compact</code> format the three diagonals are brought together into one tensor
+of shape <code>[..., 3, M]</code>, with last two dimensions containing superdiagonals,
+diagonals, and subdiagonals, in order. Similarly to <code>sequence</code> format,
+elements <code>diagonals[..., 0, M-1]</code> and <code>diagonals[..., 2, 0]</code> are ignored.</p>
+
+<p>The <code>sequence</code> format is recommended as the one with the best performance.</p>
+
+<p><code>rhs</code> is matrix to the right of multiplication. It has shape <code>[..., M, N]</code>.</p>
+
+<h4>Example:</h4>
+
+<p><code>python
+superdiag = tf.constant([-1, -1, 0], dtype=tf.float64)
+maindiag = tf.constant([2, 2, 2], dtype=tf.float64)
+subdiag = tf.constant([0, -1, -1], dtype=tf.float64)
+diagonals = [superdiag, maindiag, subdiag]
+rhs = tf.constant([[1, 1], [1, 1], [1, 1]], dtype=tf.float64)
+x = tf.linalg.tridiagonal_matmul(diagonals, rhs, diagonals_format='sequence')
+</code></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>diagonals</code></b>: A <code>Tensor</code> or tuple of <code>Tensor</code>s describing left-hand sides. The
+shape depends of <code>diagonals_format</code>, see description above. Must be
+<code>float32</code>, <code>float64</code>, <code>complex64</code>, or <code>complex128</code>.</li>
+<li><b><code>rhs</code></b>: A <code>Tensor</code> of shape [&hellip;, M, N] and with the same dtype as <code>diagonals</code>.</li>
+<li><b><code>diagonals_format</code></b>: one of <code>sequence</code>, or <code>compact</code>. Default is <code>compact</code>.</li>
+<li><b><code>name</code></b>:  A name to give this <code>Op</code> (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> of shape [&hellip;, M, N] containing the result of multiplication.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: An unsupported type is provided as input, or when the input
+tensors have incorrect shapes.</li>
+</ul>
+

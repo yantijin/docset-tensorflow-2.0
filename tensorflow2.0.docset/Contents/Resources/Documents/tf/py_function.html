@@ -1,0 +1,125 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.py_function" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.py_function</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/script_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Wraps a python function into a TensorFlow op that executes it eagerly.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.py_function</code></li>
+<li><code>tf.compat.v2.py_function</code></li>
+</ul>
+
+
+<p><code>python
+tf.py_function(
+    func,
+    inp,
+    Tout,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>This function allows expressing computations in a TensorFlow graph as
+Python functions. In particular, it wraps a Python function <code>func</code>
+in a once-differentiable TensorFlow operation that executes it with eager
+execution enabled. As a consequence, <a href="../tf/py_function.html"><code>tf.py_function</code></a> makes it
+possible to express control flow using Python constructs (<code>if</code>, <code>while</code>,
+<code>for</code>, etc.), instead of TensorFlow control flow constructs (<a href="../tf/cond.html"><code>tf.cond</code></a>,
+<a href="../tf/while_loop.html"><code>tf.while_loop</code></a>). For example, you might use <a href="../tf/py_function.html"><code>tf.py_function</code></a> to
+implement the log huber function:</p>
+
+<p>```python
+def log_huber(x, m):
+  if tf.abs(x) &lt;= m:
+    return x<strong>2
+  else:
+    return m</strong>2 * (1 - 2 * tf.math.log(m) + tf.math.log(x**2))</p>
+
+<p>x = tf.compat.v1.placeholder(tf.float32)
+m = tf.compat.v1.placeholder(tf.float32)</p>
+
+<p>y = tf.py_function(func=log_huber, inp=[x, m], Tout=tf.float32)
+dy_dx = tf.gradients(y, x)[0]</p>
+
+<p>with tf.compat.v1.Session() as sess:
+  # The session executes <code>log_huber</code> eagerly. Given the feed values below,
+  # it will take the first branch, so <code>y</code> evaluates to 1.0 and
+  # <code>dy_dx</code> evaluates to 2.0.
+  y, dy_dx = sess.run([y, dy_dx], feed_dict={x: 1.0, m: 2.0})
+```</p>
+
+<p>You can also use <a href="../tf/py_function.html"><code>tf.py_function</code></a> to debug your models at runtime
+using Python tools, i.e., you can isolate portions of your code that
+you want to debug, wrap them in Python functions and insert <code>pdb</code> tracepoints
+or print statements as desired, and wrap those functions in
+<a href="../tf/py_function.html"><code>tf.py_function</code></a>.</p>
+
+<p>For more information on eager execution, see the
+<a href="https://tensorflow.org/guide/eager">Eager guide</a>.</p>
+
+<p><a href="../tf/py_function.html"><code>tf.py_function</code></a> is similar in spirit to <a href="../tf/compat/v1/py_func.html"><code>tf.compat.v1.py_func</code></a>, but unlike
+the latter, the former lets you use TensorFlow operations in the wrapped
+Python function. In particular, while <a href="../tf/compat/v1/py_func.html"><code>tf.compat.v1.py_func</code></a> only runs on CPUs
+and
+wraps functions that take NumPy arrays as inputs and return NumPy arrays as
+outputs, <a href="../tf/py_function.html"><code>tf.py_function</code></a> can be placed on GPUs and wraps functions
+that take Tensors as inputs, execute TensorFlow operations in their bodies,
+and return Tensors as outputs.</p>
+
+<p>Like <a href="../tf/compat/v1/py_func.html"><code>tf.compat.v1.py_func</code></a>, <a href="../tf/py_function.html"><code>tf.py_function</code></a> has the following limitations
+with respect to serialization and distribution:</p>
+
+<ul>
+<li><p>The body of the function (i.e. <code>func</code>) will not be serialized in a
+<code>GraphDef</code>. Therefore, you should not use this function if you need to
+serialize your model and restore it in a different environment.</p></li>
+<li><p>The operation must run in the same address space as the Python program
+that calls <a href="../tf/py_function.html"><code>tf.py_function()</code></a>. If you are using distributed
+TensorFlow, you must run a <a href="../tf/distribute/Server.html"><code>tf.distribute.Server</code></a> in the same process as the
+program that calls <a href="../tf/py_function.html"><code>tf.py_function()</code></a> and you must pin the created
+operation to a device in that server (e.g. using <code>with tf.device():</code>).</p></li>
+</ul>
+
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>func</code></b>: A Python function which accepts a list of <code>Tensor</code> objects having
+element types that match the corresponding <a href="../tf/Tensor.html"><code>tf.Tensor</code></a> objects in <code>inp</code>
+and returns a list of <code>Tensor</code> objects (or a single <code>Tensor</code>, or <code>None</code>)
+having element types that match the corresponding values in <code>Tout</code>.</li>
+<li><b><code>inp</code></b>: A list of <code>Tensor</code> objects.</li>
+<li><b><code>Tout</code></b>: A list or tuple of tensorflow data types or a single tensorflow data
+type if there is only one, indicating what <code>func</code> returns; an empty list
+if no value is returned (i.e., if the return value is <code>None</code>).</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A list of <code>Tensor</code> or a single <code>Tensor</code> which <code>func</code> computes; an empty list
+if <code>func</code> returns None.</p>

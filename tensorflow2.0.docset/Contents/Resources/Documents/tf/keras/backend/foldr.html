@@ -1,0 +1,58 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.backend.foldr" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.keras.backend.foldr</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/backend.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Reduce elems using fn to combine them from right to left.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.keras.backend.foldr</code></li>
+<li><code>tf.compat.v2.keras.backend.foldr</code></li>
+</ul>
+
+
+<p><code>python
+tf.keras.backend.foldr(
+    fn,
+    elems,
+    initializer=None,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>fn</code></b>: Callable that will be called upon each element in elems and an
+  accumulator, for instance <code>lambda acc, x: acc + x</code></li>
+<li><b><code>elems</code></b>: tensor</li>
+<li><b><code>initializer</code></b>: The first value used (<code>elems[-1]</code> in case of None)</li>
+<li><b><code>name</code></b>: A string name for the foldr node in the graph</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>Same type and shape as initializer</p>

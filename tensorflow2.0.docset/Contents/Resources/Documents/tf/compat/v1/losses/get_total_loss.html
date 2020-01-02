@@ -1,0 +1,63 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.losses.get_total_loss" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.losses.get_total_loss</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/losses/util.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Returns a tensor whose value represents the total loss.</p>
+
+<p><code>python
+tf.compat.v1.losses.get_total_loss(
+    add_regularization_losses=True,
+    name='total_loss',
+    scope=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>In particular, this adds any losses you have added with <code>tf.add_loss()</code> to
+any regularization losses that have been added by regularization parameters
+on layers constructors e.g. <code>tf.layers</code>. Be very sure to use this if you
+are constructing a loss_op manually. Otherwise regularization arguments
+on <code>tf.layers</code> methods will not function.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>add_regularization_losses</code></b>: A boolean indicating whether or not to use the
+regularization losses in the sum.</li>
+<li><b><code>name</code></b>: The name of the returned tensor.</li>
+<li><b><code>scope</code></b>: An optional scope name for filtering the losses to return. Note that
+this filters the losses added with <code>tf.add_loss()</code> as well as the
+regularization losses to that scope.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> whose value represents the total loss.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: if <code>losses</code> is not iterable.</li>
+</ul>
+

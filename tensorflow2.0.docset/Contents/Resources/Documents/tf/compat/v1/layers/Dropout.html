@@ -1,0 +1,87 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.layers.Dropout" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="graph"/>
+<meta itemprop="property" content="scope_name"/>
+<meta itemprop="property" content="__init__"/>
+</div>
+
+
+<h1>tf.compat.v1.layers.Dropout</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/layers/core.py">View source</a></p>
+
+<h2>Class <code>Dropout</code></h2>
+
+<!-- Start diff -->
+
+
+<p>Applies Dropout to the input.</p>
+
+<p>Inherits From: <a href="../../../../tf/keras/layers/Dropout.html"><code>Dropout</code></a>, <a href="../../../../tf/compat/v1/layers/Layer.html"><code>Layer</code></a></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Dropout consists in randomly setting a fraction <code>rate</code> of input units to 0
+at each update during training time, which helps prevent overfitting.
+The units that are kept are scaled by <code>1 / (1 - rate)</code>, so that their
+sum is unchanged at training time and inference time.</p>
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>rate</code></b>: The dropout rate, between 0 and 1. E.g. <code>rate=0.1</code> would drop out
+10% of input units.</li>
+<li><b><code>noise_shape</code></b>: 1D tensor of type <code>int32</code> representing the shape of the
+binary dropout mask that will be multiplied with the input.
+For instance, if your inputs have shape
+<code>(batch_size, timesteps, features)</code>, and you want the dropout mask
+to be the same for all timesteps, you can use
+<code>noise_shape=[batch_size, 1, features]</code>.</li>
+<li><b><code>seed</code></b>: A Python integer. Used to create random seeds. See
+<a href="../../../../tf/compat/v1/set_random_seed.html"><code>tf.compat.v1.set_random_seed</code></a>.
+for behavior.</li>
+<li><b><code>name</code></b>: The name of the layer (string).</li>
+</ul>
+
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/layers/core.py">View source</a></p>
+
+<p><code>python
+__init__(
+    rate=0.5,
+    noise_shape=None,
+    seed=None,
+    name=None,
+    **kwargs
+)
+</code></p>
+
+<h2>Properties</h2>
+
+<h3 id="graph"><code>graph</code></h3>
+
+
+<p>DEPRECATED FUNCTION</p>
+
+<p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
+Instructions for updating:
+Stop using this property because tf.layers layers no longer track their graph.</p>
+
+<h3 id="scope_name"><code>scope_name</code></h3>
+
+
+

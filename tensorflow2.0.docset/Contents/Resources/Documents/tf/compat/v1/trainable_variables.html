@@ -1,0 +1,50 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.trainable_variables" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.trainable_variables</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Returns all variables created with <code>trainable=True</code>.</p>
+
+<p><code>python
+tf.compat.v1.trainable_variables(scope=None)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>When passed <code>trainable=True</code>, the <code>Variable()</code> constructor automatically
+adds new variables to the graph collection
+<code>GraphKeys.TRAINABLE_VARIABLES</code>. This convenience function returns the
+contents of that collection.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>scope</code></b>: (Optional.) A string. If supplied, the resulting list is filtered to
+include only items whose <code>name</code> attribute matches <code>scope</code> using
+<code>re.match</code>. Items without a <code>name</code> attribute are never returned if a scope
+is supplied. The choice of <code>re.match</code> means that a <code>scope</code> without special
+tokens filters by prefix.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A list of Variable objects.</p>

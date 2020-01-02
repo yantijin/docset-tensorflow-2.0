@@ -1,0 +1,54 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.keras.backend.get_session" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.keras.backend.get_session</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/backend.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Returns the TF session to be used by the backend.</p>
+
+<p><code>python
+tf.compat.v1.keras.backend.get_session(op_input_list=())
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>If a default TensorFlow session is available, we will return it.</p>
+
+<p>Else, we will return the global Keras session assuming it matches
+the current graph.</p>
+
+<p>If no global Keras session exists at this point:
+we will create a new global session.</p>
+
+<p>Note that you can manually set the global session
+via <code>K.set_session(sess)</code>.</p>
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>op_input_list</code></b>: An option sequence of tensors or ops, which will be used
+to determine the current graph. Otherwise the default graph will be
+used.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A TensorFlow session.</p>

@@ -1,0 +1,89 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.signal.dct" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.signal.dct</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/signal/dct_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Computes the 1D <a href="https://en.wikipedia.org/wiki/Discrete_cosine_transform">Discrete Cosine Transform (DCT)</a> of <code>input</code>.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.signal.dct</code></li>
+<li><code>tf.compat.v1.spectral.dct</code></li>
+<li><code>tf.compat.v2.signal.dct</code></li>
+</ul>
+
+
+<p><code>python
+tf.signal.dct(
+    input,
+    type=2,
+    n=None,
+    axis=-1,
+    norm=None,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Currently only Types I, II and III are supported.
+Type I is implemented using a length <code>2N</code> padded <a href="../../tf/signal/rfft.html"><code>tf.signal.rfft</code></a>.
+Type II is implemented using a length <code>2N</code> padded <a href="../../tf/signal/rfft.html"><code>tf.signal.rfft</code></a>, as
+described here: <a href="https://dsp.stackexchange.com/a/10606">Type 2 DCT using 2N FFT padded (Makhoul)</a>.
+Type III is a fairly straightforward inverse of Type II
+(i.e. using a length <code>2N</code> padded <a href="../../tf/signal/irfft.html"><code>tf.signal.irfft</code></a>).</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>input</code></b>: A <code>[..., samples]</code> <code>float32</code> <code>Tensor</code> containing the signals to
+take the DCT of.</li>
+<li><b><code>type</code></b>: The DCT type to perform. Must be 1, 2 or 3.</li>
+<li><b><code>n</code></b>: The length of the transform. If length is less than sequence length,
+only the first n elements of the sequence are considered for the DCT.
+If n is greater than the sequence length, zeros are padded and then
+the DCT is computed as usual.</li>
+<li><b><code>axis</code></b>: For future expansion. The axis to compute the DCT along. Must be <code>-1</code>.</li>
+<li><b><code>norm</code></b>: The normalization to apply. <code>None</code> for no normalization or <code>'ortho'</code>
+for orthonormal normalization.</li>
+<li><b><code>name</code></b>: An optional name for the operation.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>[..., samples]</code> <code>float32</code> <code>Tensor</code> containing the DCT of <code>input</code>.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If <code>type</code> is not <code>1</code>, <code>2</code> or <code>3</code>, <code>axis</code> is
+not <code>-1</code>, <code>n</code> is not <code>None</code> or greater than 0,
+or <code>norm</code> is not <code>None</code> or <code>'ortho'</code>.</li>
+<li><b><code>ValueError</code></b>: If <code>type</code> is <code>1</code> and <code>norm</code> is <code>ortho</code>.</li>
+</ul>
+
+
+<h4>Scipy Compatibility</h4>
+
+<p>Equivalent to <a href="https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.fftpack.dct.html">scipy.fftpack.dct</a>
+ for Type-I, Type-II and Type-III DCT.</p>

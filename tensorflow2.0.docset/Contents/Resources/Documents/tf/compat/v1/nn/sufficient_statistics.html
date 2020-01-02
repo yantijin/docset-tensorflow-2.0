@@ -1,0 +1,67 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.nn.sufficient_statistics" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.nn.sufficient_statistics</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/nn_impl.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Calculate the sufficient statistics for the mean and variance of <code>x</code>.</p>
+
+<p><code>python
+tf.compat.v1.nn.sufficient_statistics(
+    x,
+    axes,
+    shift=None,
+    keep_dims=None,
+    name=None,
+    keepdims=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>These sufficient statistics are computed using the one pass algorithm on
+an input that&rsquo;s optionally shifted. See:
+https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Computing_shifted_data</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code>.</li>
+<li><b><code>axes</code></b>: Array of ints. Axes along which to compute mean and variance.</li>
+<li><b><code>shift</code></b>: A <code>Tensor</code> containing the value by which to shift the data for
+numerical stability, or <code>None</code> if no shift is to be performed. A shift
+close to the true mean provides the most numerically stable results.</li>
+<li><b><code>keep_dims</code></b>: produce statistics with the same dimensionality as the input.</li>
+<li><b><code>name</code></b>: Name used to scope the operations that compute the sufficient stats.</li>
+<li><b><code>keepdims</code></b>: Alias for keep_dims.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>Four <code>Tensor</code> objects of the same type as <code>x</code>:</p>
+
+<ul>
+<li>the count (number of elements to average over).</li>
+<li>the (possibly shifted) sum of the elements in the array.</li>
+<li>the (possibly shifted) sum of squares of the elements in the array.</li>
+<li>the shift by which the mean must be corrected or None if <code>shift</code> is None.</li>
+</ul>
+

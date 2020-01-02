@@ -1,0 +1,82 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.layers.GlobalAveragePooling2D" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__init__"/>
+</div>
+
+
+<h1>tf.keras.layers.GlobalAveragePooling2D</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/pooling.py">View source</a></p>
+
+<h2>Class <code>GlobalAveragePooling2D</code></h2>
+
+<!-- Start diff -->
+
+
+<p>Global average pooling operation for spatial data.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li>Class <code>tf.compat.v1.keras.layers.GlobalAveragePooling2D</code></li>
+<li>Class <code>tf.compat.v1.keras.layers.GlobalAvgPool2D</code></li>
+<li>Class <code>tf.compat.v2.keras.layers.GlobalAveragePooling2D</code></li>
+<li>Class <code>tf.compat.v2.keras.layers.GlobalAvgPool2D</code></li>
+<li>Class <code>tf.keras.layers.GlobalAvgPool2D</code></li>
+</ul>
+
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>data_format</code></b>: A string,
+one of <code>channels_last</code> (default) or <code>channels_first</code>.
+The ordering of the dimensions in the inputs.
+<code>channels_last</code> corresponds to inputs with shape
+<code>(batch, height, width, channels)</code> while <code>channels_first</code>
+corresponds to inputs with shape
+<code>(batch, channels, height, width)</code>.
+It defaults to the <code>image_data_format</code> value found in your
+Keras config file at <code>~/.keras/keras.json</code>.
+If you never set it, then it will be &ldquo;channels_last&rdquo;.</li>
+</ul>
+
+
+<h4>Input shape:</h4>
+
+<ul>
+<li>If <code>data_format='channels_last'</code>:
+4D tensor with shape <code>(batch_size, rows, cols, channels)</code>.</li>
+<li>If <code>data_format='channels_first'</code>:
+4D tensor with shape <code>(batch_size, channels, rows, cols)</code>.</li>
+</ul>
+
+
+<h4>Output shape:</h4>
+
+<p>2D tensor with shape <code>(batch_size, channels)</code>.</p>
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/pooling.py">View source</a></p>
+
+<p><code>python
+__init__(
+    data_format=None,
+    **kwargs
+)
+</code></p>

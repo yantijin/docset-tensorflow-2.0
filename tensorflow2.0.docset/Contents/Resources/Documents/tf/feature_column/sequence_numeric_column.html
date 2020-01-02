@@ -1,0 +1,91 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.feature_column.sequence_numeric_column" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.feature_column.sequence_numeric_column</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/feature_column/sequence_feature_column.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Returns a feature column that represents sequences of numeric data.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.feature_column.sequence_numeric_column</code></li>
+<li><code>tf.compat.v2.feature_column.sequence_numeric_column</code></li>
+</ul>
+
+
+<p><code>python
+tf.feature_column.sequence_numeric_column(
+    key,
+    shape=(1,),
+    default_value=0.0,
+    dtype=tf.dtypes.float32,
+    normalizer_fn=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Example:</h4>
+
+<p>```python
+temperature = sequence_numeric_column(&lsquo;temperature&rsquo;)
+columns = [temperature]</p>
+
+<p>features = tf.io.parse_example(&hellip;, features=make_parse_example_spec(columns))
+sequence_feature_layer = SequenceFeatures(columns)
+sequence_input, sequence_length = sequence_feature_layer(features)
+sequence_length_mask = tf.sequence_mask(sequence_length)</p>
+
+<p>rnn_cell = tf.keras.layers.SimpleRNNCell(hidden_size)
+rnn_layer = tf.keras.layers.RNN(rnn_cell)
+outputs, state = rnn_layer(sequence_input, mask=sequence_length_mask)
+```</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>key</code></b>: A unique string identifying the input features.</li>
+<li><b><code>shape</code></b>: The shape of the input data per sequence id. E.g. if <code>shape=(2,)</code>,
+each example must contain <code>2 * sequence_length</code> values.</li>
+<li><b><code>default_value</code></b>: A single value compatible with <code>dtype</code> that is used for
+padding the sparse data into a dense <code>Tensor</code>.</li>
+<li><b><code>dtype</code></b>: The type of values.</li>
+<li><b><code>normalizer_fn</code></b>: If not <code>None</code>, a function that can be used to normalize the
+value of the tensor after <code>default_value</code> is applied for parsing.
+Normalizer function takes the input <code>Tensor</code> as its argument, and returns
+the output <code>Tensor</code>. (e.g. lambda x: (x - 3.0) / 4.2). Please note that
+even though the most common use case of this function is normalization, it
+can be used for any kind of Tensorflow transformations.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>SequenceNumericColumn</code>.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>TypeError</code></b>: if any dimension in shape is not an int.</li>
+<li><b><code>ValueError</code></b>: if any dimension in shape is not a positive integer.</li>
+<li><b><code>ValueError</code></b>: if <code>dtype</code> is not convertible to <a href="../../tf.html#float32"><code>tf.float32</code></a>.</li>
+</ul>
+

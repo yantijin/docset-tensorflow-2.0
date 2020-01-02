@@ -1,0 +1,72 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.summary.experimental.summary_scope" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.summary.experimental.summary_scope</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/summary_ops_v2.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Experimental context manager for use when defining a custom summary op.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v2.summary.experimental.summary_scope</code></li>
+</ul>
+
+
+<p><code>python
+tf.summary.experimental.summary_scope(
+    name,
+    default_name='summary',
+    values=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>This behaves similarly to <a href="../../../tf/name_scope.html"><code>tf.name_scope</code></a>, except that it returns a generated
+summary tag in addition to the scope name. The tag is structurally similar to
+the scope name - derived from the user-provided name, prefixed with enclosing
+name scopes if any - but we relax the constraint that it be uniquified, as
+well as the character set limitation (so the user-provided name can contain
+characters not legal for scope names; in the scope name these are removed).</p>
+
+<p>This makes the summary tag more predictable and consistent for the user.</p>
+
+<p>For example, to define a new summary op called <code>my_op</code>:</p>
+
+<p><code>python
+def my_op(name, my_value, step):
+  with tf.summary.summary_scope(name, "MyOp", [my_value]) as (tag, scope):
+    my_value = tf.convert_to_tensor(my_value)
+    return tf.summary.write(tag, my_value, step=step)
+</code></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>name</code></b>: string name for the summary.</li>
+<li><b><code>default_name</code></b>: Optional; if provided, used as default name of the summary.</li>
+<li><b><code>values</code></b>: Optional; passed as <code>values</code> parameter to name_scope.</li>
+</ul>
+
+
+<h4>Yields:</h4>
+
+<p>A tuple <code>(tag, scope)</code> as described above.</p>

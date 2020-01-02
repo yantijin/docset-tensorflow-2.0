@@ -1,0 +1,95 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.models.save_model" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.keras.models.save_model</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/saving/save.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Saves a model as a TensorFlow SavedModel or HDF5 file.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.keras.models.save_model</code></li>
+<li><code>tf.compat.v2.keras.models.save_model</code></li>
+</ul>
+
+
+<p><code>python
+tf.keras.models.save_model(
+    model,
+    filepath,
+    overwrite=True,
+    include_optimizer=True,
+    save_format=None,
+    signatures=None,
+    options=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>The saved model contains:
+    - the model&rsquo;s configuration (topology)
+    - the model&rsquo;s weights
+    - the model&rsquo;s optimizer&rsquo;s state (if any)</p>
+
+<p>Thus the saved model can be reinstantiated in
+the exact same state, without any of the code
+used for model definition or training.</p>
+
+<p><em>SavedModel serialization</em> (not yet added)</p>
+
+<p>The SavedModel serialization path uses <a href="../../../tf/saved_model/save.html"><code>tf.saved_model.save</code></a> to save the model
+and all trackable objects attached to the model (e.g. layers and variables).
+<code>@tf.function</code>-decorated methods are also saved. Additional trackable objects
+and functions are added to the SavedModel to allow the model to be
+loaded back as a Keras Model object.</p>
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>model</code></b>: Keras model instance to be saved.</li>
+<li><b><code>filepath</code></b>: One of the following:
+
+<ul>
+<li>String, path where to save the model</li>
+<li><code>h5py.File</code> object where to save the model</li>
+</ul>
+</li>
+<li><b><code>overwrite</code></b>: Whether we should overwrite any existing model at the target
+location, or instead ask the user with a manual prompt.</li>
+<li><b><code>include_optimizer</code></b>: If True, save optimizer&rsquo;s state together.</li>
+<li><b><code>save_format</code></b>: Either &lsquo;tf&rsquo; or &lsquo;h5&rsquo;, indicating whether to save the model
+to Tensorflow SavedModel or HDF5. Defaults to &lsquo;tf&rsquo; in TF 2.X, and &lsquo;h5&rsquo;
+in TF 1.X.</li>
+<li><b><code>signatures</code></b>: Signatures to save with the SavedModel. Applicable to the &lsquo;tf&rsquo;
+format only. Please see the <code>signatures</code> argument in
+<a href="../../../tf/saved_model/save.html"><code>tf.saved_model.save</code></a> for details.</li>
+<li><b><code>options</code></b>: Optional <a href="../../../tf/saved_model/SaveOptions.html"><code>tf.saved_model.SaveOptions</code></a> object that specifies
+options for saving to SavedModel.</li>
+</ul>
+
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ImportError</code></b>: If save format is hdf5, and h5py is not available.</li>
+</ul>
+

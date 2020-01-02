@@ -1,0 +1,52 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.is_tensor" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.is_tensor</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_util.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Checks whether <code>x</code> is a tensor or &ldquo;tensor-like&rdquo;.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.is_tensor</code></li>
+<li><code>tf.compat.v2.is_tensor</code></li>
+</ul>
+
+
+<p><code>python
+tf.is_tensor(x)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>If <code>is_tensor(x)</code> returns <code>True</code>, it is safe to assume that <code>x</code> is a tensor or
+can be converted to a tensor using <code>ops.convert_to_tensor(x)</code>.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>: A python object to check.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p><code>True</code> if <code>x</code> is a tensor or &ldquo;tensor-like&rdquo;, <code>False</code> if not.</p>

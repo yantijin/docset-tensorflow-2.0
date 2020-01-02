@@ -1,0 +1,98 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.RegisterGradient" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__call__"/>
+<meta itemprop="property" content="__init__"/>
+</div>
+
+
+<h1>tf.RegisterGradient</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/ops.py">View source</a></p>
+
+<h2>Class <code>RegisterGradient</code></h2>
+
+<!-- Start diff -->
+
+
+<p>A decorator for registering the gradient function for an op type.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li>Class <code>tf.compat.v1.RegisterGradient</code></li>
+<li>Class <code>tf.compat.v2.RegisterGradient</code></li>
+</ul>
+
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>This decorator is only used when defining a new op type. For an op
+with <code>m</code> inputs and <code>n</code> outputs, the gradient function is a function
+that takes the original <code>Operation</code> and <code>n</code> <code>Tensor</code> objects
+(representing the gradients with respect to each output of the op),
+and returns <code>m</code> <code>Tensor</code> objects (representing the partial gradients
+with respect to each input of the op).</p>
+
+<p>For example, assuming that operations of type <code>"Sub"</code> take two
+inputs <code>x</code> and <code>y</code>, and return a single output <code>x - y</code>, the
+following gradient function would be registered:</p>
+
+<p><code>python
+@tf.RegisterGradient("Sub")
+def _sub_grad(unused_op, grad):
+  return grad, tf.negative(grad)
+</code></p>
+
+<p>The decorator argument <code>op_type</code> is the string type of an
+operation. This corresponds to the <code>OpDef.name</code> field for the proto
+that defines the operation.</p>
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/ops.py">View source</a></p>
+
+<p><code>python
+__init__(op_type)
+</code></p>
+
+<p>Creates a new decorator with <code>op_type</code> as the Operation type.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>op_type</code></b>: The string type of an operation. This corresponds to the
+<code>OpDef.name</code> field for the proto that defines the operation.</li>
+</ul>
+
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>TypeError</code></b>: If <code>op_type</code> is not string.</li>
+</ul>
+
+
+<h2>Methods</h2>
+
+<h3 id="__call__"><code>__call__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/ops.py">View source</a></p>
+
+<p><code>python
+__call__(f)
+</code></p>
+
+<p>Registers the function <code>f</code> as gradient function for <code>op_type</code>.</p>

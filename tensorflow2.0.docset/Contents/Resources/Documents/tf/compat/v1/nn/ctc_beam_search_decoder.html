@@ -1,0 +1,85 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.nn.ctc_beam_search_decoder" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.nn.ctc_beam_search_decoder</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/ctc_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Performs beam search decoding on the logits given in input.</p>
+
+<p><code>python
+tf.compat.v1.nn.ctc_beam_search_decoder(
+    inputs,
+    sequence_length,
+    beam_width=100,
+    top_paths=1,
+    merge_repeated=True
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p><strong>Note</strong> The <code>ctc_greedy_decoder</code> is a special case of the
+<code>ctc_beam_search_decoder</code> with <code>top_paths=1</code> and <code>beam_width=1</code> (but
+that decoder is faster for this special case).</p>
+
+<p>If <code>merge_repeated</code> is <code>True</code>, merge repeated classes in the output beams.
+This means that if consecutive entries in a beam are the same,
+only the first of these is emitted.  That is, when the sequence is
+<code>A B B * B * B</code> (where &lsquo;*&rsquo; is the blank label), the return value is:</p>
+
+<ul>
+<li><code>A B</code> if <code>merge_repeated = True</code>.</li>
+<li><code>A B B B</code> if <code>merge_repeated = False</code>.</li>
+</ul>
+
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>inputs</code></b>: 3-D <code>float</code> <code>Tensor</code>, size <code>[max_time x batch_size x num_classes]</code>.
+The logits.</li>
+<li><b><code>sequence_length</code></b>: 1-D <code>int32</code> vector containing sequence lengths, having size
+<code>[batch_size]</code>.</li>
+<li><b><code>beam_width</code></b>: An int scalar >= 0 (beam search beam width).</li>
+<li><b><code>top_paths</code></b>: An int scalar >= 0, &lt;= beam_width (controls output size).</li>
+<li><b><code>merge_repeated</code></b>: Boolean.  Default: True.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A tuple <code>(decoded, log_probabilities)</code> where</p>
+
+<ul>
+<li><p><b><code>decoded</code></b>: A list of length top_paths, where <code>decoded[j]</code>
+is a <code>SparseTensor</code> containing the decoded outputs:</p>
+
+<p><code>decoded[j].indices</code>: Indices matrix <code>(total_decoded_outputs[j] x 2)</code>
+  The rows store: [batch, time].</p>
+
+<p><code>decoded[j].values</code>: Values vector, size <code>(total_decoded_outputs[j])</code>.
+  The vector stores the decoded classes for beam j.</p>
+
+<p><code>decoded[j].dense_shape</code>: Shape vector, size <code>(2)</code>.
+  The shape values are: <code>[batch_size, max_decoded_length[j]]</code>.</p></li>
+<li><p><b><code>log_probability</code></b>: A <code>float</code> matrix <code>(batch_size x top_paths)</code> containing
+  sequence log-probabilities.</p></li>
+</ul>
+

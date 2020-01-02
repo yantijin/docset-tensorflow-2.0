@@ -1,0 +1,85 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.scatter_max" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.scatter_max</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/state_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Reduces sparse updates into a variable reference using the <code>max</code> operation.</p>
+
+<p><code>python
+tf.compat.v1.scatter_max(
+    ref,
+    indices,
+    updates,
+    use_locking=False,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>This operation computes</p>
+
+<pre><code># Scalar indices
+ref[indices, ...] = max(ref[indices, ...], updates[...])
+
+# Vector indices (for each i)
+ref[indices[i], ...] = max(ref[indices[i], ...], updates[i, ...])
+
+# High rank indices (for each i, ..., j)
+ref[indices[i, ..., j], ...] = max(ref[indices[i, ..., j], ...],
+updates[i, ..., j, ...])
+</code></pre>
+
+<p>This operation outputs <code>ref</code> after the update is done.
+This makes it easier to chain operations that need to use the reset value.</p>
+
+<p>Duplicate entries are handled correctly: if multiple <code>indices</code> reference
+the same location, their contributions combine.</p>
+
+<p>Requires <code>updates.shape = indices.shape + ref.shape[1:]</code> or <code>updates.shape =
+[]</code>.</p>
+
+<div style="width:70%; margin:auto; margin-bottom:10px; margin-top:20px;">
+<img style="width:100%" src="https://www.tensorflow.org/images/ScatterAdd.png"
+alt>
+</div>
+
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>ref</code></b>: A mutable <code>Tensor</code>. Must be one of the following types: <code>half</code>,
+<code>bfloat16</code>, <code>float32</code>, <code>float64</code>, <code>int32</code>, <code>int64</code>. Should be from a
+<code>Variable</code> node.</li>
+<li><b><code>indices</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>int32</code>, <code>int64</code>. A
+tensor of indices into the first dimension of <code>ref</code>.</li>
+<li><b><code>updates</code></b>: A <code>Tensor</code>. Must have the same type as <code>ref</code>. A tensor of updated
+values to reduce into <code>ref</code>.</li>
+<li><b><code>use_locking</code></b>: An optional <code>bool</code>. Defaults to <code>False</code>. If True, the update
+will be protected by a lock; otherwise the behavior is undefined, but may
+exhibit less contention.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A mutable <code>Tensor</code>. Has the same type as <code>ref</code>.</p>

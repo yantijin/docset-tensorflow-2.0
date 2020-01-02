@@ -1,0 +1,57 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.min_max_variable_partitioner" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.min_max_variable_partitioner</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/partitioned_variables.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Partitioner to allocate minimum size per slice.</p>
+
+<p><code>python
+tf.compat.v1.min_max_variable_partitioner(
+    max_partitions=1,
+    axis=0,
+    min_slice_size=(256 &lt;&lt; 10),
+    bytes_per_string_element=16
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Returns a partitioner that partitions the variable of given shape and dtype
+such that each partition has a minimum of <code>min_slice_size</code> slice of the
+variable. The maximum number of such partitions (upper bound) is given by
+<code>max_partitions</code>.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>max_partitions</code></b>: Upper bound on the number of partitions. Defaults to 1.</li>
+<li><b><code>axis</code></b>: Axis along which to partition the variable. Defaults to 0.</li>
+<li><b><code>min_slice_size</code></b>: Minimum size of the variable slice per partition. Defaults
+to 256K.</li>
+<li><b><code>bytes_per_string_element</code></b>: If the <code>Variable</code> is of type string, this provides
+an estimate of how large each scalar in the <code>Variable</code> is.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A partition function usable as the <code>partitioner</code> argument to
+<code>variable_scope</code> and <code>get_variable</code>.</p>

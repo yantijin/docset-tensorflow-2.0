@@ -1,0 +1,57 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.tpu.experimental.initialize_tpu_system" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.tpu.experimental.initialize_tpu_system</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/tpu/tpu_strategy_util.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Initialize the TPU devices.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.tpu.experimental.initialize_tpu_system</code></li>
+<li><code>tf.compat.v2.tpu.experimental.initialize_tpu_system</code></li>
+</ul>
+
+
+<p><code>python
+tf.tpu.experimental.initialize_tpu_system(cluster_resolver=None)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>cluster_resolver</code></b>: A tf.distribute.cluster_resolver.TPUClusterResolver,
+  which provides information about the TPU cluster.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>The tf.tpu.Topology object for the topology of the TPU cluster.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>RuntimeError</code></b>: If no TPU devices found for eager execution.</li>
+</ul>
+

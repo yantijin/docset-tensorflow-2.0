@@ -1,0 +1,137 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.estimator.CheckpointSaverListener" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="after_save"/>
+<meta itemprop="property" content="before_save"/>
+<meta itemprop="property" content="begin"/>
+<meta itemprop="property" content="end"/>
+</div>
+
+
+<h1>tf.estimator.CheckpointSaverListener</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/basic_session_run_hooks.py">View source</a></p>
+
+<h2>Class <code>CheckpointSaverListener</code></h2>
+
+<!-- Start diff -->
+
+
+<p>Interface for listeners that take action before or after checkpoint save.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li>Class <code>tf.compat.v1.estimator.CheckpointSaverListener</code></li>
+<li>Class <code>tf.compat.v1.train.CheckpointSaverListener</code></li>
+<li>Class <code>tf.compat.v2.estimator.CheckpointSaverListener</code></li>
+</ul>
+
+
+<!-- Placeholder for "Used in" -->
+
+
+<p><code>CheckpointSaverListener</code> triggers only in steps when <code>CheckpointSaverHook</code> is
+triggered, and provides callbacks at the following points:
+ - before using the session
+ - before each call to <code>Saver.save()</code>
+ - after each call to <code>Saver.save()</code>
+ - at the end of session</p>
+
+<p>To use a listener, implement a class and pass the listener to a
+<code>CheckpointSaverHook</code>, as in this example:</p>
+
+<p>```python
+class ExampleCheckpointSaverListener(CheckpointSaverListener):
+  def begin(self):
+    # You can add ops to the graph here.
+    print(&lsquo;Starting the session.&rsquo;)
+    self.your_tensor = &hellip;</p>
+
+<p>  def before_save(self, session, global_step_value):
+    print(&lsquo;About to write a checkpoint&rsquo;)</p>
+
+<p>  def after_save(self, session, global_step_value):
+    print(&lsquo;Done writing checkpoint.&rsquo;)
+    if decided_to_stop_training():
+      return True</p>
+
+<p>  def end(self, session, global_step_value):
+    print(&lsquo;Done with the session.&rsquo;)</p>
+
+<p>&hellip;
+listener = ExampleCheckpointSaverListener()
+saver_hook = tf.estimator.CheckpointSaverHook(
+    checkpoint_dir, listeners=[listener])
+with
+tf.compat.v1.train.MonitoredTrainingSession(chief_only_hooks=[saver_hook]):
+  &hellip;
+```</p>
+
+<p>A <code>CheckpointSaverListener</code> may simply take some action after every
+checkpoint save. It is also possible for the listener to use its own schedule
+to act less frequently, e.g. based on global_step_value. In this case,
+implementors should implement the <code>end()</code> method to handle actions related to
+the last checkpoint save. But the listener should not act twice if
+<code>after_save()</code> already handled this last checkpoint save.</p>
+
+<p>A <code>CheckpointSaverListener</code> can request training to be stopped, by returning
+True in <code>after_save</code>. Please note that, in replicated distributed training
+setting, only <code>chief</code> should use this behavior. Otherwise each worker will do
+their own evaluation, which may be wasteful of resources.</p>
+
+<h2>Methods</h2>
+
+<h3 id="after_save"><code>after_save</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/basic_session_run_hooks.py">View source</a></p>
+
+<p><code>python
+after_save(
+    session,
+    global_step_value
+)
+</code></p>
+
+<h3 id="before_save"><code>before_save</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/basic_session_run_hooks.py">View source</a></p>
+
+<p><code>python
+before_save(
+    session,
+    global_step_value
+)
+</code></p>
+
+<h3 id="begin"><code>begin</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/basic_session_run_hooks.py">View source</a></p>
+
+<p><code>python
+begin()
+</code></p>
+
+<h3 id="end"><code>end</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/basic_session_run_hooks.py">View source</a></p>
+
+<p><code>python
+end(
+    session,
+    global_step_value
+)
+</code></p>

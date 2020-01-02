@@ -1,0 +1,87 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.enable_v2_tensorshape" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.enable_v2_tensorshape</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>In TensorFlow 2.0, iterating over a TensorShape instance returns values.</p>
+
+<p><code>python
+tf.compat.v1.enable_v2_tensorshape()
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>This enables the new behavior.</p>
+
+<p>Concretely, <code>tensor_shape[i]</code> returned a Dimension instance in V1, but
+it V2 it returns either an integer, or None.</p>
+
+<h4>Examples:</h4>
+
+<p>```</p>
+
+<h6>#</h6>
+
+<h1>If you had this in V1:</h1>
+
+<p>value = tensor_shape[i].value</p>
+
+<h1>Do this in V2 instead:</h1>
+
+<p>value = tensor_shape[i]</p>
+
+<h6>#</h6>
+
+<h1>If you had this in V1:</h1>
+
+<p>for dim in tensor_shape:
+  value = dim.value
+  print(value)</p>
+
+<h1>Do this in V2 instead:</h1>
+
+<p>for value in tensor_shape:
+  print(value)</p>
+
+<h6>#</h6>
+
+<h1>If you had this in V1:</h1>
+
+<p>dim = tensor_shape[i]
+dim.assert_is_compatible_with(other_shape)  # or using any other shape method</p>
+
+<h1>Do this in V2 instead:</h1>
+
+<p>if tensor_shape.rank is None:
+  dim = Dimension(None)
+else:
+  dim = tensor_shape.dims[i]
+dim.assert_is_compatible_with(other_shape)  # or using any other shape method</p>
+
+<h1>The V2 suggestion above is more explicit, which will save you from</h1>
+
+<h1>the following trap (present in V1):</h1>
+
+<h1>you might do in-place modifications to <code>dim</code> and expect them to be reflected</h1>
+
+<h1>in <code>tensor_shape[i]</code>, but they would not be.</h1>
+
+<p>```</p>

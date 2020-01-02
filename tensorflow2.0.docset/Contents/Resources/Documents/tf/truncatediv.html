@@ -1,0 +1,63 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.truncatediv" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.truncatediv</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p>Defined in generated file: <code>python/ops/gen_math_ops.py</code></p>
+
+<!-- Start diff -->
+
+
+<p>Returns x / y element-wise for integer types.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.truncatediv</code></li>
+<li><code>tf.compat.v2.truncatediv</code></li>
+</ul>
+
+
+<p><code>python
+tf.truncatediv(
+    x,
+    y,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Truncation designates that negative numbers will round fractional quantities
+toward zero. I.e. -7 / 5 = -1. This matches C semantics but it is different
+than Python semantics. See <code>FloorDiv</code> for a division function that matches
+Python Semantics.</p>
+
+<p><em>NOTE</em>: <code>truncatediv</code> supports broadcasting. More about broadcasting
+<a href="http://docs.scipy.org/doc/numpy/user/basics.broadcasting.html">here</a></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>bfloat16</code>, <code>half</code>, <code>float32</code>, <code>float64</code>, <code>uint8</code>, <code>int8</code>, <code>uint16</code>, <code>int16</code>, <code>int32</code>, <code>int64</code>, <code>complex64</code>, <code>complex128</code>.</li>
+<li><b><code>y</code></b>: A <code>Tensor</code>. Must have the same type as <code>x</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code>. Has the same type as <code>x</code>.</p>

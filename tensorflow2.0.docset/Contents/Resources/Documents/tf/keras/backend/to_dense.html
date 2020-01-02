@@ -1,0 +1,61 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.backend.to_dense" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.keras.backend.to_dense</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/backend.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Converts a sparse tensor into a dense tensor and returns it.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.keras.backend.to_dense</code></li>
+<li><code>tf.compat.v2.keras.backend.to_dense</code></li>
+</ul>
+
+
+<p><code>python
+tf.keras.backend.to_dense(tensor)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>tensor</code></b>: A tensor instance (potentially sparse).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A dense tensor.</p>
+
+<h4>Examples:</h4>
+
+<p><code>python
+    &gt;&gt;&gt; from keras import backend as K
+    &gt;&gt;&gt; b = K.placeholder((2, 2), sparse=True)
+    &gt;&gt;&gt; print(K.is_sparse(b))
+    True
+    &gt;&gt;&gt; c = K.to_dense(b)
+    &gt;&gt;&gt; print(K.is_sparse(c))
+    False
+</code></p>

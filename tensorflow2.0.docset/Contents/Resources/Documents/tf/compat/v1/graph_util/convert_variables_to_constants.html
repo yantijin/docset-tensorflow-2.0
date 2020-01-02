@@ -1,0 +1,62 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.graph_util.convert_variables_to_constants" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.graph_util.convert_variables_to_constants</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/graph_util_impl.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Replaces all the variables in a graph with constants of the same values. (deprecated)</p>
+
+<p><code>python
+tf.compat.v1.graph_util.convert_variables_to_constants(
+    sess,
+    input_graph_def,
+    output_node_names,
+    variable_names_whitelist=None,
+    variable_names_blacklist=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
+Instructions for updating:
+Use <a href="../../../../tf/compat/v1/graph_util/convert_variables_to_constants.html"><code>tf.compat.v1.graph_util.convert_variables_to_constants</code></a></p>
+
+<p>If you have a trained graph containing Variable ops, it can be convenient to
+convert them all to Const ops holding the same values. This makes it possible
+to describe the network fully with a single GraphDef file, and allows the
+removal of a lot of ops related to loading and saving the variables.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>sess</code></b>: Active TensorFlow session containing the variables.</li>
+<li><b><code>input_graph_def</code></b>: GraphDef object holding the network.</li>
+<li><b><code>output_node_names</code></b>: List of name strings for the result nodes of the graph.</li>
+<li><b><code>variable_names_whitelist</code></b>: The set of variable names to convert (by default,
+                        all variables are converted).</li>
+<li><b><code>variable_names_blacklist</code></b>: The set of variable names to omit converting
+                        to constants.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>GraphDef containing a simplified version of the original.</p>

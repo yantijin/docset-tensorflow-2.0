@@ -1,0 +1,76 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.stop_gradient" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.stop_gradient</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p>Defined in generated file: <code>python/ops/gen_array_ops.py</code></p>
+
+<!-- Start diff -->
+
+
+<p>Stops gradient computation.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.stop_gradient</code></li>
+<li><code>tf.compat.v2.stop_gradient</code></li>
+</ul>
+
+
+<p><code>python
+tf.stop_gradient(
+    input,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>When executed in a graph, this op outputs its input tensor as-is.</p>
+
+<p>When building ops to compute gradients, this op prevents the contribution of
+its inputs to be taken into account.  Normally, the gradient generator adds ops
+to a graph to compute the derivatives of a specified &lsquo;loss&rsquo; by recursively
+finding out inputs that contributed to its computation.  If you insert this op
+in the graph it inputs are masked from the gradient generator.  They are not
+taken into account for computing gradients.</p>
+
+<p>This is useful any time you want to compute a value with TensorFlow but need
+to pretend that the value was a constant. Some examples include:</p>
+
+<ul>
+<li>The <em>EM</em> algorithm where the <em>M-step</em> should not involve backpropagation
+through the output of the <em>E-step</em>.</li>
+<li>Contrastive divergence training of Boltzmann machines where, when
+differentiating the energy function, the training must not backpropagate
+through the graph that generated the samples from the model.</li>
+<li>Adversarial training, where no backprop should happen through the adversarial
+example generation process.</li>
+</ul>
+
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>input</code></b>: A <code>Tensor</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code>. Has the same type as <code>input</code>.</p>

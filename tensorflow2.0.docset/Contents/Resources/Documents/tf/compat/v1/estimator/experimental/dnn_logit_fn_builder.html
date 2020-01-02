@@ -1,0 +1,71 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.estimator.experimental.dnn_logit_fn_builder" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.estimator.experimental.dnn_logit_fn_builder</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+
+<td>
+  <a target="_blank" href="https://github.com/tensorflow/estimator/tree/master/tensorflow_estimator/python/estimator/canned/dnn.py">
+    <img src="https://www.tensorflow.org/images/GitHub-Mark-32px.png" />
+    View source on GitHub
+  </a>
+</td></table>
+
+
+
+
+<!-- Start diff -->
+
+
+<p>Function builder for a dnn logit_fn.</p>
+
+<p><code>python
+tf.compat.v1.estimator.experimental.dnn_logit_fn_builder(
+    units,
+    hidden_units,
+    feature_columns,
+    activation_fn,
+    dropout,
+    input_layer_partitioner,
+    batch_norm
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>units</code></b>: An int indicating the dimension of the logit layer.  In the
+MultiHead case, this should be the sum of all component Heads' logit
+dimensions.</li>
+<li><b><code>hidden_units</code></b>: Iterable of integer number of hidden units per layer.</li>
+<li><b><code>feature_columns</code></b>: Iterable of <code>feature_column._FeatureColumn</code> model inputs.</li>
+<li><b><code>activation_fn</code></b>: Activation function applied to each layer.</li>
+<li><b><code>dropout</code></b>: When not <code>None</code>, the probability we will drop out a given
+coordinate.</li>
+<li><b><code>input_layer_partitioner</code></b>: Partitioner for input layer.</li>
+<li><b><code>batch_norm</code></b>: Whether to use batch normalization after each hidden layer.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A logit_fn (see below).</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If units is not an int.</li>
+</ul>
+

@@ -1,0 +1,56 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.random.experimental.set_global_generator" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.random.experimental.set_global_generator</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/stateful_random_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Replaces the global generator with another <code>Generator</code> object.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.random.experimental.set_global_generator</code></li>
+<li><code>tf.compat.v2.random.experimental.set_global_generator</code></li>
+</ul>
+
+
+<p><code>python
+tf.random.experimental.set_global_generator(generator)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>This function creates a new Generator object (and the Variable object within),
+which does not work well with tf.function because (1) tf.function puts
+restrictions on Variable creation thus reset_global_generator can&rsquo;t be freely
+used inside tf.function; (2) redirecting a global variable to
+a new object is problematic with tf.function because the old object may be
+captured by a &lsquo;tf.function'ed function and still be used by it.
+A 'tf.function'ed function only keeps weak references to variables,
+so deleting a variable and then calling that function again may raise an
+error, as demonstrated by
+random_test.py/RandomTest.testResetGlobalGeneratorBadWithDefun .</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>generator</code></b>: the new <code>Generator</code> object.</li>
+</ul>
+

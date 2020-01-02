@@ -1,0 +1,136 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.quantization.dequantize" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.quantization.dequantize</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p>Defined in generated file: <code>python/ops/gen_array_ops.py</code></p>
+
+<!-- Start diff -->
+
+
+<p>Dequantize the &lsquo;input&rsquo; tensor into a float Tensor.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.dequantize</code></li>
+<li><code>tf.compat.v1.quantization.dequantize</code></li>
+<li><code>tf.compat.v2.quantization.dequantize</code></li>
+</ul>
+
+
+<p><code>python
+tf.quantization.dequantize(
+    input,
+    min_range,
+    max_range,
+    mode='MIN_COMBINED',
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>[min_range, max_range] are scalar floats that specify the range for
+the &lsquo;input&rsquo; data. The &lsquo;mode&rsquo; attribute controls exactly which calculations are
+used to convert the float values to their quantized equivalents.</p>
+
+<p>In &lsquo;MIN_COMBINED&rsquo; mode, each value of the tensor will undergo the following:</p>
+
+<p><code>
+if T == qint8: in[i] += (range(T) + 1)/ 2.0
+out[i] = min_range + (in[i]* (max_range - min_range) / range(T))
+</code>
+here <code>range(T) = numeric_limits&lt;T&gt;::max() - numeric_limits&lt;T&gt;::min()</code></p>
+
+<p><em>MIN_COMBINED Mode Example</em></p>
+
+<p>If the input comes from a QuantizedRelu6, the output type is
+quint8 (range of 0-255) but the possible range of QuantizedRelu6 is
+0-6.  The min_range and max_range values are therefore 0.0 and 6.0.
+Dequantize on quint8 will take each value, cast to float, and multiply
+by 6 / 255.
+Note that if quantizedtype is qint8, the operation will additionally add
+each value by 128 prior to casting.</p>
+
+<p>If the mode is &lsquo;MIN_FIRST&rsquo;, then this approach is used:</p>
+
+<p><code>c++
+num_discrete_values = 1 &lt;&lt; (# of bits in T)
+range_adjust = num_discrete_values / (num_discrete_values - 1)
+range = (range_max - range_min) * range_adjust
+range_scale = range / num_discrete_values
+const double offset_input = static_cast&lt;double&gt;(input) - lowest_quantized;
+result = range_min + ((input - numeric_limits&lt;T&gt;::min()) * range_scale)
+</code></p>
+
+<p><em>SCALED mode Example</em></p>
+
+<p><code>SCALED</code> mode matches the quantization approach used in
+<code>QuantizeAndDequantize{V2|V3}</code>.</p>
+
+<p>If the mode is <code>SCALED</code>, we do not use the full range of the output type,
+choosing to elide the lowest possible value for symmetry (e.g., output range is
+-127 to 127, not -128 to 127 for signed 8 bit quantization), so that 0.0 maps to
+0.</p>
+
+<p>We first find the range of values in our tensor. The
+range we use is always centered on 0, so we find m such that
+<code>c++
+  m = max(abs(input_min), abs(input_max))
+</code></p>
+
+<p>Our input tensor range is then <code>[-m, m]</code>.</p>
+
+<p>Next, we choose our fixed-point quantization buckets, <code>[min_fixed, max_fixed]</code>.
+If T is signed, this is
+<code>
+  num_bits = sizeof(T) * 8
+  [min_fixed, max_fixed] =
+      [-(1 &lt;&lt; (num_bits - 1) - 1), (1 &lt;&lt; (num_bits - 1)) - 1]
+</code></p>
+
+<p>Otherwise, if T is unsigned, the fixed-point range is
+<code>
+  [min_fixed, max_fixed] = [0, (1 &lt;&lt; num_bits) - 1]
+</code></p>
+
+<p>From this we compute our scaling factor, s:
+<code>c++
+  s = (2 * m) / (max_fixed - min_fixed)
+</code></p>
+
+<p>Now we can dequantize the elements of our tensor:
+<code>c++
+result = input * s
+</code></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>input</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>qint8</code>, <code>quint8</code>, <code>qint32</code>, <code>qint16</code>, <code>quint16</code>.</li>
+<li><b><code>min_range</code></b>: A <code>Tensor</code> of type <code>float32</code>.
+The minimum scalar value possibly produced for the input.</li>
+<li><b><code>max_range</code></b>: A <code>Tensor</code> of type <code>float32</code>.
+The maximum scalar value possibly produced for the input.</li>
+<li><b><code>mode</code></b>: An optional <code>string</code> from: <code>"MIN_COMBINED", "MIN_FIRST", "SCALED"</code>. Defaults to <code>"MIN_COMBINED"</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> of type <code>float32</code>.</p>

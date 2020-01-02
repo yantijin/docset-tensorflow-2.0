@@ -1,0 +1,74 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.preprocessing.text.hashing_trick" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.keras.preprocessing.text.hashing_trick</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+
+
+<!-- Start diff -->
+
+
+<p>Converts a text to a sequence of indexes in a fixed-size hashing space.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.keras.preprocessing.text.hashing_trick</code></li>
+<li><code>tf.compat.v2.keras.preprocessing.text.hashing_trick</code></li>
+</ul>
+
+
+<p><code>python
+tf.keras.preprocessing.text.hashing_trick(
+    text,
+    n,
+    hash_function=None,
+    filters='!"#$%&amp;()*+,-./:;&lt;=&gt;?@[\\]^_`{|}~\t\n',
+    lower=True,
+    split=' '
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h1>Arguments</h1>
+
+<pre><code>text: Input text (string).
+n: Dimension of the hashing space.
+hash_function: defaults to python `hash` function, can be 'html5' or
+    any function that takes in input a string and returns a int.
+    Note that 'hash' is not a stable hashing function, so
+    it is not consistent across different runs, while 'html5'
+    is a stable hashing function.
+filters: list (or concatenation) of characters to filter out, such as
+    punctuation. Default: ``!"#$%&amp;()*+,-./:;&lt;=&gt;?@[\]^_`{|}~\t\n``,
+    includes basic punctuation, tabs, and newlines.
+lower: boolean. Whether to set the text to lowercase.
+split: str. Separator for word splitting.
+</code></pre>
+
+<h1>Returns</h1>
+
+<pre><code>A list of integer word indices (unicity non-guaranteed).
+</code></pre>
+
+<p><code>0</code> is a reserved index that won&rsquo;t be assigned to any word.</p>
+
+<p>Two or more words may be assigned to the same index, due to possible
+collisions by the hashing function.
+The <a href="https://en.wikipedia.org/wiki/Birthday_problem#Probability_table">probability</a>
+of a collision is in relation to the dimension of the hashing space and
+the number of distinct objects.</p>

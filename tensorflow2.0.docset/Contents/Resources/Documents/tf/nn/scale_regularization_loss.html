@@ -1,0 +1,70 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.nn.scale_regularization_loss" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.nn.scale_regularization_loss</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/nn_impl.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Scales the sum of the given regularization losses by number of replicas.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.nn.scale_regularization_loss</code></li>
+<li><code>tf.compat.v2.nn.scale_regularization_loss</code></li>
+</ul>
+
+
+<p><code>python
+tf.nn.scale_regularization_loss(regularization_loss)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Usage with distribution strategy and custom training loop:</p>
+
+<p>```python
+with strategy.scope():
+  def compute_loss(self, label, predictions):
+    per_example_loss = tf.keras.losses.sparse_categorical_crossentropy(
+        labels, predictions)</p>
+
+<pre><code># Compute loss that is scaled by sample_weight and by global batch size.
+loss = tf.compute_average_loss(
+    per_example_loss,
+    sample_weight=sample_weight,
+    global_batch_size=GLOBAL_BATCH_SIZE)
+
+# Add scaled regularization losses.
+loss += tf.scale_regularization_loss(tf.nn.l2_loss(weights))
+return loss
+</code></pre>
+
+<p>```</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>regularization_loss</code></b>: Regularization loss.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>Scalar loss value.</p>

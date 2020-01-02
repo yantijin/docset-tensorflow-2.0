@@ -1,0 +1,86 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.backend.dot" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.keras.backend.dot</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/backend.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Multiplies 2 tensors (and/or variables) and returns a <em>tensor</em>.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.keras.backend.dot</code></li>
+<li><code>tf.compat.v2.keras.backend.dot</code></li>
+</ul>
+
+
+<p><code>python
+tf.keras.backend.dot(
+    x,
+    y
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>When attempting to multiply a nD tensor
+with a nD tensor, it reproduces the Theano behavior.
+(e.g. <code>(2, 3) * (4, 3, 5) -&gt; (2, 4, 5)</code>)</p>
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>x</code></b>: Tensor or variable.</li>
+<li><b><code>y</code></b>: Tensor or variable.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A tensor, dot product of <code>x</code> and <code>y</code>.</p>
+
+<h4>Examples:</h4>
+
+<p><code>python
+    # dot product between tensors
+    &gt;&gt;&gt; x = K.placeholder(shape=(2, 3))
+    &gt;&gt;&gt; y = K.placeholder(shape=(3, 4))
+    &gt;&gt;&gt; xy = K.dot(x, y)
+    &gt;&gt;&gt; xy
+    &lt;tf.Tensor 'MatMul_9:0' shape=(2, 4) dtype=float32&gt;
+</code></p>
+
+<p><code>python
+    # dot product between tensors
+    &gt;&gt;&gt; x = K.placeholder(shape=(32, 28, 3))
+    &gt;&gt;&gt; y = K.placeholder(shape=(3, 4))
+    &gt;&gt;&gt; xy = K.dot(x, y)
+    &gt;&gt;&gt; xy
+    &lt;tf.Tensor 'MatMul_9:0' shape=(32, 28, 4) dtype=float32&gt;
+</code></p>
+
+<p><code>python
+    # Theano-like behavior example
+    &gt;&gt;&gt; x = K.random_uniform_variable(shape=(2, 3), low=0, high=1)
+    &gt;&gt;&gt; y = K.ones((4, 3, 5))
+    &gt;&gt;&gt; xy = K.dot(x, y)
+    &gt;&gt;&gt; K.int_shape(xy)
+    (2, 4, 5)
+</code></p>

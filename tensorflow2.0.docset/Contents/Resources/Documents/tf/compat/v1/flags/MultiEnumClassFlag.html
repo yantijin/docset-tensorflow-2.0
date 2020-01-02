@@ -1,0 +1,169 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.flags.MultiEnumClassFlag" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="value"/>
+<meta itemprop="property" content="__eq__"/>
+<meta itemprop="property" content="__ge__"/>
+<meta itemprop="property" content="__gt__"/>
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="__le__"/>
+<meta itemprop="property" content="__lt__"/>
+<meta itemprop="property" content="flag_type"/>
+<meta itemprop="property" content="parse"/>
+<meta itemprop="property" content="serialize"/>
+<meta itemprop="property" content="unparse"/>
+</div>
+
+
+<h1>tf.compat.v1.flags.MultiEnumClassFlag</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<h2>Class <code>MultiEnumClassFlag</code></h2>
+
+<!-- Start diff -->
+
+
+<p>A multi_enum_class flag.</p>
+
+<p>Inherits From: <a href="../../../../tf/compat/v1/flags/MultiFlag.html"><code>MultiFlag</code></a></p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li>Class <code>tf.compat.v1.app.flags.MultiEnumClassFlag</code></li>
+</ul>
+
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>See the <strong>doc</strong> for MultiFlag for most behaviors of this class.  In addition,
+this class knows how to handle enum.Enum instances as values for this flag
+type.</p>
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+
+<p><code>python
+__init__(
+    name,
+    default,
+    help_string,
+    enum_class,
+    **args
+)
+</code></p>
+
+<p>Initialize self.  See help(type(self)) for accurate signature.</p>
+
+<h2>Properties</h2>
+
+<h3 id="value"><code>value</code></h3>
+
+
+<h2>Methods</h2>
+
+<h3 id="__eq__"><code>__eq__</code></h3>
+
+
+<p><code>python
+__eq__(other)
+</code></p>
+
+<p>Return self==value.</p>
+
+<h3 id="__ge__"><code>__ge__</code></h3>
+
+
+<p><code>python
+__ge__(
+    other,
+    NotImplemented=NotImplemented
+)
+</code></p>
+
+<p>Return a >= b.  Computed by @total_ordering from (not a &lt; b).</p>
+
+<h3 id="__gt__"><code>__gt__</code></h3>
+
+
+<p><code>python
+__gt__(
+    other,
+    NotImplemented=NotImplemented
+)
+</code></p>
+
+<p>Return a > b.  Computed by @total_ordering from (not a &lt; b) and (a != b).</p>
+
+<h3 id="__le__"><code>__le__</code></h3>
+
+
+<p><code>python
+__le__(
+    other,
+    NotImplemented=NotImplemented
+)
+</code></p>
+
+<p>Return a &lt;= b.  Computed by @total_ordering from (a &lt; b) or (a == b).</p>
+
+<h3 id="__lt__"><code>__lt__</code></h3>
+
+
+<p><code>python
+__lt__(other)
+</code></p>
+
+<p>Return self&lt;value.</p>
+
+<h3 id="flag_type"><code>flag_type</code></h3>
+
+
+<p><code>python
+flag_type()
+</code></p>
+
+<p>See base class.</p>
+
+<h3 id="parse"><code>parse</code></h3>
+
+
+<p><code>python
+parse(arguments)
+</code></p>
+
+<p>Parses one or more arguments with the installed parser.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>arguments</code></b>: a single argument or a list of arguments (typically a
+list of default values); a single argument is converted
+internally into a list containing one item.</li>
+</ul>
+
+
+<h3 id="serialize"><code>serialize</code></h3>
+
+
+<p><code>python
+serialize()
+</code></p>
+
+<p>Serializes the flag.</p>
+
+<h3 id="unparse"><code>unparse</code></h3>
+
+
+<p><code>python
+unparse()
+</code></p>

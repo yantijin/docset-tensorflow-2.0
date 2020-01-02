@@ -1,0 +1,66 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.backend.cast_to_floatx" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.keras.backend.cast_to_floatx</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/backend.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Cast a Numpy array to the default Keras float type.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.keras.backend.cast_to_floatx</code></li>
+<li><code>tf.compat.v2.keras.backend.cast_to_floatx</code></li>
+</ul>
+
+
+<p><code>python
+tf.keras.backend.cast_to_floatx(x)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>x</code></b>: Numpy array or TensorFlow tensor.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>The same array (Numpy array if <code>x</code> was a Numpy array, or TensorFlow tensor
+if <code>x</code> was a tensor), cast to its new type.</p>
+
+<h4>Example:</h4>
+
+<p><code>python
+    &gt;&gt;&gt; from tensorflow.keras import backend as K
+    &gt;&gt;&gt; K.floatx()
+    'float32'
+    &gt;&gt;&gt; arr = numpy.array([1.0, 2.0], dtype='float64')
+    &gt;&gt;&gt; arr.dtype
+    dtype('float64')
+    &gt;&gt;&gt; new_arr = K.cast_to_floatx(arr)
+    &gt;&gt;&gt; new_arr
+    array([ 1.,  2.], dtype=float32)
+    &gt;&gt;&gt; new_arr.dtype
+    dtype('float32')
+</code></p>

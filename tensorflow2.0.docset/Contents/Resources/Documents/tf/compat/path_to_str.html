@@ -1,0 +1,76 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.path_to_str" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.path_to_str</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/util/compat.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Converts input which is a <code>PathLike</code> object to <code>str</code> type.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.compat.path_to_str</code></li>
+<li><code>tf.compat.v2.compat.path_to_str</code></li>
+</ul>
+
+
+<p><code>python
+tf.compat.path_to_str(path)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Converts from any python constant representation of a <code>PathLike</code> object to
+a string. If the input is not a <code>PathLike</code> object, simply returns the input.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>path</code></b>: An object that can be converted to path representation.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>str</code> object.</p>
+
+<h4>Usage:</h4>
+
+<p>In case a simplified <code>str</code> version of the path is needed from an
+<code>os.PathLike</code> object</p>
+
+<h4>Examples:</h4>
+
+<p>```python3</p>
+
+<blockquote><blockquote><blockquote><p>tf.compat.path_to_str(&lsquo;C:\XYZ\tensorflow./.././tensorflow&rsquo;)
+&lsquo;C:\XYZ\tensorflow./.././tensorflow&rsquo; # Windows OS
+tf.compat.path_to_str(Path(&lsquo;C:\XYZ\tensorflow./.././tensorflow&rsquo;))
+&lsquo;C:\XYZ\tensorflow..\tensorflow&rsquo; # Windows OS
+tf.compat.path_to_str(Path(&lsquo;./corpus&rsquo;))
+&lsquo;corpus&rsquo; # Linux OS
+tf.compat.path_to_str(&lsquo;./.././Corpus&rsquo;)
+&lsquo;./.././Corpus&rsquo; # Linux OS
+tf.compat.path_to_str(Path(&lsquo;./.././Corpus&rsquo;))
+&lsquo;../Corpus&rsquo; # Linux OS
+tf.compat.path_to_str(Path(&lsquo;./..////../&rsquo;))
+&lsquo;../..&rsquo; # Linux OS</p></blockquote></blockquote></blockquote>
+
+<p>```</p>

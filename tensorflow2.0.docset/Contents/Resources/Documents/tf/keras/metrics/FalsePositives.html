@@ -1,0 +1,172 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.metrics.FalsePositives" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="__new__"/>
+<meta itemprop="property" content="reset_states"/>
+<meta itemprop="property" content="result"/>
+<meta itemprop="property" content="update_state"/>
+</div>
+
+
+<h1>tf.keras.metrics.FalsePositives</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/metrics.py">View source</a></p>
+
+<h2>Class <code>FalsePositives</code></h2>
+
+<!-- Start diff -->
+
+
+<p>Calculates the number of false positives.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li>Class <code>tf.compat.v1.keras.metrics.FalsePositives</code></li>
+<li>Class <code>tf.compat.v2.keras.metrics.FalsePositives</code></li>
+<li>Class <code>tf.compat.v2.metrics.FalsePositives</code></li>
+<li>Class <code>tf.metrics.FalsePositives</code></li>
+</ul>
+
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>For example, if <code>y_true</code> is [0, 1, 0, 0] and <code>y_pred</code> is [0, 0, 1, 1]
+then the false positives value is 2.  If the weights were specified as
+[0, 0, 1, 0] then the false positives value would be 1.</p>
+
+<p>If <code>sample_weight</code> is given, calculates the sum of the weights of
+false positives. This metric creates one local variable, <code>accumulator</code>
+that is used to keep track of the number of false positives.</p>
+
+<p>If <code>sample_weight</code> is <code>None</code>, weights default to 1.
+Use <code>sample_weight</code> of 0 to mask values.</p>
+
+<h4>Usage:</h4>
+
+<p><code>python
+m = tf.keras.metrics.FalsePositives()
+m.update_state([0, 1, 0, 0], [0, 0, 1, 1])
+print('Final result: ', m.result().numpy())  # Final result: 2
+</code></p>
+
+<p>Usage with tf.keras API:</p>
+
+<p><code>python
+model = tf.keras.Model(inputs, outputs)
+model.compile('sgd', loss='mse', metrics=[tf.keras.metrics.FalsePositives()])
+</code></p>
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/metrics.py">View source</a></p>
+
+<p><code>python
+__init__(
+    thresholds=None,
+    name=None,
+    dtype=None
+)
+</code></p>
+
+<p>Creates a <code>FalsePositives</code> instance.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>thresholds</code></b>: (Optional) Defaults to 0.5. A float value or a python
+list/tuple of float threshold values in [0, 1]. A threshold is compared
+with prediction values to determine the truth value of predictions
+(i.e., above the threshold is <code>true</code>, below is <code>false</code>). One metric
+value is generated for each threshold value.</li>
+<li><b><code>name</code></b>: (Optional) string name of the metric instance.</li>
+<li><b><code>dtype</code></b>: (Optional) data type of the metric result.</li>
+</ul>
+
+
+<h2 id="__new__"><code>__new__</code></h2>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/metrics.py">View source</a></p>
+
+<p><code>python
+__new__(
+    cls,
+    *args,
+    **kwargs
+)
+</code></p>
+
+<p>Create and return a new object.  See help(type) for accurate signature.</p>
+
+<h2>Methods</h2>
+
+<h3 id="reset_states"><code>reset_states</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/metrics.py">View source</a></p>
+
+<p><code>python
+reset_states()
+</code></p>
+
+<p>Resets all of the metric state variables.</p>
+
+<p>This function is called between epochs/steps,
+when a metric is evaluated during training.</p>
+
+<h3 id="result"><code>result</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/metrics.py">View source</a></p>
+
+<p><code>python
+result()
+</code></p>
+
+<p>Computes and returns the metric value tensor.</p>
+
+<p>Result computation is an idempotent operation that simply calculates the
+metric value using the state variables.</p>
+
+<h3 id="update_state"><code>update_state</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/metrics.py">View source</a></p>
+
+<p><code>python
+update_state(
+    y_true,
+    y_pred,
+    sample_weight=None
+)
+</code></p>
+
+<p>Accumulates the given confusion matrix condition statistics.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>y_true</code></b>: The ground truth values.</li>
+<li><b><code>y_pred</code></b>: The predicted values.</li>
+<li><b><code>sample_weight</code></b>: Optional weighting of each example. Defaults to 1. Can be a
+<code>Tensor</code> whose rank is either 0, or the same rank as <code>y_true</code>, and must
+be broadcastable to <code>y_true</code>.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>Update op.</p>

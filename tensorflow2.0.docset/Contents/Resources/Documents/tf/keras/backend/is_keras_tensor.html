@@ -1,0 +1,90 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.backend.is_keras_tensor" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.keras.backend.is_keras_tensor</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/backend.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Returns whether <code>x</code> is a Keras tensor.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.keras.backend.is_keras_tensor</code></li>
+<li><code>tf.compat.v2.keras.backend.is_keras_tensor</code></li>
+</ul>
+
+
+<p><code>python
+tf.keras.backend.is_keras_tensor(x)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>A &ldquo;Keras tensor&rdquo; is a tensor that was returned by a Keras layer,
+(<code>Layer</code> class) or by <code>Input</code>.</p>
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>x</code></b>: A candidate tensor.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A boolean: Whether the argument is a Keras tensor.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: In case <code>x</code> is not a symbolic tensor.</li>
+</ul>
+
+
+<h4>Examples:</h4>
+
+<p><code>python
+    &gt;&gt;&gt; import tensorflow as tf
+    &gt;&gt;&gt; import numpy
+    &gt;&gt;&gt; from keras import backend as K
+    &gt;&gt;&gt; from keras.layers import Input, Dense
+    &gt;&gt;&gt; np_var = numpy.array([1, 2])
+    &gt;&gt;&gt; K.is_keras_tensor(np_var) # A numpy array is not a symbolic tensor.
+    ValueError
+    &gt;&gt;&gt; k_var = tf.compat.v1.placeholder('float32', shape=(1,1))
+    &gt;&gt;&gt; K.is_keras_tensor(k_var) # A variable indirectly created outside of
+    keras is not a Keras tensor.
+    False
+    &gt;&gt;&gt; keras_var = K.variable(np_var)
+    &gt;&gt;&gt; K.is_keras_tensor(keras_var)  # A variable created with the keras
+    backend is not a Keras tensor.
+    False
+    &gt;&gt;&gt; keras_placeholder = K.placeholder(shape=(2, 4, 5))
+    &gt;&gt;&gt; K.is_keras_tensor(keras_placeholder)  # A placeholder is not a Keras
+    tensor.
+    False
+    &gt;&gt;&gt; keras_input = Input([10])
+    &gt;&gt;&gt; K.is_keras_tensor(keras_input) # An Input is a Keras tensor.
+    True
+    &gt;&gt;&gt; keras_layer_output = Dense(10)(keras_input)
+    &gt;&gt;&gt; K.is_keras_tensor(keras_layer_output) # Any Keras layer output is a
+    Keras tensor.
+    True
+</code></p>

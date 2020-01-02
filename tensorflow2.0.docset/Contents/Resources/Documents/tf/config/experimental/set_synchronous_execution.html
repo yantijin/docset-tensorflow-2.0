@@ -1,0 +1,59 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.config.experimental.set_synchronous_execution" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.config.experimental.set_synchronous_execution</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/config.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Specifies whether operations are executed synchronously or asynchronously.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.config.experimental.set_synchronous_execution</code></li>
+<li><code>tf.compat.v2.config.experimental.set_synchronous_execution</code></li>
+</ul>
+
+
+<p><code>python
+tf.config.experimental.set_synchronous_execution(enable)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>TensorFlow can execute operations synchronously or asynchronously. If
+asynchronous execution is enabled, operations may return &ldquo;non-ready&rdquo; handles.</p>
+
+<p>When <code>enable</code> is set to None, an appropriate value will be picked
+automatically. The value picked may change between TensorFlow releases.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>enable</code></b>: Whether operations should be dispatched synchronously.
+Valid values:
+
+<ul>
+<li>None: sets the system default.</li>
+<li>True: executes each operation synchronously.</li>
+<li>False: executes each operation asynchronously.</li>
+</ul>
+</li>
+</ul>
+

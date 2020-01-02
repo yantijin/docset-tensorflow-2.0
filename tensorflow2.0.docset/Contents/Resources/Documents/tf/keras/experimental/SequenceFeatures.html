@@ -1,0 +1,110 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.experimental.SequenceFeatures" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__init__"/>
+</div>
+
+
+<h1>tf.keras.experimental.SequenceFeatures</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/feature_column/sequence_feature_column.py">View source</a></p>
+
+<h2>Class <code>SequenceFeatures</code></h2>
+
+<!-- Start diff -->
+
+
+<p>A layer for sequence input.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li>Class <code>tf.compat.v1.keras.experimental.SequenceFeatures</code></li>
+<li>Class <code>tf.compat.v2.keras.experimental.SequenceFeatures</code></li>
+</ul>
+
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>All <code>feature_columns</code> must be sequence dense columns with the same
+<code>sequence_length</code>. The output of this method can be fed into sequence
+networks, such as RNN.</p>
+
+<p>The output of this method is a 3D <code>Tensor</code> of shape <code>[batch_size, T, D]</code>.
+<code>T</code> is the maximum sequence length for this batch, which could differ from
+batch to batch.</p>
+
+<p>If multiple <code>feature_columns</code> are given with <code>Di</code> <code>num_elements</code> each, their
+outputs are concatenated. So, the final <code>Tensor</code> has shape
+<code>[batch_size, T, D0 + D1 + ... + Dn]</code>.</p>
+
+<h4>Example:</h4>
+
+<p>```python
+rating = sequence_numeric_column(&lsquo;rating&rsquo;)
+watches = sequence_categorical_column_with_identity(
+    &lsquo;watches&rsquo;, num_buckets=1000)
+watches_embedding = embedding_column(watches, dimension=10)
+columns = [rating, watches_embedding]</p>
+
+<p>sequence_input_layer = SequenceFeatures(columns)
+features = tf.io.parse_example(&hellip;,
+                               features=make_parse_example_spec(columns))
+sequence_input, sequence_length = sequence_input_layer(features)
+sequence_length_mask = tf.sequence_mask(sequence_length)</p>
+
+<p>rnn_cell = tf.keras.layers.SimpleRNNCell(hidden_size)
+rnn_layer = tf.keras.layers.RNN(rnn_cell)
+outputs, state = rnn_layer(sequence_input, mask=sequence_length_mask)
+```</p>
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/feature_column/sequence_feature_column.py">View source</a></p>
+
+<p><code>python
+__init__(
+    feature_columns,
+    trainable=True,
+    name=None,
+    **kwargs
+)
+</code></p>
+
+<p>&ldquo;Constructs a SequenceFeatures layer.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>feature_columns</code></b>: An iterable of dense sequence columns. Valid columns are
+
+<ul>
+<li><code>embedding_column</code> that wraps a <code>sequence_categorical_column_with_*</code></li>
+<li><code>sequence_numeric_column</code>.</li>
+</ul>
+</li>
+<li><b><code>trainable</code></b>: Boolean, whether the layer&rsquo;s variables will be updated via
+gradient descent during training.</li>
+<li><b><code>name</code></b>: Name to give to the SequenceFeatures.</li>
+<li><b><code>**kwargs</code></b>: Keyword arguments to construct a layer.</li>
+</ul>
+
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If any of the <code>feature_columns</code> is not a
+<code>SequenceDenseColumn</code>.</li>
+</ul>
+

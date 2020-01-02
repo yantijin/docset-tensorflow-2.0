@@ -1,0 +1,143 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.space_to_depth" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.space_to_depth</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/array_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>SpaceToDepth for tensors of type T.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.nn.space_to_depth</code></li>
+</ul>
+
+
+<p><code>python
+tf.compat.v1.space_to_depth(
+    input,
+    block_size,
+    name=None,
+    data_format='NHWC'
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Rearranges blocks of spatial data, into depth. More specifically,
+this op outputs a copy of the input tensor where values from the <code>height</code>
+and <code>width</code> dimensions are moved to the <code>depth</code> dimension.
+The attr <code>block_size</code> indicates the input block size.</p>
+
+<ul>
+<li>Non-overlapping blocks of size <code>block_size x block size</code> are rearranged
+into depth at each location.</li>
+<li>The depth of the output tensor is <code>block_size * block_size * input_depth</code>.</li>
+<li>The Y, X coordinates within each block of the input become the high order
+component of the output channel index.</li>
+<li>The input tensor&rsquo;s height and width must be divisible by block_size.</li>
+</ul>
+
+
+<p>The <code>data_format</code> attr specifies the layout of the input and output tensors
+with the following options:
+  &ldquo;NHWC&rdquo;: <code>[ batch, height, width, channels ]</code>
+  &ldquo;NCHW&rdquo;: <code>[ batch, channels, height, width ]</code>
+  &ldquo;NCHW_VECT_C&rdquo;:
+      <code>qint8 [ batch, channels / 4, height, width, 4 ]</code></p>
+
+<p>It is useful to consider the operation as transforming a 6-D Tensor.
+e.g. for data_format = NHWC,
+     Each element in the input tensor can be specified via 6 coordinates,
+     ordered by decreasing memory layout significance as:
+     n,oY,bY,oX,bX,iC  (where n=batch index, oX, oY means X or Y coordinates
+                        within the output image, bX, bY means coordinates
+                        within the input block, iC means input channels).
+     The output would be a transpose to the following layout:
+     n,oY,oX,bY,bX,iC</p>
+
+<p>This operation is useful for resizing the activations between convolutions
+(but keeping all data), e.g. instead of pooling. It is also useful for training
+purely convolutional models.</p>
+
+<p>For example, given an input of shape <code>[1, 2, 2, 1]</code>, data_format = &ldquo;NHWC&rdquo; and
+block_size = 2:</p>
+
+<p><code>
+x = [[[[1], [2]],
+      [[3], [4]]]]
+</code></p>
+
+<p>This operation will output a tensor of shape <code>[1, 1, 1, 4]</code>:</p>
+
+<p><code>
+[[[[1, 2, 3, 4]]]]
+</code></p>
+
+<p>Here, the input has a batch of 1 and each batch element has shape <code>[2, 2, 1]</code>,
+the corresponding output will have a single element (i.e. width and height are
+both 1) and will have a depth of 4 channels (1 * block_size * block_size).
+The output element shape is <code>[1, 1, 4]</code>.</p>
+
+<p>For an input tensor with larger depth, here of shape <code>[1, 2, 2, 3]</code>, e.g.</p>
+
+<p><code>
+x = [[[[1, 2, 3], [4, 5, 6]],
+      [[7, 8, 9], [10, 11, 12]]]]
+</code></p>
+
+<p>This operation, for block_size of 2, will return the following tensor of shape
+<code>[1, 1, 1, 12]</code></p>
+
+<p><code>
+[[[[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]]]]
+</code></p>
+
+<p>Similarly, for the following input of shape <code>[1 4 4 1]</code>, and a block size of 2:</p>
+
+<p><code>
+x = [[[[1],   [2],  [5],  [6]],
+      [[3],   [4],  [7],  [8]],
+      [[9],  [10], [13],  [14]],
+      [[11], [12], [15],  [16]]]]
+</code></p>
+
+<p>the operator will return the following tensor of shape <code>[1 2 2 4]</code>:</p>
+
+<p><code>
+x = [[[[1, 2, 3, 4],
+       [5, 6, 7, 8]],
+      [[9, 10, 11, 12],
+       [13, 14, 15, 16]]]]
+</code></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>input</code></b>: A <code>Tensor</code>.</li>
+<li><b><code>block_size</code></b>: An <code>int</code> that is <code>&gt;= 2</code>. The size of the spatial block.</li>
+<li><b><code>data_format</code></b>: An optional <code>string</code> from: <code>"NHWC", "NCHW", "NCHW_VECT_C"</code>. Defaults to <code>"NHWC"</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code>. Has the same type as <code>input</code>.</p>

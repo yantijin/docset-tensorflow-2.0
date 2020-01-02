@@ -1,0 +1,125 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.train.polynomial_decay" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.train.polynomial_decay</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/learning_rate_decay.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Applies a polynomial decay to the learning rate.</p>
+
+<p><code>python
+tf.compat.v1.train.polynomial_decay(
+    learning_rate,
+    global_step,
+    decay_steps,
+    end_learning_rate=0.0001,
+    power=1.0,
+    cycle=False,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>It is commonly observed that a monotonically decreasing learning rate, whose
+degree of change is carefully chosen, results in a better performing model.
+This function applies a polynomial decay function to a provided initial
+<code>learning_rate</code> to reach an <code>end_learning_rate</code> in the given <code>decay_steps</code>.</p>
+
+<p>It requires a <code>global_step</code> value to compute the decayed learning rate.  You
+can just pass a TensorFlow variable that you increment at each training step.</p>
+
+<p>The function returns the decayed learning rate.  It is computed as:</p>
+
+<p>```python
+global_step = min(global_step, decay_steps)
+decayed_learning_rate = (learning_rate - end_learning_rate) *
+                        (1 - global_step / decay_steps) ^ (power) +
+                        end_learning_rate</p>
+
+<p>```</p>
+
+<p>If <code>cycle</code> is True then a multiple of <code>decay_steps</code> is used, the first one
+that is bigger than <code>global_steps</code>.</p>
+
+<p>```python
+decay_steps = decay_steps * ceil(global_step / decay_steps)
+decayed_learning_rate = (learning_rate - end_learning_rate) *
+                        (1 - global_step / decay_steps) ^ (power) +
+                        end_learning_rate</p>
+
+<p>```</p>
+
+<p>Example: decay from 0.1 to 0.01 in 10000 steps using sqrt (i.e. power=0.5):</p>
+
+<p>```python
+&hellip;
+global_step = tf.Variable(0, trainable=False)
+starter_learning_rate = 0.1
+end_learning_rate = 0.01
+decay_steps = 10000
+learning_rate = tf.compat.v1.train.polynomial_decay(starter_learning_rate,
+global_step,
+                                          decay_steps, end_learning_rate,
+                                          power=0.5)</p>
+
+<h1>Passing global_step to minimize() will increment it at each step.</h1>
+
+<p>learning_step = (
+    tf.compat.v1.train.GradientDescentOptimizer(learning_rate)
+    .minimize(&hellip;my loss&hellip;, global_step=global_step)
+)
+```</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>learning_rate</code></b>: A scalar <code>float32</code> or <code>float64</code> <code>Tensor</code> or a Python number.
+The initial learning rate.</li>
+<li><b><code>global_step</code></b>: A scalar <code>int32</code> or <code>int64</code> <code>Tensor</code> or a Python number. Global
+step to use for the decay computation.  Must not be negative.</li>
+<li><b><code>decay_steps</code></b>: A scalar <code>int32</code> or <code>int64</code> <code>Tensor</code> or a Python number. Must
+be positive.  See the decay computation above.</li>
+<li><b><code>end_learning_rate</code></b>: A scalar <code>float32</code> or <code>float64</code> <code>Tensor</code> or a Python
+number.  The minimal end learning rate.</li>
+<li><b><code>power</code></b>: A scalar <code>float32</code> or <code>float64</code> <code>Tensor</code> or a Python number.  The
+power of the polynomial. Defaults to linear, 1.0.</li>
+<li><b><code>cycle</code></b>: A boolean, whether or not it should cycle beyond decay_steps.</li>
+<li><b><code>name</code></b>: String.  Optional name of the operation. Defaults to
+&lsquo;PolynomialDecay&rsquo;.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A scalar <code>Tensor</code> of the same type as <code>learning_rate</code>.  The decayed
+learning rate.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: if <code>global_step</code> is not supplied.</li>
+</ul>
+
+
+<h4>Eager Compatibility</h4>
+
+<p>When eager execution is enabled, this function returns a function which in
+turn returns the decayed learning rate Tensor. This can be useful for changing
+the learning rate value across different invocations of optimizer functions.</p>

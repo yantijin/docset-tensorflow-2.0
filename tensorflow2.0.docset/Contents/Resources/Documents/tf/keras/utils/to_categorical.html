@@ -1,0 +1,59 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.utils.to_categorical" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.keras.utils.to_categorical</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/utils/np_utils.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Converts a class vector (integers) to binary class matrix.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.keras.utils.to_categorical</code></li>
+<li><code>tf.compat.v2.keras.utils.to_categorical</code></li>
+</ul>
+
+
+<p><code>python
+tf.keras.utils.to_categorical(
+    y,
+    num_classes=None,
+    dtype='float32'
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>E.g. for use with categorical_crossentropy.</p>
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>y</code></b>: class vector to be converted into a matrix
+  (integers from 0 to num_classes).</li>
+<li><b><code>num_classes</code></b>: total number of classes.</li>
+<li><b><code>dtype</code></b>: The data type expected by the input. Default: <code>'float32'</code>.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A binary matrix representation of the input. The classes axis is placed
+last.</p>

@@ -1,0 +1,70 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.assert_non_negative" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.assert_non_negative</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/check_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Assert the condition <code>x &gt;= 0</code> holds element-wise.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.debugging.assert_non_negative</code></li>
+</ul>
+
+
+<p><code>python
+tf.compat.v1.assert_non_negative(
+    x,
+    data=None,
+    summarize=None,
+    message=None,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Example of adding a dependency to an operation:</p>
+
+<p><code>python
+with tf.control_dependencies([tf.compat.v1.assert_non_negative(x)]):
+  output = tf.reduce_sum(x)
+</code></p>
+
+<p>Non-negative means, for every element <code>x[i]</code> of <code>x</code>, we have <code>x[i] &gt;= 0</code>.
+If <code>x</code> is empty this is trivially satisfied.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>:  Numeric <code>Tensor</code>.</li>
+<li><b><code>data</code></b>:  The tensors to print out if the condition is False.  Defaults to
+error message and first few entries of <code>x</code>.</li>
+<li><b><code>summarize</code></b>: Print this many entries of each tensor.</li>
+<li><b><code>message</code></b>: A string to prefix to the default message.</li>
+<li><b><code>name</code></b>: A name for this operation (optional).
+Defaults to &ldquo;assert_non_negative&rdquo;.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>Op raising <code>InvalidArgumentError</code> unless <code>x</code> is all non-negative.</p>

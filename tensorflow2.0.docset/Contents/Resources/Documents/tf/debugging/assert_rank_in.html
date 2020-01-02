@@ -1,0 +1,77 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.debugging.assert_rank_in" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.debugging.assert_rank_in</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/check_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Assert that <code>x</code> has a rank in <code>ranks</code>.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v2.debugging.assert_rank_in</code></li>
+</ul>
+
+
+<p><code>python
+tf.debugging.assert_rank_in(
+    x,
+    ranks,
+    message=None,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>This Op checks that the rank of <code>x</code> is in <code>ranks</code>.</p>
+
+<p>If <code>x</code> has a different rank, <code>message</code>, as well as the shape of <code>x</code> are
+printed, and <code>InvalidArgumentError</code> is raised.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>: <code>Tensor</code>.</li>
+<li><b><code>ranks</code></b>: <code>Iterable</code> of scalar <code>Tensor</code> objects.</li>
+<li><b><code>message</code></b>: A string to prefix to the default message.</li>
+<li><b><code>name</code></b>: A name for this operation (optional). Defaults to &ldquo;assert_rank_in&rdquo;.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>Op raising <code>InvalidArgumentError</code> unless rank of <code>x</code> is in <code>ranks</code>.
+If static checks determine <code>x</code> has matching rank, a <code>no_op</code> is returned.
+This can be used with <a href="../../tf/control_dependencies.html"><code>tf.control_dependencies</code></a> inside of <a href="../../tf/function.html"><code>tf.function</code></a>s
+to block followup computation until the check has executed.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>InvalidArgumentError</code></b>: <code>x</code> does not have rank in <code>ranks</code>, but the rank cannot
+be statically determined.</li>
+<li><b><code>ValueError</code></b>: If static checks determine <code>x</code> has mismatched rank.</li>
+</ul>
+
+
+<h4>Eager Compatibility</h4>
+
+<p>returns None</p>

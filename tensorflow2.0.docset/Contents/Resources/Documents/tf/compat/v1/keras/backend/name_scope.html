@@ -1,0 +1,131 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.keras.backend.name_scope" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="name"/>
+<meta itemprop="property" content="__enter__"/>
+<meta itemprop="property" content="__exit__"/>
+<meta itemprop="property" content="__init__"/>
+</div>
+
+
+<h1>tf.compat.v1.keras.backend.name_scope</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/ops.py">View source</a></p>
+
+<h2>Class <code>name_scope</code></h2>
+
+<!-- Start diff -->
+
+
+<p>A context manager for use when defining a Python op.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li>Class <code>tf.compat.v1.name_scope</code></li>
+</ul>
+
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>This context manager validates that the given <code>values</code> are from the
+same graph, makes that graph the default graph, and pushes a
+name scope in that graph (see
+<a href="../../../../../tf/Graph.html#name_scope"><code>tf.Graph.name_scope</code></a>
+for more details on that).</p>
+
+<p>For example, to define a new Python op called <code>my_op</code>:</p>
+
+<p><code>python
+def my_op(a, b, c, name=None):
+  with tf.name_scope(name, "MyOp", [a, b, c]) as scope:
+    a = tf.convert_to_tensor(a, name="a")
+    b = tf.convert_to_tensor(b, name="b")
+    c = tf.convert_to_tensor(c, name="c")
+    # Define some computation that uses `a`, `b`, and `c`.
+    return foo_op(..., name=scope)
+</code></p>
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/ops.py">View source</a></p>
+
+<p><code>python
+__init__(
+    name,
+    default_name=None,
+    values=None
+)
+</code></p>
+
+<p>Initialize the context manager.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>name</code></b>: The name argument that is passed to the op function.</li>
+<li><b><code>default_name</code></b>: The default name to use if the <code>name</code> argument is <code>None</code>.</li>
+<li><b><code>values</code></b>: The list of <code>Tensor</code> arguments that are passed to the op function.</li>
+</ul>
+
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>TypeError</code></b>: if <code>default_name</code> is passed in but not a string.</li>
+</ul>
+
+
+<h2>Properties</h2>
+
+<h3 id="name"><code>name</code></h3>
+
+
+<h2>Methods</h2>
+
+<h3 id="__enter__"><code>__enter__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/ops.py">View source</a></p>
+
+<p><code>python
+__enter__()
+</code></p>
+
+<p>Start the scope block.</p>
+
+<h4>Returns:</h4>
+
+<p>The scope name.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: if neither <code>name</code> nor <code>default_name</code> is provided
+but <code>values</code> are.</li>
+</ul>
+
+
+<h3 id="__exit__"><code>__exit__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/ops.py">View source</a></p>
+
+<p><code>python
+__exit__(
+    type_arg,
+    value_arg,
+    traceback_arg
+)
+</code></p>

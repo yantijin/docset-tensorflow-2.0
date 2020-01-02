@@ -1,0 +1,94 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.nn.conv_transpose" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.nn.conv_transpose</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/nn_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>The transpose of <code>convolution</code>.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.nn.conv_transpose</code></li>
+<li><code>tf.compat.v2.nn.conv_transpose</code></li>
+</ul>
+
+
+<p><code>python
+tf.nn.conv_transpose(
+    input,
+    filters,
+    output_shape,
+    strides,
+    padding='SAME',
+    data_format=None,
+    dilations=None,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>This operation is sometimes called &ldquo;deconvolution&rdquo; after <a href="http://www.matthewzeiler.com/pubs/cvpr2010/cvpr2010.pdf">Deconvolutional
+Networks</a>, but is
+actually the transpose (gradient) of <code>convolution</code> rather than an actual
+deconvolution.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>input</code></b>: An N+2 dimensional <code>Tensor</code> of shape
+<code>[batch_size] + input_spatial_shape + [in_channels]</code> if data_format does
+not start with &ldquo;NC&rdquo; (default), or
+<code>[batch_size, in_channels] + input_spatial_shape</code> if data_format starts
+with &ldquo;NC&rdquo;. It must be one of the following types:
+<code>half</code>, <code>bfloat16</code>, <code>float32</code>, <code>float64</code>.</li>
+<li><b><code>filters</code></b>: An N+2 dimensional <code>Tensor</code> with the same type as <code>input</code> and
+shape <code>spatial_filter_shape + [in_channels, out_channels]</code>.</li>
+<li><b><code>output_shape</code></b>: A 1-D <code>Tensor</code> representing the output shape of the
+deconvolution op.</li>
+<li><b><code>strides</code></b>: An int or list of <code>ints</code> that has length <code>1</code>, <code>N</code> or <code>N+2</code>.  The
+stride of the sliding window for each dimension of <code>input</code>. If a single
+value is given it is replicated in the spatial dimensions. By default
+the <code>N</code> and <code>C</code> dimensions are set to 0. The dimension order is determined
+by the value of <code>data_format</code>, see below for details.</li>
+<li><b><code>padding</code></b>: A string, either <code>'VALID'</code> or <code>'SAME'</code>. The padding algorithm. See
+the &ldquo;returns&rdquo; section of <a href="../../tf/nn/convolution.html"><code>tf.nn.convolution</code></a> for details.</li>
+<li><b><code>data_format</code></b>: A string or None.  Specifies whether the channel dimension of
+the <code>input</code> and output is the last dimension (default, or if <code>data_format</code>
+does not start with &ldquo;NC&rdquo;), or the second dimension (if <code>data_format</code>
+starts with &ldquo;NC&rdquo;).  For N=1, the valid values are &ldquo;NWC&rdquo; (default) and
+&ldquo;NCW&rdquo;.  For N=2, the valid values are &ldquo;NHWC&rdquo; (default) and &ldquo;NCHW&rdquo;.
+For N=3, the valid values are &ldquo;NDHWC&rdquo; (default) and &ldquo;NCDHW&rdquo;.</li>
+<li><b><code>dilations</code></b>: An int or list of <code>ints</code> that has length <code>1</code>, <code>N</code> or <code>N+2</code>,
+defaults to 1. The dilation factor for each dimension of<code>input</code>. If a
+single value is given it is replicated in the spatial dimensions. By
+default the <code>N</code> and <code>C</code> dimensions are set to 1. If set to k > 1, there
+will be k-1 skipped cells between each filter element on that dimension.
+The dimension order is determined by the value of <code>data_format</code>, see above
+for details.</li>
+<li><b><code>name</code></b>: A name for the operation (optional). If not specified &ldquo;conv_transpose&rdquo;
+is used.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> with the same type as <code>value</code>.</p>

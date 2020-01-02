@@ -1,0 +1,98 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.data.experimental.DistributeOptions" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="auto_shard"/>
+<meta itemprop="property" content="num_devices"/>
+<meta itemprop="property" content="__eq__"/>
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="__ne__"/>
+</div>
+
+
+<h1>tf.data.experimental.DistributeOptions</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/data/experimental/ops/distribute_options.py">View source</a></p>
+
+<h2>Class <code>DistributeOptions</code></h2>
+
+<!-- Start diff -->
+
+
+<p>Represents options for distributed data processing.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li>Class <code>tf.compat.v1.data.experimental.DistributeOptions</code></li>
+<li>Class <code>tf.compat.v2.data.experimental.DistributeOptions</code></li>
+</ul>
+
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>You can set the distribution options of a dataset through the
+<code>experimental_distribute</code> property of <a href="../../../tf/data/Options.html"><code>tf.data.Options</code></a>; the property is
+an instance of <a href="../../../tf/data/experimental/DistributeOptions.html"><code>tf.data.experimental.DistributeOptions</code></a>.</p>
+
+<p><code>python
+options = tf.data.Options()
+options.experimental_distribute.auto_shard = False
+dataset = dataset.with_options(options)
+</code></p>
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/data/util/options.py">View source</a></p>
+
+<p><code>python
+__init__()
+</code></p>
+
+<p>Initialize self.  See help(type(self)) for accurate signature.</p>
+
+<h2>Properties</h2>
+
+<h3 id="auto_shard"><code>auto_shard</code></h3>
+
+
+<p>Whether the dataset should be automatically sharded when processedin a distributed fashion. This is applicable when using Keras with multi-worker/TPU distribution strategy, and by using strategy.experimental_distribute_dataset(). In other cases, this option does nothing. If None, defaults to True.</p>
+
+<h3 id="num_devices"><code>num_devices</code></h3>
+
+
+<p>The number of devices attached to this input pipeline. This will be automatically set by MultiDeviceIterator.</p>
+
+<h2>Methods</h2>
+
+<h3 id="__eq__"><code>__eq__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/data/util/options.py">View source</a></p>
+
+<p><code>python
+__eq__(other)
+</code></p>
+
+<p>Return self==value.</p>
+
+<h3 id="__ne__"><code>__ne__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/data/util/options.py">View source</a></p>
+
+<p><code>python
+__ne__(other)
+</code></p>
+
+<p>Return self!=value.</p>

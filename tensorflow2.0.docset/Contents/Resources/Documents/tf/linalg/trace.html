@@ -1,0 +1,80 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.linalg.trace" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.linalg.trace</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/math_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Compute the trace of a tensor <code>x</code>.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.linalg.trace</code></li>
+<li><code>tf.compat.v1.trace</code></li>
+<li><code>tf.compat.v2.linalg.trace</code></li>
+</ul>
+
+
+<p><code>python
+tf.linalg.trace(
+    x,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p><code>trace(x)</code> returns the sum along the main diagonal of each inner-most matrix
+in x. If x is of rank <code>k</code> with shape <code>[I, J, K, ..., L, M, N]</code>, then output
+is a tensor of rank <code>k-2</code> with dimensions <code>[I, J, K, ..., L]</code> where</p>
+
+<p><code>output[i, j, k, ..., l] = trace(x[i, j, i, ..., l, :, :])</code></p>
+
+<h4>For example:</h4>
+
+<p>```python
+x = tf.constant([[1, 2], [3, 4]])
+tf.linalg.trace(x)  # 5</p>
+
+<p>x = tf.constant([[1, 2, 3],
+                 [4, 5, 6],
+                 [7, 8, 9]])
+tf.linalg.trace(x)  # 15</p>
+
+<p>x = tf.constant([[[1, 2, 3],
+                  [4, 5, 6],
+                  [7, 8, 9]],
+                 [[-1, -2, -3],
+                  [-4, -5, -6],
+                  [-7, -8, -9]]])
+tf.linalg.trace(x)  # [15, -15]
+```</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>: tensor.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>The trace of input tensor.</p>

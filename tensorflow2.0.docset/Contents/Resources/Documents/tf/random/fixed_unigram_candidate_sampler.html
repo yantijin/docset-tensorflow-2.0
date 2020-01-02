@@ -1,0 +1,130 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.random.fixed_unigram_candidate_sampler" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.random.fixed_unigram_candidate_sampler</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/candidate_sampling_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Samples a set of classes using the provided (fixed) base distribution.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.nn.fixed_unigram_candidate_sampler</code></li>
+<li><code>tf.compat.v1.random.fixed_unigram_candidate_sampler</code></li>
+<li><code>tf.compat.v2.nn.fixed_unigram_candidate_sampler</code></li>
+<li><code>tf.compat.v2.random.fixed_unigram_candidate_sampler</code></li>
+<li><code>tf.nn.fixed_unigram_candidate_sampler</code></li>
+</ul>
+
+
+<p><code>python
+tf.random.fixed_unigram_candidate_sampler(
+    true_classes,
+    num_true,
+    num_sampled,
+    unique,
+    range_max,
+    vocab_file='',
+    distortion=1.0,
+    num_reserved_ids=0,
+    num_shards=1,
+    shard=0,
+    unigrams=(),
+    seed=None,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>This operation randomly samples a tensor of sampled classes
+(<code>sampled_candidates</code>) from the range of integers <code>[0, range_max)</code>.</p>
+
+<p>The elements of <code>sampled_candidates</code> are drawn without replacement
+(if <code>unique=True</code>) or with replacement (if <code>unique=False</code>) from
+the base distribution.</p>
+
+<p>The base distribution is read from a file or passed in as an
+in-memory array. There is also an option to skew the distribution by
+applying a distortion power to the weights.</p>
+
+<p>In addition, this operation returns tensors <code>true_expected_count</code>
+and <code>sampled_expected_count</code> representing the number of times each
+of the target classes (<code>true_classes</code>) and the sampled
+classes (<code>sampled_candidates</code>) is expected to occur in an average
+tensor of sampled classes.  These values correspond to <code>Q(y|x)</code>
+defined in <a href="http://www.tensorflow.org/extras/candidate_sampling.pdf">this
+document</a>.
+If <code>unique=True</code>, then these are post-rejection probabilities and we
+compute them approximately.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>true_classes</code></b>: A <code>Tensor</code> of type <code>int64</code> and shape <code>[batch_size,
+num_true]</code>. The target classes.</li>
+<li><b><code>num_true</code></b>: An <code>int</code>.  The number of target classes per training example.</li>
+<li><b><code>num_sampled</code></b>: An <code>int</code>.  The number of classes to randomly sample.</li>
+<li><b><code>unique</code></b>: A <code>bool</code>. Determines whether all sampled classes in a batch are
+unique.</li>
+<li><b><code>range_max</code></b>: An <code>int</code>. The number of possible classes.</li>
+<li><b><code>vocab_file</code></b>: Each valid line in this file (which should have a CSV-like
+format) corresponds to a valid word ID. IDs are in sequential order,
+starting from num_reserved_ids. The last entry in each line is expected
+to be a value corresponding to the count or relative probability. Exactly
+one of <code>vocab_file</code> and <code>unigrams</code> needs to be passed to this operation.</li>
+<li><b><code>distortion</code></b>: The distortion is used to skew the unigram probability
+distribution.  Each weight is first raised to the distortion&rsquo;s power
+before adding to the internal unigram distribution. As a result,
+<code>distortion = 1.0</code> gives regular unigram sampling (as defined by the vocab
+file), and <code>distortion = 0.0</code> gives a uniform distribution.</li>
+<li><b><code>num_reserved_ids</code></b>: Optionally some reserved IDs can be added in the range
+<code>[0, num_reserved_ids)</code> by the users. One use case is that a special
+unknown word token is used as ID 0. These IDs will have a sampling
+probability of 0.</li>
+<li><b><code>num_shards</code></b>: A sampler can be used to sample from a subset of the original
+range in order to speed up the whole computation through parallelism. This
+parameter (together with <code>shard</code>) indicates the number of partitions that
+are being used in the overall computation.</li>
+<li><b><code>shard</code></b>: A sampler can be used to sample from a subset of the original range
+in order to speed up the whole computation through parallelism. This
+parameter (together with <code>num_shards</code>) indicates the particular partition
+number of the operation, when partitioning is being used.</li>
+<li><b><code>unigrams</code></b>: A list of unigram counts or probabilities, one per ID in
+sequential order. Exactly one of <code>vocab_file</code> and <code>unigrams</code> should be
+passed to this operation.</li>
+<li><b><code>seed</code></b>: An <code>int</code>. An operation-specific seed. Default is 0.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<ul>
+<li><b><code>sampled_candidates</code></b>: A tensor of type <code>int64</code> and shape <code>[num_sampled]</code>.
+The sampled classes.</li>
+<li><b><code>true_expected_count</code></b>: A tensor of type <code>float</code>.  Same shape as
+<code>true_classes</code>. The expected counts under the sampling distribution
+of each of <code>true_classes</code>.</li>
+<li><b><code>sampled_expected_count</code></b>: A tensor of type <code>float</code>. Same shape as
+<code>sampled_candidates</code>. The expected counts under the sampling distribution
+of each of <code>sampled_candidates</code>.</li>
+</ul>
+

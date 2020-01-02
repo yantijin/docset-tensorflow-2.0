@@ -1,0 +1,68 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.ragged.segment_ids_to_row_splits" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.ragged.segment_ids_to_row_splits</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/ragged/segment_id_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Generates the RaggedTensor <code>row_splits</code> corresponding to a segmentation.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.ragged.segment_ids_to_row_splits</code></li>
+<li><code>tf.compat.v2.ragged.segment_ids_to_row_splits</code></li>
+</ul>
+
+
+<p><code>python
+tf.ragged.segment_ids_to_row_splits(
+    segment_ids,
+    num_segments=None,
+    out_type=None,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Returns an integer vector <code>splits</code>, where <code>splits[0] = 0</code> and
+<code>splits[i] = splits[i-1] + count(segment_ids==i)</code>.  Example:</p>
+
+<p>```python</p>
+
+<blockquote><blockquote><blockquote><p>ragged.segment_ids_to_row_splits([0, 0, 0, 2, 2, 3, 4, 4, 4]).eval()
+[ 0 3 3 5 6 9 ]
+```</p></blockquote></blockquote></blockquote>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>segment_ids</code></b>: A 1-D integer Tensor.</li>
+<li><b><code>num_segments</code></b>: A scalar integer indicating the number of segments.  Defaults
+to <code>max(segment_ids) + 1</code> (or zero if <code>segment_ids</code> is empty).</li>
+<li><b><code>out_type</code></b>: The dtype for the return value.  Defaults to <code>segment_ids.dtype</code>,
+or <a href="../../tf.html#int64"><code>tf.int64</code></a> if <code>segment_ids</code> does not have a dtype.</li>
+<li><b><code>name</code></b>: A name prefix for the returned tensor (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A sorted 1-D integer Tensor, with <code>shape=[num_segments + 1]</code>.</p>

@@ -1,0 +1,60 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.flags.tf_decorator.make_decorator" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.flags.tf_decorator.make_decorator</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/util/tf_decorator.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Make a decorator from a wrapper and a target.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.app.flags.tf_decorator.make_decorator</code></li>
+</ul>
+
+
+<p><code>python
+tf.compat.v1.flags.tf_decorator.make_decorator(
+    target,
+    decorator_func,
+    decorator_name=None,
+    decorator_doc='',
+    decorator_argspec=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>target</code></b>: The final callable to be wrapped.</li>
+<li><b><code>decorator_func</code></b>: The wrapper function.</li>
+<li><b><code>decorator_name</code></b>: The name of the decorator. If <code>None</code>, the name of the
+function calling make_decorator.</li>
+<li><b><code>decorator_doc</code></b>: Documentation specific to this application of
+<code>decorator_func</code> to <code>target</code>.</li>
+<li><b><code>decorator_argspec</code></b>: The new callable signature of this decorator.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>The <code>decorator_func</code> argument with new metadata attached.</p>

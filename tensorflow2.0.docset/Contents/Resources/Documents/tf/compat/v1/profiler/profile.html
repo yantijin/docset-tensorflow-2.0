@@ -1,0 +1,64 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.profiler.profile" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.profiler.profile</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/profiler/model_analyzer.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Profile model.</p>
+
+<p><code>python
+tf.compat.v1.profiler.profile(
+    graph=None,
+    run_meta=None,
+    op_log=None,
+    chtml='scope',
+    options=_DEFAULT_PROFILE_OPTIONS
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>  Tutorials and examples can be found in:
+  https://github.com/tensorflow/tensorflow/tree/master/tensorflow/core/profiler/README.html</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>graph</code></b>: tf.Graph. If None and eager execution is not enabled, use
+  default graph.</li>
+<li><b><code>run_meta</code></b>: optional tensorflow.RunMetadata proto. It is necessary to
+  to support run time information profiling, such as time and memory.</li>
+<li><b><code>op_log</code></b>: tensorflow.tfprof.OpLogProto proto. User can assign &ldquo;types&rdquo; to
+  graph nodes with op_log. &ldquo;types&rdquo; allow user to flexibly group and
+  account profiles using options[&lsquo;accounted_type_regexes&rsquo;].</li>
+<li><b><code>chtml</code></b>: string. Either &lsquo;op&rsquo;, &lsquo;scope&rsquo;, &lsquo;graph&rsquo; or &lsquo;code&rsquo;.
+  &lsquo;op&rsquo; view organizes profile using operation type. (e.g. MatMul)
+  &lsquo;scope&rsquo; view organizes profile using graph node name scope.
+  &lsquo;graph&rsquo; view organizes profile using graph node inputs/outputs.
+  &lsquo;code&rsquo; view organizes profile using Python call stack.</li>
+<li><b><code>options</code></b>: A dict of options. See core/profiler/g3doc/options.html.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>If chtml is &lsquo;scope&rsquo; or &lsquo;graph&rsquo;, returns GraphNodeProto proto.
+If chtml is &lsquo;op&rsquo; or &lsquo;code&rsquo;, returns MultiGraphNodeProto proto.
+Side effect: stdout/file/timeline.json depending on options[&lsquo;output&rsquo;]</p>

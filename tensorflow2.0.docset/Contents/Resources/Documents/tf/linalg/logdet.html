@@ -1,0 +1,68 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.linalg.logdet" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.linalg.logdet</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/linalg/linalg_impl.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Computes log of the determinant of a hermitian positive definite matrix.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.linalg.logdet</code></li>
+<li><code>tf.compat.v2.linalg.logdet</code></li>
+</ul>
+
+
+<p><code>python
+tf.linalg.logdet(
+    matrix,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>```python</p>
+
+<h1>Compute the determinant of a matrix while reducing the chance of over- or</h1>
+
+<p>underflow:
+A = &hellip; # shape 10 x 10
+det = tf.exp(tf.linalg.logdet(A))  # scalar
+```</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>matrix</code></b>:  A <code>Tensor</code>. Must be <code>float16</code>, <code>float32</code>, <code>float64</code>, <code>complex64</code>,
+or <code>complex128</code> with shape <code>[..., M, M]</code>.</li>
+<li><b><code>name</code></b>:  A name to give this <code>Op</code>.  Defaults to <code>logdet</code>.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>The natural log of the determinant of <code>matrix</code>.</p>
+
+<h4>Numpy Compatibility</h4>
+
+<p>Equivalent to numpy.linalg.slogdet, although no sign is returned since only
+hermitian positive definite matrices are supported.</p>

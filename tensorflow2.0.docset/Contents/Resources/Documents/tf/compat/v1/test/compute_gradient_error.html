@@ -1,0 +1,77 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.test.compute_gradient_error" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.test.compute_gradient_error</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/gradient_checker.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Computes the gradient error. (deprecated)</p>
+
+<p><code>python
+tf.compat.v1.test.compute_gradient_error(
+    x,
+    x_shape,
+    y,
+    y_shape,
+    x_init_value=None,
+    delta=0.001,
+    init_targets=None,
+    extra_feed_dict=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
+Instructions for updating:
+Use tf.test.compute_gradient in 2.0, which has better support for functions. Note that the two versions have different usage, so code change is needed.</p>
+
+<p>Computes the maximum error for dy/dx between the computed Jacobian and the
+numerically estimated Jacobian.</p>
+
+<p>This function will modify the tensors passed in as it adds more operations
+and hence changing the consumers of the operations of the input tensors.</p>
+
+<p>This function adds operations to the current session. To compute the error
+using a particular device, such as a GPU, use the standard methods for
+setting a device (e.g. using with sess.graph.device() or setting a device
+function in the session constructor).</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>: a tensor or list of tensors</li>
+<li><b><code>x_shape</code></b>: the dimensions of x as a tuple or an array of ints. If x is a list,
+then this is the list of shapes.</li>
+<li><b><code>y</code></b>: a tensor</li>
+<li><b><code>y_shape</code></b>: the dimensions of y as a tuple or an array of ints.</li>
+<li><b><code>x_init_value</code></b>: (optional) a numpy array of the same shape as &ldquo;x&rdquo;
+representing the initial value of x. If x is a list, this should be a list
+of numpy arrays.  If this is none, the function will pick a random tensor
+as the initial value.</li>
+<li><b><code>delta</code></b>: (optional) the amount of perturbation.</li>
+<li><b><code>init_targets</code></b>: list of targets to run to initialize model params.</li>
+<li><b><code>extra_feed_dict</code></b>: dict that allows fixing specified tensor values
+during the Jacobian calculation.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>The maximum error in between the two Jacobians.</p>

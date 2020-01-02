@@ -1,0 +1,53 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.train.load_variable" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.train.load_variable</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/checkpoint_utils.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Returns the tensor value of the given variable in the checkpoint.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.train.load_variable</code></li>
+<li><code>tf.compat.v2.train.load_variable</code></li>
+</ul>
+
+
+<p><code>python
+tf.train.load_variable(
+    ckpt_dir_or_file,
+    name
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>ckpt_dir_or_file</code></b>: Directory with checkpoints file or path to checkpoint.</li>
+<li><b><code>name</code></b>: Name of the variable to return.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A numpy <code>ndarray</code> with a copy of the value of this variable.</p>

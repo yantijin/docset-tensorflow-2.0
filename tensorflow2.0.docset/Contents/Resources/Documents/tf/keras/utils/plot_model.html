@@ -1,0 +1,67 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.utils.plot_model" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.keras.utils.plot_model</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/utils/vis_utils.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Converts a Keras model to dot format and save to a file.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.keras.utils.plot_model</code></li>
+<li><code>tf.compat.v2.keras.utils.plot_model</code></li>
+</ul>
+
+
+<p><code>python
+tf.keras.utils.plot_model(
+    model,
+    to_file='model.png',
+    show_shapes=False,
+    show_layer_names=True,
+    rankdir='TB',
+    expand_nested=False,
+    dpi=96
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>model</code></b>: A Keras model instance</li>
+<li><b><code>to_file</code></b>: File name of the plot image.</li>
+<li><b><code>show_shapes</code></b>: whether to display shape information.</li>
+<li><b><code>show_layer_names</code></b>: whether to display layer names.</li>
+<li><b><code>rankdir</code></b>: <code>rankdir</code> argument passed to PyDot,
+  a string specifying the format of the plot:
+  &lsquo;TB&rsquo; creates a vertical plot;
+  &lsquo;LR&rsquo; creates a horizontal plot.</li>
+<li><b><code>expand_nested</code></b>: Whether to expand nested models into clusters.</li>
+<li><b><code>dpi</code></b>: Dots per inch.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A Jupyter notebook Image object if Jupyter is installed.
+This enables in-line display of the model plots in notebooks.</p>

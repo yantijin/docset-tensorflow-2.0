@@ -1,0 +1,58 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.preprocessing.text.text_to_word_sequence" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.keras.preprocessing.text.text_to_word_sequence</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+
+
+<!-- Start diff -->
+
+
+<p>Converts a text to a sequence of words (or tokens).</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.keras.preprocessing.text.text_to_word_sequence</code></li>
+<li><code>tf.compat.v2.keras.preprocessing.text.text_to_word_sequence</code></li>
+</ul>
+
+
+<p><code>python
+tf.keras.preprocessing.text.text_to_word_sequence(
+    text,
+    filters='!"#$%&amp;()*+,-./:;&lt;=&gt;?@[\\]^_`{|}~\t\n',
+    lower=True,
+    split=' '
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h1>Arguments</h1>
+
+<pre><code>text: Input text (string).
+filters: list (or concatenation) of characters to filter out, such as
+    punctuation. Default: ``!"#$%&amp;()*+,-./:;&lt;=&gt;?@[\]^_`{|}~\t\n``,
+    includes basic punctuation, tabs, and newlines.
+lower: boolean. Whether to convert the input to lowercase.
+split: str. Separator for word splitting.
+</code></pre>
+
+<h1>Returns</h1>
+
+<pre><code>A list of words (or tokens).
+</code></pre>

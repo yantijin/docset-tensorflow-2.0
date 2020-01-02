@@ -1,0 +1,155 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.scan" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.scan</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/functional_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>scan on the list of tensors unpacked from <code>elems</code> on dimension 0.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.scan</code></li>
+<li><code>tf.compat.v2.scan</code></li>
+</ul>
+
+
+<p><code>python
+tf.scan(
+    fn,
+    elems,
+    initializer=None,
+    parallel_iterations=10,
+    back_prop=True,
+    swap_memory=False,
+    infer_shape=True,
+    reverse=False,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>The simplest version of <code>scan</code> repeatedly applies the callable <code>fn</code> to a
+sequence of elements from first to last. The elements are made of the tensors
+unpacked from <code>elems</code> on dimension 0. The callable fn takes two tensors as
+arguments. The first argument is the accumulated value computed from the
+preceding invocation of fn, and the second is the value at the current
+position of <code>elems</code>. If <code>initializer</code> is None, <code>elems</code> must contain at least
+one element, and its first element is used as the initializer.</p>
+
+<p>Suppose that <code>elems</code> is unpacked into <code>values</code>, a list of tensors. The shape
+of the result tensor is <code>[len(values)] + fn(initializer, values[0]).shape</code>.
+If reverse=True, it&rsquo;s fn(initializer, values[-1]).shape.</p>
+
+<p>This method also allows multi-arity <code>elems</code> and accumulator.  If <code>elems</code>
+is a (possibly nested) list or tuple of tensors, then each of these tensors
+must have a matching first (unpack) dimension.  The second argument of
+<code>fn</code> must match the structure of <code>elems</code>.</p>
+
+<p>If no <code>initializer</code> is provided, the output structure and dtypes of <code>fn</code>
+are assumed to be the same as its input; and in this case, the first
+argument of <code>fn</code> must match the structure of <code>elems</code>.</p>
+
+<p>If an <code>initializer</code> is provided, then the output of <code>fn</code> must have the same
+structure as <code>initializer</code>; and the first argument of <code>fn</code> must match
+this structure.</p>
+
+<p>For example, if <code>elems</code> is <code>(t1, [t2, t3])</code> and <code>initializer</code> is
+<code>[i1, i2]</code> then an appropriate signature for <code>fn</code> in <code>python2</code> is:
+<code>fn = lambda (acc_p1, acc_p2), (t1, [t2, t3]):</code> and <code>fn</code> must return a list,
+<code>[acc_n1, acc_n2]</code>.  An alternative correct signature for <code>fn</code>, and the
+ one that works in <code>python3</code>, is:
+<code>fn = lambda a, t:</code>, where <code>a</code> and <code>t</code> correspond to the input tuples.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>fn</code></b>: The callable to be performed.  It accepts two arguments.  The first will
+have the same structure as <code>initializer</code> if one is provided, otherwise it
+will have the same structure as <code>elems</code>.  The second will have the same
+(possibly nested) structure as <code>elems</code>.  Its output must have the same
+structure as <code>initializer</code> if one is provided, otherwise it must have the
+same structure as <code>elems</code>.</li>
+<li><b><code>elems</code></b>: A tensor or (possibly nested) sequence of tensors, each of which will
+be unpacked along their first dimension.  The nested sequence of the
+resulting slices will be the first argument to <code>fn</code>.</li>
+<li><b><code>initializer</code></b>: (optional) A tensor or (possibly nested) sequence of tensors,
+initial value for the accumulator, and the expected output type of <code>fn</code>.</li>
+<li><b><code>parallel_iterations</code></b>: (optional) The number of iterations allowed to run in
+parallel.</li>
+<li><b><code>back_prop</code></b>: (optional) True enables support for back propagation.</li>
+<li><b><code>swap_memory</code></b>: (optional) True enables GPU-CPU memory swapping.</li>
+<li><b><code>infer_shape</code></b>: (optional) False disables tests for consistent output shapes.</li>
+<li><b><code>reverse</code></b>: (optional) True scans the tensor last to first (instead of first to
+last).</li>
+<li><b><code>name</code></b>: (optional) Name prefix for the returned tensors.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A tensor or (possibly nested) sequence of tensors.  Each tensor packs the
+results of applying <code>fn</code> to tensors unpacked from <code>elems</code> along the first
+dimension, and the previous accumulator value(s), from first to last (or
+last to first, if <code>reverse=True</code>).</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>TypeError</code></b>: if <code>fn</code> is not callable or the structure of the output of
+<code>fn</code> and <code>initializer</code> do not match.</li>
+<li><b><code>ValueError</code></b>: if the lengths of the output of <code>fn</code> and <code>initializer</code>
+do not match.</li>
+</ul>
+
+
+<h4>Examples:</h4>
+
+<p>```python
+elems = np.array([1, 2, 3, 4, 5, 6])
+sum = scan(lambda a, x: a + x, elems)</p>
+
+<h1>sum == [1, 3, 6, 10, 15, 21]</h1>
+
+<p>sum = scan(lambda a, x: a + x, elems, reverse=True)</p>
+
+<h1>sum == [21, 20, 18, 15, 11, 6]</h1>
+
+<p>```</p>
+
+<p>```python
+elems = np.array([1, 2, 3, 4, 5, 6])
+initializer = np.array(0)
+sum_one = scan(
+    lambda a, x: x[0] - x[1] + a, (elems + 1, elems), initializer)</p>
+
+<h1>sum_one == [1, 2, 3, 4, 5, 6]</h1>
+
+<p>```</p>
+
+<p>```python
+elems = np.array([1, 0, 0, 0, 0, 0])
+initializer = (np.array(0), np.array(1))
+fibonaccis = scan(lambda a, _: (a[1], a[0] + a[1]), elems, initializer)</p>
+
+<h1>fibonaccis == ([1, 1, 2, 3, 5, 8], [1, 2, 3, 5, 8, 13])</h1>
+
+<p>```</p>

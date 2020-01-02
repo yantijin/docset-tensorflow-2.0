@@ -1,0 +1,63 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.load_library" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.load_library</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/load_library.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Loads a TensorFlow plugin.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.load_library</code></li>
+<li><code>tf.compat.v2.load_library</code></li>
+</ul>
+
+
+<p><code>python
+tf.load_library(library_location)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>&ldquo;library_location&rdquo; can be a path to a specific shared object, or a folder.
+If it is a folder, all shared objects that are named &ldquo;libtfkernel*&rdquo; will be
+loaded. When the library is loaded, kernels registered in the library via the
+<code>REGISTER_*</code> macros are made available in the TensorFlow process.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>library_location</code></b>: Path to the plugin or the folder of plugins.
+Relative or absolute filesystem path to a dynamic library file or folder.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>None</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>OSError</code></b>: When the file to be loaded is not found.</li>
+<li><b><code>RuntimeError</code></b>: when unable to load the library.</li>
+</ul>
+

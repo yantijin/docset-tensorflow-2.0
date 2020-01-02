@@ -1,0 +1,72 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.no_gradient" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.no_gradient</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Specifies that ops of type <code>op_type</code> is not differentiable.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.NoGradient</code></li>
+<li><code>tf.compat.v1.NotDifferentiable</code></li>
+<li><code>tf.compat.v1.no_gradient</code></li>
+<li><code>tf.compat.v2.no_gradient</code></li>
+</ul>
+
+
+<p><code>python
+tf.no_gradient(op_type)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>This function should <em>not</em> be used for operations that have a
+well-defined gradient that is not yet implemented.</p>
+
+<p>This function is only used when defining a new op type. It may be
+used for ops such as <a href="../tf/size.html"><code>tf.size()</code></a> that are not differentiable.  For
+example:</p>
+
+<p><code>python
+tf.no_gradient("Size")
+</code></p>
+
+<p>The gradient computed for &lsquo;op_type&rsquo; will then propagate zeros.</p>
+
+<p>For ops that have a well-defined gradient but are not yet implemented,
+no declaration should be made, and an error <em>must</em> be thrown if
+an attempt to request its gradient is made.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>op_type</code></b>: The string type of an operation. This corresponds to the
+<code>OpDef.name</code> field for the proto that defines the operation.</li>
+</ul>
+
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>TypeError</code></b>: If <code>op_type</code> is not a string.</li>
+</ul>
+

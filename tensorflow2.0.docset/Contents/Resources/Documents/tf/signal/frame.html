@@ -1,0 +1,92 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.signal.frame" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.signal.frame</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/signal/shape_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Expands <code>signal</code>&rsquo;s <code>axis</code> dimension into frames of <code>frame_length</code>.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.signal.frame</code></li>
+<li><code>tf.compat.v2.signal.frame</code></li>
+</ul>
+
+
+<p><code>python
+tf.signal.frame(
+    signal,
+    frame_length,
+    frame_step,
+    pad_end=False,
+    pad_value=0,
+    axis=-1,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Slides a window of size <code>frame_length</code> over <code>signal</code>&rsquo;s <code>axis</code> dimension
+with a stride of <code>frame_step</code>, replacing the <code>axis</code> dimension with
+<code>[frames, frame_length]</code> frames.</p>
+
+<p>If <code>pad_end</code> is True, window positions that are past the end of the <code>axis</code>
+dimension are padded with <code>pad_value</code> until the window moves fully past the
+end of the dimension. Otherwise, only window positions that fully overlap the
+<code>axis</code> dimension are produced.</p>
+
+<h4>For example:</h4>
+
+<p><code>python
+pcm = tf.compat.v1.placeholder(tf.float32, [None, 9152])
+frames = tf.signal.frame(pcm, 512, 180)
+magspec = tf.abs(tf.signal.rfft(frames, [512]))
+image = tf.expand_dims(magspec, 3)
+</code></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>signal</code></b>: A <code>[..., samples, ...]</code> <code>Tensor</code>. The rank and dimensions
+may be unknown. Rank must be at least 1.</li>
+<li><b><code>frame_length</code></b>: The frame length in samples. An integer or scalar <code>Tensor</code>.</li>
+<li><b><code>frame_step</code></b>: The frame hop size in samples. An integer or scalar <code>Tensor</code>.</li>
+<li><b><code>pad_end</code></b>: Whether to pad the end of <code>signal</code> with <code>pad_value</code>.</li>
+<li><b><code>pad_value</code></b>: An optional scalar <code>Tensor</code> to use where the input signal
+does not exist when <code>pad_end</code> is True.</li>
+<li><b><code>axis</code></b>: A scalar integer <code>Tensor</code> indicating the axis to frame. Defaults to
+the last axis. Supports negative values for indexing from the end.</li>
+<li><b><code>name</code></b>: An optional name for the operation.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> of frames with shape <code>[..., frames, frame_length, ...]</code>.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If <code>frame_length</code>, <code>frame_step</code>, <code>pad_value</code>, or <code>axis</code> are not
+scalar.</li>
+</ul>
+

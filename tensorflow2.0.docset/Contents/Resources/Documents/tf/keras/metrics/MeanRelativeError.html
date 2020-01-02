@@ -1,0 +1,177 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.metrics.MeanRelativeError" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="__new__"/>
+<meta itemprop="property" content="reset_states"/>
+<meta itemprop="property" content="result"/>
+<meta itemprop="property" content="update_state"/>
+</div>
+
+
+<h1>tf.keras.metrics.MeanRelativeError</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/metrics.py">View source</a></p>
+
+<h2>Class <code>MeanRelativeError</code></h2>
+
+<!-- Start diff -->
+
+
+<p>Computes the mean relative error by normalizing with the given values.</p>
+
+<p>Inherits From: <a href="../../../tf/keras/metrics/Mean.html"><code>Mean</code></a></p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li>Class <code>tf.compat.v1.keras.metrics.MeanRelativeError</code></li>
+<li>Class <code>tf.compat.v2.keras.metrics.MeanRelativeError</code></li>
+<li>Class <code>tf.compat.v2.metrics.MeanRelativeError</code></li>
+<li>Class <code>tf.metrics.MeanRelativeError</code></li>
+</ul>
+
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>This metric creates two local variables, <code>total</code> and <code>count</code> that are used to
+compute the mean relative absolute error. This average is weighted by
+<code>sample_weight</code>, and it is ultimately returned as <code>mean_relative_error</code>:
+an idempotent operation that simply divides <code>total</code> by <code>count</code>.</p>
+
+<p>If <code>sample_weight</code> is <code>None</code>, weights default to 1.
+Use <code>sample_weight</code> of 0 to mask values.</p>
+
+<h4>Usage:</h4>
+
+<p>```python
+m = tf.keras.metrics.MeanRelativeError(normalizer=[1, 3, 2, 3])
+m.update_state([1, 3, 2, 3], [2, 4, 6, 8])</p>
+
+<h1>metric = mean(|y_pred - y_true| / normalizer)</h1>
+
+<h1>= mean([1, 1, 4, 5] / [1, 3, 2, 3]) = mean([1, 1/3, 2, 5/3])</h1>
+
+<h1>= 5/4 = 1.25</h1>
+
+<p>print(&lsquo;Final result: &rsquo;, m.result().numpy())  # Final result: 1.25
+```</p>
+
+<p>Usage with tf.keras API:</p>
+
+<p><code>python
+model = tf.keras.Model(inputs, outputs)
+model.compile(
+  'sgd',
+  loss='mse',
+  metrics=[tf.keras.metrics.MeanRelativeError(normalizer=[1, 3])])
+</code></p>
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/metrics.py">View source</a></p>
+
+<p><code>python
+__init__(
+    normalizer,
+    name=None,
+    dtype=None
+)
+</code></p>
+
+<p>Creates a <code>MeanRelativeError</code> instance.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>normalizer</code></b>: The normalizer values with same shape as predictions.</li>
+<li><b><code>name</code></b>: (Optional) string name of the metric instance.</li>
+<li><b><code>dtype</code></b>: (Optional) data type of the metric result.</li>
+</ul>
+
+
+<h2 id="__new__"><code>__new__</code></h2>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/metrics.py">View source</a></p>
+
+<p><code>python
+__new__(
+    cls,
+    *args,
+    **kwargs
+)
+</code></p>
+
+<p>Create and return a new object.  See help(type) for accurate signature.</p>
+
+<h2>Methods</h2>
+
+<h3 id="reset_states"><code>reset_states</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/metrics.py">View source</a></p>
+
+<p><code>python
+reset_states()
+</code></p>
+
+<p>Resets all of the metric state variables.</p>
+
+<p>This function is called between epochs/steps,
+when a metric is evaluated during training.</p>
+
+<h3 id="result"><code>result</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/metrics.py">View source</a></p>
+
+<p><code>python
+result()
+</code></p>
+
+<p>Computes and returns the metric value tensor.</p>
+
+<p>Result computation is an idempotent operation that simply calculates the
+metric value using the state variables.</p>
+
+<h3 id="update_state"><code>update_state</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/metrics.py">View source</a></p>
+
+<p><code>python
+update_state(
+    y_true,
+    y_pred,
+    sample_weight=None
+)
+</code></p>
+
+<p>Accumulates metric statistics.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>y_true</code></b>: The ground truth values.</li>
+<li><b><code>y_pred</code></b>: The predicted values.</li>
+<li><b><code>sample_weight</code></b>: Optional weighting of each example. Defaults to 1. Can be a
+<code>Tensor</code> whose rank is either 0, or the same rank as <code>y_true</code>, and must
+be broadcastable to <code>y_true</code>.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>Update op.</p>

@@ -1,0 +1,199 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.preprocessing.sequence.TimeseriesGenerator" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__getitem__"/>
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="__iter__"/>
+<meta itemprop="property" content="__len__"/>
+<meta itemprop="property" content="get_config"/>
+<meta itemprop="property" content="on_epoch_end"/>
+<meta itemprop="property" content="to_json"/>
+</div>
+
+
+<h1>tf.keras.preprocessing.sequence.TimeseriesGenerator</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/preprocessing/sequence.py">View source</a></p>
+
+<h2>Class <code>TimeseriesGenerator</code></h2>
+
+<!-- Start diff -->
+
+
+<p>Utility class for generating batches of temporal data.</p>
+
+<p>Inherits From: <a href="../../../../tf/keras/utils/Sequence.html"><code>Sequence</code></a></p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li>Class <code>tf.compat.v1.keras.preprocessing.sequence.TimeseriesGenerator</code></li>
+<li>Class <code>tf.compat.v2.keras.preprocessing.sequence.TimeseriesGenerator</code></li>
+</ul>
+
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>This class takes in a sequence of data-points gathered at
+equal intervals, along with time series parameters such as
+stride, length of history, etc., to produce batches for
+training/validation.</p>
+
+<h1>Arguments</h1>
+
+<pre><code>data: Indexable generator (such as list or Numpy array)
+    containing consecutive data points (timesteps).
+    The data should be at 2D, and axis 0 is expected
+    to be the time dimension.
+targets: Targets corresponding to timesteps in `data`.
+    It should have same length as `data`.
+length: Length of the output sequences (in number of timesteps).
+sampling_rate: Period between successive individual timesteps
+    within sequences. For rate `r`, timesteps
+    `data[i]`, `data[i-r]`, ... `data[i - length]`
+    are used for create a sample sequence.
+stride: Period between successive output sequences.
+    For stride `s`, consecutive output samples would
+    be centered around `data[i]`, `data[i+s]`, `data[i+2*s]`, etc.
+start_index: Data points earlier than `start_index` will not be used
+    in the output sequences. This is useful to reserve part of the
+    data for test or validation.
+end_index: Data points later than `end_index` will not be used
+    in the output sequences. This is useful to reserve part of the
+    data for test or validation.
+shuffle: Whether to shuffle output samples,
+    or instead draw them in chronological order.
+reverse: Boolean: if `true`, timesteps in each output sample will be
+    in reverse chronological order.
+batch_size: Number of timeseries samples in each batch
+    (except maybe the last one).
+</code></pre>
+
+<h1>Returns</h1>
+
+<pre><code>A [Sequence](/utils/#sequence) instance.
+</code></pre>
+
+<h1>Examples</h1>
+
+<p><code>python
+from keras.preprocessing.sequence import TimeseriesGenerator
+import numpy as np
+data = np.array([[i] for i in range(50)])
+targets = np.array([[i] for i in range(50)])
+data_gen = TimeseriesGenerator(data, targets,
+                               length=10, sampling_rate=2,
+                               batch_size=2)
+assert len(data_gen) == 20
+batch_0 = data_gen[0]
+x, y = batch_0
+assert np.array_equal(x,
+                      np.array([[[0], [2], [4], [6], [8]],
+                                [[1], [3], [5], [7], [9]]]))
+assert np.array_equal(y,
+                      np.array([[10], [11]]))
+</code></p>
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+
+<p><code>python
+__init__(
+    data,
+    targets,
+    length,
+    sampling_rate=1,
+    stride=1,
+    start_index=0,
+    end_index=None,
+    shuffle=False,
+    reverse=False,
+    batch_size=128
+)
+</code></p>
+
+<p>Initialize self.  See help(type(self)) for accurate signature.</p>
+
+<h2>Methods</h2>
+
+<h3 id="__getitem__"><code>__getitem__</code></h3>
+
+
+<p><code>python
+__getitem__(index)
+</code></p>
+
+<h3 id="__iter__"><code>__iter__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/utils/data_utils.py">View source</a></p>
+
+<p><code>python
+__iter__()
+</code></p>
+
+<p>Create a generator that iterate over the Sequence.</p>
+
+<h3 id="__len__"><code>__len__</code></h3>
+
+
+<p><code>python
+__len__()
+</code></p>
+
+<h3 id="get_config"><code>get_config</code></h3>
+
+
+<p><code>python
+get_config()
+</code></p>
+
+<p>Returns the TimeseriesGenerator configuration as Python dictionary.</p>
+
+<h1>Returns</h1>
+
+<pre><code>A Python dictionary with the TimeseriesGenerator configuration.
+</code></pre>
+
+<h3 id="on_epoch_end"><code>on_epoch_end</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/utils/data_utils.py">View source</a></p>
+
+<p><code>python
+on_epoch_end()
+</code></p>
+
+<p>Method called at the end of every epoch.</p>
+
+<h3 id="to_json"><code>to_json</code></h3>
+
+
+<p><code>python
+to_json(**kwargs)
+</code></p>
+
+<p>Returns a JSON string containing the timeseries generator
+configuration. To load a generator from a JSON string, use
+<code>keras.preprocessing.sequence.timeseries_generator_from_json(json_string)</code>.</p>
+
+<h1>Arguments</h1>
+
+<pre><code>**kwargs: Additional keyword arguments
+    to be passed to `json.dumps()`.
+</code></pre>
+
+<h1>Returns</h1>
+
+<pre><code>A JSON string containing the tokenizer configuration.
+</code></pre>

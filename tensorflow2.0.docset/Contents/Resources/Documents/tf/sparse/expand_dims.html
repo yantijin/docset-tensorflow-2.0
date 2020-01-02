@@ -1,0 +1,63 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.sparse.expand_dims" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.sparse.expand_dims</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/sparse_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Inserts a dimension of 1 into a tensor&rsquo;s shape.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.sparse.expand_dims</code></li>
+<li><code>tf.compat.v2.sparse.expand_dims</code></li>
+</ul>
+
+
+<p><code>python
+tf.sparse.expand_dims(
+    sp_input,
+    axis=None,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Given a tensor <code>sp_input</code>, this operation inserts a dimension of 1 at the
+dimension index <code>axis</code> of <code>sp_input</code>&rsquo;s shape. The dimension index <code>axis</code>
+starts at zero; if you specify a negative number for <code>axis</code> it is counted
+backwards from the end.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>sp_input</code></b>: A <code>SparseTensor</code>.</li>
+<li><b><code>axis</code></b>: 0-D (scalar). Specifies the dimension index at which to expand the
+shape of <code>input</code>. Must be in the range <code>[-rank(sp_input) - 1,
+rank(sp_input)]</code>.</li>
+<li><b><code>name</code></b>: The name of the output <code>SparseTensor</code>.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>SparseTensor</code> with the same data as <code>sp_input</code>, but its shape has an
+additional dimension of size 1 added.</p>

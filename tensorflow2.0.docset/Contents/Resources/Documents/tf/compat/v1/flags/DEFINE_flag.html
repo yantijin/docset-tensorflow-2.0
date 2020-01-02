@@ -1,0 +1,59 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.flags.DEFINE_flag" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.flags.DEFINE_flag</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+
+
+<!-- Start diff -->
+
+
+<p>Registers a &lsquo;Flag&rsquo; object with a &lsquo;FlagValues&rsquo; object.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.app.flags.DEFINE_flag</code></li>
+</ul>
+
+
+<p><code>python
+tf.compat.v1.flags.DEFINE_flag(
+    flag,
+    flag_values=_flagvalues.FLAGS,
+    module_name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>By default, the global FLAGS &lsquo;FlagValue&rsquo; object is used.</p>
+
+<p>Typical users will use one of the more specialized DEFINE_xxx
+functions, such as DEFINE_string or DEFINE_integer.  But developers
+who need to create Flag objects themselves should use this function
+to register their flags.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>flag</code></b>: Flag, a flag that is key to the module.</li>
+<li><b><code>flag_values</code></b>: FlagValues, the FlagValues instance with which the flag will
+  be registered. This should almost never need to be overridden.</li>
+<li><b><code>module_name</code></b>: str, the name of the Python module declaring this flag.
+  If not provided, it will be computed using the stack trace of this call.</li>
+</ul>
+

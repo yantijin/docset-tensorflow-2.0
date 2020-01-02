@@ -1,0 +1,64 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.linalg.eigh" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.linalg.eigh</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/linalg_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Computes the eigen decomposition of a batch of self-adjoint matrices.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.linalg.eigh</code></li>
+<li><code>tf.compat.v1.self_adjoint_eig</code></li>
+<li><code>tf.compat.v2.linalg.eigh</code></li>
+</ul>
+
+
+<p><code>python
+tf.linalg.eigh(
+    tensor,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Computes the eigenvalues and eigenvectors of the innermost N-by-N matrices
+in <code>tensor</code> such that
+<code>tensor[...,:,:] * v[..., :,i] = e[..., i] * v[...,:,i]</code>, for i=0&hellip;N-1.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>tensor</code></b>: <code>Tensor</code> of shape <code>[..., N, N]</code>. Only the lower triangular part of
+each inner inner matrix is referenced.</li>
+<li><b><code>name</code></b>: string, optional name of the operation.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<ul>
+<li><b><code>e</code></b>: Eigenvalues. Shape is <code>[..., N]</code>. Sorted in non-decreasing order.</li>
+<li><b><code>v</code></b>: Eigenvectors. Shape is <code>[..., N, N]</code>. The columns of the inner most
+matrices contain eigenvectors of the corresponding matrices in <code>tensor</code></li>
+</ul>
+

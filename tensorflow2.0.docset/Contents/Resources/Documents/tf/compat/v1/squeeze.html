@@ -1,0 +1,92 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.squeeze" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.squeeze</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/array_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Removes dimensions of size 1 from the shape of a tensor. (deprecated arguments)</p>
+
+<p><code>python
+tf.compat.v1.squeeze(
+    input,
+    axis=None,
+    name=None,
+    squeeze_dims=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Warning: SOME ARGUMENTS ARE DEPRECATED: <code>(squeeze_dims)</code>. They will be removed in a future version.
+Instructions for updating:
+Use the <code>axis</code> argument instead</p>
+
+<p>Given a tensor <code>input</code>, this operation returns a tensor of the same type with
+all dimensions of size 1 removed. If you don&rsquo;t want to remove all size 1
+dimensions, you can remove specific size 1 dimensions by specifying
+<code>axis</code>.</p>
+
+<h4>For example:</h4>
+
+<p>```python</p>
+
+<h1>&rsquo;t' is a tensor of shape [1, 2, 1, 3, 1, 1]</h1>
+
+<p>tf.shape(tf.squeeze(t))  # [2, 3]
+```</p>
+
+<p>Or, to remove specific size 1 dimensions:</p>
+
+<p>```python</p>
+
+<h1>&rsquo;t' is a tensor of shape [1, 2, 1, 3, 1, 1]</h1>
+
+<p>tf.shape(tf.squeeze(t, [2, 4]))  # [1, 2, 3, 1]
+```</p>
+
+<p>Note: if <code>input</code> is a <a href="../../../tf/RaggedTensor.html"><code>tf.RaggedTensor</code></a>, then this operation takes <code>O(N)</code>
+time, where <code>N</code> is the number of elements in the squeezed dimensions.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>input</code></b>: A <code>Tensor</code>. The <code>input</code> to squeeze.</li>
+<li><b><code>axis</code></b>: An optional list of <code>ints</code>. Defaults to <code>[]</code>. If specified, only
+squeezes the dimensions listed. The dimension index starts at 0. It is an
+error to squeeze a dimension that is not 1. Must be in the range
+<code>[-rank(input), rank(input))</code>.
+Must be specified if <code>input</code> is a <code>RaggedTensor</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+<li><b><code>squeeze_dims</code></b>: Deprecated keyword argument that is now axis.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code>. Has the same type as <code>input</code>.
+Contains the same data as <code>input</code>, but has one or more dimensions of
+size 1 removed.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: When both <code>squeeze_dims</code> and <code>axis</code> are specified.</li>
+</ul>
+

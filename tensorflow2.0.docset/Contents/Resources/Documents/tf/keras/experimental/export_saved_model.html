@@ -1,0 +1,119 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.experimental.export_saved_model" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.keras.experimental.export_saved_model</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/saving/saved_model_experimental.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Exports a <a href="../../../tf/keras/Model.html"><code>tf.keras.Model</code></a> as a Tensorflow SavedModel. (deprecated)</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.keras.experimental.export_saved_model</code></li>
+<li><code>tf.compat.v2.keras.experimental.export_saved_model</code></li>
+</ul>
+
+
+<p><code>python
+tf.keras.experimental.export_saved_model(
+    model,
+    saved_model_path,
+    custom_objects=None,
+    as_text=False,
+    input_signature=None,
+    serving_only=False
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
+Instructions for updating:
+Please use <code>model.save(..., save_format="tf")</code> or <code>tf.keras.models.save_model(..., save_format="tf")</code>.</p>
+
+<p>Note that at this time, subclassed models can only be saved using
+<code>serving_only=True</code>.</p>
+
+<p>The exported <code>SavedModel</code> is a standalone serialization of Tensorflow objects,
+and is supported by TF language APIs and the Tensorflow Serving system.
+To load the model, use the function
+<a href="../../../tf/keras/experimental/load_from_saved_model.html"><code>tf.keras.experimental.load_from_saved_model</code></a>.</p>
+
+<p>The <code>SavedModel</code> contains:</p>
+
+<ol>
+<li>a checkpoint containing the model weights.</li>
+<li>a <code>SavedModel</code> proto containing the Tensorflow backend graph. Separate
+graphs are saved for prediction (serving), train, and evaluation. If
+the model has not been compiled, then only the graph computing predictions
+will be exported.</li>
+<li>the model&rsquo;s json config. If the model is subclassed, this will only be
+included if the model&rsquo;s <code>get_config()</code> method is overwritten.</li>
+</ol>
+
+
+<h4>Example:</h4>
+
+<p>```python
+import tensorflow as tf</p>
+
+<h1>Create a tf.keras model.</h1>
+
+<p>model = tf.keras.Sequential()
+model.add(tf.keras.layers.Dense(1, input_shape=[10]))
+model.summary()</p>
+
+<h1>Save the tf.keras model in the SavedModel format.</h1>
+
+<p>path = &lsquo;/tmp/simple_keras_model&rsquo;
+tf.keras.experimental.export_saved_model(model, path)</p>
+
+<h1>Load the saved keras model back.</h1>
+
+<p>new_model = tf.keras.experimental.load_from_saved_model(path)
+new_model.summary()
+```</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>model</code></b>: A <a href="../../../tf/keras/Model.html"><code>tf.keras.Model</code></a> to be saved. If the model is subclassed, the flag
+<code>serving_only</code> must be set to True.</li>
+<li><b><code>saved_model_path</code></b>: a string specifying the path to the SavedModel directory.</li>
+<li><b><code>custom_objects</code></b>: Optional dictionary mapping string names to custom classes
+or functions (e.g. custom loss functions).</li>
+<li><b><code>as_text</code></b>: bool, <code>False</code> by default. Whether to write the <code>SavedModel</code> proto
+in text format. Currently unavailable in serving-only mode.</li>
+<li><b><code>input_signature</code></b>: A possibly nested sequence of <a href="../../../tf/TensorSpec.html"><code>tf.TensorSpec</code></a> objects, used
+to specify the expected model inputs. See <a href="../../../tf/function.html"><code>tf.function</code></a> for more details.</li>
+<li><b><code>serving_only</code></b>: bool, <code>False</code> by default. When this is true, only the
+prediction graph is saved.</li>
+</ul>
+
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>NotImplementedError</code></b>: If the model is a subclassed model, and serving_only is
+False.</li>
+<li><b><code>ValueError</code></b>: If the input signature cannot be inferred from the model.</li>
+<li><b><code>AssertionError</code></b>: If the SavedModel directory already exists and isn&rsquo;t empty.</li>
+</ul>
+

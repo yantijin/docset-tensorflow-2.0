@@ -1,0 +1,87 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.eye" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.eye</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/linalg_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Construct an identity matrix, or a batch of matrices.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.eye</code></li>
+<li><code>tf.compat.v1.linalg.eye</code></li>
+<li><code>tf.compat.v2.eye</code></li>
+<li><code>tf.compat.v2.linalg.eye</code></li>
+<li><code>tf.linalg.eye</code></li>
+</ul>
+
+
+<p><code>python
+tf.eye(
+    num_rows,
+    num_columns=None,
+    batch_shape=None,
+    dtype=tf.dtypes.float32,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>```python</p>
+
+<h1>Construct one identity matrix.</h1>
+
+<p>tf.eye(2)
+==> [[1., 0.],
+     [0., 1.]]</p>
+
+<h1>Construct a batch of 3 identity matricies, each 2 x 2.</h1>
+
+<h1>batch_identity[i, :, :] is a 2 x 2 identity matrix, i = 0, 1, 2.</h1>
+
+<p>batch_identity = tf.eye(2, batch_shape=[3])</p>
+
+<h1>Construct one 2 x 3 &ldquo;identity&rdquo; matrix</h1>
+
+<p>tf.eye(2, num_columns=3)
+==> [[ 1.,  0.,  0.],
+     [ 0.,  1.,  0.]]
+```</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>num_rows</code></b>: Non-negative <code>int32</code> scalar <code>Tensor</code> giving the number of rows
+in each batch matrix.</li>
+<li><b><code>num_columns</code></b>: Optional non-negative <code>int32</code> scalar <code>Tensor</code> giving the number
+of columns in each batch matrix.  Defaults to <code>num_rows</code>.</li>
+<li><b><code>batch_shape</code></b>:  A list or tuple of Python integers or a 1-D <code>int32</code> <code>Tensor</code>.
+If provided, the returned <code>Tensor</code> will have leading batch dimensions of
+this shape.</li>
+<li><b><code>dtype</code></b>:  The type of an element in the resulting <code>Tensor</code></li>
+<li><b><code>name</code></b>:  A name for this <code>Op</code>.  Defaults to &ldquo;eye&rdquo;.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> of shape <code>batch_shape + [num_rows, num_columns]</code></p>

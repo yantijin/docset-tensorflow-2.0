@@ -1,0 +1,62 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.debugging.assert_integer" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.debugging.assert_integer</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/check_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Assert that <code>x</code> is of integer dtype.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v2.debugging.assert_integer</code></li>
+</ul>
+
+
+<p><code>python
+tf.debugging.assert_integer(
+    x,
+    message=None,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>If <code>x</code> has a non-integer type, <code>message</code>, as well as the dtype of <code>x</code> are
+printed, and <code>InvalidArgumentError</code> is raised.</p>
+
+<p>This can always be checked statically, so this method returns nothing.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code>.</li>
+<li><b><code>message</code></b>: A string to prefix to the default message.</li>
+<li><b><code>name</code></b>: A name for this operation (optional). Defaults to &ldquo;assert_integer&rdquo;.</li>
+</ul>
+
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>TypeError</code></b>:  If <code>x.dtype</code> is not a non-quantized integer type.</li>
+</ul>
+

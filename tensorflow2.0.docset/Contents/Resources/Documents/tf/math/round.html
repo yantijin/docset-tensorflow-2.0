@@ -1,0 +1,65 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.math.round" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.math.round</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/math_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Rounds the values of a tensor to the nearest integer, element-wise.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.math.round</code></li>
+<li><code>tf.compat.v1.round</code></li>
+<li><code>tf.compat.v2.math.round</code></li>
+<li><code>tf.compat.v2.round</code></li>
+<li><code>tf.round</code></li>
+</ul>
+
+
+<p><code>python
+tf.math.round(
+    x,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Rounds half to even.  Also known as bankers rounding. If you want to round
+according to the current system rounding mode use tf::cint.
+For example:</p>
+
+<p><code>python
+x = tf.constant([0.9, 2.5, 2.3, 1.5, -4.5])
+tf.round(x)  # [ 1.0, 2.0, 2.0, 2.0, -4.0 ]
+</code></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code> of type <code>float16</code>, <code>float32</code>, <code>float64</code>, <code>int32</code>, or <code>int64</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> of same shape and type as <code>x</code>.</p>

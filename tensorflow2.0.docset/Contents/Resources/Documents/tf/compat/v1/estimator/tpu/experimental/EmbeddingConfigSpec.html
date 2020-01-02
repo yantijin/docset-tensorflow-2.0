@@ -1,0 +1,185 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.estimator.tpu.experimental.EmbeddingConfigSpec" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="feature_columns"/>
+<meta itemprop="property" content="optimization_parameters"/>
+<meta itemprop="property" content="clipping_limit"/>
+<meta itemprop="property" content="pipeline_execution_with_tensor_core"/>
+<meta itemprop="property" content="experimental_gradient_multiplier_fn"/>
+<meta itemprop="property" content="feature_to_config_dict"/>
+<meta itemprop="property" content="table_to_config_dict"/>
+<meta itemprop="property" content="partition_strategy"/>
+<meta itemprop="property" content="__new__"/>
+</div>
+
+
+<h1>tf.compat.v1.estimator.tpu.experimental.EmbeddingConfigSpec</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+
+<td>
+  <a target="_blank" href="https://github.com/tensorflow/estimator/tree/master/tensorflow_estimator/python/estimator/tpu/_tpu_estimator_embedding.py">
+    <img src="https://www.tensorflow.org/images/GitHub-Mark-32px.png" />
+    View source on GitHub
+  </a>
+</td></table>
+
+
+<h2>Class <code>EmbeddingConfigSpec</code></h2>
+
+<!-- Start diff -->
+
+
+<p>Class to keep track of the specification for TPU embeddings.</p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Pass this class to <code>tf.estimator.tpu.TPUEstimator</code> via the
+<code>embedding_config_spec</code> parameter. At minimum you need to specify
+<code>feature_columns</code> and <code>optimization_parameters</code>. The feature columns passed
+should be created with some combination of
+<code>tf.tpu.experimental.embedding_column</code> and
+<code>tf.tpu.experimental.shared_embedding_columns</code>.</p>
+
+<p>TPU embeddings do not support arbitrary Tensorflow optimizers and the
+main optimizer you use for your model will be ignored for the embedding table
+variables. Instead TPU embeddigns support a fixed set of predefined optimizers
+that you can select from and set the parameters of. These include adagrad,
+adam and stochastic gradient descent. Each supported optimizer has a
+<code>Parameters</code> class in the <a href="../../../../../../tf/tpu/experimental.html"><code>tf.tpu.experimental</code></a> namespace.</p>
+
+<p>```
+column_a = tf.feature_column.categorical_column_with_identity(&hellip;)
+column_b = tf.feature_column.categorical_column_with_identity(&hellip;)
+column_c = tf.feature_column.categorical_column_with_identity(&hellip;)
+tpu_shared_columns = tf.tpu.experimental.shared_embedding_columns(
+    [column_a, column_b], 10)
+tpu_non_shared_column = tf.tpu.experimental.embedding_column(
+    column_c, 10)
+tpu_columns = [tpu_non_shared_column] + tpu_shared_columns
+&hellip;
+def model_fn(features):
+  dense_features = tf.keras.layers.DenseFeature(tpu_columns)
+  embedded_feature = dense_features(features)
+  &hellip;</p>
+
+<p>estimator = tf.estimator.tpu.TPUEstimator(
+    model_fn=model_fn,
+    &hellip;
+    embedding_config_spec=tf.estimator.tpu.experimental.EmbeddingConfigSpec(
+        column=tpu_columns,
+        optimization_parameters=(
+            tf.estimator.tpu.experimental.AdagradParameters(0.1))))</p>
+
+<h2 id="__new__"><code>__new__</code></h2>
+
+
+<p><a target="_blank" href="https://github.com/tensorflow/estimator/tree/master/tensorflow_estimator/python/estimator/tpu/_tpu_estimator_embedding.py">View source</a></p>
+
+<p><code>python
+@staticmethod
+__new__(
+    cls,
+    feature_columns=None,
+    optimization_parameters=None,
+    clipping_limit=None,
+    pipeline_execution_with_tensor_core=False,
+    experimental_gradient_multiplier_fn=None,
+    feature_to_config_dict=None,
+    table_to_config_dict=None,
+    partition_strategy='div'
+)
+</code></p>
+
+<p>Creates an <code>EmbeddingConfigSpec</code> instance.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>feature_columns</code></b>: All embedding <code>FeatureColumn</code>s used by model.</li>
+<li><b><code>optimization_parameters</code></b>: An instance of <code>AdagradParameters</code>,
+<code>AdamParameters</code> or <code>StochasticGradientDescentParameters</code>. This
+optimizer will be applied to all embedding variables specified by
+<code>feature_columns</code>.</li>
+<li><b><code>clipping_limit</code></b>: (Optional) Clipping limit (absolute value).</li>
+<li><b><code>pipeline_execution_with_tensor_core</code></b>: setting this to <code>True</code> makes training
+faster, but trained model will be different if step N and step N+1
+involve the same set of embedding IDs. Please see
+<code>tpu_embedding_configuration.proto</code> for details.</li>
+<li><b><code>experimental_gradient_multiplier_fn</code></b>: (Optional) A Fn taking global step as
+input returning the current multiplier for all embedding gradients.</li>
+<li><b><code>feature_to_config_dict</code></b>: A dictionary mapping features names to instances
+of the class <code>FeatureConfig</code>. Either features_columns or the pair of
+<code>feature_to_config_dict</code> and <code>table_to_config_dict</code> must be specified.</li>
+<li><b><code>table_to_config_dict</code></b>: A dictionary mapping features names to instances of
+the class <code>TableConfig</code>. Either features_columns or the pair of
+<code>feature_to_config_dict</code> and <code>table_to_config_dict</code> must be specified.</li>
+<li><b><code>partition_strategy</code></b>: A string, determining how tensors are sharded to the
+tpu hosts. See <a href="../../../../../../tf/nn/safe_embedding_lookup_sparse.html"><code>tf.nn.safe_embedding_lookup_sparse</code></a> for more details.
+Allowed value are <code>"div"</code> and <code>"mod"'. If</code>&ldquo;mod&rdquo;` is used, evaluation
+and exporting the model to CPU will not work as expected.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>An <code>EmbeddingConfigSpec</code> instance.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If the feature_columns are not specified.</li>
+<li><b><code>TypeError</code></b>: If the feature columns are not of ths correct type (one of
+<em>SUPPORTED_FEATURE_COLUMNS, </em>TPU_EMBEDDING_COLUMN_CLASSES OR
+_EMBEDDING_COLUMN_CLASSES).</li>
+<li><b><code>ValueError</code></b>: If <code>optimization_parameters</code> is not one of the required types.</li>
+</ul>
+
+
+<h2>Properties</h2>
+
+<h3 id="feature_columns"><code>feature_columns</code></h3>
+
+
+
+
+<h3 id="optimization_parameters"><code>optimization_parameters</code></h3>
+
+
+
+
+<h3 id="clipping_limit"><code>clipping_limit</code></h3>
+
+
+
+
+<h3 id="pipeline_execution_with_tensor_core"><code>pipeline_execution_with_tensor_core</code></h3>
+
+
+
+
+<h3 id="experimental_gradient_multiplier_fn"><code>experimental_gradient_multiplier_fn</code></h3>
+
+
+
+
+<h3 id="feature_to_config_dict"><code>feature_to_config_dict</code></h3>
+
+
+
+
+<h3 id="table_to_config_dict"><code>table_to_config_dict</code></h3>
+
+
+
+
+<h3 id="partition_strategy"><code>partition_strategy</code></h3>
+
+
+

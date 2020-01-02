@@ -1,0 +1,83 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.sparse.slice" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.sparse.slice</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/sparse_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Slice a <code>SparseTensor</code> based on the <code>start</code> and `size.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.sparse.slice</code></li>
+<li><code>tf.compat.v1.sparse_slice</code></li>
+<li><code>tf.compat.v2.sparse.slice</code></li>
+</ul>
+
+
+<p><code>python
+tf.sparse.slice(
+    sp_input,
+    start,
+    size,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>For example, if the input is</p>
+
+<pre><code>input_tensor = shape = [2, 7]
+[    a   d e  ]
+[b c          ]
+</code></pre>
+
+<p>Graphically the output tensors are:</p>
+
+<pre><code>sparse.slice([0, 0], [2, 4]) = shape = [2, 4]
+[    a  ]
+[b c    ]
+
+sparse.slice([0, 4], [2, 3]) = shape = [2, 3]
+[ d e  ]
+[      ]
+</code></pre>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>sp_input</code></b>: The <code>SparseTensor</code> to split.</li>
+<li><b><code>start</code></b>: 1-D. tensor represents the start of the slice.</li>
+<li><b><code>size</code></b>: 1-D. tensor represents the size of the slice.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>SparseTensor</code> objects resulting from splicing.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>TypeError</code></b>: If <code>sp_input</code> is not a <code>SparseTensor</code>.</li>
+</ul>
+

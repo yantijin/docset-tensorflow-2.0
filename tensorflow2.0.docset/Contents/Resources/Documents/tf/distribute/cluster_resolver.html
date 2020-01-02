@@ -1,0 +1,37 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.distribute.cluster_resolver" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>Module: tf.distribute.cluster_resolver</h1>
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p>Library imports for ClusterResolvers.</p>
+
+<p>This library contains all implementations of ClusterResolvers.
+ClusterResolvers are a way of specifying cluster information for distributed
+execution. Built on top of existing <code>ClusterSpec</code> framework, ClusterResolvers
+are a way for TensorFlow to communicate with various cluster management
+systems (e.g. GCE, AWS, etc&hellip;).</p>
+
+<h2>Classes</h2>
+
+<p><a href="../../tf/distribute/cluster_resolver/ClusterResolver.html"><code>class ClusterResolver</code></a>: Abstract class for all implementations of ClusterResolvers.</p>
+
+<p><a href="../../tf/distribute/cluster_resolver/GCEClusterResolver.html"><code>class GCEClusterResolver</code></a>: ClusterResolver for Google Compute Engine.</p>
+
+<p><a href="../../tf/distribute/cluster_resolver/KubernetesClusterResolver.html"><code>class KubernetesClusterResolver</code></a>: ClusterResolver for Kubernetes.</p>
+
+<p><a href="../../tf/distribute/cluster_resolver/SimpleClusterResolver.html"><code>class SimpleClusterResolver</code></a>: Simple implementation of ClusterResolver that accepts a ClusterSpec.</p>
+
+<p><a href="../../tf/distribute/cluster_resolver/SlurmClusterResolver.html"><code>class SlurmClusterResolver</code></a>: ClusterResolver for system with Slurm workload manager.</p>
+
+<p><a href="../../tf/distribute/cluster_resolver/TFConfigClusterResolver.html"><code>class TFConfigClusterResolver</code></a>: Implementation of a ClusterResolver which reads the TF_CONFIG EnvVar.</p>
+
+<p><a href="../../tf/distribute/cluster_resolver/TPUClusterResolver.html"><code>class TPUClusterResolver</code></a>: Cluster Resolver for Google Cloud TPUs.</p>
+
+<p><a href="../../tf/distribute/cluster_resolver/UnionResolver.html"><code>class UnionResolver</code></a>: Performs a union on underlying ClusterResolvers.</p>

@@ -1,0 +1,69 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.strings.bytes_split" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.strings.bytes_split</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/ragged/ragged_string_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Split string elements of <code>input</code> into bytes.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.strings.bytes_split</code></li>
+<li><code>tf.compat.v2.strings.bytes_split</code></li>
+</ul>
+
+
+<p><code>python
+tf.strings.bytes_split(
+    input,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Examples:</h4>
+
+<p>```python</p>
+
+<blockquote><blockquote><blockquote><p>tf.strings.bytes_split(&lsquo;hello&rsquo;)
+[&lsquo;h&rsquo;, &lsquo;e&rsquo;, &lsquo;l&rsquo;, &lsquo;l&rsquo;, &lsquo;o&rsquo;]
+tf.strings.bytes_split([&lsquo;hello&rsquo;, &lsquo;123&rsquo;])
+<RaggedTensor [['h', 'e', 'l', 'l', 'o'], ['1', '2', '3']]>
+```</p></blockquote></blockquote></blockquote>
+
+<p>Note that this op splits strings into bytes, not unicode characters.  To
+split strings into unicode characters, use <a href="../../tf/strings/unicode_split.html"><code>tf.strings.unicode_split</code></a>.</p>
+
+<p>See also: <a href="../../tf/io/decode_raw.html"><code>tf.io.decode_raw</code></a>, <a href="../../tf/strings/split.html"><code>tf.strings.split</code></a>, <a href="../../tf/strings/unicode_split.html"><code>tf.strings.unicode_split</code></a>.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>input</code></b>: A string <code>Tensor</code> or <code>RaggedTensor</code>: the strings to split.  Must
+have a statically known rank (<code>N</code>).</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>RaggedTensor</code> of rank <code>N+1</code>: the bytes that make up the source strings.</p>

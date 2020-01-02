@@ -1,0 +1,79 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.metrics.true_negatives_at_thresholds" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.metrics.true_negatives_at_thresholds</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/metrics_impl.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Computes true negatives at provided threshold values.</p>
+
+<p><code>python
+tf.compat.v1.metrics.true_negatives_at_thresholds(
+    labels,
+    predictions,
+    thresholds,
+    weights=None,
+    metrics_collections=None,
+    updates_collections=None,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>If <code>weights</code> is <code>None</code>, weights default to 1. Use weights of 0 to mask values.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>labels</code></b>: A <code>Tensor</code> whose shape matches <code>predictions</code>. Will be cast to
+<code>bool</code>.</li>
+<li><b><code>predictions</code></b>: A floating point <code>Tensor</code> of arbitrary shape and whose values
+are in the range <code>[0, 1]</code>.</li>
+<li><b><code>thresholds</code></b>: A python list or tuple of float thresholds in <code>[0, 1]</code>.</li>
+<li><b><code>weights</code></b>: Optional <code>Tensor</code> whose rank is either 0, or the same rank as
+<code>labels</code>, and must be broadcastable to <code>labels</code> (i.e., all dimensions must
+be either <code>1</code>, or the same as the corresponding <code>labels</code> dimension).</li>
+<li><b><code>metrics_collections</code></b>: An optional list of collections that <code>true_negatives</code>
+should be added to.</li>
+<li><b><code>updates_collections</code></b>: An optional list of collections that <code>update_op</code> should
+be added to.</li>
+<li><b><code>name</code></b>: An optional variable_scope name.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<ul>
+<li><b><code>true_negatives</code></b>:  A float <code>Tensor</code> of shape <code>[len(thresholds)]</code>.</li>
+<li><b><code>update_op</code></b>: An operation that updates the <code>true_negatives</code> variable and
+returns its current value.</li>
+</ul>
+
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If <code>predictions</code> and <code>labels</code> have mismatched shapes, or if
+<code>weights</code> is not <code>None</code> and its shape doesn&rsquo;t match <code>predictions</code>, or if
+either <code>metrics_collections</code> or <code>updates_collections</code> are not a list or
+tuple.</li>
+<li><b><code>RuntimeError</code></b>: If eager execution is enabled.</li>
+</ul>
+

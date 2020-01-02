@@ -1,0 +1,490 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.GradientTape" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__enter__"/>
+<meta itemprop="property" content="__exit__"/>
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="batch_jacobian"/>
+<meta itemprop="property" content="gradient"/>
+<meta itemprop="property" content="jacobian"/>
+<meta itemprop="property" content="reset"/>
+<meta itemprop="property" content="stop_recording"/>
+<meta itemprop="property" content="watch"/>
+<meta itemprop="property" content="watched_variables"/>
+</div>
+
+
+<h1>tf.GradientTape</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/eager/backprop.py">View source</a></p>
+
+<h2>Class <code>GradientTape</code></h2>
+
+<!-- Start diff -->
+
+
+<p>Record operations for automatic differentiation.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li>Class <code>tf.compat.v1.GradientTape</code></li>
+<li>Class <code>tf.compat.v2.GradientTape</code></li>
+</ul>
+
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Operations are recorded if they are executed within this context manager and
+at least one of their inputs is being &ldquo;watched&rdquo;.</p>
+
+<p>Trainable variables (created by <a href="../tf/Variable.html"><code>tf.Variable</code></a> or <a href="../tf/compat/v1/get_variable.html"><code>tf.compat.v1.get_variable</code></a>,
+where <code>trainable=True</code> is default in both cases) are automatically watched.
+Tensors can be manually watched by invoking the <code>watch</code> method on this context
+manager.</p>
+
+<p>For example, consider the function <code>y = x * x</code>. The gradient at <code>x = 3.0</code> can
+be computed as:</p>
+
+<p><code>python
+x = tf.constant(3.0)
+with tf.GradientTape() as g:
+  g.watch(x)
+  y = x * x
+dy_dx = g.gradient(y, x) # Will compute to 6.0
+</code></p>
+
+<p>GradientTapes can be nested to compute higher-order derivatives. For example,</p>
+
+<p><code>python
+x = tf.constant(3.0)
+with tf.GradientTape() as g:
+  g.watch(x)
+  with tf.GradientTape() as gg:
+    gg.watch(x)
+    y = x * x
+  dy_dx = gg.gradient(y, x)     # Will compute to 6.0
+d2y_dx2 = g.gradient(dy_dx, x)  # Will compute to 2.0
+</code></p>
+
+<p>By default, the resources held by a GradientTape are released as soon as
+GradientTape.gradient() method is called. To compute multiple gradients over
+the same computation, create a persistent gradient tape. This allows multiple
+calls to the gradient() method as resources are released when the tape object
+is garbage collected. For example:</p>
+
+<p><code>python
+x = tf.constant(3.0)
+with tf.GradientTape(persistent=True) as g:
+  g.watch(x)
+  y = x * x
+  z = y * y
+dz_dx = g.gradient(z, x)  # 108.0 (4*x^3 at x = 3)
+dy_dx = g.gradient(y, x)  # 6.0
+del g  # Drop the reference to the tape
+</code></p>
+
+<p>By default GradientTape will automatically watch any trainable variables that
+are accessed inside the context. If you want fine grained control over which
+variables are watched you can disable automatic tracking by passing
+<code>watch_accessed_variables=False</code> to the tape constructor:</p>
+
+<p><code>python
+with tf.GradientTape(watch_accessed_variables=False) as tape:
+  tape.watch(variable_a)
+  y = variable_a ** 2  # Gradients will be available for `variable_a`.
+  z = variable_b ** 3  # No gradients will be available since `variable_b` is
+                       # not being watched.
+</code></p>
+
+<p>Note that when using models you should ensure that your variables exist when
+using <code>watch_accessed_variables=False</code>. Otherwise it&rsquo;s quite easy to make your
+first iteration not have any gradients:</p>
+
+<p>```python
+a = tf.keras.layers.Dense(32)
+b = tf.keras.layers.Dense(32)</p>
+
+<p>with tf.GradientTape(watch_accessed_variables=False) as tape:
+  tape.watch(a.variables)  # Since <code>a.build</code> has not been called at this point
+                           # <code>a.variables</code> will return an empty list and the
+                           # tape will not be watching anything.
+  result = b(a(inputs))
+  tape.gradient(result, a.variables)  # The result of this computation will be
+                                      # a list of <code>None</code>s since a&rsquo;s variables
+                                      # are not being watched.
+```</p>
+
+<p>Note that only tensors with real or complex dtypes are differentiable.</p>
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/eager/backprop.py">View source</a></p>
+
+<p><code>python
+__init__(
+    persistent=False,
+    watch_accessed_variables=True
+)
+</code></p>
+
+<p>Creates a new GradientTape.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>persistent</code></b>: Boolean controlling whether a persistent gradient tape
+is created. False by default, which means at most one call can
+be made to the gradient() method on this object.</li>
+<li><b><code>watch_accessed_variables</code></b>: Boolean controlling whether the tape will
+automatically <code>watch</code> any (trainable) variables accessed while the tape
+is active. Defaults to True meaning gradients can be requested from any
+result computed in the tape derived from reading a trainable <code>Variable</code>.
+If False users must explicitly <code>watch</code> any <code>Variable</code>s they want to
+request gradients from.</li>
+</ul>
+
+
+<h2>Methods</h2>
+
+<h3 id="__enter__"><code>__enter__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/eager/backprop.py">View source</a></p>
+
+<p><code>python
+__enter__()
+</code></p>
+
+<p>Enters a context inside which operations are recorded on this tape.</p>
+
+<h3 id="__exit__"><code>__exit__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/eager/backprop.py">View source</a></p>
+
+<p><code>python
+__exit__(
+    typ,
+    value,
+    traceback
+)
+</code></p>
+
+<p>Exits the recording context, no further operations are traced.</p>
+
+<h3 id="batch_jacobian"><code>batch_jacobian</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/eager/backprop.py">View source</a></p>
+
+<p><code>python
+batch_jacobian(
+    target,
+    source,
+    unconnected_gradients=tf.UnconnectedGradients.NONE,
+    parallel_iterations=None,
+    experimental_use_pfor=True
+)
+</code></p>
+
+<p>Computes and stacks per-example jacobians.</p>
+
+<p>See <a href="http://en.wikipedia.org/wiki/jacobian_matrix_and_determinant">wikipedia article</a> for the
+definition of a Jacobian. This function is essentially an efficient
+implementation of the following:</p>
+
+<p><code>tf.stack([self.jacobian(y[i], x[i]) for i in range(x.shape[0])])</code>.</p>
+
+<p>Note that compared to <a href="../tf/GradientTape.html#jacobian"><code>GradientTape.jacobian</code></a> which computes gradient of
+each output value w.r.t each input value, this function is useful when
+<code>target[i,...]</code> is independent of <code>source[j,...]</code> for <code>j != i</code>. This
+assumption allows more efficient computation as compared to
+<a href="../tf/GradientTape.html#jacobian"><code>GradientTape.jacobian</code></a>. The output, as well as intermediate activations,
+are lower dimensional and avoid a bunch of redundant zeros which would
+result in the jacobian computation given the independence assumption.</p>
+
+<h4>Example usage:</h4>
+
+<p>```python
+with tf.GradientTape() as g:
+  x = tf.constant([[1., 2.], [3., 4.]], dtype=tf.float32)
+  g.watch(x)
+  y = x * x
+batch_jacobian = g.batch_jacobian(y, x)</p>
+
+<h1>batch_jacobian is [[[2,  0], [0,  4]], [[6,  0], [0,  8]]]</h1>
+
+<p>```</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>target</code></b>: A tensor with rank 2 or higher and with shape [b, y1, &hellip;, y_n].
+<code>target[i,...]</code> should only depend on <code>source[i,...]</code>.</li>
+<li><b><code>source</code></b>: A tensor with rank 2 or higher and with shape [b, x1, &hellip;, x_m].</li>
+<li><b><code>unconnected_gradients</code></b>: a value which can either hold &lsquo;none&rsquo; or &lsquo;zero&rsquo; and
+alters the value which will be returned if the target and sources are
+unconnected. The possible values and effects are detailed in
+&lsquo;UnconnectedGradients&rsquo; and it defaults to &lsquo;none&rsquo;.</li>
+<li><b><code>parallel_iterations</code></b>: A knob to control how many iterations are dispatched
+in parallel. This knob can be used to control the total memory usage.</li>
+<li><b><code>experimental_use_pfor</code></b>: If true, uses pfor for computing the Jacobian. Else
+uses a tf.while_loop.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A tensor <code>t</code> with shape [b, y_1, &hellip;, y_n, x1, &hellip;, x_m] where <code>t[i, ...]</code>
+is the jacobian of <code>target[i, ...]</code> w.r.t. <code>source[i, ...]</code>, i.e. stacked
+per-example jacobians.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>RuntimeError</code></b>: If called on a non-persistent tape with eager execution
+enabled and without enabling experimental_use_pfor.</li>
+<li><b><code>ValueError</code></b>: If vectorization of jacobian computation fails or if first
+dimension of <code>target</code> and <code>source</code> do not match.</li>
+</ul>
+
+
+<h3 id="gradient"><code>gradient</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/eager/backprop.py">View source</a></p>
+
+<p><code>python
+gradient(
+    target,
+    sources,
+    output_gradients=None,
+    unconnected_gradients=tf.UnconnectedGradients.NONE
+)
+</code></p>
+
+<p>Computes the gradient using operations recorded in context of this tape.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>target</code></b>: Tensor (or list of tensors) to be differentiated.</li>
+<li><b><code>sources</code></b>: a list or nested structure of Tensors or Variables. <code>target</code>
+will be differentiated against elements in <code>sources</code>.</li>
+<li><b><code>output_gradients</code></b>: a list of gradients, one for each element of
+target. Defaults to None.</li>
+<li><b><code>unconnected_gradients</code></b>: a value which can either hold &lsquo;none&rsquo; or &lsquo;zero&rsquo; and
+alters the value which will be returned if the target and sources are
+unconnected. The possible values and effects are detailed in
+&lsquo;UnconnectedGradients&rsquo; and it defaults to &lsquo;none&rsquo;.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>a list or nested structure of Tensors (or IndexedSlices, or None),
+one for each element in <code>sources</code>. Returned structure is the same as
+the structure of <code>sources</code>.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>RuntimeError</code></b>: if called inside the context of the tape, or if called more
+than once on a non-persistent tape.</li>
+<li><b><code>ValueError</code></b>: if the target is a variable or if unconnected gradients is
+called with an unknown value.</li>
+</ul>
+
+
+<h3 id="jacobian"><code>jacobian</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/eager/backprop.py">View source</a></p>
+
+<p><code>python
+jacobian(
+    target,
+    sources,
+    unconnected_gradients=tf.UnconnectedGradients.NONE,
+    parallel_iterations=None,
+    experimental_use_pfor=True
+)
+</code></p>
+
+<p>Computes the jacobian using operations recorded in context of this tape.</p>
+
+<p>See <a href="http://en.wikipedia.org/wiki/jacobian_matrix_and_determinant">wikipedia article</a> for the
+definition of a Jacobian.</p>
+
+<h4>Example usage:</h4>
+
+<p>```python
+with tf.GradientTape() as g:
+  x  = tf.constant([1.0, 2.0])
+  g.watch(x)
+  y = x * x
+jacobian = g.jacobian(y, x)</p>
+
+<h1>jacobian value is [[2., 0.], [0., 4.]]</h1>
+
+<p>```</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>target</code></b>: Tensor to be differentiated.</li>
+<li><b><code>sources</code></b>: a list or nested structure of Tensors or Variables. <code>target</code>
+will be differentiated against elements in <code>sources</code>.</li>
+<li><b><code>unconnected_gradients</code></b>: a value which can either hold &lsquo;none&rsquo; or &lsquo;zero&rsquo; and
+alters the value which will be returned if the target and sources are
+unconnected. The possible values and effects are detailed in
+&lsquo;UnconnectedGradients&rsquo; and it defaults to &lsquo;none&rsquo;.</li>
+<li><b><code>parallel_iterations</code></b>: A knob to control how many iterations are dispatched
+in parallel. This knob can be used to control the total memory usage.</li>
+<li><b><code>experimental_use_pfor</code></b>: If true, vectorizes the jacobian computation. Else
+falls back to a sequential while_loop. Vectorization can sometimes fail
+or lead to excessive memory usage. This option can be used to disable
+vectorization in such cases.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A list or nested structure of Tensors (or None), one for each element in
+<code>sources</code>. Returned structure is the same as the structure of <code>sources</code>.
+Note if any gradient is sparse (IndexedSlices), jacobian function
+currently makes it dense and returns a Tensor instead. This may change in
+the future.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>RuntimeError</code></b>: If called on a non-persistent tape with eager execution
+enabled and without enabling experimental_use_pfor.</li>
+<li><b><code>ValueError</code></b>: If vectorization of jacobian computation fails.</li>
+</ul>
+
+
+<h3 id="reset"><code>reset</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/eager/backprop.py">View source</a></p>
+
+<p><code>python
+reset()
+</code></p>
+
+<p>Clears all information stored in this tape.</p>
+
+<p>Equivalent to exiting and reentering the tape context manager with a new
+tape. For example, the two following code blocks are equivalent:</p>
+
+<p>```
+with tf.GradientTape() as t:
+  loss = loss_fn()
+with tf.GradientTape() as t:
+  loss += other_loss_fn()
+t.gradient(loss, &hellip;)  # Only differentiates other_loss_fn, not loss_fn</p>
+
+<h1>The following is equivalent to the above</h1>
+
+<p>with tf.GradientTape() as t:
+  loss = loss_fn()
+  t.reset()
+  loss += other_loss_fn()
+t.gradient(loss, &hellip;)  # Only differentiates other_loss_fn, not loss_fn
+```</p>
+
+<p>This is useful if you don&rsquo;t want to exit the context manager for the tape,
+or can&rsquo;t because the desired reset point is inside a control flow construct:</p>
+
+<p><code>
+with tf.GradientTape() as t:
+  loss = ...
+  if loss &gt; k:
+    t.reset()
+</code></p>
+
+<h3 id="stop_recording"><code>stop_recording</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/eager/backprop.py">View source</a></p>
+
+<p><code>python
+stop_recording()
+</code></p>
+
+<p>Temporarily stops recording operations on this tape.</p>
+
+<p>Operations executed while this context manager is active will not be
+recorded on the tape. This is useful for reducing the memory used by tracing
+all computations.</p>
+
+<h4>For example:</h4>
+
+<p><code>
+  with tf.GradientTape(persistent=True) as t:
+    loss = compute_loss(model)
+    with t.stop_recording():
+      # The gradient computation below is not traced, saving memory.
+      grads = t.gradient(loss, model.variables)
+</code></p>
+
+<h4>Yields:</h4>
+
+<p>None</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>RuntimeError</code></b>: if the tape is not currently recording.</li>
+</ul>
+
+
+<h3 id="watch"><code>watch</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/eager/backprop.py">View source</a></p>
+
+<p><code>python
+watch(tensor)
+</code></p>
+
+<p>Ensures that <code>tensor</code> is being traced by this tape.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>tensor</code></b>: a Tensor or list of Tensors.</li>
+</ul>
+
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: if it encounters something that is not a tensor.</li>
+</ul>
+
+
+<h3 id="watched_variables"><code>watched_variables</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/eager/backprop.py">View source</a></p>
+
+<p><code>python
+watched_variables()
+</code></p>
+
+<p>Returns variables watched by this tape in order of construction.</p>

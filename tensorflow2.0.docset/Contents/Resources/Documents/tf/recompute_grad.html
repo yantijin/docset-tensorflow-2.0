@@ -1,0 +1,60 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.recompute_grad" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.recompute_grad</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/custom_gradient.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>An eager-compatible version of recompute_grad.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.recompute_grad</code></li>
+<li><code>tf.compat.v2.recompute_grad</code></li>
+</ul>
+
+
+<p><code>python
+tf.recompute_grad(f)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>For f(*args, **kwargs), this supports gradients with respect to args, or to
+gradients with respect to any variables residing in the kwarg &lsquo;variables&rsquo;.
+Note that for keras layer and model objects, this is handled automatically.</p>
+
+<p>Warning: If <code>f</code> was originally a tf.keras Model or Layer object, <code>g</code> will not
+be able to access the member variables of that object, because <code>g</code> returns
+through the wrapper function <code>inner</code>.  When recomputing gradients through
+objects that inherit from keras, we suggest keeping a reference to the
+underlying object around for the purpose of accessing these variables.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>f</code></b>: function <code>f(*x)</code> that returns a <code>Tensor</code> or sequence of <code>Tensor</code> outputs.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A function <code>g</code> that wraps <code>f</code>, but which recomputes <code>f</code> on the backwards
+pass of a gradient call.</p>

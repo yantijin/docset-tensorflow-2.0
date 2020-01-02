@@ -1,0 +1,73 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.backend.random_uniform_variable" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.keras.backend.random_uniform_variable</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/backend.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Instantiates a variable with values drawn from a uniform distribution.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.keras.backend.random_uniform_variable</code></li>
+<li><code>tf.compat.v2.keras.backend.random_uniform_variable</code></li>
+</ul>
+
+
+<p><code>python
+tf.keras.backend.random_uniform_variable(
+    shape,
+    low,
+    high,
+    dtype=None,
+    name=None,
+    seed=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>shape</code></b>: Tuple of integers, shape of returned Keras variable.</li>
+<li><b><code>low</code></b>: Float, lower boundary of the output interval.</li>
+<li><b><code>high</code></b>: Float, upper boundary of the output interval.</li>
+<li><b><code>dtype</code></b>: String, dtype of returned Keras variable.</li>
+<li><b><code>name</code></b>: String, name of returned Keras variable.</li>
+<li><b><code>seed</code></b>: Integer, random seed.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A Keras variable, filled with drawn samples.</p>
+
+<h4>Example:</h4>
+
+<p><code>python
+    # TensorFlow example
+    &gt;&gt;&gt; kvar = K.random_uniform_variable((2,3), 0, 1)
+    &gt;&gt;&gt; kvar
+    &lt;tensorflow.python.ops.variables.Variable object at 0x10ab40b10&gt;
+    &gt;&gt;&gt; K.eval(kvar)
+    array([[ 0.10940075,  0.10047495,  0.476143  ],
+           [ 0.66137183,  0.00869417,  0.89220798]], dtype=float32)
+</code></p>

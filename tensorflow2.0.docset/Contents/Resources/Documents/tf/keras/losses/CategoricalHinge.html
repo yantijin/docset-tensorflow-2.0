@@ -1,0 +1,155 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.losses.CategoricalHinge" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__call__"/>
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="from_config"/>
+<meta itemprop="property" content="get_config"/>
+</div>
+
+
+<h1>tf.keras.losses.CategoricalHinge</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/losses.py">View source</a></p>
+
+<h2>Class <code>CategoricalHinge</code></h2>
+
+<!-- Start diff -->
+
+
+<p>Computes the categorical hinge loss between <code>y_true</code> and <code>y_pred</code>.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li>Class <code>tf.compat.v1.keras.losses.CategoricalHinge</code></li>
+<li>Class <code>tf.compat.v2.keras.losses.CategoricalHinge</code></li>
+<li>Class <code>tf.compat.v2.losses.CategoricalHinge</code></li>
+<li>Class <code>tf.losses.CategoricalHinge</code></li>
+</ul>
+
+
+<!-- Placeholder for "Used in" -->
+
+
+<p><code>loss = maximum(neg - pos + 1, 0)</code>
+where <code>neg = sum(y_true * y_pred)</code> and <code>pos = maximum(1 - y_true)</code></p>
+
+<h4>Usage:</h4>
+
+<p><code>python
+ch = tf.keras.losses.CategoricalHinge()
+loss = ch([0., 1., 1.], [1., 0., 1.])
+print('Loss: ', loss.numpy())  # Loss: 1.0
+</code></p>
+
+<p>Usage with the <code>compile</code> API:</p>
+
+<p><code>python
+model = tf.keras.Model(inputs, outputs)
+model.compile('sgd', loss=tf.keras.losses.CategoricalHinge())
+</code></p>
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/losses.py">View source</a></p>
+
+<p><code>python
+__init__(
+    reduction=losses_utils.ReductionV2.AUTO,
+    name='categorical_hinge'
+)
+</code></p>
+
+<p>Initialize self.  See help(type(self)) for accurate signature.</p>
+
+<h2>Methods</h2>
+
+<h3 id="__call__"><code>__call__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/losses.py">View source</a></p>
+
+<p><code>python
+__call__(
+    y_true,
+    y_pred,
+    sample_weight=None
+)
+</code></p>
+
+<p>Invokes the <code>Loss</code> instance.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>y_true</code></b>: Ground truth values. shape = <code>[batch_size, d0, .. dN]</code></li>
+<li><b><code>y_pred</code></b>: The predicted values. shape = <code>[batch_size, d0, .. dN]</code></li>
+<li><b><code>sample_weight</code></b>: Optional <code>sample_weight</code> acts as a
+coefficient for the loss. If a scalar is provided, then the loss is
+simply scaled by the given value. If <code>sample_weight</code> is a tensor of size
+<code>[batch_size]</code>, then the total loss for each sample of the batch is
+rescaled by the corresponding element in the <code>sample_weight</code> vector. If
+the shape of <code>sample_weight</code> is <code>[batch_size, d0, .. dN-1]</code> (or can be
+broadcasted to this shape), then each loss element of <code>y_pred</code> is scaled
+by the corresponding value of <code>sample_weight</code>. (Note on<code>dN-1</code>: all loss
+functions reduce by 1 dimension, usually axis=-1.)</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>Weighted loss float <code>Tensor</code>. If <code>reduction</code> is <code>NONE</code>, this has
+  shape <code>[batch_size, d0, .. dN-1]</code>; otherwise, it is scalar. (Note <code>dN-1</code>
+  because all loss functions reduce by 1 dimension, usually axis=-1.)</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If the shape of <code>sample_weight</code> is invalid.</li>
+</ul>
+
+
+<h3 id="from_config"><code>from_config</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/losses.py">View source</a></p>
+
+<p><code>python
+from_config(
+    cls,
+    config
+)
+</code></p>
+
+<p>Instantiates a <code>Loss</code> from its config (output of <code>get_config()</code>).</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>config</code></b>: Output of <code>get_config()</code>.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Loss</code> instance.</p>
+
+<h3 id="get_config"><code>get_config</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/losses.py">View source</a></p>
+
+<p><code>python
+get_config()
+</code></p>

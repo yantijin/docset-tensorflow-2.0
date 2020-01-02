@@ -1,0 +1,48 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.logging.log_every_n" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.logging.log_every_n</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/platform/tf_logging.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Log &lsquo;msg % args&rsquo; at level &lsquo;level&rsquo; once per &lsquo;n&rsquo; times.</p>
+
+<p><code>python
+tf.compat.v1.logging.log_every_n(
+    level,
+    msg,
+    n,
+    *args
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Logs the 1st call, (N+1)st call, (2N+1)st call,  etc.
+Not threadsafe.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>level</code></b>: The level at which to log.</li>
+<li><b><code>msg</code></b>: The message to be logged.</li>
+<li><b><code>n</code></b>: The number of times this should be called before it is logged.</li>
+<li><b><code>*args</code></b>: The args to be substituted into the msg.</li>
+</ul>
+

@@ -1,0 +1,79 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.nn.max_pool_with_argmax" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.nn.max_pool_with_argmax</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/nn_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Performs max pooling on the input and outputs both max values and indices.</p>
+
+<p><code>python
+tf.compat.v1.nn.max_pool_with_argmax(
+    input,
+    ksize,
+    strides,
+    padding,
+    data_format='NHWC',
+    Targmax=None,
+    name=None,
+    output_dtype=None,
+    include_batch_in_index=False
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>The indices in <code>argmax</code> are flattened, so that a maximum value at position
+<code>[b, y, x, c]</code> becomes flattened index:
+<code>(y * width + x) * channels + c</code> if <code>include_batch_in_index</code> is False;
+<code>((b * height + y) * width + x) * channels + c</code> if <code>include_batch_in_index</code> is True.</p>
+
+<p>The indices returned are always in <code>[0, height) x [0, width)</code> before flattening,
+even if padding is involved and the mathematically correct answer is outside
+(either negative or too large).  This is a bug, but fixing it is difficult to do
+in a safe backwards compatible way, especially due to flattening.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>input</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>float32</code>, <code>float64</code>, <code>int32</code>, <code>uint8</code>, <code>int16</code>, <code>int8</code>, <code>int64</code>, <code>bfloat16</code>, <code>uint16</code>, <code>half</code>, <code>uint32</code>, <code>uint64</code>.
+4-D with shape <code>[batch, height, width, channels]</code>.  Input to pool over.</li>
+<li><b><code>ksize</code></b>: A list of <code>ints</code> that has length <code>&gt;= 4</code>.
+The size of the window for each dimension of the input tensor.</li>
+<li><b><code>strides</code></b>: A list of <code>ints</code> that has length <code>&gt;= 4</code>.
+The stride of the sliding window for each dimension of the
+input tensor.</li>
+<li><b><code>padding</code></b>: A <code>string</code> from: <code>"SAME", "VALID"</code>.
+The type of padding algorithm to use.</li>
+<li><b><code>Targmax</code></b>: An optional <a href="../../../../tf/dtypes/DType.html"><code>tf.DType</code></a> from: <code>tf.int32, tf.int64</code>. Defaults to <a href="../../../../tf.html#int64"><code>tf.int64</code></a>.</li>
+<li><b><code>include_batch_in_index</code></b>: An optional <code>bool</code>. Defaults to <code>False</code>.
+Whether to include batch dimension in flattened index of <code>argmax</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A tuple of <code>Tensor</code> objects (output, argmax).</p>
+
+<ul>
+<li><b><code>output</code></b>: A <code>Tensor</code>. Has the same type as <code>input</code>.</li>
+<li><b><code>argmax</code></b>: A <code>Tensor</code> of type <code>Targmax</code>.</li>
+</ul>
+

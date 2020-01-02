@@ -1,0 +1,66 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.math.real" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.math.real</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/math_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Returns the real part of a complex (or real) tensor.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.math.real</code></li>
+<li><code>tf.compat.v1.real</code></li>
+<li><code>tf.compat.v2.math.real</code></li>
+</ul>
+
+
+<p><code>python
+tf.math.real(
+    input,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Given a tensor <code>input</code>, this operation returns a tensor of type <code>float</code> that
+is the real part of each element in <code>input</code> considered as a complex number.</p>
+
+<h4>For example:</h4>
+
+<p><code>python
+x = tf.constant([-2.25 + 4.75j, 3.25 + 5.75j])
+tf.math.real(x)  # [-2.25, 3.25]
+</code></p>
+
+<p>If <code>input</code> is already real, it is returned unchanged.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>input</code></b>: A <code>Tensor</code>. Must have numeric type.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> of type <code>float32</code> or <code>float64</code>.</p>

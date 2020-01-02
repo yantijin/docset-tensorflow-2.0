@@ -1,0 +1,51 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.delete_session_tensor" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.delete_session_tensor</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/session_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Delete the tensor for the given tensor handle.</p>
+
+<p><code>python
+tf.compat.v1.delete_session_tensor(
+    handle,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>This is EXPERIMENTAL and subject to change.</p>
+
+<p>Delete the tensor of a given tensor handle. The tensor is produced
+in a previous run() and stored in the state of the session.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>handle</code></b>: The string representation of a persistent tensor handle.</li>
+<li><b><code>name</code></b>: Optional name prefix for the return tensor.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A pair of graph elements. The first is a placeholder for feeding a
+tensor handle and the second is a deletion operation.</p>

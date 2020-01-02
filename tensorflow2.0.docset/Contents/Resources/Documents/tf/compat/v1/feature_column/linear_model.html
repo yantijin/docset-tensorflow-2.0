@@ -1,0 +1,164 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.feature_column.linear_model" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.feature_column.linear_model</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/feature_column/feature_column.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Returns a linear prediction <code>Tensor</code> based on given <code>feature_columns</code>.</p>
+
+<p><code>python
+tf.compat.v1.feature_column.linear_model(
+    features,
+    feature_columns,
+    units=1,
+    sparse_combiner='sum',
+    weight_collections=None,
+    trainable=True,
+    cols_to_vars=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>This function generates a weighted sum based on output dimension <code>units</code>.
+Weighted sum refers to logits in classification problems. It refers to the
+prediction itself for linear regression problems.</p>
+
+<p>Note on supported columns: <code>linear_model</code> treats categorical columns as
+<code>indicator_column</code>s. To be specific, assume the input as <code>SparseTensor</code> looks
+like:</p>
+
+<p><code>python
+  shape = [2, 2]
+  {
+      [0, 0]: "a"
+      [1, 0]: "b"
+      [1, 1]: "c"
+  }
+</code>
+<code>linear_model</code> assigns weights for the presence of &ldquo;a&rdquo;, &ldquo;b&rdquo;, &ldquo;c' implicitly,
+just like <code>indicator_column</code>, while <code>input_layer</code> explicitly requires wrapping
+each of categorical columns with an <code>embedding_column</code> or an
+<code>indicator_column</code>.</p>
+
+<h4>Example of usage:</h4>
+
+<p><code>python
+price = numeric_column('price')
+price_buckets = bucketized_column(price, boundaries=[0., 10., 100., 1000.])
+keywords = categorical_column_with_hash_bucket("keywords", 10K)
+keywords_price = crossed_column('keywords', price_buckets, ...)
+columns = [price_buckets, keywords, keywords_price ...]
+features = tf.io.parse_example(..., features=make_parse_example_spec(columns))
+prediction = linear_model(features, columns)
+</code></p>
+
+<p>The <code>sparse_combiner</code> argument works as follows
+For example, for two features represented as the categorical columns:</p>
+
+<p>```python
+  # Feature 1</p>
+
+<p>  shape = [2, 2]
+  {
+      [0, 0]: &ldquo;a&rdquo;
+      [0, 1]: &ldquo;b&rdquo;
+      [1, 0]: &ldquo;c&rdquo;
+  }</p>
+
+<p>  # Feature 2</p>
+
+<p>  shape = [2, 3]
+  {
+      [0, 0]: &ldquo;d&rdquo;
+      [1, 0]: &ldquo;e&rdquo;
+      [1, 1]: &ldquo;f&rdquo;
+      [1, 2]: &ldquo;f&rdquo;
+  }
+```</p>
+
+<p>with <code>sparse_combiner</code> as &ldquo;mean&rdquo;, the linear model outputs consequently
+are:</p>
+
+<p><code>
+  y_0 = 1.0 / 2.0 * ( w_a + w_b ) + w_d + b
+  y_1 = w_c + 1.0 / 3.0 * ( w_e + 2.0 * w_f ) + b
+</code></p>
+
+<p>where <code>y_i</code> is the output, <code>b</code> is the bias, and <code>w_x</code> is the weight
+assigned to the presence of <code>x</code> in the input features.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>features</code></b>: A mapping from key to tensors. <code>_FeatureColumn</code>s look up via these
+keys. For example <code>numeric_column('price')</code> will look at &lsquo;price&rsquo; key in
+this dict. Values are <code>Tensor</code> or <code>SparseTensor</code> depending on
+corresponding <code>_FeatureColumn</code>.</li>
+<li><b><code>feature_columns</code></b>: An iterable containing the FeatureColumns to use as inputs
+to your model. All items should be instances of classes derived from
+<code>_FeatureColumn</code>s.</li>
+<li><b><code>units</code></b>: An integer, dimensionality of the output space. Default value is 1.</li>
+<li><b><code>sparse_combiner</code></b>: A string specifying how to reduce if a categorical column
+is multivalent. Except <code>numeric_column</code>, almost all columns passed to
+<code>linear_model</code> are considered as categorical columns.  It combines each
+categorical column independently. Currently &ldquo;mean&rdquo;, &ldquo;sqrtn&rdquo; and &ldquo;sum&rdquo; are
+supported, with &ldquo;sum&rdquo; the default for linear model. &ldquo;sqrtn&rdquo; often achieves
+good accuracy, in particular with bag-of-words columns.
+
+<ul>
+<li>&ldquo;sum&rdquo;: do not normalize features in the column</li>
+<li>&ldquo;mean&rdquo;: do l1 normalization on features in the column</li>
+<li>&ldquo;sqrtn&rdquo;: do l2 normalization on features in the column</li>
+</ul>
+</li>
+<li><b><code>weight_collections</code></b>: A list of collection names to which the Variable will be
+added. Note that, variables will also be added to collections
+<code>tf.GraphKeys.GLOBAL_VARIABLES</code> and <code>ops.GraphKeys.MODEL_VARIABLES</code>.</li>
+<li><b><code>trainable</code></b>: If <code>True</code> also add the variable to the graph collection
+<code>GraphKeys.TRAINABLE_VARIABLES</code> (see <a href="../../../../tf/Variable.html"><code>tf.Variable</code></a>).</li>
+<li><b><code>cols_to_vars</code></b>: If not <code>None</code>, must be a dictionary that will be filled with a
+mapping from <code>_FeatureColumn</code> to associated list of <code>Variable</code>s.  For
+example, after the call, we might have cols_to_vars = {
+  <em>NumericColumn(
+    key=&lsquo;numeric_feature1&rsquo;, shape=(1,):
+  [&lt;tf.Variable &lsquo;linear_model/price2/weights:0&rsquo; shape=(1, 1)>],
+  &lsquo;bias&rsquo;: [&lt;tf.Variable &lsquo;linear_model/bias_weights:0&rsquo; shape=(1,)>],
+  </em>NumericColumn(
+    key=&lsquo;numeric_feature2&rsquo;, shape=(2,)):
+  [&lt;tf.Variable &lsquo;linear_model/price1/weights:0&rsquo; shape=(2, 1)>]}
+If a column creates no variables, its value will be an empty list. Note
+that cols_to_vars will also contain a string key &lsquo;bias&rsquo; that maps to a
+list of Variables.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> which represents predictions/logits of a linear model. Its shape
+is (batch_size, units) and its dtype is <code>float32</code>.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: if an item in <code>feature_columns</code> is neither a <code>_DenseColumn</code>
+nor <code>_CategoricalColumn</code>.</li>
+</ul>
+

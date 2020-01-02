@@ -1,0 +1,57 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.debugging.assert_proper_iterable" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.debugging.assert_proper_iterable</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/check_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Static assert that values is a &ldquo;proper&rdquo; iterable.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.assert_proper_iterable</code></li>
+<li><code>tf.compat.v1.debugging.assert_proper_iterable</code></li>
+<li><code>tf.compat.v2.debugging.assert_proper_iterable</code></li>
+</ul>
+
+
+<p><code>python
+tf.debugging.assert_proper_iterable(values)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p><code>Ops</code> that expect iterables of <code>Tensor</code> can call this to validate input.
+Useful since <code>Tensor</code>, <code>ndarray</code>, byte/text type are all iterables themselves.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>values</code></b>:  Object to be checked.</li>
+</ul>
+
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>TypeError</code></b>:  If <code>values</code> is not iterable or is one of
+<code>Tensor</code>, <code>SparseTensor</code>, <code>np.array</code>, <a href="../../tf/compat.html#bytes_or_text_types"><code>tf.compat.bytes_or_text_types</code></a>.</li>
+</ul>
+

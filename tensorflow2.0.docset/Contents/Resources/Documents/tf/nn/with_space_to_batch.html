@@ -1,0 +1,186 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.nn.with_space_to_batch" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.nn.with_space_to_batch</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/nn_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Performs <code>op</code> on the space-to-batch representation of <code>input</code>.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.nn.with_space_to_batch</code></li>
+<li><code>tf.compat.v2.nn.with_space_to_batch</code></li>
+</ul>
+
+
+<p><code>python
+tf.nn.with_space_to_batch(
+    input,
+    dilation_rate,
+    padding,
+    op,
+    filter_shape=None,
+    spatial_dims=None,
+    data_format=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>This has the effect of transforming sliding window operations into the
+corresponding &ldquo;atrous&rdquo; operation in which the input is sampled at the
+specified <code>dilation_rate</code>.</p>
+
+<p>In the special case that <code>dilation_rate</code> is uniformly 1, this simply returns:</p>
+
+<p>  op(input, num_spatial_dims, padding)</p>
+
+<p>Otherwise, it returns:</p>
+
+<p>  batch_to_space_nd(
+    op(space_to_batch_nd(input, adjusted_dilation_rate, adjusted_paddings),
+       num_spatial_dims,
+       &ldquo;VALID&rdquo;)
+    adjusted_dilation_rate,
+    adjusted_crops),</p>
+
+<p>where:</p>
+
+<p>  adjusted_dilation_rate is an int64 tensor of shape [max(spatial_dims)],
+  adjusted_{paddings,crops} are int64 tensors of shape [max(spatial_dims), 2]</p>
+
+<p>defined as follows:</p>
+
+<p>We first define two int64 tensors <code>paddings</code> and <code>crops</code> of shape
+<code>[num_spatial_dims, 2]</code> based on the value of <code>padding</code> and the spatial
+dimensions of the <code>input</code>:</p>
+
+<p>If <code>padding = "VALID"</code>, then:</p>
+
+<p>  paddings, crops = required_space_to_batch_paddings(
+    input_shape[spatial_dims],
+    dilation_rate)</p>
+
+<p>If <code>padding = "SAME"</code>, then:</p>
+
+<p>  dilated_filter_shape =
+    filter_shape + (filter_shape - 1) * (dilation_rate - 1)</p>
+
+<p>  paddings, crops = required_space_to_batch_paddings(
+    input_shape[spatial_dims],
+    dilation_rate,
+    [(dilated_filter_shape - 1) // 2,
+     dilated_filter_shape - 1 - (dilated_filter_shape - 1) // 2])</p>
+
+<p>Because <code>space_to_batch_nd</code> and <code>batch_to_space_nd</code> assume that the spatial
+dimensions are contiguous starting at the second dimension, but the specified
+<code>spatial_dims</code> may not be, we must adjust <code>dilation_rate</code>, <code>paddings</code> and
+<code>crops</code> in order to be usable with these operations.  For a given dimension,
+if the block size is 1, and both the starting and ending padding and crop
+amounts are 0, then space_to_batch_nd effectively leaves that dimension alone,
+which is what is needed for dimensions not part of <code>spatial_dims</code>.
+Furthermore, <code>space_to_batch_nd</code> and <code>batch_to_space_nd</code> handle this case
+efficiently for any number of leading and trailing dimensions.</p>
+
+<p>For 0 &lt;= i &lt; len(spatial_dims), we assign:</p>
+
+<p>  adjusted_dilation_rate[spatial_dims[i] - 1] = dilation_rate[i]
+  adjusted_paddings[spatial_dims[i] - 1, :] = paddings[i, :]
+  adjusted_crops[spatial_dims[i] - 1, :] = crops[i, :]</p>
+
+<p>All unassigned values of <code>adjusted_dilation_rate</code> default to 1, while all
+unassigned values of <code>adjusted_paddings</code> and <code>adjusted_crops</code> default to 0.</p>
+
+<p>Note in the case that <code>dilation_rate</code> is not uniformly 1, specifying &ldquo;VALID&rdquo;
+padding is equivalent to specifying <code>padding = "SAME"</code> with a filter_shape of
+<code>[1]*N</code>.</p>
+
+<p>Advanced usage. Note the following optimization: A sequence of
+<code>with_space_to_batch</code> operations with identical (not uniformly 1)
+<code>dilation_rate</code> parameters and &ldquo;VALID&rdquo; padding</p>
+
+<p>  net = with_space_to_batch(net, dilation_rate, &ldquo;VALID&rdquo;, op_1)
+  &hellip;
+  net = with_space_to_batch(net, dilation_rate, &ldquo;VALID&rdquo;, op_k)</p>
+
+<p>can be combined into a single <code>with_space_to_batch</code> operation as follows:</p>
+
+<p>  def combined_op(converted_input, num_spatial_dims, _):
+    result = op_1(converted_input, num_spatial_dims, &ldquo;VALID&rdquo;)
+    &hellip;
+    result = op_k(result, num_spatial_dims, &ldquo;VALID&rdquo;)</p>
+
+<p>  net = with_space_to_batch(net, dilation_rate, &ldquo;VALID&rdquo;, combined_op)</p>
+
+<p>This eliminates the overhead of <code>k-1</code> calls to <code>space_to_batch_nd</code> and
+<code>batch_to_space_nd</code>.</p>
+
+<p>Similarly, a sequence of <code>with_space_to_batch</code> operations with identical (not
+uniformly 1) <code>dilation_rate</code> parameters, &ldquo;SAME&rdquo; padding, and odd filter
+dimensions</p>
+
+<p>  net = with_space_to_batch(net, dilation_rate, &ldquo;SAME&rdquo;, op_1, filter_shape_1)
+  &hellip;
+  net = with_space_to_batch(net, dilation_rate, &ldquo;SAME&rdquo;, op_k, filter_shape_k)</p>
+
+<p>can be combined into a single <code>with_space_to_batch</code> operation as follows:</p>
+
+<p>  def combined_op(converted_input, num_spatial_dims, _):
+    result = op_1(converted_input, num_spatial_dims, &ldquo;SAME&rdquo;)
+    &hellip;
+    result = op_k(result, num_spatial_dims, &ldquo;SAME&rdquo;)</p>
+
+<p>  net = with_space_to_batch(net, dilation_rate, &ldquo;VALID&rdquo;, combined_op)</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>input</code></b>: Tensor of rank > max(spatial_dims).</li>
+<li><b><code>dilation_rate</code></b>: int32 Tensor of <em>known</em> shape [num_spatial_dims].</li>
+<li><b><code>padding</code></b>: str constant equal to &ldquo;VALID&rdquo; or &ldquo;SAME&rdquo;</li>
+<li><b><code>op</code></b>: Function that maps (input, num_spatial_dims, padding) -> output</li>
+<li><b><code>filter_shape</code></b>: If padding = &ldquo;SAME&rdquo;, specifies the shape of the convolution
+kernel/pooling window as an integer Tensor of shape [>=num_spatial_dims].
+If padding = &ldquo;VALID&rdquo;, filter_shape is ignored and need not be specified.</li>
+<li><b><code>spatial_dims</code></b>: Monotonically increasing sequence of <code>num_spatial_dims</code>
+integers (which are >= 1) specifying the spatial dimensions of <code>input</code>
+and output.  Defaults to: <code>range(1, num_spatial_dims+1)</code>.</li>
+<li><b><code>data_format</code></b>: A string or None.  Specifies whether the channel dimension of
+the <code>input</code> and output is the last dimension (default, or if <code>data_format</code>
+does not start with &ldquo;NC&rdquo;), or the second dimension (if <code>data_format</code>
+starts with &ldquo;NC&rdquo;).  For N=1, the valid values are &ldquo;NWC&rdquo; (default) and
+&ldquo;NCW&rdquo;.  For N=2, the valid values are &ldquo;NHWC&rdquo; (default) and &ldquo;NCHW&rdquo;.
+For N=3, the valid values are &ldquo;NDHWC&rdquo; (default) and &ldquo;NCDHW&rdquo;.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>The output Tensor as described above, dimensions will vary based on the op
+provided.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: if <code>padding</code> is invalid or the arguments are incompatible.</li>
+<li><b><code>ValueError</code></b>: if <code>spatial_dims</code> are invalid.</li>
+</ul>
+

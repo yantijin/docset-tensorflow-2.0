@@ -1,0 +1,82 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.image.psnr" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.image.psnr</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/image_ops_impl.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Returns the Peak Signal-to-Noise Ratio between a and b.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.image.psnr</code></li>
+<li><code>tf.compat.v2.image.psnr</code></li>
+</ul>
+
+
+<p><code>python
+tf.image.psnr(
+    a,
+    b,
+    max_val,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>This is intended to be used on signals (or images). Produces a PSNR value for
+each image in batch.</p>
+
+<p>The last three dimensions of input are expected to be [height, width, depth].</p>
+
+<h4>Example:</h4>
+
+<p>```python
+    # Read images from file.
+    im1 = tf.decode_png(&lsquo;path/to/im1.png&rsquo;)
+    im2 = tf.decode_png(&lsquo;path/to/im2.png&rsquo;)
+    # Compute PSNR over tf.uint8 Tensors.
+    psnr1 = tf.image.psnr(im1, im2, max_val=255)</p>
+
+<pre><code># Compute PSNR over tf.float32 Tensors.
+im1 = tf.image.convert_image_dtype(im1, tf.float32)
+im2 = tf.image.convert_image_dtype(im2, tf.float32)
+psnr2 = tf.image.psnr(im1, im2, max_val=1.0)
+# psnr1 and psnr2 both have type tf.float32 and are almost equal.
+</code></pre>
+
+<p>```</p>
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>a</code></b>: First set of images.</li>
+<li><b><code>b</code></b>: Second set of images.</li>
+<li><b><code>max_val</code></b>: The dynamic range of the images (i.e., the difference between the
+maximum the and minimum allowed values).</li>
+<li><b><code>name</code></b>: Namespace to embed the computation in.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>The scalar PSNR between a and b. The returned tensor has type <a href="../../tf.html#float32"><code>tf.float32</code></a>
+and shape [batch_size, 1].</p>

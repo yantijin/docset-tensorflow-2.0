@@ -1,0 +1,61 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.image.flip_left_right" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.image.flip_left_right</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/image_ops_impl.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Flip an image horizontally (left to right).</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.image.flip_left_right</code></li>
+<li><code>tf.compat.v2.image.flip_left_right</code></li>
+</ul>
+
+
+<p><code>python
+tf.image.flip_left_right(image)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Outputs the contents of <code>image</code> flipped along the width dimension.</p>
+
+<p>See also <code>reverse()</code>.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>image</code></b>: 4-D Tensor of shape <code>[batch, height, width, channels]</code> or 3-D Tensor
+of shape <code>[height, width, channels]</code>.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A tensor of the same type and shape as <code>image</code>.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: if the shape of <code>image</code> not supported.</li>
+</ul>
+

@@ -1,0 +1,102 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.nn.conv1d" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.nn.conv1d</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/nn_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Computes a 1-D convolution given 3-D input and filter tensors. (deprecated argument values) (deprecated argument values)</p>
+
+<p><code>python
+tf.compat.v1.nn.conv1d(
+    value=None,
+    filters=None,
+    stride=None,
+    padding=None,
+    use_cudnn_on_gpu=None,
+    data_format=None,
+    name=None,
+    input=None,
+    dilations=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Warning: SOME ARGUMENT VALUES ARE DEPRECATED: <code>(data_format='NCHW')</code>. They will be removed in a future version.
+Instructions for updating:
+<code>NCHW</code> for data_format is deprecated, use <code>NCW</code> instead</p>
+
+<p>Warning: SOME ARGUMENT VALUES ARE DEPRECATED: <code>(data_format='NHWC')</code>. They will be removed in a future version.
+Instructions for updating:
+<code>NHWC</code> for data_format is deprecated, use <code>NWC</code> instead</p>
+
+<p>Given an input tensor of shape
+  [batch, in_width, in_channels]
+if data_format is &ldquo;NWC&rdquo;, or
+  [batch, in_channels, in_width]
+if data_format is &ldquo;NCW&rdquo;,
+and a filter / kernel tensor of shape
+[filter_width, in_channels, out_channels], this op reshapes
+the arguments to pass them to conv2d to perform the equivalent
+convolution operation.</p>
+
+<p>Internally, this op reshapes the input tensors and invokes <a href="../../../../tf/nn/conv2d.html"><code>tf.nn.conv2d</code></a>.
+For example, if <code>data_format</code> does not start with &ldquo;NC&rdquo;, a tensor of shape
+  [batch, in_width, in_channels]
+is reshaped to
+  [batch, 1, in_width, in_channels],
+and the filter is reshaped to
+  [1, filter_width, in_channels, out_channels].
+The result is then reshaped back to
+  [batch, out_width, out_channels]
+(where out_width is a function of the stride and padding as in conv2d) and
+returned to the caller.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>value</code></b>: A 3D <code>Tensor</code>.  Must be of type <code>float16</code>, <code>float32</code>, or <code>float64</code>.</li>
+<li><b><code>filters</code></b>: A 3D <code>Tensor</code>.  Must have the same type as <code>value</code>.</li>
+<li><b><code>stride</code></b>: An int or list of <code>ints</code> that has length <code>1</code> or <code>3</code>.  The number of
+entries by which the filter is moved right at each step.</li>
+<li><b><code>padding</code></b>: &lsquo;SAME&rsquo; or &lsquo;VALID&rsquo;</li>
+<li><b><code>use_cudnn_on_gpu</code></b>: An optional <code>bool</code>.  Defaults to <code>True</code>.</li>
+<li><b><code>data_format</code></b>: An optional <code>string</code> from <code>"NWC", "NCW"</code>.  Defaults to <code>"NWC"</code>,
+the data is stored in the order of [batch, in_width, in_channels].  The
+<code>"NCW"</code> format stores data as [batch, in_channels, in_width].</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+<li><b><code>input</code></b>: Alias for value.</li>
+<li><b><code>dilations</code></b>: An int or list of <code>ints</code> that has length <code>1</code> or <code>3</code> which
+defaults to 1. The dilation factor for each dimension of input. If set to
+k > 1, there will be k-1 skipped cells between each filter element on that
+dimension. Dilations in the batch and depth dimensions must be 1.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code>.  Has the same type as input.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: if <code>data_format</code> is invalid.</li>
+</ul>
+

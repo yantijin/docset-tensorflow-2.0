@@ -1,0 +1,112 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.tpu.experimental.shared_embedding_columns" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.tpu.experimental.shared_embedding_columns</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/tpu/feature_column_v2.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>TPU version of <a href="../../../../../tf/compat/v1/feature_column/shared_embedding_columns.html"><code>tf.compat.v1.feature_column.shared_embedding_columns</code></a>.</p>
+
+<p><code>python
+tf.compat.v1.tpu.experimental.shared_embedding_columns(
+    categorical_columns,
+    dimension,
+    combiner='mean',
+    initializer=None,
+    shared_embedding_collection_name=None,
+    max_sequence_lengths=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Note that the interface for <code>tf.tpu.experimental.shared_embedding_columns</code> is
+different from that of <a href="../../../../../tf/compat/v1/feature_column/shared_embedding_columns.html"><code>tf.compat.v1.feature_column.shared_embedding_columns</code></a>:
+The following arguments are NOT supported: <code>ckpt_to_load_from</code>,
+<code>tensor_name_in_ckpt</code>, <code>max_norm</code> and <code>trainable</code>.</p>
+
+<p>Use this function in place of
+tf.compat.v1.feature_column.shared_embedding_columns` when you want to use the
+TPU to accelerate your embedding lookups via TPU embeddings.</p>
+
+<p>```
+column_a = tf.feature_column.categorical_column_with_identity(&hellip;)
+column_b = tf.feature_column.categorical_column_with_identity(&hellip;)
+tpu_columns = tf.tpu.experimental.shared_embedding_columns(
+    [column_a, column_b], 10)
+&hellip;
+def model_fn(features):
+  dense_feature = tf.keras.layers.DenseFeature(tpu_columns)
+  embedded_feature = dense_feature(features)
+  &hellip;</p>
+
+<p>estimator = tf.estimator.tpu.TPUEstimator(
+    model_fn=model_fn,
+    &hellip;
+    embedding_config_spec=tf.estimator.tpu.experimental.EmbeddingConfigSpec(
+        column=tpu_columns,
+        &hellip;))
+```</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>categorical_columns</code></b>: A list of categorical columns returned from
+  <code>categorical_column_with_identity</code>, <code>weighted_categorical_column</code>,
+  <code>categorical_column_with_vocabulary_file</code>,
+  <code>categorical_column_with_vocabulary_list</code>,
+  <code>sequence_categorical_column_with_identity</code>,
+  <code>sequence_categorical_column_with_vocabulary_file</code>,
+  <code>sequence_categorical_column_with_vocabulary_list</code></li>
+<li><b><code>dimension</code></b>: An integer specifying dimension of the embedding, must be > 0.</li>
+<li><b><code>combiner</code></b>: A string specifying how to reduce if there are multiple entries
+in a single row for a non-sequence column. For more information, see
+<a href="../../../../../tf/feature_column/embedding_column.html"><code>tf.feature_column.embedding_column</code></a>.</li>
+<li><b><code>initializer</code></b>: A variable initializer function to be used in embedding
+variable initialization. If not specified, defaults to
+<code>tf.truncated_normal_initializer</code> with mean <code>0.0</code> and standard deviation
+<code>1/sqrt(dimension)</code>.</li>
+<li><b><code>shared_embedding_collection_name</code></b>: Optional name of the collection where
+shared embedding weights are added. If not given, a reasonable name will
+be chosen based on the names of <code>categorical_columns</code>. This is also used
+in <code>variable_scope</code> when creating shared embedding weights.</li>
+<li><b><code>max_sequence_lengths</code></b>: An list of non-negative integers, either None or
+empty or the same length as the argument categorical_columns. Entries
+corresponding to non-sequence columns must be 0 and entries corresponding
+to sequence columns specify the max sequence length for the column. Any
+sequence shorter then this will be padded with 0 embeddings and any
+sequence longer will be truncated.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A  list of <code>_TPUSharedEmbeddingColumnV2</code>.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: if <code>dimension</code> not > 0.</li>
+<li><b><code>ValueError</code></b>: if <code>initializer</code> is specified but not callable.</li>
+<li><b><code>ValueError</code></b>: if <code>max_sequence_lengths</code> is specified and not the same length
+as <code>categorical_columns</code>.</li>
+<li><b><code>ValueError</code></b>: if <code>max_sequence_lengths</code> is positive for a non sequence column
+or 0 for a sequence column.</li>
+</ul>
+

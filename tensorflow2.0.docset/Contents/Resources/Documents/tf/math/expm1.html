@@ -1,0 +1,68 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.math.expm1" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.math.expm1</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p>Defined in generated file: <code>python/ops/gen_math_ops.py</code></p>
+
+<!-- Start diff -->
+
+
+<p>Computes <code>exp(x) - 1</code> element-wise.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.expm1</code></li>
+<li><code>tf.compat.v1.math.expm1</code></li>
+<li><code>tf.compat.v2.math.expm1</code></li>
+</ul>
+
+
+<p><code>python
+tf.math.expm1(
+    x,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>  i.e. <code>exp(x) - 1</code> or <code>e^(x) - 1</code>, where <code>x</code> is the input tensor.
+  <code>e</code> denotes Euler&rsquo;s number and is approximately equal to 2.718281.</p>
+
+<p>  ```python
+  x = tf.constant(2.0)
+  tf.math.expm1(x) ==> 6.389056</p>
+
+<p>  x = tf.constant([2.0, 8.0])
+  tf.math.expm1(x) ==> array([6.389056, 2979.958], dtype=float32)</p>
+
+<p>  x = tf.constant(1 + 1j)
+  tf.math.expm1(x) ==> (0.46869393991588515+2.2873552871788423j)
+  ```</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>bfloat16</code>, <code>half</code>, <code>float32</code>, <code>float64</code>, <code>complex64</code>, <code>complex128</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code>. Has the same type as <code>x</code>.</p>

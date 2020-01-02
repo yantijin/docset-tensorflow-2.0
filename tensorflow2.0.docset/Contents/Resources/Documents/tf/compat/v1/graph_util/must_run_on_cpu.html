@@ -1,0 +1,51 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.graph_util.must_run_on_cpu" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.graph_util.must_run_on_cpu</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/graph_util_impl.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Returns True if the given node_def must run on CPU, otherwise False. (deprecated)</p>
+
+<p><code>python
+tf.compat.v1.graph_util.must_run_on_cpu(
+    node,
+    pin_variables_on_cpu=False
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
+Instructions for updating:
+Use <a href="../../../../tf/compat/v1/graph_util/must_run_on_cpu.html"><code>tf.compat.v1.graph_util.must_run_on_cpu</code></a></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>node</code></b>: The node to be assigned to a device. Could be either an ops.Operation
+or NodeDef.</li>
+<li><b><code>pin_variables_on_cpu</code></b>: If True, this function will return False if node_def
+represents a variable-related op.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>True if the given node must run on CPU, otherwise False.</p>

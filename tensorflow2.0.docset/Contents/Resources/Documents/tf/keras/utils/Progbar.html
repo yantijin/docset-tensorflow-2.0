@@ -1,0 +1,112 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.utils.Progbar" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="add"/>
+<meta itemprop="property" content="update"/>
+</div>
+
+
+<h1>tf.keras.utils.Progbar</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/utils/generic_utils.py">View source</a></p>
+
+<h2>Class <code>Progbar</code></h2>
+
+<!-- Start diff -->
+
+
+<p>Displays a progress bar.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li>Class <code>tf.compat.v1.keras.utils.Progbar</code></li>
+<li>Class <code>tf.compat.v2.keras.utils.Progbar</code></li>
+</ul>
+
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>target</code></b>: Total number of steps expected, None if unknown.</li>
+<li><b><code>width</code></b>: Progress bar width on screen.</li>
+<li><b><code>verbose</code></b>: Verbosity mode, 0 (silent), 1 (verbose), 2 (semi-verbose)</li>
+<li><b><code>stateful_metrics</code></b>: Iterable of string names of metrics that
+  should <em>not</em> be averaged over time. Metrics in this list
+  will be displayed as-is. All others will be averaged
+  by the progbar before display.</li>
+<li><b><code>interval</code></b>: Minimum visual progress update interval (in seconds).</li>
+<li><b><code>unit_name</code></b>: Display name for step counts (usually &ldquo;step&rdquo; or &ldquo;sample&rdquo;).</li>
+</ul>
+
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/utils/generic_utils.py">View source</a></p>
+
+<p><code>python
+__init__(
+    target,
+    width=30,
+    verbose=1,
+    interval=0.05,
+    stateful_metrics=None,
+    unit_name='step'
+)
+</code></p>
+
+<p>Initialize self.  See help(type(self)) for accurate signature.</p>
+
+<h2>Methods</h2>
+
+<h3 id="add"><code>add</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/utils/generic_utils.py">View source</a></p>
+
+<p><code>python
+add(
+    n,
+    values=None
+)
+</code></p>
+
+<h3 id="update"><code>update</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/utils/generic_utils.py">View source</a></p>
+
+<p><code>python
+update(
+    current,
+    values=None
+)
+</code></p>
+
+<p>Updates the progress bar.</p>
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>current</code></b>: Index of current step.</li>
+<li><b><code>values</code></b>: List of tuples:
+  <code>(name, value_for_last_step)</code>.
+  If <code>name</code> is in <code>stateful_metrics</code>,
+  <code>value_for_last_step</code> will be displayed as-is.
+  Else, an average of the metric over time will be displayed.</li>
+</ul>
+

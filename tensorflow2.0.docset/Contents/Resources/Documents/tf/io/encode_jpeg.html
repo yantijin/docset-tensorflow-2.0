@@ -1,0 +1,108 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.io.encode_jpeg" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.io.encode_jpeg</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p>Defined in generated file: <code>python/ops/gen_image_ops.py</code></p>
+
+<!-- Start diff -->
+
+
+<p>JPEG-encode an image.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.image.encode_jpeg</code></li>
+<li><code>tf.compat.v1.io.encode_jpeg</code></li>
+<li><code>tf.compat.v2.image.encode_jpeg</code></li>
+<li><code>tf.compat.v2.io.encode_jpeg</code></li>
+<li><code>tf.image.encode_jpeg</code></li>
+</ul>
+
+
+<p><code>python
+tf.io.encode_jpeg(
+    image,
+    format='',
+    quality=95,
+    progressive=False,
+    optimize_size=False,
+    chroma_downsampling=True,
+    density_unit='in',
+    x_density=300,
+    y_density=300,
+    xmp_metadata='',
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p><code>image</code> is a 3-D uint8 Tensor of shape <code>[height, width, channels]</code>.</p>
+
+<p>The attr <code>format</code> can be used to override the color format of the encoded
+output.  Values can be:</p>
+
+<ul>
+<li><code>''</code>: Use a default format based on the number of channels in the image.</li>
+<li><code>grayscale</code>: Output a grayscale JPEG image.  The <code>channels</code> dimension
+of <code>image</code> must be 1.</li>
+<li><code>rgb</code>: Output an RGB JPEG image. The <code>channels</code> dimension
+of <code>image</code> must be 3.</li>
+</ul>
+
+
+<p>If <code>format</code> is not specified or is the empty string, a default format is picked
+in function of the number of channels in <code>image</code>:</p>
+
+<ul>
+<li>1: Output a grayscale image.</li>
+<li>3: Output an RGB image.</li>
+</ul>
+
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>image</code></b>: A <code>Tensor</code> of type <code>uint8</code>.
+3-D with shape <code>[height, width, channels]</code>.</li>
+<li><b><code>format</code></b>: An optional <code>string</code> from: <code>"", "grayscale", "rgb"</code>. Defaults to <code>""</code>.
+Per pixel image format.</li>
+<li><b><code>quality</code></b>: An optional <code>int</code>. Defaults to <code>95</code>.
+Quality of the compression from 0 to 100 (higher is better and slower).</li>
+<li><b><code>progressive</code></b>: An optional <code>bool</code>. Defaults to <code>False</code>.
+If True, create a JPEG that loads progressively (coarse to fine).</li>
+<li><b><code>optimize_size</code></b>: An optional <code>bool</code>. Defaults to <code>False</code>.
+If True, spend CPU/RAM to reduce size with no quality change.</li>
+<li><b><code>chroma_downsampling</code></b>: An optional <code>bool</code>. Defaults to <code>True</code>.
+See http://en.wikipedia.org/wiki/Chroma_subsampling.</li>
+<li><b><code>density_unit</code></b>: An optional <code>string</code> from: <code>"in", "cm"</code>. Defaults to <code>"in"</code>.
+Unit used to specify <code>x_density</code> and <code>y_density</code>:
+pixels per inch (<code>'in'</code>) or centimeter (<code>'cm'</code>).</li>
+<li><b><code>x_density</code></b>: An optional <code>int</code>. Defaults to <code>300</code>.
+Horizontal pixels per density unit.</li>
+<li><b><code>y_density</code></b>: An optional <code>int</code>. Defaults to <code>300</code>.
+Vertical pixels per density unit.</li>
+<li><b><code>xmp_metadata</code></b>: An optional <code>string</code>. Defaults to <code>""</code>.
+If not empty, embed this XMP metadata in the image header.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> of type <code>string</code>.</p>

@@ -1,0 +1,62 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.backend.ndim" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.keras.backend.ndim</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/backend.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Returns the number of axes in a tensor, as an integer.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.keras.backend.ndim</code></li>
+<li><code>tf.compat.v2.keras.backend.ndim</code></li>
+</ul>
+
+
+<p><code>python
+tf.keras.backend.ndim(x)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>x</code></b>: Tensor or variable.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>Integer (scalar), number of axes.</p>
+
+<h4>Examples:</h4>
+
+<p><code>python
+    &gt;&gt;&gt; from keras import backend as K
+    &gt;&gt;&gt; input = K.placeholder(shape=(2, 4, 5))
+    &gt;&gt;&gt; val = np.array([[1, 2], [3, 4]])
+    &gt;&gt;&gt; kvar = K.variable(value=val)
+    &gt;&gt;&gt; K.ndim(input)
+    3
+    &gt;&gt;&gt; K.ndim(kvar)
+    2
+</code></p>

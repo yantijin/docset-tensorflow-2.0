@@ -1,0 +1,158 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.flags" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="FLAGS"/>
+</div>
+
+
+<h1>Module: tf.compat.v1.flags</h1>
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/platform/flags.py">View source</a></p>
+
+<p>Import router for absl.flags. See https://github.com/abseil/abseil-py.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li>Module <code>tf.compat.v1.app.flags</code></li>
+</ul>
+
+
+<h2>Modules</h2>
+
+<p><a href="../../../tf/compat/v1/flags/tf_decorator.html"><code>tf_decorator</code></a> module: Base TFDecorator class and utility functions for working with decorators.</p>
+
+<h2>Classes</h2>
+
+<p><a href="../../../tf/compat/v1/flags/ArgumentParser.html"><code>class ArgumentParser</code></a>: Base class used to parse and convert arguments.</p>
+
+<p><a href="../../../tf/compat/v1/flags/ArgumentSerializer.html"><code>class ArgumentSerializer</code></a>: Base class for generating string representations of a flag value.</p>
+
+<p><a href="../../../tf/compat/v1/flags/BaseListParser.html"><code>class BaseListParser</code></a>: Base class for a parser of lists of strings.</p>
+
+<p><a href="../../../tf/compat/v1/flags/BooleanFlag.html"><code>class BooleanFlag</code></a>: Basic boolean flag.</p>
+
+<p><a href="../../../tf/compat/v1/flags/BooleanParser.html"><code>class BooleanParser</code></a>: Parser of boolean values.</p>
+
+<p><a href="../../../tf/compat/v1/flags/CantOpenFlagFileError.html"><code>class CantOpenFlagFileError</code></a>: Raised when flagfile fails to open.</p>
+
+<p><a href="../../../tf/compat/v1/flags/CsvListSerializer.html"><code>class CsvListSerializer</code></a>: Base class for generating string representations of a flag value.</p>
+
+<p><a href="../../../tf/compat/v1/flags/DuplicateFlagError.html"><code>class DuplicateFlagError</code></a>: Raised if there is a flag naming conflict.</p>
+
+<p><a href="../../../tf/compat/v1/flags/EnumClassFlag.html"><code>class EnumClassFlag</code></a>: Basic enum flag; its value is an enum class&rsquo;s member.</p>
+
+<p><a href="../../../tf/compat/v1/flags/EnumClassParser.html"><code>class EnumClassParser</code></a>: Parser of an Enum class member.</p>
+
+<p><a href="../../../tf/compat/v1/flags/EnumFlag.html"><code>class EnumFlag</code></a>: Basic enum flag; its value can be any string from list of enum_values.</p>
+
+<p><a href="../../../tf/compat/v1/flags/EnumParser.html"><code>class EnumParser</code></a>: Parser of a string enum value (a string value from a given set).</p>
+
+<p><a href="../../../tf/compat/v1/flags/Error.html"><code>class Error</code></a>: The base class for all flags errors.</p>
+
+<p><a href="../../../tf/compat/v1/flags/Flag.html"><code>class Flag</code></a>: Information about a command-line flag.</p>
+
+<p><a href="../../../tf/compat/v1/flags/FlagNameConflictsWithMethodError.html"><code>class FlagNameConflictsWithMethodError</code></a>: Raised when a flag name conflicts with FlagValues methods.</p>
+
+<p><a href="../../../tf/compat/v1/flags/FlagValues.html"><code>class FlagValues</code></a>: Registry of &lsquo;Flag&rsquo; objects.</p>
+
+<p><a href="../../../tf/compat/v1/flags/FloatParser.html"><code>class FloatParser</code></a>: Parser of floating point values.</p>
+
+<p><a href="../../../tf/compat/v1/flags/IllegalFlagValueError.html"><code>class IllegalFlagValueError</code></a>: Raised when the flag command line argument is illegal.</p>
+
+<p><a href="../../../tf/compat/v1/flags/IntegerParser.html"><code>class IntegerParser</code></a>: Parser of an integer value.</p>
+
+<p><a href="../../../tf/compat/v1/flags/ListParser.html"><code>class ListParser</code></a>: Parser for a comma-separated list of strings.</p>
+
+<p><a href="../../../tf/compat/v1/flags/ListSerializer.html"><code>class ListSerializer</code></a>: Base class for generating string representations of a flag value.</p>
+
+<p><a href="../../../tf/compat/v1/flags/MultiEnumClassFlag.html"><code>class MultiEnumClassFlag</code></a>: A multi_enum_class flag.</p>
+
+<p><a href="../../../tf/compat/v1/flags/MultiFlag.html"><code>class MultiFlag</code></a>: A flag that can appear multiple time on the command-line.</p>
+
+<p><a href="../../../tf/compat/v1/flags/UnparsedFlagAccessError.html"><code>class UnparsedFlagAccessError</code></a>: Raised when accessing the flag value from unparsed FlagValues.</p>
+
+<p><a href="../../../tf/compat/v1/flags/UnrecognizedFlagError.html"><code>class UnrecognizedFlagError</code></a>: Raised when a flag is unrecognized.</p>
+
+<p><a href="../../../tf/compat/v1/flags/ValidationError.html"><code>class ValidationError</code></a>: Raised when flag validator constraint is not satisfied.</p>
+
+<p><a href="../../../tf/compat/v1/flags/WhitespaceSeparatedListParser.html"><code>class WhitespaceSeparatedListParser</code></a>: Parser for a whitespace-separated list of strings.</p>
+
+<h2>Functions</h2>
+
+<p><a href="../../../tf/compat/v1/flags/DEFINE.html"><code>DEFINE(...)</code></a>: Registers a generic Flag object.</p>
+
+<p><a href="../../../tf/compat/v1/flags/DEFINE_alias.html"><code>DEFINE_alias(...)</code></a>: Defines an alias flag for an existing one.</p>
+
+<p><a href="../../../tf/compat/v1/flags/DEFINE_bool.html"><code>DEFINE_bool(...)</code></a>: Registers a boolean flag.</p>
+
+<p><a href="../../../tf/compat/v1/flags/DEFINE_bool.html"><code>DEFINE_boolean(...)</code></a>: Registers a boolean flag.</p>
+
+<p><a href="../../../tf/compat/v1/flags/DEFINE_enum.html"><code>DEFINE_enum(...)</code></a>: Registers a flag whose value can be any string from enum_values.</p>
+
+<p><a href="../../../tf/compat/v1/flags/DEFINE_enum_class.html"><code>DEFINE_enum_class(...)</code></a>: Registers a flag whose value can be the name of enum members.</p>
+
+<p><a href="../../../tf/compat/v1/flags/DEFINE_flag.html"><code>DEFINE_flag(...)</code></a>: Registers a &lsquo;Flag&rsquo; object with a &lsquo;FlagValues&rsquo; object.</p>
+
+<p><a href="../../../tf/compat/v1/flags/DEFINE_float.html"><code>DEFINE_float(...)</code></a>: Registers a flag whose value must be a float.</p>
+
+<p><a href="../../../tf/compat/v1/flags/DEFINE_integer.html"><code>DEFINE_integer(...)</code></a>: Registers a flag whose value must be an integer.</p>
+
+<p><a href="../../../tf/compat/v1/flags/DEFINE_list.html"><code>DEFINE_list(...)</code></a>: Registers a flag whose value is a comma-separated list of strings.</p>
+
+<p><a href="../../../tf/compat/v1/flags/DEFINE_multi.html"><code>DEFINE_multi(...)</code></a>: Registers a generic MultiFlag that parses its args with a given parser.</p>
+
+<p><a href="../../../tf/compat/v1/flags/DEFINE_multi_enum.html"><code>DEFINE_multi_enum(...)</code></a>: Registers a flag whose value can be a list strings from enum_values.</p>
+
+<p><a href="../../../tf/compat/v1/flags/DEFINE_multi_enum_class.html"><code>DEFINE_multi_enum_class(...)</code></a>: Registers a flag whose value can be a list of enum members.</p>
+
+<p><a href="../../../tf/compat/v1/flags/DEFINE_multi_float.html"><code>DEFINE_multi_float(...)</code></a>: Registers a flag whose value can be a list of arbitrary floats.</p>
+
+<p><a href="../../../tf/compat/v1/flags/DEFINE_multi_integer.html"><code>DEFINE_multi_integer(...)</code></a>: Registers a flag whose value can be a list of arbitrary integers.</p>
+
+<p><a href="../../../tf/compat/v1/flags/DEFINE_multi_string.html"><code>DEFINE_multi_string(...)</code></a>: Registers a flag whose value can be a list of any strings.</p>
+
+<p><a href="../../../tf/compat/v1/flags/DEFINE_spaceseplist.html"><code>DEFINE_spaceseplist(...)</code></a>: Registers a flag whose value is a whitespace-separated list of strings.</p>
+
+<p><a href="../../../tf/compat/v1/flags/DEFINE_string.html"><code>DEFINE_string(...)</code></a>: Registers a flag whose value can be any string.</p>
+
+<p><a href="../../../tf/compat/v1/flags/adopt_module_key_flags.html"><code>adopt_module_key_flags(...)</code></a>: Declares that all flags key to a module are key to the current module.</p>
+
+<p><a href="../../../tf/compat/v1/flags/declare_key_flag.html"><code>declare_key_flag(...)</code></a>: Declares one flag as key to the current module.</p>
+
+<p><a href="../../../tf/compat/v1/flags/disclaim_key_flags.html"><code>disclaim_key_flags(...)</code></a>: Declares that the current module will not define any more key flags.</p>
+
+<p><a href="../../../tf/compat/v1/flags/doc_to_help.html"><code>doc_to_help(...)</code></a>: Takes a <strong>doc</strong> string and reformats it as help.</p>
+
+<p><a href="../../../tf/compat/v1/flags/flag_dict_to_args.html"><code>flag_dict_to_args(...)</code></a>: Convert a dict of values into process call parameters.</p>
+
+<p><a href="../../../tf/compat/v1/flags/get_help_width.html"><code>get_help_width(...)</code></a>: Returns the integer width of help lines that is used in TextWrap.</p>
+
+<p><a href="../../../tf/compat/v1/flags/mark_bool_flags_as_mutual_exclusive.html"><code>mark_bool_flags_as_mutual_exclusive(...)</code></a>: Ensures that only one flag among flag_names is True.</p>
+
+<p><a href="../../../tf/compat/v1/flags/mark_flag_as_required.html"><code>mark_flag_as_required(...)</code></a>: Ensures that flag is not None during program execution.</p>
+
+<p><a href="../../../tf/compat/v1/flags/mark_flags_as_mutual_exclusive.html"><code>mark_flags_as_mutual_exclusive(...)</code></a>: Ensures that only one flag among flag_names is not None.</p>
+
+<p><a href="../../../tf/compat/v1/flags/mark_flags_as_required.html"><code>mark_flags_as_required(...)</code></a>: Ensures that flags are not None during program execution.</p>
+
+<p><a href="../../../tf/compat/v1/flags/multi_flags_validator.html"><code>multi_flags_validator(...)</code></a>: A function decorator for defining a multi-flag validator.</p>
+
+<p><a href="../../../tf/compat/v1/flags/register_multi_flags_validator.html"><code>register_multi_flags_validator(...)</code></a>: Adds a constraint to multiple flags.</p>
+
+<p><a href="../../../tf/compat/v1/flags/register_validator.html"><code>register_validator(...)</code></a>: Adds a constraint, which will be enforced during program execution.</p>
+
+<p><a href="../../../tf/compat/v1/flags/text_wrap.html"><code>text_wrap(...)</code></a>: Wraps a given text to a maximum line length and returns it.</p>
+
+<p><a href="../../../tf/compat/v1/flags/validator.html"><code>validator(...)</code></a>: A function decorator for defining a flag validator.</p>
+
+<h2>Other Members</h2>
+
+<ul>
+<li><code>FLAGS</code> <a id="FLAGS"></a></li>
+</ul>
+

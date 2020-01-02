@@ -1,0 +1,73 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.flags.validator" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.flags.validator</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+
+
+<!-- Start diff -->
+
+
+<p>A function decorator for defining a flag validator.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.app.flags.validator</code></li>
+</ul>
+
+
+<p><code>python
+tf.compat.v1.flags.validator(
+    flag_name,
+    message='Flag validation failed',
+    flag_values=_flagvalues.FLAGS
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Registers the decorated function as a validator for flag_name, e.g.</p>
+
+<p>@flags.validator(&lsquo;foo&rsquo;)
+def _CheckFoo(foo):
+  &hellip;</p>
+
+<p>See register_validator() for the specification of checker function.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>flag_name</code></b>: str, name of the flag to be checked.</li>
+<li><b><code>message</code></b>: str, error text to be shown to the user if checker returns False.
+  If checker raises flags.ValidationError, message from the raised
+  error will be shown.</li>
+<li><b><code>flag_values</code></b>: flags.FlagValues, optional FlagValues instance to validate
+  against.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A function decorator that registers its function argument as a validator.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>AttributeError</code></b>: Raised when flag_name is not registered as a valid flag
+  name.</li>
+</ul>
+

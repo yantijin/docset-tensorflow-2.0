@@ -1,0 +1,84 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.backend.categorical_crossentropy" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.keras.backend.categorical_crossentropy</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/backend.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Categorical crossentropy between an output tensor and a target tensor.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.keras.backend.categorical_crossentropy</code></li>
+<li><code>tf.compat.v2.keras.backend.categorical_crossentropy</code></li>
+</ul>
+
+
+<p><code>python
+tf.keras.backend.categorical_crossentropy(
+    target,
+    output,
+    from_logits=False,
+    axis=-1
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>target</code></b>: A tensor of the same shape as <code>output</code>.</li>
+<li><b><code>output</code></b>: A tensor resulting from a softmax
+  (unless <code>from_logits</code> is True, in which
+  case <code>output</code> is expected to be the logits).</li>
+<li><b><code>from_logits</code></b>: Boolean, whether <code>output</code> is the
+  result of a softmax, or is a tensor of logits.</li>
+<li><b><code>axis</code></b>: Int specifying the channels axis. <code>axis=-1</code> corresponds to data
+  format <code>channels_last', and</code>axis=1<code>corresponds to data format
+ </code>channels_first`.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>Output tensor.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: if <code>axis</code> is neither -1 nor one of the axes of <code>output</code>.</li>
+</ul>
+
+
+<h4>Example:</h4>
+
+<p><code>python:
+    import tensorflow as tf
+    from tensorflow.keras import backend as K
+    a = tf.constant([1., 0., 0., 0., 1., 0., 0., 0., 1.], shape=[3,3])
+    print("a: ", a)
+    b = tf.constant([.9, .05, .05, .5, .89, .6, .05, .01, .94], shape=[3,3])
+    print("b: ", b)
+    loss = K.categorical_crossentropy(a, b)
+    print('Loss: ', loss) #Loss: tf.Tensor([0.10536055 0.8046684  0.06187541], shape=(3,), dtype=float32)
+    loss = K.categorical_crossentropy(a, a)
+    print('Loss: ', loss) #Loss:  tf.Tensor([1.1920929e-07 1.1920929e-07 1.1920929e-07], shape=(3,), dtype=float32)
+</code></p>

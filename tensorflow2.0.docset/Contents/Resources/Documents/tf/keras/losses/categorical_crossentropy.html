@@ -1,0 +1,65 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.losses.categorical_crossentropy" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.keras.losses.categorical_crossentropy</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/losses.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Computes the categorical crossentropy loss.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.keras.losses.categorical_crossentropy</code></li>
+<li><code>tf.compat.v1.keras.metrics.categorical_crossentropy</code></li>
+<li><code>tf.compat.v2.keras.losses.categorical_crossentropy</code></li>
+<li><code>tf.compat.v2.keras.metrics.categorical_crossentropy</code></li>
+<li><code>tf.compat.v2.losses.categorical_crossentropy</code></li>
+<li><code>tf.compat.v2.metrics.categorical_crossentropy</code></li>
+<li><code>tf.keras.metrics.categorical_crossentropy</code></li>
+<li><code>tf.losses.categorical_crossentropy</code></li>
+<li><code>tf.metrics.categorical_crossentropy</code></li>
+</ul>
+
+
+<p><code>python
+tf.keras.losses.categorical_crossentropy(
+    y_true,
+    y_pred,
+    from_logits=False,
+    label_smoothing=0
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>y_true</code></b>: tensor of true targets.</li>
+<li><b><code>y_pred</code></b>: tensor of predicted targets.</li>
+<li><b><code>from_logits</code></b>: Whether <code>y_pred</code> is expected to be a logits tensor. By default,
+we assume that <code>y_pred</code> encodes a probability distribution.</li>
+<li><b><code>label_smoothing</code></b>: Float in [0, 1]. If > <code>0</code> then smooth the labels.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>Categorical crossentropy loss value.</p>

@@ -1,0 +1,114 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.ragged.RaggedTensorValue" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="dtype"/>
+<meta itemprop="property" content="flat_values"/>
+<meta itemprop="property" content="nested_row_splits"/>
+<meta itemprop="property" content="ragged_rank"/>
+<meta itemprop="property" content="row_splits"/>
+<meta itemprop="property" content="shape"/>
+<meta itemprop="property" content="values"/>
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="to_list"/>
+</div>
+
+
+<h1>tf.compat.v1.ragged.RaggedTensorValue</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/ragged/ragged_tensor_value.py">View source</a></p>
+
+<h2>Class <code>RaggedTensorValue</code></h2>
+
+<!-- Start diff -->
+
+
+<p>Represents the value of a <code>RaggedTensor</code>.</p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Warning: <code>RaggedTensorValue</code> should only be used in graph mode; in
+eager mode, the <a href="../../../../tf/RaggedTensor.html"><code>tf.RaggedTensor</code></a> class contains its value directly.</p>
+
+<p>See <a href="../../../../tf/RaggedTensor.html"><code>tf.RaggedTensor</code></a> for a description of ragged tensors.</p>
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/ragged/ragged_tensor_value.py">View source</a></p>
+
+<p><code>python
+__init__(
+    values,
+    row_splits
+)
+</code></p>
+
+<p>Creates a <code>RaggedTensorValue</code>.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>values</code></b>: A numpy array of any type and shape; or a RaggedTensorValue.</li>
+<li><b><code>row_splits</code></b>: A 1-D int32 or int64 numpy array.</li>
+</ul>
+
+
+<h2>Properties</h2>
+
+<h3 id="dtype"><code>dtype</code></h3>
+
+
+<p>The numpy dtype of values in this tensor.</p>
+
+<h3 id="flat_values"><code>flat_values</code></h3>
+
+
+<p>The innermost <code>values</code> array for this ragged tensor value.</p>
+
+<h3 id="nested_row_splits"><code>nested_row_splits</code></h3>
+
+
+<p>The row_splits for all ragged dimensions in this ragged tensor value.</p>
+
+<h3 id="ragged_rank"><code>ragged_rank</code></h3>
+
+
+<p>The number of ragged dimensions in this ragged tensor value.</p>
+
+<h3 id="row_splits"><code>row_splits</code></h3>
+
+
+<p>The split indices for the ragged tensor value.</p>
+
+<h3 id="shape"><code>shape</code></h3>
+
+
+<p>A tuple indicating the shape of this RaggedTensorValue.</p>
+
+<h3 id="values"><code>values</code></h3>
+
+
+<p>The concatenated values for all rows in this tensor.</p>
+
+<h2>Methods</h2>
+
+<h3 id="to_list"><code>to_list</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/ragged/ragged_tensor_value.py">View source</a></p>
+
+<p><code>python
+to_list()
+</code></p>
+
+<p>Returns this ragged tensor value as a nested Python list.</p>

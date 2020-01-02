@@ -1,0 +1,67 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.config.experimental.get_visible_devices" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.config.experimental.get_visible_devices</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/config.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Get the list of visible physical devices.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.config.experimental.get_visible_devices</code></li>
+<li><code>tf.compat.v2.config.experimental.get_visible_devices</code></li>
+</ul>
+
+
+<p><code>python
+tf.config.experimental.get_visible_devices(device_type=None)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Returns a list of PhysicalDevice objects that are current marked as visible to
+the runtime. Any visible devices will have LogicalDevices assigned to them
+once the runtime is initialized.</p>
+
+<p>The following example verifies all visible GPUs have been disabled:</p>
+
+<p>```python
+physical_devices = config.experimental.list_physical_devices(&lsquo;GPU&rsquo;)
+assert len(physical_devices) > 0, &ldquo;Not enough GPU hardware devices available&rdquo;</p>
+
+<h1>Disable all GPUS</h1>
+
+<p>tf.config.experimental.set_visible_devices([], &lsquo;GPU&rsquo;)
+visible_devices = tf.config.experimental.get_visible_devices()
+for device in visible_devices:
+  assert device.device_type != &lsquo;GPU&rsquo;
+```</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>device_type</code></b>: (optional) Device types to limit query to.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>List of PhysicalDevice objects</p>

@@ -1,0 +1,89 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.math.unsorted_segment_min" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.math.unsorted_segment_min</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p>Defined in generated file: <code>python/ops/gen_math_ops.py</code></p>
+
+<!-- Start diff -->
+
+
+<p>Computes the minimum along segments of a tensor.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.math.unsorted_segment_min</code></li>
+<li><code>tf.compat.v1.unsorted_segment_min</code></li>
+<li><code>tf.compat.v2.math.unsorted_segment_min</code></li>
+</ul>
+
+
+<p><code>python
+tf.math.unsorted_segment_min(
+    data,
+    segment_ids,
+    num_segments,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Read
+<a href="https://tensorflow.org/api_docs/python/tf/math#Segmentation">the section on segmentation</a>
+for an explanation of segments.</p>
+
+<p>This operator is similar to the unsorted segment sum operator found
+<a href="../../../api_docs/python/math_ops.html#UnsortedSegmentSum">(here)</a>.
+Instead of computing the sum over segments, it computes the minimum such that:</p>
+
+<p>\(output_i = \min<em>{j&hellip;} data</em>[j&hellip;]\) where min is over tuples <code>j...</code> such
+that <code>segment_ids[j...] == i</code>.</p>
+
+<p>If the minimum is empty for a given segment ID <code>i</code>, it outputs the largest
+possible value for the specific numeric type,
+<code>output[i] = numeric_limits&lt;T&gt;::max()</code>.</p>
+
+<h4>For example:</h4>
+
+<p>``` python
+c = tf.constant([[1,2,3,4], [5,6,7,8], [4,3,2,1]])
+tf.unsorted_segment_min(c, tf.constant([0, 1, 0]), num_segments=2)</p>
+
+<h1>==> [[ 1,  2, 2, 1],</h1>
+
+<h1>[5,  6, 7, 8]]</h1>
+
+<p>```</p>
+
+<p>If the given segment ID <code>i</code> is negative, then the corresponding value is
+dropped, and will not be included in the result.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>data</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>float32</code>, <code>float64</code>, <code>int32</code>, <code>uint8</code>, <code>int16</code>, <code>int8</code>, <code>int64</code>, <code>bfloat16</code>, <code>uint16</code>, <code>half</code>, <code>uint32</code>, <code>uint64</code>.</li>
+<li><b><code>segment_ids</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>int32</code>, <code>int64</code>.
+A tensor whose shape is a prefix of <code>data.shape</code>.</li>
+<li><b><code>num_segments</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>int32</code>, <code>int64</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code>. Has the same type as <code>data</code>.</p>

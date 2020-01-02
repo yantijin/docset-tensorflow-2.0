@@ -1,0 +1,87 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.layers.PReLU" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__init__"/>
+</div>
+
+
+<h1>tf.keras.layers.PReLU</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/advanced_activations.py">View source</a></p>
+
+<h2>Class <code>PReLU</code></h2>
+
+<!-- Start diff -->
+
+
+<p>Parametric Rectified Linear Unit.</p>
+
+<p>Inherits From: <a href="../../../tf/keras/layers/Layer.html"><code>Layer</code></a></p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li>Class <code>tf.compat.v1.keras.layers.PReLU</code></li>
+<li>Class <code>tf.compat.v2.keras.layers.PReLU</code></li>
+</ul>
+
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>It follows:</h4>
+
+<p><code>f(x) = alpha * x for x &lt; 0</code>,
+<code>f(x) = x for x &gt;= 0</code>,
+where <code>alpha</code> is a learned array with the same shape as x.</p>
+
+<h4>Input shape:</h4>
+
+<p>Arbitrary. Use the keyword argument <code>input_shape</code>
+(tuple of integers, does not include the samples axis)
+when using this layer as the first layer in a model.</p>
+
+<h4>Output shape:</h4>
+
+<p>Same shape as the input.</p>
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>alpha_initializer</code></b>: Initializer function for the weights.</li>
+<li><b><code>alpha_regularizer</code></b>: Regularizer for the weights.</li>
+<li><b><code>alpha_constraint</code></b>: Constraint for the weights.</li>
+<li><b><code>shared_axes</code></b>: The axes along which to share learnable
+parameters for the activation function.
+For example, if the incoming feature maps
+are from a 2D convolution
+with output shape <code>(batch, height, width, channels)</code>,
+and you wish to share parameters across space
+so that each filter only has one set of parameters,
+set <code>shared_axes=[1, 2]</code>.</li>
+</ul>
+
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/advanced_activations.py">View source</a></p>
+
+<p><code>python
+__init__(
+    alpha_initializer='zeros',
+    alpha_regularizer=None,
+    alpha_constraint=None,
+    shared_axes=None,
+    **kwargs
+)
+</code></p>

@@ -1,0 +1,68 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.image.random_contrast" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.image.random_contrast</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/image_ops_impl.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Adjust the contrast of an image or images by a random factor.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.image.random_contrast</code></li>
+<li><code>tf.compat.v2.image.random_contrast</code></li>
+</ul>
+
+
+<p><code>python
+tf.image.random_contrast(
+    image,
+    lower,
+    upper,
+    seed=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Equivalent to <code>adjust_contrast()</code> but uses a <code>contrast_factor</code> randomly
+picked in the interval <code>[lower, upper]</code>.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>image</code></b>: An image tensor with 3 or more dimensions.</li>
+<li><b><code>lower</code></b>: float.  Lower bound for the random contrast factor.</li>
+<li><b><code>upper</code></b>: float.  Upper bound for the random contrast factor.</li>
+<li><b><code>seed</code></b>: A Python integer. Used to create a random seed. See
+<a href="../../tf/compat/v1/set_random_seed.html"><code>tf.compat.v1.set_random_seed</code></a> for behavior.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>The contrast-adjusted image(s).</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: if <code>upper &lt;= lower</code> or if <code>lower &lt; 0</code>.</li>
+</ul>
+

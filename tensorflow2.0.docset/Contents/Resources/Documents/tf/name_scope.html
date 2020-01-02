@@ -1,0 +1,131 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.name_scope" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="name"/>
+<meta itemprop="property" content="__enter__"/>
+<meta itemprop="property" content="__exit__"/>
+<meta itemprop="property" content="__init__"/>
+</div>
+
+
+<h1>tf.name_scope</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/ops.py">View source</a></p>
+
+<h2>Class <code>name_scope</code></h2>
+
+<!-- Start diff -->
+
+
+<p>A context manager for use when defining a Python op.</p>
+
+<p>Inherits From: <a href="../tf/compat/v1/keras/backend/name_scope.html"><code>name_scope</code></a></p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li>Class <code>tf.compat.v2.name_scope</code></li>
+</ul>
+
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>This context manager pushes a name scope, which will make the name of all
+operations added within it have a prefix.</p>
+
+<p>For example, to define a new Python op called <code>my_op</code>:</p>
+
+<p><code>python
+def my_op(a, b, c, name=None):
+  with tf.name_scope("MyOp") as scope:
+    a = tf.convert_to_tensor(a, name="a")
+    b = tf.convert_to_tensor(b, name="b")
+    c = tf.convert_to_tensor(c, name="c")
+    # Define some computation that uses `a`, `b`, and `c`.
+    return foo_op(..., name=scope)
+</code></p>
+
+<p>When executed, the Tensors <code>a</code>, <code>b</code>, <code>c</code>, will have names <code>MyOp/a</code>, <code>MyOp/b</code>,
+and <code>MyOp/c</code>.</p>
+
+<p>If the scope name already exists, the name will be made unique by appending
+<code>_n</code>. For example, calling <code>my_op</code> the second time will generate <code>MyOp_1/a</code>,
+etc.</p>
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/ops.py">View source</a></p>
+
+<p><code>python
+__init__(name)
+</code></p>
+
+<p>Initialize the context manager.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>name</code></b>: The prefix to use on all names created within the name scope.</li>
+</ul>
+
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If name is None, or not a string.</li>
+</ul>
+
+
+<h2>Properties</h2>
+
+<h3 id="name"><code>name</code></h3>
+
+
+<h2>Methods</h2>
+
+<h3 id="__enter__"><code>__enter__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/ops.py">View source</a></p>
+
+<p><code>python
+__enter__()
+</code></p>
+
+<p>Start the scope block.</p>
+
+<h4>Returns:</h4>
+
+<p>The scope name.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: if neither <code>name</code> nor <code>default_name</code> is provided
+but <code>values</code> are.</li>
+</ul>
+
+
+<h3 id="__exit__"><code>__exit__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/ops.py">View source</a></p>
+
+<p><code>python
+__exit__(
+    type_arg,
+    value_arg,
+    traceback_arg
+)
+</code></p>

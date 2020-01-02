@@ -1,0 +1,75 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.summary.text" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.summary.text</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+
+<td>
+  <a target="_blank" href="https://github.com/tensorflow/tensorboard/tree/master/tensorboard/plugins/text/summary_v2.py">
+    <img src="https://www.tensorflow.org/images/GitHub-Mark-32px.png" />
+    View source on GitHub
+  </a>
+</td></table>
+
+
+
+
+<!-- Start diff -->
+
+
+<p>Write a text summary.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v2.summary.text</code></li>
+</ul>
+
+
+<p><code>python
+tf.summary.text(
+    name,
+    data,
+    step=None,
+    description=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>name</code></b>: A name for this summary. The summary tag used for TensorBoard will
+be this name prefixed by any active name scopes.</li>
+<li><b><code>data</code></b>: A UTF-8 string tensor value.</li>
+<li><b><code>step</code></b>: Explicit <code>int64</code>-castable monotonic step value for this summary. If
+omitted, this defaults to <a href="../../tf/summary/experimental/get_step.html"><code>tf.summary.experimental.get_step()</code></a>, which must
+not be None.</li>
+<li><b><code>description</code></b>: Optional long-form description for this summary, as a
+constant <code>str</code>. Markdown is supported. Defaults to empty.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>True on success, or false if no summary was emitted because no default
+summary writer was available.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: if a default writer exists, but no step was provided and
+<a href="../../tf/summary/experimental/get_step.html"><code>tf.summary.experimental.get_step()</code></a> is None.</li>
+</ul>
+

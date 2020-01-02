@@ -1,0 +1,79 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.losses.sparse_softmax_cross_entropy" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.losses.sparse_softmax_cross_entropy</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/losses/losses_impl.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Cross-entropy loss using <a href="../../../../tf/nn/sparse_softmax_cross_entropy_with_logits.html"><code>tf.nn.sparse_softmax_cross_entropy_with_logits</code></a>.</p>
+
+<p><code>python
+tf.compat.v1.losses.sparse_softmax_cross_entropy(
+    labels,
+    logits,
+    weights=1.0,
+    scope=None,
+    loss_collection=tf.GraphKeys.LOSSES,
+    reduction=Reduction.SUM_BY_NONZERO_WEIGHTS
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p><code>weights</code> acts as a coefficient for the loss. If a scalar is provided,
+then the loss is simply scaled by the given value. If <code>weights</code> is a
+tensor of shape <code>[batch_size]</code>, then the loss weights apply to each
+corresponding sample.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>labels</code></b>: <code>Tensor</code> of shape <code>[d_0, d_1, ..., d_{r-1}]</code> (where <code>r</code> is rank of
+<code>labels</code> and result) and dtype <code>int32</code> or <code>int64</code>. Each entry in <code>labels</code>
+must be an index in <code>[0, num_classes)</code>. Other values will raise an
+exception when this op is run on CPU, and return <code>NaN</code> for corresponding
+loss and gradient rows on GPU.</li>
+<li><b><code>logits</code></b>: Unscaled log probabilities of shape
+<code>[d_0, d_1, ..., d_{r-1}, num_classes]</code> and dtype <code>float16</code>, <code>float32</code> or
+<code>float64</code>.</li>
+<li><b><code>weights</code></b>: Coefficients for the loss. This must be scalar or broadcastable to
+<code>labels</code> (i.e. same rank and each dimension is either 1 or the same).</li>
+<li><b><code>scope</code></b>: the scope for the operations performed in computing the loss.</li>
+<li><b><code>loss_collection</code></b>: collection to which the loss will be added.</li>
+<li><b><code>reduction</code></b>: Type of reduction to apply to loss.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>Weighted loss <code>Tensor</code> of the same type as <code>logits</code>. If <code>reduction</code> is
+<code>NONE</code>, this has the same shape as <code>labels</code>; otherwise, it is scalar.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If the shapes of <code>logits</code>, <code>labels</code>, and <code>weights</code> are
+incompatible, or if any of them are None.</li>
+</ul>
+
+
+<h4>Eager Compatibility</h4>
+
+<p>The <code>loss_collection</code> argument is ignored when executing eagerly. Consider
+holding on to the return value or collecting losses via a <a href="../../../../tf/keras/Model.html"><code>tf.keras.Model</code></a>.</p>

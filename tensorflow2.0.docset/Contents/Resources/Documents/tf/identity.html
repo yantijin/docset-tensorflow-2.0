@@ -1,0 +1,64 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.identity" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.identity</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/array_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Return a tensor with the same shape and contents as input.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.identity</code></li>
+<li><code>tf.compat.v2.identity</code></li>
+</ul>
+
+
+<p><code>python
+tf.identity(
+    input,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>For example:</h4>
+
+<p><code>python
+import tensorflow as tf
+val0 = tf.ones((1,), dtype=tf.float32)
+a = tf.atan2(val0, val0)
+a_identity = tf.identity(a)
+print(a.numpy())          #[0.7853982]
+print(a_identity.numpy()) #[0.7853982]
+</code></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>input</code></b>: A <code>Tensor</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code>. Has the same type as <code>input</code>.</p>

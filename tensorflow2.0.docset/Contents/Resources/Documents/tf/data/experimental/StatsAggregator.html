@@ -1,0 +1,76 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.data.experimental.StatsAggregator" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__init__"/>
+</div>
+
+
+<h1>tf.data.experimental.StatsAggregator</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/data/experimental/ops/stats_aggregator.py">View source</a></p>
+
+<h2>Class <code>StatsAggregator</code></h2>
+
+<!-- Start diff -->
+
+
+<p>A stateful resource that aggregates statistics from one or more iterators.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li>Class <code>tf.compat.v2.data.experimental.StatsAggregator</code></li>
+</ul>
+
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>To record statistics, use one of the custom transformation functions defined
+in this module when defining your <a href="../../../tf/data/Dataset.html"><code>tf.data.Dataset</code></a>. All statistics will be
+aggregated by the <code>StatsAggregator</code> that is associated with a particular
+iterator (see below). For example, to record the latency of producing each
+element by iterating over a dataset:</p>
+
+<p><code>python
+dataset = ...
+dataset = dataset.apply(tf.data.experimental.latency_stats("total_bytes"))
+</code></p>
+
+<p>To associate a <code>StatsAggregator</code> with a <a href="../../../tf/data/Dataset.html"><code>tf.data.Dataset</code></a> object, use
+the following pattern:</p>
+
+<p>```python
+aggregator = tf.data.experimental.StatsAggregator()
+dataset = &hellip;</p>
+
+<h1>Apply <code>StatsOptions</code> to associate <code>dataset</code> with <code>aggregator</code>.</h1>
+
+<p>options = tf.data.Options()
+options.experimental_stats.aggregator = aggregator
+dataset = dataset.with_options(options)
+```</p>
+
+<p>Note: This interface is experimental and expected to change. In particular,
+we expect to add other implementations of <code>StatsAggregator</code> that provide
+different ways of exporting statistics, and add more types of statistics.</p>
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/data/experimental/ops/stats_aggregator.py">View source</a></p>
+
+<p><code>python
+__init__()
+</code></p>
+
+<p>Initialize self.  See help(type(self)) for accurate signature.</p>

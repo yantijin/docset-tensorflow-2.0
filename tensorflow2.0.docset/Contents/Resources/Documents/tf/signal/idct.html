@@ -1,0 +1,88 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.signal.idct" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.signal.idct</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/signal/dct_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Computes the 1D <a href="">Inverse Discrete Cosine Transform (DCT)</a> of <code>input</code>.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.signal.idct</code></li>
+<li><code>tf.compat.v1.spectral.idct</code></li>
+<li><code>tf.compat.v2.signal.idct</code></li>
+</ul>
+
+
+<p><code>python
+tf.signal.idct(
+    input,
+    type=2,
+    n=None,
+    axis=-1,
+    norm=None,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Currently only Types I, II and III are supported. Type III is the inverse of
+Type II, and vice versa.</p>
+
+<p>Note that you must re-normalize by 1/(2n) to obtain an inverse if <code>norm</code> is
+not <code>'ortho'</code>. That is:
+<code>signal == idct(dct(signal)) * 0.5 / signal.shape[-1]</code>.
+When <code>norm='ortho'</code>, we have:
+<code>signal == idct(dct(signal, norm='ortho'), norm='ortho')</code>.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>input</code></b>: A <code>[..., samples]</code> <code>float32</code> <code>Tensor</code> containing the signals to take
+the DCT of.</li>
+<li><b><code>type</code></b>: The IDCT type to perform. Must be 1, 2 or 3.</li>
+<li><b><code>n</code></b>: For future expansion. The length of the transform. Must be <code>None</code>.</li>
+<li><b><code>axis</code></b>: For future expansion. The axis to compute the DCT along. Must be <code>-1</code>.</li>
+<li><b><code>norm</code></b>: The normalization to apply. <code>None</code> for no normalization or <code>'ortho'</code>
+for orthonormal normalization.</li>
+<li><b><code>name</code></b>: An optional name for the operation.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>[..., samples]</code> <code>float32</code> <code>Tensor</code> containing the IDCT of <code>input</code>.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If <code>type</code> is not <code>1</code>, <code>2</code> or <code>3</code>, <code>n</code> is not <code>None,</code>axis<code>is
+not</code>-1<code>, or</code>norm<code>is not</code>None<code>or</code>&lsquo;ortho&rsquo;`.</li>
+</ul>
+
+
+<p>https://en.wikipedia.org/wiki/Discrete_cosine_transform#Inverse_transforms</p>
+
+<h4>Scipy Compatibility</h4>
+
+<p>Equivalent to <a href="https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.fftpack.idct.html">scipy.fftpack.idct</a>
+ for Type-I, Type-II and Type-III DCT.</p>

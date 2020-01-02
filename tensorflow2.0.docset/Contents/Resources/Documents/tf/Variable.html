@@ -1,0 +1,2692 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.Variable" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="SaveSliceInfo"/>
+<meta itemprop="property" content="aggregation"/>
+<meta itemprop="property" content="constraint"/>
+<meta itemprop="property" content="device"/>
+<meta itemprop="property" content="dtype"/>
+<meta itemprop="property" content="graph"/>
+<meta itemprop="property" content="initial_value"/>
+<meta itemprop="property" content="initializer"/>
+<meta itemprop="property" content="name"/>
+<meta itemprop="property" content="op"/>
+<meta itemprop="property" content="shape"/>
+<meta itemprop="property" content="synchronization"/>
+<meta itemprop="property" content="trainable"/>
+<meta itemprop="property" content="__abs__"/>
+<meta itemprop="property" content="__add__"/>
+<meta itemprop="property" content="__and__"/>
+<meta itemprop="property" content="__div__"/>
+<meta itemprop="property" content="__eq__"/>
+<meta itemprop="property" content="__floordiv__"/>
+<meta itemprop="property" content="__ge__"/>
+<meta itemprop="property" content="__getitem__"/>
+<meta itemprop="property" content="__gt__"/>
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="__invert__"/>
+<meta itemprop="property" content="__iter__"/>
+<meta itemprop="property" content="__le__"/>
+<meta itemprop="property" content="__lt__"/>
+<meta itemprop="property" content="__matmul__"/>
+<meta itemprop="property" content="__mod__"/>
+<meta itemprop="property" content="__mul__"/>
+<meta itemprop="property" content="__ne__"/>
+<meta itemprop="property" content="__neg__"/>
+<meta itemprop="property" content="__or__"/>
+<meta itemprop="property" content="__pow__"/>
+<meta itemprop="property" content="__radd__"/>
+<meta itemprop="property" content="__rand__"/>
+<meta itemprop="property" content="__rdiv__"/>
+<meta itemprop="property" content="__rfloordiv__"/>
+<meta itemprop="property" content="__rmatmul__"/>
+<meta itemprop="property" content="__rmod__"/>
+<meta itemprop="property" content="__rmul__"/>
+<meta itemprop="property" content="__ror__"/>
+<meta itemprop="property" content="__rpow__"/>
+<meta itemprop="property" content="__rsub__"/>
+<meta itemprop="property" content="__rtruediv__"/>
+<meta itemprop="property" content="__rxor__"/>
+<meta itemprop="property" content="__sub__"/>
+<meta itemprop="property" content="__truediv__"/>
+<meta itemprop="property" content="__xor__"/>
+<meta itemprop="property" content="assign"/>
+<meta itemprop="property" content="assign_add"/>
+<meta itemprop="property" content="assign_sub"/>
+<meta itemprop="property" content="batch_scatter_update"/>
+<meta itemprop="property" content="count_up_to"/>
+<meta itemprop="property" content="eval"/>
+<meta itemprop="property" content="experimental_ref"/>
+<meta itemprop="property" content="from_proto"/>
+<meta itemprop="property" content="gather_nd"/>
+<meta itemprop="property" content="get_shape"/>
+<meta itemprop="property" content="initialized_value"/>
+<meta itemprop="property" content="load"/>
+<meta itemprop="property" content="read_value"/>
+<meta itemprop="property" content="scatter_add"/>
+<meta itemprop="property" content="scatter_div"/>
+<meta itemprop="property" content="scatter_max"/>
+<meta itemprop="property" content="scatter_min"/>
+<meta itemprop="property" content="scatter_mul"/>
+<meta itemprop="property" content="scatter_nd_add"/>
+<meta itemprop="property" content="scatter_nd_sub"/>
+<meta itemprop="property" content="scatter_nd_update"/>
+<meta itemprop="property" content="scatter_sub"/>
+<meta itemprop="property" content="scatter_update"/>
+<meta itemprop="property" content="set_shape"/>
+<meta itemprop="property" content="sparse_read"/>
+<meta itemprop="property" content="to_proto"/>
+<meta itemprop="property" content="value"/>
+</div>
+
+
+<h1>tf.Variable</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<h2>Class <code>Variable</code></h2>
+
+<!-- Start diff -->
+
+
+<p>See the <a href="https://tensorflow.org/guide/variables">Variables Guide</a>.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li>Class <code>tf.compat.v2.Variable</code></li>
+</ul>
+
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>A variable maintains state in the graph across calls to <code>run()</code>. You add a
+variable to the graph by constructing an instance of the class <code>Variable</code>.</p>
+
+<p>The <code>Variable()</code> constructor requires an initial value for the variable,
+which can be a <code>Tensor</code> of any type and shape. The initial value defines the
+type and shape of the variable. After construction, the type and shape of
+the variable are fixed. The value can be changed using one of the assign
+methods.</p>
+
+<p>If you want to change the shape of a variable later you have to use an
+<code>assign</code> Op with <code>validate_shape=False</code>.</p>
+
+<p>Just like any <code>Tensor</code>, variables created with <code>Variable()</code> can be used as
+inputs for other Ops in the graph. Additionally, all the operators
+overloaded for the <code>Tensor</code> class are carried over to variables, so you can
+also add nodes to the graph by just doing arithmetic on variables.</p>
+
+<p>```python
+import tensorflow as tf</p>
+
+<h1>Create a variable.</h1>
+
+<p>w = tf.Variable(&lt;initial-value>, name=&lt;optional-name>)</p>
+
+<h1>Use the variable in the graph like any Tensor.</h1>
+
+<p>y = tf.matmul(w, &hellip;another variable or tensor&hellip;)</p>
+
+<h1>The overloaded operators are available too.</h1>
+
+<p>z = tf.sigmoid(w + y)</p>
+
+<h1>Assign a new value to the variable with <code>assign()</code> or a related method.</h1>
+
+<p>w.assign(w + 1.0)
+w.assign_add(1.0)
+```</p>
+
+<p>When you launch the graph, variables have to be explicitly initialized before
+you can run Ops that use their value. You can initialize a variable by
+running its <em>initializer op</em>, restoring the variable from a save file, or
+simply running an <code>assign</code> Op that assigns a value to the variable. In fact,
+the variable <em>initializer op</em> is just an <code>assign</code> Op that assigns the
+variable&rsquo;s initial value to the variable itself.</p>
+
+<p>```python</p>
+
+<h1>Launch the graph in a session.</h1>
+
+<p>with tf.compat.v1.Session() as sess:
+    # Run the variable initializer.
+    sess.run(w.initializer)
+    # &hellip;you now can run ops that use the value of &lsquo;w&rsquo;&hellip;
+```</p>
+
+<p>The most common initialization pattern is to use the convenience function
+<code>global_variables_initializer()</code> to add an Op to the graph that initializes
+all the variables. You then run that Op after launching the graph.</p>
+
+<p>```python</p>
+
+<h1>Add an Op to initialize global variables.</h1>
+
+<p>init_op = tf.compat.v1.global_variables_initializer()</p>
+
+<h1>Launch the graph in a session.</h1>
+
+<p>with tf.compat.v1.Session() as sess:
+    # Run the Op that initializes global variables.
+    sess.run(init_op)
+    # &hellip;you can now run any Op that uses variable values&hellip;
+```</p>
+
+<p>If you need to create a variable with an initial value dependent on another
+variable, use the other variable&rsquo;s <code>initialized_value()</code>. This ensures that
+variables are initialized in the right order.</p>
+
+<p>All variables are automatically collected in the graph where they are
+created. By default, the constructor adds the new variable to the graph
+collection <code>GraphKeys.GLOBAL_VARIABLES</code>. The convenience function
+<code>global_variables()</code> returns the contents of that collection.</p>
+
+<p>When building a machine learning model it is often convenient to distinguish
+between variables holding the trainable model parameters and other variables
+such as a <code>global step</code> variable used to count training steps. To make this
+easier, the variable constructor supports a <code>trainable=&lt;bool&gt;</code> parameter. If
+<code>True</code>, the new variable is also added to the graph collection
+<code>GraphKeys.TRAINABLE_VARIABLES</code>. The convenience function
+<code>trainable_variables()</code> returns the contents of this collection. The
+various <code>Optimizer</code> classes use this collection as the default list of
+variables to optimize.</p>
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+__init__(
+    initial_value=None,
+    trainable=None,
+    validate_shape=True,
+    caching_device=None,
+    name=None,
+    variable_def=None,
+    dtype=None,
+    import_scope=None,
+    constraint=None,
+    synchronization=tf.VariableSynchronization.AUTO,
+    aggregation=tf.compat.v1.VariableAggregation.NONE,
+    shape=None
+)
+</code></p>
+
+<p>Creates a new variable with value <code>initial_value</code>.</p>
+
+<p>The new variable is added to the graph collections listed in <code>collections</code>,
+which defaults to <code>[GraphKeys.GLOBAL_VARIABLES]</code>.</p>
+
+<p>If <code>trainable</code> is <code>True</code> the variable is also added to the graph collection
+<code>GraphKeys.TRAINABLE_VARIABLES</code>.</p>
+
+<p>This constructor creates both a <code>variable</code> Op and an <code>assign</code> Op to set the
+variable to its initial value.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>initial_value</code></b>: A <code>Tensor</code>, or Python object convertible to a <code>Tensor</code>,
+which is the initial value for the Variable. The initial value must have
+a shape specified unless <code>validate_shape</code> is set to False. Can also be a
+callable with no argument that returns the initial value when called. In
+that case, <code>dtype</code> must be specified. (Note that initializer functions
+from init_ops.py must first be bound to a shape before being used here.)</li>
+<li><b><code>trainable</code></b>: If <code>True</code>, GradientTapes automatically watch uses of this
+variable. Defaults to <code>True</code>, unless <code>synchronization</code> is set to
+<code>ON_READ</code>, in which case it defaults to <code>False</code>.</li>
+<li><b><code>validate_shape</code></b>: If <code>False</code>, allows the variable to be initialized with a
+value of unknown shape. If <code>True</code>, the default, the shape of
+<code>initial_value</code> must be known.</li>
+<li><b><code>caching_device</code></b>: Optional device string describing where the Variable
+should be cached for reading.  Defaults to the Variable&rsquo;s device. If not
+<code>None</code>, caches on another device.  Typical use is to cache on the device
+where the Ops using the Variable reside, to deduplicate copying through
+<code>Switch</code> and other conditional statements.</li>
+<li><b><code>name</code></b>: Optional name for the variable. Defaults to <code>'Variable'</code> and gets
+uniquified automatically.</li>
+<li><b><code>variable_def</code></b>: <code>VariableDef</code> protocol buffer. If not <code>None</code>, recreates the
+Variable object with its contents, referencing the variable&rsquo;s nodes in
+the graph, which must already exist. The graph is not changed.
+<code>variable_def</code> and the other arguments are mutually exclusive.</li>
+<li><b><code>dtype</code></b>: If set, initial_value will be converted to the given type. If
+<code>None</code>, either the datatype will be kept (if <code>initial_value</code> is a
+Tensor), or <code>convert_to_tensor</code> will decide.</li>
+<li><b><code>import_scope</code></b>: Optional <code>string</code>. Name scope to add to the <code>Variable.</code> Only
+used when initializing from protocol buffer.</li>
+<li><b><code>constraint</code></b>: An optional projection function to be applied to the variable
+after being updated by an <code>Optimizer</code> (e.g. used to implement norm
+constraints or value constraints for layer weights). The function must
+take as input the unprojected Tensor representing the value of the
+variable and return the Tensor for the projected value (which must have
+the same shape). Constraints are not safe to use when doing asynchronous
+distributed training.</li>
+<li><b><code>synchronization</code></b>: Indicates when a distributed a variable will be
+aggregated. Accepted values are constants defined in the class
+<a href="../tf/VariableSynchronization.html"><code>tf.VariableSynchronization</code></a>. By default the synchronization is set to
+<code>AUTO</code> and the current <code>DistributionStrategy</code> chooses when to
+synchronize.</li>
+<li><b><code>aggregation</code></b>: Indicates how a distributed variable will be aggregated.
+Accepted values are constants defined in the class
+<a href="../tf/VariableAggregation.html"><code>tf.VariableAggregation</code></a>.</li>
+<li><b><code>shape</code></b>: (optional) The shape of this variable. If None, the shape of
+<code>initial_value</code> will be used. When setting this argument to
+<a href="../tf/TensorShape.html"><code>tf.TensorShape(None)</code></a> (representing an unspecified shape), the variable
+can be assigned with values of different shapes.</li>
+</ul>
+
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If both <code>variable_def</code> and initial_value are specified.</li>
+<li><b><code>ValueError</code></b>: If the initial value is not specified, or does not have a
+shape and <code>validate_shape</code> is <code>True</code>.</li>
+<li><b><code>RuntimeError</code></b>: If eager execution is enabled.</li>
+</ul>
+
+
+<h2>Child Classes</h2>
+
+<p><a href="../tf/Variable/SaveSliceInfo.html"><code>class SaveSliceInfo</code></a></p>
+
+<h2>Properties</h2>
+
+<h3 id="aggregation"><code>aggregation</code></h3>
+
+
+
+
+<h3 id="constraint"><code>constraint</code></h3>
+
+
+<p>Returns the constraint function associated with this variable.</p>
+
+<h4>Returns:</h4>
+
+<p>The constraint function that was passed to the variable constructor.
+Can be <code>None</code> if no constraint was passed.</p>
+
+<h3 id="device"><code>device</code></h3>
+
+
+<p>The device of this variable.</p>
+
+<h3 id="dtype"><code>dtype</code></h3>
+
+
+<p>The <code>DType</code> of this variable.</p>
+
+<h3 id="graph"><code>graph</code></h3>
+
+
+<p>The <code>Graph</code> of this variable.</p>
+
+<h3 id="initial_value"><code>initial_value</code></h3>
+
+
+<p>Returns the Tensor used as the initial value for the variable.</p>
+
+<p>Note that this is different from <code>initialized_value()</code> which runs
+the op that initializes the variable before returning its value.
+This method returns the tensor that is used by the op that initializes
+the variable.</p>
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code>.</p>
+
+<h3 id="initializer"><code>initializer</code></h3>
+
+
+<p>The initializer operation for this variable.</p>
+
+<h3 id="name"><code>name</code></h3>
+
+
+<p>The name of this variable.</p>
+
+<h3 id="op"><code>op</code></h3>
+
+
+<p>The <code>Operation</code> of this variable.</p>
+
+<h3 id="shape"><code>shape</code></h3>
+
+
+<p>The <code>TensorShape</code> of this variable.</p>
+
+<h4>Returns:</h4>
+
+<p>A <code>TensorShape</code>.</p>
+
+<h3 id="synchronization"><code>synchronization</code></h3>
+
+
+
+
+<h3 id="trainable"><code>trainable</code></h3>
+
+
+<h2>Methods</h2>
+
+<h3 id="__abs__"><code>__abs__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/math_ops.py">View source</a></p>
+
+<p><code>python
+__abs__(
+    x,
+    name=None
+)
+</code></p>
+
+<p>Computes the absolute value of a tensor.</p>
+
+<p>Given a tensor of integer or floating-point values, this operation returns a
+tensor of the same type, where each element contains the absolute value of the
+corresponding element in the input.</p>
+
+<p>Given a tensor <code>x</code> of complex numbers, this operation returns a tensor of type
+<code>float32</code> or <code>float64</code> that is the absolute value of each element in <code>x</code>. All
+elements in <code>x</code> must be complex numbers of the form \(a + bj\). The
+absolute value is computed as \( \sqrt{a<sup>2</sup> + b<sup>2</sup>}\).  For example:
+<code>python
+x = tf.constant([[-2.25 + 4.75j], [-3.25 + 5.75j]])
+tf.abs(x)  # [5.25594902, 6.60492229]
+</code></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code> or <code>SparseTensor</code> of type <code>float16</code>, <code>float32</code>, <code>float64</code>,
+<code>int32</code>, <code>int64</code>, <code>complex64</code> or <code>complex128</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> or <code>SparseTensor</code> the same size, type, and sparsity as <code>x</code> with
+  absolute values.
+Note, for <code>complex64</code> or <code>complex128</code> input, the returned <code>Tensor</code> will be
+  of type <code>float32</code> or <code>float64</code>, respectively.</p>
+
+<h3 id="__add__"><code>__add__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+__add__(
+    a,
+    *args,
+    **kwargs
+)
+</code></p>
+
+<p>Dispatches to add for strings and add_v2 for all other types.</p>
+
+<h3 id="__and__"><code>__and__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+__and__(
+    a,
+    *args,
+    **kwargs
+)
+</code></p>
+
+<p>Returns the truth value of x AND y element-wise.</p>
+
+<p><em>NOTE</em>: <a href="../tf/math/logical_and.html"><code>math.logical_and</code></a> supports broadcasting. More about broadcasting
+<a href="http://docs.scipy.org/doc/numpy/user/basics.broadcasting.html">here</a></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code> of type <code>bool</code>.</li>
+<li><b><code>y</code></b>: A <code>Tensor</code> of type <code>bool</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> of type <code>bool</code>.</p>
+
+<h3 id="__div__"><code>__div__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+__div__(
+    a,
+    *args,
+    **kwargs
+)
+</code></p>
+
+<p>Divide two values using Python 2 semantics.</p>
+
+<p>Used for Tensor.<strong>div</strong>.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>: <code>Tensor</code> numerator of real numeric type.</li>
+<li><b><code>y</code></b>: <code>Tensor</code> denominator of real numeric type.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p><code>x / y</code> returns the quotient of x and y.</p>
+
+<h3 id="__eq__"><code>__eq__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+__eq__(other)
+</code></p>
+
+<p>Compares two variables element-wise for equality.</p>
+
+<h3 id="__floordiv__"><code>__floordiv__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+__floordiv__(
+    a,
+    *args,
+    **kwargs
+)
+</code></p>
+
+<p>Divides <code>x / y</code> elementwise, rounding toward the most negative integer.</p>
+
+<p>The same as <a href="../tf/RaggedTensor.html#__div__"><code>tf.compat.v1.div(x,y)</code></a> for integers, but uses
+<code>tf.floor(tf.compat.v1.div(x,y))</code> for
+floating point arguments so that the result is always an integer (though
+possibly an integer represented as floating point).  This op is generated by
+<code>x // y</code> floor division in Python 3 and in Python 2.7 with
+<code>from __future__ import division</code>.</p>
+
+<p><code>x</code> and <code>y</code> must have the same type, and the result will have the same type
+as well.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>: <code>Tensor</code> numerator of real numeric type.</li>
+<li><b><code>y</code></b>: <code>Tensor</code> denominator of real numeric type.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p><code>x / y</code> rounded down.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>TypeError</code></b>: If the inputs are complex.</li>
+</ul>
+
+
+<h3 id="__ge__"><code>__ge__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+__ge__(
+    a,
+    *args,
+    **kwargs
+)
+</code></p>
+
+<p>Returns the truth value of (x >= y) element-wise.</p>
+
+<p><em>NOTE</em>: <a href="../tf/math/greater_equal.html"><code>math.greater_equal</code></a> supports broadcasting. More about broadcasting
+<a href="http://docs.scipy.org/doc/numpy/user/basics.broadcasting.html">here</a></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>float32</code>, <code>float64</code>, <code>int32</code>, <code>uint8</code>, <code>int16</code>, <code>int8</code>, <code>int64</code>, <code>bfloat16</code>, <code>uint16</code>, <code>half</code>, <code>uint32</code>, <code>uint64</code>.</li>
+<li><b><code>y</code></b>: A <code>Tensor</code>. Must have the same type as <code>x</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> of type <code>bool</code>.</p>
+
+<h3 id="__getitem__"><code>__getitem__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/array_ops.py">View source</a></p>
+
+<p><code>python
+__getitem__(
+    var,
+    slice_spec
+)
+</code></p>
+
+<p>Creates a slice helper object given a variable.</p>
+
+<p>This allows creating a sub-tensor from part of the current contents
+of a variable. See <a href="../tf/Tensor.html#__getitem__"><code>tf.Tensor.<strong>getitem</strong></code></a> for detailed examples
+of slicing.</p>
+
+<p>This function in addition also allows assignment to a sliced range.
+This is similar to <code>__setitem__</code> functionality in Python. However,
+the syntax is different so that the user can capture the assignment
+operation for grouping or passing to <code>sess.run()</code>.
+For example,</p>
+
+<p>```python
+import tensorflow as tf
+A = tf.Variable([[1,2,3], [4,5,6], [7,8,9]], dtype=tf.float32)
+with tf.compat.v1.Session() as sess:
+  sess.run(tf.compat.v1.global_variables_initializer())
+  print(sess.run(A[:2, :2]))  # => [[1,2], [4,5]]</p>
+
+<p>  op = A[:2,:2].assign(22. * tf.ones((2, 2)))
+  print(sess.run(op))  # => [[22, 22, 3], [22, 22, 6], [7,8,9]]
+```</p>
+
+<p>Note that assignments currently do not support NumPy broadcasting
+semantics.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>var</code></b>: An <code>ops.Variable</code> object.</li>
+<li><b><code>slice_spec</code></b>: The arguments to <a href="../tf/Tensor.html#__getitem__"><code>Tensor.<strong>getitem</strong></code></a>.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>The appropriate slice of &ldquo;tensor&rdquo;, based on &ldquo;slice_spec&rdquo;.
+As an operator. The operator also has a <code>assign()</code> method
+that can be used to generate an assignment operator.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If a slice range is negative size.</li>
+<li><b><code>TypeError</code></b>: TypeError: If the slice indices aren&rsquo;t int, slice,
+ellipsis, tf.newaxis or int32/int64 tensors.</li>
+</ul>
+
+
+<h3 id="__gt__"><code>__gt__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+__gt__(
+    a,
+    *args,
+    **kwargs
+)
+</code></p>
+
+<p>Returns the truth value of (x > y) element-wise.</p>
+
+<p><em>NOTE</em>: <a href="../tf/math/greater.html"><code>math.greater</code></a> supports broadcasting. More about broadcasting
+<a href="http://docs.scipy.org/doc/numpy/user/basics.broadcasting.html">here</a></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>float32</code>, <code>float64</code>, <code>int32</code>, <code>uint8</code>, <code>int16</code>, <code>int8</code>, <code>int64</code>, <code>bfloat16</code>, <code>uint16</code>, <code>half</code>, <code>uint32</code>, <code>uint64</code>.</li>
+<li><b><code>y</code></b>: A <code>Tensor</code>. Must have the same type as <code>x</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> of type <code>bool</code>.</p>
+
+<h3 id="__invert__"><code>__invert__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+__invert__(
+    a,
+    *args,
+    **kwargs
+)
+</code></p>
+
+<p>Returns the truth value of NOT x element-wise.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code> of type <code>bool</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> of type <code>bool</code>.</p>
+
+<h3 id="__iter__"><code>__iter__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+__iter__()
+</code></p>
+
+<p>Dummy method to prevent iteration.</p>
+
+<p>Do not call.</p>
+
+<p>NOTE(mrry): If we register <strong>getitem</strong> as an overloaded operator,
+Python will valiantly attempt to iterate over the variable&rsquo;s Tensor from 0
+to infinity.  Declaring this method prevents this unintended behavior.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>TypeError</code></b>: when invoked.</li>
+</ul>
+
+
+<h3 id="__le__"><code>__le__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+__le__(
+    a,
+    *args,
+    **kwargs
+)
+</code></p>
+
+<p>Returns the truth value of (x &lt;= y) element-wise.</p>
+
+<p><em>NOTE</em>: <a href="../tf/math/less_equal.html"><code>math.less_equal</code></a> supports broadcasting. More about broadcasting
+<a href="http://docs.scipy.org/doc/numpy/user/basics.broadcasting.html">here</a></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>float32</code>, <code>float64</code>, <code>int32</code>, <code>uint8</code>, <code>int16</code>, <code>int8</code>, <code>int64</code>, <code>bfloat16</code>, <code>uint16</code>, <code>half</code>, <code>uint32</code>, <code>uint64</code>.</li>
+<li><b><code>y</code></b>: A <code>Tensor</code>. Must have the same type as <code>x</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> of type <code>bool</code>.</p>
+
+<h3 id="__lt__"><code>__lt__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+__lt__(
+    a,
+    *args,
+    **kwargs
+)
+</code></p>
+
+<p>Returns the truth value of (x &lt; y) element-wise.</p>
+
+<p><em>NOTE</em>: <a href="../tf/math/less.html"><code>math.less</code></a> supports broadcasting. More about broadcasting
+<a href="http://docs.scipy.org/doc/numpy/user/basics.broadcasting.html">here</a></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>float32</code>, <code>float64</code>, <code>int32</code>, <code>uint8</code>, <code>int16</code>, <code>int8</code>, <code>int64</code>, <code>bfloat16</code>, <code>uint16</code>, <code>half</code>, <code>uint32</code>, <code>uint64</code>.</li>
+<li><b><code>y</code></b>: A <code>Tensor</code>. Must have the same type as <code>x</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> of type <code>bool</code>.</p>
+
+<h3 id="__matmul__"><code>__matmul__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+__matmul__(
+    a,
+    *args,
+    **kwargs
+)
+</code></p>
+
+<p>Multiplies matrix <code>a</code> by matrix <code>b</code>, producing <code>a</code> * <code>b</code>.</p>
+
+<p>The inputs must, following any transpositions, be tensors of rank >= 2
+where the inner 2 dimensions specify valid matrix multiplication arguments,
+and any further outer dimensions match.</p>
+
+<p>Both matrices must be of the same type. The supported types are:
+<code>float16</code>, <code>float32</code>, <code>float64</code>, <code>int32</code>, <code>complex64</code>, <code>complex128</code>.</p>
+
+<p>Either matrix can be transposed or adjointed (conjugated and transposed) on
+the fly by setting one of the corresponding flag to <code>True</code>. These are <code>False</code>
+by default.</p>
+
+<p>If one or both of the matrices contain a lot of zeros, a more efficient
+multiplication algorithm can be used by setting the corresponding
+<code>a_is_sparse</code> or <code>b_is_sparse</code> flag to <code>True</code>. These are <code>False</code> by default.
+This optimization is only available for plain matrices (rank-2 tensors) with
+datatypes <code>bfloat16</code> or <code>float32</code>.</p>
+
+<h4>For example:</h4>
+
+<p>```python</p>
+
+<h1>2-D tensor <code>a</code></h1>
+
+<h1>[[1, 2, 3],</h1>
+
+<h1>[4, 5, 6]]</h1>
+
+<p>a = tf.constant([1, 2, 3, 4, 5, 6], shape=[2, 3])</p>
+
+<h1>2-D tensor <code>b</code></h1>
+
+<h1>[[ 7,  8],</h1>
+
+<h1>[ 9, 10],</h1>
+
+<h1>[11, 12]]</h1>
+
+<p>b = tf.constant([7, 8, 9, 10, 11, 12], shape=[3, 2])</p>
+
+<h1><code>a</code> * <code>b</code></h1>
+
+<h1>[[ 58,  64],</h1>
+
+<h1>[139, 154]]</h1>
+
+<p>c = tf.matmul(a, b)</p>
+
+<h1>3-D tensor <code>a</code></h1>
+
+<h1>[[[ 1,  2,  3],</h1>
+
+<h1>[ 4,  5,  6]],</h1>
+
+<h1>[[ 7,  8,  9],</h1>
+
+<h1>[10, 11, 12]]]</h1>
+
+<p>a = tf.constant(np.arange(1, 13, dtype=np.int32),
+                shape=[2, 2, 3])</p>
+
+<h1>3-D tensor <code>b</code></h1>
+
+<h1>[[[13, 14],</h1>
+
+<h1>[15, 16],</h1>
+
+<h1>[17, 18]],</h1>
+
+<h1>[[19, 20],</h1>
+
+<h1>[21, 22],</h1>
+
+<h1>[23, 24]]]</h1>
+
+<p>b = tf.constant(np.arange(13, 25, dtype=np.int32),
+                shape=[2, 3, 2])</p>
+
+<h1><code>a</code> * <code>b</code></h1>
+
+<h1>[[[ 94, 100],</h1>
+
+<h1>[229, 244]],</h1>
+
+<h1>[[508, 532],</h1>
+
+<h1>[697, 730]]]</h1>
+
+<p>c = tf.matmul(a, b)</p>
+
+<h1>Since python >= 3.5 the @ operator is supported (see PEP 465).</h1>
+
+<h1>In TensorFlow, it simply calls the <code>tf.matmul()</code> function, so the</h1>
+
+<h1>following lines are equivalent:</h1>
+
+<p>d = a @ b @ [[10.], [11.]]
+d = tf.matmul(tf.matmul(a, b), [[10.], [11.]])
+```</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>a</code></b>: <code>Tensor</code> of type <code>float16</code>, <code>float32</code>, <code>float64</code>, <code>int32</code>, <code>complex64</code>,
+<code>complex128</code> and rank > 1.</li>
+<li><b><code>b</code></b>: <code>Tensor</code> with same type and rank as <code>a</code>.</li>
+<li><b><code>transpose_a</code></b>: If <code>True</code>, <code>a</code> is transposed before multiplication.</li>
+<li><b><code>transpose_b</code></b>: If <code>True</code>, <code>b</code> is transposed before multiplication.</li>
+<li><b><code>adjoint_a</code></b>: If <code>True</code>, <code>a</code> is conjugated and transposed before
+multiplication.</li>
+<li><b><code>adjoint_b</code></b>: If <code>True</code>, <code>b</code> is conjugated and transposed before
+multiplication.</li>
+<li><b><code>a_is_sparse</code></b>: If <code>True</code>, <code>a</code> is treated as a sparse matrix.</li>
+<li><b><code>b_is_sparse</code></b>: If <code>True</code>, <code>b</code> is treated as a sparse matrix.</li>
+<li><b><code>name</code></b>: Name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> of the same type as <code>a</code> and <code>b</code> where each inner-most matrix is
+the product of the corresponding matrices in <code>a</code> and <code>b</code>, e.g. if all
+transpose or adjoint attributes are <code>False</code>:</p>
+
+<p><code>output</code>[&hellip;, i, j] = sum_k (<code>a</code>[&hellip;, i, k] * <code>b</code>[&hellip;, k, j]),
+for all indices i, j.</p>
+
+<ul>
+<li><b><code>Note</code></b>: This is matrix product, not element-wise product.</li>
+</ul>
+
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If transpose_a and adjoint_a, or transpose_b and adjoint_b
+are both set to True.</li>
+</ul>
+
+
+<h3 id="__mod__"><code>__mod__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+__mod__(
+    a,
+    *args,
+    **kwargs
+)
+</code></p>
+
+<p>Returns element-wise remainder of division. When <code>x &lt; 0</code> xor <code>y &lt; 0</code> is</p>
+
+<p>true, this follows Python semantics in that the result here is consistent
+with a flooring divide. E.g. <code>floor(x / y) * y + mod(x, y) = x</code>.</p>
+
+<p><em>NOTE</em>: <a href="../tf/math/floormod.html"><code>math.floormod</code></a> supports broadcasting. More about broadcasting
+<a href="http://docs.scipy.org/doc/numpy/user/basics.broadcasting.html">here</a></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>int32</code>, <code>int64</code>, <code>bfloat16</code>, <code>half</code>, <code>float32</code>, <code>float64</code>.</li>
+<li><b><code>y</code></b>: A <code>Tensor</code>. Must have the same type as <code>x</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code>. Has the same type as <code>x</code>.</p>
+
+<h3 id="__mul__"><code>__mul__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+__mul__(
+    a,
+    *args,
+    **kwargs
+)
+</code></p>
+
+<p>Dispatches cwise mul for &ldquo;Dense<em>Dense&rdquo; and &ldquo;Dense</em>Sparse&rdquo;.</p>
+
+<h3 id="__ne__"><code>__ne__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+__ne__(other)
+</code></p>
+
+<p>Compares two variables element-wise for equality.</p>
+
+<h3 id="__neg__"><code>__neg__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+__neg__(
+    a,
+    *args,
+    **kwargs
+)
+</code></p>
+
+<p>Computes numerical negative value element-wise.</p>
+
+<p>I.e., \(y = -x\).</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>bfloat16</code>, <code>half</code>, <code>float32</code>, <code>float64</code>, <code>int32</code>, <code>int64</code>, <code>complex64</code>, <code>complex128</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code>. Has the same type as <code>x</code>.</p>
+
+<h3 id="__or__"><code>__or__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+__or__(
+    a,
+    *args,
+    **kwargs
+)
+</code></p>
+
+<p>Returns the truth value of x OR y element-wise.</p>
+
+<p><em>NOTE</em>: <a href="../tf/math/logical_or.html"><code>math.logical_or</code></a> supports broadcasting. More about broadcasting
+<a href="http://docs.scipy.org/doc/numpy/user/basics.broadcasting.html">here</a></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code> of type <code>bool</code>.</li>
+<li><b><code>y</code></b>: A <code>Tensor</code> of type <code>bool</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> of type <code>bool</code>.</p>
+
+<h3 id="__pow__"><code>__pow__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+__pow__(
+    a,
+    *args,
+    **kwargs
+)
+</code></p>
+
+<p>Computes the power of one value to another.</p>
+
+<p>Given a tensor <code>x</code> and a tensor <code>y</code>, this operation computes \(x<sup>y</sup>\) for
+corresponding elements in <code>x</code> and <code>y</code>. For example:</p>
+
+<p><code>python
+x = tf.constant([[2, 2], [3, 3]])
+y = tf.constant([[8, 16], [2, 3]])
+tf.pow(x, y)  # [[256, 65536], [9, 27]]
+</code></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code> of type <code>float16</code>, <code>float32</code>, <code>float64</code>, <code>int32</code>, <code>int64</code>,
+<code>complex64</code>, or <code>complex128</code>.</li>
+<li><b><code>y</code></b>: A <code>Tensor</code> of type <code>float16</code>, <code>float32</code>, <code>float64</code>, <code>int32</code>, <code>int64</code>,
+<code>complex64</code>, or <code>complex128</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code>.</p>
+
+<h3 id="__radd__"><code>__radd__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+__radd__(
+    a,
+    *args,
+    **kwargs
+)
+</code></p>
+
+<p>Dispatches to add for strings and add_v2 for all other types.</p>
+
+<h3 id="__rand__"><code>__rand__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+__rand__(
+    a,
+    *args,
+    **kwargs
+)
+</code></p>
+
+<p>Returns the truth value of x AND y element-wise.</p>
+
+<p><em>NOTE</em>: <a href="../tf/math/logical_and.html"><code>math.logical_and</code></a> supports broadcasting. More about broadcasting
+<a href="http://docs.scipy.org/doc/numpy/user/basics.broadcasting.html">here</a></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code> of type <code>bool</code>.</li>
+<li><b><code>y</code></b>: A <code>Tensor</code> of type <code>bool</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> of type <code>bool</code>.</p>
+
+<h3 id="__rdiv__"><code>__rdiv__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+__rdiv__(
+    a,
+    *args,
+    **kwargs
+)
+</code></p>
+
+<p>Divide two values using Python 2 semantics.</p>
+
+<p>Used for Tensor.<strong>div</strong>.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>: <code>Tensor</code> numerator of real numeric type.</li>
+<li><b><code>y</code></b>: <code>Tensor</code> denominator of real numeric type.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p><code>x / y</code> returns the quotient of x and y.</p>
+
+<h3 id="__rfloordiv__"><code>__rfloordiv__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+__rfloordiv__(
+    a,
+    *args,
+    **kwargs
+)
+</code></p>
+
+<p>Divides <code>x / y</code> elementwise, rounding toward the most negative integer.</p>
+
+<p>The same as <a href="../tf/RaggedTensor.html#__div__"><code>tf.compat.v1.div(x,y)</code></a> for integers, but uses
+<code>tf.floor(tf.compat.v1.div(x,y))</code> for
+floating point arguments so that the result is always an integer (though
+possibly an integer represented as floating point).  This op is generated by
+<code>x // y</code> floor division in Python 3 and in Python 2.7 with
+<code>from __future__ import division</code>.</p>
+
+<p><code>x</code> and <code>y</code> must have the same type, and the result will have the same type
+as well.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>: <code>Tensor</code> numerator of real numeric type.</li>
+<li><b><code>y</code></b>: <code>Tensor</code> denominator of real numeric type.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p><code>x / y</code> rounded down.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>TypeError</code></b>: If the inputs are complex.</li>
+</ul>
+
+
+<h3 id="__rmatmul__"><code>__rmatmul__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+__rmatmul__(
+    a,
+    *args,
+    **kwargs
+)
+</code></p>
+
+<p>Multiplies matrix <code>a</code> by matrix <code>b</code>, producing <code>a</code> * <code>b</code>.</p>
+
+<p>The inputs must, following any transpositions, be tensors of rank >= 2
+where the inner 2 dimensions specify valid matrix multiplication arguments,
+and any further outer dimensions match.</p>
+
+<p>Both matrices must be of the same type. The supported types are:
+<code>float16</code>, <code>float32</code>, <code>float64</code>, <code>int32</code>, <code>complex64</code>, <code>complex128</code>.</p>
+
+<p>Either matrix can be transposed or adjointed (conjugated and transposed) on
+the fly by setting one of the corresponding flag to <code>True</code>. These are <code>False</code>
+by default.</p>
+
+<p>If one or both of the matrices contain a lot of zeros, a more efficient
+multiplication algorithm can be used by setting the corresponding
+<code>a_is_sparse</code> or <code>b_is_sparse</code> flag to <code>True</code>. These are <code>False</code> by default.
+This optimization is only available for plain matrices (rank-2 tensors) with
+datatypes <code>bfloat16</code> or <code>float32</code>.</p>
+
+<h4>For example:</h4>
+
+<p>```python</p>
+
+<h1>2-D tensor <code>a</code></h1>
+
+<h1>[[1, 2, 3],</h1>
+
+<h1>[4, 5, 6]]</h1>
+
+<p>a = tf.constant([1, 2, 3, 4, 5, 6], shape=[2, 3])</p>
+
+<h1>2-D tensor <code>b</code></h1>
+
+<h1>[[ 7,  8],</h1>
+
+<h1>[ 9, 10],</h1>
+
+<h1>[11, 12]]</h1>
+
+<p>b = tf.constant([7, 8, 9, 10, 11, 12], shape=[3, 2])</p>
+
+<h1><code>a</code> * <code>b</code></h1>
+
+<h1>[[ 58,  64],</h1>
+
+<h1>[139, 154]]</h1>
+
+<p>c = tf.matmul(a, b)</p>
+
+<h1>3-D tensor <code>a</code></h1>
+
+<h1>[[[ 1,  2,  3],</h1>
+
+<h1>[ 4,  5,  6]],</h1>
+
+<h1>[[ 7,  8,  9],</h1>
+
+<h1>[10, 11, 12]]]</h1>
+
+<p>a = tf.constant(np.arange(1, 13, dtype=np.int32),
+                shape=[2, 2, 3])</p>
+
+<h1>3-D tensor <code>b</code></h1>
+
+<h1>[[[13, 14],</h1>
+
+<h1>[15, 16],</h1>
+
+<h1>[17, 18]],</h1>
+
+<h1>[[19, 20],</h1>
+
+<h1>[21, 22],</h1>
+
+<h1>[23, 24]]]</h1>
+
+<p>b = tf.constant(np.arange(13, 25, dtype=np.int32),
+                shape=[2, 3, 2])</p>
+
+<h1><code>a</code> * <code>b</code></h1>
+
+<h1>[[[ 94, 100],</h1>
+
+<h1>[229, 244]],</h1>
+
+<h1>[[508, 532],</h1>
+
+<h1>[697, 730]]]</h1>
+
+<p>c = tf.matmul(a, b)</p>
+
+<h1>Since python >= 3.5 the @ operator is supported (see PEP 465).</h1>
+
+<h1>In TensorFlow, it simply calls the <code>tf.matmul()</code> function, so the</h1>
+
+<h1>following lines are equivalent:</h1>
+
+<p>d = a @ b @ [[10.], [11.]]
+d = tf.matmul(tf.matmul(a, b), [[10.], [11.]])
+```</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>a</code></b>: <code>Tensor</code> of type <code>float16</code>, <code>float32</code>, <code>float64</code>, <code>int32</code>, <code>complex64</code>,
+<code>complex128</code> and rank > 1.</li>
+<li><b><code>b</code></b>: <code>Tensor</code> with same type and rank as <code>a</code>.</li>
+<li><b><code>transpose_a</code></b>: If <code>True</code>, <code>a</code> is transposed before multiplication.</li>
+<li><b><code>transpose_b</code></b>: If <code>True</code>, <code>b</code> is transposed before multiplication.</li>
+<li><b><code>adjoint_a</code></b>: If <code>True</code>, <code>a</code> is conjugated and transposed before
+multiplication.</li>
+<li><b><code>adjoint_b</code></b>: If <code>True</code>, <code>b</code> is conjugated and transposed before
+multiplication.</li>
+<li><b><code>a_is_sparse</code></b>: If <code>True</code>, <code>a</code> is treated as a sparse matrix.</li>
+<li><b><code>b_is_sparse</code></b>: If <code>True</code>, <code>b</code> is treated as a sparse matrix.</li>
+<li><b><code>name</code></b>: Name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> of the same type as <code>a</code> and <code>b</code> where each inner-most matrix is
+the product of the corresponding matrices in <code>a</code> and <code>b</code>, e.g. if all
+transpose or adjoint attributes are <code>False</code>:</p>
+
+<p><code>output</code>[&hellip;, i, j] = sum_k (<code>a</code>[&hellip;, i, k] * <code>b</code>[&hellip;, k, j]),
+for all indices i, j.</p>
+
+<ul>
+<li><b><code>Note</code></b>: This is matrix product, not element-wise product.</li>
+</ul>
+
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If transpose_a and adjoint_a, or transpose_b and adjoint_b
+are both set to True.</li>
+</ul>
+
+
+<h3 id="__rmod__"><code>__rmod__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+__rmod__(
+    a,
+    *args,
+    **kwargs
+)
+</code></p>
+
+<p>Returns element-wise remainder of division. When <code>x &lt; 0</code> xor <code>y &lt; 0</code> is</p>
+
+<p>true, this follows Python semantics in that the result here is consistent
+with a flooring divide. E.g. <code>floor(x / y) * y + mod(x, y) = x</code>.</p>
+
+<p><em>NOTE</em>: <a href="../tf/math/floormod.html"><code>math.floormod</code></a> supports broadcasting. More about broadcasting
+<a href="http://docs.scipy.org/doc/numpy/user/basics.broadcasting.html">here</a></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>int32</code>, <code>int64</code>, <code>bfloat16</code>, <code>half</code>, <code>float32</code>, <code>float64</code>.</li>
+<li><b><code>y</code></b>: A <code>Tensor</code>. Must have the same type as <code>x</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code>. Has the same type as <code>x</code>.</p>
+
+<h3 id="__rmul__"><code>__rmul__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+__rmul__(
+    a,
+    *args,
+    **kwargs
+)
+</code></p>
+
+<p>Dispatches cwise mul for &ldquo;Dense<em>Dense&rdquo; and &ldquo;Dense</em>Sparse&rdquo;.</p>
+
+<h3 id="__ror__"><code>__ror__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+__ror__(
+    a,
+    *args,
+    **kwargs
+)
+</code></p>
+
+<p>Returns the truth value of x OR y element-wise.</p>
+
+<p><em>NOTE</em>: <a href="../tf/math/logical_or.html"><code>math.logical_or</code></a> supports broadcasting. More about broadcasting
+<a href="http://docs.scipy.org/doc/numpy/user/basics.broadcasting.html">here</a></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code> of type <code>bool</code>.</li>
+<li><b><code>y</code></b>: A <code>Tensor</code> of type <code>bool</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> of type <code>bool</code>.</p>
+
+<h3 id="__rpow__"><code>__rpow__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+__rpow__(
+    a,
+    *args,
+    **kwargs
+)
+</code></p>
+
+<p>Computes the power of one value to another.</p>
+
+<p>Given a tensor <code>x</code> and a tensor <code>y</code>, this operation computes \(x<sup>y</sup>\) for
+corresponding elements in <code>x</code> and <code>y</code>. For example:</p>
+
+<p><code>python
+x = tf.constant([[2, 2], [3, 3]])
+y = tf.constant([[8, 16], [2, 3]])
+tf.pow(x, y)  # [[256, 65536], [9, 27]]
+</code></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code> of type <code>float16</code>, <code>float32</code>, <code>float64</code>, <code>int32</code>, <code>int64</code>,
+<code>complex64</code>, or <code>complex128</code>.</li>
+<li><b><code>y</code></b>: A <code>Tensor</code> of type <code>float16</code>, <code>float32</code>, <code>float64</code>, <code>int32</code>, <code>int64</code>,
+<code>complex64</code>, or <code>complex128</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code>.</p>
+
+<h3 id="__rsub__"><code>__rsub__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+__rsub__(
+    a,
+    *args,
+    **kwargs
+)
+</code></p>
+
+<p>Returns x - y element-wise.</p>
+
+<p><em>NOTE</em>: <code>Subtract</code> supports broadcasting. More about broadcasting
+<a href="http://docs.scipy.org/doc/numpy/user/basics.broadcasting.html">here</a></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>bfloat16</code>, <code>half</code>, <code>float32</code>, <code>float64</code>, <code>uint8</code>, <code>int8</code>, <code>uint16</code>, <code>int16</code>, <code>int32</code>, <code>int64</code>, <code>complex64</code>, <code>complex128</code>.</li>
+<li><b><code>y</code></b>: A <code>Tensor</code>. Must have the same type as <code>x</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code>. Has the same type as <code>x</code>.</p>
+
+<h3 id="__rtruediv__"><code>__rtruediv__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+__rtruediv__(
+    a,
+    *args,
+    **kwargs
+)
+</code></p>
+
+<h3 id="__rxor__"><code>__rxor__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+__rxor__(
+    a,
+    *args,
+    **kwargs
+)
+</code></p>
+
+<p>Logical XOR function.</p>
+
+<p>x ^ y = (x | y) &amp; ~(x &amp; y)</p>
+
+<p>Inputs are tensor and if the tensors contains more than one element, an
+element-wise logical XOR is computed.</p>
+
+<h4>Usage:</h4>
+
+<p>```python
+x = tf.constant([False, False, True, True], dtype = tf.bool)
+y = tf.constant([False, True, False, True], dtype = tf.bool)
+z = tf.logical_xor(x, y, name=&ldquo;LogicalXor&rdquo;)</p>
+
+<h1>here z = [False  True  True False]</h1>
+
+<p>```</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code> type bool.</li>
+<li><b><code>y</code></b>: A <code>Tensor</code> of type bool.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> of type bool with the same size as that of x or y.</p>
+
+<h3 id="__sub__"><code>__sub__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+__sub__(
+    a,
+    *args,
+    **kwargs
+)
+</code></p>
+
+<p>Returns x - y element-wise.</p>
+
+<p><em>NOTE</em>: <code>Subtract</code> supports broadcasting. More about broadcasting
+<a href="http://docs.scipy.org/doc/numpy/user/basics.broadcasting.html">here</a></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>bfloat16</code>, <code>half</code>, <code>float32</code>, <code>float64</code>, <code>uint8</code>, <code>int8</code>, <code>uint16</code>, <code>int16</code>, <code>int32</code>, <code>int64</code>, <code>complex64</code>, <code>complex128</code>.</li>
+<li><b><code>y</code></b>: A <code>Tensor</code>. Must have the same type as <code>x</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code>. Has the same type as <code>x</code>.</p>
+
+<h3 id="__truediv__"><code>__truediv__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+__truediv__(
+    a,
+    *args,
+    **kwargs
+)
+</code></p>
+
+<h3 id="__xor__"><code>__xor__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+__xor__(
+    a,
+    *args,
+    **kwargs
+)
+</code></p>
+
+<p>Logical XOR function.</p>
+
+<p>x ^ y = (x | y) &amp; ~(x &amp; y)</p>
+
+<p>Inputs are tensor and if the tensors contains more than one element, an
+element-wise logical XOR is computed.</p>
+
+<h4>Usage:</h4>
+
+<p>```python
+x = tf.constant([False, False, True, True], dtype = tf.bool)
+y = tf.constant([False, True, False, True], dtype = tf.bool)
+z = tf.logical_xor(x, y, name=&ldquo;LogicalXor&rdquo;)</p>
+
+<h1>here z = [False  True  True False]</h1>
+
+<p>```</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code> type bool.</li>
+<li><b><code>y</code></b>: A <code>Tensor</code> of type bool.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> of type bool with the same size as that of x or y.</p>
+
+<h3 id="assign"><code>assign</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+assign(
+    value,
+    use_locking=False,
+    name=None,
+    read_value=True
+)
+</code></p>
+
+<p>Assigns a new value to the variable.</p>
+
+<p>This is essentially a shortcut for <code>assign(self, value)</code>.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>value</code></b>: A <code>Tensor</code>. The new value for this variable.</li>
+<li><b><code>use_locking</code></b>: If <code>True</code>, use locking during the assignment.</li>
+<li><b><code>name</code></b>: The name of the operation to be created</li>
+<li><b><code>read_value</code></b>: if True, will return something which evaluates to the new
+value of the variable; if False will return the assign op.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> that will hold the new value of this variable after
+the assignment has completed.</p>
+
+<h3 id="assign_add"><code>assign_add</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+assign_add(
+    delta,
+    use_locking=False,
+    name=None,
+    read_value=True
+)
+</code></p>
+
+<p>Adds a value to this variable.</p>
+
+<p> This is essentially a shortcut for <code>assign_add(self, delta)</code>.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>delta</code></b>: A <code>Tensor</code>. The value to add to this variable.</li>
+<li><b><code>use_locking</code></b>: If <code>True</code>, use locking during the operation.</li>
+<li><b><code>name</code></b>: The name of the operation to be created</li>
+<li><b><code>read_value</code></b>: if True, will return something which evaluates to the new
+value of the variable; if False will return the assign op.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> that will hold the new value of this variable after
+the addition has completed.</p>
+
+<h3 id="assign_sub"><code>assign_sub</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+assign_sub(
+    delta,
+    use_locking=False,
+    name=None,
+    read_value=True
+)
+</code></p>
+
+<p>Subtracts a value from this variable.</p>
+
+<p>This is essentially a shortcut for <code>assign_sub(self, delta)</code>.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>delta</code></b>: A <code>Tensor</code>. The value to subtract from this variable.</li>
+<li><b><code>use_locking</code></b>: If <code>True</code>, use locking during the operation.</li>
+<li><b><code>name</code></b>: The name of the operation to be created</li>
+<li><b><code>read_value</code></b>: if True, will return something which evaluates to the new
+value of the variable; if False will return the assign op.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> that will hold the new value of this variable after
+the subtraction has completed.</p>
+
+<h3 id="batch_scatter_update"><code>batch_scatter_update</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+batch_scatter_update(
+    sparse_delta,
+    use_locking=False,
+    name=None
+)
+</code></p>
+
+<p>Assigns <a href="../tf/IndexedSlices.html"><code>tf.IndexedSlices</code></a> to this variable batch-wise.</p>
+
+<p>Analogous to <code>batch_gather</code>. This assumes that this variable and the
+sparse_delta IndexedSlices have a series of leading dimensions that are the
+same for all of them, and the updates are performed on the last dimension of
+indices. In other words, the dimensions should be the following:</p>
+
+<p><code>num_prefix_dims = sparse_delta.indices.ndims - 1</code>
+<code>batch_dim = num_prefix_dims + 1</code>
+<code>sparse_delta.updates.shape = sparse_delta.indices.shape + var.shape[
+     batch_dim:]</code></p>
+
+<p>where</p>
+
+<p><code>sparse_delta.updates.shape[:num_prefix_dims]</code>
+<code>== sparse_delta.indices.shape[:num_prefix_dims]</code>
+<code>== var.shape[:num_prefix_dims]</code></p>
+
+<p>And the operation performed can be expressed as:</p>
+
+<p><code>var[i_1, ..., i_n,
+     sparse_delta.indices[i_1, ..., i_n, j]] = sparse_delta.updates[
+        i_1, ..., i_n, j]</code></p>
+
+<p>When sparse_delta.indices is a 1D tensor, this operation is equivalent to
+<code>scatter_update</code>.</p>
+
+<p>To avoid this operation one can looping over the first <code>ndims</code> of the
+variable and using <code>scatter_update</code> on the subtensors that result of slicing
+the first dimension. This is a valid option for <code>ndims = 1</code>, but less
+efficient than this implementation.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>sparse_delta</code></b>: <a href="../tf/IndexedSlices.html"><code>tf.IndexedSlices</code></a> to be assigned to this variable.</li>
+<li><b><code>use_locking</code></b>: If <code>True</code>, use locking during the operation.</li>
+<li><b><code>name</code></b>: the name of the operation.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> that will hold the new value of this variable after
+the scattered assignment has completed.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>TypeError</code></b>: if <code>sparse_delta</code> is not an <code>IndexedSlices</code>.</li>
+</ul>
+
+
+<h3 id="count_up_to"><code>count_up_to</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+count_up_to(limit)
+</code></p>
+
+<p>Increments this variable until it reaches <code>limit</code>. (deprecated)</p>
+
+<p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
+Instructions for updating:
+Prefer Dataset.range instead.</p>
+
+<p>When that Op is run it tries to increment the variable by <code>1</code>. If
+incrementing the variable would bring it above <code>limit</code> then the Op raises
+the exception <code>OutOfRangeError</code>.</p>
+
+<p>If no error is raised, the Op outputs the value of the variable before
+the increment.</p>
+
+<p>This is essentially a shortcut for <code>count_up_to(self, limit)</code>.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>limit</code></b>: value at which incrementing the variable raises an error.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> that will hold the variable value before the increment. If no
+other Op modifies this variable, the values produced will all be
+distinct.</p>
+
+<h3 id="eval"><code>eval</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+eval(session=None)
+</code></p>
+
+<p>In a session, computes and returns the value of this variable.</p>
+
+<p>This is not a graph construction method, it does not add ops to the graph.</p>
+
+<p>This convenience method requires a session where the graph
+containing this variable has been launched. If no session is
+passed, the default session is used.  See <a href="../tf/compat/v1/Session.html"><code>tf.compat.v1.Session</code></a> for more
+information on launching a graph and on sessions.</p>
+
+<p>```python
+v = tf.Variable([1, 2])
+init = tf.compat.v1.global_variables_initializer()</p>
+
+<p>with tf.compat.v1.Session() as sess:
+    sess.run(init)
+    # Usage passing the session explicitly.
+    print(v.eval(sess))
+    # Usage with the default session.  The &lsquo;with&rsquo; block
+    # above makes &lsquo;sess&rsquo; the default session.
+    print(v.eval())
+```</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>session</code></b>: The session to use to evaluate this variable. If none, the
+default session is used.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A numpy <code>ndarray</code> with a copy of the value of this variable.</p>
+
+<h3 id="experimental_ref"><code>experimental_ref</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+experimental_ref()
+</code></p>
+
+<p>Returns a hashable reference object to this Variable.</p>
+
+<p>Warning: Experimental API that could be changed or removed.</p>
+
+<p>The primary usecase for this API is to put variables in a set/dictionary.
+We can&rsquo;t put variables in a set/dictionary as <code>variable.__hash__()</code> is no
+longer available starting Tensorflow 2.0.</p>
+
+<p>```python
+import tensorflow as tf</p>
+
+<p>x = tf.Variable(5)
+y = tf.Variable(10)
+z = tf.Variable(10)</p>
+
+<h1>The followings will raise an exception starting 2.0</h1>
+
+<h1>TypeError: Variable is unhashable if Variable equality is enabled.</h1>
+
+<p>variable_set = {x, y, z}
+variable_dict = {x: &lsquo;five&rsquo;, y: &lsquo;ten&rsquo;}
+```</p>
+
+<p>Instead, we can use <code>variable.experimental_ref()</code>.</p>
+
+<p>```python
+variable_set = {x.experimental_ref(),
+                y.experimental_ref(),
+                z.experimental_ref()}</p>
+
+<p>print(x.experimental_ref() in variable_set)
+==> True</p>
+
+<p>variable_dict = {x.experimental_ref(): &lsquo;five&rsquo;,
+                 y.experimental_ref(): &lsquo;ten&rsquo;,
+                 z.experimental_ref(): &lsquo;ten&rsquo;}</p>
+
+<p>print(variable_dict[y.experimental_ref()])
+==> ten
+```</p>
+
+<p>Also, the reference object provides <code>.deref()</code> function that returns the
+original Variable.</p>
+
+<p><code>python
+x = tf.Variable(5)
+print(x.experimental_ref().deref())
+==&gt; &lt;tf.Variable 'Variable:0' shape=() dtype=int32, numpy=5&gt;
+</code></p>
+
+<h3 id="from_proto"><code>from_proto</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+@staticmethod
+from_proto(
+    variable_def,
+    import_scope=None
+)
+</code></p>
+
+<p>Returns a <code>Variable</code> object created from <code>variable_def</code>.</p>
+
+<h3 id="gather_nd"><code>gather_nd</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+gather_nd(
+    indices,
+    name=None
+)
+</code></p>
+
+<p>Gather slices from <code>params</code> into a Tensor with shape specified by <code>indices</code>.</p>
+
+<p>See tf.gather_nd for details.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>indices</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>int32</code>, <code>int64</code>.
+Index tensor.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code>. Has the same type as <code>params</code>.</p>
+
+<h3 id="get_shape"><code>get_shape</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+get_shape()
+</code></p>
+
+<p>Alias of <a href="../tf/Variable.html#shape"><code>Variable.shape</code></a>.</p>
+
+<h3 id="initialized_value"><code>initialized_value</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+initialized_value()
+</code></p>
+
+<p>Returns the value of the initialized variable. (deprecated)</p>
+
+<p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
+Instructions for updating:
+Use Variable.read_value. Variables in 2.X are initialized automatically both in eager and graph (inside tf.defun) contexts.</p>
+
+<p>You should use this instead of the variable itself to initialize another
+variable with a value that depends on the value of this variable.</p>
+
+<p>```python</p>
+
+<h1>Initialize &lsquo;v&rsquo; with a random tensor.</h1>
+
+<p>v = tf.Variable(tf.random.truncated_normal([10, 40]))</p>
+
+<h1>Use <code>initialized_value</code> to guarantee that <code>v</code> has been</h1>
+
+<h1>initialized before its value is used to initialize <code>w</code>.</h1>
+
+<h1>The random values are picked only once.</h1>
+
+<p>w = tf.Variable(v.initialized_value() * 2.0)
+```</p>
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> holding the value of this variable after its initializer
+has run.</p>
+
+<h3 id="load"><code>load</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+load(
+    value,
+    session=None
+)
+</code></p>
+
+<p>Load new value into this variable. (deprecated)</p>
+
+<p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
+Instructions for updating:
+Prefer Variable.assign which has equivalent behavior in 2.X.</p>
+
+<p>Writes new value to variable&rsquo;s memory. Doesn&rsquo;t add ops to the graph.</p>
+
+<p>This convenience method requires a session where the graph
+containing this variable has been launched. If no session is
+passed, the default session is used.  See <a href="../tf/compat/v1/Session.html"><code>tf.compat.v1.Session</code></a> for more
+information on launching a graph and on sessions.</p>
+
+<p>```python
+v = tf.Variable([1, 2])
+init = tf.compat.v1.global_variables_initializer()</p>
+
+<p>with tf.compat.v1.Session() as sess:
+    sess.run(init)
+    # Usage passing the session explicitly.
+    v.load([2, 3], sess)
+    print(v.eval(sess)) # prints [2 3]
+    # Usage with the default session.  The &lsquo;with&rsquo; block
+    # above makes &lsquo;sess&rsquo; the default session.
+    v.load([3, 4], sess)
+    print(v.eval()) # prints [3 4]
+```</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>value</code></b>: New variable value</li>
+<li><b><code>session</code></b>: The session to use to evaluate this variable. If none, the
+default session is used.</li>
+</ul>
+
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: Session is not passed and no default session</li>
+</ul>
+
+
+<h3 id="read_value"><code>read_value</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+read_value()
+</code></p>
+
+<p>Returns the value of this variable, read in the current context.</p>
+
+<p>Can be different from value() if it&rsquo;s on another device, with control
+dependencies, etc.</p>
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> containing the value of the variable.</p>
+
+<h3 id="scatter_add"><code>scatter_add</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+scatter_add(
+    sparse_delta,
+    use_locking=False,
+    name=None
+)
+</code></p>
+
+<p>Adds <a href="../tf/IndexedSlices.html"><code>tf.IndexedSlices</code></a> to this variable.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>sparse_delta</code></b>: <a href="../tf/IndexedSlices.html"><code>tf.IndexedSlices</code></a> to be added to this variable.</li>
+<li><b><code>use_locking</code></b>: If <code>True</code>, use locking during the operation.</li>
+<li><b><code>name</code></b>: the name of the operation.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> that will hold the new value of this variable after
+the scattered addition has completed.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>TypeError</code></b>: if <code>sparse_delta</code> is not an <code>IndexedSlices</code>.</li>
+</ul>
+
+
+<h3 id="scatter_div"><code>scatter_div</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+scatter_div(
+    sparse_delta,
+    use_locking=False,
+    name=None
+)
+</code></p>
+
+<p>Divide this variable by <a href="../tf/IndexedSlices.html"><code>tf.IndexedSlices</code></a>.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>sparse_delta</code></b>: <a href="../tf/IndexedSlices.html"><code>tf.IndexedSlices</code></a> to divide this variable by.</li>
+<li><b><code>use_locking</code></b>: If <code>True</code>, use locking during the operation.</li>
+<li><b><code>name</code></b>: the name of the operation.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> that will hold the new value of this variable after
+the scattered division has completed.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>TypeError</code></b>: if <code>sparse_delta</code> is not an <code>IndexedSlices</code>.</li>
+</ul>
+
+
+<h3 id="scatter_max"><code>scatter_max</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+scatter_max(
+    sparse_delta,
+    use_locking=False,
+    name=None
+)
+</code></p>
+
+<p>Updates this variable with the max of <a href="../tf/IndexedSlices.html"><code>tf.IndexedSlices</code></a> and itself.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>sparse_delta</code></b>: <a href="../tf/IndexedSlices.html"><code>tf.IndexedSlices</code></a> to use as an argument of max with this
+variable.</li>
+<li><b><code>use_locking</code></b>: If <code>True</code>, use locking during the operation.</li>
+<li><b><code>name</code></b>: the name of the operation.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> that will hold the new value of this variable after
+the scattered maximization has completed.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>TypeError</code></b>: if <code>sparse_delta</code> is not an <code>IndexedSlices</code>.</li>
+</ul>
+
+
+<h3 id="scatter_min"><code>scatter_min</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+scatter_min(
+    sparse_delta,
+    use_locking=False,
+    name=None
+)
+</code></p>
+
+<p>Updates this variable with the min of <a href="../tf/IndexedSlices.html"><code>tf.IndexedSlices</code></a> and itself.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>sparse_delta</code></b>: <a href="../tf/IndexedSlices.html"><code>tf.IndexedSlices</code></a> to use as an argument of min with this
+variable.</li>
+<li><b><code>use_locking</code></b>: If <code>True</code>, use locking during the operation.</li>
+<li><b><code>name</code></b>: the name of the operation.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> that will hold the new value of this variable after
+the scattered minimization has completed.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>TypeError</code></b>: if <code>sparse_delta</code> is not an <code>IndexedSlices</code>.</li>
+</ul>
+
+
+<h3 id="scatter_mul"><code>scatter_mul</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+scatter_mul(
+    sparse_delta,
+    use_locking=False,
+    name=None
+)
+</code></p>
+
+<p>Multiply this variable by <a href="../tf/IndexedSlices.html"><code>tf.IndexedSlices</code></a>.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>sparse_delta</code></b>: <a href="../tf/IndexedSlices.html"><code>tf.IndexedSlices</code></a> to multiply this variable by.</li>
+<li><b><code>use_locking</code></b>: If <code>True</code>, use locking during the operation.</li>
+<li><b><code>name</code></b>: the name of the operation.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> that will hold the new value of this variable after
+the scattered multiplication has completed.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>TypeError</code></b>: if <code>sparse_delta</code> is not an <code>IndexedSlices</code>.</li>
+</ul>
+
+
+<h3 id="scatter_nd_add"><code>scatter_nd_add</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+scatter_nd_add(
+    indices,
+    updates,
+    name=None
+)
+</code></p>
+
+<p>Applies sparse addition to individual values or slices in a Variable.</p>
+
+<p>The Variable has rank <code>P</code> and <code>indices</code> is a <code>Tensor</code> of rank <code>Q</code>.</p>
+
+<p><code>indices</code> must be integer tensor, containing indices into self.
+It must be shape <code>[d_0, ..., d_{Q-2}, K]</code> where <code>0 &lt; K &lt;= P</code>.</p>
+
+<p>The innermost dimension of <code>indices</code> (with length <code>K</code>) corresponds to
+indices into elements (if <code>K = P</code>) or slices (if <code>K &lt; P</code>) along the <code>K</code>th
+dimension of self.</p>
+
+<p><code>updates</code> is <code>Tensor</code> of rank <code>Q-1+P-K</code> with shape:</p>
+
+<p><code>
+[d_0, ..., d_{Q-2}, self.shape[K], ..., self.shape[P-1]].
+</code></p>
+
+<p>For example, say we want to add 4 scattered elements to a rank-1 tensor to
+8 elements. In Python, that update would look like this:</p>
+
+<p><code>python
+    v = tf.Variable([1, 2, 3, 4, 5, 6, 7, 8])
+    indices = tf.constant([[4], [3], [1] ,[7]])
+    updates = tf.constant([9, 10, 11, 12])
+    add = v.scatter_nd_add(indices, updates)
+    with tf.compat.v1.Session() as sess:
+      print sess.run(add)
+</code></p>
+
+<p>The resulting update to v would look like this:</p>
+
+<pre><code>[1, 13, 3, 14, 14, 6, 7, 20]
+</code></pre>
+
+<p>See <a href="../tf/scatter_nd.html"><code>tf.scatter_nd</code></a> for more details about how to make updates to
+slices.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>indices</code></b>: The indices to be used in the operation.</li>
+<li><b><code>updates</code></b>: The values to be used in the operation.</li>
+<li><b><code>name</code></b>: the name of the operation.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> that will hold the new value of this variable after
+the scattered addition has completed.</p>
+
+<h3 id="scatter_nd_sub"><code>scatter_nd_sub</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+scatter_nd_sub(
+    indices,
+    updates,
+    name=None
+)
+</code></p>
+
+<p>Applies sparse subtraction to individual values or slices in a Variable.</p>
+
+<p>Assuming the variable has rank <code>P</code> and <code>indices</code> is a <code>Tensor</code> of rank <code>Q</code>.</p>
+
+<p><code>indices</code> must be integer tensor, containing indices into self.
+It must be shape <code>[d_0, ..., d_{Q-2}, K]</code> where <code>0 &lt; K &lt;= P</code>.</p>
+
+<p>The innermost dimension of <code>indices</code> (with length <code>K</code>) corresponds to
+indices into elements (if <code>K = P</code>) or slices (if <code>K &lt; P</code>) along the <code>K</code>th
+dimension of self.</p>
+
+<p><code>updates</code> is <code>Tensor</code> of rank <code>Q-1+P-K</code> with shape:</p>
+
+<p><code>
+[d_0, ..., d_{Q-2}, self.shape[K], ..., self.shape[P-1]].
+</code></p>
+
+<p>For example, say we want to add 4 scattered elements to a rank-1 tensor to
+8 elements. In Python, that update would look like this:</p>
+
+<p><code>python
+    v = tf.Variable([1, 2, 3, 4, 5, 6, 7, 8])
+    indices = tf.constant([[4], [3], [1] ,[7]])
+    updates = tf.constant([9, 10, 11, 12])
+    op = v.scatter_nd_sub(indices, updates)
+    with tf.compat.v1.Session() as sess:
+      print sess.run(op)
+</code></p>
+
+<p>The resulting update to v would look like this:</p>
+
+<pre><code>[1, -9, 3, -6, -6, 6, 7, -4]
+</code></pre>
+
+<p>See <a href="../tf/scatter_nd.html"><code>tf.scatter_nd</code></a> for more details about how to make updates to
+slices.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>indices</code></b>: The indices to be used in the operation.</li>
+<li><b><code>updates</code></b>: The values to be used in the operation.</li>
+<li><b><code>name</code></b>: the name of the operation.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> that will hold the new value of this variable after
+the scattered subtraction has completed.</p>
+
+<h3 id="scatter_nd_update"><code>scatter_nd_update</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+scatter_nd_update(
+    indices,
+    updates,
+    name=None
+)
+</code></p>
+
+<p>Applies sparse assignment to individual values or slices in a Variable.</p>
+
+<p>The Variable has rank <code>P</code> and <code>indices</code> is a <code>Tensor</code> of rank <code>Q</code>.</p>
+
+<p><code>indices</code> must be integer tensor, containing indices into self.
+It must be shape <code>[d_0, ..., d_{Q-2}, K]</code> where <code>0 &lt; K &lt;= P</code>.</p>
+
+<p>The innermost dimension of <code>indices</code> (with length <code>K</code>) corresponds to
+indices into elements (if <code>K = P</code>) or slices (if <code>K &lt; P</code>) along the <code>K</code>th
+dimension of self.</p>
+
+<p><code>updates</code> is <code>Tensor</code> of rank <code>Q-1+P-K</code> with shape:</p>
+
+<p><code>
+[d_0, ..., d_{Q-2}, self.shape[K], ..., self.shape[P-1]].
+</code></p>
+
+<p>For example, say we want to add 4 scattered elements to a rank-1 tensor to
+8 elements. In Python, that update would look like this:</p>
+
+<p><code>python
+    v = tf.Variable([1, 2, 3, 4, 5, 6, 7, 8])
+    indices = tf.constant([[4], [3], [1] ,[7]])
+    updates = tf.constant([9, 10, 11, 12])
+    op = v.scatter_nd_assign(indices, updates)
+    with tf.compat.v1.Session() as sess:
+      print sess.run(op)
+</code></p>
+
+<p>The resulting update to v would look like this:</p>
+
+<pre><code>[1, 11, 3, 10, 9, 6, 7, 12]
+</code></pre>
+
+<p>See <a href="../tf/scatter_nd.html"><code>tf.scatter_nd</code></a> for more details about how to make updates to
+slices.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>indices</code></b>: The indices to be used in the operation.</li>
+<li><b><code>updates</code></b>: The values to be used in the operation.</li>
+<li><b><code>name</code></b>: the name of the operation.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> that will hold the new value of this variable after
+the scattered assignment has completed.</p>
+
+<h3 id="scatter_sub"><code>scatter_sub</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+scatter_sub(
+    sparse_delta,
+    use_locking=False,
+    name=None
+)
+</code></p>
+
+<p>Subtracts <a href="../tf/IndexedSlices.html"><code>tf.IndexedSlices</code></a> from this variable.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>sparse_delta</code></b>: <a href="../tf/IndexedSlices.html"><code>tf.IndexedSlices</code></a> to be subtracted from this variable.</li>
+<li><b><code>use_locking</code></b>: If <code>True</code>, use locking during the operation.</li>
+<li><b><code>name</code></b>: the name of the operation.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> that will hold the new value of this variable after
+the scattered subtraction has completed.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>TypeError</code></b>: if <code>sparse_delta</code> is not an <code>IndexedSlices</code>.</li>
+</ul>
+
+
+<h3 id="scatter_update"><code>scatter_update</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+scatter_update(
+    sparse_delta,
+    use_locking=False,
+    name=None
+)
+</code></p>
+
+<p>Assigns <a href="../tf/IndexedSlices.html"><code>tf.IndexedSlices</code></a> to this variable.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>sparse_delta</code></b>: <a href="../tf/IndexedSlices.html"><code>tf.IndexedSlices</code></a> to be assigned to this variable.</li>
+<li><b><code>use_locking</code></b>: If <code>True</code>, use locking during the operation.</li>
+<li><b><code>name</code></b>: the name of the operation.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> that will hold the new value of this variable after
+the scattered assignment has completed.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>TypeError</code></b>: if <code>sparse_delta</code> is not an <code>IndexedSlices</code>.</li>
+</ul>
+
+
+<h3 id="set_shape"><code>set_shape</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+set_shape(shape)
+</code></p>
+
+<p>Overrides the shape for this variable.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>shape</code></b>: the <code>TensorShape</code> representing the overridden shape.</li>
+</ul>
+
+
+<h3 id="sparse_read"><code>sparse_read</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+sparse_read(
+    indices,
+    name=None
+)
+</code></p>
+
+<p>Gather slices from params axis axis according to indices.</p>
+
+<p>This function supports a subset of tf.gather, see tf.gather for details on
+usage.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>indices</code></b>: The index <code>Tensor</code>.  Must be one of the following types: <code>int32</code>,
+<code>int64</code>. Must be in range <code>[0, params.shape[axis])</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code>. Has the same type as <code>params</code>.</p>
+
+<h3 id="to_proto"><code>to_proto</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+to_proto(export_scope=None)
+</code></p>
+
+<p>Converts a <code>Variable</code> to a <code>VariableDef</code> protocol buffer.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>export_scope</code></b>: Optional <code>string</code>. Name scope to remove.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>VariableDef</code> protocol buffer, or <code>None</code> if the <code>Variable</code> is not
+in the specified name scope.</p>
+
+<h3 id="value"><code>value</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+
+<p><code>python
+value()
+</code></p>
+
+<p>Returns the last snapshot of this variable.</p>
+
+<p>You usually do not need to call this method as all ops that need the value
+of the variable call it automatically through a <code>convert_to_tensor()</code> call.</p>
+
+<p>Returns a <code>Tensor</code> which holds the value of the variable.  You can not
+assign a new value to this tensor as it is not a reference to the variable.</p>
+
+<p>To avoid copies, if the consumer of the returned value is on the same device
+as the variable, this actually returns the live value of the variable, not
+a copy.  Updates to the variable are seen by the consumer.  If the consumer
+is on a different device it will get a copy of the variable.</p>
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> containing the value of the variable.</p>

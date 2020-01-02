@@ -1,0 +1,64 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.linalg.eigvalsh" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.linalg.eigvalsh</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/linalg_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Computes the eigenvalues of one or more self-adjoint matrices.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.linalg.eigvalsh</code></li>
+<li><code>tf.compat.v1.self_adjoint_eigvals</code></li>
+<li><code>tf.compat.v2.linalg.eigvalsh</code></li>
+</ul>
+
+
+<p><code>python
+tf.linalg.eigvalsh(
+    tensor,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Note: If your program backpropagates through this function, you should replace
+it with a call to tf.linalg.eigh (possibly ignoring the second output) to
+avoid computing the eigen decomposition twice. This is because the
+eigenvectors are used to compute the gradient w.r.t. the eigenvalues. See
+_SelfAdjointEigV2Grad in linalg_grad.py.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>tensor</code></b>: <code>Tensor</code> of shape <code>[..., N, N]</code>.</li>
+<li><b><code>name</code></b>: string, optional name of the operation.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<ul>
+<li><b><code>e</code></b>: Eigenvalues. Shape is <code>[..., N]</code>. The vector <code>e[..., :]</code> contains the <code>N</code>
+eigenvalues of <code>tensor[..., :, :]</code>.</li>
+</ul>
+

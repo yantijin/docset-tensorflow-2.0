@@ -1,0 +1,109 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.linalg.matrix_transpose" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.linalg.matrix_transpose</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/array_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Transposes last two dimensions of tensor <code>a</code>.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.linalg.matrix_transpose</code></li>
+<li><code>tf.compat.v1.linalg.transpose</code></li>
+<li><code>tf.compat.v1.matrix_transpose</code></li>
+<li><code>tf.compat.v2.linalg.matrix_transpose</code></li>
+</ul>
+
+
+<p><code>python
+tf.linalg.matrix_transpose(
+    a,
+    name='matrix_transpose',
+    conjugate=False
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>For example:</h4>
+
+<p>```python
+x = tf.constant([[1, 2, 3], [4, 5, 6]])
+tf.linalg.matrix_transpose(x)  # [[1, 4],
+                               #  [2, 5],
+                               #  [3, 6]]</p>
+
+<p>x = tf.constant([[1 + 1j, 2 + 2j, 3 + 3j],
+                 [4 + 4j, 5 + 5j, 6 + 6j]])
+tf.linalg.matrix_transpose(x, conjugate=True)  # [[1 - 1j, 4 - 4j],
+                                               #  [2 - 2j, 5 - 5j],
+                                               #  [3 - 3j, 6 - 6j]]</p>
+
+<h1>Matrix with two batch dimensions.</h1>
+
+<h1>x.shape is [1, 2, 3, 4]</h1>
+
+<h1>tf.linalg.matrix_transpose(x) is shape [1, 2, 4, 3]</h1>
+
+<p>```</p>
+
+<p>Note that <a href="../../tf/linalg/matmul.html"><code>tf.matmul</code></a> provides kwargs allowing for transpose of arguments.
+This is done with minimal cost, and is preferable to using this function. E.g.</p>
+
+<p>```python</p>
+
+<h1>Good!  Transpose is taken at minimal additional cost.</h1>
+
+<p>tf.matmul(matrix, b, transpose_b=True)</p>
+
+<h1>Inefficient!</h1>
+
+<p>tf.matmul(matrix, tf.linalg.matrix_transpose(b))
+```</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>a</code></b>: A <code>Tensor</code> with <code>rank &gt;= 2</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+<li><b><code>conjugate</code></b>: Optional bool. Setting it to <code>True</code> is mathematically equivalent
+to tf.math.conj(tf.linalg.matrix_transpose(input)).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A transposed batch matrix <code>Tensor</code>.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>:  If <code>a</code> is determined statically to have <code>rank &lt; 2</code>.</li>
+</ul>
+
+
+<h4>Numpy Compatibility</h4>
+
+<p>In <code>numpy</code> transposes are memory-efficient constant time operations as they
+simply return a new view of the same data with adjusted <code>strides</code>.</p>
+
+<p>TensorFlow does not support strides, <a href="../../tf/linalg/matrix_transpose.html"><code>linalg.matrix_transpose</code></a> returns a new
+tensor with the items permuted.</p>

@@ -1,0 +1,54 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.experimental.output_all_intermediates" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.experimental.output_all_intermediates</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/control_flow_v2_toggles.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Whether to output all intermediates from functional control flow ops.</p>
+
+<p><code>python
+tf.compat.v1.experimental.output_all_intermediates(state)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>The &ldquo;default&rdquo; behavior to is to output all intermediates when using v2 control
+flow inside Keras models in graph mode (possibly inside Estimators). This is
+needed to support taking gradients of v2 control flow. In graph mode, Keras
+can sometimes freeze the forward graph before the gradient computation which
+does not work for v2 control flow since it requires updating the forward ops
+to output the needed intermediates. We work around this by proactively
+outputting the needed intermediates when building the forward pass itself.
+Ideally any such extra tensors should be pruned out at runtime. However, if
+for any reason this doesn&rsquo;t work for you or if you have an infernce-only model
+you can turn this behavior off using
+<a href="../../../../tf/compat/v1/experimental/output_all_intermediates.html"><code>tf.compat.v1.experimental.output_all_intermediates(False)</code></a>.</p>
+
+<p>If with the default behavior you are still seeing errors of the form
+&ldquo;Connecting to invalid output X of source node Y which has Z outputs&rdquo; try
+setting <a href="../../../../tf/compat/v1/experimental/output_all_intermediates.html"><code>tf.compat.v1.experimental.output_all_intermediates(True)</code></a> and
+please file an issue at https://github.com/tensorflow/tensorflow/issues.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>state</code></b>: True, False or None. None restores the default behavior.</li>
+</ul>
+

@@ -1,0 +1,103 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.split" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.split</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/array_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Splits a tensor into sub tensors.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.split</code></li>
+<li><code>tf.compat.v2.split</code></li>
+</ul>
+
+
+<p><code>python
+tf.split(
+    value,
+    num_or_size_splits,
+    axis=0,
+    num=None,
+    name='split'
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>If <code>num_or_size_splits</code> is an integer, then <code>value</code> is split along dimension
+<code>axis</code> into <code>num_split</code> smaller tensors. This requires that <code>num_split</code> evenly
+divides <code>value.shape[axis]</code>.</p>
+
+<p>If <code>num_or_size_splits</code> is a 1-D Tensor (or list), we call it <code>size_splits</code>
+and <code>value</code> is split into <code>len(size_splits)</code> elements. The shape of the <code>i</code>-th
+element has the same size as the <code>value</code> except along dimension <code>axis</code> where
+the size is <code>size_splits[i]</code>.</p>
+
+<h4>For example:</h4>
+
+<p>```python</p>
+
+<h1>&lsquo;value&rsquo; is a tensor with shape [5, 30]</h1>
+
+<h1>Split &lsquo;value&rsquo; into 3 tensors with sizes [4, 15, 11] along dimension 1</h1>
+
+<p>split0, split1, split2 = tf.split(value, [4, 15, 11], 1)
+tf.shape(split0)  # [5, 4]
+tf.shape(split1)  # [5, 15]
+tf.shape(split2)  # [5, 11]</p>
+
+<h1>Split &lsquo;value&rsquo; into 3 tensors along dimension 1</h1>
+
+<p>split0, split1, split2 = tf.split(value, num_or_size_splits=3, axis=1)
+tf.shape(split0)  # [5, 10]
+```</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>value</code></b>: The <code>Tensor</code> to split.</li>
+<li><b><code>num_or_size_splits</code></b>: Either an integer indicating the number of splits along
+split_dim or a 1-D integer <code>Tensor</code> or Python list containing the sizes of
+each output tensor along split_dim. If a scalar then it must evenly divide
+<code>value.shape[axis]</code>; otherwise the sum of sizes along the split dimension
+must match that of the <code>value</code>.</li>
+<li><b><code>axis</code></b>: An integer or scalar <code>int32</code> <code>Tensor</code>. The dimension along which to
+split. Must be in the range <code>[-rank(value), rank(value))</code>. Defaults to 0.</li>
+<li><b><code>num</code></b>: Optional, used to specify the number of outputs when it cannot be
+inferred from the shape of <code>size_splits</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>if <code>num_or_size_splits</code> is a scalar returns <code>num_or_size_splits</code> <code>Tensor</code>
+objects; if <code>num_or_size_splits</code> is a 1-D Tensor returns
+<code>num_or_size_splits.get_shape[0]</code> <code>Tensor</code> objects resulting from splitting
+<code>value</code>.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If <code>num</code> is unspecified and cannot be inferred.</li>
+</ul>
+

@@ -1,0 +1,209 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.distribute.Server" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="server_def"/>
+<meta itemprop="property" content="target"/>
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="create_local_server"/>
+<meta itemprop="property" content="join"/>
+<meta itemprop="property" content="start"/>
+</div>
+
+
+<h1>tf.distribute.Server</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/server_lib.py">View source</a></p>
+
+<h2>Class <code>Server</code></h2>
+
+<!-- Start diff -->
+
+
+<p>An in-process TensorFlow server, for use in distributed training.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li>Class <code>tf.compat.v1.distribute.Server</code></li>
+<li>Class <code>tf.compat.v1.train.Server</code></li>
+<li>Class <code>tf.compat.v2.distribute.Server</code></li>
+</ul>
+
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>A <a href="../../tf/distribute/Server.html"><code>tf.distribute.Server</code></a> instance encapsulates a set of devices and a
+<a href="../../tf/compat/v1/Session.html"><code>tf.compat.v1.Session</code></a> target that
+can participate in distributed training. A server belongs to a
+cluster (specified by a <a href="../../tf/train/ClusterSpec.html"><code>tf.train.ClusterSpec</code></a>), and
+corresponds to a particular task in a named job. The server can
+communicate with any other server in the same cluster.</p>
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/server_lib.py">View source</a></p>
+
+<p><code>python
+__init__(
+    server_or_cluster_def,
+    job_name=None,
+    task_index=None,
+    protocol=None,
+    config=None,
+    start=True
+)
+</code></p>
+
+<p>Creates a new server with the given definition.</p>
+
+<p>The <code>job_name</code>, <code>task_index</code>, and <code>protocol</code> arguments are optional, and
+override any information provided in <code>server_or_cluster_def</code>.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>server_or_cluster_def</code></b>: A <a href="../../tf/train/ServerDef.html"><code>tf.train.ServerDef</code></a> or <a href="../../tf/train/ClusterDef.html"><code>tf.train.ClusterDef</code></a>
+protocol buffer, or a <a href="../../tf/train/ClusterSpec.html"><code>tf.train.ClusterSpec</code></a> object, describing the
+server to be created and/or the cluster of which it is a member.</li>
+<li><b><code>job_name</code></b>: (Optional.) Specifies the name of the job of which the server is
+a member. Defaults to the value in <code>server_or_cluster_def</code>, if
+specified.</li>
+<li><b><code>task_index</code></b>: (Optional.) Specifies the task index of the server in its job.
+Defaults to the value in <code>server_or_cluster_def</code>, if specified.
+Otherwise defaults to 0 if the server&rsquo;s job has only one task.</li>
+<li><b><code>protocol</code></b>: (Optional.) Specifies the protocol to be used by the server.
+Acceptable values include <code>"grpc", "grpc+verbs"</code>. Defaults to the value
+in <code>server_or_cluster_def</code>, if specified. Otherwise defaults to
+<code>"grpc"</code>.</li>
+<li><b><code>config</code></b>: (Options.) A <a href="../../tf/compat/v1/ConfigProto.html"><code>tf.compat.v1.ConfigProto</code></a> that specifies default
+configuration options for all sessions that run on this server.</li>
+<li><b><code>start</code></b>: (Optional.) Boolean, indicating whether to start the server after
+creating it. Defaults to <code>True</code>.</li>
+</ul>
+
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>tf.errors.OpError</code></b>: Or one of its subclasses if an error occurs while
+creating the TensorFlow server.</li>
+</ul>
+
+
+<h2>Properties</h2>
+
+<h3 id="server_def"><code>server_def</code></h3>
+
+
+<p>Returns the <a href="../../tf/train/ServerDef.html"><code>tf.train.ServerDef</code></a> for this server.</p>
+
+<h4>Returns:</h4>
+
+<p>A <a href="../../tf/train/ServerDef.html"><code>tf.train.ServerDef</code></a> protocol buffer that describes the configuration
+of this server.</p>
+
+<h3 id="target"><code>target</code></h3>
+
+
+<p>Returns the target for a <a href="../../tf/compat/v1/Session.html"><code>tf.compat.v1.Session</code></a> to connect to this server.</p>
+
+<p>To create a
+<a href="../../tf/compat/v1/Session.html"><code>tf.compat.v1.Session</code></a> that
+connects to this server, use the following snippet:</p>
+
+<p><code>python
+server = tf.distribute.Server(...)
+with tf.compat.v1.Session(server.target):
+  # ...
+</code></p>
+
+<h4>Returns:</h4>
+
+<p>A string containing a session target for this server.</p>
+
+<h2>Methods</h2>
+
+<h3 id="create_local_server"><code>create_local_server</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/server_lib.py">View source</a></p>
+
+<p><code>python
+@staticmethod
+create_local_server(
+    config=None,
+    start=True
+)
+</code></p>
+
+<p>Creates a new single-process cluster running on the local host.</p>
+
+<p>This method is a convenience wrapper for creating a
+<a href="../../tf/distribute/Server.html"><code>tf.distribute.Server</code></a> with a <a href="../../tf/train/ServerDef.html"><code>tf.train.ServerDef</code></a> that specifies a
+single-process cluster containing a single task in a job called
+<code>"local"</code>.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>config</code></b>: (Options.) A <a href="../../tf/compat/v1/ConfigProto.html"><code>tf.compat.v1.ConfigProto</code></a> that specifies default
+configuration options for all sessions that run on this server.</li>
+<li><b><code>start</code></b>: (Optional.) Boolean, indicating whether to start the server after
+creating it. Defaults to <code>True</code>.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A local <a href="../../tf/distribute/Server.html"><code>tf.distribute.Server</code></a>.</p>
+
+<h3 id="join"><code>join</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/server_lib.py">View source</a></p>
+
+<p><code>python
+join()
+</code></p>
+
+<p>Blocks until the server has shut down.</p>
+
+<p>This method currently blocks forever.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>tf.errors.OpError</code></b>: Or one of its subclasses if an error occurs while
+joining the TensorFlow server.</li>
+</ul>
+
+
+<h3 id="start"><code>start</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/server_lib.py">View source</a></p>
+
+<p><code>python
+start()
+</code></p>
+
+<p>Starts this server.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>tf.errors.OpError</code></b>: Or one of its subclasses if an error occurs while
+starting the TensorFlow server.</li>
+</ul>
+

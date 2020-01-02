@@ -1,0 +1,68 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.math.is_non_decreasing" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.math.is_non_decreasing</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/check_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Returns <code>True</code> if <code>x</code> is non-decreasing.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.debugging.is_non_decreasing</code></li>
+<li><code>tf.compat.v1.is_non_decreasing</code></li>
+<li><code>tf.compat.v1.math.is_non_decreasing</code></li>
+<li><code>tf.compat.v2.math.is_non_decreasing</code></li>
+</ul>
+
+
+<p><code>python
+tf.math.is_non_decreasing(
+    x,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Elements of <code>x</code> are compared in row-major order.  The tensor <code>[x[0],...]</code>
+is non-decreasing if for every adjacent pair we have <code>x[i] &lt;= x[i+1]</code>.
+If <code>x</code> has less than two elements, it is trivially non-decreasing.</p>
+
+<p>See also:  <code>is_strictly_increasing</code></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>: Numeric <code>Tensor</code>.</li>
+<li><b><code>name</code></b>: A name for this operation (optional).  Defaults to &ldquo;is_non_decreasing&rdquo;</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>Boolean <code>Tensor</code>, equal to <code>True</code> iff <code>x</code> is non-decreasing.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>TypeError</code></b>: if <code>x</code> is not a numeric tensor.</li>
+</ul>
+

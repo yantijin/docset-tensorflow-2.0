@@ -1,0 +1,129 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v2.linalg" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>Module: tf.compat.v2.linalg</h1>
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p>Operations for linear algebra.</p>
+
+<h2>Classes</h2>
+
+<p><a href="../../../tf/linalg/LinearOperator.html"><code>class LinearOperator</code></a>: Base class defining a [batch of] linear operator[s].</p>
+
+<p><a href="../../../tf/linalg/LinearOperatorAdjoint.html"><code>class LinearOperatorAdjoint</code></a>: <code>LinearOperator</code> representing the adjoint of another operator.</p>
+
+<p><a href="../../../tf/linalg/LinearOperatorBlockDiag.html"><code>class LinearOperatorBlockDiag</code></a>: Combines one or more <code>LinearOperators</code> in to a Block Diagonal matrix.</p>
+
+<p><a href="../../../tf/linalg/LinearOperatorCirculant.html"><code>class LinearOperatorCirculant</code></a>: <code>LinearOperator</code> acting like a circulant matrix.</p>
+
+<p><a href="../../../tf/linalg/LinearOperatorCirculant2D.html"><code>class LinearOperatorCirculant2D</code></a>: <code>LinearOperator</code> acting like a block circulant matrix.</p>
+
+<p><a href="../../../tf/linalg/LinearOperatorCirculant3D.html"><code>class LinearOperatorCirculant3D</code></a>: <code>LinearOperator</code> acting like a nested block circulant matrix.</p>
+
+<p><a href="../../../tf/linalg/LinearOperatorComposition.html"><code>class LinearOperatorComposition</code></a>: Composes one or more <code>LinearOperators</code>.</p>
+
+<p><a href="../../../tf/linalg/LinearOperatorDiag.html"><code>class LinearOperatorDiag</code></a>: <code>LinearOperator</code> acting like a [batch] square diagonal matrix.</p>
+
+<p><a href="../../../tf/linalg/LinearOperatorFullMatrix.html"><code>class LinearOperatorFullMatrix</code></a>: <code>LinearOperator</code> that wraps a [batch] matrix.</p>
+
+<p><a href="../../../tf/linalg/LinearOperatorHouseholder.html"><code>class LinearOperatorHouseholder</code></a>: <code>LinearOperator</code> acting like a [batch] of Householder transformations.</p>
+
+<p><a href="../../../tf/linalg/LinearOperatorIdentity.html"><code>class LinearOperatorIdentity</code></a>: <code>LinearOperator</code> acting like a [batch] square identity matrix.</p>
+
+<p><a href="../../../tf/linalg/LinearOperatorInversion.html"><code>class LinearOperatorInversion</code></a>: <code>LinearOperator</code> representing the inverse of another operator.</p>
+
+<p><a href="../../../tf/linalg/LinearOperatorKronecker.html"><code>class LinearOperatorKronecker</code></a>: Kronecker product between two <code>LinearOperators</code>.</p>
+
+<p><a href="../../../tf/linalg/LinearOperatorLowRankUpdate.html"><code>class LinearOperatorLowRankUpdate</code></a>: Perturb a <code>LinearOperator</code> with a rank <code>K</code> update.</p>
+
+<p><a href="../../../tf/linalg/LinearOperatorLowerTriangular.html"><code>class LinearOperatorLowerTriangular</code></a>: <code>LinearOperator</code> acting like a [batch] square lower triangular matrix.</p>
+
+<p><a href="../../../tf/linalg/LinearOperatorScaledIdentity.html"><code>class LinearOperatorScaledIdentity</code></a>: <code>LinearOperator</code> acting like a scaled [batch] identity matrix <code>A = c I</code>.</p>
+
+<p><a href="../../../tf/linalg/LinearOperatorToeplitz.html"><code>class LinearOperatorToeplitz</code></a>: <code>LinearOperator</code> acting like a [batch] of toeplitz matrices.</p>
+
+<p><a href="../../../tf/linalg/LinearOperatorZeros.html"><code>class LinearOperatorZeros</code></a>: <code>LinearOperator</code> acting like a [batch] zero matrix.</p>
+
+<h2>Functions</h2>
+
+<p><a href="../../../tf/linalg/adjoint.html"><code>adjoint(...)</code></a>: Transposes the last two dimensions of and conjugates tensor <code>matrix</code>.</p>
+
+<p><a href="../../../tf/linalg/band_part.html"><code>band_part(...)</code></a>: Copy a tensor setting everything outside a central band in each innermost matrix</p>
+
+<p><a href="../../../tf/linalg/cholesky.html"><code>cholesky(...)</code></a>: Computes the Cholesky decomposition of one or more square matrices.</p>
+
+<p><a href="../../../tf/linalg/cholesky_solve.html"><code>cholesky_solve(...)</code></a>: Solves systems of linear eqns <code>A X = RHS</code>, given Cholesky factorizations.</p>
+
+<p><a href="../../../tf/linalg/cross.html"><code>cross(...)</code></a>: Compute the pairwise cross product.</p>
+
+<p><a href="../../../tf/linalg/det.html"><code>det(...)</code></a>: Computes the determinant of one or more square matrices.</p>
+
+<p><a href="../../../tf/linalg/diag.html"><code>diag(...)</code></a>: Returns a batched diagonal tensor with given batched diagonal values.</p>
+
+<p><a href="../../../tf/linalg/diag_part.html"><code>diag_part(...)</code></a>: Returns the batched diagonal part of a batched tensor.</p>
+
+<p><a href="../../../tf/linalg/eigh.html"><code>eigh(...)</code></a>: Computes the eigen decomposition of a batch of self-adjoint matrices.</p>
+
+<p><a href="../../../tf/linalg/eigvalsh.html"><code>eigvalsh(...)</code></a>: Computes the eigenvalues of one or more self-adjoint matrices.</p>
+
+<p><a href="../../../tf/einsum.html"><code>einsum(...)</code></a>: A generalized contraction between tensors of arbitrary dimension.</p>
+
+<p><a href="../../../tf/linalg/expm.html"><code>expm(...)</code></a>: Computes the matrix exponential of one or more square matrices.</p>
+
+<p><a href="../../../tf/eye.html"><code>eye(...)</code></a>: Construct an identity matrix, or a batch of matrices.</p>
+
+<p><a href="../../../tf/linalg/global_norm.html"><code>global_norm(...)</code></a>: Computes the global norm of multiple tensors.</p>
+
+<p><a href="../../../tf/linalg/inv.html"><code>inv(...)</code></a>: Computes the inverse of one or more square invertible matrices or their</p>
+
+<p><a href="../../../tf/math/l2_normalize.html"><code>l2_normalize(...)</code></a>: Normalizes along dimension <code>axis</code> using an L2 norm.</p>
+
+<p><a href="../../../tf/linalg/logdet.html"><code>logdet(...)</code></a>: Computes log of the determinant of a hermitian positive definite matrix.</p>
+
+<p><a href="../../../tf/linalg/logm.html"><code>logm(...)</code></a>: Computes the matrix logarithm of one or more square matrices:</p>
+
+<p><a href="../../../tf/linalg/lstsq.html"><code>lstsq(...)</code></a>: Solves one or more linear least-squares problems.</p>
+
+<p><a href="../../../tf/linalg/lu.html"><code>lu(...)</code></a>: Computes the LU decomposition of one or more square matrices.</p>
+
+<p><a href="../../../tf/linalg/matmul.html"><code>matmul(...)</code></a>: Multiplies matrix <code>a</code> by matrix <code>b</code>, producing <code>a</code> * <code>b</code>.</p>
+
+<p><a href="../../../tf/linalg/matrix_transpose.html"><code>matrix_transpose(...)</code></a>: Transposes last two dimensions of tensor <code>a</code>.</p>
+
+<p><a href="../../../tf/linalg/matvec.html"><code>matvec(...)</code></a>: Multiplies matrix <code>a</code> by vector <code>b</code>, producing <code>a</code> * <code>b</code>.</p>
+
+<p><a href="../../../tf/norm.html"><code>norm(...)</code></a>: Computes the norm of vectors, matrices, and tensors.</p>
+
+<p><a href="../../../tf/linalg/normalize.html"><code>normalize(...)</code></a>: Normalizes <code>tensor</code> along dimension <code>axis</code> using specified norm.</p>
+
+<p><a href="../../../tf/linalg/qr.html"><code>qr(...)</code></a>: Computes the QR decompositions of one or more matrices.</p>
+
+<p><a href="../../../tf/linalg/set_diag.html"><code>set_diag(...)</code></a>: Returns a batched matrix tensor with new batched diagonal values.</p>
+
+<p><a href="../../../tf/linalg/slogdet.html"><code>slogdet(...)</code></a>: Computes the sign and the log of the absolute value of the determinant of</p>
+
+<p><a href="../../../tf/linalg/solve.html"><code>solve(...)</code></a>: Solves systems of linear equations.</p>
+
+<p><a href="../../../tf/linalg/sqrtm.html"><code>sqrtm(...)</code></a>: Computes the matrix square root of one or more square matrices:</p>
+
+<p><a href="../../../tf/linalg/svd.html"><code>svd(...)</code></a>: Computes the singular value decompositions of one or more matrices.</p>
+
+<p><a href="../../../tf/linalg/tensor_diag.html"><code>tensor_diag(...)</code></a>: Returns a diagonal tensor with a given diagonal values.</p>
+
+<p><a href="../../../tf/linalg/tensor_diag_part.html"><code>tensor_diag_part(...)</code></a>: Returns the diagonal part of the tensor.</p>
+
+<p><a href="../../../tf/tensordot.html"><code>tensordot(...)</code></a>: Tensor contraction of a and b along specified axes.</p>
+
+<p><a href="../../../tf/linalg/trace.html"><code>trace(...)</code></a>: Compute the trace of a tensor <code>x</code>.</p>
+
+<p><a href="../../../tf/linalg/triangular_solve.html"><code>triangular_solve(...)</code></a>: Solves systems of linear equations with upper or lower triangular matrices by backsubstitution.</p>
+
+<p><a href="../../../tf/linalg/tridiagonal_matmul.html"><code>tridiagonal_matmul(...)</code></a>: Multiplies tridiagonal matrix by matrix.</p>
+
+<p><a href="../../../tf/linalg/tridiagonal_solve.html"><code>tridiagonal_solve(...)</code></a>: Solves tridiagonal systems of equations.</p>

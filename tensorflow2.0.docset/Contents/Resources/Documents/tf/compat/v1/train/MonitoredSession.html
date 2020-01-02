@@ -1,0 +1,301 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.train.MonitoredSession" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="StepContext"/>
+<meta itemprop="property" content="graph"/>
+<meta itemprop="property" content="__enter__"/>
+<meta itemprop="property" content="__exit__"/>
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="close"/>
+<meta itemprop="property" content="run"/>
+<meta itemprop="property" content="run_step_fn"/>
+<meta itemprop="property" content="should_stop"/>
+</div>
+
+
+<h1>tf.compat.v1.train.MonitoredSession</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/monitored_session.py">View source</a></p>
+
+<h2>Class <code>MonitoredSession</code></h2>
+
+<!-- Start diff -->
+
+
+<p>Session-like object that handles initialization, recovery and hooks.</p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Example usage:</h4>
+
+<p><code>python
+saver_hook = CheckpointSaverHook(...)
+summary_hook = SummarySaverHook(...)
+with MonitoredSession(session_creator=ChiefSessionCreator(...),
+                      hooks=[saver_hook, summary_hook]) as sess:
+  while not sess.should_stop():
+    sess.run(train_op)
+</code></p>
+
+<p>Initialization: At creation time the monitored session does following things
+in given order:</p>
+
+<ul>
+<li>calls <code>hook.begin()</code> for each given hook</li>
+<li>finalizes the graph via <code>scaffold.finalize()</code></li>
+<li>create session</li>
+<li>initializes the model via initialization ops provided by <code>Scaffold</code></li>
+<li>restores variables if a checkpoint exists</li>
+<li>launches queue runners</li>
+<li>calls <code>hook.after_create_session()</code></li>
+</ul>
+
+
+<p>Run: When <code>run()</code> is called, the monitored session does following things:</p>
+
+<ul>
+<li>calls <code>hook.before_run()</code></li>
+<li>calls TensorFlow <code>session.run()</code> with merged fetches and feed_dict</li>
+<li>calls <code>hook.after_run()</code></li>
+<li>returns result of <code>session.run()</code> asked by user</li>
+<li>if <code>AbortedError</code> or <code>UnavailableError</code> occurs, it recovers or
+reinitializes the session before executing the run() call again</li>
+</ul>
+
+
+<p>Exit: At the <code>close()</code>, the monitored session does following things in order:</p>
+
+<ul>
+<li>calls <code>hook.end()</code></li>
+<li>closes the queue runners and the session</li>
+<li>suppresses <code>OutOfRange</code> error which indicates that all inputs have been
+processed if the monitored_session is used as a context</li>
+</ul>
+
+
+<p>How to set <a href="../../../../tf/compat/v1/Session.html"><code>tf.compat.v1.Session</code></a> arguments:</p>
+
+<ul>
+<li>In most cases you can set session arguments as follows:</li>
+</ul>
+
+
+<p><code>python
+MonitoredSession(
+  session_creator=ChiefSessionCreator(master=..., config=...))
+</code></p>
+
+<ul>
+<li>In distributed setting for a non-chief worker, you can use following:</li>
+</ul>
+
+
+<p><code>python
+MonitoredSession(
+  session_creator=WorkerSessionCreator(master=..., config=...))
+</code></p>
+
+<p>See <code>MonitoredTrainingSession</code> for an example usage based on chief or worker.</p>
+
+<p>Note: This is not a <a href="../../../../tf/compat/v1/Session.html"><code>tf.compat.v1.Session</code></a>. For example, it cannot do
+following:</p>
+
+<ul>
+<li>it cannot be set as default session.</li>
+<li>it cannot be sent to saver.save.</li>
+<li>it cannot be sent to tf.train.start_queue_runners.</li>
+</ul>
+
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>session_creator</code></b>: A factory object to create session. Typically a
+<code>ChiefSessionCreator</code> which is the default one.</li>
+<li><b><code>hooks</code></b>: An iterable of `SessionRunHook' objects.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A MonitoredSession object.</p>
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/monitored_session.py">View source</a></p>
+
+<p><code>python
+__init__(
+    session_creator=None,
+    hooks=None,
+    stop_grace_period_secs=120
+)
+</code></p>
+
+<p>Sets up a Monitored or Hooked Session.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>session_creator</code></b>: A factory object to create session. Typically a
+<code>ChiefSessionCreator</code> or a <code>WorkerSessionCreator</code>.</li>
+<li><b><code>hooks</code></b>: An iterable of `SessionRunHook' objects.</li>
+<li><b><code>should_recover</code></b>: A bool. Indicates whether to recover from <code>AbortedError</code>
+and <code>UnavailableError</code> or not.</li>
+<li><b><code>stop_grace_period_secs</code></b>: Number of seconds given to threads to stop after
+<code>close()</code> has been called.</li>
+</ul>
+
+
+<h2>Child Classes</h2>
+
+<p><a href="../../../../tf/compat/v1/train/MonitoredSession/StepContext.html"><code>class StepContext</code></a></p>
+
+<h2>Properties</h2>
+
+<h3 id="graph"><code>graph</code></h3>
+
+
+<p>The graph that was launched in this session.</p>
+
+<h2>Methods</h2>
+
+<h3 id="__enter__"><code>__enter__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/monitored_session.py">View source</a></p>
+
+<p><code>python
+__enter__()
+</code></p>
+
+<h3 id="__exit__"><code>__exit__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/monitored_session.py">View source</a></p>
+
+<p><code>python
+__exit__(
+    exception_type,
+    exception_value,
+    traceback
+)
+</code></p>
+
+<h3 id="close"><code>close</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/monitored_session.py">View source</a></p>
+
+<p><code>python
+close()
+</code></p>
+
+<h3 id="run"><code>run</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/monitored_session.py">View source</a></p>
+
+<p><code>python
+run(
+    fetches,
+    feed_dict=None,
+    options=None,
+    run_metadata=None
+)
+</code></p>
+
+<p>Run ops in the monitored session.</p>
+
+<p>This method is completely compatible with the <code>tf.Session.run()</code> method.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>fetches</code></b>: Same as <code>tf.Session.run()</code>.</li>
+<li><b><code>feed_dict</code></b>: Same as <code>tf.Session.run()</code>.</li>
+<li><b><code>options</code></b>: Same as <code>tf.Session.run()</code>.</li>
+<li><b><code>run_metadata</code></b>: Same as <code>tf.Session.run()</code>.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>Same as <code>tf.Session.run()</code>.</p>
+
+<h3 id="run_step_fn"><code>run_step_fn</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/monitored_session.py">View source</a></p>
+
+<p><code>python
+run_step_fn(step_fn)
+</code></p>
+
+<p>Run ops using a step function.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><p><b><code>step_fn</code></b>: A function or a method with a single argument of type
+<code>StepContext</code>.  The function may use methods of the argument to perform
+computations with access to a raw session.  The returned value of the
+<code>step_fn</code> will be returned from <code>run_step_fn</code>, unless a stop is
+requested.  In that case, the next <code>should_stop</code> call will return True.
+Example usage:
+    ```python
+    with tf.Graph().as_default():
+      c = tf.compat.v1.placeholder(dtypes.float32)
+      v = tf.add(c, 4.0)
+      w = tf.add(c, 0.5)
+      def step_fn(step_context):
+        a = step_context.session.run(fetches=v, feed_dict={c: 0.5})
+        if a &lt;= 4.5:
+          step_context.request_stop()
+          return step_context.run_with_hooks(fetches=w,
+                                             feed_dict={c: 0.1})</p>
+
+<pre><code>  with tf.MonitoredSession() as session:
+    while not session.should_stop():
+      a = session.run_step_fn(step_fn)
+```
+Hooks interact with the `run_with_hooks()` call inside the
+     `step_fn` as they do with a `MonitoredSession.run` call.
+</code></pre></li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>Returns the returned value of <code>step_fn</code>.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>StopIteration</code></b>: if <code>step_fn</code> has called <code>request_stop()</code>.  It may be
+caught by <code>with tf.MonitoredSession()</code> to close the session.</li>
+<li><b><code>ValueError</code></b>: if <code>step_fn</code> doesn&rsquo;t have a single argument called
+<code>step_context</code>. It may also optionally have <code>self</code> for cases when it
+belongs to an object.</li>
+</ul>
+
+
+<h3 id="should_stop"><code>should_stop</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/monitored_session.py">View source</a></p>
+
+<p><code>python
+should_stop()
+</code></p>

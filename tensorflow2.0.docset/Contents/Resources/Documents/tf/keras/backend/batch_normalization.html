@@ -1,0 +1,67 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.backend.batch_normalization" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.keras.backend.batch_normalization</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/backend.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Applies batch normalization on x given mean, var, beta and gamma.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.keras.backend.batch_normalization</code></li>
+<li><code>tf.compat.v2.keras.backend.batch_normalization</code></li>
+</ul>
+
+
+<p><code>python
+tf.keras.backend.batch_normalization(
+    x,
+    mean,
+    var,
+    beta,
+    gamma,
+    axis=-1,
+    epsilon=0.001
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>I.e. returns:
+<code>output = (x - mean) / (sqrt(var) + epsilon) * gamma + beta</code></p>
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>x</code></b>: Input tensor or variable.</li>
+<li><b><code>mean</code></b>: Mean of batch.</li>
+<li><b><code>var</code></b>: Variance of batch.</li>
+<li><b><code>beta</code></b>: Tensor with which to center the input.</li>
+<li><b><code>gamma</code></b>: Tensor by which to scale the input.</li>
+<li><b><code>axis</code></b>: Integer, the axis that should be normalized.
+  (typically the features axis).</li>
+<li><b><code>epsilon</code></b>: Fuzz factor.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A tensor.</p>

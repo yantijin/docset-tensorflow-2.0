@@ -1,0 +1,81 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.audio.decode_wav" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.audio.decode_wav</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p>Defined in generated file: <code>python/ops/gen_audio_ops.py</code></p>
+
+<!-- Start diff -->
+
+
+<p>Decode a 16-bit PCM WAV file to a float tensor.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.audio.decode_wav</code></li>
+<li><code>tf.compat.v2.audio.decode_wav</code></li>
+</ul>
+
+
+<p><code>python
+tf.audio.decode_wav(
+    contents,
+    desired_channels=-1,
+    desired_samples=-1,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>The -32768 to 32767 signed 16-bit values will be scaled to -1.0 to 1.0 in float.</p>
+
+<p>When desired_channels is set, if the input contains fewer channels than this
+then the last channel will be duplicated to give the requested number, else if
+the input has more channels than requested then the additional channels will be
+ignored.</p>
+
+<p>If desired_samples is set, then the audio will be cropped or padded with zeroes
+to the requested length.</p>
+
+<p>The first output contains a Tensor with the content of the audio samples. The
+lowest dimension will be the number of channels, and the second will be the
+number of samples. For example, a ten-sample-long stereo WAV file should give an
+output shape of [10, 2].</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>contents</code></b>: A <code>Tensor</code> of type <code>string</code>.
+The WAV-encoded audio, usually from a file.</li>
+<li><b><code>desired_channels</code></b>: An optional <code>int</code>. Defaults to <code>-1</code>.
+Number of sample channels wanted.</li>
+<li><b><code>desired_samples</code></b>: An optional <code>int</code>. Defaults to <code>-1</code>.
+Length of audio requested.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A tuple of <code>Tensor</code> objects (audio, sample_rate).</p>
+
+<ul>
+<li><b><code>audio</code></b>: A <code>Tensor</code> of type <code>float32</code>.</li>
+<li><b><code>sample_rate</code></b>: A <code>Tensor</code> of type <code>int32</code>.</li>
+</ul>
+

@@ -1,0 +1,64 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.strings.regex_replace" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.strings.regex_replace</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/string_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Replace elements of <code>input</code> matching regex <code>pattern</code> with <code>rewrite</code>.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.regex_replace</code></li>
+<li><code>tf.compat.v1.strings.regex_replace</code></li>
+<li><code>tf.compat.v2.strings.regex_replace</code></li>
+</ul>
+
+
+<p><code>python
+tf.strings.regex_replace(
+    input,
+    pattern,
+    rewrite,
+    replace_global=True,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>input</code></b>: string <code>Tensor</code>, the source strings to process.</li>
+<li><b><code>pattern</code></b>: string or scalar string <code>Tensor</code>, regular expression to use,
+see more details at https://github.com/google/re2/wiki/Syntax</li>
+<li><b><code>rewrite</code></b>: string or scalar string <code>Tensor</code>, value to use in match
+replacement, supports backslash-escaped digits (\1 to \9) can be to insert
+text matching corresponding parenthesized group.</li>
+<li><b><code>replace_global</code></b>: <code>bool</code>, if <code>True</code> replace all non-overlapping matches,
+else replace only the first match.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>string <code>Tensor</code> of the same shape as <code>input</code> with specified replacements.</p>

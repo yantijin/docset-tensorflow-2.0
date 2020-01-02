@@ -1,0 +1,64 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.backend.relu" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.keras.backend.relu</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/backend.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Rectified linear unit.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.keras.backend.relu</code></li>
+<li><code>tf.compat.v2.keras.backend.relu</code></li>
+</ul>
+
+
+<p><code>python
+tf.keras.backend.relu(
+    x,
+    alpha=0.0,
+    max_value=None,
+    threshold=0
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>With default values, it returns element-wise <code>max(x, 0)</code>.</p>
+
+<p>Otherwise, it follows:
+<code>f(x) = max_value</code> for <code>x &gt;= max_value</code>,
+<code>f(x) = x</code> for <code>threshold &lt;= x &lt; max_value</code>,
+<code>f(x) = alpha * (x - threshold)</code> otherwise.</p>
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>x</code></b>: A tensor or variable.</li>
+<li><b><code>alpha</code></b>: A scalar, slope of negative section (default=<code>0.</code>).</li>
+<li><b><code>max_value</code></b>: float. Saturation threshold.</li>
+<li><b><code>threshold</code></b>: float. Threshold value for thresholded activation.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A tensor.</p>

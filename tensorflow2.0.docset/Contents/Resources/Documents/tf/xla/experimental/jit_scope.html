@@ -1,0 +1,92 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.xla.experimental.jit_scope" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.xla.experimental.jit_scope</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+
+
+<!-- Start diff -->
+
+
+<p>Enable or disable JIT compilation of operators within the scope.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.xla.experimental.jit_scope</code></li>
+<li><code>tf.compat.v2.xla.experimental.jit_scope</code></li>
+</ul>
+
+
+<p><code>python
+tf.xla.experimental.jit_scope(
+    *args,
+    **kwds
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>NOTE: This is an experimental feature.</p>
+
+<p>The compilation is a hint and only supported on a best-effort basis.</p>
+
+<h4>Example usage:</h4>
+
+<p>with tf.xla.experimental.jit_scope():
+  c = tf.matmul(a, b)  # compiled
+with tf.xla.experimental.jit_scope(compile_ops=False):
+  d = tf.matmul(a, c)  # not compiled
+with tf.xla.experimental.jit_scope(
+    compile_ops=lambda node_def: &lsquo;matmul&rsquo; in node_def.op.lower()):
+  e = tf.matmul(a, b) + d  # matmul is compiled, the addition is not.</p>
+
+<p>Example of separate_compiled_gradients:
+  # In the example below, the computations for f, g and h will all be compiled
+  # in separate scopes.
+  with tf.xla.experimental.jit_scope(
+      separate_compiled_gradients=True):
+    f = tf.matmul(a, b)
+  g = tf.gradients([f], [a, b], name=&lsquo;mygrads1&rsquo;)
+  h = tf.gradients([f], [a, b], name=&lsquo;mygrads2&rsquo;)</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>compile_ops</code></b>: Whether to enable or disable compilation in the scope.
+Either a Python bool, or a callable that accepts the parameter
+<code>node_def</code> and returns a python bool.</li>
+<li><b><code>separate_compiled_gradients</code></b>: If true put each gradient subgraph into a
+separate compilation scope. This gives fine-grained control over which
+portions of the graph will be compiled as a single unit. Compiling
+gradients separately may yield better performance for some graphs.
+The scope is named based on the scope of the forward computation as well
+as the name of the gradients. As a result, the gradients will be compiled
+in a scope that is separate from both the forward computation, and from
+other gradients.</li>
+</ul>
+
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>RuntimeError</code></b>: if called when eager execution is enabled.</li>
+</ul>
+
+
+<h4>Yields:</h4>
+
+<p>The current scope, enabling or disabling compilation.</p>

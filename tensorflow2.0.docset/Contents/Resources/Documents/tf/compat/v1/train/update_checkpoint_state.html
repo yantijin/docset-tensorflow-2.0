@@ -1,0 +1,73 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.train.update_checkpoint_state" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.train.update_checkpoint_state</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/checkpoint_management.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Updates the content of the &lsquo;checkpoint&rsquo; file. (deprecated)</p>
+
+<p><code>python
+tf.compat.v1.train.update_checkpoint_state(
+    save_dir,
+    model_checkpoint_path,
+    all_model_checkpoint_paths=None,
+    latest_filename=None,
+    all_model_checkpoint_timestamps=None,
+    last_preserved_timestamp=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
+Instructions for updating:
+Use <a href="../../../../tf/train/CheckpointManager.html"><code>tf.train.CheckpointManager</code></a> to manage checkpoints rather than manually editing the Checkpoint proto.</p>
+
+<p>This updates the checkpoint file containing a CheckpointState
+proto.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>save_dir</code></b>: Directory where the model was saved.</li>
+<li><b><code>model_checkpoint_path</code></b>: The checkpoint file.</li>
+<li><b><code>all_model_checkpoint_paths</code></b>: List of strings.  Paths to all not-yet-deleted
+checkpoints, sorted from oldest to newest.  If this is a non-empty list,
+the last element must be equal to model_checkpoint_path.  These paths
+are also saved in the CheckpointState proto.</li>
+<li><b><code>latest_filename</code></b>: Optional name of the checkpoint file.  Default to
+&lsquo;checkpoint&rsquo;.</li>
+<li><b><code>all_model_checkpoint_timestamps</code></b>: Optional list of timestamps (floats,
+seconds since the Epoch) indicating when the checkpoints in
+<code>all_model_checkpoint_paths</code> were created.</li>
+<li><b><code>last_preserved_timestamp</code></b>: A float, indicating the number of seconds since
+the Epoch when the last preserved checkpoint was written, e.g. due to a
+<code>keep_checkpoint_every_n_hours</code> parameter (see
+<code>tf.contrib.checkpoint.CheckpointManager</code> for an implementation).</li>
+</ul>
+
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>RuntimeError</code></b>: If any of the model checkpoint paths conflict with the file
+containing CheckpointSate.</li>
+</ul>
+

@@ -1,0 +1,67 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.backend.resize_volumes" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.keras.backend.resize_volumes</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/backend.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Resizes the volume contained in a 5D tensor.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.keras.backend.resize_volumes</code></li>
+<li><code>tf.compat.v2.keras.backend.resize_volumes</code></li>
+</ul>
+
+
+<p><code>python
+tf.keras.backend.resize_volumes(
+    x,
+    depth_factor,
+    height_factor,
+    width_factor,
+    data_format
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>x</code></b>: Tensor or variable to resize.</li>
+<li><b><code>depth_factor</code></b>: Positive integer.</li>
+<li><b><code>height_factor</code></b>: Positive integer.</li>
+<li><b><code>width_factor</code></b>: Positive integer.</li>
+<li><b><code>data_format</code></b>: One of <code>"channels_first"</code>, <code>"channels_last"</code>.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A tensor.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: if <code>data_format</code> is neither
+  <code>channels_last</code> or <code>channels_first</code>.</li>
+</ul>
+

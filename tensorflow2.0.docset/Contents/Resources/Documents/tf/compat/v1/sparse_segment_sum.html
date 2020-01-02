@@ -1,0 +1,118 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.sparse_segment_sum" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.sparse_segment_sum</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/math_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Computes the sum along sparse segments of a tensor.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.sparse.segment_sum</code></li>
+</ul>
+
+
+<p><code>python
+tf.compat.v1.sparse_segment_sum(
+    data,
+    indices,
+    segment_ids,
+    name=None,
+    num_segments=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Read <a href="https://tensorflow.org/api_docs/python/tf/math#Segmentation">the section on
+segmentation</a>
+for an explanation of segments.</p>
+
+<p>Like <a href="../../../tf/math/segment_sum.html"><code>tf.math.segment_sum</code></a>, but <code>segment_ids</code> can have rank less than <code>data</code>&rsquo;s
+first dimension, selecting a subset of dimension 0, specified by <code>indices</code>.
+<code>segment_ids</code> is allowed to have missing ids, in which case the output will
+be zeros at those indices. In those cases <code>num_segments</code> is used to determine
+the size of the output.</p>
+
+<h4>For example:</h4>
+
+<p>```python
+c = tf.constant([[1,2,3,4], [-1,-2,-3,-4], [5,6,7,8]])</p>
+
+<h1>Select two rows, one segment.</h1>
+
+<p>tf.sparse.segment_sum(c, tf.constant([0, 1]), tf.constant([0, 0]))</p>
+
+<h1>=> [[0 0 0 0]]</h1>
+
+<h1>Select two rows, two segment.</h1>
+
+<p>tf.sparse.segment_sum(c, tf.constant([0, 1]), tf.constant([0, 1]))</p>
+
+<h1>=> [[ 1  2  3  4]</h1>
+
+<h1>[-1 -2 -3 -4]]</h1>
+
+<h1>With missing segment ids.</h1>
+
+<p>tf.sparse.segment_sum(c, tf.constant([0, 1]), tf.constant([0, 2]),
+                      num_segments=4)</p>
+
+<h1>=> [[ 1  2  3  4]</h1>
+
+<h1>[ 0  0  0  0]</h1>
+
+<h1>[-1 -2 -3 -4]</h1>
+
+<h1>[ 0  0  0  0]]</h1>
+
+<h1>Select all rows, two segments.</h1>
+
+<p>tf.sparse.segment_sum(c, tf.constant([0, 1, 2]), tf.constant([0, 0, 1]))</p>
+
+<h1>=> [[0 0 0 0]</h1>
+
+<h1>[5 6 7 8]]</h1>
+
+<h1>Which is equivalent to:</h1>
+
+<p>tf.math.segment_sum(c, tf.constant([0, 0, 1]))
+```</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>data</code></b>: A <code>Tensor</code> with data that will be assembled in the output.</li>
+<li><b><code>indices</code></b>: A 1-D <code>Tensor</code> with indices into <code>data</code>. Has same rank as
+<code>segment_ids</code>.</li>
+<li><b><code>segment_ids</code></b>: A 1-D <code>Tensor</code> with indices into the output <code>Tensor</code>. Values
+should be sorted and can be repeated.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+<li><b><code>num_segments</code></b>: An optional int32 scalar. Indicates the size of the output
+<code>Tensor</code>.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>tensor</code> of the shape as data, except for dimension 0 which
+has size <code>k</code>, the number of segments specified via <code>num_segments</code> or
+inferred for the last element in <code>segments_ids</code>.</p>

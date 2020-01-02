@@ -1,0 +1,98 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.sparse.to_indicator" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.sparse.to_indicator</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/sparse_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Converts a <code>SparseTensor</code> of ids into a dense bool indicator tensor.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.sparse.to_indicator</code></li>
+<li><code>tf.compat.v1.sparse_to_indicator</code></li>
+<li><code>tf.compat.v2.sparse.to_indicator</code></li>
+</ul>
+
+
+<p><code>python
+tf.sparse.to_indicator(
+    sp_input,
+    vocab_size,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>The last dimension of <code>sp_input.indices</code> is discarded and replaced with
+the values of <code>sp_input</code>.  If <code>sp_input.dense_shape = [D0, D1, ..., Dn, K]</code>,
+then <code>output.shape = [D0, D1, ..., Dn, vocab_size]</code>, where</p>
+
+<pre><code>output[d_0, d_1, ..., d_n, sp_input[d_0, d_1, ..., d_n, k]] = True
+</code></pre>
+
+<p>and False elsewhere in <code>output</code>.</p>
+
+<p>For example, if <code>sp_input.dense_shape = [2, 3, 4]</code> with non-empty values:</p>
+
+<pre><code>[0, 0, 0]: 0
+[0, 1, 0]: 10
+[1, 0, 3]: 103
+[1, 1, 1]: 150
+[1, 1, 2]: 149
+[1, 1, 3]: 150
+[1, 2, 1]: 121
+</code></pre>
+
+<p>and <code>vocab_size = 200</code>, then the output will be a <code>[2, 3, 200]</code> dense bool
+tensor with False everywhere except at positions</p>
+
+<pre><code>(0, 0, 0), (0, 1, 10), (1, 0, 103), (1, 1, 149), (1, 1, 150),
+(1, 2, 121).
+</code></pre>
+
+<p>Note that repeats are allowed in the input SparseTensor.
+This op is useful for converting <code>SparseTensor</code>s into dense formats for
+compatibility with ops that expect dense tensors.</p>
+
+<p>The input <code>SparseTensor</code> must be in row-major order.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>sp_input</code></b>: A <code>SparseTensor</code> with <code>values</code> property of type <code>int32</code> or
+<code>int64</code>.</li>
+<li><b><code>vocab_size</code></b>: A scalar int64 Tensor (or Python int) containing the new size
+of the last dimension, <code>all(0 &lt;= sp_input.values &lt; vocab_size)</code>.</li>
+<li><b><code>name</code></b>: A name prefix for the returned tensors (optional)</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A dense bool indicator tensor representing the indices with specified value.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>TypeError</code></b>: If <code>sp_input</code> is not a <code>SparseTensor</code>.</li>
+</ul>
+

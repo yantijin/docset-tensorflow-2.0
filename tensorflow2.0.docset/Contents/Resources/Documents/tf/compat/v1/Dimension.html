@@ -1,0 +1,716 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.Dimension" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="value"/>
+<meta itemprop="property" content="__add__"/>
+<meta itemprop="property" content="__div__"/>
+<meta itemprop="property" content="__eq__"/>
+<meta itemprop="property" content="__floordiv__"/>
+<meta itemprop="property" content="__ge__"/>
+<meta itemprop="property" content="__gt__"/>
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="__le__"/>
+<meta itemprop="property" content="__lt__"/>
+<meta itemprop="property" content="__mod__"/>
+<meta itemprop="property" content="__mul__"/>
+<meta itemprop="property" content="__ne__"/>
+<meta itemprop="property" content="__radd__"/>
+<meta itemprop="property" content="__rdiv__"/>
+<meta itemprop="property" content="__rfloordiv__"/>
+<meta itemprop="property" content="__rmod__"/>
+<meta itemprop="property" content="__rmul__"/>
+<meta itemprop="property" content="__rsub__"/>
+<meta itemprop="property" content="__rtruediv__"/>
+<meta itemprop="property" content="__sub__"/>
+<meta itemprop="property" content="__truediv__"/>
+<meta itemprop="property" content="assert_is_compatible_with"/>
+<meta itemprop="property" content="is_compatible_with"/>
+<meta itemprop="property" content="merge_with"/>
+</div>
+
+
+<h1>tf.compat.v1.Dimension</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<h2>Class <code>Dimension</code></h2>
+
+<!-- Start diff -->
+
+
+<p>Represents the value of one dimension in a TensorShape.</p>
+
+<!-- Placeholder for "Used in" -->
+
+
+
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+__init__(value)
+</code></p>
+
+<p>Creates a new Dimension with the given value.</p>
+
+<h2>Properties</h2>
+
+<h3 id="value"><code>value</code></h3>
+
+
+<p>The value of this dimension, or None if it is unknown.</p>
+
+<h2>Methods</h2>
+
+<h3 id="__add__"><code>__add__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+__add__(other)
+</code></p>
+
+<p>Returns the sum of <code>self</code> and <code>other</code>.</p>
+
+<p>Dimensions are summed as follows:</p>
+
+<p><code>python
+tf.compat.v1.Dimension(m)    + tf.compat.v1.Dimension(n)     ==
+tf.compat.v1.Dimension(m + n)
+tf.compat.v1.Dimension(m)    + tf.compat.v1.Dimension(None)  # equiv. to
+tf.compat.v1.Dimension(None)
+tf.compat.v1.Dimension(None) + tf.compat.v1.Dimension(n)     # equiv. to
+tf.compat.v1.Dimension(None)
+tf.compat.v1.Dimension(None) + tf.compat.v1.Dimension(None)  # equiv. to
+tf.compat.v1.Dimension(None)
+</code></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>other</code></b>: Another Dimension, or a value accepted by <code>as_dimension</code>.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A Dimension whose value is the sum of <code>self</code> and <code>other</code>.</p>
+
+<h3 id="__div__"><code>__div__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+__div__(other)
+</code></p>
+
+<p>DEPRECATED: Use <code>__floordiv__</code> via <code>x // y</code> instead.</p>
+
+<p>This function exists only for backwards compatibility purposes; new code
+should use <code>__floordiv__</code> via the syntax <code>x // y</code>.  Using <code>x // y</code>
+communicates clearly that the result rounds down, and is forward compatible
+to Python 3.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>other</code></b>: Another <code>Dimension</code>.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Dimension</code> whose value is the integer quotient of <code>self</code> and <code>other</code>.</p>
+
+<h3 id="__eq__"><code>__eq__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+__eq__(other)
+</code></p>
+
+<p>Returns true if <code>other</code> has the same known value as this Dimension.</p>
+
+<h3 id="__floordiv__"><code>__floordiv__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+__floordiv__(other)
+</code></p>
+
+<p>Returns the quotient of <code>self</code> and <code>other</code> rounded down.</p>
+
+<p>Dimensions are divided as follows:</p>
+
+<p><code>python
+tf.compat.v1.Dimension(m)    // tf.compat.v1.Dimension(n)     ==
+tf.compat.v1.Dimension(m // n)
+tf.compat.v1.Dimension(m)    // tf.compat.v1.Dimension(None)  # equiv. to
+tf.compat.v1.Dimension(None)
+tf.compat.v1.Dimension(None) // tf.compat.v1.Dimension(n)     # equiv. to
+tf.compat.v1.Dimension(None)
+tf.compat.v1.Dimension(None) // tf.compat.v1.Dimension(None)  # equiv. to
+tf.compat.v1.Dimension(None)
+</code></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>other</code></b>: Another Dimension, or a value accepted by <code>as_dimension</code>.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Dimension</code> whose value is the integer quotient of <code>self</code> and <code>other</code>.</p>
+
+<h3 id="__ge__"><code>__ge__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+__ge__(other)
+</code></p>
+
+<p>Returns True if <code>self</code> is known to be greater than or equal to <code>other</code>.</p>
+
+<p>Dimensions are compared as follows:</p>
+
+<p><code>python
+(tf.compat.v1.Dimension(m)    &gt;= tf.compat.v1.Dimension(n))    == (m &gt;= n)
+(tf.compat.v1.Dimension(m)    &gt;= tf.compat.v1.Dimension(None)) == None
+(tf.compat.v1.Dimension(None) &gt;= tf.compat.v1.Dimension(n))    == None
+(tf.compat.v1.Dimension(None) &gt;= tf.compat.v1.Dimension(None)) == None
+</code></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>other</code></b>: Another Dimension.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>The value of <code>self.value &gt;= other.value</code> if both are known, otherwise
+None.</p>
+
+<h3 id="__gt__"><code>__gt__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+__gt__(other)
+</code></p>
+
+<p>Returns True if <code>self</code> is known to be greater than <code>other</code>.</p>
+
+<p>Dimensions are compared as follows:</p>
+
+<p><code>python
+(tf.compat.v1.Dimension(m)    &gt; tf.compat.v1.Dimension(n))    == (m &gt; n)
+(tf.compat.v1.Dimension(m)    &gt; tf.compat.v1.Dimension(None)) == None
+(tf.compat.v1.Dimension(None) &gt; tf.compat.v1.Dimension(n))    == None
+(tf.compat.v1.Dimension(None) &gt; tf.compat.v1.Dimension(None)) == None
+</code></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>other</code></b>: Another Dimension.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>The value of <code>self.value &gt; other.value</code> if both are known, otherwise
+None.</p>
+
+<h3 id="__le__"><code>__le__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+__le__(other)
+</code></p>
+
+<p>Returns True if <code>self</code> is known to be less than or equal to <code>other</code>.</p>
+
+<p>Dimensions are compared as follows:</p>
+
+<p><code>python
+(tf.compat.v1.Dimension(m)    &lt;= tf.compat.v1.Dimension(n))    == (m &lt;= n)
+(tf.compat.v1.Dimension(m)    &lt;= tf.compat.v1.Dimension(None)) == None
+(tf.compat.v1.Dimension(None) &lt;= tf.compat.v1.Dimension(n))    == None
+(tf.compat.v1.Dimension(None) &lt;= tf.compat.v1.Dimension(None)) == None
+</code></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>other</code></b>: Another Dimension.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>The value of <code>self.value &lt;= other.value</code> if both are known, otherwise
+None.</p>
+
+<h3 id="__lt__"><code>__lt__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+__lt__(other)
+</code></p>
+
+<p>Returns True if <code>self</code> is known to be less than <code>other</code>.</p>
+
+<p>Dimensions are compared as follows:</p>
+
+<p><code>python
+(tf.compat.v1.Dimension(m)    &lt; tf.compat.v1.Dimension(n))    == (m &lt; n)
+(tf.compat.v1.Dimension(m)    &lt; tf.compat.v1.Dimension(None)) == None
+(tf.compat.v1.Dimension(None) &lt; tf.compat.v1.Dimension(n))    == None
+(tf.compat.v1.Dimension(None) &lt; tf.compat.v1.Dimension(None)) == None
+</code></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>other</code></b>: Another Dimension.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>The value of <code>self.value &lt; other.value</code> if both are known, otherwise
+None.</p>
+
+<h3 id="__mod__"><code>__mod__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+__mod__(other)
+</code></p>
+
+<p>Returns <code>self</code> modulo <code>other</code>.</p>
+
+<p>Dimension moduli are computed as follows:</p>
+
+<p><code>python
+tf.compat.v1.Dimension(m)    % tf.compat.v1.Dimension(n)     ==
+tf.compat.v1.Dimension(m % n)
+tf.compat.v1.Dimension(m)    % tf.compat.v1.Dimension(None)  # equiv. to
+tf.compat.v1.Dimension(None)
+tf.compat.v1.Dimension(None) % tf.compat.v1.Dimension(n)     # equiv. to
+tf.compat.v1.Dimension(None)
+tf.compat.v1.Dimension(None) % tf.compat.v1.Dimension(None)  # equiv. to
+tf.compat.v1.Dimension(None)
+</code></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>other</code></b>: Another Dimension, or a value accepted by <code>as_dimension</code>.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A Dimension whose value is <code>self</code> modulo <code>other</code>.</p>
+
+<h3 id="__mul__"><code>__mul__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+__mul__(other)
+</code></p>
+
+<p>Returns the product of <code>self</code> and <code>other</code>.</p>
+
+<p>Dimensions are summed as follows:</p>
+
+<p><code>python
+tf.compat.v1.Dimension(m)    * tf.compat.v1.Dimension(n)     ==
+tf.compat.v1.Dimension(m * n)
+tf.compat.v1.Dimension(m)    * tf.compat.v1.Dimension(None)  # equiv. to
+tf.compat.v1.Dimension(None)
+tf.compat.v1.Dimension(None) * tf.compat.v1.Dimension(n)     # equiv. to
+tf.compat.v1.Dimension(None)
+tf.compat.v1.Dimension(None) * tf.compat.v1.Dimension(None)  # equiv. to
+tf.compat.v1.Dimension(None)
+</code></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>other</code></b>: Another Dimension, or a value accepted by <code>as_dimension</code>.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A Dimension whose value is the product of <code>self</code> and <code>other</code>.</p>
+
+<h3 id="__ne__"><code>__ne__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+__ne__(other)
+</code></p>
+
+<p>Returns true if <code>other</code> has a different known value from <code>self</code>.</p>
+
+<h3 id="__radd__"><code>__radd__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+__radd__(other)
+</code></p>
+
+<p>Returns the sum of <code>other</code> and <code>self</code>.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>other</code></b>: Another Dimension, or a value accepted by <code>as_dimension</code>.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A Dimension whose value is the sum of <code>self</code> and <code>other</code>.</p>
+
+<h3 id="__rdiv__"><code>__rdiv__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+__rdiv__(other)
+</code></p>
+
+<p>Use <code>__floordiv__</code> via <code>x // y</code> instead.</p>
+
+<p>This function exists only to have a better error message. Instead of:
+<code>TypeError: unsupported operand type(s) for /: 'int' and 'Dimension'</code>,
+this function will explicitly call for usage of <code>//</code> instead.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>other</code></b>: Another <code>Dimension</code>.</li>
+</ul>
+
+
+<h4>Raises:</h4>
+
+<p>TypeError.</p>
+
+<h3 id="__rfloordiv__"><code>__rfloordiv__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+__rfloordiv__(other)
+</code></p>
+
+<p>Returns the quotient of <code>other</code> and <code>self</code> rounded down.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>other</code></b>: Another Dimension, or a value accepted by <code>as_dimension</code>.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Dimension</code> whose value is the integer quotient of <code>self</code> and <code>other</code>.</p>
+
+<h3 id="__rmod__"><code>__rmod__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+__rmod__(other)
+</code></p>
+
+<p>Returns <code>other</code> modulo <code>self</code>.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>other</code></b>: Another Dimension, or a value accepted by <code>as_dimension</code>.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A Dimension whose value is <code>other</code> modulo <code>self</code>.</p>
+
+<h3 id="__rmul__"><code>__rmul__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+__rmul__(other)
+</code></p>
+
+<p>Returns the product of <code>self</code> and <code>other</code>.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>other</code></b>: Another Dimension, or a value accepted by <code>as_dimension</code>.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A Dimension whose value is the product of <code>self</code> and <code>other</code>.</p>
+
+<h3 id="__rsub__"><code>__rsub__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+__rsub__(other)
+</code></p>
+
+<p>Returns the subtraction of <code>self</code> from <code>other</code>.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>other</code></b>: Another Dimension, or a value accepted by <code>as_dimension</code>.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A Dimension whose value is the subtraction of <code>self</code> from <code>other</code>.</p>
+
+<h3 id="__rtruediv__"><code>__rtruediv__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+__rtruediv__(other)
+</code></p>
+
+<p>Use <code>__floordiv__</code> via <code>x // y</code> instead.</p>
+
+<p>This function exists only to have a better error message. Instead of:
+<code>TypeError: unsupported operand type(s) for /: 'int' and 'Dimension'</code>,
+this function will explicitly call for usage of <code>//</code> instead.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>other</code></b>: Another <code>Dimension</code>.</li>
+</ul>
+
+
+<h4>Raises:</h4>
+
+<p>TypeError.</p>
+
+<h3 id="__sub__"><code>__sub__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+__sub__(other)
+</code></p>
+
+<p>Returns the subtraction of <code>other</code> from <code>self</code>.</p>
+
+<p>Dimensions are subtracted as follows:</p>
+
+<p><code>python
+tf.compat.v1.Dimension(m)    - tf.compat.v1.Dimension(n)     ==
+tf.compat.v1.Dimension(m - n)
+tf.compat.v1.Dimension(m)    - tf.compat.v1.Dimension(None)  # equiv. to
+tf.compat.v1.Dimension(None)
+tf.compat.v1.Dimension(None) - tf.compat.v1.Dimension(n)     # equiv. to
+tf.compat.v1.Dimension(None)
+tf.compat.v1.Dimension(None) - tf.compat.v1.Dimension(None)  # equiv. to
+tf.compat.v1.Dimension(None)
+</code></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>other</code></b>: Another Dimension, or a value accepted by <code>as_dimension</code>.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A Dimension whose value is the subtraction of <code>other</code> from <code>self</code>.</p>
+
+<h3 id="__truediv__"><code>__truediv__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+__truediv__(other)
+</code></p>
+
+<p>Use <code>__floordiv__</code> via <code>x // y</code> instead.</p>
+
+<p>This function exists only to have a better error message. Instead of:
+<code>TypeError: unsupported operand type(s) for /: 'Dimension' and 'int'</code>,
+this function will explicitly call for usage of <code>//</code> instead.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>other</code></b>: Another <code>Dimension</code>.</li>
+</ul>
+
+
+<h4>Raises:</h4>
+
+<p>TypeError.</p>
+
+<h3 id="assert_is_compatible_with"><code>assert_is_compatible_with</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+assert_is_compatible_with(other)
+</code></p>
+
+<p>Raises an exception if <code>other</code> is not compatible with this Dimension.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>other</code></b>: Another Dimension.</li>
+</ul>
+
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If <code>self</code> and <code>other</code> are not compatible (see
+is_compatible_with).</li>
+</ul>
+
+
+<h3 id="is_compatible_with"><code>is_compatible_with</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+is_compatible_with(other)
+</code></p>
+
+<p>Returns true if <code>other</code> is compatible with this Dimension.</p>
+
+<p>Two known Dimensions are compatible if they have the same value.
+An unknown Dimension is compatible with all other Dimensions.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>other</code></b>: Another Dimension.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>True if this Dimension and <code>other</code> are compatible.</p>
+
+<h3 id="merge_with"><code>merge_with</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+
+<p><code>python
+merge_with(other)
+</code></p>
+
+<p>Returns a Dimension that combines the information in <code>self</code> and <code>other</code>.</p>
+
+<p>Dimensions are combined as follows:</p>
+
+<p>```python
+tf.compat.v1.Dimension(n)   .merge_with(tf.compat.v1.Dimension(n))     ==
+tf.compat.v1.Dimension(n)
+tf.compat.v1.Dimension(n)   .merge_with(tf.compat.v1.Dimension(None))  ==
+tf.compat.v1.Dimension(n)
+tf.compat.v1.Dimension(None).merge_with(tf.compat.v1.Dimension(n))     ==
+tf.compat.v1.Dimension(n)</p>
+
+<h1>equivalent to tf.compat.v1.Dimension(None)</h1>
+
+<p>tf.compat.v1.Dimension(None).merge_with(tf.compat.v1.Dimension(None))</p>
+
+<h1>raises ValueError for n != m</h1>
+
+<p>tf.compat.v1.Dimension(n)   .merge_with(tf.compat.v1.Dimension(m))
+```</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>other</code></b>: Another Dimension.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A Dimension containing the combined information of <code>self</code> and
+<code>other</code>.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If <code>self</code> and <code>other</code> are not compatible (see
+is_compatible_with).</li>
+</ul>
+

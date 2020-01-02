@@ -1,0 +1,67 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.preprocessing.image.array_to_img" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.keras.preprocessing.image.array_to_img</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/preprocessing/image.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Converts a 3D Numpy array to a PIL Image instance.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.keras.preprocessing.image.array_to_img</code></li>
+<li><code>tf.compat.v2.keras.preprocessing.image.array_to_img</code></li>
+</ul>
+
+
+<p><code>python
+tf.keras.preprocessing.image.array_to_img(
+    x,
+    data_format=None,
+    scale=True,
+    dtype=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>x</code></b>: Input Numpy array.</li>
+<li><b><code>data_format</code></b>: Image data format.
+  either &ldquo;channels_first&rdquo; or &ldquo;channels_last&rdquo;.</li>
+<li><b><code>scale</code></b>: Whether to rescale image values
+  to be within <code>[0, 255]</code>.</li>
+<li><b><code>dtype</code></b>: Dtype to use.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A PIL Image instance.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ImportError</code></b>: if PIL is not available.</li>
+<li><b><code>ValueError</code></b>: if invalid <code>x</code> or <code>data_format</code> is passed.</li>
+</ul>
+

@@ -1,0 +1,83 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.feature_column.make_parse_example_spec" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.feature_column.make_parse_example_spec</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/feature_column/feature_column.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Creates parsing spec dictionary from input feature_columns.</p>
+
+<p><code>python
+tf.compat.v1.feature_column.make_parse_example_spec(feature_columns)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>The returned dictionary can be used as arg &lsquo;features&rsquo; in
+<a href="../../../../tf/io/parse_example.html"><code>tf.io.parse_example</code></a>.</p>
+
+<h4>Typical usage example:</h4>
+
+<p>```python</p>
+
+<h1>Define features and transformations</h1>
+
+<p>feature_a = categorical_column_with_vocabulary_file(&hellip;)
+feature_b = numeric_column(&hellip;)
+feature_c_bucketized = bucketized_column(numeric_column(&ldquo;feature_c&rdquo;), &hellip;)
+feature_a_x_feature_c = crossed_column(
+    columns=[&ldquo;feature_a&rdquo;, feature_c_bucketized], &hellip;)</p>
+
+<p>feature_columns = set(
+    [feature_b, feature_c_bucketized, feature_a_x_feature_c])
+features = tf.io.parse_example(
+    serialized=serialized_examples,
+    features=make_parse_example_spec(feature_columns))
+```</p>
+
+<p>For the above example, make_parse_example_spec would return the dict:</p>
+
+<p><code>python
+{
+    "feature_a": parsing_ops.VarLenFeature(tf.string),
+    "feature_b": parsing_ops.FixedLenFeature([1], dtype=tf.float32),
+    "feature_c": parsing_ops.FixedLenFeature([1], dtype=tf.float32)
+}
+</code></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>feature_columns</code></b>: An iterable containing all feature columns. All items
+should be instances of classes derived from <code>_FeatureColumn</code>.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A dict mapping each feature key to a <code>FixedLenFeature</code> or <code>VarLenFeature</code>
+value.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If any of the given <code>feature_columns</code> is not a <code>_FeatureColumn</code>
+instance.</li>
+</ul>
+

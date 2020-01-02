@@ -1,0 +1,130 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.io.decode_proto" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.io.decode_proto</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p>Defined in generated file: <code>python/ops/gen_decode_proto_ops.py</code></p>
+
+<!-- Start diff -->
+
+
+<p>The op extracts fields from a serialized protocol buffers message into tensors.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.io.decode_proto</code></li>
+<li><code>tf.compat.v2.io.decode_proto</code></li>
+</ul>
+
+
+<p><code>python
+tf.io.decode_proto(
+    bytes,
+    message_type,
+    field_names,
+    output_types,
+    descriptor_source='local://',
+    message_format='binary',
+    sanitize=False,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>The <code>decode_proto</code> op extracts fields from a serialized protocol buffers
+message into tensors.  The fields in <code>field_names</code> are decoded and converted
+to the corresponding <code>output_types</code> if possible.</p>
+
+<p>A <code>message_type</code> name must be provided to give context for the field names.
+The actual message descriptor can be looked up either in the linked-in
+descriptor pool or a filename provided by the caller using the
+<code>descriptor_source</code> attribute.</p>
+
+<p>Each output tensor is a dense tensor. This means that it is padded to hold
+the largest number of repeated elements seen in the input minibatch. (The
+shape is also padded by one to prevent zero-sized dimensions). The actual
+repeat counts for each example in the minibatch can be found in the <code>sizes</code>
+output. In many cases the output of <code>decode_proto</code> is fed immediately into
+tf.squeeze if missing values are not a concern. When using tf.squeeze, always
+pass the squeeze dimension explicitly to avoid surprises.</p>
+
+<p>For the most part, the mapping between Proto field types and TensorFlow dtypes
+is straightforward. However, there are a few special cases:</p>
+
+<ul>
+<li><p>A proto field that contains a submessage or group can only be converted
+to <code>DT_STRING</code> (the serialized submessage). This is to reduce the complexity
+of the API. The resulting string can be used as input to another instance of
+the decode_proto op.</p></li>
+<li><p>TensorFlow lacks support for unsigned integers. The ops represent uint64
+types as a <code>DT_INT64</code> with the same twos-complement bit pattern (the obvious
+way). Unsigned int32 values can be represented exactly by specifying type
+<code>DT_INT64</code>, or using twos-complement if the caller specifies <code>DT_INT32</code> in
+the <code>output_types</code> attribute.</p></li>
+</ul>
+
+
+<p>Both binary and text proto serializations are supported, and can be
+chosen using the <code>format</code> attribute.</p>
+
+<p>The <code>descriptor_source</code> attribute selects the source of protocol
+descriptors to consult when looking up <code>message_type</code>. This may be:</p>
+
+<ul>
+<li><p>An empty string  or &ldquo;local://&rdquo;, in which case protocol descriptors are
+created for C++ (not Python) proto definitions linked to the binary.</p></li>
+<li><p>A file, in which case protocol descriptors are created from the file,
+which is expected to contain a <code>FileDescriptorSet</code> serialized as a string.
+NOTE: You can build a <code>descriptor_source</code> file using the <code>--descriptor_set_out</code>
+and <code>--include_imports</code> options to the protocol compiler <code>protoc</code>.</p></li>
+<li><p>A &ldquo;bytes://<bytes>&rdquo;, in which protocol descriptors are created from <code>&lt;bytes&gt;</code>,
+which is expected to be a <code>FileDescriptorSet</code> serialized as a string.</p></li>
+</ul>
+
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>bytes</code></b>: A <code>Tensor</code> of type <code>string</code>.
+Tensor of serialized protos with shape <code>batch_shape</code>.</li>
+<li><b><code>message_type</code></b>: A <code>string</code>. Name of the proto message type to decode.</li>
+<li><b><code>field_names</code></b>: A list of <code>strings</code>.
+List of strings containing proto field names. An extension field can be decoded
+by using its full name, e.g. EXT_PACKAGE.EXT_FIELD_NAME.</li>
+<li><b><code>output_types</code></b>: A list of <code>tf.DTypes</code>.
+List of TF types to use for the respective field in field_names.</li>
+<li><b><code>descriptor_source</code></b>: An optional <code>string</code>. Defaults to <code>"local://"</code>.
+Either the special value <code>local://</code> or a path to a file containing
+a serialized <code>FileDescriptorSet</code>.</li>
+<li><b><code>message_format</code></b>: An optional <code>string</code>. Defaults to <code>"binary"</code>.
+Either <code>binary</code> or <code>text</code>.</li>
+<li><b><code>sanitize</code></b>: An optional <code>bool</code>. Defaults to <code>False</code>.
+Whether to sanitize the result or not.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A tuple of <code>Tensor</code> objects (sizes, values).</p>
+
+<ul>
+<li><b><code>sizes</code></b>: A <code>Tensor</code> of type <code>int32</code>.</li>
+<li><b><code>values</code></b>: A list of <code>Tensor</code> objects of type <code>output_types</code>.</li>
+</ul>
+

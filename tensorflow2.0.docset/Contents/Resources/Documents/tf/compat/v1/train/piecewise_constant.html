@@ -1,0 +1,92 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.train.piecewise_constant" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.train.piecewise_constant</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/learning_rate_decay.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Piecewise constant from boundaries and interval values.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.train.piecewise_constant_decay</code></li>
+</ul>
+
+
+<p><code>python
+tf.compat.v1.train.piecewise_constant(
+    x,
+    boundaries,
+    values,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Example: use a learning rate that&rsquo;s 1.0 for the first 100001 steps, 0.5
+  for the next 10000 steps, and 0.1 for any additional steps.</p>
+
+<p>```python
+global_step = tf.Variable(0, trainable=False)
+boundaries = [100000, 110000]
+values = [1.0, 0.5, 0.1]
+learning_rate = tf.compat.v1.train.piecewise_constant(global_step, boundaries,
+values)</p>
+
+<h1>Later, whenever we perform an optimization step, we increment global_step.</h1>
+
+<p>```</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>: A 0-D scalar <code>Tensor</code>. Must be one of the following types: <code>float32</code>,
+<code>float64</code>, <code>uint8</code>, <code>int8</code>, <code>int16</code>, <code>int32</code>, <code>int64</code>.</li>
+<li><b><code>boundaries</code></b>: A list of <code>Tensor</code>s or <code>int</code>s or <code>float</code>s with strictly
+increasing entries, and with all elements having the same type as <code>x</code>.</li>
+<li><b><code>values</code></b>: A list of <code>Tensor</code>s or <code>float</code>s or <code>int</code>s that specifies the values
+for the intervals defined by <code>boundaries</code>. It should have one more element
+than <code>boundaries</code>, and all elements should have the same type.</li>
+<li><b><code>name</code></b>: A string. Optional name of the operation. Defaults to
+&lsquo;PiecewiseConstant&rsquo;.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A 0-D Tensor. Its value is <code>values[0]</code> when <code>x &lt;= boundaries[0]</code>,
+<code>values[1]</code> when <code>x &gt; boundaries[0]</code> and <code>x &lt;= boundaries[1]</code>, &hellip;,
+and values[-1] when <code>x &gt; boundaries[-1]</code>.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: if types of <code>x</code> and <code>boundaries</code> do not match, or types of all
+  <code>values</code> do not match or
+  the number of elements in the lists does not match.</li>
+</ul>
+
+
+<h4>Eager Compatibility</h4>
+
+<p>When eager execution is enabled, this function returns a function which in
+turn returns the decayed learning rate Tensor. This can be useful for changing
+the learning rate value across different invocations of optimizer functions.</p>

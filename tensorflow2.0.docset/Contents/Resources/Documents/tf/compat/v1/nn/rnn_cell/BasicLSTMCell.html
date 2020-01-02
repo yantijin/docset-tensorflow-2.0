@@ -1,0 +1,177 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.nn.rnn_cell.BasicLSTMCell" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="graph"/>
+<meta itemprop="property" content="output_size"/>
+<meta itemprop="property" content="scope_name"/>
+<meta itemprop="property" content="state_size"/>
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="get_initial_state"/>
+<meta itemprop="property" content="zero_state"/>
+</div>
+
+
+<h1>tf.compat.v1.nn.rnn_cell.BasicLSTMCell</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/rnn_cell_impl.py">View source</a></p>
+
+<h2>Class <code>BasicLSTMCell</code></h2>
+
+<!-- Start diff -->
+
+
+<p>DEPRECATED: Please use <a href="../../../../../tf/compat/v1/nn/rnn_cell/LSTMCell.html"><code>tf.compat.v1.nn.rnn_cell.LSTMCell</code></a> instead.</p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Basic LSTM recurrent network cell.</p>
+
+<p>The implementation is based on: http://arxiv.org/abs/1409.2329.</p>
+
+<p>We add forget_bias (default: 1) to the biases of the forget gate in order to
+reduce the scale of forgetting in the beginning of the training.</p>
+
+<p>It does not allow cell clipping, a projection layer, and does not
+use peep-hole connections: it is the basic baseline.</p>
+
+<p>For advanced models, please use the full <a href="../../../../../tf/compat/v1/nn/rnn_cell/LSTMCell.html"><code>tf.compat.v1.nn.rnn_cell.LSTMCell</code></a>
+that follows.</p>
+
+<p>Note that this cell is not optimized for performance. Please use
+<code>tf.contrib.cudnn_rnn.CudnnLSTM</code> for better performance on GPU, or
+<code>tf.contrib.rnn.LSTMBlockCell</code> and <code>tf.contrib.rnn.LSTMBlockFusedCell</code> for
+better performance on CPU.</p>
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/rnn_cell_impl.py">View source</a></p>
+
+<p><code>python
+__init__(
+    num_units,
+    forget_bias=1.0,
+    state_is_tuple=True,
+    activation=None,
+    reuse=None,
+    name=None,
+    dtype=None,
+    **kwargs
+)
+</code></p>
+
+<p>Initialize the basic LSTM cell. (deprecated)</p>
+
+<p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
+Instructions for updating:
+This class is equivalent as tf.keras.layers.LSTMCell, and will be replaced by that in Tensorflow 2.0.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>num_units</code></b>: int, The number of units in the LSTM cell.</li>
+<li><b><code>forget_bias</code></b>: float, The bias added to forget gates (see above). Must set
+to <code>0.0</code> manually when restoring from CudnnLSTM-trained checkpoints.</li>
+<li><b><code>state_is_tuple</code></b>: If True, accepted and returned states are 2-tuples of the
+<code>c_state</code> and <code>m_state</code>.  If False, they are concatenated along the
+column axis.  The latter behavior will soon be deprecated.</li>
+<li><b><code>activation</code></b>: Activation function of the inner states.  Default: <code>tanh</code>. It
+could also be string that is within Keras activation function names.</li>
+<li><b><code>reuse</code></b>: (optional) Python boolean describing whether to reuse variables in
+an existing scope.  If not <code>True</code>, and the existing scope already has
+the given variables, an error is raised.</li>
+<li><b><code>name</code></b>: String, the name of the layer. Layers with the same name will share
+weights, but to avoid mistakes we require reuse=True in such cases.</li>
+<li><b><code>dtype</code></b>: Default dtype of the layer (default of <code>None</code> means use the type of
+the first input). Required when <code>build</code> is called before <code>call</code>.</li>
+<li><b><code>**kwargs</code></b>: Dict, keyword named properties for common layer attributes, like
+<code>trainable</code> etc when constructing the cell from configs of get_config().
+When restoring from CudnnLSTM-trained checkpoints, must use
+<code>CudnnCompatibleLSTMCell</code> instead.</li>
+</ul>
+
+
+<h2>Properties</h2>
+
+<h3 id="graph"><code>graph</code></h3>
+
+
+<p>DEPRECATED FUNCTION</p>
+
+<p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
+Instructions for updating:
+Stop using this property because tf.layers layers no longer track their graph.</p>
+
+<h3 id="output_size"><code>output_size</code></h3>
+
+
+<p>Integer or TensorShape: size of outputs produced by this cell.</p>
+
+<h3 id="scope_name"><code>scope_name</code></h3>
+
+
+
+
+<h3 id="state_size"><code>state_size</code></h3>
+
+
+<p>size(s) of state(s) used by this cell.</p>
+
+<p>It can be represented by an Integer, a TensorShape or a tuple of Integers
+or TensorShapes.</p>
+
+<h2>Methods</h2>
+
+<h3 id="get_initial_state"><code>get_initial_state</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/rnn_cell_impl.py">View source</a></p>
+
+<p><code>python
+get_initial_state(
+    inputs=None,
+    batch_size=None,
+    dtype=None
+)
+</code></p>
+
+<h3 id="zero_state"><code>zero_state</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/rnn_cell_impl.py">View source</a></p>
+
+<p><code>python
+zero_state(
+    batch_size,
+    dtype
+)
+</code></p>
+
+<p>Return zero-filled state tensor(s).</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>batch_size</code></b>: int, float, or unit Tensor representing the batch size.</li>
+<li><b><code>dtype</code></b>: the data type to use for the state.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>If <code>state_size</code> is an int or TensorShape, then the return value is a
+<code>N-D</code> tensor of shape <code>[batch_size, state_size]</code> filled with zeros.</p>
+
+<p>If <code>state_size</code> is a nested list or tuple, then the return value is
+a nested list or tuple (of the same structure) of <code>2-D</code> tensors with
+the shapes <code>[batch_size, s]</code> for each s in <code>state_size</code>.</p>

@@ -1,0 +1,65 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.math.sin" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.math.sin</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p>Defined in generated file: <code>python/ops/gen_math_ops.py</code></p>
+
+<!-- Start diff -->
+
+
+<p>Computes sine of x element-wise.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.math.sin</code></li>
+<li><code>tf.compat.v1.sin</code></li>
+<li><code>tf.compat.v2.math.sin</code></li>
+<li><code>tf.compat.v2.sin</code></li>
+<li><code>tf.sin</code></li>
+</ul>
+
+
+<p><code>python
+tf.math.sin(
+    x,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>  Given an input tensor, this function computes sine of every
+  element in the tensor. Input range is <code>(-inf, inf)</code> and
+  output range is <code>[-1,1]</code>.</p>
+
+<p>  <code>python
+  x = tf.constant([-float("inf"), -9, -0.5, 1, 1.2, 200, 10, float("inf")])
+  tf.math.sin(x) ==&gt; [nan -0.4121185 -0.47942555 0.84147096 0.9320391 -0.87329733 -0.54402107 nan]
+ </code></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>bfloat16</code>, <code>half</code>, <code>float32</code>, <code>float64</code>, <code>complex64</code>, <code>complex128</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code>. Has the same type as <code>x</code>.</p>

@@ -1,0 +1,82 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.test.compute_gradient" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.test.compute_gradient</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/gradient_checker_v2.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Computes the theoretical and numeric Jacobian of <code>f</code>.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v2.test.compute_gradient</code></li>
+</ul>
+
+
+<p><code>python
+tf.test.compute_gradient(
+    f,
+    x,
+    delta=0.001
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>With y = f(x), computes the theoretical and numeric Jacobian dy/dx.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>f</code></b>: the function.</li>
+<li><b><code>x</code></b>: a list arguments for the function</li>
+<li><b><code>delta</code></b>: (optional) perturbation used to compute numeric Jacobian.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A pair of lists, where the first is a list of 2-d numpy arrays representing
+the theoretical Jacobians for each argument, and the second list is the
+numerical ones. Each 2-d array has &ldquo;x_size&rdquo; rows
+and &ldquo;y_size&rdquo; columns where &ldquo;x_size&rdquo; is the number of elements in the
+corresponding argument and &ldquo;y_size&rdquo; is the number of elements in f(x).</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If result is empty but the gradient is nonzero.</li>
+<li><b><code>ValueError</code></b>: If x is not list, but any other type.</li>
+</ul>
+
+
+<h4>Example:</h4>
+
+<p>```python
+@tf.function
+def test_func(x):
+  return x*x</p>
+
+<p>theoretical, numerical = tf.test.compute_gradient(test_func, [1.0])
+theoretical, numerical</p>
+
+<h1>((array([[2.]], dtype=float32),), (array([[2.000004]], dtype=float32),))</h1>
+
+<p>```</p>

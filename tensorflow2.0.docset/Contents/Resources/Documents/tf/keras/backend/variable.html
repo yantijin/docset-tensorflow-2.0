@@ -1,0 +1,74 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.backend.variable" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.keras.backend.variable</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/backend.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Instantiates a variable and returns it.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.keras.backend.variable</code></li>
+<li><code>tf.compat.v2.keras.backend.variable</code></li>
+</ul>
+
+
+<p><code>python
+tf.keras.backend.variable(
+    value,
+    dtype=None,
+    name=None,
+    constraint=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>value</code></b>: Numpy array, initial value of the tensor.</li>
+<li><b><code>dtype</code></b>: Tensor type.</li>
+<li><b><code>name</code></b>: Optional name string for the tensor.</li>
+<li><b><code>constraint</code></b>: Optional projection function to be
+  applied to the variable after an optimizer update.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A variable instance (with Keras metadata included).</p>
+
+<h4>Examples:</h4>
+
+<p><code>python
+    &gt;&gt;&gt; import numpy as np
+    &gt;&gt;&gt; from keras import backend as K
+    &gt;&gt;&gt; val = np.array([[1, 2], [3, 4]])
+    &gt;&gt;&gt; kvar = K.variable(value=val, dtype='float64', name='example_var')
+    &gt;&gt;&gt; K.dtype(kvar)
+    'float64'
+    &gt;&gt;&gt; print(kvar)
+    example_var
+    &gt;&gt;&gt; kvar.eval()
+    array([[ 1.,  2.],
+           [ 3.,  4.]])
+</code></p>

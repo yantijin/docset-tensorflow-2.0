@@ -1,0 +1,67 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.layers.flatten" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.layers.flatten</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/layers/core.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Flattens an input tensor while preserving the batch axis (axis 0). (deprecated)</p>
+
+<p><code>python
+tf.compat.v1.layers.flatten(
+    inputs,
+    name=None,
+    data_format='channels_last'
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
+Instructions for updating:
+Use keras.layers.flatten instead.</p>
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>inputs</code></b>: Tensor input.</li>
+<li><b><code>name</code></b>: The name of the layer (string).</li>
+<li><b><code>data_format</code></b>: A string, one of <code>channels_last</code> (default) or <code>channels_first</code>.
+The ordering of the dimensions in the inputs.
+<code>channels_last</code> corresponds to inputs with shape
+<code>(batch, height, width, channels)</code> while <code>channels_first</code> corresponds to
+inputs with shape <code>(batch, channels, height, width)</code>.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>Reshaped tensor.</p>
+
+<h4>Examples:</h4>
+
+<p><code>``
+  x = tf.compat.v1.placeholder(shape=(None, 4, 4), dtype='float32')
+  y = flatten(x)
+  # now</code>y<code>has shape</code>(None, 16)`</p>
+
+<p>  x = tf.compat.v1.placeholder(shape=(None, 3, None), dtype=&lsquo;float32&rsquo;)
+  y = flatten(x)
+  # now <code>y</code> has shape <code>(None, None)</code>
+```</p>

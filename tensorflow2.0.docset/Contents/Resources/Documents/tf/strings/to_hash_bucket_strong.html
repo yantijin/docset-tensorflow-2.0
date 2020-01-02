@@ -1,0 +1,74 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.strings.to_hash_bucket_strong" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.strings.to_hash_bucket_strong</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p>Defined in generated file: <code>python/ops/gen_string_ops.py</code></p>
+
+<!-- Start diff -->
+
+
+<p>Converts each string in the input Tensor to its hash mod by a number of buckets.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.string_to_hash_bucket_strong</code></li>
+<li><code>tf.compat.v1.strings.to_hash_bucket_strong</code></li>
+<li><code>tf.compat.v2.strings.to_hash_bucket_strong</code></li>
+</ul>
+
+
+<p><code>python
+tf.strings.to_hash_bucket_strong(
+    input,
+    num_buckets,
+    key,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>The hash function is deterministic on the content of the string within the
+process. The hash function is a keyed hash function, where attribute <code>key</code>
+defines the key of the hash function. <code>key</code> is an array of 2 elements.</p>
+
+<p>A strong hash is important when inputs may be malicious, e.g. URLs with
+additional components. Adversaries could try to make their inputs hash to the
+same bucket for a denial-of-service attack or to skew the results. A strong
+hash can be used to make it difficult to find inputs with a skewed hash value
+distribution over buckets. This requires that the hash function is
+seeded by a high-entropy (random) &ldquo;key&rdquo; unknown to the adversary.</p>
+
+<p>The additional robustness comes at a cost of roughly 4x higher compute
+time than <code>tf.string_to_hash_bucket_fast</code>.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>input</code></b>: A <code>Tensor</code> of type <code>string</code>. The strings to assign a hash bucket.</li>
+<li><b><code>num_buckets</code></b>: An <code>int</code> that is <code>&gt;= 1</code>. The number of buckets.</li>
+<li><b><code>key</code></b>: A list of <code>ints</code>.
+The key used to seed the hash function, passed as a list of two uint64
+elements.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> of type <code>int64</code>.</p>

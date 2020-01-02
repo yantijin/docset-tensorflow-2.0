@@ -1,0 +1,62 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.nn.normalize_moments" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.nn.normalize_moments</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/nn_impl.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Calculate the mean and variance of based on the sufficient statistics.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.nn.normalize_moments</code></li>
+<li><code>tf.compat.v2.nn.normalize_moments</code></li>
+</ul>
+
+
+<p><code>python
+tf.nn.normalize_moments(
+    counts,
+    mean_ss,
+    variance_ss,
+    shift,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>counts</code></b>: A <code>Tensor</code> containing the total count of the data (one value).</li>
+<li><b><code>mean_ss</code></b>: A <code>Tensor</code> containing the mean sufficient statistics: the (possibly
+shifted) sum of the elements to average over.</li>
+<li><b><code>variance_ss</code></b>: A <code>Tensor</code> containing the variance sufficient statistics: the
+(possibly shifted) squared sum of the data to compute the variance over.</li>
+<li><b><code>shift</code></b>: A <code>Tensor</code> containing the value by which the data is shifted for
+numerical stability, or <code>None</code> if no shift was performed.</li>
+<li><b><code>name</code></b>: Name used to scope the operations that compute the moments.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>Two <code>Tensor</code> objects: <code>mean</code> and <code>variance</code>.</p>

@@ -1,0 +1,69 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.summary.experimental.write_raw_pb" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.summary.experimental.write_raw_pb</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/summary_ops_v2.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Writes a summary using raw <a href="../../../tf/compat/v1/Summary.html"><code>tf.compat.v1.Summary</code></a> protocol buffers.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v2.summary.experimental.write_raw_pb</code></li>
+</ul>
+
+
+<p><code>python
+tf.summary.experimental.write_raw_pb(
+    tensor,
+    step=None,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Experimental: this exists to support the usage of V1-style manual summary
+writing (via the construction of a <a href="../../../tf/compat/v1/Summary.html"><code>tf.compat.v1.Summary</code></a> protocol buffer)
+with the V2 summary writing API.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>tensor</code></b>: the string Tensor holding one or more serialized <code>Summary</code> protobufs</li>
+<li><b><code>step</code></b>: Explicit <code>int64</code>-castable monotonic step value for this summary. If
+omitted, this defaults to <a href="../../../tf/summary/experimental/get_step.html"><code>tf.summary.experimental.get_step()</code></a>, which must
+not be None.</li>
+<li><b><code>name</code></b>: Optional string name for this op.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>True on success, or false if no summary was written because no default
+summary writer was available.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: if a default writer exists, but no step was provided and
+<a href="../../../tf/summary/experimental/get_step.html"><code>tf.summary.experimental.get_step()</code></a> is None.</li>
+</ul>
+

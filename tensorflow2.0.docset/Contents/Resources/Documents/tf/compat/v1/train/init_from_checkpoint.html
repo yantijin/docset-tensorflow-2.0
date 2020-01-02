@@ -1,0 +1,131 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.train.init_from_checkpoint" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.train.init_from_checkpoint</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/checkpoint_utils.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Replaces <a href="../../../../tf/Variable.html"><code>tf.Variable</code></a> initializers so they load from a checkpoint file.</p>
+
+<p><code>python
+tf.compat.v1.train.init_from_checkpoint(
+    ckpt_dir_or_file,
+    assignment_map
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Values are not loaded immediately, but when the initializer is run
+(typically by running a <a href="../../../../tf/compat/v1/global_variables_initializer.html"><code>tf.compat.v1.global_variables_initializer</code></a> op).</p>
+
+<p>Note: This overrides default initialization ops of specified variables and
+redefines dtype.</p>
+
+<p>Assignment map supports following syntax:</p>
+
+<ul>
+<li><code>'checkpoint_scope_name/': 'scope_name/'</code> - will load all variables in
+current <code>scope_name</code> from <code>checkpoint_scope_name</code> with matching tensor
+names.</li>
+<li><code>'checkpoint_scope_name/some_other_variable': 'scope_name/variable_name'</code> -
+will initialize <code>scope_name/variable_name</code> variable
+from <code>checkpoint_scope_name/some_other_variable</code>.</li>
+<li><code>'scope_variable_name': variable</code> - will initialize given <a href="../../../../tf/Variable.html"><code>tf.Variable</code></a>
+object with tensor &lsquo;scope_variable_name&rsquo; from the checkpoint.</li>
+<li><code>'scope_variable_name': list(variable)</code> - will initialize list of
+partitioned variables with tensor &lsquo;scope_variable_name&rsquo; from the checkpoint.</li>
+<li><code>'/': 'scope_name/'</code> - will load all variables in current <code>scope_name</code> from
+checkpoint&rsquo;s root (e.g. no scope).</li>
+</ul>
+
+
+<p>Supports loading into partitioned variables, which are represented as
+<code>'&lt;variable&gt;/part_&lt;part #&gt;'</code>.</p>
+
+<h4>Example:</h4>
+
+<p>```python</p>
+
+<h1>Say, &lsquo;/tmp/model.ckpt&rsquo; has the following tensors:</h1>
+
+<h1>&ndash; name=&lsquo;old_scope_1/var1&rsquo;, shape=[20, 2]</h1>
+
+<h1>&ndash; name=&lsquo;old_scope_1/var2&rsquo;, shape=[50, 4]</h1>
+
+<h1>&ndash; name=&lsquo;old_scope_2/var3&rsquo;, shape=[100, 100]</h1>
+
+<h1>Create new model&rsquo;s variables</h1>
+
+<p>with tf.compat.v1.variable_scope(&lsquo;new_scope_1&rsquo;):
+  var1 = tf.compat.v1.get_variable(&lsquo;var1&rsquo;, shape=[20, 2],
+                         initializer=tf.compat.v1.zeros_initializer())
+with tf.compat.v1.variable_scope(&lsquo;new_scope_2&rsquo;):
+  var2 = tf.compat.v1.get_variable(&lsquo;var2&rsquo;, shape=[50, 4],
+                         initializer=tf.compat.v1.zeros_initializer())
+  # Partition into 5 variables along the first axis.
+  var3 = tf.compat.v1.get_variable(name=&lsquo;var3&rsquo;, shape=[100, 100],
+                         initializer=tf.compat.v1.zeros_initializer(),
+                         partitioner=lambda shape, dtype: [5, 1])</p>
+
+<h1>Initialize all variables in <code>new_scope_1</code> from <code>old_scope_1</code>.</h1>
+
+<p>init_from_checkpoint(&lsquo;/tmp/model.ckpt&rsquo;, {&lsquo;old_scope_1/&rsquo;: &lsquo;new_scope_1&rsquo;})</p>
+
+<h1>Use names to specify which variables to initialize from checkpoint.</h1>
+
+<p>init_from_checkpoint(&lsquo;/tmp/model.ckpt&rsquo;,
+                     {&lsquo;old_scope_1/var1&rsquo;: &lsquo;new_scope_1/var1&rsquo;,
+                      &lsquo;old_scope_1/var2&rsquo;: &lsquo;new_scope_2/var2&rsquo;})</p>
+
+<h1>Or use tf.Variable objects to identify what to initialize.</h1>
+
+<p>init_from_checkpoint(&lsquo;/tmp/model.ckpt&rsquo;,
+                     {&lsquo;old_scope_1/var1&rsquo;: var1,
+                      &lsquo;old_scope_1/var2&rsquo;: var2})</p>
+
+<h1>Initialize partitioned variables using variable&rsquo;s name</h1>
+
+<p>init_from_checkpoint(&lsquo;/tmp/model.ckpt&rsquo;,
+                     {&lsquo;old_scope_2/var3&rsquo;: &lsquo;new_scope_2/var3&rsquo;})</p>
+
+<h1>Or specify the list of tf.Variable objects.</h1>
+
+<p>init_from_checkpoint(&lsquo;/tmp/model.ckpt&rsquo;,
+                     {&lsquo;old_scope_2/var3&rsquo;: var3._get_variable_list()})</p>
+
+<p>```</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>ckpt_dir_or_file</code></b>: Directory with checkpoints file or path to checkpoint.</li>
+<li><b><code>assignment_map</code></b>: Dict, where keys are names of the variables in the
+checkpoint and values are current variables or names of current variables
+(in default graph).</li>
+</ul>
+
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If missing variables in current graph, or if missing
+checkpoints or tensors in checkpoints.</li>
+</ul>
+

@@ -1,0 +1,48 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.tpu.outside_compilation" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.tpu.outside_compilation</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/tpu/tpu.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Builds part of a computation outside any current TPU replicate scope.</p>
+
+<p><code>python
+tf.compat.v1.tpu.outside_compilation(
+    computation,
+    *args,
+    **kwargs
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>computation</code></b>: A Python function that builds the computation to
+place on the host.</li>
+<li><b><code>*args</code></b>: the positional arguments for the computation.</li>
+<li><b><code>**kwargs</code></b>: the keyword arguments for the computation.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>The Tensors returned by computation.</p>

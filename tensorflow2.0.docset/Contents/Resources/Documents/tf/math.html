@@ -1,0 +1,323 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.math" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>Module: tf.math</h1>
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p>Math Operations.</p>
+
+<p>Note: Functions taking <code>Tensor</code> arguments can also take anything accepted by
+<a href="../tf/convert_to_tensor.html"><code>tf.convert_to_tensor</code></a>.</p>
+
+<p>Note: Elementwise binary operations in TensorFlow follow <a href="http://docs.scipy.org/doc/numpy/user/basics.broadcasting.html">numpy-style
+broadcasting</a>.</p>
+
+<p>TensorFlow provides a variety of math functions including:</p>
+
+<ul>
+<li>Basic arithmetic operators and trigonometric functions.</li>
+<li>Special math functions (like: <a href="../tf/math/igamma.html"><code>tf.math.igamma</code></a> and <a href="../tf/math/zeta.html"><code>tf.math.zeta</code></a>)</li>
+<li>Complex number functions (like: <a href="../tf/math/imag.html"><code>tf.math.imag</code></a> and <a href="../tf/math/angle.html"><code>tf.math.angle</code></a>)</li>
+<li>Reductions and scans (like: <a href="../tf/math/reduce_mean.html"><code>tf.math.reduce_mean</code></a> and <a href="../tf/math/cumsum.html"><code>tf.math.cumsum</code></a>)</li>
+<li>Segment functions (like: <a href="../tf/math/segment_sum.html"><code>tf.math.segment_sum</code></a>)</li>
+</ul>
+
+
+<p>See: <a href="../tf/linalg.html"><code>tf.linalg</code></a> for matrix and tensor functions.</p>
+
+<p><a id=Segmentation></a></p>
+
+<h2>About Segmentation</h2>
+
+<p>TensorFlow provides several operations that you can use to perform common
+math computations on tensor segments.
+Here a segmentation is a partitioning of a tensor along
+the first dimension, i.e. it  defines a mapping from the first dimension onto
+<code>segment_ids</code>. The <code>segment_ids</code> tensor should be the size of
+the first dimension, <code>d0</code>, with consecutive IDs in the range <code>0</code> to <code>k</code>,
+where <code>k&lt;d0</code>.
+In particular, a segmentation of a matrix tensor is a mapping of rows to
+segments.</p>
+
+<h4>For example:</h4>
+
+<p>```python
+c = tf.constant([[1,2,3,4], [-1,-2,-3,-4], [5,6,7,8]])
+tf.math.segment_sum(c, tf.constant([0, 0, 1]))</p>
+
+<h1>==>  [[0 0 0 0]</h1>
+
+<h1>[5 6 7 8]]</h1>
+
+<p>```</p>
+
+<p>The standard <code>segment_*</code> functions assert that the segment indices are sorted.
+If you have unsorted indices use the equivalent <code>unsorted_segment_</code> function.
+Thses functions take an additional argument <code>num_segments</code> so that the output
+tensor can be efficiently allocated.</p>
+
+<p>``` python
+c = tf.constant([[1,2,3,4], [-1,-2,-3,-4], [5,6,7,8]])
+tf.math.unsorted_segment_sum(c, tf.constant([0, 1, 0]), num_segments=2)</p>
+
+<h1>==> [[ 6,  8, 10, 12],</h1>
+
+<h1>[-1, -2, -3, -4]]</h1>
+
+<p>```</p>
+
+<h2>Functions</h2>
+
+<p><a href="../tf/math/abs.html"><code>abs(...)</code></a>: Computes the absolute value of a tensor.</p>
+
+<p><a href="../tf/math/accumulate_n.html"><code>accumulate_n(...)</code></a>: Returns the element-wise sum of a list of tensors.</p>
+
+<p><a href="../tf/math/acos.html"><code>acos(...)</code></a>: Computes acos of x element-wise.</p>
+
+<p><a href="../tf/math/acosh.html"><code>acosh(...)</code></a>: Computes inverse hyperbolic cosine of x element-wise.</p>
+
+<p><a href="../tf/math/add.html"><code>add(...)</code></a>: Returns x + y element-wise.</p>
+
+<p><a href="../tf/math/add_n.html"><code>add_n(...)</code></a>: Adds all input tensors element-wise.</p>
+
+<p><a href="../tf/math/angle.html"><code>angle(...)</code></a>: Returns the element-wise argument of a complex (or real) tensor.</p>
+
+<p><a href="../tf/math/argmax.html"><code>argmax(...)</code></a>: Returns the index with the largest value across axes of a tensor.</p>
+
+<p><a href="../tf/math/argmin.html"><code>argmin(...)</code></a>: Returns the index with the smallest value across axes of a tensor.</p>
+
+<p><a href="../tf/math/asin.html"><code>asin(...)</code></a>: Computes the trignometric inverse sine of x element-wise.</p>
+
+<p><a href="../tf/math/asinh.html"><code>asinh(...)</code></a>: Computes inverse hyperbolic sine of x element-wise.</p>
+
+<p><a href="../tf/math/atan.html"><code>atan(...)</code></a>: Computes the trignometric inverse tangent of x element-wise.</p>
+
+<p><a href="../tf/math/atan2.html"><code>atan2(...)</code></a>: Computes arctangent of <code>y/x</code> element-wise, respecting signs of the arguments.</p>
+
+<p><a href="../tf/math/atanh.html"><code>atanh(...)</code></a>: Computes inverse hyperbolic tangent of x element-wise.</p>
+
+<p><a href="../tf/math/bessel_i0.html"><code>bessel_i0(...)</code></a>: Computes the Bessel i0 function of <code>x</code> element-wise.</p>
+
+<p><a href="../tf/math/bessel_i0e.html"><code>bessel_i0e(...)</code></a>: Computes the Bessel i0e function of <code>x</code> element-wise.</p>
+
+<p><a href="../tf/math/bessel_i1.html"><code>bessel_i1(...)</code></a>: Computes the Bessel i1 function of <code>x</code> element-wise.</p>
+
+<p><a href="../tf/math/bessel_i1e.html"><code>bessel_i1e(...)</code></a>: Computes the Bessel i1e function of <code>x</code> element-wise.</p>
+
+<p><a href="../tf/math/betainc.html"><code>betainc(...)</code></a>: Compute the regularized incomplete beta integral \(I_x(a, b)\).</p>
+
+<p><a href="../tf/math/bincount.html"><code>bincount(...)</code></a>: Counts the number of occurrences of each value in an integer array.</p>
+
+<p><a href="../tf/math/ceil.html"><code>ceil(...)</code></a>: Returns element-wise smallest integer not less than x.</p>
+
+<p><a href="../tf/math/confusion_matrix.html"><code>confusion_matrix(...)</code></a>: Computes the confusion matrix from predictions and labels.</p>
+
+<p><a href="../tf/math/conj.html"><code>conj(...)</code></a>: Returns the complex conjugate of a complex number.</p>
+
+<p><a href="../tf/math/cos.html"><code>cos(...)</code></a>: Computes cos of x element-wise.</p>
+
+<p><a href="../tf/math/cosh.html"><code>cosh(...)</code></a>: Computes hyperbolic cosine of x element-wise.</p>
+
+<p><a href="../tf/math/count_nonzero.html"><code>count_nonzero(...)</code></a>: Computes number of nonzero elements across dimensions of a tensor.</p>
+
+<p><a href="../tf/math/cumprod.html"><code>cumprod(...)</code></a>: Compute the cumulative product of the tensor <code>x</code> along <code>axis</code>.</p>
+
+<p><a href="../tf/math/cumsum.html"><code>cumsum(...)</code></a>: Compute the cumulative sum of the tensor <code>x</code> along <code>axis</code>.</p>
+
+<p><a href="../tf/math/cumulative_logsumexp.html"><code>cumulative_logsumexp(...)</code></a>: Compute the cumulative log-sum-exp of the tensor <code>x</code> along <code>axis</code>.</p>
+
+<p><a href="../tf/math/digamma.html"><code>digamma(...)</code></a>: Computes Psi, the derivative of Lgamma (the log of the absolute value of</p>
+
+<p><a href="../tf/math/divide.html"><code>divide(...)</code></a>: Computes Python style division of <code>x</code> by <code>y</code>.</p>
+
+<p><a href="../tf/math/divide_no_nan.html"><code>divide_no_nan(...)</code></a>: Computes an unsafe divide which returns 0 if the y is zero.</p>
+
+<p><a href="../tf/math/equal.html"><code>equal(...)</code></a>: Returns the truth value of (x == y) element-wise.</p>
+
+<p><a href="../tf/math/erf.html"><code>erf(...)</code></a>: Computes the Gauss error function of <code>x</code> element-wise.</p>
+
+<p><a href="../tf/math/erfc.html"><code>erfc(...)</code></a>: Computes the complementary error function of <code>x</code> element-wise.</p>
+
+<p><a href="../tf/math/exp.html"><code>exp(...)</code></a>: Computes exponential of x element-wise.  \(y = e<sup>x</sup>\).</p>
+
+<p><a href="../tf/math/expm1.html"><code>expm1(...)</code></a>: Computes <code>exp(x) - 1</code> element-wise.</p>
+
+<p><a href="../tf/math/floor.html"><code>floor(...)</code></a>: Returns element-wise largest integer not greater than x.</p>
+
+<p><a href="../tf/math/floordiv.html"><code>floordiv(...)</code></a>: Divides <code>x / y</code> elementwise, rounding toward the most negative integer.</p>
+
+<p><a href="../tf/math/floormod.html"><code>floormod(...)</code></a>: Returns element-wise remainder of division. When <code>x &lt; 0</code> xor <code>y &lt; 0</code> is</p>
+
+<p><a href="../tf/math/greater.html"><code>greater(...)</code></a>: Returns the truth value of (x > y) element-wise.</p>
+
+<p><a href="../tf/math/greater_equal.html"><code>greater_equal(...)</code></a>: Returns the truth value of (x >= y) element-wise.</p>
+
+<p><a href="../tf/math/igamma.html"><code>igamma(...)</code></a>: Compute the lower regularized incomplete Gamma function <code>P(a, x)</code>.</p>
+
+<p><a href="../tf/math/igammac.html"><code>igammac(...)</code></a>: Compute the upper regularized incomplete Gamma function <code>Q(a, x)</code>.</p>
+
+<p><a href="../tf/math/imag.html"><code>imag(...)</code></a>: Returns the imaginary part of a complex (or real) tensor.</p>
+
+<p><a href="../tf/math/in_top_k.html"><code>in_top_k(...)</code></a>: Says whether the targets are in the top <code>K</code> predictions.</p>
+
+<p><a href="../tf/math/invert_permutation.html"><code>invert_permutation(...)</code></a>: Computes the inverse permutation of a tensor.</p>
+
+<p><a href="../tf/math/is_finite.html"><code>is_finite(...)</code></a>: Returns which elements of x are finite.</p>
+
+<p><a href="../tf/math/is_inf.html"><code>is_inf(...)</code></a>: Returns which elements of x are Inf.</p>
+
+<p><a href="../tf/math/is_nan.html"><code>is_nan(...)</code></a>: Returns which elements of x are NaN.</p>
+
+<p><a href="../tf/math/is_non_decreasing.html"><code>is_non_decreasing(...)</code></a>: Returns <code>True</code> if <code>x</code> is non-decreasing.</p>
+
+<p><a href="../tf/math/is_strictly_increasing.html"><code>is_strictly_increasing(...)</code></a>: Returns <code>True</code> if <code>x</code> is strictly increasing.</p>
+
+<p><a href="../tf/math/l2_normalize.html"><code>l2_normalize(...)</code></a>: Normalizes along dimension <code>axis</code> using an L2 norm.</p>
+
+<p><a href="../tf/math/lbeta.html"><code>lbeta(...)</code></a>: Computes \(ln(|Beta(x)|)\), reducing along the last dimension.</p>
+
+<p><a href="../tf/math/less.html"><code>less(...)</code></a>: Returns the truth value of (x &lt; y) element-wise.</p>
+
+<p><a href="../tf/math/less_equal.html"><code>less_equal(...)</code></a>: Returns the truth value of (x &lt;= y) element-wise.</p>
+
+<p><a href="../tf/math/lgamma.html"><code>lgamma(...)</code></a>: Computes the log of the absolute value of <code>Gamma(x)</code> element-wise.</p>
+
+<p><a href="../tf/math/log.html"><code>log(...)</code></a>: Computes natural logarithm of x element-wise.</p>
+
+<p><a href="../tf/math/log1p.html"><code>log1p(...)</code></a>: Computes natural logarithm of (1 + x) element-wise.</p>
+
+<p><a href="../tf/math/log_sigmoid.html"><code>log_sigmoid(...)</code></a>: Computes log sigmoid of <code>x</code> element-wise.</p>
+
+<p><a href="../tf/nn/log_softmax.html"><code>log_softmax(...)</code></a>: Computes log softmax activations.</p>
+
+<p><a href="../tf/math/logical_and.html"><code>logical_and(...)</code></a>: Returns the truth value of x AND y element-wise.</p>
+
+<p><a href="../tf/math/logical_not.html"><code>logical_not(...)</code></a>: Returns the truth value of NOT x element-wise.</p>
+
+<p><a href="../tf/math/logical_or.html"><code>logical_or(...)</code></a>: Returns the truth value of x OR y element-wise.</p>
+
+<p><a href="../tf/math/logical_xor.html"><code>logical_xor(...)</code></a>: Logical XOR function.</p>
+
+<p><a href="../tf/math/maximum.html"><code>maximum(...)</code></a>: Returns the max of x and y (i.e. x > y ? x : y) element-wise.</p>
+
+<p><a href="../tf/math/minimum.html"><code>minimum(...)</code></a>: Returns the min of x and y (i.e. x &lt; y ? x : y) element-wise.</p>
+
+<p><a href="../tf/math/floormod.html"><code>mod(...)</code></a>: Returns element-wise remainder of division. When <code>x &lt; 0</code> xor <code>y &lt; 0</code> is</p>
+
+<p><a href="../tf/math/multiply.html"><code>multiply(...)</code></a>: Returns x * y element-wise.</p>
+
+<p><a href="../tf/math/multiply_no_nan.html"><code>multiply_no_nan(...)</code></a>: Computes the product of x and y and returns 0 if the y is zero, even if x is NaN or infinite.</p>
+
+<p><a href="../tf/math/negative.html"><code>negative(...)</code></a>: Computes numerical negative value element-wise.</p>
+
+<p><a href="../tf/math/nextafter.html"><code>nextafter(...)</code></a>: Returns the next representable value of <code>x1</code> in the direction of <code>x2</code>, element-wise.</p>
+
+<p><a href="../tf/math/not_equal.html"><code>not_equal(...)</code></a>: Returns the truth value of (x != y) element-wise.</p>
+
+<p><a href="../tf/math/polygamma.html"><code>polygamma(...)</code></a>: Compute the polygamma function \(\psi^{(n)}(x)\).</p>
+
+<p><a href="../tf/math/polyval.html"><code>polyval(...)</code></a>: Computes the elementwise value of a polynomial.</p>
+
+<p><a href="../tf/math/pow.html"><code>pow(...)</code></a>: Computes the power of one value to another.</p>
+
+<p><a href="../tf/math/real.html"><code>real(...)</code></a>: Returns the real part of a complex (or real) tensor.</p>
+
+<p><a href="../tf/math/reciprocal.html"><code>reciprocal(...)</code></a>: Computes the reciprocal of x element-wise.</p>
+
+<p><a href="../tf/math/reciprocal_no_nan.html"><code>reciprocal_no_nan(...)</code></a>: Performs a safe reciprocal operation, element wise.</p>
+
+<p><a href="../tf/reduce_all.html"><code>reduce_all(...)</code></a>: Computes the &ldquo;logical and&rdquo; of elements across dimensions of a tensor.</p>
+
+<p><a href="../tf/math/reduce_any.html"><code>reduce_any(...)</code></a>: Computes the &ldquo;logical or&rdquo; of elements across dimensions of a tensor.</p>
+
+<p><a href="../tf/math/reduce_euclidean_norm.html"><code>reduce_euclidean_norm(...)</code></a>: Computes the Euclidean norm of elements across dimensions of a tensor.</p>
+
+<p><a href="../tf/math/reduce_logsumexp.html"><code>reduce_logsumexp(...)</code></a>: Computes log(sum(exp(elements across dimensions of a tensor))).</p>
+
+<p><a href="../tf/math/reduce_max.html"><code>reduce_max(...)</code></a>: Computes the maximum of elements across dimensions of a tensor.</p>
+
+<p><a href="../tf/math/reduce_mean.html"><code>reduce_mean(...)</code></a>: Computes the mean of elements across dimensions of a tensor.</p>
+
+<p><a href="../tf/math/reduce_min.html"><code>reduce_min(...)</code></a>: Computes the minimum of elements across dimensions of a tensor.</p>
+
+<p><a href="../tf/math/reduce_prod.html"><code>reduce_prod(...)</code></a>: Computes the product of elements across dimensions of a tensor.</p>
+
+<p><a href="../tf/math/reduce_std.html"><code>reduce_std(...)</code></a>: Computes the standard deviation of elements across dimensions of a tensor.</p>
+
+<p><a href="../tf/math/reduce_sum.html"><code>reduce_sum(...)</code></a>: Computes the sum of elements across dimensions of a tensor.</p>
+
+<p><a href="../tf/math/reduce_variance.html"><code>reduce_variance(...)</code></a>: Computes the variance of elements across dimensions of a tensor.</p>
+
+<p><a href="../tf/math/rint.html"><code>rint(...)</code></a>: Returns element-wise integer closest to x.</p>
+
+<p><a href="../tf/math/round.html"><code>round(...)</code></a>: Rounds the values of a tensor to the nearest integer, element-wise.</p>
+
+<p><a href="../tf/math/rsqrt.html"><code>rsqrt(...)</code></a>: Computes reciprocal of square root of x element-wise.</p>
+
+<p><a href="../tf/math/scalar_mul.html"><code>scalar_mul(...)</code></a>: Multiplies a scalar times a <code>Tensor</code> or <code>IndexedSlices</code> object.</p>
+
+<p><a href="../tf/math/segment_max.html"><code>segment_max(...)</code></a>: Computes the maximum along segments of a tensor.</p>
+
+<p><a href="../tf/math/segment_mean.html"><code>segment_mean(...)</code></a>: Computes the mean along segments of a tensor.</p>
+
+<p><a href="../tf/math/segment_min.html"><code>segment_min(...)</code></a>: Computes the minimum along segments of a tensor.</p>
+
+<p><a href="../tf/math/segment_prod.html"><code>segment_prod(...)</code></a>: Computes the product along segments of a tensor.</p>
+
+<p><a href="../tf/math/segment_sum.html"><code>segment_sum(...)</code></a>: Computes the sum along segments of a tensor.</p>
+
+<p><a href="../tf/math/sigmoid.html"><code>sigmoid(...)</code></a>: Computes sigmoid of <code>x</code> element-wise.</p>
+
+<p><a href="../tf/math/sign.html"><code>sign(...)</code></a>: Returns an element-wise indication of the sign of a number.</p>
+
+<p><a href="../tf/math/sin.html"><code>sin(...)</code></a>: Computes sine of x element-wise.</p>
+
+<p><a href="../tf/math/sinh.html"><code>sinh(...)</code></a>: Computes hyperbolic sine of x element-wise.</p>
+
+<p><a href="../tf/nn/softmax.html"><code>softmax(...)</code></a>: Computes softmax activations.</p>
+
+<p><a href="../tf/math/softplus.html"><code>softplus(...)</code></a>: Computes softplus: <code>log(exp(features) + 1)</code>.</p>
+
+<p><a href="../tf/nn/softsign.html"><code>softsign(...)</code></a>: Computes softsign: <code>features / (abs(features) + 1)</code>.</p>
+
+<p><a href="../tf/math/sqrt.html"><code>sqrt(...)</code></a>: Computes square root of x element-wise.</p>
+
+<p><a href="../tf/math/square.html"><code>square(...)</code></a>: Computes square of x element-wise.</p>
+
+<p><a href="../tf/math/squared_difference.html"><code>squared_difference(...)</code></a>: Returns (x - y)(x - y) element-wise.</p>
+
+<p><a href="../tf/math/subtract.html"><code>subtract(...)</code></a>: Returns x - y element-wise.</p>
+
+<p><a href="../tf/math/tan.html"><code>tan(...)</code></a>: Computes tan of x element-wise.</p>
+
+<p><a href="../tf/math/tanh.html"><code>tanh(...)</code></a>: Computes hyperbolic tangent of <code>x</code> element-wise.</p>
+
+<p><a href="../tf/math/top_k.html"><code>top_k(...)</code></a>: Finds values and indices of the <code>k</code> largest entries for the last dimension.</p>
+
+<p><a href="../tf/math/truediv.html"><code>truediv(...)</code></a>: Divides x / y elementwise (using Python 3 division operator semantics).</p>
+
+<p><a href="../tf/math/unsorted_segment_max.html"><code>unsorted_segment_max(...)</code></a>: Computes the maximum along segments of a tensor.</p>
+
+<p><a href="../tf/math/unsorted_segment_mean.html"><code>unsorted_segment_mean(...)</code></a>: Computes the mean along segments of a tensor.</p>
+
+<p><a href="../tf/math/unsorted_segment_min.html"><code>unsorted_segment_min(...)</code></a>: Computes the minimum along segments of a tensor.</p>
+
+<p><a href="../tf/math/unsorted_segment_prod.html"><code>unsorted_segment_prod(...)</code></a>: Computes the product along segments of a tensor.</p>
+
+<p><a href="../tf/math/unsorted_segment_sqrt_n.html"><code>unsorted_segment_sqrt_n(...)</code></a>: Computes the sum along segments of a tensor divided by the sqrt(N).</p>
+
+<p><a href="../tf/math/unsorted_segment_sum.html"><code>unsorted_segment_sum(...)</code></a>: Computes the sum along segments of a tensor.</p>
+
+<p><a href="../tf/math/xdivy.html"><code>xdivy(...)</code></a>: Returns 0 if x == 0, and x / y otherwise, elementwise.</p>
+
+<p><a href="../tf/math/xlogy.html"><code>xlogy(...)</code></a>: Returns 0 if x == 0, and x * log(y) otherwise, elementwise.</p>
+
+<p><a href="../tf/math/zero_fraction.html"><code>zero_fraction(...)</code></a>: Returns the fraction of zeros in <code>value</code>.</p>
+
+<p><a href="../tf/math/zeta.html"><code>zeta(...)</code></a>: Compute the Hurwitz zeta function \(\zeta(x, q)\).</p>

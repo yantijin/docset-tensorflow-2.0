@@ -1,0 +1,66 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.backend.function" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.keras.backend.function</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/backend.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Instantiates a Keras function.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.keras.backend.function</code></li>
+<li><code>tf.compat.v2.keras.backend.function</code></li>
+</ul>
+
+
+<p><code>python
+tf.keras.backend.function(
+    inputs,
+    outputs,
+    updates=None,
+    name=None,
+    **kwargs
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>inputs</code></b>: List of placeholder tensors.</li>
+<li><b><code>outputs</code></b>: List of output tensors.</li>
+<li><b><code>updates</code></b>: List of update ops.</li>
+<li><b><code>name</code></b>: String, name of function.</li>
+<li><b><code>**kwargs</code></b>: Passed to <code>tf.Session.run</code>.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>Output values as Numpy arrays.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: if invalid kwargs are passed in or if in eager execution.</li>
+</ul>
+

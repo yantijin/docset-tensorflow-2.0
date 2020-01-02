@@ -1,0 +1,86 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.saved_model.simple_save" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.saved_model.simple_save</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/saved_model/simple_save.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Convenience function to build a SavedModel suitable for serving. (deprecated)</p>
+
+<p><code>python
+tf.compat.v1.saved_model.simple_save(
+    session,
+    export_dir,
+    inputs,
+    outputs,
+    legacy_init_op=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
+Instructions for updating:
+This function will only be available through the v1 compatibility library as tf.compat.v1.saved_model.simple_save.</p>
+
+<p>In many common cases, saving models for serving will be as simple as:</p>
+
+<pre><code>simple_save(session,
+            export_dir,
+            inputs={"x": x, "y": y},
+            outputs={"z": z})
+</code></pre>
+
+<p>Although in many cases it&rsquo;s not necessary to understand all of the many ways
+    to configure a SavedModel, this method has a few practical implications:
+  - It will be treated as a graph for inference / serving (i.e. uses the tag
+    <code>saved_model.SERVING</code>)
+  - The SavedModel will load in TensorFlow Serving and supports the
+    <a href="https://github.com/tensorflow/serving/blob/master/tensorflow_serving/apis/predict.proto">Predict
+    API</a>.
+    To use the Classify, Regress, or MultiInference APIs, please
+    use either
+    <a href="https://www.tensorflow.org/api_docs/python/tf/estimator/Estimator">tf.Estimator</a>
+    or the lower level
+    <a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/python/saved_model/README.html">SavedModel
+    APIs</a>.
+  - Some TensorFlow ops depend on information on disk or other information
+    called &ldquo;assets&rdquo;. These are generally handled automatically by adding the
+    assets to the <code>GraphKeys.ASSET_FILEPATHS</code> collection. Only assets in that
+    collection are exported; if you need more custom behavior, you&rsquo;ll need to
+    use the
+    <a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/python/saved_model/builder.py">SavedModelBuilder</a>.</p>
+
+<p>More information about SavedModel and signatures can be found here:
+https://github.com/tensorflow/tensorflow/blob/master/tensorflow/python/saved_model/README.html.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>session</code></b>: The TensorFlow session from which to save the meta graph and
+  variables.</li>
+<li><b><code>export_dir</code></b>: The path to which the SavedModel will be stored.</li>
+<li><b><code>inputs</code></b>: dict mapping string input names to tensors. These are added
+  to the SignatureDef as the inputs.</li>
+<li><b><code>outputs</code></b>:  dict mapping string output names to tensors. These are added
+  to the SignatureDef as the outputs.</li>
+<li><b><code>legacy_init_op</code></b>: Legacy support for op or group of ops to execute after the
+  restore op upon a load.</li>
+</ul>
+

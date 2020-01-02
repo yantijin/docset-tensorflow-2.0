@@ -1,0 +1,122 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.zeros_initializer" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__call__"/>
+<meta itemprop="property" content="from_config"/>
+<meta itemprop="property" content="get_config"/>
+</div>
+
+
+<h1>tf.zeros_initializer</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/init_ops_v2.py">View source</a></p>
+
+<h2>Class <code>zeros_initializer</code></h2>
+
+<!-- Start diff -->
+
+
+<p>Initializer that generates tensors initialized to 0.</p>
+
+<p>Inherits From: <a href="../tf/keras/initializers/Initializer.html"><code>Initializer</code></a></p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li>Class <code>tf.compat.v2.initializers.Zeros</code></li>
+<li>Class <code>tf.compat.v2.initializers.zeros</code></li>
+<li>Class <code>tf.compat.v2.keras.initializers.Zeros</code></li>
+<li>Class <code>tf.compat.v2.keras.initializers.zeros</code></li>
+<li>Class <code>tf.compat.v2.zeros_initializer</code></li>
+<li>Class <code>tf.initializers.Zeros</code></li>
+<li>Class <code>tf.initializers.zeros</code></li>
+<li>Class <code>tf.keras.initializers.Zeros</code></li>
+<li>Class <code>tf.keras.initializers.zeros</code></li>
+</ul>
+
+
+<!-- Placeholder for "Used in" -->
+
+
+<h2>Methods</h2>
+
+<h3 id="__call__"><code>__call__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/init_ops_v2.py">View source</a></p>
+
+<p><code>python
+__call__(
+    shape,
+    dtype=tf.dtypes.float32
+)
+</code></p>
+
+<p>Returns a tensor object initialized as specified by the initializer.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>shape</code></b>: Shape of the tensor.</li>
+<li><b><code>dtype</code></b>: Optional dtype of the tensor. If not provided will return tensor
+of <a href="../tf.html#float32"><code>tf.float32</code></a>.</li>
+</ul>
+
+
+<h3 id="from_config"><code>from_config</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/init_ops_v2.py">View source</a></p>
+
+<p><code>python
+from_config(
+    cls,
+    config
+)
+</code></p>
+
+<p>Instantiates an initializer from a configuration dictionary.</p>
+
+<h4>Example:</h4>
+
+<p><code>python
+initializer = RandomUniform(-1, 1)
+config = initializer.get_config()
+initializer = RandomUniform.from_config(config)
+</code></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>config</code></b>: A Python dictionary.
+It will typically be the output of <code>get_config</code>.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>An Initializer instance.</p>
+
+<h3 id="get_config"><code>get_config</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/init_ops_v2.py">View source</a></p>
+
+<p><code>python
+get_config()
+</code></p>
+
+<p>Returns the configuration of the initializer as a JSON-serializable dict.</p>
+
+<h4>Returns:</h4>
+
+<p>A JSON-serializable Python dict.</p>

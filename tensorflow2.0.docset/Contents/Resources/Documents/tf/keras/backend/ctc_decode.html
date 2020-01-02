@@ -1,0 +1,76 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.backend.ctc_decode" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.keras.backend.ctc_decode</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/backend.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Decodes the output of a softmax.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.keras.backend.ctc_decode</code></li>
+<li><code>tf.compat.v2.keras.backend.ctc_decode</code></li>
+</ul>
+
+
+<p><code>python
+tf.keras.backend.ctc_decode(
+    y_pred,
+    input_length,
+    greedy=True,
+    beam_width=100,
+    top_paths=1
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Can use either greedy search (also known as best path)
+or a constrained dictionary search.</p>
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>y_pred</code></b>: tensor <code>(samples, time_steps, num_categories)</code>
+  containing the prediction, or output of the softmax.</li>
+<li><b><code>input_length</code></b>: tensor <code>(samples, )</code> containing the sequence length for
+  each batch item in <code>y_pred</code>.</li>
+<li><b><code>greedy</code></b>: perform much faster best-path search if <code>true</code>.
+  This does not use a dictionary.</li>
+<li><b><code>beam_width</code></b>: if <code>greedy</code> is <code>false</code>: a beam search decoder will be used
+  with a beam of this width.</li>
+<li><b><code>top_paths</code></b>: if <code>greedy</code> is <code>false</code>,
+  how many of the most probable paths will be returned.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<ul>
+<li><b><code>Tuple</code></b>:     List: if <code>greedy</code> is <code>true</code>, returns a list of one element that
+      contains the decoded sequence.
+      If <code>false</code>, returns the <code>top_paths</code> most probable
+      decoded sequences.
+      Important: blank labels are returned as <code>-1</code>.
+  Tensor <code>(top_paths, )</code> that contains
+      the log probability of each decoded sequence.</li>
+</ul>
+

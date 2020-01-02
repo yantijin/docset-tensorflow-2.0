@@ -1,0 +1,49 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.tpu.cross_replica_sum" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.tpu.cross_replica_sum</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/tpu/ops/tpu_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Sum the input tensor across replicas according to group_assignment.</p>
+
+<p><code>python
+tf.compat.v1.tpu.cross_replica_sum(
+    x,
+    group_assignment=None,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>: The local tensor to the sum.</li>
+<li><b><code>group_assignment</code></b>: Optional 2d int32 lists with shape [num_groups,
+num_replicas_per_group]. <code>group_assignment[i]</code> represents the replica
+ids in the ith subgroup.</li>
+<li><b><code>name</code></b>: Optional op name.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> which is summed across replicas.</p>

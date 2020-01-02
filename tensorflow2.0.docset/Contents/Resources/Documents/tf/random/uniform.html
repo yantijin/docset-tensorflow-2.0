@@ -1,0 +1,87 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.random.uniform" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.random.uniform</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/random_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Outputs random values from a uniform distribution.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.random.uniform</code></li>
+<li><code>tf.compat.v1.random_uniform</code></li>
+<li><code>tf.compat.v2.random.uniform</code></li>
+</ul>
+
+
+<p><code>python
+tf.random.uniform(
+    shape,
+    minval=0,
+    maxval=None,
+    dtype=tf.dtypes.float32,
+    seed=None,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>The generated values follow a uniform distribution in the range
+<code>[minval, maxval)</code>. The lower bound <code>minval</code> is included in the range, while
+the upper bound <code>maxval</code> is excluded.</p>
+
+<p>For floats, the default range is <code>[0, 1)</code>.  For ints, at least <code>maxval</code> must
+be specified explicitly.</p>
+
+<p>In the integer case, the random integers are slightly biased unless
+<code>maxval - minval</code> is an exact power of two.  The bias is small for values of
+<code>maxval - minval</code> significantly smaller than the range of the output (either
+<code>2**32</code> or <code>2**64</code>).</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>shape</code></b>: A 1-D integer Tensor or Python array. The shape of the output tensor.</li>
+<li><b><code>minval</code></b>: A 0-D Tensor or Python value of type <code>dtype</code>. The lower bound on the
+range of random values to generate.  Defaults to 0.</li>
+<li><b><code>maxval</code></b>: A 0-D Tensor or Python value of type <code>dtype</code>. The upper bound on
+the range of random values to generate.  Defaults to 1 if <code>dtype</code> is
+floating point.</li>
+<li><b><code>dtype</code></b>: The type of the output: <code>float16</code>, <code>float32</code>, <code>float64</code>, <code>int32</code>,
+or <code>int64</code>.</li>
+<li><b><code>seed</code></b>: A Python integer. Used to create a random seed for the distribution.
+See <a href="../../tf/compat/v1/set_random_seed.html"><code>tf.compat.v1.set_random_seed</code></a>
+for behavior.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A tensor of the specified shape filled with random uniform values.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If <code>dtype</code> is integral and <code>maxval</code> is not specified.</li>
+</ul>
+

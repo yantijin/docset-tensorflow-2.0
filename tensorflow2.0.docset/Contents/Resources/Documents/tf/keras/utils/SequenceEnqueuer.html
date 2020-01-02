@@ -1,0 +1,145 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.utils.SequenceEnqueuer" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="get"/>
+<meta itemprop="property" content="is_running"/>
+<meta itemprop="property" content="start"/>
+<meta itemprop="property" content="stop"/>
+</div>
+
+
+<h1>tf.keras.utils.SequenceEnqueuer</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/utils/data_utils.py">View source</a></p>
+
+<h2>Class <code>SequenceEnqueuer</code></h2>
+
+<!-- Start diff -->
+
+
+<p>Base class to enqueue inputs.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li>Class <code>tf.compat.v1.keras.utils.SequenceEnqueuer</code></li>
+<li>Class <code>tf.compat.v2.keras.utils.SequenceEnqueuer</code></li>
+</ul>
+
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>The task of an Enqueuer is to use parallelism to speed up preprocessing.
+This is done with processes or threads.</p>
+
+<h4>Example:</h4>
+
+<p><code>python
+    enqueuer = SequenceEnqueuer(...)
+    enqueuer.start()
+    datas = enqueuer.get()
+    for data in datas:
+        # Use the inputs; training, evaluating, predicting.
+        # ... stop sometime.
+    enqueuer.close()
+</code></p>
+
+<p>The <code>enqueuer.get()</code> should be an infinite stream of datas.</p>
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/utils/data_utils.py">View source</a></p>
+
+<p><code>python
+__init__(
+    sequence,
+    use_multiprocessing=False
+)
+</code></p>
+
+<p>Initialize self.  See help(type(self)) for accurate signature.</p>
+
+<h2>Methods</h2>
+
+<h3 id="get"><code>get</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/utils/data_utils.py">View source</a></p>
+
+<p><code>python
+get()
+</code></p>
+
+<p>Creates a generator to extract data from the queue.</p>
+
+<p>Skip the data if it is <code>None</code>.</p>
+
+<h1>Returns</h1>
+
+<pre><code>Generator yielding tuples `(inputs, targets)`
+    or `(inputs, targets, sample_weights)`.
+</code></pre>
+
+<h3 id="is_running"><code>is_running</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/utils/data_utils.py">View source</a></p>
+
+<p><code>python
+is_running()
+</code></p>
+
+<h3 id="start"><code>start</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/utils/data_utils.py">View source</a></p>
+
+<p><code>python
+start(
+    workers=1,
+    max_queue_size=10
+)
+</code></p>
+
+<p>Starts the handler&rsquo;s workers.</p>
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>workers</code></b>: Number of workers.</li>
+<li><b><code>max_queue_size</code></b>: queue size
+  (when full, workers could block on <code>put()</code>)</li>
+</ul>
+
+
+<h3 id="stop"><code>stop</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/utils/data_utils.py">View source</a></p>
+
+<p><code>python
+stop(timeout=None)
+</code></p>
+
+<p>Stops running threads and wait for them to exit, if necessary.</p>
+
+<p>Should be called by the same thread which called <code>start()</code>.</p>
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>timeout</code></b>: maximum time to wait on <code>thread.join()</code></li>
+</ul>
+

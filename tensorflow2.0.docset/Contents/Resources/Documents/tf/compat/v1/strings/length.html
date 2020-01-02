@@ -1,0 +1,55 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.strings.length" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.strings.length</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/string_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>String lengths of <code>input</code>.</p>
+
+<p><code>python
+tf.compat.v1.strings.length(
+    input,
+    name=None,
+    unit='BYTE'
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Computes the length of each string given in the input tensor.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>input</code></b>: A <code>Tensor</code> of type <code>string</code>.
+The string for which to compute the length.</li>
+<li><b><code>unit</code></b>: An optional <code>string</code> from: <code>"BYTE", "UTF8_CHAR"</code>. Defaults to <code>"BYTE"</code>.
+The unit that is counted to compute string length.  One of: <code>"BYTE"</code> (for
+the number of bytes in each string) or <code>"UTF8_CHAR"</code> (for the number of UTF-8
+encoded Unicode code points in each string).  Results are undefined
+if <code>unit=UTF8_CHAR</code> and the <code>input</code> strings do not contain structurally
+valid UTF-8.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> of type <code>int32</code>.</p>

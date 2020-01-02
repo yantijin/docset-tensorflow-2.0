@@ -1,0 +1,107 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.train.linear_cosine_decay" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.train.linear_cosine_decay</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/learning_rate_decay.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Applies linear cosine decay to the learning rate.</p>
+
+<p><code>python
+tf.compat.v1.train.linear_cosine_decay(
+    learning_rate,
+    global_step,
+    decay_steps,
+    num_periods=0.5,
+    alpha=0.0,
+    beta=0.001,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>See [Bello et al., ICML2017] Neural Optimizer Search with RL.
+https://arxiv.org/abs/1709.07417</p>
+
+<p>For the idea of warm starts here controlled by <code>num_periods</code>,
+see [Loshchilov &amp; Hutter, ICLR2016] SGDR: Stochastic Gradient Descent
+with Warm Restarts. https://arxiv.org/abs/1608.03983</p>
+
+<p>Note that linear cosine decay is more aggressive than cosine decay and
+larger initial learning rates can typically be used.</p>
+
+<p>When training a model, it is often recommended to lower the learning rate as
+the training progresses.  This function applies a linear cosine decay function
+to a provided initial learning rate.  It requires a <code>global_step</code> value to
+compute the decayed learning rate.  You can just pass a TensorFlow variable
+that you increment at each training step.</p>
+
+<p>The function returns the decayed learning rate.  It is computed as:
+<code>python
+global_step = min(global_step, decay_steps)
+linear_decay = (decay_steps - global_step) / decay_steps)
+cosine_decay = 0.5 * (
+    1 + cos(pi * 2 * num_periods * global_step / decay_steps))
+decayed = (alpha + linear_decay) * cosine_decay + beta
+decayed_learning_rate = learning_rate * decayed
+</code></p>
+
+<h4>Example usage:</h4>
+
+<p><code>python
+decay_steps = 1000
+lr_decayed = linear_cosine_decay(learning_rate, global_step, decay_steps)
+</code></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>learning_rate</code></b>: A scalar <code>float32</code> or <code>float64</code> Tensor or a Python number.
+The initial learning rate.</li>
+<li><b><code>global_step</code></b>: A scalar <code>int32</code> or <code>int64</code> <code>Tensor</code> or a Python number. Global
+step to use for the decay computation.</li>
+<li><b><code>decay_steps</code></b>: A scalar <code>int32</code> or <code>int64</code> <code>Tensor</code> or a Python number. Number
+of steps to decay over.</li>
+<li><b><code>num_periods</code></b>: Number of periods in the cosine part of the decay. See
+computation above.</li>
+<li><b><code>alpha</code></b>: See computation above.</li>
+<li><b><code>beta</code></b>: See computation above.</li>
+<li><b><code>name</code></b>: String.  Optional name of the operation.  Defaults to
+&lsquo;LinearCosineDecay&rsquo;.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A scalar <code>Tensor</code> of the same type as <code>learning_rate</code>.  The decayed
+learning rate.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: if <code>global_step</code> is not supplied.</li>
+</ul>
+
+
+<h4>Eager Compatibility</h4>
+
+<p>When eager execution is enabled, this function returns a function which in
+turn returns the decayed learning rate Tensor. This can be useful for changing
+the learning rate value across different invocations of optimizer functions.</p>

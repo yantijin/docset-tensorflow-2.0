@@ -1,0 +1,114 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.lookup.KeyValueTensorInitializer" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="key_dtype"/>
+<meta itemprop="property" content="value_dtype"/>
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="initialize"/>
+</div>
+
+
+<h1>tf.lookup.KeyValueTensorInitializer</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/lookup_ops.py">View source</a></p>
+
+<h2>Class <code>KeyValueTensorInitializer</code></h2>
+
+<!-- Start diff -->
+
+
+<p>Table initializers given <code>keys</code> and <code>values</code> tensors.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li>Class <code>tf.compat.v1.lookup.KeyValueTensorInitializer</code></li>
+<li>Class <code>tf.compat.v2.lookup.KeyValueTensorInitializer</code></li>
+</ul>
+
+
+<!-- Placeholder for "Used in" -->
+
+
+
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/lookup_ops.py">View source</a></p>
+
+<p><code>python
+__init__(
+    keys,
+    values,
+    key_dtype=None,
+    value_dtype=None,
+    name=None
+)
+</code></p>
+
+<p>Constructs a table initializer object based on keys and values tensors.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>keys</code></b>: The tensor for the keys.</li>
+<li><b><code>values</code></b>: The tensor for the values.</li>
+<li><b><code>key_dtype</code></b>: The <code>keys</code> data type. Used when <code>keys</code> is a python array.</li>
+<li><b><code>value_dtype</code></b>: The <code>values</code> data type. Used when <code>values</code> is a python array.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h2>Properties</h2>
+
+<h3 id="key_dtype"><code>key_dtype</code></h3>
+
+
+<p>The expected table key dtype.</p>
+
+<h3 id="value_dtype"><code>value_dtype</code></h3>
+
+
+<p>The expected table value dtype.</p>
+
+<h2>Methods</h2>
+
+<h3 id="initialize"><code>initialize</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/lookup_ops.py">View source</a></p>
+
+<p><code>python
+initialize(table)
+</code></p>
+
+<p>Initializes the given <code>table</code> with <code>keys</code> and <code>values</code> tensors.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>table</code></b>: The table to initialize.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>The operation that initializes the table.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>TypeError</code></b>: when the keys and values data types do not match the table
+key and value data types.</li>
+</ul>
+

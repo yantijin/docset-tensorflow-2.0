@@ -1,0 +1,74 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.tpu.experimental.AdagradParameters" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__init__"/>
+</div>
+
+
+<h1>tf.compat.v1.tpu.experimental.AdagradParameters</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/tpu/tpu_embedding.py">View source</a></p>
+
+<h2>Class <code>AdagradParameters</code></h2>
+
+<!-- Start diff -->
+
+
+<p>Optimization parameters for Adagrad with TPU embeddings.</p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Pass this to <code>tf.estimator.tpu.experimental.EmbeddingConfigSpec</code> via the
+<code>optimization_parameters</code> argument to set the optimizer and its parameters.
+See the documentation for <code>tf.estimator.tpu.experimental.EmbeddingConfigSpec</code>
+for more details.</p>
+
+<p><code>
+estimator = tf.estimator.tpu.TPUEstimator(
+    ...
+    embedding_spec=tf.estimator.tpu.experimental.EmbeddingConfigSpec(
+        ...
+        optimization_parameters=tf.tpu.experimental.AdagradParameters(0.1),
+        ...))
+</code></p>
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/tpu/tpu_embedding.py">View source</a></p>
+
+<p><code>python
+__init__(
+    learning_rate,
+    initial_accumulator=0.1,
+    use_gradient_accumulation=True,
+    clip_weight_min=None,
+    clip_weight_max=None
+)
+</code></p>
+
+<p>Optimization parameters for Adagrad.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>learning_rate</code></b>: used for updating embedding table.</li>
+<li><b><code>initial_accumulator</code></b>: initial accumulator for Adagrad.</li>
+<li><b><code>use_gradient_accumulation</code></b>: setting this to <code>False</code> makes embedding
+gradients calculation less accurate but faster. Please see
+<code>optimization_parameters.proto</code> for details.
+for details.</li>
+<li><b><code>clip_weight_min</code></b>: the minimum value to clip by; None means -infinity.</li>
+<li><b><code>clip_weight_max</code></b>: the maximum value to clip by; None means +infinity.</li>
+</ul>
+

@@ -1,0 +1,52 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.distribute.get_strategy" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.distribute.get_strategy</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/distribution_strategy_context.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Returns the current <a href="../../tf/distribute/Strategy.html"><code>tf.distribute.Strategy</code></a> object.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.distribute.get_strategy</code></li>
+<li><code>tf.compat.v2.distribute.get_strategy</code></li>
+</ul>
+
+
+<p><code>python
+tf.distribute.get_strategy()
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Typically only used in a cross-replica context:</p>
+
+<p><code>
+if tf.distribute.in_cross_replica_context():
+  strategy = tf.distribute.get_strategy()
+  ...
+</code></p>
+
+<h4>Returns:</h4>
+
+<p>A <a href="../../tf/distribute/Strategy.html"><code>tf.distribute.Strategy</code></a> object. Inside a <code>with strategy.scope()</code> block,
+it returns <code>strategy</code>, otherwise it returns the default (single-replica)
+<a href="../../tf/distribute/Strategy.html"><code>tf.distribute.Strategy</code></a> object.</p>

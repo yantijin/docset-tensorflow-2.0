@@ -1,0 +1,73 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.image.per_image_standardization" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.image.per_image_standardization</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/image_ops_impl.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Linearly scales each image in <code>image</code> to have mean 0 and variance 1.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.image.per_image_standardization</code></li>
+<li><code>tf.compat.v2.image.per_image_standardization</code></li>
+</ul>
+
+
+<p><code>python
+tf.image.per_image_standardization(image)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>For each 3-D image <code>x</code> in <code>image</code>, computes <code>(x - mean) / adjusted_stddev</code>,
+where</p>
+
+<ul>
+<li><code>mean</code> is the average of all values in <code>x</code></li>
+<li><code>adjusted_stddev = max(stddev, 1.0/sqrt(N))</code> is capped away from 0 to
+protect against division by 0 when handling uniform images
+
+<ul>
+<li><code>N</code> is the number of elements in <code>x</code></li>
+<li><code>stddev</code> is the standard deviation of all values in <code>x</code></li>
+</ul>
+</li>
+</ul>
+
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>image</code></b>: An n-D Tensor with at least 3 dimensions, the last 3 of which are the
+dimensions of each image.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> with same shape and dtype as <code>image</code>.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: if the shape of &lsquo;image&rsquo; is incompatible with this function.</li>
+</ul>
+

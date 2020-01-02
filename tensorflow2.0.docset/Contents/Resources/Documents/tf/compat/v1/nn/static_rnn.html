@@ -1,0 +1,109 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.nn.static_rnn" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.nn.static_rnn</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/rnn.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Creates a recurrent neural network specified by RNNCell <code>cell</code>. (deprecated)</p>
+
+<p><code>python
+tf.compat.v1.nn.static_rnn(
+    cell,
+    inputs,
+    initial_state=None,
+    dtype=None,
+    sequence_length=None,
+    scope=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
+Instructions for updating:
+Please use <code>keras.layers.RNN(cell, unroll=True)</code>, which is equivalent to this API</p>
+
+<p>The simplest form of RNN network generated is:</p>
+
+<p><code>python
+  state = cell.zero_state(...)
+  outputs = []
+  for input_ in inputs:
+    output, state = cell(input_, state)
+    outputs.append(output)
+  return (outputs, state)
+</code>
+However, a few other options are available:</p>
+
+<p>An initial state can be provided.
+If the sequence_length vector is provided, dynamic calculation is performed.
+This method of calculation does not compute the RNN steps past the maximum
+sequence length of the minibatch (thus saving computational time),
+and properly propagates the state at an example&rsquo;s sequence length
+to the final state output.</p>
+
+<p>The dynamic calculation performed is, at time <code>t</code> for batch row <code>b</code>,</p>
+
+<p><code>python
+  (output, state)(b, t) =
+    (t &gt;= sequence_length(b))
+      ? (zeros(cell.output_size), states(b, sequence_length(b) - 1))
+      : cell(input(b, t), state(b, t - 1))
+</code></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>cell</code></b>: An instance of RNNCell.</li>
+<li><b><code>inputs</code></b>: A length T list of inputs, each a <code>Tensor</code> of shape <code>[batch_size,
+input_size]</code>, or a nested tuple of such elements.</li>
+<li><b><code>initial_state</code></b>: (optional) An initial state for the RNN. If <code>cell.state_size</code>
+is an integer, this must be a <code>Tensor</code> of appropriate type and shape
+<code>[batch_size, cell.state_size]</code>. If <code>cell.state_size</code> is a tuple, this
+should be a tuple of tensors having shapes <code>[batch_size, s] for s in
+cell.state_size</code>.</li>
+<li><b><code>dtype</code></b>: (optional) The data type for the initial state and expected output.
+Required if initial_state is not provided or RNN state has a heterogeneous
+dtype.</li>
+<li><b><code>sequence_length</code></b>: Specifies the length of each sequence in inputs. An int32
+or int64 vector (tensor) size <code>[batch_size]</code>, values in <code>[0, T)</code>.</li>
+<li><b><code>scope</code></b>: VariableScope for the created subgraph; defaults to &ldquo;rnn&rdquo;.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A pair (outputs, state) where:</p>
+
+<ul>
+<li>outputs is a length T list of outputs (one for each input), or a nested
+tuple of such elements.</li>
+<li>state is the final state</li>
+</ul>
+
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>TypeError</code></b>: If <code>cell</code> is not an instance of RNNCell.</li>
+<li><b><code>ValueError</code></b>: If <code>inputs</code> is <code>None</code> or an empty list, or if the input depth
+(column size) cannot be inferred from inputs via shape inference.</li>
+</ul>
+

@@ -1,0 +1,57 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.backend.map_fn" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.keras.backend.map_fn</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/backend.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Map the function fn over the elements elems and return the outputs.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.keras.backend.map_fn</code></li>
+<li><code>tf.compat.v2.keras.backend.map_fn</code></li>
+</ul>
+
+
+<p><code>python
+tf.keras.backend.map_fn(
+    fn,
+    elems,
+    name=None,
+    dtype=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>fn</code></b>: Callable that will be called upon each element in elems</li>
+<li><b><code>elems</code></b>: tensor</li>
+<li><b><code>name</code></b>: A string name for the map node in the graph</li>
+<li><b><code>dtype</code></b>: Output data type.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>Tensor with dtype <code>dtype</code>.</p>

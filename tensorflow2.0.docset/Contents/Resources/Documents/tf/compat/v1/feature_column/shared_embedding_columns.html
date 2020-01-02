@@ -1,0 +1,143 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.feature_column.shared_embedding_columns" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.feature_column.shared_embedding_columns</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/feature_column/feature_column_v2.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>List of dense columns that convert from sparse, categorical input.</p>
+
+<p><code>python
+tf.compat.v1.feature_column.shared_embedding_columns(
+    categorical_columns,
+    dimension,
+    combiner='mean',
+    initializer=None,
+    shared_embedding_collection_name=None,
+    ckpt_to_load_from=None,
+    tensor_name_in_ckpt=None,
+    max_norm=None,
+    trainable=True
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>This is similar to <code>embedding_column</code>, except that it produces a list of
+embedding columns that share the same embedding weights.</p>
+
+<p>Use this when your inputs are sparse and of the same type (e.g. watched and
+impression video IDs that share the same vocabulary), and you want to convert
+them to a dense representation (e.g., to feed to a DNN).</p>
+
+<p>Inputs must be a list of categorical columns created by any of the
+<code>categorical_column_*</code> function. They must all be of the same type and have
+the same arguments except <code>key</code>. E.g. they can be
+categorical_column_with_vocabulary_file with the same vocabulary_file. Some or
+all columns could also be weighted_categorical_column.</p>
+
+<p>Here is an example embedding of two features for a DNNClassifier model:</p>
+
+<p>```python
+watched_video_id = categorical_column_with_vocabulary_file(
+    &lsquo;watched_video_id&rsquo;, video_vocabulary_file, video_vocabulary_size)
+impression_video_id = categorical_column_with_vocabulary_file(
+    &lsquo;impression_video_id&rsquo;, video_vocabulary_file, video_vocabulary_size)
+columns = shared_embedding_columns(
+    [watched_video_id, impression_video_id], dimension=10)</p>
+
+<p>estimator = tf.estimator.DNNClassifier(feature_columns=columns, &hellip;)</p>
+
+<p>label_column = &hellip;
+def input_fn():
+  features = tf.io.parse_example(
+      &hellip;, features=make_parse_example_spec(columns + [label_column]))
+  labels = features.pop(label_column.name)
+  return features, labels</p>
+
+<p>estimator.train(input_fn=input_fn, steps=100)
+```</p>
+
+<p>Here is an example using <code>shared_embedding_columns</code> with model_fn:</p>
+
+<p><code>python
+def model_fn(features, ...):
+  watched_video_id = categorical_column_with_vocabulary_file(
+      'watched_video_id', video_vocabulary_file, video_vocabulary_size)
+  impression_video_id = categorical_column_with_vocabulary_file(
+      'impression_video_id', video_vocabulary_file, video_vocabulary_size)
+  columns = shared_embedding_columns(
+      [watched_video_id, impression_video_id], dimension=10)
+  dense_tensor = input_layer(features, columns)
+  # Form DNN layers, calculate loss, and return EstimatorSpec.
+  ...
+</code></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>categorical_columns</code></b>: List of categorical columns created by a
+<code>categorical_column_with_*</code> function. These columns produce the sparse IDs
+that are inputs to the embedding lookup. All columns must be of the same
+type and have the same arguments except <code>key</code>. E.g. they can be
+categorical_column_with_vocabulary_file with the same vocabulary_file.
+Some or all columns could also be weighted_categorical_column.</li>
+<li><b><code>dimension</code></b>: An integer specifying dimension of the embedding, must be > 0.</li>
+<li><b><code>combiner</code></b>: A string specifying how to reduce if there are multiple entries in
+a single row. Currently &lsquo;mean&rsquo;, &lsquo;sqrtn&rsquo; and &lsquo;sum&rsquo; are supported, with
+&lsquo;mean&rsquo; the default. &lsquo;sqrtn&rsquo; often achieves good accuracy, in particular
+with bag-of-words columns. Each of this can be thought as example level
+normalizations on the column. For more information, see
+<code>tf.embedding_lookup_sparse</code>.</li>
+<li><b><code>initializer</code></b>: A variable initializer function to be used in embedding
+variable initialization. If not specified, defaults to
+<code>truncated_normal_initializer</code> with mean <code>0.0</code> and
+standard deviation <code>1/sqrt(dimension)</code>.</li>
+<li><b><code>shared_embedding_collection_name</code></b>: Optional name of the collection where
+shared embedding weights are added. If not given, a reasonable name will
+be chosen based on the names of <code>categorical_columns</code>. This is also used
+in <code>variable_scope</code> when creating shared embedding weights.</li>
+<li><b><code>ckpt_to_load_from</code></b>: String representing checkpoint name/pattern from which to
+restore column weights. Required if <code>tensor_name_in_ckpt</code> is not <code>None</code>.</li>
+<li><b><code>tensor_name_in_ckpt</code></b>: Name of the <code>Tensor</code> in <code>ckpt_to_load_from</code> from which
+to restore the column weights. Required if <code>ckpt_to_load_from</code> is not
+<code>None</code>.</li>
+<li><b><code>max_norm</code></b>: If not <code>None</code>, each embedding is clipped if its l2-norm is larger
+than this value, before combining.</li>
+<li><b><code>trainable</code></b>: Whether or not the embedding is trainable. Default is True.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A list of dense columns that converts from sparse input. The order of
+results follows the ordering of <code>categorical_columns</code>.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: if <code>dimension</code> not > 0.</li>
+<li><b><code>ValueError</code></b>: if any of the given <code>categorical_columns</code> is of different type
+or has different arguments than the others.</li>
+<li><b><code>ValueError</code></b>: if exactly one of <code>ckpt_to_load_from</code> and <code>tensor_name_in_ckpt</code>
+is specified.</li>
+<li><b><code>ValueError</code></b>: if <code>initializer</code> is specified and is not callable.</li>
+<li><b><code>RuntimeError</code></b>: if eager execution is enabled.</li>
+</ul>
+

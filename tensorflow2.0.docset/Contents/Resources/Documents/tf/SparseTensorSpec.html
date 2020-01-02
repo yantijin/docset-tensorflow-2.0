@@ -1,0 +1,159 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.SparseTensorSpec" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="dtype"/>
+<meta itemprop="property" content="shape"/>
+<meta itemprop="property" content="value_type"/>
+<meta itemprop="property" content="__eq__"/>
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="__ne__"/>
+<meta itemprop="property" content="from_value"/>
+<meta itemprop="property" content="is_compatible_with"/>
+<meta itemprop="property" content="most_specific_compatible_type"/>
+</div>
+
+
+<h1>tf.SparseTensorSpec</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/sparse_tensor.py">View source</a></p>
+
+<h2>Class <code>SparseTensorSpec</code></h2>
+
+<!-- Start diff -->
+
+
+<p>Type specification for a <a href="../tf/sparse/SparseTensor.html"><code>tf.SparseTensor</code></a>.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li>Class <code>tf.compat.v1.SparseTensorSpec</code></li>
+<li>Class <code>tf.compat.v2.SparseTensorSpec</code></li>
+</ul>
+
+
+<!-- Placeholder for "Used in" -->
+
+
+
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/sparse_tensor.py">View source</a></p>
+
+<p><code>python
+__init__(
+    shape=None,
+    dtype=tf.dtypes.float32
+)
+</code></p>
+
+<p>Constructs a type specification for a <a href="../tf/sparse/SparseTensor.html"><code>tf.SparseTensor</code></a>.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>shape</code></b>: The dense shape of the <code>SparseTensor</code>, or <code>None</code> to allow
+any dense shape.</li>
+<li><b><code>dtype</code></b>: <a href="../tf/dtypes/DType.html"><code>tf.DType</code></a> of values in the <code>SparseTensor</code>.</li>
+</ul>
+
+
+<h2>Properties</h2>
+
+<h3 id="dtype"><code>dtype</code></h3>
+
+
+<p>The <a href="../tf/dtypes/DType.html"><code>tf.dtypes.DType</code></a> specified by this type for the SparseTensor.</p>
+
+<h3 id="shape"><code>shape</code></h3>
+
+
+<p>The <a href="../tf/TensorShape.html"><code>tf.TensorShape</code></a> specified by this type for the SparseTensor.</p>
+
+<h3 id="value_type"><code>value_type</code></h3>
+
+
+<h2>Methods</h2>
+
+<h3 id="__eq__"><code>__eq__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/type_spec.py">View source</a></p>
+
+<p><code>python
+__eq__(other)
+</code></p>
+
+<p>Return self==value.</p>
+
+<h3 id="__ne__"><code>__ne__</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/type_spec.py">View source</a></p>
+
+<p><code>python
+__ne__(other)
+</code></p>
+
+<p>Return self!=value.</p>
+
+<h3 id="from_value"><code>from_value</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/sparse_tensor.py">View source</a></p>
+
+<p><code>python
+@classmethod
+from_value(
+    cls,
+    value
+)
+</code></p>
+
+<h3 id="is_compatible_with"><code>is_compatible_with</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/type_spec.py">View source</a></p>
+
+<p><code>python
+is_compatible_with(spec_or_value)
+</code></p>
+
+<p>Returns true if <code>spec_or_value</code> is compatible with this TypeSpec.</p>
+
+<h3 id="most_specific_compatible_type"><code>most_specific_compatible_type</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/type_spec.py">View source</a></p>
+
+<p><code>python
+most_specific_compatible_type(other)
+</code></p>
+
+<p>Returns the most specific TypeSpec compatible with <code>self</code> and <code>other</code>.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>other</code></b>: A <code>TypeSpec</code>.</li>
+</ul>
+
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If there is no TypeSpec that is compatible with both <code>self</code>
+and <code>other</code>.</li>
+</ul>
+

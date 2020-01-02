@@ -1,0 +1,56 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.io.match_filenames_once" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.io.match_filenames_once</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/input.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Save the list of files matching pattern, so it is only computed once.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.io.match_filenames_once</code></li>
+<li><code>tf.compat.v1.train.match_filenames_once</code></li>
+<li><code>tf.compat.v2.io.match_filenames_once</code></li>
+</ul>
+
+
+<p><code>python
+tf.io.match_filenames_once(
+    pattern,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>NOTE: The order of the files returned is deterministic.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>pattern</code></b>: A file pattern (glob), or 1D tensor of file patterns.</li>
+<li><b><code>name</code></b>: A name for the operations (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A variable that is initialized to the list of files matching the pattern(s).</p>

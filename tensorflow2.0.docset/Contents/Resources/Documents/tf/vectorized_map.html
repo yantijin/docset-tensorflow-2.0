@@ -1,0 +1,121 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.vectorized_map" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.vectorized_map</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/parallel_for/control_flow_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Parallel map on the list of tensors unpacked from <code>elems</code> on dimension 0.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.vectorized_map</code></li>
+<li><code>tf.compat.v2.vectorized_map</code></li>
+</ul>
+
+
+<p><code>python
+tf.vectorized_map(
+    fn,
+    elems
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>This method works similar to tf.map_fn but is optimized to run much faster,
+possibly with a much larger memory footprint. The speedups are obtained by
+vectorization (see https://arxiv.org/pdf/1903.04243.pdf). The idea behind
+vectorization is to semantically launch all the invocations of <code>fn</code> in
+parallel and fuse corresponding operations across all these invocations. This
+fusion is done statically at graph generation time and the generated code is
+often similar in performance to a manually fused version.</p>
+
+<p>Because <a href="../tf/vectorized_map.html"><code>tf.vectorized_map</code></a> fully parallelizes the batch, this method will
+generally be significantly faster than using <a href="../tf/map_fn.html"><code>tf.map_fn</code></a>, especially in eager
+mode. However this is an experimental feature and currently has a lot of
+limitations:
+  - There should be no data dependency between the different semantic
+    invocations of <code>fn</code>, i.e. it should be safe to map the elements of the
+    inputs in any order.
+  - Stateful kernels may mostly not be supported since these often imply a
+    data dependency. We do support a limited set of such stateful kernels
+    though (like RandomFoo, Variable operations like reads, etc).
+  - <code>fn</code> has limited support for control flow operations. <a href="../tf/cond.html"><code>tf.cond</code></a> in
+    particular is not supported.
+  - <code>fn</code> should return nested structure of Tensors or Operations. However
+    if an Operation is returned, it should have zero outputs.
+  - The shape and dtype of any intermediate or output tensors in the
+    computation of <code>fn</code> should not depend on the input to <code>fn</code>.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>fn</code></b>: The callable to be performed. It accepts one argument, which will have
+the same (possibly nested) structure as <code>elems</code>, and returns a possibly
+nested structure of Tensors and Operations, which may be different than
+the structure of <code>elems</code>.</li>
+<li><b><code>elems</code></b>: A tensor or (possibly nested) sequence of tensors, each of which will
+be unpacked along their first dimension. The nested sequence of the
+resulting slices will be mapped over by <code>fn</code>.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A tensor or (possibly nested) sequence of tensors. Each tensor packs the
+results of applying fn to tensors unpacked from elems along the first
+dimension, from first to last.</p>
+
+<h4>Examples:</h4>
+
+<p>```python
+def outer_product(a):
+  return tf.tensordot(a, a, 0)</p>
+
+<p>batch_size = 100
+a = tf.ones((batch_size, 32, 32))
+c = tf.vectorized_map(outer_product, a)
+assert c.shape == (batch_size, 32, 32, 32, 32)
+```</p>
+
+<p>```python</p>
+
+<h1>Computing per-example gradients</h1>
+
+<p>batch_size = 10
+num_features = 32
+layer = tf.keras.layers.Dense(1)</p>
+
+<p>def model_fn(arg):
+  with tf.GradientTape() as g:
+    inp, label = arg
+    inp = tf.expand_dims(inp, 0)
+    label = tf.expand_dims(label, 0)
+    prediction = layer(inp)
+    loss = tf.nn.l2_loss(label - prediction)
+  return g.gradient(loss, (layer.kernel, layer.bias))</p>
+
+<p>inputs = tf.random_uniform([batch_size, num_features])
+labels = tf.random_uniform([batch_size, 1])
+per_example_gradients = tf.vectorized_map(model_fn, (inputs, labels))
+assert per_example_gradients[0].shape == (batch_size, num_features, 1)
+assert per_example_gradients[1].shape == (batch_size, 1)
+```</p>

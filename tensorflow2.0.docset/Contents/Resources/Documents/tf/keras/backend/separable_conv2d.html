@@ -1,0 +1,73 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.backend.separable_conv2d" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.keras.backend.separable_conv2d</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/backend.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>2D convolution with separable filters.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.keras.backend.separable_conv2d</code></li>
+<li><code>tf.compat.v2.keras.backend.separable_conv2d</code></li>
+</ul>
+
+
+<p><code>python
+tf.keras.backend.separable_conv2d(
+    x,
+    depthwise_kernel,
+    pointwise_kernel,
+    strides=(1, 1),
+    padding='valid',
+    data_format=None,
+    dilation_rate=(1, 1)
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>x</code></b>: input tensor</li>
+<li><b><code>depthwise_kernel</code></b>: convolution kernel for the depthwise convolution.</li>
+<li><b><code>pointwise_kernel</code></b>: kernel for the 1x1 convolution.</li>
+<li><b><code>strides</code></b>: strides tuple (length 2).</li>
+<li><b><code>padding</code></b>: string, <code>"same"</code> or <code>"valid"</code>.</li>
+<li><b><code>data_format</code></b>: string, <code>"channels_last"</code> or <code>"channels_first"</code>.</li>
+<li><b><code>dilation_rate</code></b>: tuple of integers,
+  dilation rates for the separable convolution.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>Output tensor.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: if <code>data_format</code> is neither <code>channels_last</code> or
+<code>channels_first</code>.</li>
+<li><b><code>ValueError</code></b>: if <code>strides</code> is not a tuple of 2 integers.</li>
+</ul>
+

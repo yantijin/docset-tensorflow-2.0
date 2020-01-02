@@ -1,0 +1,67 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.signal.hamming_window" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.signal.hamming_window</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/signal/window_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Generate a <a href="https://en.wikipedia.org/wiki/Window_function#Hann_and_Hamming_windows">Hamming</a> window.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.signal.hamming_window</code></li>
+<li><code>tf.compat.v2.signal.hamming_window</code></li>
+</ul>
+
+
+<p><code>python
+tf.signal.hamming_window(
+    window_length,
+    periodic=True,
+    dtype=tf.dtypes.float32,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>window_length</code></b>: A scalar <code>Tensor</code> indicating the window length to generate.</li>
+<li><b><code>periodic</code></b>: A bool <code>Tensor</code> indicating whether to generate a periodic or
+symmetric window. Periodic windows are typically used for spectral
+analysis while symmetric windows are typically used for digital
+filter design.</li>
+<li><b><code>dtype</code></b>: The data type to produce. Must be a floating point type.</li>
+<li><b><code>name</code></b>: An optional name for the operation.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> of shape <code>[window_length]</code> of type <code>dtype</code>.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If <code>dtype</code> is not a floating point type.</li>
+</ul>
+

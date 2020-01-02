@@ -1,0 +1,161 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.nn.convolution" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.nn.convolution</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/nn_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Computes sums of N-D convolutions (actually cross-correlation).</p>
+
+<p><code>python
+tf.compat.v1.nn.convolution(
+    input,
+    filter,
+    padding,
+    strides=None,
+    dilation_rate=None,
+    name=None,
+    data_format=None,
+    filters=None,
+    dilations=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>This also supports either output striding via the optional <code>strides</code> parameter
+or atrous convolution (also known as convolution with holes or dilated
+convolution, based on the French word &ldquo;trous&rdquo; meaning holes in English) via
+the optional <code>dilation_rate</code> parameter.  Currently, however, output striding
+is not supported for atrous convolutions.</p>
+
+<p>Specifically, in the case that <code>data_format</code> does not start with &ldquo;NC&rdquo;, given
+a rank (N+2) <code>input</code> Tensor of shape</p>
+
+<p>  [num_batches,
+   input_spatial_shape[0],
+   &hellip;,
+   input_spatial_shape[N-1],
+   num_input_channels],</p>
+
+<p>a rank (N+2) <code>filter</code> Tensor of shape</p>
+
+<p>  [spatial_filter_shape[0],
+   &hellip;,
+   spatial_filter_shape[N-1],
+   num_input_channels,
+   num_output_channels],</p>
+
+<p>an optional <code>dilation_rate</code> tensor of shape [N] (defaulting to [1]<em>N)
+specifying the filter upsampling/input downsampling rate, and an optional list
+of N <code>strides</code> (defaulting [1]</em>N), this computes for each N-D spatial output
+position (x[0], &hellip;, x[N-1]):</p>
+
+<p><code>
+  output[b, x[0], ..., x[N-1], k] =
+      sum_{z[0], ..., z[N-1], q}
+          filter[z[0], ..., z[N-1], q, k] *
+          padded_input[b,
+                       x[0]*strides[0] + dilation_rate[0]*z[0],
+                       ...,
+                       x[N-1]*strides[N-1] + dilation_rate[N-1]*z[N-1],
+                       q]
+</code>
+where b is the index into the batch, k is the output channel number, q is the
+input channel number, and z is the N-D spatial offset within the filter. Here,
+<code>padded_input</code> is obtained by zero padding the input using an effective
+spatial filter shape of <code>(spatial_filter_shape-1) * dilation_rate + 1</code> and
+output striding <code>strides</code> as described in the
+<a href="https://tensorflow.org/api_guides/python/nn#Convolution">comment here</a>.</p>
+
+<p>In the case that <code>data_format</code> does start with <code>"NC"</code>, the <code>input</code> and output
+(but not the <code>filter</code>) are simply transposed as follows:</p>
+
+<p>  convolution(input, data_format, <strong>kwargs) =
+    tf.transpose(convolution(tf.transpose(input, [0] + range(2,N+2) + [1]),
+                             </strong>kwargs),
+                 [0, N+1] + range(1, N+1))</p>
+
+<p>It is required that 1 &lt;= N &lt;= 3.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>input</code></b>: An (N+2)-D <code>Tensor</code> of type <code>T</code>, of shape
+<code>[batch_size] + input_spatial_shape + [in_channels]</code> if data_format does
+not start with &ldquo;NC&rdquo; (default), or
+<code>[batch_size, in_channels] + input_spatial_shape</code> if data_format starts
+with &ldquo;NC&rdquo;.</li>
+<li><b><code>filter</code></b>: An (N+2)-D <code>Tensor</code> with the same type as <code>input</code> and shape
+<code>spatial_filter_shape + [in_channels, out_channels]</code>.</li>
+<li><b><code>padding</code></b>: A string, either <code>"VALID"</code> or <code>"SAME"</code>. The padding algorithm.</li>
+<li><b><code>strides</code></b>: Optional.  Sequence of N ints >= 1.  Specifies the output stride.
+Defaults to [1]*N.  If any value of strides is > 1, then all values of
+dilation_rate must be 1.</li>
+<li><b><code>dilation_rate</code></b>: Optional.  Sequence of N ints >= 1.  Specifies the filter
+upsampling/input downsampling rate.  In the literature, the same parameter
+is sometimes called <code>input stride</code> or <code>dilation</code>.  The effective filter
+size used for the convolution will be <code>spatial_filter_shape +
+(spatial_filter_shape - 1) * (rate - 1)</code>, obtained by inserting
+(dilation_rate[i]-1) zeros between consecutive elements of the original
+filter in each spatial dimension i.  If any value of dilation_rate is > 1,
+then all values of strides must be 1.</li>
+<li><b><code>name</code></b>: Optional name for the returned tensor.</li>
+<li><b><code>data_format</code></b>: A string or None.  Specifies whether the channel dimension of
+the <code>input</code> and output is the last dimension (default, or if <code>data_format</code>
+does not start with &ldquo;NC&rdquo;), or the second dimension (if <code>data_format</code>
+starts with &ldquo;NC&rdquo;).  For N=1, the valid values are &ldquo;NWC&rdquo; (default) and
+&ldquo;NCW&rdquo;.  For N=2, the valid values are &ldquo;NHWC&rdquo; (default) and &ldquo;NCHW&rdquo;.
+For N=3, the valid values are &ldquo;NDHWC&rdquo; (default) and &ldquo;NCDHW&rdquo;.</li>
+<li><b><code>filters</code></b>: Alias of filter.</li>
+<li><b><code>dilations</code></b>: Alias of dilation_rate.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> with the same type as <code>input</code> of shape</p>
+
+<pre><code>`[batch_size] + output_spatial_shape + [out_channels]`
+</code></pre>
+
+<p>if data_format is None or does not start with &ldquo;NC&rdquo;, or</p>
+
+<pre><code>`[batch_size, out_channels] + output_spatial_shape`
+</code></pre>
+
+<p>if data_format starts with &ldquo;NC&rdquo;,
+where <code>output_spatial_shape</code> depends on the value of <code>padding</code>.</p>
+
+<p>If padding == &ldquo;SAME&rdquo;:
+  output_spatial_shape[i] = ceil(input_spatial_shape[i] / strides[i])</p>
+
+<p>If padding == &ldquo;VALID&rdquo;:
+  output_spatial_shape[i] =
+    ceil((input_spatial_shape[i] -
+          (spatial_filter_shape[i]-1) * dilation_rate[i])
+         / strides[i]).</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If input/output depth does not match <code>filter</code> shape, if padding
+is other than <code>"VALID"</code> or <code>"SAME"</code>, or if data_format is invalid.</li>
+</ul>
+

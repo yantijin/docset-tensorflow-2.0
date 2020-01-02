@@ -1,0 +1,64 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.io.encode_base64" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.io.encode_base64</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p>Defined in generated file: <code>python/ops/gen_string_ops.py</code></p>
+
+<!-- Start diff -->
+
+
+<p>Encode strings into web-safe base64 format.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.encode_base64</code></li>
+<li><code>tf.compat.v1.io.encode_base64</code></li>
+<li><code>tf.compat.v2.io.encode_base64</code></li>
+</ul>
+
+
+<p><code>python
+tf.io.encode_base64(
+    input,
+    pad=False,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Refer to the following article for more information on base64 format:
+en.wikipedia.org/wiki/Base64. Base64 strings may have padding with &lsquo;=&rsquo; at the
+end so that the encoded has length multiple of 4. See Padding section of the
+link above.</p>
+
+<p>Web-safe means that the encoder uses - and _ instead of + and /.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>input</code></b>: A <code>Tensor</code> of type <code>string</code>. Strings to be encoded.</li>
+<li><b><code>pad</code></b>: An optional <code>bool</code>. Defaults to <code>False</code>.
+Bool whether padding is applied at the ends.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> of type <code>string</code>.</p>

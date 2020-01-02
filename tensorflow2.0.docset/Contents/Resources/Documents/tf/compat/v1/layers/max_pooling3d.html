@@ -1,0 +1,75 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.layers.max_pooling3d" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.layers.max_pooling3d</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/layers/pooling.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Max pooling layer for 3D inputs (e.g. (deprecated)</p>
+
+<p><code>python
+tf.compat.v1.layers.max_pooling3d(
+    inputs,
+    pool_size,
+    strides,
+    padding='valid',
+    data_format='channels_last',
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
+Instructions for updating:
+Use keras.layers.MaxPooling3D instead.</p>
+
+<p>volumes).</p>
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>inputs</code></b>: The tensor over which to pool. Must have rank 5.</li>
+<li><b><code>pool_size</code></b>: An integer or tuple/list of 3 integers: (pool_depth, pool_height,
+pool_width) specifying the size of the pooling window. Can be a single
+integer to specify the same value for all spatial dimensions.</li>
+<li><b><code>strides</code></b>: An integer or tuple/list of 3 integers, specifying the strides of
+the pooling operation. Can be a single integer to specify the same value
+for all spatial dimensions.</li>
+<li><b><code>padding</code></b>: A string. The padding method, either &lsquo;valid&rsquo; or &lsquo;same&rsquo;.
+Case-insensitive.</li>
+<li><b><code>data_format</code></b>: A string. The ordering of the dimensions in the inputs.
+<code>channels_last</code> (default) and <code>channels_first</code> are supported.
+<code>channels_last</code> corresponds to inputs with shape <code>(batch, depth, height,
+width, channels)</code> while <code>channels_first</code> corresponds to inputs with shape
+<code>(batch, channels, depth, height, width)</code>.</li>
+<li><b><code>name</code></b>: A string, the name of the layer.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>Output tensor.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: if eager execution is enabled.</li>
+</ul>
+

@@ -1,0 +1,80 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.io.decode_png" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.io.decode_png</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p>Defined in generated file: <code>python/ops/gen_image_ops.py</code></p>
+
+<!-- Start diff -->
+
+
+<p>Decode a PNG-encoded image to a uint8 or uint16 tensor.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.image.decode_png</code></li>
+<li><code>tf.compat.v1.io.decode_png</code></li>
+<li><code>tf.compat.v2.image.decode_png</code></li>
+<li><code>tf.compat.v2.io.decode_png</code></li>
+<li><code>tf.image.decode_png</code></li>
+</ul>
+
+
+<p><code>python
+tf.io.decode_png(
+    contents,
+    channels=0,
+    dtype=tf.dtypes.uint8,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>The attr <code>channels</code> indicates the desired number of color channels for the
+decoded image.</p>
+
+<h4>Accepted values are:</h4>
+
+<ul>
+<li>0: Use the number of channels in the PNG-encoded image.</li>
+<li>1: output a grayscale image.</li>
+<li>3: output an RGB image.</li>
+<li>4: output an RGBA image.</li>
+</ul>
+
+
+<p>If needed, the PNG-encoded image is transformed to match the requested number
+of color channels.</p>
+
+<p>This op also supports decoding JPEGs and non-animated GIFs since the interface
+is the same, though it is cleaner to use <a href="../../tf/io/decode_image.html"><code>tf.image.decode_image</code></a>.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>contents</code></b>: A <code>Tensor</code> of type <code>string</code>. 0-D.  The PNG-encoded image.</li>
+<li><b><code>channels</code></b>: An optional <code>int</code>. Defaults to <code>0</code>.
+Number of color channels for the decoded image.</li>
+<li><b><code>dtype</code></b>: An optional <a href="../../tf/dtypes/DType.html"><code>tf.DType</code></a> from: <code>tf.uint8, tf.uint16</code>. Defaults to <a href="../../tf.html#uint8"><code>tf.uint8</code></a>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> of type <code>dtype</code>.</p>

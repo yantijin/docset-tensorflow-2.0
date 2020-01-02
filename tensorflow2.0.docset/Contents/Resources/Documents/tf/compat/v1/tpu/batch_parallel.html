@@ -1,0 +1,87 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.tpu.batch_parallel" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.tpu.batch_parallel</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/tpu/tpu.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Shards <code>computation</code> along the batch dimension for parallel execution.</p>
+
+<p><code>python
+tf.compat.v1.tpu.batch_parallel(
+    computation,
+    inputs=None,
+    num_shards=1,
+    infeed_queue=None,
+    device_assignment=None,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Convenience wrapper around shard().</p>
+
+<p><code>inputs</code> must be a list of Tensors or None (equivalent to an empty list).
+Each input is split into <code>num_shards</code> pieces along the 0-th dimension, and
+computation is applied to each shard in parallel.</p>
+
+<p>Tensors are broadcast to all shards if they are lexically captured by
+<code>computation</code>. e.g.,</p>
+
+<p>x = tf.constant(7)
+def computation():
+  return x + 3
+&hellip; = shard(computation, &hellip;)</p>
+
+<p>The outputs from all shards are concatenated back together along their 0-th
+dimension.</p>
+
+<p>Inputs and outputs of the computation must be at least rank-1 Tensors.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>computation</code></b>: A Python function that builds a computation to apply to each
+shard of the input.</li>
+<li><b><code>inputs</code></b>: A list of input tensors or None (equivalent to an empty list). The
+0-th dimension of each Tensor must have size divisible by <code>num_shards</code>.</li>
+<li><b><code>num_shards</code></b>: The number of shards.</li>
+<li><b><code>infeed_queue</code></b>: If not <code>None</code>, the <code>InfeedQueue</code> from which to append a tuple
+of arguments as inputs to <code>computation</code>.</li>
+<li><b><code>device_assignment</code></b>: If not <code>None</code>, a <code>DeviceAssignment</code> describing the
+mapping between logical cores in the computation with physical cores in
+the TPU topology. Uses a default device assignment if <code>None</code>. The
+<code>DeviceAssignment</code> may be omitted if each shard of the computation uses
+only one core, and there is either only one shard, or the number of shards
+is equal to the number of cores in the TPU system.</li>
+<li><b><code>name</code></b>: (Deprecated) Does nothing.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A list of output tensors.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If <code>num_shards &lt;= 0</code></li>
+</ul>
+

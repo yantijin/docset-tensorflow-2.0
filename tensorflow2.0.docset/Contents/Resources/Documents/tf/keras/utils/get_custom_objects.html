@@ -1,0 +1,53 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.utils.get_custom_objects" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.keras.utils.get_custom_objects</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/utils/generic_utils.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Retrieves a live reference to the global dictionary of custom objects.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.keras.utils.get_custom_objects</code></li>
+<li><code>tf.compat.v2.keras.utils.get_custom_objects</code></li>
+</ul>
+
+
+<p><code>python
+tf.keras.utils.get_custom_objects()
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Updating and clearing custom objects using <code>custom_object_scope</code>
+is preferred, but <code>get_custom_objects</code> can
+be used to directly access <code>_GLOBAL_CUSTOM_OBJECTS</code>.</p>
+
+<h4>Example:</h4>
+
+<p><code>python
+    get_custom_objects().clear()
+    get_custom_objects()['MyObject'] = MyObject
+</code></p>
+
+<h4>Returns:</h4>
+
+<p>Global dictionary of names to classes (<code>_GLOBAL_CUSTOM_OBJECTS</code>).</p>

@@ -1,0 +1,62 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.math.bessel_i1" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.math.bessel_i1</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/special_math_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Computes the Bessel i1 function of <code>x</code> element-wise.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.math.bessel_i1</code></li>
+<li><code>tf.compat.v2.math.bessel_i1</code></li>
+</ul>
+
+
+<p><code>python
+tf.math.bessel_i1(
+    x,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Modified Bessel function of order 1.</p>
+
+<p>It is preferable to use the numerically stabler function <code>i1e(x)</code> instead.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code> or <code>SparseTensor</code>. Must be one of the following types: <code>half</code>,
+<code>float32</code>, <code>float64</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> or <code>SparseTensor</code>, respectively. Has the same type as <code>x</code>.</p>
+
+<h4>Scipy Compatibility</h4>
+
+<p>Equivalent to scipy.special.i1</p>

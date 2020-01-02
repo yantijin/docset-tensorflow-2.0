@@ -1,0 +1,81 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.forward_compatibility_horizon" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.forward_compatibility_horizon</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/compat/compat.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Context manager for testing forward compatibility of generated graphs.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.compat.forward_compatibility_horizon</code></li>
+<li><code>tf.compat.v2.compat.forward_compatibility_horizon</code></li>
+</ul>
+
+
+<p><code>python
+tf.compat.forward_compatibility_horizon(
+    year,
+    month,
+    day
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>See <a href="https://tensorflow.org/guide/version_compat#backward_forward">Version
+compatibility</a>.</p>
+
+<p>To ensure forward compatibility of generated graphs (see <code>forward_compatible</code>)
+with older binaries, new features can be gated with:</p>
+
+<p><code>python
+if compat.forward_compatible(year=2018, month=08, date=01):
+  generate_graph_with_new_features()
+else:
+  generate_graph_so_older_binaries_can_consume_it()
+</code></p>
+
+<p>However, when adding new features, one may want to unittest it before
+the forward compatibility window expires. This context manager enables
+such tests. For example:</p>
+
+<p>```python
+from tensorflow.python.compat import compat</p>
+
+<p>def testMyNewFeature(self):
+  with compat.forward_compatibility_horizon(2018, 08, 02):
+     # Test that generate_graph_with_new_features() has an effect
+```</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>year</code></b>:  A year (e.g., 2018). Must be an <code>int</code>.</li>
+<li><b><code>month</code></b>: A month (1 &lt;= month &lt;= 12) in year. Must be an <code>int</code>.</li>
+<li><b><code>day</code></b>:   A day (1 &lt;= day &lt;= 31, or 30, or 29, or 28) in month. Must be an
+<code>int</code>.</li>
+</ul>
+
+
+<h4>Yields:</h4>
+
+<p>Nothing.</p>

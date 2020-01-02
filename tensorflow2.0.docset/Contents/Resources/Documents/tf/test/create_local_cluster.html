@@ -1,0 +1,102 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.test.create_local_cluster" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.test.create_local_cluster</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/test_util.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Create and start local servers and return the associated <code>Server</code> objects.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.test.create_local_cluster</code></li>
+<li><code>tf.compat.v2.test.create_local_cluster</code></li>
+</ul>
+
+
+<p><code>python
+tf.test.create_local_cluster(
+    num_workers,
+    num_ps,
+    protocol='grpc',
+    worker_config=None,
+    ps_config=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>&ldquo;PS&rdquo; stands for &ldquo;parameter server&rdquo;: a task responsible for storing and
+updating the model&rsquo;s parameters. Other tasks send updates to these parameters
+as they work on optimizing the parameters. This particular division of labor
+between tasks is not required, but is common for distributed training.</p>
+
+<p>Read more at https://www.tensorflow.org/guide/extend/architecture</p>
+
+<p><img src="https://www.tensorflow.org/images/diag1.svg" title="components" alt="components" /></p>
+
+<p>Figure illustrates the interaction of these components.
+&ldquo;/job:worker/task:0&rdquo; and &ldquo;/job:ps/task:0&rdquo; are both tasks with worker services.</p>
+
+<h4>Example:</h4>
+
+<p>```python
+workers, _ = tf.test.create_local_cluster(num_workers=2, num_ps=2)</p>
+
+<p>worker_sessions = [tf.compat.v1.Session(w.target) for w in workers]</p>
+
+<p>with tf.device(&ldquo;/job:ps/task:0&rdquo;):
+  &hellip;
+with tf.device(&ldquo;/job:ps/task:1&rdquo;):
+  &hellip;
+with tf.device(&ldquo;/job:worker/task:0&rdquo;):
+  &hellip;
+with tf.device(&ldquo;/job:worker/task:1&rdquo;):
+  &hellip;</p>
+
+<p>worker_sessions[0].run(&hellip;)
+```</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>num_workers</code></b>: Number of worker servers to start.</li>
+<li><b><code>num_ps</code></b>: Number of PS servers to start.</li>
+<li><b><code>protocol</code></b>: Communication protocol. Allowed values are documented in the
+documentation of <a href="../../tf/distribute/Server.html"><code>tf.distribute.Server</code></a>.</li>
+<li><b><code>worker_config</code></b>: (optional) <code>tf.ConfigProto</code> to initialize workers. Can be
+used to instantiate multiple devices etc.</li>
+<li><b><code>ps_config</code></b>: (optional) <code>tf.ConfigProto</code> to initialize PS servers.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A tuple <code>(worker_servers, ps_servers)</code>.  <code>worker_servers</code> is a list
+of <code>num_workers</code> objects of type <a href="../../tf/distribute/Server.html"><code>tf.distribute.Server</code></a> (all running
+locally);
+and <code>ps_servers</code> is a list of <code>num_ps</code> objects of similar type.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ImportError</code></b>: if portpicker module was not found at load time</li>
+</ul>
+

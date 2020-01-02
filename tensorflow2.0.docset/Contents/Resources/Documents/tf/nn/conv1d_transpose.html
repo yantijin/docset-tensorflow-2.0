@@ -1,0 +1,89 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.nn.conv1d_transpose" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.nn.conv1d_transpose</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/nn_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>The transpose of <code>conv1d</code>.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.nn.conv1d_transpose</code></li>
+<li><code>tf.compat.v2.nn.conv1d_transpose</code></li>
+</ul>
+
+
+<p><code>python
+tf.nn.conv1d_transpose(
+    input,
+    filters,
+    output_shape,
+    strides,
+    padding='SAME',
+    data_format='NWC',
+    dilations=None,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>This operation is sometimes called &ldquo;deconvolution&rdquo; after <a href="https://www.matthewzeiler.com/mattzeiler/deconvolutionalnetworks.pdf">Deconvolutional
+Networks</a>,
+but is really the transpose (gradient) of <code>conv1d</code> rather than an actual
+deconvolution.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>input</code></b>: A 3-D <code>Tensor</code> of type <code>float</code> and shape
+<code>[batch, in_width, in_channels]</code> for <code>NWC</code> data format or
+<code>[batch, in_channels, in_width]</code> for <code>NCW</code> data format.</li>
+<li><b><code>filters</code></b>: A 3-D <code>Tensor</code> with the same type as <code>value</code> and shape
+<code>[filter_width, output_channels, in_channels]</code>.  <code>filter</code>&rsquo;s
+<code>in_channels</code> dimension must match that of <code>value</code>.</li>
+<li><b><code>output_shape</code></b>: A 1-D <code>Tensor</code>, containing three elements, representing the
+output shape of the deconvolution op.</li>
+<li><b><code>strides</code></b>: An int or list of <code>ints</code> that has length <code>1</code> or <code>3</code>.  The number of
+entries by which the filter is moved right at each step.</li>
+<li><b><code>padding</code></b>: A string, either <code>'VALID'</code> or <code>'SAME'</code>. The padding algorithm.
+See the &ldquo;returns&rdquo; section of <a href="../../tf/nn/convolution.html"><code>tf.nn.convolution</code></a> for details.</li>
+<li><b><code>data_format</code></b>: A string. <code>'NWC'</code> and <code>'NCW'</code> are supported.</li>
+<li><b><code>dilations</code></b>: An int or list of <code>ints</code> that has length <code>1</code> or <code>3</code> which
+defaults to 1. The dilation factor for each dimension of input. If set to
+k > 1, there will be k-1 skipped cells between each filter element on that
+dimension. Dilations in the batch and depth dimensions must be 1.</li>
+<li><b><code>name</code></b>: Optional name for the returned tensor.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> with the same type as <code>value</code>.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If input/output depth does not match <code>filter</code>&rsquo;s shape, if
+<code>output_shape</code> is not at 3-element vector, if <code>padding</code> is other than
+<code>'VALID'</code> or <code>'SAME'</code>, or if <code>data_format</code> is invalid.</li>
+</ul>
+

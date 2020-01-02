@@ -1,0 +1,92 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.metrics.mean_iou" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.metrics.mean_iou</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/metrics_impl.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Calculate per-step mean Intersection-Over-Union (mIOU).</p>
+
+<p><code>python
+tf.compat.v1.metrics.mean_iou(
+    labels,
+    predictions,
+    num_classes,
+    weights=None,
+    metrics_collections=None,
+    updates_collections=None,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Mean Intersection-Over-Union is a common evaluation metric for
+semantic image segmentation, which first computes the IOU for each
+semantic class and then computes the average over classes.
+IOU is defined as follows:
+  IOU = true_positive / (true_positive + false_positive + false_negative).
+The predictions are accumulated in a confusion matrix, weighted by <code>weights</code>,
+and mIOU is then calculated from it.</p>
+
+<p>For estimation of the metric over a stream of data, the function creates an
+<code>update_op</code> operation that updates these variables and returns the <code>mean_iou</code>.</p>
+
+<p>If <code>weights</code> is <code>None</code>, weights default to 1. Use weights of 0 to mask values.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>labels</code></b>: A <code>Tensor</code> of ground truth labels with shape [batch size] and of
+type <code>int32</code> or <code>int64</code>. The tensor will be flattened if its rank > 1.</li>
+<li><b><code>predictions</code></b>: A <code>Tensor</code> of prediction results for semantic labels, whose
+shape is [batch size] and type <code>int32</code> or <code>int64</code>. The tensor will be
+flattened if its rank > 1.</li>
+<li><b><code>num_classes</code></b>: The possible number of labels the prediction task can
+have. This value must be provided, since a confusion matrix of
+dimension = [num_classes, num_classes] will be allocated.</li>
+<li><b><code>weights</code></b>: Optional <code>Tensor</code> whose rank is either 0, or the same rank as
+<code>labels</code>, and must be broadcastable to <code>labels</code> (i.e., all dimensions must
+be either <code>1</code>, or the same as the corresponding <code>labels</code> dimension).</li>
+<li><b><code>metrics_collections</code></b>: An optional list of collections that <code>mean_iou</code>
+should be added to.</li>
+<li><b><code>updates_collections</code></b>: An optional list of collections <code>update_op</code> should be
+added to.</li>
+<li><b><code>name</code></b>: An optional variable_scope name.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<ul>
+<li><b><code>mean_iou</code></b>: A <code>Tensor</code> representing the mean intersection-over-union.</li>
+<li><b><code>update_op</code></b>: An operation that increments the confusion matrix.</li>
+</ul>
+
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If <code>predictions</code> and <code>labels</code> have mismatched shapes, or if
+<code>weights</code> is not <code>None</code> and its shape doesn&rsquo;t match <code>predictions</code>, or if
+either <code>metrics_collections</code> or <code>updates_collections</code> are not a list or
+tuple.</li>
+<li><b><code>RuntimeError</code></b>: If eager execution is enabled.</li>
+</ul>
+

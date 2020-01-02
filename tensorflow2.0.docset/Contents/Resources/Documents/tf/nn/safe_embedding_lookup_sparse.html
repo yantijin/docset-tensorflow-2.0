@@ -1,0 +1,97 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.nn.safe_embedding_lookup_sparse" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.nn.safe_embedding_lookup_sparse</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/embedding_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Lookup embedding results, accounting for invalid IDs and empty features.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v2.nn.safe_embedding_lookup_sparse</code></li>
+</ul>
+
+
+<p><code>python
+tf.nn.safe_embedding_lookup_sparse(
+    embedding_weights,
+    sparse_ids,
+    sparse_weights=None,
+    combiner='mean',
+    default_id=None,
+    max_norm=None,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>The partitioned embedding in <code>embedding_weights</code> must all be the same shape
+except for the first dimension. The first dimension is allowed to vary as the
+vocabulary size is not necessarily a multiple of <code>P</code>.  <code>embedding_weights</code>
+may be a <code>PartitionedVariable</code> as returned by using
+<a href="../../tf/compat/v1/get_variable.html"><code>tf.compat.v1.get_variable()</code></a> with a
+partitioner.</p>
+
+<p>Invalid IDs (&lt; 0) are pruned from input IDs and weights, as well as any IDs
+with non-positive weight. For an entry with no features, the embedding vector
+for <code>default_id</code> is returned, or the 0-vector if <code>default_id</code> is not supplied.</p>
+
+<p>The ids and weights may be multi-dimensional. Embeddings are always aggregated
+along the last dimension.</p>
+
+<p>Note: when doing embedding lookup on <code>embedding_weights</code>, &ldquo;div&rdquo; partition
+strategy will be used. Support for other partition strategy will be added
+later.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>embedding_weights</code></b>:  A list of <code>P</code> float <code>Tensor</code>s or values representing
+partitioned embedding <code>Tensor</code>s.  Alternatively, a <code>PartitionedVariable</code>
+created by partitioning along dimension 0.  The total unpartitioned shape
+should be <code>[e_0, e_1, ..., e_m]</code>, where <code>e_0</code> represents the vocab size
+and <code>e_1, ..., e_m</code> are the embedding dimensions.</li>
+<li><b><code>sparse_ids</code></b>: <code>SparseTensor</code> of shape <code>[d_0, d_1, ..., d_n]</code> containing the
+ids. <code>d_0</code> is typically batch size.</li>
+<li><b><code>sparse_weights</code></b>: <code>SparseTensor</code> of same shape as <code>sparse_ids</code>, containing
+float weights corresponding to <code>sparse_ids</code>, or <code>None</code> if all weights are
+be assumed to be 1.0.</li>
+<li><b><code>combiner</code></b>: A string specifying how to combine embedding results for each
+entry. Currently &ldquo;mean&rdquo;, &ldquo;sqrtn&rdquo; and &ldquo;sum&rdquo; are supported, with &ldquo;mean&rdquo; the
+default.</li>
+<li><b><code>default_id</code></b>: The id to use for an entry with no features.</li>
+<li><b><code>max_norm</code></b>: If not <code>None</code>, all embeddings are l2-normalized to max_norm before
+combining.</li>
+<li><b><code>name</code></b>: A name for this operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>Dense <code>Tensor</code> of shape <code>[d_0, d_1, ..., d_{n-1}, e_1, ..., e_m]</code>.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: if <code>embedding_weights</code> is empty.</li>
+</ul>
+

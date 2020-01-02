@@ -1,0 +1,64 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.decode_raw" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.decode_raw</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/parsing_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Convert raw byte strings into tensors. (deprecated arguments)</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.io.decode_raw</code></li>
+</ul>
+
+
+<p><code>python
+tf.compat.v1.decode_raw(
+    input_bytes=None,
+    out_type=None,
+    little_endian=True,
+    name=None,
+    bytes=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Warning: SOME ARGUMENTS ARE DEPRECATED: <code>(bytes)</code>. They will be removed in a future version.
+Instructions for updating:
+bytes is deprecated, use input_bytes instead</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>input_bytes</code></b>:   Each element of the input Tensor is converted to an array of bytes.</li>
+<li><b><code>out_type</code></b>:   <code>DType</code> of the output. Acceptable types are <code>half</code>, <code>float</code>, <code>double</code>,
+<code>int32</code>, <code>uint16</code>, <code>uint8</code>, <code>int16</code>, <code>int8</code>, <code>int64</code>.</li>
+<li><b><code>little_endian</code></b>:   Whether the <code>input_bytes</code> data is in little-endian format. Data will be
+converted into host byte order if necessary.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+<li><b><code>bytes</code></b>: Deprecated parameter. Use <code>input_bytes</code> instead.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> object storing the decoded bytes.</p>

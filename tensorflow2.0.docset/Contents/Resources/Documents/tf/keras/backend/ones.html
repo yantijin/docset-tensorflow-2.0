@@ -1,0 +1,68 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.backend.ones" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.keras.backend.ones</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/backend.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Instantiates an all-ones variable and returns it.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.keras.backend.ones</code></li>
+<li><code>tf.compat.v2.keras.backend.ones</code></li>
+</ul>
+
+
+<p><code>python
+tf.keras.backend.ones(
+    shape,
+    dtype=None,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Arguments:</h4>
+
+<ul>
+<li><b><code>shape</code></b>: Tuple of integers, shape of returned Keras variable.</li>
+<li><b><code>dtype</code></b>: String, data type of returned Keras variable.</li>
+<li><b><code>name</code></b>: String, name of returned Keras variable.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A Keras variable, filled with <code>1.0</code>.
+Note that if <code>shape</code> was symbolic, we cannot return a variable,
+and will return a dynamically-shaped tensor instead.</p>
+
+<h4>Example:</h4>
+
+<p><code>python
+    &gt;&gt;&gt; from keras import backend as K
+    &gt;&gt;&gt; kvar = K.ones((3,4))
+    &gt;&gt;&gt; K.eval(kvar)
+    array([[ 1.,  1.,  1.,  1.],
+           [ 1.,  1.,  1.,  1.],
+           [ 1.,  1.,  1.,  1.]], dtype=float32)
+</code></p>

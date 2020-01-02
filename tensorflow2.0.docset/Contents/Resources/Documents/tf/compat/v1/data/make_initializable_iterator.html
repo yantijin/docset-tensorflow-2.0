@@ -1,0 +1,66 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.data.make_initializable_iterator" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.data.make_initializable_iterator</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/data/ops/dataset_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Creates a <a href="../../../../tf/compat/v1/data/Iterator.html"><code>tf.compat.v1.data.Iterator</code></a> for enumerating the elements of a dataset.</p>
+
+<p><code>python
+tf.compat.v1.data.make_initializable_iterator(
+    dataset,
+    shared_name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Note: The returned iterator will be in an uninitialized state,
+and you must run the <code>iterator.initializer</code> operation before using it:</p>
+
+<p>```python
+dataset = &hellip;
+iterator = tf.compat.v1.data.make_initializable_iterator(dataset)</p>
+
+<h1>&hellip;</h1>
+
+<p>sess.run(iterator.initializer)
+```</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>dataset</code></b>: A <a href="../../../../tf/data/Dataset.html"><code>tf.data.Dataset</code></a>.</li>
+<li><b><code>shared_name</code></b>: (Optional.) If non-empty, the returned iterator will be shared
+under the given name across multiple sessions that share the same devices
+(e.g. when using a remote server).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <a href="../../../../tf/compat/v1/data/Iterator.html"><code>tf.compat.v1.data.Iterator</code></a> over the elements of <code>dataset</code>.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>RuntimeError</code></b>: If eager execution is enabled.</li>
+</ul>
+

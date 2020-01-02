@@ -1,0 +1,63 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.saved_model.predict_signature_def" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.saved_model.predict_signature_def</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/saved_model/signature_def_utils_impl.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Creates prediction signature from given inputs and outputs.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.saved_model.signature_def_utils.predict_signature_def</code></li>
+</ul>
+
+
+<p><code>python
+tf.compat.v1.saved_model.predict_signature_def(
+    inputs,
+    outputs
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>This function produces signatures intended for use with the TensorFlow Serving
+Predict API (tensorflow_serving/apis/prediction_service.proto). This API
+imposes no constraints on the input and output types.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>inputs</code></b>: dict of string to <code>Tensor</code>.</li>
+<li><b><code>outputs</code></b>: dict of string to <code>Tensor</code>.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A prediction-flavored signature_def.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If inputs or outputs is <code>None</code>.</li>
+</ul>
+

@@ -1,0 +1,51 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.nn.xw_plus_b" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.nn.xw_plus_b</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/nn_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Computes matmul(x, weights) + biases.</p>
+
+<p><code>python
+tf.compat.v1.nn.xw_plus_b(
+    x,
+    weights,
+    biases,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>: a 2D tensor.  Dimensions typically: batch, in_units</li>
+<li><b><code>weights</code></b>: a 2D tensor.  Dimensions typically: in_units, out_units</li>
+<li><b><code>biases</code></b>: a 1D tensor.  Dimensions: out_units</li>
+<li><b><code>name</code></b>: A name for the operation (optional).  If not specified
+&ldquo;xw_plus_b&rdquo; is used.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A 2-D Tensor computing matmul(x, weights) + biases.
+Dimensions typically: batch, out_units.</p>

@@ -1,0 +1,49 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.gfile.Walk" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.gfile.Walk</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/lib/io/file_io.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Recursive directory tree generator for directories.</p>
+
+<p><code>python
+tf.compat.v1.gfile.Walk(
+    top,
+    in_order=True
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>top</code></b>: string, a Directory name</li>
+<li><b><code>in_order</code></b>: bool, Traverse in order if True, post order if False.  Errors that
+happen while listing directories are ignored.</li>
+</ul>
+
+
+<h4>Yields:</h4>
+
+<p>Each yield is a 3-tuple:  the pathname of a directory, followed by lists of
+all its subdirectories and leaf files.
+(dirname, [subdirname, subdirname, &hellip;], [filename, filename, &hellip;])
+as strings</p>

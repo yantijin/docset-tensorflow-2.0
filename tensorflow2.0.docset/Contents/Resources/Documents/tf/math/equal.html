@@ -1,0 +1,72 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.math.equal" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.math.equal</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/math_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Returns the truth value of (x == y) element-wise.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.equal</code></li>
+<li><code>tf.compat.v1.math.equal</code></li>
+<li><code>tf.compat.v2.equal</code></li>
+<li><code>tf.compat.v2.math.equal</code></li>
+<li><code>tf.equal</code></li>
+</ul>
+
+
+<p><code>python
+tf.math.equal(
+    x,
+    y,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Usage:</h4>
+
+<p>```python
+x = tf.constant([2, 4])
+y = tf.constant(2)
+tf.math.equal(x, y) ==> array([True, False])</p>
+
+<p>x = tf.constant([2, 4])
+y = tf.constant([2, 4])
+tf.math.equal(x, y) ==> array([True,  True])
+```</p>
+
+<p><strong>NOTE</strong>: <code>Equal</code> supports broadcasting. More about broadcasting <a href="https://docs.scipy.org/doc/numpy-1.13.0/user/basics.broadcasting.html">here</a></p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code> or <code>SparseTensor</code> or <code>IndexedSlices</code>.</li>
+<li><b><code>y</code></b>: A <code>Tensor</code> or <code>SparseTensor</code> or <code>IndexedSlices</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> of type bool with the same size as that of x or y.</p>

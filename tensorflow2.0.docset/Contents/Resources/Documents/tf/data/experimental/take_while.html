@@ -1,0 +1,52 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.data.experimental.take_while" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.data.experimental.take_while</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/data/experimental/ops/take_while_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>A transformation that stops dataset iteration based on a <code>predicate</code>.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.data.experimental.take_while</code></li>
+<li><code>tf.compat.v2.data.experimental.take_while</code></li>
+</ul>
+
+
+<p><code>python
+tf.data.experimental.take_while(predicate)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>predicate</code></b>: A function that maps a nested structure of tensors (having shapes
+and types defined by <code>self.output_shapes</code> and <code>self.output_types</code>) to a
+scalar <a href="../../../tf.html#bool"><code>tf.bool</code></a> tensor.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Dataset</code> transformation function, which can be passed to
+<a href="../../../tf/data/Dataset.html#apply"><code>tf.data.Dataset.apply</code></a>.</p>

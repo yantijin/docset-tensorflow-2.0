@@ -1,0 +1,108 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.tpu.shard" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.tpu.shard</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/tpu/tpu.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Shards <code>computation</code> for parallel execution.</p>
+
+<p><code>python
+tf.compat.v1.tpu.shard(
+    computation,
+    inputs=None,
+    num_shards=1,
+    input_shard_axes=None,
+    outputs_from_all_shards=True,
+    output_shard_axes=None,
+    infeed_queue=None,
+    device_assignment=None,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p><code>inputs</code> must be a list of Tensors or None (equivalent to an empty list), each
+of which has a corresponding split axis (from <code>input_shard_axes</code>). Each input
+is split into <code>num_shards</code> pieces along the corresponding axis, and
+computation is applied to each shard in parallel.</p>
+
+<p>Tensors are broadcast to all shards if they are lexically captured by
+<code>computation</code>. e.g.,</p>
+
+<p>x = tf.constant(7)
+def computation():
+  return x + 3
+&hellip; = shard(computation, &hellip;)</p>
+
+<p>TODO(phawkins): consider adding support for broadcasting Tensors passed
+as inputs.</p>
+
+<p>If <code>outputs_from_all_shards</code> is true, the outputs from all shards of
+<code>computation</code> are concatenated back together along their <code>output_shards_axes</code>.
+Otherwise, each output is taken from an arbitrary shard.</p>
+
+<p>Inputs and outputs of the computation must be at least rank-1 Tensors.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>computation</code></b>: A Python function that builds a computation to apply to each
+shard of the input.</li>
+<li><b><code>inputs</code></b>: A list of input tensors or None (equivalent to an empty list). Each
+input tensor has a corresponding shard axes, given by <code>input_shard_axes</code>,
+which must have size divisible by <code>num_shards</code>.</li>
+<li><b><code>num_shards</code></b>: The number of shards.</li>
+<li><b><code>input_shard_axes</code></b>: A list of dimensions along which to shard <code>inputs</code>, or
+<code>None</code>. <code>None</code> means &ldquo;shard all inputs along dimension 0&rdquo;. If not <code>None</code>,
+there must be one dimension per input.</li>
+<li><b><code>outputs_from_all_shards</code></b>: Boolean or list of boolean. For each output, if
+<code>True</code>, outputs from all shards are concatenated along the corresponding
+<code>output_shard_axes</code> entry. Otherwise, each output is taken
+from an arbitrary shard. If the argument is a boolean, the argument&rsquo;s
+value is used for each output.</li>
+<li><b><code>output_shard_axes</code></b>: A list of dimensions along which to concatenate the
+outputs of <code>computation</code>, or <code>None</code>. <code>None</code> means &ldquo;concatenate all outputs
+along dimension 0&rdquo;. If not <code>None</code>, there must be one dimension per output.
+Ignored if <code>outputs_from_all_shards</code> is False.</li>
+<li><b><code>infeed_queue</code></b>: If not <code>None</code>, the <code>InfeedQueue</code> to use to augment the inputs
+of <code>computation</code>.</li>
+<li><b><code>device_assignment</code></b>: If not <code>None</code>, a <code>DeviceAssignment</code> describing the
+mapping between logical cores in the computation with physical cores in
+the TPU topology. Uses a default device assignment if <code>None</code>. The
+<code>DeviceAssignment</code> may be omitted if each shard of the computation uses
+only one core, and there is either only one shard, or the number of shards
+is equal to the number of cores in the TPU system.</li>
+<li><b><code>name</code></b>: (Deprecated) Does nothing.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A list of output tensors.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If num_shards &lt;= 0</li>
+<li><b><code>ValueError</code></b>: If len(input_shard_axes) != len(inputs)</li>
+<li><b><code>ValueError</code></b>: If len(output_shard_axes) != len(outputs from <code>computation</code>)</li>
+</ul>
+

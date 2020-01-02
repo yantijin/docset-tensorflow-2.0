@@ -1,0 +1,56 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.flags.tf_decorator.tf_stack.extract_stack_file_and_line" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.compat.v1.flags.tf_decorator.tf_stack.extract_stack_file_and_line</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/util/tf_stack.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>A version of extract_stack that only returns filenames and line numbers.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.app.flags.tf_decorator.tf_stack.extract_stack_file_and_line</code></li>
+</ul>
+
+
+<p><code>python
+tf.compat.v1.flags.tf_decorator.tf_stack.extract_stack_file_and_line(max_length=1000)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Callers often only require filenames and line numbers, and do not need the
+additional information gathered by extract_stack, as they never call
+convert_stack.</p>
+
+<p>As a further optimisation, we allow users to specify a limit on the number of
+frames examined.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>max_length</code></b>: The maximum length of stack to extract.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A list of FileAndLine objects corresponding to the call stack of the current
+thread.</p>

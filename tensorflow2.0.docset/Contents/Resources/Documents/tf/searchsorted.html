@@ -1,0 +1,91 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.searchsorted" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.searchsorted</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/array_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Searches input tensor for values on the innermost dimension.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.searchsorted</code></li>
+<li><code>tf.compat.v2.searchsorted</code></li>
+</ul>
+
+
+<p><code>python
+tf.searchsorted(
+    sorted_sequence,
+    values,
+    side='left',
+    out_type=tf.dtypes.int32,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>A 2-D example:</p>
+
+<p>```
+  sorted_sequence = [[0, 3, 9, 9, 10],
+                     [1, 2, 3, 4, 5]]
+  values = [[2, 4, 9],
+            [0, 2, 6]]</p>
+
+<p>  result = searchsorted(sorted_sequence, values, side=&ldquo;left&rdquo;)</p>
+
+<p>  result == [[1, 2, 2],
+             [0, 1, 5]]</p>
+
+<p>  result = searchsorted(sorted_sequence, values, side=&ldquo;right&rdquo;)</p>
+
+<p>  result == [[1, 2, 4],
+             [0, 2, 5]]
+```</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>sorted_sequence</code></b>: N-D <code>Tensor</code> containing a sorted sequence.</li>
+<li><b><code>values</code></b>: N-D <code>Tensor</code> containing the search values.</li>
+<li><b><code>side</code></b>: &lsquo;left&rsquo; or &lsquo;right&rsquo;; &lsquo;left&rsquo; corresponds to lower_bound and &lsquo;right&rsquo; to
+upper_bound.</li>
+<li><b><code>out_type</code></b>: The output type (<code>int32</code> or <code>int64</code>).  Default is <a href="../tf.html#int32"><code>tf.int32</code></a>.</li>
+<li><b><code>name</code></b>: Optional name for the operation.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>An N-D <code>Tensor</code> the size of values containing the result of applying either
+lower_bound or upper_bound (depending on side) to each value.  The result
+is not a global index to the entire <code>Tensor</code>, but the index in the last
+dimension.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If the last dimension of <code>sorted_sequence &gt;= 2^31-1</code> elements.
+          If the total size of values exceeds <code>2^31 - 1</code> elements.
+          If the first <code>N-1</code> dimensions of the two tensors don&rsquo;t match.</li>
+</ul>
+

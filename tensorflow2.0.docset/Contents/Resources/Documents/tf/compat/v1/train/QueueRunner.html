@@ -1,0 +1,262 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.train.QueueRunner" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="cancel_op"/>
+<meta itemprop="property" content="close_op"/>
+<meta itemprop="property" content="enqueue_ops"/>
+<meta itemprop="property" content="exceptions_raised"/>
+<meta itemprop="property" content="name"/>
+<meta itemprop="property" content="queue"/>
+<meta itemprop="property" content="queue_closed_exception_types"/>
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="create_threads"/>
+<meta itemprop="property" content="from_proto"/>
+<meta itemprop="property" content="to_proto"/>
+</div>
+
+
+<h1>tf.compat.v1.train.QueueRunner</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/queue_runner_impl.py">View source</a></p>
+
+<h2>Class <code>QueueRunner</code></h2>
+
+<!-- Start diff -->
+
+
+<p>Holds a list of enqueue operations for a queue, each to be run in a thread.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li>Class <code>tf.compat.v1.train.queue_runner.QueueRunner</code></li>
+</ul>
+
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>Queues are a convenient TensorFlow mechanism to compute tensors
+asynchronously using multiple threads. For example in the canonical &lsquo;Input
+Reader&rsquo; setup one set of threads generates filenames in a queue; a second set
+of threads read records from the files, processes them, and enqueues tensors
+on a second queue; a third set of threads dequeues these input records to
+construct batches and runs them through training operations.</p>
+
+<p>There are several delicate issues when running multiple threads that way:
+closing the queues in sequence as the input is exhausted, correctly catching
+and reporting exceptions, etc.</p>
+
+<p>The <code>QueueRunner</code>, combined with the <code>Coordinator</code>, helps handle these issues.</p>
+
+<h4>Eager Compatibility</h4>
+
+<p>QueueRunners are not compatible with eager execution. Instead, please
+use <a href="../../../../tf/data.html"><code>tf.data</code></a> to get data into your model.</p>
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/queue_runner_impl.py">View source</a></p>
+
+<p><code>python
+__init__(
+    queue=None,
+    enqueue_ops=None,
+    close_op=None,
+    cancel_op=None,
+    queue_closed_exception_types=None,
+    queue_runner_def=None,
+    import_scope=None
+)
+</code></p>
+
+<p>Create a QueueRunner. (deprecated)</p>
+
+<p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
+Instructions for updating:
+To construct input pipelines, use the <a href="../../../../tf/data.html"><code>tf.data</code></a> module.</p>
+
+<p>On construction the <code>QueueRunner</code> adds an op to close the queue.  That op
+will be run if the enqueue ops raise exceptions.</p>
+
+<p>When you later call the <code>create_threads()</code> method, the <code>QueueRunner</code> will
+create one thread for each op in <code>enqueue_ops</code>.  Each thread will run its
+enqueue op in parallel with the other threads.  The enqueue ops do not have
+to all be the same op, but it is expected that they all enqueue tensors in
+<code>queue</code>.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>queue</code></b>: A <code>Queue</code>.</li>
+<li><b><code>enqueue_ops</code></b>: List of enqueue ops to run in threads later.</li>
+<li><b><code>close_op</code></b>: Op to close the queue. Pending enqueue ops are preserved.</li>
+<li><b><code>cancel_op</code></b>: Op to close the queue and cancel pending enqueue ops.</li>
+<li><b><code>queue_closed_exception_types</code></b>: Optional tuple of Exception types that
+indicate that the queue has been closed when raised during an enqueue
+operation.  Defaults to <code>(tf.errors.OutOfRangeError,)</code>.  Another common
+case includes <code>(tf.errors.OutOfRangeError, tf.errors.CancelledError)</code>,
+when some of the enqueue ops may dequeue from other Queues.</li>
+<li><b><code>queue_runner_def</code></b>: Optional <code>QueueRunnerDef</code> protocol buffer. If specified,
+recreates the QueueRunner from its contents. <code>queue_runner_def</code> and the
+other arguments are mutually exclusive.</li>
+<li><b><code>import_scope</code></b>: Optional <code>string</code>. Name scope to add. Only used when
+initializing from protocol buffer.</li>
+</ul>
+
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>ValueError</code></b>: If both <code>queue_runner_def</code> and <code>queue</code> are both specified.</li>
+<li><b><code>ValueError</code></b>: If <code>queue</code> or <code>enqueue_ops</code> are not provided when not
+restoring from <code>queue_runner_def</code>.</li>
+<li><b><code>RuntimeError</code></b>: If eager execution is enabled.</li>
+</ul>
+
+
+<h2>Properties</h2>
+
+<h3 id="cancel_op"><code>cancel_op</code></h3>
+
+
+
+
+<h3 id="close_op"><code>close_op</code></h3>
+
+
+
+
+<h3 id="enqueue_ops"><code>enqueue_ops</code></h3>
+
+
+
+
+<h3 id="exceptions_raised"><code>exceptions_raised</code></h3>
+
+
+<p>Exceptions raised but not handled by the <code>QueueRunner</code> threads.</p>
+
+<p>Exceptions raised in queue runner threads are handled in one of two ways
+depending on whether or not a <code>Coordinator</code> was passed to
+<code>create_threads()</code>:</p>
+
+<ul>
+<li>With a <code>Coordinator</code>, exceptions are reported to the coordinator and
+forgotten by the <code>QueueRunner</code>.</li>
+<li>Without a <code>Coordinator</code>, exceptions are captured by the <code>QueueRunner</code> and
+made available in this <code>exceptions_raised</code> property.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A list of Python <code>Exception</code> objects.  The list is empty if no exception
+was captured.  (No exceptions are captured when using a Coordinator.)</p>
+
+<h3 id="name"><code>name</code></h3>
+
+
+<p>The string name of the underlying Queue.</p>
+
+<h3 id="queue"><code>queue</code></h3>
+
+
+
+
+<h3 id="queue_closed_exception_types"><code>queue_closed_exception_types</code></h3>
+
+
+<h2>Methods</h2>
+
+<h3 id="create_threads"><code>create_threads</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/queue_runner_impl.py">View source</a></p>
+
+<p><code>python
+create_threads(
+    sess,
+    coord=None,
+    daemon=False,
+    start=False
+)
+</code></p>
+
+<p>Create threads to run the enqueue ops for the given session.</p>
+
+<p>This method requires a session in which the graph was launched.  It creates
+a list of threads, optionally starting them.  There is one thread for each
+op passed in <code>enqueue_ops</code>.</p>
+
+<p>The <code>coord</code> argument is an optional coordinator that the threads will use
+to terminate together and report exceptions.  If a coordinator is given,
+this method starts an additional thread to close the queue when the
+coordinator requests a stop.</p>
+
+<p>If previously created threads for the given session are still running, no
+new threads will be created.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>sess</code></b>: A <code>Session</code>.</li>
+<li><b><code>coord</code></b>: Optional <code>Coordinator</code> object for reporting errors and checking
+stop conditions.</li>
+<li><b><code>daemon</code></b>: Boolean.  If <code>True</code> make the threads daemon threads.</li>
+<li><b><code>start</code></b>: Boolean.  If <code>True</code> starts the threads.  If <code>False</code> the
+caller must call the <code>start()</code> method of the returned threads.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A list of threads.</p>
+
+<h3 id="from_proto"><code>from_proto</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/queue_runner_impl.py">View source</a></p>
+
+<p><code>python
+@staticmethod
+from_proto(
+    queue_runner_def,
+    import_scope=None
+)
+</code></p>
+
+<p>Returns a <code>QueueRunner</code> object created from <code>queue_runner_def</code>.</p>
+
+<h3 id="to_proto"><code>to_proto</code></h3>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/queue_runner_impl.py">View source</a></p>
+
+<p><code>python
+to_proto(export_scope=None)
+</code></p>
+
+<p>Converts this <code>QueueRunner</code> to a <code>QueueRunnerDef</code> protocol buffer.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>export_scope</code></b>: Optional <code>string</code>. Name scope to remove.</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>QueueRunnerDef</code> protocol buffer, or <code>None</code> if the <code>Variable</code> is not in
+the specified name scope.</p>

@@ -1,0 +1,71 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.image.encode_png" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.image.encode_png</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p>Defined in generated file: <code>python/ops/gen_image_ops.py</code></p>
+
+<!-- Start diff -->
+
+
+<p>PNG-encode an image.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.image.encode_png</code></li>
+<li><code>tf.compat.v2.image.encode_png</code></li>
+</ul>
+
+
+<p><code>python
+tf.image.encode_png(
+    image,
+    compression=-1,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p><code>image</code> is a 3-D uint8 or uint16 Tensor of shape <code>[height, width, channels]</code>
+where <code>channels</code> is:</p>
+
+<ul>
+<li>1: for grayscale.</li>
+<li>2: for grayscale + alpha.</li>
+<li>3: for RGB.</li>
+<li>4: for RGBA.</li>
+</ul>
+
+
+<p>The ZLIB compression level, <code>compression</code>, can be -1 for the PNG-encoder
+default or a value from 0 to 9.  9 is the highest compression level, generating
+the smallest output, but is slower.</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>image</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>uint8</code>, <code>uint16</code>.
+3-D with shape <code>[height, width, channels]</code>.</li>
+<li><b><code>compression</code></b>: An optional <code>int</code>. Defaults to <code>-1</code>. Compression level.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code> of type <code>string</code>.</p>

@@ -1,0 +1,120 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.edit_distance" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.edit_distance</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/array_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Computes the Levenshtein distance between sequences.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v1.edit_distance</code></li>
+<li><code>tf.compat.v2.edit_distance</code></li>
+</ul>
+
+
+<p><code>python
+tf.edit_distance(
+    hypothesis,
+    truth,
+    normalize=True,
+    name='edit_distance'
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>This operation takes variable-length sequences (<code>hypothesis</code> and <code>truth</code>),
+each provided as a <code>SparseTensor</code>, and computes the Levenshtein distance.
+You can normalize the edit distance by length of <code>truth</code> by setting
+<code>normalize</code> to true.</p>
+
+<p>For example, given the following input:</p>
+
+<p>```python</p>
+
+<h1>&lsquo;hypothesis&rsquo; is a tensor of shape <code>[2, 1]</code> with variable-length values:</h1>
+
+<h1>(0,0) = [&ldquo;a&rdquo;]</h1>
+
+<h1>(1,0) = [&ldquo;b&rdquo;]</h1>
+
+<p>hypothesis = tf.SparseTensor(
+    [[0, 0, 0],
+     [1, 0, 0]],
+    [&ldquo;a&rdquo;, &ldquo;b&rdquo;],
+    (2, 1, 1))</p>
+
+<h1>&lsquo;truth&rsquo; is a tensor of shape <code>[2, 2]</code> with variable-length values:</h1>
+
+<h1>(0,0) = []</h1>
+
+<h1>(0,1) = [&ldquo;a&rdquo;]</h1>
+
+<h1>(1,0) = [&ldquo;b&rdquo;, &ldquo;c&rdquo;]</h1>
+
+<h1>(1,1) = [&ldquo;a&rdquo;]</h1>
+
+<p>truth = tf.SparseTensor(
+    [[0, 1, 0],
+     [1, 0, 0],
+     [1, 0, 1],
+     [1, 1, 0]],
+    [&ldquo;a&rdquo;, &ldquo;b&rdquo;, &ldquo;c&rdquo;, &ldquo;a&rdquo;],
+    (2, 2, 2))</p>
+
+<p>normalize = True
+```</p>
+
+<p>This operation would return the following:</p>
+
+<p>```python</p>
+
+<h1>&lsquo;output&rsquo; is a tensor of shape <code>[2, 2]</code> with edit distances normalized</h1>
+
+<h1>by &lsquo;truth&rsquo; lengths.</h1>
+
+<p>output ==> [[inf, 1.0],  # (0,0): no truth, (0,1): no hypothesis
+           [0.5, 1.0]]  # (1,0): addition, (1,1): no hypothesis
+```</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>hypothesis</code></b>: A <code>SparseTensor</code> containing hypothesis sequences.</li>
+<li><b><code>truth</code></b>: A <code>SparseTensor</code> containing truth sequences.</li>
+<li><b><code>normalize</code></b>: A <code>bool</code>. If <code>True</code>, normalizes the Levenshtein distance by
+length of <code>truth.</code></li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A dense <code>Tensor</code> with rank <code>R - 1</code>, where R is the rank of the
+<code>SparseTensor</code> inputs <code>hypothesis</code> and <code>truth</code>.</p>
+
+<h4>Raises:</h4>
+
+<ul>
+<li><b><code>TypeError</code></b>: If either <code>hypothesis</code> or <code>truth</code> are not a <code>SparseTensor</code>.</li>
+</ul>
+

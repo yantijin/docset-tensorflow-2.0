@@ -1,0 +1,124 @@
+<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.reverse_sequence" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+
+<h1>tf.reverse_sequence</h1>
+
+<!-- Insert buttons -->
+
+
+
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/array_ops.py">View source</a></p>
+
+<!-- Start diff -->
+
+
+<p>Reverses variable length slices.</p>
+
+<h3>Aliases:</h3>
+
+<ul>
+<li><code>tf.compat.v2.reverse_sequence</code></li>
+</ul>
+
+
+<p><code>python
+tf.reverse_sequence(
+    input,
+    seq_lengths,
+    seq_axis=None,
+    batch_axis=None,
+    name=None
+)
+</code></p>
+
+<!-- Placeholder for "Used in" -->
+
+
+<p>This op first slices <code>input</code> along the dimension <code>batch_axis</code>, and for each
+slice <code>i</code>, reverses the first <code>seq_lengths[i]</code> elements along
+the dimension <code>seq_axis</code>.</p>
+
+<p>The elements of <code>seq_lengths</code> must obey <code>seq_lengths[i] &lt;= input.dims[seq_dim]</code>,
+and <code>seq_lengths</code> must be a vector of length <code>input.dims[batch_dim]</code>.</p>
+
+<p>The output slice <code>i</code> along dimension <code>batch_axis</code> is then given by input
+slice <code>i</code>, with the first <code>seq_lengths[i]</code> slices along dimension
+<code>seq_axis</code> reversed.</p>
+
+<h4>For example:</h4>
+
+<p>```</p>
+
+<h1>Given this:</h1>
+
+<p>batch_dim = 0
+seq_dim = 1
+input.dims = (4, 8, &hellip;)
+seq_lengths = [7, 2, 3, 5]</p>
+
+<h1>then slices of input are reversed on seq_dim, but only up to seq_lengths:</h1>
+
+<p>output[0, 0:7, :, &hellip;] = input[0, 7:0:-1, :, &hellip;]
+output[1, 0:2, :, &hellip;] = input[1, 2:0:-1, :, &hellip;]
+output[2, 0:3, :, &hellip;] = input[2, 3:0:-1, :, &hellip;]
+output[3, 0:5, :, &hellip;] = input[3, 5:0:-1, :, &hellip;]</p>
+
+<h1>while entries past seq_lens are copied through:</h1>
+
+<p>output[0, 7:, :, &hellip;] = input[0, 7:, :, &hellip;]
+output[1, 2:, :, &hellip;] = input[1, 2:, :, &hellip;]
+output[2, 3:, :, &hellip;] = input[2, 3:, :, &hellip;]
+output[3, 2:, :, &hellip;] = input[3, 2:, :, &hellip;]
+```</p>
+
+<p>In contrast, if:</p>
+
+<p>```</p>
+
+<h1>Given this:</h1>
+
+<p>batch_dim = 2
+seq_dim = 0
+input.dims = (8, ?, 4, &hellip;)
+seq_lengths = [7, 2, 3, 5]</p>
+
+<h1>then slices of input are reversed on seq_dim, but only up to seq_lengths:</h1>
+
+<p>output[0:7, :, 0, :, &hellip;] = input[7:0:-1, :, 0, :, &hellip;]
+output[0:2, :, 1, :, &hellip;] = input[2:0:-1, :, 1, :, &hellip;]
+output[0:3, :, 2, :, &hellip;] = input[3:0:-1, :, 2, :, &hellip;]
+output[0:5, :, 3, :, &hellip;] = input[5:0:-1, :, 3, :, &hellip;]</p>
+
+<h1>while entries past seq_lens are copied through:</h1>
+
+<p>output[7:, :, 0, :, &hellip;] = input[7:, :, 0, :, &hellip;]
+output[2:, :, 1, :, &hellip;] = input[2:, :, 1, :, &hellip;]
+output[3:, :, 2, :, &hellip;] = input[3:, :, 2, :, &hellip;]
+output[2:, :, 3, :, &hellip;] = input[2:, :, 3, :, &hellip;]
+```</p>
+
+<h4>Args:</h4>
+
+<ul>
+<li><b><code>input</code></b>: A <code>Tensor</code>. The input to reverse.</li>
+<li><b><code>seq_lengths</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>int32</code>, <code>int64</code>.
+1-D with length <code>input.dims(batch_dim)</code> and
+<code>max(seq_lengths) &lt;= input.dims(seq_dim)</code></li>
+<li><b><code>seq_axis</code></b>: An <code>int</code>. The dimension which is partially reversed.</li>
+<li><b><code>batch_axis</code></b>: An optional <code>int</code>. Defaults to <code>0</code>.
+The dimension along which reversal is performed.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+
+
+<h4>Returns:</h4>
+
+<p>A <code>Tensor</code>. Has the same type as <code>input</code>.</p>
