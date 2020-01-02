@@ -1,0 +1,87 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.image.resize" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1imageresize">tf.compat.v1.image.resize</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/image_ops_impl.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Resize <code>images</code> to <code>size</code> using the specified <code>method</code>.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.image.resize_images</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span>
+    <span class="n">images</span><span class="p">,</span>
+    <span class="n">size</span><span class="p">,</span>
+    <span class="n">method</span><span class="o">=</span><span class="n">ResizeMethodV1</span><span class="o">.</span><span class="n">BILINEAR</span><span class="p">,</span>
+    <span class="n">align_corners</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">preserve_aspect_ratio</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Resized images will be distorted if their original aspect ratio is not
+the same as <code>size</code>.  To avoid distortions see
+<a href="../../../../tf/compat/v1/image/resize_image_with_pad.html"><code>tf.compat.v1.image.resize_image_with_pad</code></a>.</p>
+<p><code>method</code> can be one of:</p>
+<ul>
+<li><b><code>ResizeMethod.BILINEAR</code></b>: <a href="https://en.wikipedia.org/wiki/Bilinear_interpolation">Bilinear interpolation.</a></li>
+<li><b><code>ResizeMethod.NEAREST_NEIGHBOR</code></b>: <a href="https://en.wikipedia.org/wiki/Nearest-neighbor_interpolation">Nearest neighbor interpolation.</a></li>
+<li><b><code>ResizeMethod.BICUBIC</code></b>: <a href="https://en.wikipedia.org/wiki/Bicubic_interpolation">Bicubic interpolation.</a></li>
+<li><b><code>ResizeMethod.AREA</code></b>: Area interpolation.</li>
+</ul>
+<p>The return value has the same type as <code>images</code> if <code>method</code> is
+<code>ResizeMethod.NEAREST_NEIGHBOR</code>. It will also have the same type as <code>images</code>
+if the size of <code>images</code> can be statically determined to be the same as <code>size</code>,
+because <code>images</code> is returned in this case. Otherwise, the return value has
+type <code>float32</code>.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>images</code></b>: 4-D Tensor of shape <code>[batch, height, width, channels]</code> or 3-D Tensor
+  of shape <code>[height, width, channels]</code>.</li>
+<li><b><code>size</code></b>: A 1-D int32 Tensor of 2 elements: <code>new_height, new_width</code>.  The new
+  size for the images.</li>
+<li><b><code>method</code></b>: ResizeMethod.  Defaults to <code>ResizeMethod.BILINEAR</code>.</li>
+<li><b><code>align_corners</code></b>: bool.  If True, the centers of the 4 corner pixels of the
+  input and output tensors are aligned, preserving the values at the corner
+  pixels. Defaults to <code>False</code>.</li>
+<li><b><code>preserve_aspect_ratio</code></b>: Whether to preserve the aspect ratio. If this is set,
+  then <code>images</code> will be resized to a size that fits in <code>size</code> while
+  preserving the aspect ratio of the original image. Scales up the image if
+  <code>size</code> is bigger than the current size of the <code>image</code>. Defaults to False.</li>
+<li><b><code>name</code></b>: A name for this operation (optional).</li>
+</ul>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: if the shape of <code>images</code> is incompatible with the
+  shape arguments to this function</li>
+<li><b><code>ValueError</code></b>: if <code>size</code> has invalid shape or type.</li>
+<li><b><code>ValueError</code></b>: if an unsupported resize method is specified.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>If <code>images</code> was 4-D, a 4-D float Tensor of shape
+<code>[batch, new_height, new_width, channels]</code>.
+If <code>images</code> was 3-D, a 3-D float Tensor of shape
+<code>[new_height, new_width, channels]</code>.</p>
+    </body>
+    </html>
+   

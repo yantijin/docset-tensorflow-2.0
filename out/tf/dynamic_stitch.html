@@ -1,0 +1,109 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../default.css" rel="stylesheet">
+    <link href="
+   ../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.dynamic_stitch" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfdynamic_stitch">tf.dynamic_stitch</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p>Defined in generated file: <code>python/ops/gen_data_flow_ops.py</code></p>
+<!-- Start diff -->
+
+<p>Interleave the values from the <code>data</code> tensors into a single tensor.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.dynamic_stitch</code></li>
+<li><code>tf.compat.v2.dynamic_stitch</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">dynamic_stitch</span><span class="p">(</span>
+    <span class="n">indices</span><span class="p">,</span>
+    <span class="n">data</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Builds a merged tensor such that</p>
+<div class="codehilite"><pre><span></span>    <span class="n">merged</span><span class="p">[</span><span class="n">indices</span><span class="p">[</span><span class="n">m</span><span class="p">][</span><span class="n">i</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">j</span><span class="p">],</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">m</span><span class="p">][</span><span class="n">i</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+</pre></div>
+
+
+<p>For example, if each <code>indices[m]</code> is scalar or vector, we have</p>
+<div class="codehilite"><pre><span></span>    <span class="c1"># Scalar indices:</span>
+    <span class="n">merged</span><span class="p">[</span><span class="n">indices</span><span class="p">[</span><span class="n">m</span><span class="p">],</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">m</span><span class="p">][</span><span class="o">...</span><span class="p">]</span>
+
+    <span class="c1"># Vector indices:</span>
+    <span class="n">merged</span><span class="p">[</span><span class="n">indices</span><span class="p">[</span><span class="n">m</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">m</span><span class="p">][</span><span class="n">i</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+</pre></div>
+
+
+<p>Each <code>data[i].shape</code> must start with the corresponding <code>indices[i].shape</code>,
+and the rest of <code>data[i].shape</code> must be constant w.r.t. <code>i</code>.  That is, we
+must have <code>data[i].shape = indices[i].shape + constant</code>.  In terms of this
+<code>constant</code>, the output shape is</p>
+<div class="codehilite"><pre><span></span><span class="err">merged.shape = [max(indices)] + constant</span>
+</pre></div>
+
+
+<p>Values are merged in order, so if an index appears in both <code>indices[m][i]</code> and
+<code>indices[n][j]</code> for <code>(m,i) &lt; (n,j)</code> the slice <code>data[n][j]</code> will appear in the
+merged result. If you do not need this guarantee, ParallelDynamicStitch might
+perform better on some devices.</p>
+<h4 id="for-example">For example:</h4>
+<div class="codehilite"><pre><span></span>    <span class="n">indices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">6</span>
+    <span class="n">indices</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">indices</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]</span>
+    <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">61</span><span class="p">,</span> <span class="mi">62</span><span class="p">]</span>
+    <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">41</span><span class="p">,</span> <span class="mi">42</span><span class="p">],</span> <span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">]]</span>
+    <span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">[[[</span><span class="mi">51</span><span class="p">,</span> <span class="mi">52</span><span class="p">],</span> <span class="p">[</span><span class="mi">21</span><span class="p">,</span> <span class="mi">22</span><span class="p">]],</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">31</span><span class="p">,</span> <span class="mi">32</span><span class="p">]]]</span>
+    <span class="n">merged</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">],</span> <span class="p">[</span><span class="mi">21</span><span class="p">,</span> <span class="mi">22</span><span class="p">],</span> <span class="p">[</span><span class="mi">31</span><span class="p">,</span> <span class="mi">32</span><span class="p">],</span> <span class="p">[</span><span class="mi">41</span><span class="p">,</span> <span class="mi">42</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">51</span><span class="p">,</span> <span class="mi">52</span><span class="p">],</span> <span class="p">[</span><span class="mi">61</span><span class="p">,</span> <span class="mi">62</span><span class="p">]]</span>
+</pre></div>
+
+
+<p>This method can be used to merge partitions created by <code>dynamic_partition</code>
+as illustrated on the following example:</p>
+<div class="codehilite"><pre><span></span>    <span class="c1"># Apply function (increments x_i) on elements for which a certain condition</span>
+    <span class="c1"># apply (x_i != -1 in this example).</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">5.2</span><span class="p">,</span> <span class="mf">4.3</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">7.4</span><span class="p">])</span>
+    <span class="n">condition_mask</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">not_equal</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="o">-</span><span class="mf">1.</span><span class="p">))</span>
+    <span class="n">partitioned_data</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">dynamic_partition</span><span class="p">(</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">condition_mask</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span> <span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">partitioned_data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">partitioned_data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mf">1.0</span>
+    <span class="n">condition_indices</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">dynamic_partition</span><span class="p">(</span>
+        <span class="n">tf</span><span class="o">.</span><span class="n">range</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">x</span><span class="p">)[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">condition_mask</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span> <span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">dynamic_stitch</span><span class="p">(</span><span class="n">condition_indices</span><span class="p">,</span> <span class="n">partitioned_data</span><span class="p">)</span>
+    <span class="c1"># Here x=[1.1, -1., 6.2, 5.3, -1, 8.4], the -1. values remain</span>
+    <span class="c1"># unchanged.</span>
+</pre></div>
+
+
+<div style="width:70%; margin:auto; margin-bottom:10px; margin-top:20px;">
+<img style="width:100%" src="https://www.tensorflow.org/images/DynamicStitch.png" alt>
+</div>
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>indices</code></b>: A list of at least 1 <code>Tensor</code> objects with type <code>int32</code>.</li>
+<li><b><code>data</code></b>: A list with the same length as <code>indices</code> of <code>Tensor</code> objects with the same type.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>Tensor</code>. Has the same type as <code>data</code>.</p>
+    </body>
+    </html>
+   

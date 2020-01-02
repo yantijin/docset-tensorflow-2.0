@@ -1,0 +1,138 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../default.css" rel="stylesheet">
+    <link href="
+   ../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.print" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfprint">tf.print</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/logging_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Print the specified inputs.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.print</code></li>
+<li><code>tf.compat.v2.print</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">print</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">inputs</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>A TensorFlow operator that prints the specified inputs to a desired
+output stream or logging level. The inputs may be dense or sparse Tensors,
+primitive python objects, data structures that contain tensors, and printable
+Python objects. Printed tensors will recursively show the first and last
+elements of each dimension to summarize.</p>
+<h4 id="example">Example:</h4>
+<p>Single-input usage:</p>
+<div class="codehilite"><pre><span></span><span class="n">tensor</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">output_stream</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+</pre></div>
+
+
+<p>(This prints "[0 1 2 ... 7 8 9]" to sys.stderr)</p>
+<p>Multi-input usage:</p>
+<div class="codehilite"><pre><span></span><span class="n">tensor</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;tensors:&quot;</span><span class="p">,</span> <span class="n">tensor</span><span class="p">,</span> <span class="p">{</span><span class="mi">2</span><span class="p">:</span> <span class="n">tensor</span> <span class="o">*</span> <span class="mi">2</span><span class="p">},</span> <span class="n">output_stream</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span>
+</pre></div>
+
+
+<p>(This prints "tensors: [0 1 2 ... 7 8 9] {2: [0 2 4 ... 14 16 18]}" to
+sys.stdout)</p>
+<p>Changing the input separator:</p>
+<div class="codehilite"><pre><span></span><span class="n">tensor_a</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">range</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">tensor_b</span> <span class="o">=</span> <span class="n">tensor_a</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="n">tensor_a</span><span class="p">,</span> <span class="n">tensor_b</span><span class="p">,</span> <span class="n">output_stream</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>(This prints "[0 1],[0 2]" to sys.stderr)</p>
+<p>Usage in a <a href="../tf/function.html"><code>tf.function</code></a>:</p>
+<div class="codehilite"><pre><span></span><span class="nd">@tf</span><span class="o">.</span><span class="n">function</span>
+<span class="k">def</span> <span class="nf">f</span><span class="p">():</span>
+    <span class="n">tensor</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">output_stream</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">tensor</span>
+
+<span class="n">range_tensor</span> <span class="o">=</span> <span class="n">f</span><span class="p">()</span>
+</pre></div>
+
+
+<p>(This prints "[0 1 2 ... 7 8 9]" to sys.stderr)</p>
+<p>@compatibility(TF 1.x Graphs and Sessions)
+In graphs manually created outside of <a href="../tf/function.html"><code>tf.function</code></a>, this method returns
+the created TF operator that prints the data. To make sure the
+operator runs, users need to pass the produced op to
+<a href="../tf/compat/v1/Session.html"><code>tf.compat.v1.Session</code></a>'s run method, or to use the op as a control
+dependency for executed ops by specifying
+<code>with tf.compat.v1.control_dependencies([print_op])</code>.
+@end_compatibility</p>
+<p>Compatibility usage in TF 1.x graphs:</p>
+<p><code>python
+  sess = tf.compat.v1.Session()
+  with sess.as_default():
+      tensor = tf.range(10)
+      print_op = tf.print("tensors:", tensor, {2: tensor * 2},
+                          output_stream=sys.stdout)
+      with tf.control_dependencies([print_op]):
+        tripled_tensor = tensor * 3
+      sess.run(tripled_tensor)</code></p>
+<p>(This prints "tensors: [0 1 2 ... 7 8 9] {2: [0 2 4 ... 14 16 18]}" to
+  sys.stdout)</p>
+<p>Note: In Jupyter notebooks and colabs, <a href="../tf/print.html"><code>tf.print</code></a> prints to the notebook
+  cell outputs. It will not write to the notebook kernel's console logs.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>*inputs</code></b>: Positional arguments that are the inputs to print. Inputs in the
+  printed output will be separated by spaces. Inputs may be python
+  primitives, tensors, data structures such as dicts and lists that may
+  contain tensors (with the data structures possibly nested in arbitrary
+  ways), and printable python objects.</li>
+<li><b><code>output_stream</code></b>: The output stream, logging level, or file to print to.
+  Defaults to sys.stderr, but sys.stdout, tf.compat.v1.logging.info,
+  tf.compat.v1.logging.warning, tf.compat.v1.logging.error,
+  absl.logging.info, absl.logging.warning and absl.loogging,error are also
+  supported. To print to a file, pass a string started with "file://"
+  followed by the file path, e.g., "file:///tmp/foo.out".</li>
+<li><b><code>summarize</code></b>: The first and last <code>summarize</code> elements within each dimension are
+  recursively printed per Tensor. If None, then the first 3 and last 3
+  elements of each dimension are printed for each tensor. If set to -1, it
+  will print all elements of every tensor.</li>
+<li><b><code>sep</code></b>: The string to use to separate the inputs. Defaults to " ".</li>
+<li><b><code>end</code></b>: End character that is appended at the end the printed string.
+  Defaults to the newline character.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>None when executing eagerly. During graph tracing this returns
+a TF operator that prints the specified inputs in the specified output
+stream or logging level. This operator will be automatically executed
+except inside of <a href="../tf/compat/v1.html"><code>tf.compat.v1</code></a> graphs and sessions.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: If an unsupported output stream is specified.</li>
+</ul>
+<h4 id="python2-compatibility">Python2 Compatibility</h4>
+<p>In python 2.7, make sure to import the following:
+<code>from __future__ import print_function</code></p>
+    </body>
+    </html>
+   

@@ -1,0 +1,118 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v2.distribute" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="module-tfcompatv2distribute">Module: tf.compat.v2.distribute</h1>
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p>Library for running a computation across multiple devices.</p>
+<p>See the guide for overview and examples:
+<a href="https://www.tensorflow.org/guide/distribute_strategy">TensorFlow v1.x</a>,
+<a href="https://www.tensorflow.org/alpha/guide/distribute_strategy">TensorFlow v2.x</a>.</p>
+<p>The intent of this library is that you can write an algorithm in a stylized way
+and it will be usable with a variety of different <a href="../../../tf/distribute/Strategy.html"><code>tf.distribute.Strategy</code></a>
+implementations. Each descendant will implement a different strategy for
+distributing the algorithm across multiple devices/machines.  Furthermore, these
+changes can be hidden inside the specific layers and other library classes that
+need special treatment to run in a distributed setting, so that most users'
+model definition code can run unchanged. The <a href="../../../tf/distribute/Strategy.html"><code>tf.distribute.Strategy</code></a> API works
+the same way with eager and graph execution.</p>
+<p><em>Glossary</em></p>
+<ul>
+<li><em>Data parallelism</em> is where we run multiple copies of the model
+  on different slices of the input data. This is in contrast to
+  <em>model parallelism</em> where we divide up a single copy of a model
+  across multiple devices.
+  Note: we only support data parallelism for now, but
+  hope to add support for model parallelism in the future.</li>
+<li>A <em>device</em> is a CPU or accelerator (e.g. GPUs, TPUs) on some machine that
+  TensorFlow can run operations on (see e.g. <a href="../../../tf/device.html"><code>tf.device</code></a>). You may have multiple
+  devices on a single machine, or be connected to devices on multiple
+  machines. Devices used to run computations are called <em>worker devices</em>.
+  Devices used to store variables are <em>parameter devices</em>. For some strategies,
+  such as <a href="../../../tf/distribute/MirroredStrategy.html"><code>tf.distribute.MirroredStrategy</code></a>, the worker and parameter devices
+  will be the same (see mirrored variables below). For others they will be
+  different.  For example, <a href="../../../tf/distribute/experimental/CentralStorageStrategy.html"><code>tf.distribute.experimental.CentralStorageStrategy</code></a>
+  puts the variables on a single device (which may be a worker device or may be
+  the CPU), and <a href="../../../tf/distribute/experimental/ParameterServerStrategy.html"><code>tf.distribute.experimental.ParameterServerStrategy</code></a> puts the
+  variables on separate machines called parameter servers (see below).</li>
+<li>A <em>replica</em> is one copy of the model, running on one slice of the
+  input data. Right now each replica is executed on its own
+  worker device, but once we add support for model parallelism
+  a replica may span multiple worker devices.</li>
+<li>A <em>host</em> is the CPU device on a machine with worker devices, typically
+  used for running input pipelines.</li>
+<li>A <em>worker</em> is defined to be the physical machine(s) containing the physical
+  devices (e.g. GPUs, TPUs) on which the replicated computation is executed. A
+  worker may contain one or more replicas, but contains at least one
+  replica. Typically one worker will correspond to one machine, but in the case
+  of very large models with model parallelism, one worker may span multiple
+  machines. We typically run one input pipeline per worker, feeding all the
+  replicas on that worker.</li>
+<li><em>Synchronous</em>, or more commonly <em>sync</em>, training is where the updates from
+  each replica are aggregated together before updating the model variables. This
+  is in contrast to <em>asynchronous</em>, or <em>async</em> training, where each replica
+  updates the model variables independently. You may also have replicas
+  partitioned into groups which are in sync within each group but async between
+  groups.</li>
+<li><em>Parameter servers</em>: These are machines that hold a single copy of
+  parameters/variables, used by some strategies (right now just
+  <a href="../../../tf/distribute/experimental/ParameterServerStrategy.html"><code>tf.distribute.experimental.ParameterServerStrategy</code></a>). All replicas that want
+  to operate on a variable retrieve it at the beginning of a step and send an
+  update to be applied at the end of the step. These can in priniciple support
+  either sync or async training, but right now we only have support for async
+  training with parameter servers. Compare to
+  <a href="../../../tf/distribute/experimental/CentralStorageStrategy.html"><code>tf.distribute.experimental.CentralStorageStrategy</code></a>, which puts all variables
+  on a single device on the same machine (and does sync training), and
+  <a href="../../../tf/distribute/MirroredStrategy.html"><code>tf.distribute.MirroredStrategy</code></a>, which mirrors variables to multiple devices
+  (see below).</li>
+<li><em>Mirrored variables</em>: These are variables that are copied to multiple
+  devices, where we keep the copies in sync by applying the same
+  updates to every copy. Normally would only be used with sync training.</li>
+<li>Reductions and all-reduce: A <em>reduction</em> is some method of aggregating
+  multiple values into one value, like "sum" or "mean". If a strategy is doing
+  sync training, we will perform a reduction on the gradients to a parameter
+  from all replicas before applying the update. <em>All-reduce</em> is an algorithm for
+  performing a reduction on values from multiple devices and making the result
+  available on all of those devices.</li>
+</ul>
+<p>Note that we provide a default version of <a href="../../../tf/distribute/Strategy.html"><code>tf.distribute.Strategy</code></a> that is
+used when no other strategy is in scope, that provides the same API with
+reasonable default behavior.</p>
+<h2 id="modules">Modules</h2>
+<p><a href="../../../tf/compat/v2/distribute/cluster_resolver.html"><code>cluster_resolver</code></a> module: Library imports for ClusterResolvers.</p>
+<p><a href="../../../tf/compat/v2/distribute/experimental.html"><code>experimental</code></a> module: Experimental Distribution Strategy library.</p>
+<h2 id="classes">Classes</h2>
+<p><a href="../../../tf/distribute/CrossDeviceOps.html"><code>class CrossDeviceOps</code></a>: Base class for cross-device reduction and broadcasting algorithms.</p>
+<p><a href="../../../tf/distribute/HierarchicalCopyAllReduce.html"><code>class HierarchicalCopyAllReduce</code></a>: Reduction using hierarchical copy all-reduce.</p>
+<p><a href="../../../tf/distribute/InputContext.html"><code>class InputContext</code></a>: A class wrapping information needed by an input function.</p>
+<p><a href="../../../tf/distribute/InputReplicationMode.html"><code>class InputReplicationMode</code></a>: Replication mode for input function.</p>
+<p><a href="../../../tf/distribute/MirroredStrategy.html"><code>class MirroredStrategy</code></a>: Mirrors vars to distribute across multiple devices and machines.</p>
+<p><a href="../../../tf/distribute/NcclAllReduce.html"><code>class NcclAllReduce</code></a>: Reduction using NCCL all-reduce.</p>
+<p><a href="../../../tf/distribute/OneDeviceStrategy.html"><code>class OneDeviceStrategy</code></a>: A distribution strategy for running on a single device.</p>
+<p><a href="../../../tf/distribute/ReduceOp.html"><code>class ReduceOp</code></a>: Indicates how a set of values should be reduced.</p>
+<p><a href="../../../tf/distribute/ReductionToOneDevice.html"><code>class ReductionToOneDevice</code></a>: Always do reduction to one device first and then do broadcasting.</p>
+<p><a href="../../../tf/distribute/ReplicaContext.html"><code>class ReplicaContext</code></a>: <a href="../../../tf/distribute/Strategy.html"><code>tf.distribute.Strategy</code></a> API when in a replica context.</p>
+<p><a href="../../../tf/distribute/Server.html"><code>class Server</code></a>: An in-process TensorFlow server, for use in distributed training.</p>
+<p><a href="../../../tf/distribute/Strategy.html"><code>class Strategy</code></a>: A state &amp; compute distribution policy on a list of devices.</p>
+<p><a href="../../../tf/distribute/StrategyExtended.html"><code>class StrategyExtended</code></a>: Additional APIs for algorithms that need to be distribution-aware.</p>
+<h2 id="functions">Functions</h2>
+<p><a href="../../../tf/distribute/experimental_set_strategy.html"><code>experimental_set_strategy(...)</code></a>: Set a <a href="../../../tf/distribute/Strategy.html"><code>tf.distribute.Strategy</code></a> as current without <code>with strategy.scope()</code>.</p>
+<p><a href="../../../tf/distribute/get_replica_context.html"><code>get_replica_context(...)</code></a>: Returns the current <a href="../../../tf/distribute/ReplicaContext.html"><code>tf.distribute.ReplicaContext</code></a> or <code>None</code>.</p>
+<p><a href="../../../tf/distribute/get_strategy.html"><code>get_strategy(...)</code></a>: Returns the current <a href="../../../tf/distribute/Strategy.html"><code>tf.distribute.Strategy</code></a> object.</p>
+<p><a href="../../../tf/distribute/has_strategy.html"><code>has_strategy(...)</code></a>: Return if there is a current non-default <a href="../../../tf/distribute/Strategy.html"><code>tf.distribute.Strategy</code></a>.</p>
+<p><a href="../../../tf/distribute/in_cross_replica_context.html"><code>in_cross_replica_context(...)</code></a>: Returns <code>True</code> if in a cross-replica context.</p>
+    </body>
+    </html>
+   

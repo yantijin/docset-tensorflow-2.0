@@ -1,0 +1,82 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.layers.experimental.keras_style_scope" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1layersexperimentalkeras_style_scope">tf.compat.v1.layers.experimental.keras_style_scope</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/layers/base.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Use Keras-style variable management.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">keras_style_scope</span><span class="p">()</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>All tf.layers and tf RNN cells created in this scope use Keras-style
+variable management.  Creating such layers with a scope= argument is
+disallowed, and reuse=True is disallowed.</p>
+<p>The purpose of this scope is to allow users of existing layers to
+slowly transition to a Keras layers API without breaking existing
+functionality.</p>
+<p>One example of this is when using TensorFlow's RNN classes with Keras
+Models or Networks.  Because Keras models do not properly set variable
+scopes, users of RNNs may either accidentally share scopes between two
+different models, or get errors about variables that already exist.</p>
+<h4 id="example">Example:</h4>
+<div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">RNNModel</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="nb">super</span><span class="p">(</span><span class="n">RNNModel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">rnn</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">rnn_cell</span><span class="o">.</span><span class="n">MultiRNNCell</span><span class="p">(</span>
+      <span class="p">[</span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">rnn_cell</span><span class="o">.</span><span class="n">LSTMCell</span><span class="p">(</span><span class="mi">64</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">)])</span>
+
+  <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">rnn</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span>
+
+<span class="n">model_1</span> <span class="o">=</span> <span class="n">RNNModel</span><span class="p">(</span><span class="s2">&quot;model_1&quot;</span><span class="p">)</span>
+<span class="n">model_2</span> <span class="o">=</span> <span class="n">RNNModel</span><span class="p">(</span><span class="s2">&quot;model_2&quot;</span><span class="p">)</span>
+
+<span class="c1"># OK</span>
+<span class="n">output_1</span><span class="p">,</span> <span class="n">next_state_1</span> <span class="o">=</span> <span class="n">model_1</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span>
+<span class="c1"># Raises an error about trying to create an already existing variable.</span>
+<span class="n">output_2</span><span class="p">,</span> <span class="n">next_state_2</span> <span class="o">=</span> <span class="n">model_2</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span>
+</pre></div>
+
+
+<p>The solution is to wrap the model construction and execution in a keras-style
+scope:</p>
+<div class="codehilite"><pre><span></span><span class="k">with</span> <span class="n">keras_style_scope</span><span class="p">():</span>
+  <span class="n">model_1</span> <span class="o">=</span> <span class="n">RNNModel</span><span class="p">(</span><span class="s2">&quot;model_1&quot;</span><span class="p">)</span>
+  <span class="n">model_2</span> <span class="o">=</span> <span class="n">RNNModel</span><span class="p">(</span><span class="s2">&quot;model_2&quot;</span><span class="p">)</span>
+
+  <span class="c1"># model_1 and model_2 are guaranteed to create their own variables.</span>
+  <span class="n">output_1</span><span class="p">,</span> <span class="n">next_state_1</span> <span class="o">=</span> <span class="n">model_1</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span>
+  <span class="n">output_2</span><span class="p">,</span> <span class="n">next_state_2</span> <span class="o">=</span> <span class="n">model_2</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span>
+
+  <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">model_1</span><span class="o">.</span><span class="n">weights</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+  <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">model_2</span><span class="o">.</span><span class="n">weights</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+  <span class="k">assert</span><span class="p">(</span><span class="n">model_1</span><span class="o">.</span><span class="n">weights</span> <span class="o">!=</span> <span class="n">model_2</span><span class="o">.</span><span class="n">weights</span><span class="p">)</span>
+</pre></div>
+
+
+<h4 id="yields">Yields:</h4>
+<p>A keras layer style scope.</p>
+    </body>
+    </html>
+   

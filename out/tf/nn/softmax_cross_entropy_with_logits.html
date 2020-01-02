@@ -1,0 +1,80 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.nn.softmax_cross_entropy_with_logits" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfnnsoftmax_cross_entropy_with_logits">tf.nn.softmax_cross_entropy_with_logits</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/nn_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Computes softmax cross entropy between <code>logits</code> and <code>labels</code>.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v2.nn.softmax_cross_entropy_with_logits</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">softmax_cross_entropy_with_logits</span><span class="p">(</span>
+    <span class="n">labels</span><span class="p">,</span>
+    <span class="n">logits</span><span class="p">,</span>
+    <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Measures the probability error in discrete classification tasks in which the
+classes are mutually exclusive (each entry is in exactly one class).  For
+example, each CIFAR-10 image is labeled with one and only one label: an image
+can be a dog or a truck, but not both.</p>
+<p><strong>NOTE:</strong>  While the classes are mutually exclusive, their probabilities
+need not be.  All that is required is that each row of <code>labels</code> is
+a valid probability distribution.  If they are not, the computation of the
+gradient will be incorrect.</p>
+<p>If using exclusive <code>labels</code> (wherein one and only
+one class is true at a time), see <code>sparse_softmax_cross_entropy_with_logits</code>.</p>
+<p><strong>WARNING:</strong> This op expects unscaled logits, since it performs a <code>softmax</code>
+on <code>logits</code> internally for efficiency.  Do not call this op with the
+output of <code>softmax</code>, as it will produce incorrect results.</p>
+<p>A common use case is to have logits and labels of shape
+<code>[batch_size, num_classes]</code>, but higher dimensions are supported, with
+the <code>axis</code> argument specifying the class dimension.</p>
+<p><code>logits</code> and <code>labels</code> must have the same dtype (either <code>float16</code>, <code>float32</code>,
+or <code>float64</code>).</p>
+<p>Backpropagation will happen into both <code>logits</code> and <code>labels</code>.  To disallow
+backpropagation into <code>labels</code>, pass label tensors through <a href="../../tf/stop_gradient.html"><code>tf.stop_gradient</code></a>
+before feeding it to this function.</p>
+<p><strong>Note that to avoid confusion, it is required to pass only named arguments to
+this function.</strong></p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>labels</code></b>: Each vector along the class dimension should hold a valid
+  probability distribution e.g. for the case in which labels are of shape
+  <code>[batch_size, num_classes]</code>, each row of <code>labels[i]</code> must be a valid
+  probability distribution.</li>
+<li><b><code>logits</code></b>: Per-label activations, typically a linear output. These activation
+  energies are interpreted as unnormalized log probabilities.</li>
+<li><b><code>axis</code></b>: The class dimension. Defaulted to -1 which is the last dimension.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>Tensor</code> that contains the softmax cross entropy loss. Its type is the
+same as <code>logits</code> and its shape is the same as <code>labels</code> except that it does
+not have the last dimension of <code>labels</code>.</p>
+    </body>
+    </html>
+   

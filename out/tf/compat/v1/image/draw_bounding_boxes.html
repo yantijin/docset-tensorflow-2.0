@@ -1,0 +1,57 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.image.draw_bounding_boxes" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1imagedraw_bounding_boxes">tf.compat.v1.image.draw_bounding_boxes</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/image_ops_impl.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Draw bounding boxes on a batch of images.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">draw_bounding_boxes</span><span class="p">(</span>
+    <span class="n">images</span><span class="p">,</span>
+    <span class="n">boxes</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">colors</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Outputs a copy of <code>images</code> but draws on top of the pixels zero or more
+bounding boxes specified by the locations in <code>boxes</code>. The coordinates of the
+each bounding box in <code>boxes</code> are encoded as <code>[y_min, x_min, y_max, x_max]</code>.
+The bounding box coordinates are floats in <code>[0.0, 1.0]</code> relative to the width
+and height of the underlying image.</p>
+<p>For example, if an image is 100 x 200 pixels (height x width) and the bounding
+box is <code>[0.1, 0.2, 0.5, 0.9]</code>, the upper-left and bottom-right coordinates of
+the bounding box will be <code>(40, 10)</code> to <code>(180, 50)</code> (in (x,y) coordinates).</p>
+<p>Parts of the bounding box may fall outside the image.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>images</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>float32</code>, <code>half</code>.
+  4-D with shape <code>[batch, height, width, depth]</code>. A batch of images.</li>
+<li><b><code>boxes</code></b>: A <code>Tensor</code> of type <code>float32</code>. 3-D with shape <code>[batch,
+  num_bounding_boxes, 4]</code> containing bounding boxes.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>Tensor</code>. Has the same type as <code>images</code>.</p>
+    </body>
+    </html>
+   

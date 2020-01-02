@@ -1,0 +1,55 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.train.limit_epochs" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1trainlimit_epochs">tf.compat.v1.train.limit_epochs</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/input.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Returns tensor <code>num_epochs</code> times and then raises an <code>OutOfRange</code> error. (deprecated)</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">limit_epochs</span><span class="p">(</span>
+    <span class="n">tensor</span><span class="p">,</span>
+    <span class="n">num_epochs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
+Instructions for updating:
+Queue-based input pipelines have been replaced by <a href="../../../../tf/data.html"><code>tf.data</code></a>. Use <code>tf.data.Dataset.from_tensors(tensor).repeat(num_epochs)</code>.</p>
+<p>Note: creates local counter <code>epochs</code>. Use <code>local_variables_initializer()</code> to
+initialize local variables.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>tensor</code></b>: Any <code>Tensor</code>.</li>
+<li><b><code>num_epochs</code></b>: A positive integer (optional).  If specified, limits the number
+  of steps the output tensor may be evaluated.</li>
+<li><b><code>name</code></b>: A name for the operations (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>tensor or <code>OutOfRange</code>.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: if <code>num_epochs</code> is invalid.</li>
+</ul>
+    </body>
+    </html>
+   

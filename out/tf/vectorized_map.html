@@ -1,0 +1,110 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../default.css" rel="stylesheet">
+    <link href="
+   ../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.vectorized_map" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfvectorized_map">tf.vectorized_map</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/parallel_for/control_flow_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Parallel map on the list of tensors unpacked from <code>elems</code> on dimension 0.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.vectorized_map</code></li>
+<li><code>tf.compat.v2.vectorized_map</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">vectorized_map</span><span class="p">(</span>
+    <span class="n">fn</span><span class="p">,</span>
+    <span class="n">elems</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>This method works similar to tf.map_fn but is optimized to run much faster,
+possibly with a much larger memory footprint. The speedups are obtained by
+vectorization (see https://arxiv.org/pdf/1903.04243.pdf). The idea behind
+vectorization is to semantically launch all the invocations of <code>fn</code> in
+parallel and fuse corresponding operations across all these invocations. This
+fusion is done statically at graph generation time and the generated code is
+often similar in performance to a manually fused version.</p>
+<p>Because <a href="../tf/vectorized_map.html"><code>tf.vectorized_map</code></a> fully parallelizes the batch, this method will
+generally be significantly faster than using <a href="../tf/map_fn.html"><code>tf.map_fn</code></a>, especially in eager
+mode. However this is an experimental feature and currently has a lot of
+limitations:
+  - There should be no data dependency between the different semantic
+    invocations of <code>fn</code>, i.e. it should be safe to map the elements of the
+    inputs in any order.
+  - Stateful kernels may mostly not be supported since these often imply a
+    data dependency. We do support a limited set of such stateful kernels
+    though (like RandomFoo, Variable operations like reads, etc).
+  - <code>fn</code> has limited support for control flow operations. <a href="../tf/cond.html"><code>tf.cond</code></a> in
+    particular is not supported.
+  - <code>fn</code> should return nested structure of Tensors or Operations. However
+    if an Operation is returned, it should have zero outputs.
+  - The shape and dtype of any intermediate or output tensors in the
+    computation of <code>fn</code> should not depend on the input to <code>fn</code>.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>fn</code></b>: The callable to be performed. It accepts one argument, which will have
+  the same (possibly nested) structure as <code>elems</code>, and returns a possibly
+  nested structure of Tensors and Operations, which may be different than
+  the structure of <code>elems</code>.</li>
+<li><b><code>elems</code></b>: A tensor or (possibly nested) sequence of tensors, each of which will
+  be unpacked along their first dimension. The nested sequence of the
+  resulting slices will be mapped over by <code>fn</code>.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A tensor or (possibly nested) sequence of tensors. Each tensor packs the
+results of applying fn to tensors unpacked from elems along the first
+dimension, from first to last.</p>
+<h4 id="examples">Examples:</h4>
+<div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">outer_product</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+  <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">tensordot</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">batch_size</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">))</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">vectorized_map</span><span class="p">(</span><span class="n">outer_product</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">c</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="codehilite"><pre><span></span><span class="c1"># Computing per-example gradients</span>
+
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">num_features</span> <span class="o">=</span> <span class="mi">32</span>
+<span class="n">layer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">model_fn</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
+  <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">GradientTape</span><span class="p">()</span> <span class="k">as</span> <span class="n">g</span><span class="p">:</span>
+    <span class="n">inp</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="n">arg</span>
+    <span class="n">inp</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">prediction</span> <span class="o">=</span> <span class="n">layer</span><span class="p">(</span><span class="n">inp</span><span class="p">)</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">l2_loss</span><span class="p">(</span><span class="n">label</span> <span class="o">-</span> <span class="n">prediction</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">g</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">loss</span><span class="p">,</span> <span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">kernel</span><span class="p">,</span> <span class="n">layer</span><span class="o">.</span><span class="n">bias</span><span class="p">))</span>
+
+<span class="n">inputs</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">random_uniform</span><span class="p">([</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">num_features</span><span class="p">])</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">random_uniform</span><span class="p">([</span><span class="n">batch_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">per_example_gradients</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">vectorized_map</span><span class="p">(</span><span class="n">model_fn</span><span class="p">,</span> <span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">labels</span><span class="p">))</span>
+<span class="k">assert</span> <span class="n">per_example_gradients</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">num_features</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">per_example_gradients</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+    </body>
+    </html>
+   

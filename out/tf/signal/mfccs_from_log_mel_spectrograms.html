@@ -1,0 +1,93 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.signal.mfccs_from_log_mel_spectrograms" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfsignalmfccs_from_log_mel_spectrograms">tf.signal.mfccs_from_log_mel_spectrograms</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/signal/mfcc_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Computes <a href="https://en.wikipedia.org/wiki/Mel-frequency_cepstrum">MFCCs</a> of <code>log_mel_spectrograms</code>.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.signal.mfccs_from_log_mel_spectrograms</code></li>
+<li><code>tf.compat.v2.signal.mfccs_from_log_mel_spectrograms</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">mfccs_from_log_mel_spectrograms</span><span class="p">(</span>
+    <span class="n">log_mel_spectrograms</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Implemented with GPU-compatible ops and supports gradients.</p>
+<p><a href="https://en.wikipedia.org/wiki/Mel-frequency_cepstrum">Mel-Frequency Cepstral Coefficient (MFCC)</a> calculation consists of
+taking the DCT-II of a log-magnitude mel-scale spectrogram. <a href="https://en.wikipedia.org/wiki/HTK_(software)">HTK</a>'s MFCCs
+use a particular scaling of the DCT-II which is almost orthogonal
+normalization. We follow this convention.</p>
+<p>All <code>num_mel_bins</code> MFCCs are returned and it is up to the caller to select
+a subset of the MFCCs based on their application. For example, it is typical
+to only use the first few for speech recognition, as this results in
+an approximately pitch-invariant representation of the signal.</p>
+<h4 id="for-example">For example:</h4>
+<div class="codehilite"><pre><span></span><span class="n">sample_rate</span> <span class="o">=</span> <span class="mf">16000.0</span>
+<span class="c1"># A Tensor of [batch_size, num_samples] mono PCM samples in the range [-1, 1].</span>
+<span class="n">pcm</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">])</span>
+
+<span class="c1"># A 1024-point STFT with frames of 64 ms and 75% overlap.</span>
+<span class="n">stfts</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">stft</span><span class="p">(</span><span class="n">pcm</span><span class="p">,</span> <span class="n">frame_length</span><span class="o">=</span><span class="mi">1024</span><span class="p">,</span> <span class="n">frame_step</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span>
+                       <span class="n">fft_length</span><span class="o">=</span><span class="mi">1024</span><span class="p">)</span>
+<span class="n">spectrograms</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">stfts</span><span class="p">)</span>
+
+<span class="c1"># Warp the linear scale spectrograms into the mel-scale.</span>
+<span class="n">num_spectrogram_bins</span> <span class="o">=</span> <span class="n">stfts</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">value</span>
+<span class="n">lower_edge_hertz</span><span class="p">,</span> <span class="n">upper_edge_hertz</span><span class="p">,</span> <span class="n">num_mel_bins</span> <span class="o">=</span> <span class="mf">80.0</span><span class="p">,</span> <span class="mf">7600.0</span><span class="p">,</span> <span class="mi">80</span>
+<span class="n">linear_to_mel_weight_matrix</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">linear_to_mel_weight_matrix</span><span class="p">(</span>
+  <span class="n">num_mel_bins</span><span class="p">,</span> <span class="n">num_spectrogram_bins</span><span class="p">,</span> <span class="n">sample_rate</span><span class="p">,</span> <span class="n">lower_edge_hertz</span><span class="p">,</span>
+  <span class="n">upper_edge_hertz</span><span class="p">)</span>
+<span class="n">mel_spectrograms</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">tensordot</span><span class="p">(</span>
+  <span class="n">spectrograms</span><span class="p">,</span> <span class="n">linear_to_mel_weight_matrix</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">mel_spectrograms</span><span class="o">.</span><span class="n">set_shape</span><span class="p">(</span><span class="n">spectrograms</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+  <span class="n">linear_to_mel_weight_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">:]))</span>
+
+<span class="c1"># Compute a stabilized log to get log-magnitude mel-scale spectrograms.</span>
+<span class="n">log_mel_spectrograms</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">mel_spectrograms</span> <span class="o">+</span> <span class="mf">1e-6</span><span class="p">)</span>
+
+<span class="c1"># Compute MFCCs from log_mel_spectrograms and take the first 13.</span>
+<span class="n">mfccs</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">mfccs_from_log_mel_spectrograms</span><span class="p">(</span>
+  <span class="n">log_mel_spectrograms</span><span class="p">)[</span><span class="o">...</span><span class="p">,</span> <span class="p">:</span><span class="mi">13</span><span class="p">]</span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>log_mel_spectrograms</code></b>: A <code>[..., num_mel_bins]</code> <code>float32</code> <code>Tensor</code> of
+  log-magnitude mel-scale spectrograms.</li>
+<li><b><code>name</code></b>: An optional name for the operation.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>[..., num_mel_bins]</code> <code>float32</code> <code>Tensor</code> of the MFCCs of
+<code>log_mel_spectrograms</code>.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: If <code>num_mel_bins</code> is not positive.</li>
+</ul>
+    </body>
+    </html>
+   

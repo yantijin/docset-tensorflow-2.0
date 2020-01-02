@@ -1,0 +1,45 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.flags.disclaim_key_flags" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1flagsdisclaim_key_flags">tf.compat.v1.flags.disclaim_key_flags</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<!-- Start diff -->
+
+<p>Declares that the current module will not define any more key flags.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.app.flags.disclaim_key_flags</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">flags</span><span class="o">.</span><span class="n">disclaim_key_flags</span><span class="p">()</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Normally, the module that calls the DEFINE_xxx functions claims the
+flag to be its key flag.  This is undesirable for modules that
+define additional DEFINE_yyy functions with its own flag parsers and
+serializers, since that module will accidentally claim flags defined
+by DEFINE_yyy as its key flags.  After calling this function, the
+module disclaims flag definitions thereafter, so the key flags will
+be correctly attributed to the caller of DEFINE_yyy.</p>
+<p>After calling this function, the module will not be able to define
+any more flags.  This function will affect all FlagValues objects.</p>
+    </body>
+    </html>
+   

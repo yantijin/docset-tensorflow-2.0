@@ -1,0 +1,64 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.math.angle" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfmathangle">tf.math.angle</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/math_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Returns the element-wise argument of a complex (or real) tensor.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.angle</code></li>
+<li><code>tf.compat.v1.math.angle</code></li>
+<li><code>tf.compat.v2.math.angle</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">angle</span><span class="p">(</span>
+    <span class="nb">input</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Given a tensor <code>input</code>, this operation returns a tensor of type <code>float</code> that
+is the argument of each element in <code>input</code> considered as a complex number.</p>
+<p>The elements in <code>input</code> are considered to be complex numbers of the form
+\(a + bj\), where <em>a</em> is the real part and <em>b</em> is the imaginary part.
+If <code>input</code> is real then <em>b</em> is zero by definition.</p>
+<p>The argument returned by this function is of the form \(atan2(b, a)\).
+If <code>input</code> is real, a tensor of all zeros is returned.</p>
+<h4 id="for-example">For example:</h4>
+<div class="codehilite"><pre><span></span><span class="err">input = tf.constant([-2.25 + 4.75j, 3.25 + 5.75j], dtype=tf.complex64)</span>
+<span class="err">tf.math.angle(input).numpy()</span>
+<span class="err"># ==&gt; array([2.0131705, 1.056345 ], dtype=float32)</span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>input</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>float</code>, <code>double</code>,
+  <code>complex64</code>, <code>complex128</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>Tensor</code> of type <code>float32</code> or <code>float64</code>.</p>
+    </body>
+    </html>
+   

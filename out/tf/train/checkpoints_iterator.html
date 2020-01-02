@@ -1,0 +1,77 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.train.checkpoints_iterator" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tftraincheckpoints_iterator">tf.train.checkpoints_iterator</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/checkpoint_utils.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Continuously yield new checkpoint files as they appear.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.train.checkpoints_iterator</code></li>
+<li><code>tf.compat.v2.train.checkpoints_iterator</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">checkpoints_iterator</span><span class="p">(</span>
+    <span class="n">checkpoint_dir</span><span class="p">,</span>
+    <span class="n">min_interval_secs</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">timeout_fn</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>The iterator only checks for new checkpoints when control flow has been
+reverted to it. This means it can miss checkpoints if your code takes longer
+to run between iterations than <code>min_interval_secs</code> or the interval at which
+new checkpoints are written.</p>
+<p>The <code>timeout</code> argument is the maximum number of seconds to block waiting for
+a new checkpoint.  It is used in combination with the <code>timeout_fn</code> as
+follows:</p>
+<ul>
+<li>If the timeout expires and no <code>timeout_fn</code> was specified, the iterator
+  stops yielding.</li>
+<li>If a <code>timeout_fn</code> was specified, that function is called and if it returns
+  a true boolean value the iterator stops yielding.</li>
+<li>If the function returns a false boolean value then the iterator resumes the
+  wait for new checkpoints.  At this point the timeout logic applies again.</li>
+</ul>
+<p>This behavior gives control to callers on what to do if checkpoints do not
+come fast enough or stop being generated.  For example, if callers have a way
+to detect that the training has stopped and know that no new checkpoints
+will be generated, they can provide a <code>timeout_fn</code> that returns <code>True</code> when
+the training has stopped.  If they know that the training is still going on
+they return <code>False</code> instead.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>checkpoint_dir</code></b>: The directory in which checkpoints are saved.</li>
+<li><b><code>min_interval_secs</code></b>: The minimum number of seconds between yielding
+  checkpoints.</li>
+<li><b><code>timeout</code></b>: The maximum number of seconds to wait between checkpoints. If left
+  as <code>None</code>, then the process will wait indefinitely.</li>
+<li><b><code>timeout_fn</code></b>: Optional function to call after a timeout.  If the function
+  returns True, then it means that no new checkpoints will be generated and
+  the iterator will exit.  The function is called with no arguments.</li>
+</ul>
+<h4 id="yields">Yields:</h4>
+<p>String paths to latest checkpoint files as they arrive.</p>
+    </body>
+    </html>
+   

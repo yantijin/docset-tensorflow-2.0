@@ -1,0 +1,81 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.math.count_nonzero" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfmathcount_nonzero">tf.math.count_nonzero</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/math_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Computes number of nonzero elements across dimensions of a tensor.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v2.math.count_nonzero</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span>
+    <span class="nb">input</span><span class="p">,</span>
+    <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">keepdims</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Reduces <code>input</code> along the dimensions given in <code>axis</code>.
+Unless <code>keepdims</code> is true, the rank of the tensor is reduced by 1 for each
+entry in <code>axis</code>. If <code>keepdims</code> is true, the reduced dimensions
+are retained with length 1.</p>
+<p>If <code>axis</code> has no entries, all dimensions are reduced, and a
+tensor with a single element is returned.</p>
+<p><strong>NOTE</strong> Floating point comparison to zero is done by exact floating point
+equality check.  Small values are <strong>not</strong> rounded to zero for purposes of
+the nonzero check.</p>
+<h4 id="for-example">For example:</h4>
+<div class="codehilite"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># 3</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># [1, 2, 0]</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># [1, 2]</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># [[1], [2]]</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>  <span class="c1"># 3</span>
+</pre></div>
+
+
+<p><strong>NOTE</strong> Strings are compared against zero-length empty string <code>""</code>. Any
+string with a size greater than zero is already considered as nonzero.</p>
+<h4 id="for-example_1">For example:</h4>
+<div class="codehilite"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;  &quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">])</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c1"># 3, with &quot;a&quot;, &quot;  &quot;, and &quot;b&quot; as nonzero strings.</span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>input</code></b>: The tensor to reduce. Should be of numeric type, <code>bool</code>, or <code>string</code>.</li>
+<li><b><code>axis</code></b>: The dimensions to reduce. If <code>None</code> (the default), reduces all
+  dimensions. Must be in the range <code>[-rank(input), rank(input))</code>.</li>
+<li><b><code>keepdims</code></b>: If true, retains reduced dimensions with length 1.</li>
+<li><b><code>dtype</code></b>: The output dtype; defaults to <a href="../../tf.html#int64"><code>tf.int64</code></a>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>The reduced tensor (number of nonzero values).</p>
+    </body>
+    </html>
+   

@@ -1,0 +1,90 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.linalg.band_part" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tflinalgband_part">tf.linalg.band_part</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p>Defined in generated file: <code>python/ops/gen_array_ops.py</code></p>
+<!-- Start diff -->
+
+<p>Copy a tensor setting everything outside a central band in each innermost matrix</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.linalg.band_part</code></li>
+<li><code>tf.compat.v1.matrix_band_part</code></li>
+<li><code>tf.compat.v2.linalg.band_part</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">band_part</span><span class="p">(</span>
+    <span class="nb">input</span><span class="p">,</span>
+    <span class="n">num_lower</span><span class="p">,</span>
+    <span class="n">num_upper</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>to zero.</p>
+<p>The <code>band</code> part is computed as follows:
+Assume <code>input</code> has <code>k</code> dimensions <code>[I, J, K, ..., M, N]</code>, then the output is a
+tensor with the same shape where</p>
+<p><code>band[i, j, k, ..., m, n] = in_band(m, n) * input[i, j, k, ..., m, n]</code>.</p>
+<p>The indicator function</p>
+<p><code>in_band(m, n) = (num_lower &lt; 0 || (m-n) &lt;= num_lower)) &amp;&amp;
+                 (num_upper &lt; 0 || (n-m) &lt;= num_upper)</code>.</p>
+<h4 id="for-example">For example:</h4>
+<div class="codehilite"><pre><span></span><span class="o">#</span> <span class="k">if</span> <span class="s1">&#39;input&#39;</span> <span class="k">is</span> <span class="p">[[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+                 <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+                 <span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+                 <span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]],</span>
+
+<span class="n">tf</span><span class="p">.</span><span class="n">matrix_band_part</span><span class="p">(</span><span class="k">input</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">==&gt;</span> <span class="p">[[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+                                       <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+                                       <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+                                       <span class="p">[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]],</span>
+
+<span class="n">tf</span><span class="p">.</span><span class="n">matrix_band_part</span><span class="p">(</span><span class="k">input</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">==&gt;</span> <span class="p">[[</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+                                      <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+                                      <span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+                                      <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]</span>
+</pre></div>
+
+
+<h4 id="useful-special-cases">Useful special cases:</h4>
+<div class="codehilite"><pre><span></span><span class="err"> tf.matrix_band_part(input, 0, -1) ==&gt; Upper triangular part.</span>
+<span class="err"> tf.matrix_band_part(input, -1, 0) ==&gt; Lower triangular part.</span>
+<span class="err"> tf.matrix_band_part(input, 0, 0) ==&gt; Diagonal.</span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>input</code></b>: A <code>Tensor</code>. Rank <code>k</code> tensor.</li>
+<li><b><code>num_lower</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>int32</code>, <code>int64</code>.
+  0-D tensor. Number of subdiagonals to keep. If negative, keep entire
+  lower triangle.</li>
+<li><b><code>num_upper</code></b>: A <code>Tensor</code>. Must have the same type as <code>num_lower</code>.
+  0-D tensor. Number of superdiagonals to keep. If negative, keep
+  entire upper triangle.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>Tensor</code>. Has the same type as <code>input</code>.</p>
+    </body>
+    </html>
+   

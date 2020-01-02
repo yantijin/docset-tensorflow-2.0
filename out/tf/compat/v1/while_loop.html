@@ -1,0 +1,190 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.while_loop" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1while_loop">tf.compat.v1.while_loop</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/control_flow_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Repeat <code>body</code> while the condition <code>cond</code> is true.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">while_loop</span><span class="p">(</span>
+    <span class="n">cond</span><span class="p">,</span>
+    <span class="n">body</span><span class="p">,</span>
+    <span class="n">loop_vars</span><span class="p">,</span>
+    <span class="n">shape_invariants</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">parallel_iterations</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">back_prop</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">swap_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">maximum_iterations</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">return_same_structure</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p><code>cond</code> is a callable returning a boolean scalar tensor. <code>body</code> is a callable
+returning a (possibly nested) tuple, namedtuple or list of tensors of the same
+arity (length and structure) and types as <code>loop_vars</code>. <code>loop_vars</code> is a
+(possibly nested) tuple, namedtuple or list of tensors that is passed to both
+<code>cond</code> and <code>body</code>. <code>cond</code> and <code>body</code> both take as many arguments as there are
+<code>loop_vars</code>.</p>
+<p>In addition to regular Tensors or IndexedSlices, the body may accept and
+return TensorArray objects.  The flows of the TensorArray objects will
+be appropriately forwarded between loops and during gradient calculations.</p>
+<p>Note that <code>while_loop</code> calls <code>cond</code> and <code>body</code> <em>exactly once</em> (inside the
+call to <code>while_loop</code>, and not at all during <code>Session.run()</code>). <code>while_loop</code>
+stitches together the graph fragments created during the <code>cond</code> and <code>body</code>
+calls with some additional graph nodes to create the graph flow that
+repeats <code>body</code> until <code>cond</code> returns false.</p>
+<p>For correctness, <a href="../../../tf/while_loop.html"><code>tf.while_loop()</code></a> strictly enforces shape invariants for
+the loop variables. A shape invariant is a (possibly partial) shape that
+is unchanged across the iterations of the loop. An error will be raised
+if the shape of a loop variable after an iteration is determined to be more
+general than or incompatible with its shape invariant. For example, a shape
+of [11, None] is more general than a shape of [11, 17], and [11, 21] is not
+compatible with [11, 17]. By default (if the argument <code>shape_invariants</code> is
+not specified), it is assumed that the initial shape of each tensor in
+<code>loop_vars</code> is the same in every iteration. The <code>shape_invariants</code> argument
+allows the caller to specify a less specific shape invariant for each loop
+variable, which is needed if the shape varies between iterations. The
+<a href="../../../tf/Tensor.html#set_shape"><code>tf.Tensor.set_shape</code></a>
+function may also be used in the <code>body</code> function to indicate that
+the output loop variable has a particular shape. The shape invariant for
+SparseTensor and IndexedSlices are treated specially as follows:</p>
+<p>a) If a loop variable is a SparseTensor, the shape invariant must be
+TensorShape([r]) where r is the rank of the dense tensor represented
+by the sparse tensor. It means the shapes of the three tensors of the
+SparseTensor are ([None], [None, r], [r]). NOTE: The shape invariant here
+is the shape of the SparseTensor.dense_shape property. It must be the shape of
+a vector.</p>
+<p>b) If a loop variable is an IndexedSlices, the shape invariant must be
+a shape invariant of the values tensor of the IndexedSlices. It means
+the shapes of the three tensors of the IndexedSlices are (shape, [shape[0]],
+[shape.ndims]).</p>
+<p><code>while_loop</code> implements non-strict semantics, enabling multiple iterations
+to run in parallel. The maximum number of parallel iterations can be
+controlled by <code>parallel_iterations</code>, which gives users some control over
+memory consumption and execution order. For correct programs, <code>while_loop</code>
+should return the same result for any parallel_iterations &gt; 0.</p>
+<p>For training, TensorFlow stores the tensors that are produced in the
+forward inference and are needed in back propagation. These tensors are a
+main source of memory consumption and often cause OOM errors when training
+on GPUs. When the flag swap_memory is true, we swap out these tensors from
+GPU to CPU. This for example allows us to train RNN models with very long
+sequences and large batches.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>cond</code></b>: A callable that represents the termination condition of the loop.</li>
+<li><b><code>body</code></b>: A callable that represents the loop body.</li>
+<li><b><code>loop_vars</code></b>: A (possibly nested) tuple, namedtuple or list of numpy array,
+  <code>Tensor</code>, and <code>TensorArray</code> objects.</li>
+<li><b><code>shape_invariants</code></b>: The shape invariants for the loop variables.</li>
+<li><b><code>parallel_iterations</code></b>: The number of iterations allowed to run in parallel. It
+  must be a positive integer.</li>
+<li><b><code>back_prop</code></b>: Whether backprop is enabled for this while loop.</li>
+<li><b><code>swap_memory</code></b>: Whether GPU-CPU memory swap is enabled for this loop.</li>
+<li><b><code>name</code></b>: Optional name prefix for the returned tensors.</li>
+<li><b><code>maximum_iterations</code></b>: Optional maximum number of iterations of the while loop
+  to run.  If provided, the <code>cond</code> output is AND-ed with an additional
+  condition ensuring the number of iterations executed is no greater than
+  <code>maximum_iterations</code>.</li>
+<li><b><code>return_same_structure</code></b>: If True, output has same structure as <code>loop_vars</code>. If
+  eager execution is enabled, this is ignored (and always treated as True).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>The output tensors for the loop variables after the loop.
+ If <code>return_same_structure</code> is True, the return value has the same
+ structure as <code>loop_vars</code>.
+ If <code>return_same_structure</code> is False, the return value is a Tensor,
+ TensorArray or IndexedSlice if the length of <code>loop_vars</code> is 1, or a list
+ otherwise.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>TypeError</code></b>: if <code>cond</code> or <code>body</code> is not callable.</li>
+<li><b><code>ValueError</code></b>: if <code>loop_vars</code> is empty.</li>
+</ul>
+<h4 id="example">Example:</h4>
+<div class="codehilite"><pre><span></span><span class="n">i</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">less</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">while_loop</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</pre></div>
+
+
+<p>Example with nesting and a namedtuple:</p>
+<div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">collections</span>
+<span class="n">Pair</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;Pair&#39;</span><span class="p">,</span> <span class="s1">&#39;j, k&#39;</span><span class="p">)</span>
+<span class="n">ijk_0</span> <span class="o">=</span> <span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">Pair</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="mi">2</span><span class="p">)))</span>
+<span class="n">c</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">i</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span>
+<span class="n">b</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">i</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">Pair</span><span class="p">((</span><span class="n">p</span><span class="o">.</span><span class="n">j</span> <span class="o">+</span> <span class="n">p</span><span class="o">.</span><span class="n">k</span><span class="p">),</span> <span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">j</span> <span class="o">-</span> <span class="n">p</span><span class="o">.</span><span class="n">k</span><span class="p">)))</span>
+<span class="n">ijk_final</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">while_loop</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">ijk_0</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Example using shape_invariants:</p>
+<div class="codehilite"><pre><span></span><span class="n">i0</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">m0</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">c</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">i</span><span class="p">,</span> <span class="n">m</span><span class="p">:</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span>
+<span class="n">b</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">i</span><span class="p">,</span> <span class="n">m</span><span class="p">:</span> <span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">m</span><span class="p">,</span> <span class="n">m</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)]</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">while_loop</span><span class="p">(</span>
+    <span class="n">c</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">loop_vars</span><span class="o">=</span><span class="p">[</span><span class="n">i0</span><span class="p">,</span> <span class="n">m0</span><span class="p">],</span>
+    <span class="n">shape_invariants</span><span class="o">=</span><span class="p">[</span><span class="n">i0</span><span class="o">.</span><span class="n">get_shape</span><span class="p">(),</span> <span class="n">tf</span><span class="o">.</span><span class="n">TensorShape</span><span class="p">([</span><span class="kc">None</span><span class="p">,</span> <span class="mi">2</span><span class="p">])])</span>
+</pre></div>
+
+
+<p>Example which demonstrates non-strict semantics: In the following
+example, the final value of the counter <code>i</code> does not depend on <code>x</code>. So
+the <code>while_loop</code> can increment the counter parallel to updates of <code>x</code>.
+However, because the loop counter at one loop iteration depends
+on the value at the previous iteration, the loop counter itself cannot
+be incremented in parallel. Hence if we just want the final value of the
+counter (which we print on the line <code>print(sess.run(i))</code>), then
+<code>x</code> will never be incremented, but the counter will be updated on a
+single thread. Conversely, if we want the value of the output (which we
+print on the line <code>print(sess.run(out).shape)</code>), then the counter may be
+incremented on its own thread, while <code>x</code> can be incremented in
+parallel on a separate thread. In the extreme case, it is conceivable
+that the thread incrementing the counter runs until completion before
+<code>x</code> is incremented even a single time. The only thing that can never
+happen is that the thread updating <code>x</code> can never get ahead of the
+counter thread because the thread incrementing <code>x</code> depends on the value
+of the counter.</p>
+<div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)))</span>
+<span class="n">c</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span>
+<span class="n">b</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">Print</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">Print</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+<span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s2">&quot;x:&quot;</span><span class="p">))</span>
+<span class="n">i</span><span class="p">,</span> <span class="n">out</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">while_loop</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
+<span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>  <span class="c1"># prints [0] ... [9999]</span>
+
+    <span class="c1"># The following line may increment the counter and x in parallel.</span>
+    <span class="c1"># The counter thread may get ahead of the other thread, but not the</span>
+    <span class="c1"># other way around. So you may see things like</span>
+    <span class="c1"># [9996] x:[9987]</span>
+    <span class="c1"># meaning that the counter thread is on iteration 9996,</span>
+    <span class="c1"># while the other thread is on iteration 9987</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+    </body>
+    </html>
+   

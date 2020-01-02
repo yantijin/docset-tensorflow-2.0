@@ -1,0 +1,49 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.utils.get_custom_objects" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfkerasutilsget_custom_objects">tf.keras.utils.get_custom_objects</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/utils/generic_utils.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Retrieves a live reference to the global dictionary of custom objects.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.keras.utils.get_custom_objects</code></li>
+<li><code>tf.compat.v2.keras.utils.get_custom_objects</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_custom_objects</span><span class="p">()</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Updating and clearing custom objects using <code>custom_object_scope</code>
+is preferred, but <code>get_custom_objects</code> can
+be used to directly access <code>_GLOBAL_CUSTOM_OBJECTS</code>.</p>
+<h4 id="example">Example:</h4>
+<div class="codehilite"><pre><span></span>    <span class="n">get_custom_objects</span><span class="p">()</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+    <span class="n">get_custom_objects</span><span class="p">()[</span><span class="s1">&#39;MyObject&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">MyObject</span>
+</pre></div>
+
+
+<h4 id="returns">Returns:</h4>
+<p>Global dictionary of names to classes (<code>_GLOBAL_CUSTOM_OBJECTS</code>).</p>
+    </body>
+    </html>
+   

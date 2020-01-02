@@ -1,0 +1,106 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../default.css" rel="stylesheet">
+    <link href="
+   ../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.reverse_sequence" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfreverse_sequence">tf.reverse_sequence</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/array_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Reverses variable length slices.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v2.reverse_sequence</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">reverse_sequence</span><span class="p">(</span>
+    <span class="nb">input</span><span class="p">,</span>
+    <span class="n">seq_lengths</span><span class="p">,</span>
+    <span class="n">seq_axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">batch_axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>This op first slices <code>input</code> along the dimension <code>batch_axis</code>, and for each
+slice <code>i</code>, reverses the first <code>seq_lengths[i]</code> elements along
+the dimension <code>seq_axis</code>.</p>
+<p>The elements of <code>seq_lengths</code> must obey <code>seq_lengths[i] &lt;= input.dims[seq_dim]</code>,
+and <code>seq_lengths</code> must be a vector of length <code>input.dims[batch_dim]</code>.</p>
+<p>The output slice <code>i</code> along dimension <code>batch_axis</code> is then given by input
+slice <code>i</code>, with the first <code>seq_lengths[i]</code> slices along dimension
+<code>seq_axis</code> reversed.</p>
+<h4 id="for-example">For example:</h4>
+<div class="codehilite"><pre><span></span><span class="s s-Atom">#</span> <span class="nv">Given</span> <span class="nn">this</span><span class="p">:</span>
+<span class="s s-Atom">batch_dim</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="s s-Atom">seq_dim</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="s s-Atom">input</span><span class="p">.</span><span class="s s-Atom">dims</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="p">...)</span>
+<span class="s s-Atom">seq_lengths</span> <span class="o">=</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+
+<span class="s s-Atom">#</span> <span class="s s-Atom">then</span> <span class="s s-Atom">slices</span> <span class="s s-Atom">of</span> <span class="s s-Atom">input</span> <span class="s s-Atom">are</span> <span class="s s-Atom">reversed</span> <span class="s s-Atom">on</span> <span class="s s-Atom">seq_dim</span><span class="p">,</span> <span class="s s-Atom">but</span> <span class="s s-Atom">only</span> <span class="s s-Atom">up</span> <span class="s s-Atom">to</span> <span class="s s-Atom">seq_lengths:</span>
+<span class="s s-Atom">output</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="s s-Atom">:</span><span class="mi">7</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">,</span> <span class="p">...]</span> <span class="o">=</span> <span class="s s-Atom">input</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="s s-Atom">:</span><span class="mi">0</span><span class="p">:-</span><span class="mi">1</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">,</span> <span class="p">...]</span>
+<span class="s s-Atom">output</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="s s-Atom">:</span><span class="mi">2</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">,</span> <span class="p">...]</span> <span class="o">=</span> <span class="s s-Atom">input</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="s s-Atom">:</span><span class="mi">0</span><span class="p">:-</span><span class="mi">1</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">,</span> <span class="p">...]</span>
+<span class="s s-Atom">output</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="s s-Atom">:</span><span class="mi">3</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">,</span> <span class="p">...]</span> <span class="o">=</span> <span class="s s-Atom">input</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="s s-Atom">:</span><span class="mi">0</span><span class="p">:-</span><span class="mi">1</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">,</span> <span class="p">...]</span>
+<span class="s s-Atom">output</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="s s-Atom">:</span><span class="mi">5</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">,</span> <span class="p">...]</span> <span class="o">=</span> <span class="s s-Atom">input</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="s s-Atom">:</span><span class="mi">0</span><span class="p">:-</span><span class="mi">1</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">,</span> <span class="p">...]</span>
+
+<span class="s s-Atom">#</span> <span class="s s-Atom">while</span> <span class="s s-Atom">entries</span> <span class="s s-Atom">past</span> <span class="s s-Atom">seq_lens</span> <span class="s s-Atom">are</span> <span class="s s-Atom">copied</span> <span class="nn">through</span><span class="p">:</span>
+<span class="s s-Atom">output</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="s s-Atom">:</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">,</span> <span class="p">...]</span> <span class="o">=</span> <span class="s s-Atom">input</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="s s-Atom">:</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">,</span> <span class="p">...]</span>
+<span class="s s-Atom">output</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="s s-Atom">:</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">,</span> <span class="p">...]</span> <span class="o">=</span> <span class="s s-Atom">input</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="s s-Atom">:</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">,</span> <span class="p">...]</span>
+<span class="s s-Atom">output</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="s s-Atom">:</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">,</span> <span class="p">...]</span> <span class="o">=</span> <span class="s s-Atom">input</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="s s-Atom">:</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">,</span> <span class="p">...]</span>
+<span class="s s-Atom">output</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="s s-Atom">:</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">,</span> <span class="p">...]</span> <span class="o">=</span> <span class="s s-Atom">input</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="s s-Atom">:</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">,</span> <span class="p">...]</span>
+</pre></div>
+
+
+<p>In contrast, if:</p>
+<div class="codehilite"><pre><span></span><span class="s s-Atom">#</span> <span class="nv">Given</span> <span class="nn">this</span><span class="p">:</span>
+<span class="s s-Atom">batch_dim</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="s s-Atom">seq_dim</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="s s-Atom">input</span><span class="p">.</span><span class="s s-Atom">dims</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="s s-Atom">?</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="p">...)</span>
+<span class="s s-Atom">seq_lengths</span> <span class="o">=</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+
+<span class="s s-Atom">#</span> <span class="s s-Atom">then</span> <span class="s s-Atom">slices</span> <span class="s s-Atom">of</span> <span class="s s-Atom">input</span> <span class="s s-Atom">are</span> <span class="s s-Atom">reversed</span> <span class="s s-Atom">on</span> <span class="s s-Atom">seq_dim</span><span class="p">,</span> <span class="s s-Atom">but</span> <span class="s s-Atom">only</span> <span class="s s-Atom">up</span> <span class="s s-Atom">to</span> <span class="s s-Atom">seq_lengths:</span>
+<span class="s s-Atom">output</span><span class="p">[</span><span class="mi">0</span><span class="s s-Atom">:</span><span class="mi">7</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">,</span> <span class="p">...]</span> <span class="o">=</span> <span class="s s-Atom">input</span><span class="p">[</span><span class="mi">7</span><span class="s s-Atom">:</span><span class="mi">0</span><span class="p">:-</span><span class="mi">1</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">,</span> <span class="p">...]</span>
+<span class="s s-Atom">output</span><span class="p">[</span><span class="mi">0</span><span class="s s-Atom">:</span><span class="mi">2</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">,</span> <span class="p">...]</span> <span class="o">=</span> <span class="s s-Atom">input</span><span class="p">[</span><span class="mi">2</span><span class="s s-Atom">:</span><span class="mi">0</span><span class="p">:-</span><span class="mi">1</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">,</span> <span class="p">...]</span>
+<span class="s s-Atom">output</span><span class="p">[</span><span class="mi">0</span><span class="s s-Atom">:</span><span class="mi">3</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">,</span> <span class="p">...]</span> <span class="o">=</span> <span class="s s-Atom">input</span><span class="p">[</span><span class="mi">3</span><span class="s s-Atom">:</span><span class="mi">0</span><span class="p">:-</span><span class="mi">1</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">,</span> <span class="p">...]</span>
+<span class="s s-Atom">output</span><span class="p">[</span><span class="mi">0</span><span class="s s-Atom">:</span><span class="mi">5</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">,</span> <span class="p">...]</span> <span class="o">=</span> <span class="s s-Atom">input</span><span class="p">[</span><span class="mi">5</span><span class="s s-Atom">:</span><span class="mi">0</span><span class="p">:-</span><span class="mi">1</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">,</span> <span class="p">...]</span>
+
+<span class="s s-Atom">#</span> <span class="s s-Atom">while</span> <span class="s s-Atom">entries</span> <span class="s s-Atom">past</span> <span class="s s-Atom">seq_lens</span> <span class="s s-Atom">are</span> <span class="s s-Atom">copied</span> <span class="nn">through</span><span class="p">:</span>
+<span class="s s-Atom">output</span><span class="p">[</span><span class="mi">7</span><span class="s s-Atom">:</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">,</span> <span class="p">...]</span> <span class="o">=</span> <span class="s s-Atom">input</span><span class="p">[</span><span class="mi">7</span><span class="s s-Atom">:</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">,</span> <span class="p">...]</span>
+<span class="s s-Atom">output</span><span class="p">[</span><span class="mi">2</span><span class="s s-Atom">:</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">,</span> <span class="p">...]</span> <span class="o">=</span> <span class="s s-Atom">input</span><span class="p">[</span><span class="mi">2</span><span class="s s-Atom">:</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">,</span> <span class="p">...]</span>
+<span class="s s-Atom">output</span><span class="p">[</span><span class="mi">3</span><span class="s s-Atom">:</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">,</span> <span class="p">...]</span> <span class="o">=</span> <span class="s s-Atom">input</span><span class="p">[</span><span class="mi">3</span><span class="s s-Atom">:</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">,</span> <span class="p">...]</span>
+<span class="s s-Atom">output</span><span class="p">[</span><span class="mi">2</span><span class="s s-Atom">:</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">,</span> <span class="p">...]</span> <span class="o">=</span> <span class="s s-Atom">input</span><span class="p">[</span><span class="mi">2</span><span class="s s-Atom">:</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s s-Atom">:</span><span class="p">,</span> <span class="p">...]</span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>input</code></b>: A <code>Tensor</code>. The input to reverse.</li>
+<li><b><code>seq_lengths</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>int32</code>, <code>int64</code>.
+  1-D with length <code>input.dims(batch_dim)</code> and
+  <code>max(seq_lengths) &lt;= input.dims(seq_dim)</code></li>
+<li><b><code>seq_axis</code></b>: An <code>int</code>. The dimension which is partially reversed.</li>
+<li><b><code>batch_axis</code></b>: An optional <code>int</code>. Defaults to <code>0</code>.
+  The dimension along which reversal is performed.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>Tensor</code>. Has the same type as <code>input</code>.</p>
+    </body>
+    </html>
+   

@@ -1,0 +1,71 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.enable_v2_tensorshape" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1enable_v2_tensorshape">tf.compat.v1.enable_v2_tensorshape</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_shape.py">View source</a></p>
+<!-- Start diff -->
+
+<p>In TensorFlow 2.0, iterating over a TensorShape instance returns values.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">enable_v2_tensorshape</span><span class="p">()</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>This enables the new behavior.</p>
+<p>Concretely, <code>tensor_shape[i]</code> returned a Dimension instance in V1, but
+it V2 it returns either an integer, or None.</p>
+<h4 id="examples">Examples:</h4>
+<div class="codehilite"><pre><span></span><span class="err">#######################</span><span class="w"></span>
+<span class="err">#</span><span class="w"> </span><span class="k">If</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">had</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nl">V1</span><span class="p">:</span><span class="w"></span>
+<span class="k">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tensor_shape</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="k">value</span><span class="w"></span>
+
+<span class="err">#</span><span class="w"> </span><span class="n">Do</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">V2</span><span class="w"> </span><span class="nl">instead</span><span class="p">:</span><span class="w"></span>
+<span class="k">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tensor_shape</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"></span>
+
+<span class="err">#######################</span><span class="w"></span>
+<span class="err">#</span><span class="w"> </span><span class="k">If</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">had</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nl">V1</span><span class="p">:</span><span class="w"></span>
+<span class="k">for</span><span class="w"> </span><span class="n">dim</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nl">tensor_shape</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="k">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dim</span><span class="p">.</span><span class="k">value</span><span class="w"></span>
+<span class="w">  </span><span class="k">print</span><span class="p">(</span><span class="k">value</span><span class="p">)</span><span class="w"></span>
+
+<span class="err">#</span><span class="w"> </span><span class="n">Do</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">V2</span><span class="w"> </span><span class="nl">instead</span><span class="p">:</span><span class="w"></span>
+<span class="k">for</span><span class="w"> </span><span class="k">value</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nl">tensor_shape</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="k">print</span><span class="p">(</span><span class="k">value</span><span class="p">)</span><span class="w"></span>
+
+<span class="err">#######################</span><span class="w"></span>
+<span class="err">#</span><span class="w"> </span><span class="k">If</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">had</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nl">V1</span><span class="p">:</span><span class="w"></span>
+<span class="n">dim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tensor_shape</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"></span>
+<span class="n">dim</span><span class="p">.</span><span class="n">assert_is_compatible_with</span><span class="p">(</span><span class="n">other_shape</span><span class="p">)</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="ow">any</span><span class="w"> </span><span class="n">other</span><span class="w"> </span><span class="n">shape</span><span class="w"> </span><span class="k">method</span><span class="w"></span>
+
+<span class="err">#</span><span class="w"> </span><span class="n">Do</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">V2</span><span class="w"> </span><span class="nl">instead</span><span class="p">:</span><span class="w"></span>
+<span class="k">if</span><span class="w"> </span><span class="n">tensor_shape</span><span class="p">.</span><span class="nf">rank</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">None</span><span class="err">:</span><span class="w"></span>
+<span class="w">  </span><span class="n">dim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Dimension</span><span class="p">(</span><span class="k">None</span><span class="p">)</span><span class="w"></span>
+<span class="k">else</span><span class="err">:</span><span class="w"></span>
+<span class="w">  </span><span class="n">dim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tensor_shape</span><span class="p">.</span><span class="n">dims</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"></span>
+<span class="n">dim</span><span class="p">.</span><span class="n">assert_is_compatible_with</span><span class="p">(</span><span class="n">other_shape</span><span class="p">)</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="ow">any</span><span class="w"> </span><span class="n">other</span><span class="w"> </span><span class="n">shape</span><span class="w"> </span><span class="k">method</span><span class="w"></span>
+
+<span class="err">#</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">V2</span><span class="w"> </span><span class="n">suggestion</span><span class="w"> </span><span class="n">above</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">more</span><span class="w"> </span><span class="n">explicit</span><span class="p">,</span><span class="w"> </span><span class="n">which</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="k">save</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="k">from</span><span class="w"></span>
+<span class="err">#</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">following</span><span class="w"> </span><span class="n">trap</span><span class="w"> </span><span class="p">(</span><span class="n">present</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">V1</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="err">#</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">might</span><span class="w"> </span><span class="n">do</span><span class="w"> </span><span class="ow">in</span><span class="o">-</span><span class="n">place</span><span class="w"> </span><span class="n">modifications</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="err">`</span><span class="n">dim</span><span class="err">`</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">expect</span><span class="w"> </span><span class="n">them</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">reflected</span><span class="w"></span>
+<span class="err">#</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="err">`</span><span class="n">tensor_shape</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="err">`</span><span class="p">,</span><span class="w"> </span><span class="n">but</span><span class="w"> </span><span class="n">they</span><span class="w"> </span><span class="n">would</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">be</span><span class="p">.</span><span class="w"></span>
+</pre></div>
+    </body>
+    </html>
+   

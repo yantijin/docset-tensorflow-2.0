@@ -1,0 +1,81 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.strings.unicode_decode" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfstringsunicode_decode">tf.strings.unicode_decode</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/ragged/ragged_string_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Decodes each string in <code>input</code> into a sequence of Unicode code points.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.strings.unicode_decode</code></li>
+<li><code>tf.compat.v2.strings.unicode_decode</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">strings</span><span class="o">.</span><span class="n">unicode_decode</span><span class="p">(</span>
+    <span class="nb">input</span><span class="p">,</span>
+    <span class="n">input_encoding</span><span class="p">,</span>
+    <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;replace&#39;</span><span class="p">,</span>
+    <span class="n">replacement_char</span><span class="o">=</span><span class="mi">65533</span><span class="p">,</span>
+    <span class="n">replace_control_characters</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p><code>result[i1...iN, j]</code> is the Unicode codepoint for the <code>j</code>th character in
+<code>input[i1...iN]</code>, when decoded using <code>input_encoding</code>.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>input</code></b>: An <code>N</code> dimensional potentially ragged <code>string</code> tensor with shape
+  <code>[D1...DN]</code>.  <code>N</code> must be statically known.</li>
+<li><b><code>input_encoding</code></b>: String name for the unicode encoding that should be used to
+  decode each string.</li>
+<li><b><code>errors</code></b>: Specifies the response when an input string can't be converted
+  using the indicated encoding. One of:</li>
+<li><code>'strict'</code>: Raise an exception for any illegal substrings.</li>
+<li><code>'replace'</code>: Replace illegal substrings with <code>replacement_char</code>.</li>
+<li><code>'ignore'</code>: Skip illegal substrings.</li>
+<li><b><code>replacement_char</code></b>: The replacement codepoint to be used in place of invalid
+  substrings in <code>input</code> when <code>errors='replace'</code>; and in place of C0 control
+  characters in <code>input</code> when <code>replace_control_characters=True</code>.</li>
+<li><b><code>replace_control_characters</code></b>: Whether to replace the C0 control characters
+  <code>(U+0000 - U+001F)</code> with the <code>replacement_char</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>N+1</code> dimensional <code>int32</code> tensor with shape <code>[D1...DN, (num_chars)]</code>.
+The returned tensor is a <a href="../../tf/Tensor.html"><code>tf.Tensor</code></a> if <code>input</code> is a scalar, or a
+<a href="../../tf/RaggedTensor.html"><code>tf.RaggedTensor</code></a> otherwise.</p>
+<h4 id="example">Example:</h4>
+<p>```python</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>input = [s.encode('utf8') for s in (u'G\xf6\xf6dnight', u'\U0001f60a')]
+tf.strings.unicode_decode(input, 'UTF-8').tolist()
+  [[71, 246, 246, 100, 110, 105, 103, 104, 116], [128522]]
+  ```</p>
+</blockquote>
+</blockquote>
+</blockquote>
+    </body>
+    </html>
+   

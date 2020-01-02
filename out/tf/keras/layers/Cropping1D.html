@@ -1,0 +1,57 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.layers.Cropping1D" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__init__"/>
+</div>
+
+<h1 id="tfkeraslayerscropping1d">tf.keras.layers.Cropping1D</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/convolutional.py">View source</a></p>
+<h2 id="class-cropping1d">Class <code>Cropping1D</code></h2>
+<!-- Start diff -->
+
+<p>Cropping layer for 1D input (e.g. temporal sequence).</p>
+<p>Inherits From: <a href="../../../tf/keras/layers/Layer.html"><code>Layer</code></a></p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v1.keras.layers.Cropping1D</code></li>
+<li>Class <code>tf.compat.v2.keras.layers.Cropping1D</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<p>It crops along the time dimension (axis 1).</p>
+<h4 id="arguments">Arguments:</h4>
+<ul>
+<li><b><code>cropping</code></b>: Int or tuple of int (length 2)
+  How many units should be trimmed off at the beginning and end of
+  the cropping dimension (axis 1).
+  If a single int is provided, the same value will be used for both.</li>
+</ul>
+<h4 id="input-shape">Input shape:</h4>
+<p>3D tensor with shape <code>(batch, axis_to_crop, features)</code></p>
+<h4 id="output-shape">Output shape:</h4>
+<p>3D tensor with shape <code>(batch, cropped_axis, features)</code></p>
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/convolutional.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">cropping</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+    </body>
+    </html>
+   

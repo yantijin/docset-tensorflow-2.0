@@ -1,0 +1,337 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../default.css" rel="stylesheet">
+    <link href="
+   ../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.TensorArray" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="dtype"/>
+<meta itemprop="property" content="dynamic_size"/>
+<meta itemprop="property" content="element_shape"/>
+<meta itemprop="property" content="flow"/>
+<meta itemprop="property" content="handle"/>
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="close"/>
+<meta itemprop="property" content="concat"/>
+<meta itemprop="property" content="gather"/>
+<meta itemprop="property" content="grad"/>
+<meta itemprop="property" content="identity"/>
+<meta itemprop="property" content="read"/>
+<meta itemprop="property" content="scatter"/>
+<meta itemprop="property" content="size"/>
+<meta itemprop="property" content="split"/>
+<meta itemprop="property" content="stack"/>
+<meta itemprop="property" content="unstack"/>
+<meta itemprop="property" content="write"/>
+</div>
+
+<h1 id="tftensorarray">tf.TensorArray</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/tensor_array_ops.py">View source</a></p>
+<h2 id="class-tensorarray">Class <code>TensorArray</code></h2>
+<!-- Start diff -->
+
+<p>Class wrapping dynamic-sized, per-time-step, write-once Tensor arrays.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v1.TensorArray</code></li>
+<li>Class <code>tf.compat.v2.TensorArray</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<p>This class is meant to be used with dynamic iteration primitives such as
+<code>while_loop</code> and <code>map_fn</code>.  It supports gradient back-propagation via special
+"flow" control flow dependencies.</p>
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/tensor_array_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">dtype</span><span class="p">,</span>
+    <span class="n">size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">dynamic_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">clear_after_read</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">tensor_array_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">handle</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">flow</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">infer_shape</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">element_shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">colocate_with_first_write_call</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Construct a new TensorArray or wrap an existing TensorArray handle.</p>
+<p>A note about the parameter <code>name</code>:</p>
+<p>The name of the <code>TensorArray</code> (even if passed in) is uniquified: each time
+a new <code>TensorArray</code> is created at runtime it is assigned its own name for
+the duration of the run.  This avoids name collisions if a <code>TensorArray</code>
+is created within a <code>while_loop</code>.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>dtype</code></b>: (required) data type of the TensorArray.</li>
+<li><b><code>size</code></b>: (optional) int32 scalar <code>Tensor</code>: the size of the TensorArray.
+  Required if handle is not provided.</li>
+<li><b><code>dynamic_size</code></b>: (optional) Python bool: If true, writes to the TensorArray
+  can grow the TensorArray past its initial size.  Default: False.</li>
+<li><b><code>clear_after_read</code></b>: Boolean (optional, default: True).  If True, clear
+  TensorArray values after reading them.  This disables read-many
+  semantics, but allows early release of memory.</li>
+<li><b><code>tensor_array_name</code></b>: (optional) Python string: the name of the TensorArray.
+  This is used when creating the TensorArray handle.  If this value is
+  set, handle should be None.</li>
+<li><b><code>handle</code></b>: (optional) A <code>Tensor</code> handle to an existing TensorArray.  If this
+  is set, tensor_array_name should be None. Only supported in graph mode.</li>
+<li><b><code>flow</code></b>: (optional) A float <code>Tensor</code> scalar coming from an existing
+  <a href="../tf/TensorArray.html#flow"><code>TensorArray.flow</code></a>. Only supported in graph mode.</li>
+<li><b><code>infer_shape</code></b>: (optional, default: True) If True, shape inference
+  is enabled.  In this case, all elements must have the same shape.</li>
+<li><b><code>element_shape</code></b>: (optional, default: None) A <code>TensorShape</code> object specifying
+  the shape constraints of each of the elements of the TensorArray.
+  Need not be fully defined.</li>
+<li><b><code>colocate_with_first_write_call</code></b>: If <code>True</code>, the TensorArray will be
+  colocated on the same device as the Tensor used on its first write
+  (write operations include <code>write</code>, <code>unstack</code>, and <code>split</code>).  If <code>False</code>,
+  the TensorArray will be placed on the device determined by the
+  device context available during its initialization.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: if both handle and tensor_array_name are provided.</li>
+<li><b><code>TypeError</code></b>: if handle is provided but is not a Tensor.</li>
+</ul>
+<h2 id="properties">Properties</h2>
+<h3 id="dtype"><code>dtype</code></h3>
+
+<p>The data type of this TensorArray.</p>
+<h3 id="dynamic_size"><code>dynamic_size</code></h3>
+
+<p>Python bool; if <code>True</code> the TensorArray can grow dynamically.</p>
+<h3 id="element_shape"><code>element_shape</code></h3>
+
+<p>The <a href="../tf/TensorShape.html"><code>tf.TensorShape</code></a> of elements in this TensorArray.</p>
+<h3 id="flow"><code>flow</code></h3>
+
+<p>The flow <code>Tensor</code> forcing ops leading to this TensorArray state.</p>
+<h3 id="handle"><code>handle</code></h3>
+
+<p>The reference to the TensorArray.</p>
+<h2 id="methods">Methods</h2>
+<h3 id="close"><code>close</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/tensor_array_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">close</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Close the current TensorArray.</p>
+<p><strong>NOTE</strong> The output of this function should be used.  If it is not, a warning will be logged.  To mark the output as used, call its .mark_used() method.</p>
+<h3 id="concat"><code>concat</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/tensor_array_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">concat</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Return the values in the TensorArray as a concatenated <code>Tensor</code>.</p>
+<p>All of the values must have been written, their ranks must match, and
+and their shapes must all match for all dimensions except the first.</p>
+<h4 id="args_1">Args:</h4>
+<ul>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>All the tensors in the TensorArray concatenated into one tensor.</p>
+<h3 id="gather"><code>gather</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/tensor_array_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">gather</span><span class="p">(</span>
+    <span class="n">indices</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Return selected values in the TensorArray as a packed <code>Tensor</code>.</p>
+<p>All of selected values must have been written and their shapes
+must all match.</p>
+<h4 id="args_2">Args:</h4>
+<ul>
+<li><b><code>indices</code></b>: A <code>1-D</code> <code>Tensor</code> taking values in <code>[0, max_value)</code>.  If
+  the <code>TensorArray</code> is not dynamic, <code>max_value=size()</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns_1">Returns:</h4>
+<p>The tensors in the <code>TensorArray</code> selected by <code>indices</code>, packed into one
+tensor.</p>
+<h3 id="grad"><code>grad</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/tensor_array_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">grad</span><span class="p">(</span>
+    <span class="n">source</span><span class="p">,</span>
+    <span class="n">flow</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<h3 id="identity"><code>identity</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/tensor_array_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">identity</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Returns a TensorArray with the same content and properties.</p>
+<h4 id="returns_2">Returns:</h4>
+<p>A new TensorArray object with flow that ensures the control dependencies
+from the contexts will become control dependencies for writes, reads, etc.
+Use this object all for subsequent operations.</p>
+<h3 id="read"><code>read</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/tensor_array_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">read</span><span class="p">(</span>
+    <span class="n">index</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Read the value at location <code>index</code> in the TensorArray.</p>
+<h4 id="args_3">Args:</h4>
+<ul>
+<li><b><code>index</code></b>: 0-D.  int32 tensor with the index to read from.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns_3">Returns:</h4>
+<p>The tensor at index <code>index</code>.</p>
+<h3 id="scatter"><code>scatter</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/tensor_array_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">scatter</span><span class="p">(</span>
+    <span class="n">indices</span><span class="p">,</span>
+    <span class="n">value</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Scatter the values of a <code>Tensor</code> in specific indices of a <code>TensorArray</code>.</p>
+<p>Args:
+    indices: A <code>1-D</code> <code>Tensor</code> taking values in <code>[0, max_value)</code>.  If
+      the <code>TensorArray</code> is not dynamic, <code>max_value=size()</code>.
+    value: (N+1)-D.  Tensor of type <code>dtype</code>.  The Tensor to unpack.
+    name: A name for the operation (optional).</p>
+<p>Returns:
+    A new TensorArray object with flow that ensures the scatter occurs.
+    Use this object all for subsequent operations.</p>
+<p>Raises:
+    ValueError: if the shape inference fails.</p>
+<p><strong>NOTE</strong> The output of this function should be used.  If it is not, a warning will be logged.  To mark the output as used, call its .mark_used() method.</p>
+<h3 id="size"><code>size</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/tensor_array_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">size</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Return the size of the TensorArray.</p>
+<h3 id="split"><code>split</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/tensor_array_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">split</span><span class="p">(</span>
+    <span class="n">value</span><span class="p">,</span>
+    <span class="n">lengths</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Split the values of a <code>Tensor</code> into the TensorArray.</p>
+<p>Args:
+    value: (N+1)-D.  Tensor of type <code>dtype</code>.  The Tensor to split.
+    lengths: 1-D.  int32 vector with the lengths to use when splitting
+      <code>value</code> along its first dimension.
+    name: A name for the operation (optional).</p>
+<p>Returns:
+    A new TensorArray object with flow that ensures the split occurs.
+    Use this object all for subsequent operations.</p>
+<p>Raises:
+    ValueError: if the shape inference fails.</p>
+<p><strong>NOTE</strong> The output of this function should be used.  If it is not, a warning will be logged.  To mark the output as used, call its .mark_used() method.</p>
+<h3 id="stack"><code>stack</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/tensor_array_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">stack</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Return the values in the TensorArray as a stacked <code>Tensor</code>.</p>
+<p>All of the values must have been written and their shapes must all match.
+If input shapes have rank-<code>R</code>, then output shape will have rank-<code>(R+1)</code>.</p>
+<h4 id="args_4">Args:</h4>
+<ul>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns_4">Returns:</h4>
+<p>All the tensors in the TensorArray stacked into one tensor.</p>
+<h3 id="unstack"><code>unstack</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/tensor_array_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">unstack</span><span class="p">(</span>
+    <span class="n">value</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Unstack the values of a <code>Tensor</code> in the TensorArray.</p>
+<p>If input value shapes have rank-<code>R</code>, then the output TensorArray will
+  contain elements whose shapes are rank-<code>(R-1)</code>.</p>
+<p>Args:
+    value: (N+1)-D.  Tensor of type <code>dtype</code>.  The Tensor to unstack.
+    name: A name for the operation (optional).</p>
+<p>Returns:
+    A new TensorArray object with flow that ensures the unstack occurs.
+    Use this object all for subsequent operations.</p>
+<p>Raises:
+    ValueError: if the shape inference fails.</p>
+<p><strong>NOTE</strong> The output of this function should be used.  If it is not, a warning will be logged.  To mark the output as used, call its .mark_used() method.</p>
+<h3 id="write"><code>write</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/tensor_array_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">write</span><span class="p">(</span>
+    <span class="n">index</span><span class="p">,</span>
+    <span class="n">value</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Write <code>value</code> into index <code>index</code> of the TensorArray.</p>
+<h4 id="args_5">Args:</h4>
+<ul>
+<li><b><code>index</code></b>: 0-D.  int32 scalar with the index to write to.</li>
+<li><b><code>value</code></b>: N-D.  Tensor of type <code>dtype</code>.  The Tensor to write to this index.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns_5">Returns:</h4>
+<p>A new TensorArray object with flow that ensures the write occurs.
+Use this object all for subsequent operations.</p>
+<h4 id="raises_1">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: if there are more writers than specified.</li>
+</ul>
+    </body>
+    </html>
+   

@@ -1,0 +1,64 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.math.in_top_k" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1mathin_top_k">tf.compat.v1.math.in_top_k</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/nn_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Says whether the targets are in the top <code>K</code> predictions.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.nn.in_top_k</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">in_top_k</span><span class="p">(</span>
+    <span class="n">predictions</span><span class="p">,</span>
+    <span class="n">targets</span><span class="p">,</span>
+    <span class="n">k</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>This outputs a <code>batch_size</code> bool array, an entry <code>out[i]</code> is <code>true</code> if the
+prediction for the target class is finite (not inf, -inf, or nan) and among
+the top <code>k</code> predictions among all predictions for example <code>i</code>. Note that the
+behavior of <code>InTopK</code> differs from the <code>TopK</code> op in its handling of ties; if
+multiple classes have the same prediction value and straddle the top-<code>k</code>
+boundary, all of those classes are considered to be in the top <code>k</code>.</p>
+<p>More formally, let</p>
+<p>\(predictions_i\) be the predictions for all classes for example <code>i</code>,
+  \(targets_i\) be the target class for example <code>i</code>,
+  \(out_i\) be the output for example <code>i</code>,</p>
+<p>$$out_i = predictions_{i, targets_i} \in TopKIncludingTies(predictions_i)$$</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>predictions</code></b>: A <code>Tensor</code> of type <code>float32</code>.
+  A <code>batch_size</code> x <code>classes</code> tensor.</li>
+<li><b><code>targets</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>int32</code>, <code>int64</code>.
+  A <code>batch_size</code> vector of class ids.</li>
+<li><b><code>k</code></b>: An <code>int</code>. Number of top elements to look at for computing precision.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>Tensor</code> of type <code>bool</code>. Computed Precision at <code>k</code> as a <code>bool Tensor</code>.</p>
+    </body>
+    </html>
+   

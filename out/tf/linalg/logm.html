@@ -1,0 +1,60 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.linalg.logm" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tflinalglogm">tf.linalg.logm</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p>Defined in generated file: <code>python/ops/gen_linalg_ops.py</code></p>
+<!-- Start diff -->
+
+<p>Computes the matrix logarithm of one or more square matrices:</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.linalg.logm</code></li>
+<li><code>tf.compat.v2.linalg.logm</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">logm</span><span class="p">(</span>
+    <span class="nb">input</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>\(log(exp(A)) = A\)</p>
+<p>This op is only defined for complex matrices. If A is positive-definite and
+real, then casting to a complex matrix, taking the logarithm and casting back
+to a real matrix will give the correct result.</p>
+<p>This function computes the matrix logarithm using the Schur-Parlett algorithm.
+Details of the algorithm can be found in Section 11.6.2 of:
+Nicholas J. Higham, Functions of Matrices: Theory and Computation, SIAM 2008.
+ISBN 978-0-898716-46-7.</p>
+<p>The input is a tensor of shape <code>[..., M, M]</code> whose inner-most 2 dimensions
+form square matrices. The output is a tensor of the same shape as the input
+containing the exponential for all input submatrices <code>[..., :, :]</code>.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>input</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>complex64</code>, <code>complex128</code>.
+  Shape is <code>[..., M, M]</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>Tensor</code>. Has the same type as <code>input</code>.</p>
+    </body>
+    </html>
+   

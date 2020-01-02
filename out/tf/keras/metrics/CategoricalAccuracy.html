@@ -1,0 +1,143 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.metrics.CategoricalAccuracy" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="__new__"/>
+<meta itemprop="property" content="reset_states"/>
+<meta itemprop="property" content="result"/>
+<meta itemprop="property" content="update_state"/>
+</div>
+
+<h1 id="tfkerasmetricscategoricalaccuracy">tf.keras.metrics.CategoricalAccuracy</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/metrics.py">View source</a></p>
+<h2 id="class-categoricalaccuracy">Class <code>CategoricalAccuracy</code></h2>
+<!-- Start diff -->
+
+<p>Calculates how often predictions matches labels.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v1.keras.metrics.CategoricalAccuracy</code></li>
+<li>Class <code>tf.compat.v2.keras.metrics.CategoricalAccuracy</code></li>
+<li>Class <code>tf.compat.v2.metrics.CategoricalAccuracy</code></li>
+<li>Class <code>tf.metrics.CategoricalAccuracy</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<p>For example, if <code>y_true</code> is [[0, 0, 1], [0, 1, 0]] and <code>y_pred</code> is
+[[0.1, 0.9, 0.8], [0.05, 0.95, 0]] then the categorical accuracy is 1/2 or .5.
+If the weights were specified as [0.7, 0.3] then the categorical accuracy
+would be .3. You can provide logits of classes as <code>y_pred</code>, since argmax of
+logits and probabilities are same.</p>
+<p>This metric creates two local variables, <code>total</code> and <code>count</code> that are used to
+compute the frequency with which <code>y_pred</code> matches <code>y_true</code>. This frequency is
+ultimately returned as <code>categorical accuracy</code>: an idempotent operation that
+simply divides <code>total</code> by <code>count</code>.</p>
+<p><code>y_pred</code> and <code>y_true</code> should be passed in as vectors of probabilities, rather
+than as labels. If necessary, use <a href="../../../tf/one_hot.html"><code>tf.one_hot</code></a> to expand <code>y_true</code> as a vector.</p>
+<p>If <code>sample_weight</code> is <code>None</code>, weights default to 1.
+Use <code>sample_weight</code> of 0 to mask values.</p>
+<h4 id="usage">Usage:</h4>
+<div class="codehilite"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">CategoricalAccuracy</span><span class="p">()</span>
+<span class="n">m</span><span class="o">.</span><span class="n">update_state</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]],</span> <span class="p">[[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Final result: &#39;</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">result</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>  <span class="c1"># Final result: 0.5</span>
+</pre></div>
+
+
+<p>Usage with tf.keras API:</p>
+<div class="codehilite"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">outputs</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+  <span class="s1">&#39;sgd&#39;</span><span class="p">,</span>
+  <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;mse&#39;</span><span class="p">,</span>
+  <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">CategoricalAccuracy</span><span class="p">()])</span>
+</pre></div>
+
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/metrics.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;categorical_accuracy&#39;</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Creates a <code>CategoricalAccuracy</code> instance.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>name</code></b>: (Optional) string name of the metric instance.</li>
+<li><b><code>dtype</code></b>: (Optional) data type of the metric result.</li>
+</ul>
+<h2 id="__new__"><code>__new__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/metrics.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__new__</span><span class="p">(</span>
+    <span class="bp">cls</span><span class="p">,</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Create and return a new object.  See help(type) for accurate signature.</p>
+<h2 id="methods">Methods</h2>
+<h3 id="reset_states"><code>reset_states</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/metrics.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">reset_states</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Resets all of the metric state variables.</p>
+<p>This function is called between epochs/steps,
+when a metric is evaluated during training.</p>
+<h3 id="result"><code>result</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/metrics.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">result</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Computes and returns the metric value tensor.</p>
+<p>Result computation is an idempotent operation that simply calculates the
+metric value using the state variables.</p>
+<h3 id="update_state"><code>update_state</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/metrics.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">update_state</span><span class="p">(</span>
+    <span class="n">y_true</span><span class="p">,</span>
+    <span class="n">y_pred</span><span class="p">,</span>
+    <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Accumulates metric statistics.</p>
+<p><code>y_true</code> and <code>y_pred</code> should have the same shape.</p>
+<h4 id="args_1">Args:</h4>
+<ul>
+<li><b><code>y_true</code></b>: The ground truth values.</li>
+<li><b><code>y_pred</code></b>: The predicted values.</li>
+<li><b><code>sample_weight</code></b>: Optional weighting of each example. Defaults to 1. Can be
+  a <code>Tensor</code> whose rank is either 0, or the same rank as <code>y_true</code>,
+  and must be broadcastable to <code>y_true</code>.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>Update op.</p>
+    </body>
+    </html>
+   

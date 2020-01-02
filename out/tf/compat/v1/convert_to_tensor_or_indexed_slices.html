@@ -1,0 +1,54 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.convert_to_tensor_or_indexed_slices" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1convert_to_tensor_or_indexed_slices">tf.compat.v1.convert_to_tensor_or_indexed_slices</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/indexed_slices.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Converts the given object to a <code>Tensor</code> or an <code>IndexedSlices</code>.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">convert_to_tensor_or_indexed_slices</span><span class="p">(</span>
+    <span class="n">value</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>If <code>value</code> is an <code>IndexedSlices</code> or <code>SparseTensor</code> it is returned
+unmodified. Otherwise, it is converted to a <code>Tensor</code> using
+<code>convert_to_tensor()</code>.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>value</code></b>: An <code>IndexedSlices</code>, <code>SparseTensor</code>, or an object that can be consumed
+  by <code>convert_to_tensor()</code>.</li>
+<li><b><code>dtype</code></b>: (Optional.) The required <code>DType</code> of the returned <code>Tensor</code> or
+  <code>IndexedSlices</code>.</li>
+<li><b><code>name</code></b>: (Optional.) A name to use if a new <code>Tensor</code> is created.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>Tensor</code>, <code>IndexedSlices</code>, or <code>SparseTensor</code> based on <code>value</code>.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: If <code>dtype</code> does not match the element type of <code>value</code>.</li>
+</ul>
+    </body>
+    </html>
+   

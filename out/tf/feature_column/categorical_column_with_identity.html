@@ -1,0 +1,88 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.feature_column.categorical_column_with_identity" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tffeature_columncategorical_column_with_identity">tf.feature_column.categorical_column_with_identity</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/feature_column/feature_column_v2.py">View source</a></p>
+<!-- Start diff -->
+
+<p>A <code>CategoricalColumn</code> that returns identity values.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.feature_column.categorical_column_with_identity</code></li>
+<li><code>tf.compat.v2.feature_column.categorical_column_with_identity</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">feature_column</span><span class="o">.</span><span class="n">categorical_column_with_identity</span><span class="p">(</span>
+    <span class="n">key</span><span class="p">,</span>
+    <span class="n">num_buckets</span><span class="p">,</span>
+    <span class="n">default_value</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Use this when your inputs are integers in the range <code>[0, num_buckets)</code>, and
+you want to use the input value itself as the categorical ID. Values outside
+this range will result in <code>default_value</code> if specified, otherwise it will
+fail.</p>
+<p>Typically, this is used for contiguous ranges of integer indexes, but
+it doesn't have to be. This might be inefficient, however, if many of IDs
+are unused. Consider <code>categorical_column_with_hash_bucket</code> in that case.</p>
+<p>For input dictionary <code>features</code>, <code>features[key]</code> is either <code>Tensor</code> or
+<code>SparseTensor</code>. If <code>Tensor</code>, missing values can be represented by <code>-1</code> for int
+and <code>''</code> for string, which will be dropped by this feature column.</p>
+<p>In the following examples, each input in the range <code>[0, 1000000)</code> is assigned
+the same value. All other inputs are assigned <code>default_value</code> 0. Note that a
+literal 0 in inputs will result in the same default ID.</p>
+<h4 id="linear-model">Linear model:</h4>
+<div class="codehilite"><pre><span></span><span class="n">video_id</span> <span class="o">=</span> <span class="n">categorical_column_with_identity</span><span class="p">(</span>
+    <span class="n">key</span><span class="o">=</span><span class="s1">&#39;video_id&#39;</span><span class="p">,</span> <span class="n">num_buckets</span><span class="o">=</span><span class="mi">1000000</span><span class="p">,</span> <span class="n">default_value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">video_id</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+<span class="n">features</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">parse_example</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="n">make_parse_example_spec</span><span class="p">(</span><span class="n">columns</span><span class="p">))</span>
+<span class="n">linear_prediction</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">linear_model</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">columns</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Embedding for a DNN model:</p>
+<div class="codehilite"><pre><span></span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">embedding_column</span><span class="p">(</span><span class="n">video_id</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span><span class="o">...</span><span class="p">]</span>
+<span class="n">features</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">parse_example</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="n">make_parse_example_spec</span><span class="p">(</span><span class="n">columns</span><span class="p">))</span>
+<span class="n">dense_tensor</span> <span class="o">=</span> <span class="n">input_layer</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">columns</span><span class="p">)</span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>key</code></b>: A unique string identifying the input feature. It is used as the
+  column name and the dictionary key for feature parsing configs, feature
+  <code>Tensor</code> objects, and feature columns.</li>
+<li><b><code>num_buckets</code></b>: Range of inputs and outputs is <code>[0, num_buckets)</code>.</li>
+<li><b><code>default_value</code></b>: If <code>None</code>, this column's graph operations will fail for
+  out-of-range inputs. Otherwise, this value must be in the range
+  <code>[0, num_buckets)</code>, and will replace inputs in that range.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>CategoricalColumn</code> that returns identity values.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: if <code>num_buckets</code> is less than one.</li>
+<li><b><code>ValueError</code></b>: if <code>default_value</code> is not in range <code>[0, num_buckets)</code>.</li>
+</ul>
+    </body>
+    </html>
+   

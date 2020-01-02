@@ -1,0 +1,55 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.test.assert_equal_graph_def" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1testassert_equal_graph_def">tf.compat.v1.test.assert_equal_graph_def</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/test_util.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Asserts that two <code>GraphDef</code>s are (mostly) the same.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">test</span><span class="o">.</span><span class="n">assert_equal_graph_def</span><span class="p">(</span>
+    <span class="n">actual</span><span class="p">,</span>
+    <span class="n">expected</span><span class="p">,</span>
+    <span class="n">checkpoint_v2</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">hash_table_shared_name</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Compares two <code>GraphDef</code> protos for equality, ignoring versions and ordering of
+nodes, attrs, and control inputs.  Node names are used to match up nodes
+between the graphs, so the naming of nodes must be consistent.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>actual</code></b>: The <code>GraphDef</code> we have.</li>
+<li><b><code>expected</code></b>: The <code>GraphDef</code> we expected.</li>
+<li><b><code>checkpoint_v2</code></b>: boolean determining whether to ignore randomized attribute
+  values that appear in V2 checkpoints.</li>
+<li><b><code>hash_table_shared_name</code></b>: boolean determining whether to ignore randomized
+  shared_names that appear in HashTableV2 op defs.</li>
+</ul>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>AssertionError</code></b>: If the <code>GraphDef</code>s do not match.</li>
+<li><b><code>TypeError</code></b>: If either argument is not a <code>GraphDef</code>.</li>
+</ul>
+    </body>
+    </html>
+   

@@ -1,0 +1,68 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.estimator.experimental.call_logit_fn" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfestimatorexperimentalcall_logit_fn">tf.estimator.experimental.call_logit_fn</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+
+<td>
+  <a target="_blank" href="https://github.com/tensorflow/estimator/tree/master/tensorflow_estimator/python/estimator/model_fn.py">
+    <img src="https://www.tensorflow.org/images/GitHub-Mark-32px.png" />
+    View source on GitHub
+  </a>
+</td></table>
+
+<!-- Start diff -->
+
+<p>Calls logit_fn (experimental).</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.estimator.experimental.call_logit_fn</code></li>
+<li><code>tf.compat.v2.estimator.experimental.call_logit_fn</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">call_logit_fn</span><span class="p">(</span>
+    <span class="n">logit_fn</span><span class="p">,</span>
+    <span class="n">features</span><span class="p">,</span>
+    <span class="n">mode</span><span class="p">,</span>
+    <span class="n">params</span><span class="p">,</span>
+    <span class="n">config</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>THIS FUNCTION IS EXPERIMENTAL. Keras layers/models are the recommended APIs
+for logit and model composition.</p>
+<p>A utility function that calls the provided logit_fn with the relevant subset
+of provided arguments. Similar to tf.estimator._call_model_fn().</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>logit_fn</code></b>: A logit_fn as defined above.</li>
+<li><b><code>features</code></b>: The features dict.</li>
+<li><b><code>mode</code></b>: TRAIN / EVAL / PREDICT ModeKeys.</li>
+<li><b><code>params</code></b>: The hyperparameter dict.</li>
+<li><b><code>config</code></b>: The configuration object.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A logit Tensor, the output of logit_fn.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: if logit_fn does not return a Tensor or a dictionary mapping
+  strings to Tensors.</li>
+</ul>
+    </body>
+    </html>
+   

@@ -1,0 +1,64 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.flags.tf_decorator.rewrap" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1flagstf_decoratorrewrap">tf.compat.v1.flags.tf_decorator.rewrap</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/util/tf_decorator.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Injects a new target into a function built by make_decorator.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.app.flags.tf_decorator.rewrap</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">flags</span><span class="o">.</span><span class="n">tf_decorator</span><span class="o">.</span><span class="n">rewrap</span><span class="p">(</span>
+    <span class="n">decorator_func</span><span class="p">,</span>
+    <span class="n">previous_target</span><span class="p">,</span>
+    <span class="n">new_target</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>This function allows replacing a function wrapped by <code>decorator_func</code>,
+assuming the decorator that wraps the function is written as described below.</p>
+<p>The decorator function must use <code>&lt;decorator name&gt;.__wrapped__</code> instead of the
+wrapped function that is normally used:</p>
+<h4 id="example">Example:</h4>
+<h1 id="instead-of-this">Instead of this:</h1>
+<p>def simple_parametrized_wrapper(*args, <strong>kwds):
+  return wrapped_fn(*args, </strong>kwds)</p>
+<p>tf_decorator.make_decorator(simple_parametrized_wrapper, wrapped_fn)</p>
+<h1 id="write-this">Write this:</h1>
+<p>def simple_parametrized_wrapper(*args, <strong>kwds):
+  return simple_parametrized_wrapper.<strong>wrapped</strong>(*args, </strong>kwds)</p>
+<p>tf_decorator.make_decorator(simple_parametrized_wrapper, wrapped_fn)</p>
+<p>Note that this process modifies decorator_func.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>decorator_func</code></b>: Callable returned by <code>wrap</code>.</li>
+<li><b><code>previous_target</code></b>: Callable that needs to be replaced.</li>
+<li><b><code>new_target</code></b>: Callable to replace previous_target with.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>The updated decorator. If decorator_func is not a tf_decorator, new_target
+is returned.</p>
+    </body>
+    </html>
+   

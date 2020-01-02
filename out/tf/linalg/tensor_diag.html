@@ -1,0 +1,64 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.linalg.tensor_diag" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tflinalgtensor_diag">tf.linalg.tensor_diag</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p>Defined in generated file: <code>python/ops/gen_array_ops.py</code></p>
+<!-- Start diff -->
+
+<p>Returns a diagonal tensor with a given diagonal values.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.diag</code></li>
+<li><code>tf.compat.v1.linalg.tensor_diag</code></li>
+<li><code>tf.compat.v2.linalg.tensor_diag</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">tensor_diag</span><span class="p">(</span>
+    <span class="n">diagonal</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Given a <code>diagonal</code>, this operation returns a tensor with the <code>diagonal</code> and
+everything else padded with zeros. The diagonal is computed as follows:</p>
+<p>Assume <code>diagonal</code> has dimensions [D1,..., Dk], then the output is a tensor of
+rank 2k with dimensions [D1,..., Dk, D1,..., Dk] where:</p>
+<p><code>output[i1,..., ik, i1,..., ik] = diagonal[i1, ..., ik]</code> and 0 everywhere else.</p>
+<h4 id="for-example">For example:</h4>
+<div class="codehilite"><pre><span></span><span class="err"># &#39;diagonal&#39; is [1, 2, 3, 4]</span>
+<span class="err">tf.diag(diagonal) ==&gt; [[1, 0, 0, 0]</span>
+<span class="err">                       [0, 2, 0, 0]</span>
+<span class="err">                       [0, 0, 3, 0]</span>
+<span class="err">                       [0, 0, 0, 4]]</span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>diagonal</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>bfloat16</code>, <code>half</code>, <code>float32</code>, <code>float64</code>, <code>int32</code>, <code>int64</code>, <code>complex64</code>, <code>complex128</code>.
+  Rank k tensor where k is at most 1.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>Tensor</code>. Has the same type as <code>diagonal</code>.</p>
+    </body>
+    </html>
+   

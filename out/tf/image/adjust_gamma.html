@@ -1,0 +1,72 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.image.adjust_gamma" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfimageadjust_gamma">tf.image.adjust_gamma</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/image_ops_impl.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Performs Gamma Correction on the input image.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.image.adjust_gamma</code></li>
+<li><code>tf.compat.v2.image.adjust_gamma</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">adjust_gamma</span><span class="p">(</span>
+    <span class="n">image</span><span class="p">,</span>
+    <span class="n">gamma</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">gain</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Also known as Power Law Transform. This function converts the
+input images at first to float representation, then transforms them
+pixelwise according to the equation <code>Out = gain * In**gamma</code>,
+and then converts the back to the original data type.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>image</code></b>: RGB image or images to adjust.</li>
+<li><b><code>gamma</code></b>: A scalar or tensor. Non negative real number.</li>
+<li><b><code>gain</code></b>: A scalar or tensor. The constant multiplier.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A Tensor. A Gamma-adjusted tensor of the same shape and type as <code>image</code>.</p>
+<h4 id="usage-example">Usage Example:</h4>
+<div class="codehilite"><pre><span></span><span class="o">&gt;&gt;</span> <span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="o">&gt;&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="o">&gt;&gt;</span> <span class="n">tf</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">adjust_gamma</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
+</pre></div>
+
+
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: If gamma is negative.</li>
+</ul>
+<h4 id="notes">Notes:</h4>
+<p>For gamma greater than 1, the histogram will shift towards left and
+the output image will be darker than the input image.
+For gamma less than 1, the histogram will shift towards right and
+the output image will be brighter than the input image.</p>
+<h4 id="references">References:</h4>
+<p>[1] http://en.wikipedia.org/wiki/Gamma_correction</p>
+    </body>
+    </html>
+   

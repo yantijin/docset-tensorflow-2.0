@@ -1,0 +1,55 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.lite.RepresentativeDataset" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__init__"/>
+</div>
+
+<h1 id="tfliterepresentativedataset">tf.lite.RepresentativeDataset</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/lite/python/lite.py">View source</a></p>
+<h2 id="class-representativedataset">Class <code>RepresentativeDataset</code></h2>
+<!-- Start diff -->
+
+<p>Representative dataset to evaluate optimizations.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v1.lite.RepresentativeDataset</code></li>
+<li>Class <code>tf.compat.v2.lite.RepresentativeDataset</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<p>A representative dataset that can be used to evaluate optimizations by the
+converter. E.g. converter can use these examples to estimate (min, max) ranges
+by calibrating the model on inputs. This can allow converter to quantize a
+converted floating point model.</p>
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/lite/python/lite.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span><span class="n">input_gen</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Creates a representative dataset.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>input_gen</code></b>: an input generator that can be used to generate input samples
+  for the model. This must be a callable object that returns an object
+  that supports the <code>iter()</code> protocol (e.g. a generator function). The
+  elements generated must have same type and shape as inputs to the model.</li>
+</ul>
+    </body>
+    </html>
+   

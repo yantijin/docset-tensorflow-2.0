@@ -1,0 +1,132 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.layers.separable_conv2d" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1layersseparable_conv2d">tf.compat.v1.layers.separable_conv2d</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/layers/convolutional.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Functional interface for the depthwise separable 2D convolution layer. (deprecated)</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">separable_conv2d</span><span class="p">(</span>
+    <span class="n">inputs</span><span class="p">,</span>
+    <span class="n">filters</span><span class="p">,</span>
+    <span class="n">kernel_size</span><span class="p">,</span>
+    <span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;valid&#39;</span><span class="p">,</span>
+    <span class="n">data_format</span><span class="o">=</span><span class="s1">&#39;channels_last&#39;</span><span class="p">,</span>
+    <span class="n">dilation_rate</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="n">depth_multiplier</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">activation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">use_bias</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">depthwise_initializer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">pointwise_initializer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">bias_initializer</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">zeros_initializer</span><span class="p">(),</span>
+    <span class="n">depthwise_regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">pointwise_regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">bias_regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">activity_regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">depthwise_constraint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">pointwise_constraint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">bias_constraint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">trainable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">reuse</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
+Instructions for updating:
+Use <a href="../../../../tf/keras/layers/SeparableConv2D.html"><code>tf.keras.layers.SeparableConv2D</code></a> instead.</p>
+<p>This layer performs a depthwise convolution that acts separately on
+channels, followed by a pointwise convolution that mixes channels.
+If <code>use_bias</code> is True and a bias initializer is provided,
+it adds a bias vector to the output.
+It then optionally applies an activation function to produce the final output.</p>
+<h4 id="arguments">Arguments:</h4>
+<ul>
+<li><b><code>inputs</code></b>: Input tensor.</li>
+<li><b><code>filters</code></b>: Integer, the dimensionality of the output space (i.e. the number
+  of filters in the convolution).</li>
+<li><b><code>kernel_size</code></b>: A tuple or list of 2 integers specifying the spatial
+  dimensions of the filters. Can be a single integer to specify the same
+  value for all spatial dimensions.</li>
+<li><b><code>strides</code></b>: A tuple or list of 2 positive integers specifying the strides
+  of the convolution. Can be a single integer to specify the same value for
+  all spatial dimensions.
+  Specifying any <code>stride</code> value != 1 is incompatible with specifying
+  any <code>dilation_rate</code> value != 1.</li>
+<li><b><code>padding</code></b>: One of <code>"valid"</code> or <code>"same"</code> (case-insensitive).</li>
+<li>
+<p><b><code>data_format</code></b>: A string, one of <code>channels_last</code> (default) or <code>channels_first</code>.
+  The ordering of the dimensions in the inputs.
+  <code>channels_last</code> corresponds to inputs with shape
+  <code>(batch, height, width, channels)</code> while <code>channels_first</code> corresponds to
+  inputs with shape <code>(batch, channels, height, width)</code>.</p>
+</li>
+<li>
+<p><b><code>dilation_rate</code></b>: An integer or tuple/list of 2 integers, specifying
+  the dilation rate to use for dilated convolution.
+  Can be a single integer to specify the same value for
+  all spatial dimensions.
+  Currently, specifying any <code>dilation_rate</code> value != 1 is
+  incompatible with specifying any stride value != 1.</p>
+</li>
+<li><b><code>depth_multiplier</code></b>: The number of depthwise convolution output channels for
+  each input channel. The total number of depthwise convolution output
+  channels will be equal to <code>num_filters_in * depth_multiplier</code>.</li>
+<li><b><code>activation</code></b>: Activation function. Set it to None to maintain a
+  linear activation.</li>
+<li><b><code>use_bias</code></b>: Boolean, whether the layer uses a bias.</li>
+<li><b><code>depthwise_initializer</code></b>: An initializer for the depthwise convolution kernel.</li>
+<li><b><code>pointwise_initializer</code></b>: An initializer for the pointwise convolution kernel.</li>
+<li><b><code>bias_initializer</code></b>: An initializer for the bias vector. If None, the default
+  initializer will be used.</li>
+<li><b><code>depthwise_regularizer</code></b>: Optional regularizer for the depthwise
+  convolution kernel.</li>
+<li><b><code>pointwise_regularizer</code></b>: Optional regularizer for the pointwise
+  convolution kernel.</li>
+<li><b><code>bias_regularizer</code></b>: Optional regularizer for the bias vector.</li>
+<li><b><code>activity_regularizer</code></b>: Optional regularizer function for the output.</li>
+<li><b><code>depthwise_constraint</code></b>: Optional projection function to be applied to the
+    depthwise kernel after being updated by an <code>Optimizer</code> (e.g. used for
+    norm constraints or value constraints for layer weights). The function
+    must take as input the unprojected variable and must return the
+    projected variable (which must have the same shape). Constraints are
+    not safe to use when doing asynchronous distributed training.</li>
+<li><b><code>pointwise_constraint</code></b>: Optional projection function to be applied to the
+    pointwise kernel after being updated by an <code>Optimizer</code>.</li>
+<li><b><code>bias_constraint</code></b>: Optional projection function to be applied to the
+    bias after being updated by an <code>Optimizer</code>.</li>
+<li><b><code>trainable</code></b>: Boolean, if <code>True</code> also add variables to the graph collection
+  <code>GraphKeys.TRAINABLE_VARIABLES</code> (see <a href="../../../../tf/Variable.html"><code>tf.Variable</code></a>).</li>
+<li><b><code>name</code></b>: A string, the name of the layer.</li>
+<li><b><code>reuse</code></b>: Boolean, whether to reuse the weights of a previous layer
+  by the same name.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>Output tensor.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: if eager execution is enabled.</li>
+</ul>
+    </body>
+    </html>
+   

@@ -1,0 +1,60 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.nn.collapse_repeated" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfnncollapse_repeated">tf.nn.collapse_repeated</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/ctc_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Merge repeated labels into single labels.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.nn.collapse_repeated</code></li>
+<li><code>tf.compat.v2.nn.collapse_repeated</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">collapse_repeated</span><span class="p">(</span>
+    <span class="n">labels</span><span class="p">,</span>
+    <span class="n">seq_length</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>labels</code></b>: Tensor of shape [batch, max value in seq_length]</li>
+<li><b><code>seq_length</code></b>: Tensor of shape [batch], sequence length of each batch element.</li>
+<li><b><code>name</code></b>: A name for this <code>Op</code>. Defaults to "collapse_repeated_labels".</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A tuple <code>(collapsed_labels, new_seq_length)</code> where</p>
+<ul>
+<li>
+<p><b><code>collapsed_labels</code></b>: Tensor of shape [batch, max_seq_length] with repeated
+labels collapsed and padded to max_seq_length, eg:
+<code>[[A, A, B, B, A], [A, B, C, D, E]] =&gt; [[A, B, A, 0, 0], [A, B, C, D, E]]</code></p>
+</li>
+<li>
+<p><b><code>new_seq_length</code></b>: int tensor of shape [batch] with new sequence lengths.</p>
+</li>
+</ul>
+    </body>
+    </html>
+   

@@ -1,0 +1,61 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.config.experimental_connect_to_cluster" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfconfigexperimental_connect_to_cluster">tf.config.experimental_connect_to_cluster</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/eager/remote.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Connects to the given cluster.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.config.experimental_connect_to_cluster</code></li>
+<li><code>tf.compat.v2.config.experimental_connect_to_cluster</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental_connect_to_cluster</span><span class="p">(</span>
+    <span class="n">cluster_spec_or_resolver</span><span class="p">,</span>
+    <span class="n">job_name</span><span class="o">=</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span>
+    <span class="n">task_index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">protocol</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">make_master_device_default</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Will make devices on the cluster available to use. Note that calling this more
+than once will work, but will invalidate any tensor handles on the old remote
+devices.
+If the given local job name is not present in the cluster specification, it
+will be automatically added, using an unused port on the localhost.
+Args:
+  cluster_spec_or_resolver: A <code>ClusterSpec</code> or <code>ClusterResolver</code> describing
+    the cluster.
+  job_name: The name of the local job.
+  task_index: The local task index.
+  protocol: The communication protocol, such as <code>"grpc"</code>. If unspecified, will
+    use the default from <code>python/platform/remote_utils.py</code>.
+  make_master_device_default: If True and a cluster resolver is passed, will
+    automatically enter the master task device scope, which indicates the
+    master becomes the default device to run ops. It won't do anything if
+    a cluster spec is passed. Will throw an error if the caller is currently
+    already in some device scope.</p>
+    </body>
+    </html>
+   

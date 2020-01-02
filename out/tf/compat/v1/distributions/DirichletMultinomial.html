@@ -1,0 +1,808 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.distributions.DirichletMultinomial" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="allow_nan_stats"/>
+<meta itemprop="property" content="batch_shape"/>
+<meta itemprop="property" content="concentration"/>
+<meta itemprop="property" content="dtype"/>
+<meta itemprop="property" content="event_shape"/>
+<meta itemprop="property" content="name"/>
+<meta itemprop="property" content="parameters"/>
+<meta itemprop="property" content="reparameterization_type"/>
+<meta itemprop="property" content="total_concentration"/>
+<meta itemprop="property" content="total_count"/>
+<meta itemprop="property" content="validate_args"/>
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="batch_shape_tensor"/>
+<meta itemprop="property" content="cdf"/>
+<meta itemprop="property" content="copy"/>
+<meta itemprop="property" content="covariance"/>
+<meta itemprop="property" content="cross_entropy"/>
+<meta itemprop="property" content="entropy"/>
+<meta itemprop="property" content="event_shape_tensor"/>
+<meta itemprop="property" content="is_scalar_batch"/>
+<meta itemprop="property" content="is_scalar_event"/>
+<meta itemprop="property" content="kl_divergence"/>
+<meta itemprop="property" content="log_cdf"/>
+<meta itemprop="property" content="log_prob"/>
+<meta itemprop="property" content="log_survival_function"/>
+<meta itemprop="property" content="mean"/>
+<meta itemprop="property" content="mode"/>
+<meta itemprop="property" content="param_shapes"/>
+<meta itemprop="property" content="param_static_shapes"/>
+<meta itemprop="property" content="prob"/>
+<meta itemprop="property" content="quantile"/>
+<meta itemprop="property" content="sample"/>
+<meta itemprop="property" content="stddev"/>
+<meta itemprop="property" content="survival_function"/>
+<meta itemprop="property" content="variance"/>
+</div>
+
+<h1 id="tfcompatv1distributionsdirichletmultinomial">tf.compat.v1.distributions.DirichletMultinomial</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/distributions/dirichlet_multinomial.py">View source</a></p>
+<h2 id="class-dirichletmultinomial">Class <code>DirichletMultinomial</code></h2>
+<!-- Start diff -->
+
+<p>Dirichlet-Multinomial compound distribution.</p>
+<p>Inherits From: <a href="../../../../tf/compat/v1/distributions/Distribution.html"><code>Distribution</code></a></p>
+<!-- Placeholder for "Used in" -->
+
+<p>The Dirichlet-Multinomial distribution is parameterized by a (batch of)
+length-<code>K</code> <code>concentration</code> vectors (<code>K &gt; 1</code>) and a <code>total_count</code> number of
+trials, i.e., the number of trials per draw from the DirichletMultinomial. It
+is defined over a (batch of) length-<code>K</code> vector <code>counts</code> such that
+<code>tf.reduce_sum(counts, -1) = total_count</code>. The Dirichlet-Multinomial is
+identically the Beta-Binomial distribution when <code>K = 2</code>.</p>
+<h4 id="mathematical-details">Mathematical Details</h4>
+<p>The Dirichlet-Multinomial is a distribution over <code>K</code>-class counts, i.e., a
+length-<code>K</code> vector of non-negative integer <code>counts = n = [n_0, ..., n_{K-1}]</code>.</p>
+<p>The probability mass function (pmf) is,</p>
+<div class="codehilite"><pre><span></span><span class="err">pmf(n; alpha, N) = Beta(alpha + n) / (prod_j n_j!) / Z</span>
+<span class="err">Z = Beta(alpha) / N!</span>
+</pre></div>
+
+
+<p>where:</p>
+<ul>
+<li><code>concentration = alpha = [alpha_0, ..., alpha_{K-1}]</code>, <code>alpha_j &gt; 0</code>,</li>
+<li><code>total_count = N</code>, <code>N</code> a positive integer,</li>
+<li><code>N!</code> is <code>N</code> factorial, and,</li>
+<li><code>Beta(x) = prod_j Gamma(x_j) / Gamma(sum_j x_j)</code> is the
+  <a href="https://en.wikipedia.org/wiki/Beta_function#Multivariate_beta_function">multivariate beta function</a>,
+  and,</li>
+<li><code>Gamma</code> is the <a href="https://en.wikipedia.org/wiki/Gamma_function">gamma function</a>.</li>
+</ul>
+<p>Dirichlet-Multinomial is a <a href="https://en.wikipedia.org/wiki/Compound_probability_distribution">compound distribution</a>, i.e., its
+samples are generated as follows.</p>
+<ol>
+<li>Choose class probabilities:
+     <code>probs = [p_0,...,p_{K-1}] ~ Dir(concentration)</code></li>
+<li>Draw integers:
+     <code>counts = [n_0,...,n_{K-1}] ~ Multinomial(total_count, probs)</code></li>
+</ol>
+<p>The last <code>concentration</code> dimension parametrizes a single Dirichlet-Multinomial
+distribution. When calling distribution functions (e.g., <code>dist.prob(counts)</code>),
+<code>concentration</code>, <code>total_count</code> and <code>counts</code> are broadcast to the same shape.
+The last dimension of <code>counts</code> corresponds single Dirichlet-Multinomial
+distributions.</p>
+<p>Distribution parameters are automatically broadcast in all functions; see
+examples for details.</p>
+<h4 id="pitfalls">Pitfalls</h4>
+<p>The number of classes, <code>K</code>, must not exceed:
+- the largest integer representable by <code>self.dtype</code>, i.e.,
+  <code>2**(mantissa_bits+1)</code> (IEE754),
+- the maximum <code>Tensor</code> index, i.e., <code>2**31-1</code>.</p>
+<p>In other words,</p>
+<div class="codehilite"><pre><span></span><span class="n">K</span> <span class="o">&lt;=</span> <span class="nb">min</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">31</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">{</span>
+  <span class="n">tf</span><span class="o">.</span><span class="n">float16</span><span class="p">:</span> <span class="mi">2</span><span class="o">**</span><span class="mi">11</span><span class="p">,</span>
+  <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">:</span> <span class="mi">2</span><span class="o">**</span><span class="mi">24</span><span class="p">,</span>
+  <span class="n">tf</span><span class="o">.</span><span class="n">float64</span><span class="p">:</span> <span class="mi">2</span><span class="o">**</span><span class="mi">53</span> <span class="p">}[</span><span class="n">param</span><span class="o">.</span><span class="n">dtype</span><span class="p">])</span>
+</pre></div>
+
+
+<p>Note: This condition is validated only when <code>self.validate_args = True</code>.</p>
+<h4 id="examples">Examples</h4>
+<div class="codehilite"><pre><span></span><span class="n">alpha</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">]</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mf">2.</span>
+<span class="n">dist</span> <span class="o">=</span> <span class="n">DirichletMultinomial</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Creates a 3-class distribution, with the 3rd class is most likely to be
+drawn.
+The distribution functions can be evaluated on counts.</p>
+<div class="codehilite"><pre><span></span><span class="c1"># counts same shape as alpha.</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">]</span>
+<span class="n">dist</span><span class="o">.</span><span class="n">prob</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>  <span class="c1"># Shape []</span>
+
+<span class="c1"># alpha will be broadcast to [[1., 2., 3.], [1., 2., 3.]] to match counts.</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">]]</span>
+<span class="n">dist</span><span class="o">.</span><span class="n">prob</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>  <span class="c1"># Shape [2]</span>
+
+<span class="c1"># alpha will be broadcast to shape [5, 7, 3] to match counts.</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="p">[[</span><span class="o">...</span><span class="p">]]</span>  <span class="c1"># Shape [5, 7, 3]</span>
+<span class="n">dist</span><span class="o">.</span><span class="n">prob</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>  <span class="c1"># Shape [5, 7]</span>
+</pre></div>
+
+
+<p>Creates a 2-batch of 3-class distributions.</p>
+<div class="codehilite"><pre><span></span><span class="n">alpha</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">],</span> <span class="p">[</span><span class="mf">4.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">,</span> <span class="mf">6.</span><span class="p">]]</span>  <span class="c1"># Shape [2, 3]</span>
+<span class="n">n</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">]</span>
+<span class="n">dist</span> <span class="o">=</span> <span class="n">DirichletMultinomial</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+
+<span class="c1"># counts will be broadcast to [[2., 1., 0.], [2., 1., 0.]] to match alpha.</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">]</span>
+<span class="n">dist</span><span class="o">.</span><span class="n">prob</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>  <span class="c1"># Shape [2]</span>
+</pre></div>
+
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/distributions/dirichlet_multinomial.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">total_count</span><span class="p">,</span>
+    <span class="n">concentration</span><span class="p">,</span>
+    <span class="n">validate_args</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">allow_nan_stats</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;DirichletMultinomial&#39;</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Initialize a batch of DirichletMultinomial distributions. (deprecated)</p>
+<p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed after 2019-01-01.
+Instructions for updating:
+The TensorFlow Distributions library has moved to TensorFlow Probability (https://github.com/tensorflow/probability). You should update all references to use <code>tfp.distributions</code> instead of <code>tf.distributions</code>.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>total_count</code></b>:  Non-negative floating point tensor, whose dtype is the same
+  as <code>concentration</code>. The shape is broadcastable to <code>[N1,..., Nm]</code> with
+  <code>m &gt;= 0</code>. Defines this as a batch of <code>N1 x ... x Nm</code> different
+  Dirichlet multinomial distributions. Its components should be equal to
+  integer values.</li>
+<li><b><code>concentration</code></b>: Positive floating point tensor, whose dtype is the
+  same as <code>n</code> with shape broadcastable to <code>[N1,..., Nm, K]</code> <code>m &gt;= 0</code>.
+  Defines this as a batch of <code>N1 x ... x Nm</code> different <code>K</code> class Dirichlet
+  multinomial distributions.</li>
+<li><b><code>validate_args</code></b>: Python <code>bool</code>, default <code>False</code>. When <code>True</code> distribution
+  parameters are checked for validity despite possibly degrading runtime
+  performance. When <code>False</code> invalid inputs may silently render incorrect
+  outputs.</li>
+<li><b><code>allow_nan_stats</code></b>: Python <code>bool</code>, default <code>True</code>. When <code>True</code>, statistics
+  (e.g., mean, mode, variance) use the value "<code>NaN</code>" to indicate the
+  result is undefined. When <code>False</code>, an exception is raised if one or
+  more of the statistic's batch members are undefined.</li>
+<li><b><code>name</code></b>: Python <code>str</code> name prefixed to Ops created by this class.</li>
+</ul>
+<h2 id="properties">Properties</h2>
+<h3 id="allow_nan_stats"><code>allow_nan_stats</code></h3>
+
+<p>Python <code>bool</code> describing behavior when a stat is undefined.</p>
+<p>Stats return +/- infinity when it makes sense. E.g., the variance of a
+Cauchy distribution is infinity. However, sometimes the statistic is
+undefined, e.g., if a distribution's pdf does not achieve a maximum within
+the support of the distribution, the mode is undefined. If the mean is
+undefined, then by definition the variance is undefined. E.g. the mean for
+Student's T for df = 1 is undefined (no clear way to say it is either + or -
+infinity), so the variance = E[(X - mean)**2] is also undefined.</p>
+<h4 id="returns">Returns:</h4>
+<ul>
+<li><b><code>allow_nan_stats</code></b>: Python <code>bool</code>.</li>
+</ul>
+<h3 id="batch_shape"><code>batch_shape</code></h3>
+
+<p>Shape of a single sample from a single event index as a <code>TensorShape</code>.</p>
+<p>May be partially defined or unknown.</p>
+<p>The batch dimensions are indexes into independent, non-identical
+parameterizations of this distribution.</p>
+<h4 id="returns_1">Returns:</h4>
+<ul>
+<li><b><code>batch_shape</code></b>: <code>TensorShape</code>, possibly unknown.</li>
+</ul>
+<h3 id="concentration"><code>concentration</code></h3>
+
+<p>Concentration parameter; expected prior counts for that coordinate.</p>
+<h3 id="dtype"><code>dtype</code></h3>
+
+<p>The <code>DType</code> of <code>Tensor</code>s handled by this <code>Distribution</code>.</p>
+<h3 id="event_shape"><code>event_shape</code></h3>
+
+<p>Shape of a single sample from a single batch as a <code>TensorShape</code>.</p>
+<p>May be partially defined or unknown.</p>
+<h4 id="returns_2">Returns:</h4>
+<ul>
+<li><b><code>event_shape</code></b>: <code>TensorShape</code>, possibly unknown.</li>
+</ul>
+<h3 id="name"><code>name</code></h3>
+
+<p>Name prepended to all ops created by this <code>Distribution</code>.</p>
+<h3 id="parameters"><code>parameters</code></h3>
+
+<p>Dictionary of parameters used to instantiate this <code>Distribution</code>.</p>
+<h3 id="reparameterization_type"><code>reparameterization_type</code></h3>
+
+<p>Describes how samples from the distribution are reparameterized.</p>
+<p>Currently this is one of the static instances
+<code>distributions.FULLY_REPARAMETERIZED</code>
+or <code>distributions.NOT_REPARAMETERIZED</code>.</p>
+<h4 id="returns_3">Returns:</h4>
+<p>An instance of <code>ReparameterizationType</code>.</p>
+<h3 id="total_concentration"><code>total_concentration</code></h3>
+
+<p>Sum of last dim of concentration parameter.</p>
+<h3 id="total_count"><code>total_count</code></h3>
+
+<p>Number of trials used to construct a sample.</p>
+<h3 id="validate_args"><code>validate_args</code></h3>
+
+<p>Python <code>bool</code> indicating possibly expensive checks are enabled.</p>
+<h2 id="methods">Methods</h2>
+<h3 id="batch_shape_tensor"><code>batch_shape_tensor</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/distributions/distribution.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">batch_shape_tensor</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;batch_shape_tensor&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Shape of a single sample from a single event index as a 1-D <code>Tensor</code>.</p>
+<p>The batch dimensions are indexes into independent, non-identical
+parameterizations of this distribution.</p>
+<h4 id="args_1">Args:</h4>
+<ul>
+<li><b><code>name</code></b>: name to give to the op</li>
+</ul>
+<h4 id="returns_4">Returns:</h4>
+<ul>
+<li><b><code>batch_shape</code></b>: <code>Tensor</code>.</li>
+</ul>
+<h3 id="cdf"><code>cdf</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/distributions/distribution.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">cdf</span><span class="p">(</span>
+    <span class="n">value</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;cdf&#39;</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Cumulative distribution function.</p>
+<p>Given random variable <code>X</code>, the cumulative distribution function <code>cdf</code> is:</p>
+<div class="codehilite"><pre><span></span><span class="err">cdf(x) := P[X &lt;= x]</span>
+</pre></div>
+
+
+<h4 id="args_2">Args:</h4>
+<ul>
+<li><b><code>value</code></b>: <code>float</code> or <code>double</code> <code>Tensor</code>.</li>
+<li><b><code>name</code></b>: Python <code>str</code> prepended to names of ops created by this function.</li>
+</ul>
+<h4 id="returns_5">Returns:</h4>
+<ul>
+<li><b><code>cdf</code></b>: a <code>Tensor</code> of shape <code>sample_shape(x) + self.batch_shape</code> with
+  values of type <code>self.dtype</code>.</li>
+</ul>
+<h3 id="copy"><code>copy</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/distributions/distribution.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">copy</span><span class="p">(</span><span class="o">**</span><span class="n">override_parameters_kwargs</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Creates a deep copy of the distribution.</p>
+<p>Note: the copy distribution may continue to depend on the original
+initialization arguments.</p>
+<h4 id="args_3">Args:</h4>
+<ul>
+<li><b><code>**override_parameters_kwargs</code></b>: String/value dictionary of initialization
+  arguments to override with new values.</li>
+</ul>
+<h4 id="returns_6">Returns:</h4>
+<ul>
+<li><b><code>distribution</code></b>: A new instance of <code>type(self)</code> initialized from the union
+  of self.parameters and override_parameters_kwargs, i.e.,
+  <code>dict(self.parameters, **override_parameters_kwargs)</code>.</li>
+</ul>
+<h3 id="covariance"><code>covariance</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/distributions/distribution.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">covariance</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;covariance&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Covariance.</p>
+<p>Covariance is (possibly) defined only for non-scalar-event distributions.</p>
+<p>For example, for a length-<code>k</code>, vector-valued distribution, it is calculated
+as,</p>
+<div class="codehilite"><pre><span></span><span class="n">Cov</span><span class="o">[</span><span class="n">i, j</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Covariance</span><span class="p">(</span><span class="n">X_i</span><span class="p">,</span><span class="w"> </span><span class="n">X_j</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">E</span><span class="o">[</span><span class="n">(X_i - E[X_i</span><span class="o">]</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">X_j</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">E</span><span class="o">[</span><span class="n">X_j</span><span class="o">]</span><span class="p">)</span><span class="err">]</span><span class="w"></span>
+</pre></div>
+
+
+<p>where <code>Cov</code> is a (batch of) <code>k x k</code> matrix, <code>0 &lt;= (i, j) &lt; k</code>, and <code>E</code>
+denotes expectation.</p>
+<p>Alternatively, for non-vector, multivariate distributions (e.g.,
+matrix-valued, Wishart), <code>Covariance</code> shall return a (batch of) matrices
+under some vectorization of the events, i.e.,</p>
+<div class="codehilite"><pre><span></span><span class="n">Cov</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">Covariance</span><span class="p">(</span><span class="n">Vec</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="n">_i</span><span class="p">,</span> <span class="n">Vec</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="n">_j</span><span class="p">)</span> <span class="o">=</span> <span class="p">[</span><span class="n">as</span> <span class="n">above</span><span class="p">]</span>
+</pre></div>
+
+
+<p>where <code>Cov</code> is a (batch of) <code>k' x k'</code> matrices,
+<code>0 &lt;= (i, j) &lt; k' = reduce_prod(event_shape)</code>, and <code>Vec</code> is some function
+mapping indices of this distribution's event dimensions to indices of a
+length-<code>k'</code> vector.</p>
+<p>Additional documentation from <code>DirichletMultinomial</code>:</p>
+<p>The covariance for each batch member is defined as the following:</p>
+<div class="codehilite"><pre><span></span><span class="err">Var(X_j) = n * alpha_j / alpha_0 * (1 - alpha_j / alpha_0) *</span>
+<span class="err">(n + alpha_0) / (1 + alpha_0)</span>
+</pre></div>
+
+
+<p>where <code>concentration = alpha</code> and
+<code>total_concentration = alpha_0 = sum_j alpha_j</code>.</p>
+<p>The covariance between elements in a batch is defined as:</p>
+<div class="codehilite"><pre><span></span><span class="err">Cov(X_i, X_j) = -n * alpha_i * alpha_j / alpha_0 ** 2 *</span>
+<span class="err">(n + alpha_0) / (1 + alpha_0)</span>
+</pre></div>
+
+
+<h4 id="args_4">Args:</h4>
+<ul>
+<li><b><code>name</code></b>: Python <code>str</code> prepended to names of ops created by this function.</li>
+</ul>
+<h4 id="returns_7">Returns:</h4>
+<ul>
+<li><b><code>covariance</code></b>: Floating-point <code>Tensor</code> with shape <code>[B1, ..., Bn, k', k']</code>
+  where the first <code>n</code> dimensions are batch coordinates and
+  <code>k' = reduce_prod(self.event_shape)</code>.</li>
+</ul>
+<h3 id="cross_entropy"><code>cross_entropy</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/distributions/distribution.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">cross_entropy</span><span class="p">(</span>
+    <span class="n">other</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;cross_entropy&#39;</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Computes the (Shannon) cross entropy.</p>
+<p>Denote this distribution (<code>self</code>) by <code>P</code> and the <code>other</code> distribution by
+<code>Q</code>. Assuming <code>P, Q</code> are absolutely continuous with respect to
+one another and permit densities <code>p(x) dr(x)</code> and <code>q(x) dr(x)</code>, (Shanon)
+cross entropy is defined as:</p>
+<div class="codehilite"><pre><span></span><span class="err">H[P, Q] = E_p[-log q(X)] = -int_F p(x) log q(x) dr(x)</span>
+</pre></div>
+
+
+<p>where <code>F</code> denotes the support of the random variable <code>X ~ P</code>.</p>
+<h4 id="args_5">Args:</h4>
+<ul>
+<li><b><code>other</code></b>: <code>tfp.distributions.Distribution</code> instance.</li>
+<li><b><code>name</code></b>: Python <code>str</code> prepended to names of ops created by this function.</li>
+</ul>
+<h4 id="returns_8">Returns:</h4>
+<ul>
+<li><b><code>cross_entropy</code></b>: <code>self.dtype</code> <code>Tensor</code> with shape <code>[B1, ..., Bn]</code>
+  representing <code>n</code> different calculations of (Shanon) cross entropy.</li>
+</ul>
+<h3 id="entropy"><code>entropy</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/distributions/distribution.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">entropy</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;entropy&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Shannon entropy in nats.</p>
+<h3 id="event_shape_tensor"><code>event_shape_tensor</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/distributions/distribution.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">event_shape_tensor</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;event_shape_tensor&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Shape of a single sample from a single batch as a 1-D int32 <code>Tensor</code>.</p>
+<h4 id="args_6">Args:</h4>
+<ul>
+<li><b><code>name</code></b>: name to give to the op</li>
+</ul>
+<h4 id="returns_9">Returns:</h4>
+<ul>
+<li><b><code>event_shape</code></b>: <code>Tensor</code>.</li>
+</ul>
+<h3 id="is_scalar_batch"><code>is_scalar_batch</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/distributions/distribution.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">is_scalar_batch</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;is_scalar_batch&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Indicates that <code>batch_shape == []</code>.</p>
+<h4 id="args_7">Args:</h4>
+<ul>
+<li><b><code>name</code></b>: Python <code>str</code> prepended to names of ops created by this function.</li>
+</ul>
+<h4 id="returns_10">Returns:</h4>
+<ul>
+<li><b><code>is_scalar_batch</code></b>: <code>bool</code> scalar <code>Tensor</code>.</li>
+</ul>
+<h3 id="is_scalar_event"><code>is_scalar_event</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/distributions/distribution.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">is_scalar_event</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;is_scalar_event&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Indicates that <code>event_shape == []</code>.</p>
+<h4 id="args_8">Args:</h4>
+<ul>
+<li><b><code>name</code></b>: Python <code>str</code> prepended to names of ops created by this function.</li>
+</ul>
+<h4 id="returns_11">Returns:</h4>
+<ul>
+<li><b><code>is_scalar_event</code></b>: <code>bool</code> scalar <code>Tensor</code>.</li>
+</ul>
+<h3 id="kl_divergence"><code>kl_divergence</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/distributions/distribution.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">kl_divergence</span><span class="p">(</span>
+    <span class="n">other</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;kl_divergence&#39;</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Computes the Kullback--Leibler divergence.</p>
+<p>Denote this distribution (<code>self</code>) by <code>p</code> and the <code>other</code> distribution by
+<code>q</code>. Assuming <code>p, q</code> are absolutely continuous with respect to reference
+measure <code>r</code>, the KL divergence is defined as:</p>
+<div class="codehilite"><pre><span></span><span class="n">KL</span><span class="o">[</span><span class="n">p, q</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">E_p</span><span class="o">[</span><span class="n">log(p(X)/q(X))</span><span class="o">]</span><span class="w"></span>
+<span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">int_F</span><span class="w"> </span><span class="n">p</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="nf">log</span><span class="w"> </span><span class="n">q</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="n">dr</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">int_F</span><span class="w"> </span><span class="n">p</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="nf">log</span><span class="w"> </span><span class="n">p</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="n">dr</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="n">H</span><span class="o">[</span><span class="n">p, q</span><span class="o">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">H</span><span class="o">[</span><span class="n">p</span><span class="o">]</span><span class="w"></span>
+</pre></div>
+
+
+<p>where <code>F</code> denotes the support of the random variable <code>X ~ p</code>, <code>H[., .]</code>
+denotes (Shanon) cross entropy, and <code>H[.]</code> denotes (Shanon) entropy.</p>
+<h4 id="args_9">Args:</h4>
+<ul>
+<li><b><code>other</code></b>: <code>tfp.distributions.Distribution</code> instance.</li>
+<li><b><code>name</code></b>: Python <code>str</code> prepended to names of ops created by this function.</li>
+</ul>
+<h4 id="returns_12">Returns:</h4>
+<ul>
+<li><b><code>kl_divergence</code></b>: <code>self.dtype</code> <code>Tensor</code> with shape <code>[B1, ..., Bn]</code>
+  representing <code>n</code> different calculations of the Kullback-Leibler
+  divergence.</li>
+</ul>
+<h3 id="log_cdf"><code>log_cdf</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/distributions/distribution.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">log_cdf</span><span class="p">(</span>
+    <span class="n">value</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;log_cdf&#39;</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Log cumulative distribution function.</p>
+<p>Given random variable <code>X</code>, the cumulative distribution function <code>cdf</code> is:</p>
+<div class="codehilite"><pre><span></span><span class="err">log_cdf(x) := Log[ P[X &lt;= x] ]</span>
+</pre></div>
+
+
+<p>Often, a numerical approximation can be used for <code>log_cdf(x)</code> that yields
+a more accurate answer than simply taking the logarithm of the <code>cdf</code> when
+<code>x &lt;&lt; -1</code>.</p>
+<h4 id="args_10">Args:</h4>
+<ul>
+<li><b><code>value</code></b>: <code>float</code> or <code>double</code> <code>Tensor</code>.</li>
+<li><b><code>name</code></b>: Python <code>str</code> prepended to names of ops created by this function.</li>
+</ul>
+<h4 id="returns_13">Returns:</h4>
+<ul>
+<li><b><code>logcdf</code></b>: a <code>Tensor</code> of shape <code>sample_shape(x) + self.batch_shape</code> with
+  values of type <code>self.dtype</code>.</li>
+</ul>
+<h3 id="log_prob"><code>log_prob</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/distributions/distribution.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">log_prob</span><span class="p">(</span>
+    <span class="n">value</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;log_prob&#39;</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Log probability density/mass function.</p>
+<p>Additional documentation from <code>DirichletMultinomial</code>:</p>
+<p>For each batch of counts,
+<code>value = [n_0, ..., n_{K-1}]</code>, <code>P[value]</code> is the probability that after
+sampling <code>self.total_count</code> draws from this Dirichlet-Multinomial distribution,
+the number of draws falling in class <code>j</code> is <code>n_j</code>. Since this definition is
+<a href="https://en.wikipedia.org/wiki/Exchangeable_random_variables">exchangeable</a>;
+different sequences have the same counts so the probability includes a
+combinatorial coefficient.</p>
+<p>Note: <code>value</code> must be a non-negative tensor with dtype <code>self.dtype</code>, have no
+fractional components, and such that
+<code>tf.reduce_sum(value, -1) = self.total_count</code>. Its shape must be broadcastable
+with <code>self.concentration</code> and <code>self.total_count</code>.</p>
+<h4 id="args_11">Args:</h4>
+<ul>
+<li><b><code>value</code></b>: <code>float</code> or <code>double</code> <code>Tensor</code>.</li>
+<li><b><code>name</code></b>: Python <code>str</code> prepended to names of ops created by this function.</li>
+</ul>
+<h4 id="returns_14">Returns:</h4>
+<ul>
+<li><b><code>log_prob</code></b>: a <code>Tensor</code> of shape <code>sample_shape(x) + self.batch_shape</code> with
+  values of type <code>self.dtype</code>.</li>
+</ul>
+<h3 id="log_survival_function"><code>log_survival_function</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/distributions/distribution.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">log_survival_function</span><span class="p">(</span>
+    <span class="n">value</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;log_survival_function&#39;</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Log survival function.</p>
+<p>Given random variable <code>X</code>, the survival function is defined:</p>
+<div class="codehilite"><pre><span></span><span class="err">log_survival_function(x) = Log[ P[X &gt; x] ]</span>
+<span class="err">                         = Log[ 1 - P[X &lt;= x] ]</span>
+<span class="err">                         = Log[ 1 - cdf(x) ]</span>
+</pre></div>
+
+
+<p>Typically, different numerical approximations can be used for the log
+survival function, which are more accurate than <code>1 - cdf(x)</code> when <code>x &gt;&gt; 1</code>.</p>
+<h4 id="args_12">Args:</h4>
+<ul>
+<li><b><code>value</code></b>: <code>float</code> or <code>double</code> <code>Tensor</code>.</li>
+<li><b><code>name</code></b>: Python <code>str</code> prepended to names of ops created by this function.</li>
+</ul>
+<h4 id="returns_15">Returns:</h4>
+<p><code>Tensor</code> of shape <code>sample_shape(x) + self.batch_shape</code> with values of type
+  <code>self.dtype</code>.</p>
+<h3 id="mean"><code>mean</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/distributions/distribution.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">mean</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Mean.</p>
+<h3 id="mode"><code>mode</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/distributions/distribution.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">mode</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;mode&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Mode.</p>
+<h3 id="param_shapes"><code>param_shapes</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/distributions/distribution.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">param_shapes</span><span class="p">(</span>
+    <span class="bp">cls</span><span class="p">,</span>
+    <span class="n">sample_shape</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;DistributionParamShapes&#39;</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Shapes of parameters given the desired shape of a call to <code>sample()</code>.</p>
+<p>This is a class method that describes what key/value arguments are required
+to instantiate the given <code>Distribution</code> so that a particular shape is
+returned for that instance's call to <code>sample()</code>.</p>
+<p>Subclasses should override class method <code>_param_shapes</code>.</p>
+<h4 id="args_13">Args:</h4>
+<ul>
+<li><b><code>sample_shape</code></b>: <code>Tensor</code> or python list/tuple. Desired shape of a call to
+  <code>sample()</code>.</li>
+<li><b><code>name</code></b>: name to prepend ops with.</li>
+</ul>
+<h4 id="returns_16">Returns:</h4>
+<p><code>dict</code> of parameter name to <code>Tensor</code> shapes.</p>
+<h3 id="param_static_shapes"><code>param_static_shapes</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/distributions/distribution.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">param_static_shapes</span><span class="p">(</span>
+    <span class="bp">cls</span><span class="p">,</span>
+    <span class="n">sample_shape</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>param_shapes with static (i.e. <code>TensorShape</code>) shapes.</p>
+<p>This is a class method that describes what key/value arguments are required
+to instantiate the given <code>Distribution</code> so that a particular shape is
+returned for that instance's call to <code>sample()</code>. Assumes that the sample's
+shape is known statically.</p>
+<p>Subclasses should override class method <code>_param_shapes</code> to return
+constant-valued tensors when constant values are fed.</p>
+<h4 id="args_14">Args:</h4>
+<ul>
+<li><b><code>sample_shape</code></b>: <code>TensorShape</code> or python list/tuple. Desired shape of a call
+  to <code>sample()</code>.</li>
+</ul>
+<h4 id="returns_17">Returns:</h4>
+<p><code>dict</code> of parameter name to <code>TensorShape</code>.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: if <code>sample_shape</code> is a <code>TensorShape</code> and is not fully defined.</li>
+</ul>
+<h3 id="prob"><code>prob</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/distributions/distribution.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">prob</span><span class="p">(</span>
+    <span class="n">value</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;prob&#39;</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Probability density/mass function.</p>
+<p>Additional documentation from <code>DirichletMultinomial</code>:</p>
+<p>For each batch of counts,
+<code>value = [n_0, ..., n_{K-1}]</code>, <code>P[value]</code> is the probability that after
+sampling <code>self.total_count</code> draws from this Dirichlet-Multinomial distribution,
+the number of draws falling in class <code>j</code> is <code>n_j</code>. Since this definition is
+<a href="https://en.wikipedia.org/wiki/Exchangeable_random_variables">exchangeable</a>;
+different sequences have the same counts so the probability includes a
+combinatorial coefficient.</p>
+<p>Note: <code>value</code> must be a non-negative tensor with dtype <code>self.dtype</code>, have no
+fractional components, and such that
+<code>tf.reduce_sum(value, -1) = self.total_count</code>. Its shape must be broadcastable
+with <code>self.concentration</code> and <code>self.total_count</code>.</p>
+<h4 id="args_15">Args:</h4>
+<ul>
+<li><b><code>value</code></b>: <code>float</code> or <code>double</code> <code>Tensor</code>.</li>
+<li><b><code>name</code></b>: Python <code>str</code> prepended to names of ops created by this function.</li>
+</ul>
+<h4 id="returns_18">Returns:</h4>
+<ul>
+<li><b><code>prob</code></b>: a <code>Tensor</code> of shape <code>sample_shape(x) + self.batch_shape</code> with
+  values of type <code>self.dtype</code>.</li>
+</ul>
+<h3 id="quantile"><code>quantile</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/distributions/distribution.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">quantile</span><span class="p">(</span>
+    <span class="n">value</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;quantile&#39;</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Quantile function. Aka "inverse cdf" or "percent point function".</p>
+<p>Given random variable <code>X</code> and <code>p in [0, 1]</code>, the <code>quantile</code> is:</p>
+<div class="codehilite"><pre><span></span><span class="err">quantile(p) := x such that P[X &lt;= x] == p</span>
+</pre></div>
+
+
+<h4 id="args_16">Args:</h4>
+<ul>
+<li><b><code>value</code></b>: <code>float</code> or <code>double</code> <code>Tensor</code>.</li>
+<li><b><code>name</code></b>: Python <code>str</code> prepended to names of ops created by this function.</li>
+</ul>
+<h4 id="returns_19">Returns:</h4>
+<ul>
+<li><b><code>quantile</code></b>: a <code>Tensor</code> of shape <code>sample_shape(x) + self.batch_shape</code> with
+  values of type <code>self.dtype</code>.</li>
+</ul>
+<h3 id="sample"><code>sample</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/distributions/distribution.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">sample</span><span class="p">(</span>
+    <span class="n">sample_shape</span><span class="o">=</span><span class="p">(),</span>
+    <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;sample&#39;</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Generate samples of the specified shape.</p>
+<p>Note that a call to <code>sample()</code> without arguments will generate a single
+sample.</p>
+<h4 id="args_17">Args:</h4>
+<ul>
+<li><b><code>sample_shape</code></b>: 0D or 1D <code>int32</code> <code>Tensor</code>. Shape of the generated samples.</li>
+<li><b><code>seed</code></b>: Python integer seed for RNG</li>
+<li><b><code>name</code></b>: name to give to the op.</li>
+</ul>
+<h4 id="returns_20">Returns:</h4>
+<ul>
+<li><b><code>samples</code></b>: a <code>Tensor</code> with prepended dimensions <code>sample_shape</code>.</li>
+</ul>
+<h3 id="stddev"><code>stddev</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/distributions/distribution.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">stddev</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;stddev&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Standard deviation.</p>
+<p>Standard deviation is defined as,</p>
+<div class="codehilite"><pre><span></span><span class="n">stddev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">E</span><span class="o">[</span><span class="n">(X - E[X</span><span class="o">]</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="err">]</span><span class="o">**</span><span class="mf">0.5</span><span class="w"></span>
+</pre></div>
+
+
+<p>where <code>X</code> is the random variable associated with this distribution, <code>E</code>
+denotes expectation, and <code>stddev.shape = batch_shape + event_shape</code>.</p>
+<h4 id="args_18">Args:</h4>
+<ul>
+<li><b><code>name</code></b>: Python <code>str</code> prepended to names of ops created by this function.</li>
+</ul>
+<h4 id="returns_21">Returns:</h4>
+<ul>
+<li><b><code>stddev</code></b>: Floating-point <code>Tensor</code> with shape identical to
+  <code>batch_shape + event_shape</code>, i.e., the same shape as <code>self.mean()</code>.</li>
+</ul>
+<h3 id="survival_function"><code>survival_function</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/distributions/distribution.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">survival_function</span><span class="p">(</span>
+    <span class="n">value</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;survival_function&#39;</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Survival function.</p>
+<p>Given random variable <code>X</code>, the survival function is defined:</p>
+<div class="codehilite"><pre><span></span><span class="err">survival_function(x) = P[X &gt; x]</span>
+<span class="err">                     = 1 - P[X &lt;= x]</span>
+<span class="err">                     = 1 - cdf(x).</span>
+</pre></div>
+
+
+<h4 id="args_19">Args:</h4>
+<ul>
+<li><b><code>value</code></b>: <code>float</code> or <code>double</code> <code>Tensor</code>.</li>
+<li><b><code>name</code></b>: Python <code>str</code> prepended to names of ops created by this function.</li>
+</ul>
+<h4 id="returns_22">Returns:</h4>
+<p><code>Tensor</code> of shape <code>sample_shape(x) + self.batch_shape</code> with values of type
+  <code>self.dtype</code>.</p>
+<h3 id="variance"><code>variance</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/distributions/distribution.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">variance</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;variance&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Variance.</p>
+<p>Variance is defined as,</p>
+<div class="codehilite"><pre><span></span><span class="nf">Var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">E</span><span class="o">[</span><span class="n">(X - E[X</span><span class="o">]</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="err">]</span><span class="w"></span>
+</pre></div>
+
+
+<p>where <code>X</code> is the random variable associated with this distribution, <code>E</code>
+denotes expectation, and <code>Var.shape = batch_shape + event_shape</code>.</p>
+<h4 id="args_20">Args:</h4>
+<ul>
+<li><b><code>name</code></b>: Python <code>str</code> prepended to names of ops created by this function.</li>
+</ul>
+<h4 id="returns_23">Returns:</h4>
+<ul>
+<li><b><code>variance</code></b>: Floating-point <code>Tensor</code> with shape identical to
+  <code>batch_shape + event_shape</code>, i.e., the same shape as <code>self.mean()</code>.</li>
+</ul>
+    </body>
+    </html>
+   

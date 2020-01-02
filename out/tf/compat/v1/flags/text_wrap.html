@@ -1,0 +1,57 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.flags.text_wrap" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1flagstext_wrap">tf.compat.v1.flags.text_wrap</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<!-- Start diff -->
+
+<p>Wraps a given text to a maximum line length and returns it.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.app.flags.text_wrap</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">flags</span><span class="o">.</span><span class="n">text_wrap</span><span class="p">(</span>
+    <span class="n">text</span><span class="p">,</span>
+    <span class="n">length</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">indent</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">firstline_indent</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>It turns lines that only contain whitespace into empty lines, keeps new lines,
+and expands tabs using 4 spaces.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>text</code></b>: str, text to wrap.</li>
+<li><b><code>length</code></b>: int, maximum length of a line, includes indentation.
+    If this is None then use get_help_width()</li>
+<li><b><code>indent</code></b>: str, indent for all but first line.</li>
+<li><b><code>firstline_indent</code></b>: str, indent for first line; if None, fall back to indent.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>str, the wrapped text.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: Raised if indent or firstline_indent not shorter than length.</li>
+</ul>
+    </body>
+    </html>
+   

@@ -1,0 +1,104 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.random.gamma" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfrandomgamma">tf.random.gamma</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/random_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Draws <code>shape</code> samples from each of the given Gamma distribution(s).</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.random.gamma</code></li>
+<li><code>tf.compat.v1.random_gamma</code></li>
+<li><code>tf.compat.v2.random.gamma</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">gamma</span><span class="p">(</span>
+    <span class="n">shape</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="p">,</span>
+    <span class="n">beta</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
+    <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p><code>alpha</code> is the shape parameter describing the distribution(s), and <code>beta</code> is
+the inverse scale parameter(s).</p>
+<p>Note: Because internal calculations are done using <code>float64</code> and casting has
+<code>floor</code> semantics, we must manually map zero outcomes to the smallest
+possible positive floating-point value, i.e., <code>np.finfo(dtype).tiny</code>.  This
+means that <code>np.finfo(dtype).tiny</code> occurs more frequently than it otherwise
+should.  This bias can only happen for small values of <code>alpha</code>, i.e.,
+<code>alpha &lt;&lt; 1</code> or large values of <code>beta</code>, i.e., <code>beta &gt;&gt; 1</code>.</p>
+<p>The samples are differentiable w.r.t. alpha and beta.
+The derivatives are computed using the approach described in the paper</p>
+<p><a href="https://arxiv.org/abs/1805.08498">Michael Figurnov, Shakir Mohamed, Andriy Mnih.
+Implicit Reparameterization Gradients, 2018</a></p>
+<h4 id="example">Example:</h4>
+<div class="codehilite"><pre><span></span><span class="n">samples</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">gamma</span><span class="p">([</span><span class="mi">10</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">])</span>
+<span class="c1"># samples has shape [10, 2], where each slice [:, 0] and [:, 1] represents</span>
+<span class="c1"># the samples drawn from each distribution</span>
+
+<span class="n">samples</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">gamma</span><span class="p">([</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">])</span>
+<span class="c1"># samples has shape [7, 5, 2], where each slice [:, :, 0] and [:, :, 1]</span>
+<span class="c1"># represents the 7x5 samples drawn from each of the two distributions</span>
+
+<span class="n">alpha</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="mf">1.</span><span class="p">],[</span><span class="mf">3.</span><span class="p">],[</span><span class="mf">5.</span><span class="p">]])</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="mf">3.</span><span class="p">,</span> <span class="mf">4.</span><span class="p">]])</span>
+<span class="n">samples</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">gamma</span><span class="p">([</span><span class="mi">30</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="n">beta</span><span class="p">)</span>
+<span class="c1"># samples has shape [30, 3, 2], with 30 samples each of 3x2 distributions.</span>
+
+<span class="n">loss</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">samples</span><span class="p">))</span>
+<span class="n">dloss_dalpha</span><span class="p">,</span> <span class="n">dloss_dbeta</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">gradients</span><span class="p">(</span><span class="n">loss</span><span class="p">,</span> <span class="p">[</span><span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">])</span>
+<span class="c1"># unbiased stochastic derivatives of the loss function</span>
+<span class="n">alpha</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">dloss_dalpha</span><span class="o">.</span><span class="n">shape</span>  <span class="c1"># True</span>
+<span class="n">beta</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">dloss_dbeta</span><span class="o">.</span><span class="n">shape</span>  <span class="c1"># True</span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>shape</code></b>: A 1-D integer Tensor or Python array. The shape of the output samples
+  to be drawn per alpha/beta-parameterized distribution.</li>
+<li><b><code>alpha</code></b>: A Tensor or Python value or N-D array of type <code>dtype</code>. <code>alpha</code>
+  provides the shape parameter(s) describing the gamma distribution(s) to
+  sample. Must be broadcastable with <code>beta</code>.</li>
+<li><b><code>beta</code></b>: A Tensor or Python value or N-D array of type <code>dtype</code>. Defaults to 1.
+  <code>beta</code> provides the inverse scale parameter(s) of the gamma
+  distribution(s) to sample. Must be broadcastable with <code>alpha</code>.</li>
+<li><b><code>dtype</code></b>: The type of alpha, beta, and the output: <code>float16</code>, <code>float32</code>, or
+  <code>float64</code>.</li>
+<li><b><code>seed</code></b>: A Python integer. Used to create a random seed for the distributions.
+  See
+  <a href="../../tf/compat/v1/set_random_seed.html"><code>tf.compat.v1.set_random_seed</code></a>
+  for behavior.</li>
+<li><b><code>name</code></b>: Optional name for the operation.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<ul>
+<li><b><code>samples</code></b>: a <code>Tensor</code> of shape
+  <code>tf.concat([shape, tf.shape(alpha + beta)], axis=0)</code> with values of type
+  <code>dtype</code>.</li>
+</ul>
+    </body>
+    </html>
+   

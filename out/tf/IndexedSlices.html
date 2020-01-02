@@ -1,0 +1,116 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../default.css" rel="stylesheet">
+    <link href="
+   ../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.IndexedSlices" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="dense_shape"/>
+<meta itemprop="property" content="device"/>
+<meta itemprop="property" content="dtype"/>
+<meta itemprop="property" content="graph"/>
+<meta itemprop="property" content="indices"/>
+<meta itemprop="property" content="name"/>
+<meta itemprop="property" content="op"/>
+<meta itemprop="property" content="values"/>
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="__neg__"/>
+<meta itemprop="property" content="consumers"/>
+</div>
+
+<h1 id="tfindexedslices">tf.IndexedSlices</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/indexed_slices.py">View source</a></p>
+<h2 id="class-indexedslices">Class <code>IndexedSlices</code></h2>
+<!-- Start diff -->
+
+<p>A sparse representation of a set of tensor slices at given indices.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v1.IndexedSlices</code></li>
+<li>Class <code>tf.compat.v2.IndexedSlices</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<p>This class is a simple wrapper for a pair of <code>Tensor</code> objects:</p>
+<ul>
+<li><code>values</code>: A <code>Tensor</code> of any dtype with shape <code>[D0, D1, ..., Dn]</code>.</li>
+<li><code>indices</code>: A 1-D integer <code>Tensor</code> with shape <code>[D0]</code>.</li>
+</ul>
+<p>An <code>IndexedSlices</code> is typically used to represent a subset of a larger
+tensor <code>dense</code> of shape <code>[LARGE0, D1, .. , DN]</code> where <code>LARGE0 &gt;&gt; D0</code>.
+The values in <code>indices</code> are the indices in the first dimension of
+the slices that have been extracted from the larger tensor.</p>
+<p>The dense tensor <code>dense</code> represented by an <code>IndexedSlices</code> <code>slices</code> has</p>
+<div class="codehilite"><pre><span></span><span class="n">dense</span><span class="p">[</span><span class="n">slices</span><span class="o">.</span><span class="n">indices</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="p">:,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="n">slices</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="o">...</span><span class="p">]</span>
+</pre></div>
+
+
+<p>The <code>IndexedSlices</code> class is used principally in the definition of
+gradients for operations that have sparse gradients
+(e.g. <a href="../tf/gather.html"><code>tf.gather</code></a>).</p>
+<p>Contrast this representation with
+<a href="../tf/sparse/SparseTensor.html"><code>tf.SparseTensor</code></a>,
+which uses multi-dimensional indices and scalar values.</p>
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/indexed_slices.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">values</span><span class="p">,</span>
+    <span class="n">indices</span><span class="p">,</span>
+    <span class="n">dense_shape</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Creates an <code>IndexedSlices</code>.</p>
+<h2 id="properties">Properties</h2>
+<h3 id="dense_shape"><code>dense_shape</code></h3>
+
+<p>A 1-D <code>Tensor</code> containing the shape of the corresponding dense tensor.</p>
+<h3 id="device"><code>device</code></h3>
+
+<p>The name of the device on which <code>values</code> will be produced, or <code>None</code>.</p>
+<h3 id="dtype"><code>dtype</code></h3>
+
+<p>The <code>DType</code> of elements in this tensor.</p>
+<h3 id="graph"><code>graph</code></h3>
+
+<p>The <code>Graph</code> that contains the values, indices, and shape tensors.</p>
+<h3 id="indices"><code>indices</code></h3>
+
+<p>A 1-D <code>Tensor</code> containing the indices of the slices.</p>
+<h3 id="name"><code>name</code></h3>
+
+<p>The name of this <code>IndexedSlices</code>.</p>
+<h3 id="op"><code>op</code></h3>
+
+<p>The <code>Operation</code> that produces <code>values</code> as an output.</p>
+<h3 id="values"><code>values</code></h3>
+
+<p>A <code>Tensor</code> containing the values of the slices.</p>
+<h2 id="methods">Methods</h2>
+<h3 id="__neg__"><code>__neg__</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/indexed_slices.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__neg__</span><span class="p">()</span>
+</pre></div>
+
+
+<h3 id="consumers"><code>consumers</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/indexed_slices.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">consumers</span><span class="p">()</span>
+</pre></div>
+    </body>
+    </html>
+   

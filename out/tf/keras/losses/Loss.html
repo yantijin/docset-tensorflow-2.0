@@ -1,0 +1,168 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.losses.Loss" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__call__"/>
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="call"/>
+<meta itemprop="property" content="from_config"/>
+<meta itemprop="property" content="get_config"/>
+</div>
+
+<h1 id="tfkeraslossesloss">tf.keras.losses.Loss</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/losses.py">View source</a></p>
+<h2 id="class-loss">Class <code>Loss</code></h2>
+<!-- Start diff -->
+
+<p>Loss base class.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v1.keras.losses.Loss</code></li>
+<li>Class <code>tf.compat.v2.keras.losses.Loss</code></li>
+<li>Class <code>tf.compat.v2.losses.Loss</code></li>
+<li>Class <code>tf.losses.Loss</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<p>To be implemented by subclasses:
+* <code>call()</code>: Contains the logic for loss calculation using <code>y_true</code>, <code>y_pred</code>.</p>
+<p>Example subclass implementation:</p>
+<div class="codehilite"><pre><span></span><span class="err">class MeanSquaredError(Loss):</span>
+<span class="err">  def call(self, y_true, y_pred):</span>
+<span class="err">    y_pred = ops.convert_to_tensor(y_pred)</span>
+<span class="err">    y_true = math_ops.cast(y_true, y_pred.dtype)</span>
+<span class="err">    return K.mean(math_ops.square(y_pred - y_true), axis=-1)</span>
+</pre></div>
+
+
+<p>When used with <a href="../../../tf/distribute/Strategy.html"><code>tf.distribute.Strategy</code></a>, outside of built-in training loops
+such as <a href="../../../tf/keras.html"><code>tf.keras</code></a> <code>compile</code> and <code>fit</code>, please use 'SUM' or 'NONE' reduction
+types, and reduce losses explicitly in your training loop. Using 'AUTO' or
+'SUM_OVER_BATCH_SIZE' will raise an error.</p>
+<p>Please see
+https://www.tensorflow.org/alpha/tutorials/distribute/training_loops for more
+details on this.</p>
+<p>You can implement 'SUM_OVER_BATCH_SIZE' using global batch size like:</p>
+<div class="codehilite"><pre><span></span><span class="err">with strategy.scope():</span>
+<span class="err">  loss_obj = tf.keras.losses.CategoricalCrossentropy(</span>
+<span class="err">      reduction=tf.keras.losses.Reduction.NONE)</span>
+<span class="err">  ....</span>
+<span class="err">  loss = (tf.reduce_sum(loss_obj(labels, predictions)) *</span>
+<span class="err">          (1. / global_batch_size))</span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>reduction</code></b>: (Optional) Type of <a href="../../../tf/keras/losses/Reduction.html"><code>tf.keras.losses.Reduction</code></a> to apply to loss.
+  Default value is <code>AUTO</code>. <code>AUTO</code> indicates that the reduction option will
+  be determined by the usage context. For almost all cases this defaults to
+  <code>SUM_OVER_BATCH_SIZE</code>.
+  When used with <a href="../../../tf/distribute/Strategy.html"><code>tf.distribute.Strategy</code></a>, outside of built-in training
+  loops such as <a href="../../../tf/keras.html"><code>tf.keras</code></a> <code>compile</code> and <code>fit</code>, using <code>AUTO</code> or
+  <code>SUM_OVER_BATCH_SIZE</code> will raise an error. Please see
+  https://www.tensorflow.org/alpha/tutorials/distribute/training_loops
+  for more details on this.</li>
+<li><b><code>name</code></b>: Optional name for the op.</li>
+</ul>
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/losses.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">reduction</span><span class="o">=</span><span class="n">losses_utils</span><span class="o">.</span><span class="n">ReductionV2</span><span class="o">.</span><span class="n">AUTO</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Initialize self.  See help(type(self)) for accurate signature.</p>
+<h2 id="methods">Methods</h2>
+<h3 id="__call__"><code>__call__</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/losses.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__call__</span><span class="p">(</span>
+    <span class="n">y_true</span><span class="p">,</span>
+    <span class="n">y_pred</span><span class="p">,</span>
+    <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Invokes the <code>Loss</code> instance.</p>
+<h4 id="args_1">Args:</h4>
+<ul>
+<li><b><code>y_true</code></b>: Ground truth values. shape = <code>[batch_size, d0, .. dN]</code></li>
+<li><b><code>y_pred</code></b>: The predicted values. shape = <code>[batch_size, d0, .. dN]</code></li>
+<li><b><code>sample_weight</code></b>: Optional <code>sample_weight</code> acts as a
+  coefficient for the loss. If a scalar is provided, then the loss is
+  simply scaled by the given value. If <code>sample_weight</code> is a tensor of size
+  <code>[batch_size]</code>, then the total loss for each sample of the batch is
+  rescaled by the corresponding element in the <code>sample_weight</code> vector. If
+  the shape of <code>sample_weight</code> is <code>[batch_size, d0, .. dN-1]</code> (or can be
+  broadcasted to this shape), then each loss element of <code>y_pred</code> is scaled
+  by the corresponding value of <code>sample_weight</code>. (Note on<code>dN-1</code>: all loss
+  functions reduce by 1 dimension, usually axis=-1.)</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>Weighted loss float <code>Tensor</code>. If <code>reduction</code> is <code>NONE</code>, this has
+  shape <code>[batch_size, d0, .. dN-1]</code>; otherwise, it is scalar. (Note <code>dN-1</code>
+  because all loss functions reduce by 1 dimension, usually axis=-1.)</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: If the shape of <code>sample_weight</code> is invalid.</li>
+</ul>
+<h3 id="call"><code>call</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/losses.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">call</span><span class="p">(</span>
+    <span class="n">y_true</span><span class="p">,</span>
+    <span class="n">y_pred</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Invokes the <code>Loss</code> instance.</p>
+<h4 id="args_2">Args:</h4>
+<ul>
+<li><b><code>y_true</code></b>: Ground truth values, with the same shape as 'y_pred'.</li>
+<li><b><code>y_pred</code></b>: The predicted values.</li>
+</ul>
+<h3 id="from_config"><code>from_config</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/losses.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="nd">@classmethod</span>
+<span class="n">from_config</span><span class="p">(</span>
+    <span class="bp">cls</span><span class="p">,</span>
+    <span class="n">config</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Instantiates a <code>Loss</code> from its config (output of <code>get_config()</code>).</p>
+<h4 id="args_3">Args:</h4>
+<ul>
+<li><b><code>config</code></b>: Output of <code>get_config()</code>.</li>
+</ul>
+<h4 id="returns_1">Returns:</h4>
+<p>A <code>Loss</code> instance.</p>
+<h3 id="get_config"><code>get_config</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/losses.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_config</span><span class="p">()</span>
+</pre></div>
+    </body>
+    </html>
+   

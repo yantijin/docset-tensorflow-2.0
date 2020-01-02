@@ -1,0 +1,60 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.train.WorkerSessionCreator" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="create_session"/>
+</div>
+
+<h1 id="tfcompatv1trainworkersessioncreator">tf.compat.v1.train.WorkerSessionCreator</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/monitored_session.py">View source</a></p>
+<h2 id="class-workersessioncreator">Class <code>WorkerSessionCreator</code></h2>
+<!-- Start diff -->
+
+<p>Creates a tf.compat.v1.Session for a worker.</p>
+<p>Inherits From: <a href="../../../../tf/compat/v1/train/SessionCreator.html"><code>SessionCreator</code></a></p>
+<!-- Placeholder for "Used in" -->
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/monitored_session.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">scaffold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">master</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">max_wait_secs</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Initializes a worker session creator.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>scaffold</code></b>: A <code>Scaffold</code> used for gathering or building supportive ops. If
+  not specified a default one is created. It's used to finalize the graph.</li>
+<li><b><code>master</code></b>: <code>String</code> representation of the TensorFlow master to use.</li>
+<li><b><code>config</code></b>: <code>ConfigProto</code> proto used to configure the session.</li>
+<li><b><code>max_wait_secs</code></b>: Maximum time to wait for the session to become available.</li>
+</ul>
+<h2 id="methods">Methods</h2>
+<h3 id="create_session"><code>create_session</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/monitored_session.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">create_session</span><span class="p">()</span>
+</pre></div>
+    </body>
+    </html>
+   

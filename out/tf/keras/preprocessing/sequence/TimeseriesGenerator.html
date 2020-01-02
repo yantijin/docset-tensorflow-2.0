@@ -1,0 +1,178 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.preprocessing.sequence.TimeseriesGenerator" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__getitem__"/>
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="__iter__"/>
+<meta itemprop="property" content="__len__"/>
+<meta itemprop="property" content="get_config"/>
+<meta itemprop="property" content="on_epoch_end"/>
+<meta itemprop="property" content="to_json"/>
+</div>
+
+<h1 id="tfkeraspreprocessingsequencetimeseriesgenerator">tf.keras.preprocessing.sequence.TimeseriesGenerator</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/preprocessing/sequence.py">View source</a></p>
+<h2 id="class-timeseriesgenerator">Class <code>TimeseriesGenerator</code></h2>
+<!-- Start diff -->
+
+<p>Utility class for generating batches of temporal data.</p>
+<p>Inherits From: <a href="../../../../tf/keras/utils/Sequence.html"><code>Sequence</code></a></p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v1.keras.preprocessing.sequence.TimeseriesGenerator</code></li>
+<li>Class <code>tf.compat.v2.keras.preprocessing.sequence.TimeseriesGenerator</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<p>This class takes in a sequence of data-points gathered at
+equal intervals, along with time series parameters such as
+stride, length of history, etc., to produce batches for
+training/validation.</p>
+<h1 id="arguments">Arguments</h1>
+<div class="codehilite"><pre><span></span><span class="n">data</span><span class="p">:</span> <span class="n">Indexable</span> <span class="nf">generator</span> <span class="p">(</span><span class="n">such</span> <span class="k">as</span> <span class="n">list</span> <span class="k">or</span> <span class="n">Numpy</span> <span class="n">array</span><span class="p">)</span>
+    <span class="n">containing</span> <span class="n">consecutive</span> <span class="n">data</span> <span class="nf">points</span> <span class="p">(</span><span class="n">timesteps</span><span class="p">).</span>
+    <span class="n">The</span> <span class="n">data</span> <span class="n">should</span> <span class="n">be</span> <span class="n">at</span> <span class="mi">2</span><span class="n">D</span><span class="p">,</span> <span class="k">and</span> <span class="n">axis</span> <span class="mi">0</span> <span class="k">is</span> <span class="n">expected</span>
+    <span class="k">to</span> <span class="n">be</span> <span class="n">the</span> <span class="kt">time</span> <span class="n">dimension</span><span class="p">.</span>
+<span class="n">targets</span><span class="p">:</span> <span class="n">Targets</span> <span class="n">corresponding</span> <span class="k">to</span> <span class="n">timesteps</span> <span class="k">in</span> <span class="ss">`data`</span><span class="p">.</span>
+    <span class="n">It</span> <span class="n">should</span> <span class="n">have</span> <span class="n">same</span> <span class="n">length</span> <span class="k">as</span> <span class="ss">`data`</span><span class="p">.</span>
+<span class="n">length</span><span class="p">:</span> <span class="n">Length</span> <span class="n">of</span> <span class="n">the</span> <span class="n">output</span> <span class="nf">sequences</span> <span class="p">(</span><span class="k">in</span> <span class="n">number</span> <span class="n">of</span> <span class="n">timesteps</span><span class="p">).</span>
+<span class="n">sampling_rate</span><span class="p">:</span> <span class="n">Period</span> <span class="k">between</span> <span class="n">successive</span> <span class="n">individual</span> <span class="n">timesteps</span>
+    <span class="n">within</span> <span class="n">sequences</span><span class="p">.</span> <span class="k">For</span> <span class="n">rate</span> <span class="ss">`r`</span><span class="p">,</span> <span class="n">timesteps</span>
+    <span class="ss">`data[i]`</span><span class="p">,</span> <span class="ss">`data[i-r]`</span><span class="p">,</span> <span class="p">...</span> <span class="ss">`data[i - length]`</span>
+    <span class="n">are</span> <span class="n">used</span> <span class="k">for</span> <span class="k">create</span> <span class="n">a</span> <span class="n">sample</span> <span class="n">sequence</span><span class="p">.</span>
+<span class="n">stride</span><span class="p">:</span> <span class="n">Period</span> <span class="k">between</span> <span class="n">successive</span> <span class="n">output</span> <span class="n">sequences</span><span class="p">.</span>
+    <span class="k">For</span> <span class="n">stride</span> <span class="ss">`s`</span><span class="p">,</span> <span class="n">consecutive</span> <span class="n">output</span> <span class="n">samples</span> <span class="n">would</span>
+    <span class="n">be</span> <span class="n">centered</span> <span class="n">around</span> <span class="ss">`data[i]`</span><span class="p">,</span> <span class="ss">`data[i+s]`</span><span class="p">,</span> <span class="ss">`data[i+2*s]`</span><span class="p">,</span> <span class="n">etc</span><span class="p">.</span>
+<span class="n">start_index</span><span class="p">:</span> <span class="n">Data</span> <span class="n">points</span> <span class="n">earlier</span> <span class="n">than</span> <span class="ss">`start_index`</span> <span class="n">will</span> <span class="k">not</span> <span class="n">be</span> <span class="n">used</span>
+    <span class="k">in</span> <span class="n">the</span> <span class="n">output</span> <span class="n">sequences</span><span class="p">.</span> <span class="n">This</span> <span class="k">is</span> <span class="n">useful</span> <span class="k">to</span> <span class="n">reserve</span> <span class="n">part</span> <span class="n">of</span> <span class="n">the</span>
+    <span class="n">data</span> <span class="k">for</span> <span class="n">test</span> <span class="k">or</span> <span class="n">validation</span><span class="p">.</span>
+<span class="n">end_index</span><span class="p">:</span> <span class="n">Data</span> <span class="n">points</span> <span class="n">later</span> <span class="n">than</span> <span class="ss">`end_index`</span> <span class="n">will</span> <span class="k">not</span> <span class="n">be</span> <span class="n">used</span>
+    <span class="k">in</span> <span class="n">the</span> <span class="n">output</span> <span class="n">sequences</span><span class="p">.</span> <span class="n">This</span> <span class="k">is</span> <span class="n">useful</span> <span class="k">to</span> <span class="n">reserve</span> <span class="n">part</span> <span class="n">of</span> <span class="n">the</span>
+    <span class="n">data</span> <span class="k">for</span> <span class="n">test</span> <span class="k">or</span> <span class="n">validation</span><span class="p">.</span>
+<span class="n">shuffle</span><span class="p">:</span> <span class="n">Whether</span> <span class="k">to</span> <span class="n">shuffle</span> <span class="n">output</span> <span class="n">samples</span><span class="p">,</span>
+    <span class="k">or</span> <span class="n">instead</span> <span class="n">draw</span> <span class="n">them</span> <span class="k">in</span> <span class="n">chronological</span> <span class="k">order</span><span class="p">.</span>
+<span class="n">reverse</span><span class="p">:</span> <span class="n">Boolean</span><span class="p">:</span> <span class="k">if</span> <span class="ss">`true`</span><span class="p">,</span> <span class="n">timesteps</span> <span class="k">in</span> <span class="k">each</span> <span class="n">output</span> <span class="n">sample</span> <span class="n">will</span> <span class="n">be</span>
+    <span class="k">in</span> <span class="n">reverse</span> <span class="n">chronological</span> <span class="k">order</span><span class="p">.</span>
+<span class="n">batch_size</span><span class="p">:</span> <span class="n">Number</span> <span class="n">of</span> <span class="n">timeseries</span> <span class="n">samples</span> <span class="k">in</span> <span class="k">each</span> <span class="nf">batch</span>
+    <span class="p">(</span><span class="n">except</span> <span class="n">maybe</span> <span class="n">the</span> <span class="n">last</span> <span class="n">one</span><span class="p">).</span>
+</pre></div>
+
+
+<h1 id="returns">Returns</h1>
+<div class="codehilite"><pre><span></span><span class="n">A</span><span class="w"> </span><span class="o">[</span><span class="n">Sequence</span><span class="o">]</span><span class="p">(</span><span class="o">/</span><span class="n">utils</span><span class="o">/</span><span class="n">#sequence</span><span class="p">)</span><span class="w"> </span><span class="n">instance</span><span class="p">.</span><span class="w"></span>
+</pre></div>
+
+
+<h1 id="examples">Examples</h1>
+<div class="codehilite"><pre><span></span><span class="kn">from</span> <span class="nn">keras.preprocessing.sequence</span> <span class="kn">import</span> <span class="n">TimeseriesGenerator</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">)])</span>
+<span class="n">targets</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">)])</span>
+<span class="n">data_gen</span> <span class="o">=</span> <span class="n">TimeseriesGenerator</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">targets</span><span class="p">,</span>
+                               <span class="n">length</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">sampling_rate</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                               <span class="n">batch_size</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_gen</span><span class="p">)</span> <span class="o">==</span> <span class="mi">20</span>
+<span class="n">batch_0</span> <span class="o">=</span> <span class="n">data_gen</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">batch_0</span>
+<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">x</span><span class="p">,</span>
+                      <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">8</span><span class="p">]],</span>
+                                <span class="p">[[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="p">[</span><span class="mi">9</span><span class="p">]]]))</span>
+<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">y</span><span class="p">,</span>
+                      <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">10</span><span class="p">],</span> <span class="p">[</span><span class="mi">11</span><span class="p">]]))</span>
+</pre></div>
+
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">,</span>
+    <span class="n">targets</span><span class="p">,</span>
+    <span class="n">length</span><span class="p">,</span>
+    <span class="n">sampling_rate</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">stride</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">start_index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">end_index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">reverse</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="mi">128</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Initialize self.  See help(type(self)) for accurate signature.</p>
+<h2 id="methods">Methods</h2>
+<h3 id="__getitem__"><code>__getitem__</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="fm">__getitem__</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+</pre></div>
+
+
+<h3 id="__iter__"><code>__iter__</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/utils/data_utils.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__iter__</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Create a generator that iterate over the Sequence.</p>
+<h3 id="__len__"><code>__len__</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="fm">__len__</span><span class="p">()</span>
+</pre></div>
+
+
+<h3 id="get_config"><code>get_config</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">get_config</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Returns the TimeseriesGenerator configuration as Python dictionary.</p>
+<h1 id="returns_1">Returns</h1>
+<div class="codehilite"><pre><span></span><span class="err">A Python dictionary with the TimeseriesGenerator configuration.</span>
+</pre></div>
+
+
+<h3 id="on_epoch_end"><code>on_epoch_end</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/utils/data_utils.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">on_epoch_end</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Method called at the end of every epoch.</p>
+<h3 id="to_json"><code>to_json</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">to_json</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Returns a JSON string containing the timeseries generator
+configuration. To load a generator from a JSON string, use
+<code>keras.preprocessing.sequence.timeseries_generator_from_json(json_string)</code>.</p>
+<h1 id="arguments_1">Arguments</h1>
+<div class="codehilite"><pre><span></span><span class="err">**kwargs: Additional keyword arguments</span>
+<span class="err">    to be passed to `json.dumps()`.</span>
+</pre></div>
+
+
+<h1 id="returns_2">Returns</h1>
+<div class="codehilite"><pre><span></span><span class="err">A JSON string containing the tokenizer configuration.</span>
+</pre></div>
+    </body>
+    </html>
+   

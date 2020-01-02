@@ -1,0 +1,59 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.math.is_strictly_increasing" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfmathis_strictly_increasing">tf.math.is_strictly_increasing</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/check_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Returns <code>True</code> if <code>x</code> is strictly increasing.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.debugging.is_strictly_increasing</code></li>
+<li><code>tf.compat.v1.is_strictly_increasing</code></li>
+<li><code>tf.compat.v1.math.is_strictly_increasing</code></li>
+<li><code>tf.compat.v2.math.is_strictly_increasing</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">is_strictly_increasing</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Elements of <code>x</code> are compared in row-major order.  The tensor <code>[x[0],...]</code>
+is strictly increasing if for every adjacent pair we have <code>x[i] &lt; x[i+1]</code>.
+If <code>x</code> has less than two elements, it is trivially strictly increasing.</p>
+<p>See also:  <code>is_non_decreasing</code></p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>x</code></b>: Numeric <code>Tensor</code>.</li>
+<li><b><code>name</code></b>: A name for this operation (optional).
+  Defaults to "is_strictly_increasing"</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>Boolean <code>Tensor</code>, equal to <code>True</code> iff <code>x</code> is strictly increasing.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>TypeError</code></b>: if <code>x</code> is not a numeric tensor.</li>
+</ul>
+    </body>
+    </html>
+   

@@ -1,0 +1,58 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.train.global_step" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1trainglobal_step">tf.compat.v1.train.global_step</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/training_util.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Small helper to get the global step.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">global_step</span><span class="p">(</span>
+    <span class="n">sess</span><span class="p">,</span>
+    <span class="n">global_step_tensor</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<div class="codehilite"><pre><span></span><span class="c1"># Create a variable to hold the global_step.</span>
+<span class="n">global_step_tensor</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">trainable</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;global_step&#39;</span><span class="p">)</span>
+<span class="c1"># Create a session.</span>
+<span class="n">sess</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+<span class="c1"># Initialize the variable</span>
+<span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">global_step_tensor</span><span class="o">.</span><span class="n">initializer</span><span class="p">)</span>
+<span class="c1"># Get the variable value.</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;global_step: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">global_step</span><span class="p">(</span><span class="n">sess</span><span class="p">,</span>
+<span class="n">global_step_tensor</span><span class="p">))</span>
+
+<span class="n">global_step</span><span class="p">:</span> <span class="mi">10</span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>sess</code></b>: A TensorFlow <code>Session</code> object.</li>
+<li><b><code>global_step_tensor</code></b>:  <code>Tensor</code> or the <code>name</code> of the operation that contains
+  the global step.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>The global step value.</p>
+    </body>
+    </html>
+   

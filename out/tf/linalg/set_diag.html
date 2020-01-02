@@ -1,0 +1,121 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.linalg.set_diag" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tflinalgset_diag">tf.linalg.set_diag</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/array_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Returns a batched matrix tensor with new batched diagonal values.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.linalg.set_diag</code></li>
+<li><code>tf.compat.v1.matrix_set_diag</code></li>
+<li><code>tf.compat.v2.linalg.set_diag</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">set_diag</span><span class="p">(</span>
+    <span class="nb">input</span><span class="p">,</span>
+    <span class="n">diagonal</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;set_diag&#39;</span><span class="p">,</span>
+    <span class="n">k</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Given <code>input</code> and <code>diagonal</code>, this operation returns a tensor with the
+same shape and values as <code>input</code>, except for the specified diagonals of the
+innermost matrices. These will be overwritten by the values in <code>diagonal</code>.</p>
+<p><code>input</code> has <code>r+1</code> dimensions <code>[I, J, ..., L, M, N]</code>. When <code>k</code> is scalar or
+<code>k[0] == k[1]</code>, <code>diagonal</code> has <code>r</code> dimensions <code>[I, J, ..., L, max_diag_len]</code>.
+Otherwise, it has <code>r+1</code> dimensions <code>[I, J, ..., L, num_diags, max_diag_len]</code>.
+<code>num_diags</code> is the number of diagonals, <code>num_diags = k[1] - k[0] + 1</code>.
+<code>max_diag_len</code> is the longest diagonal in the range <code>[k[0], k[1]]</code>,
+<code>max_diag_len = min(M + min(k[1], 0), N + min(-k[0], 0))</code></p>
+<p>The output is a tensor of rank <code>k+1</code> with dimensions <code>[I, J, ..., L, M, N]</code>.
+If <code>k</code> is scalar or <code>k[0] == k[1]</code>:</p>
+<div class="codehilite"><pre><span></span><span class="err">output[i, j, ..., l, m, n]</span>
+<span class="err">  = diagonal[i, j, ..., l, n-max(k[1], 0)] ; if n - m == k[1]</span>
+<span class="err">    output[i, j, ..., l, m, n]             ; otherwise</span>
+</pre></div>
+
+
+<p>Otherwise,</p>
+<div class="codehilite"><pre><span></span><span class="err">output[i, j, ..., l, m, n]</span>
+<span class="err">  = diagonal[i, j, ..., l, k[1]-d, n-max(d, 0)] ; if d_lower &lt;= d &lt;= d_upper</span>
+<span class="err">    input[i, j, ..., l, m, n]                   ; otherwise</span>
+</pre></div>
+
+
+<p>where <code>d = n - m</code></p>
+<h4 id="for-example">For example:</h4>
+<div class="codehilite"><pre><span></span><span class="o">#</span> <span class="n">The</span> <span class="n">main</span> <span class="n">diagonal</span><span class="p">.</span>
+<span class="k">input</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">array</span><span class="p">([[[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>              <span class="o">#</span> <span class="k">Input</span> <span class="n">shape</span><span class="p">:</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+                   <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
+                   <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">]],</span>
+                  <span class="p">[[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
+                   <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
+                   <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">]]])</span>
+<span class="n">diagonal</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>               <span class="o">#</span> <span class="n">Diagonal</span> <span class="n">shape</span><span class="p">:</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+                     <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>
+<span class="n">tf</span><span class="p">.</span><span class="n">matrix_diag</span><span class="p">(</span><span class="n">diagonal</span><span class="p">)</span> <span class="o">==&gt;</span> <span class="p">[[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>  <span class="o">#</span> <span class="k">Output</span> <span class="n">shape</span><span class="p">:</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+                               <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
+                               <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">]],</span>
+                              <span class="p">[[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
+                               <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
+                               <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]]]</span>
+
+<span class="o">#</span> <span class="n">A</span> <span class="n">superdiagonal</span> <span class="p">(</span><span class="n">per</span> <span class="n">batch</span><span class="p">).</span>
+<span class="n">tf</span><span class="p">.</span><span class="n">matrix_diag</span><span class="p">(</span><span class="n">diagonal</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+  <span class="o">==&gt;</span> <span class="p">[[[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>  <span class="o">#</span> <span class="k">Output</span> <span class="n">shape</span><span class="p">:</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+        <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">3</span><span class="p">]],</span>
+       <span class="p">[[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">]]]</span>
+
+<span class="o">#</span> <span class="n">A</span> <span class="n">band</span> <span class="k">of</span> <span class="n">diagonals</span><span class="p">.</span>
+<span class="n">diagonals</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">array</span><span class="p">([[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>  <span class="o">#</span> <span class="n">Diagonal</span> <span class="n">shape</span><span class="p">:</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+                       <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">]],</span>
+                      <span class="p">[[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+                       <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]])</span>
+<span class="n">tf</span><span class="p">.</span><span class="n">matrix_diag</span><span class="p">(</span><span class="n">diagonals</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+  <span class="o">==&gt;</span> <span class="p">[[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>  <span class="o">#</span> <span class="k">Output</span> <span class="n">shape</span><span class="p">:</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+        <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">]],</span>
+       <span class="p">[[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">]]]</span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>input</code></b>: A <code>Tensor</code> with rank <code>k + 1</code>, where <code>k &gt;= 1</code>.</li>
+<li><b><code>diagonal</code></b>:  A <code>Tensor</code> with rank <code>k</code>, when <code>d_lower == d_upper</code>, or <code>k + 1</code>,
+  otherwise. <code>k &gt;= 1</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+<li><b><code>k</code></b>: Diagonal offset(s). Positive value means superdiagonal, 0 refers to the
+  main diagonal, and negative value means subdiagonals. <code>k</code> can be a single
+  integer (for a single diagonal) or a pair of integers specifying the low
+  and high ends of a matrix band. <code>k[0]</code> must not be larger than <code>k[1]</code>.</li>
+</ul>
+    </body>
+    </html>
+   

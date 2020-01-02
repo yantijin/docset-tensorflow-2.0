@@ -1,0 +1,139 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.estimator.VocabInfo" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="new_vocab"/>
+<meta itemprop="property" content="new_vocab_size"/>
+<meta itemprop="property" content="num_oov_buckets"/>
+<meta itemprop="property" content="old_vocab"/>
+<meta itemprop="property" content="old_vocab_size"/>
+<meta itemprop="property" content="backup_initializer"/>
+<meta itemprop="property" content="axis"/>
+<meta itemprop="property" content="__new__"/>
+</div>
+
+<h1 id="tfestimatorvocabinfo">tf.estimator.VocabInfo</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/warm_starting_util.py">View source</a></p>
+<h2 id="class-vocabinfo">Class <code>VocabInfo</code></h2>
+<!-- Start diff -->
+
+<p>Vocabulary information for warm-starting.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v1.estimator.VocabInfo</code></li>
+<li>Class <code>tf.compat.v1.train.VocabInfo</code></li>
+<li>Class <code>tf.compat.v2.estimator.VocabInfo</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<p>See <a href="../../tf/estimator/WarmStartSettings.html"><code>tf.estimator.WarmStartSettings</code></a> for examples of using
+  VocabInfo to warm-start.</p>
+<p>Args:
+    new_vocab: [Required] A path to the new vocabulary file (used with the model
+      to be trained).
+    new_vocab_size: [Required] An integer indicating how many entries of the new
+      vocabulary will used in training.
+    num_oov_buckets: [Required] An integer indicating how many OOV buckets are
+      associated with the vocabulary.
+    old_vocab: [Required] A path to the old vocabulary file (used with the
+      checkpoint to be warm-started from).
+    old_vocab_size: [Optional] An integer indicating how many entries of the old
+      vocabulary were used in the creation of the checkpoint. If not provided,
+      the entire old vocabulary will be used.
+    backup_initializer: [Optional] A variable initializer used for variables
+      corresponding to new vocabulary entries and OOV. If not provided, these
+      entries will be zero-initialized.
+    axis: [Optional] Denotes what axis the vocabulary corresponds to.  The
+      default, 0, corresponds to the most common use case (embeddings or
+      linear weights for binary classification / regression).  An axis of 1
+      could be used for warm-starting output layers with class vocabularies.</p>
+<p>Returns:
+    A <code>VocabInfo</code> which represents the vocabulary information for warm-starting.</p>
+<p>Raises:
+    ValueError: <code>axis</code> is neither 0 or 1.</p>
+<div class="codehilite"><pre><span></span><span class="err">  Example Usage:</span>
+</pre></div>
+
+
+<div class="codehilite"><pre><span></span>      <span class="n">embeddings_vocab_info</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">VocabInfo</span><span class="p">(</span>
+          <span class="n">new_vocab</span><span class="o">=</span><span class="s1">&#39;embeddings_vocab&#39;</span><span class="p">,</span>
+          <span class="n">new_vocab_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+          <span class="n">num_oov_buckets</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+          <span class="n">old_vocab</span><span class="o">=</span><span class="s1">&#39;pretrained_embeddings_vocab&#39;</span><span class="p">,</span>
+          <span class="n">old_vocab_size</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span>
+          <span class="n">backup_initializer</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">truncated_normal_initializer</span><span class="p">(</span>
+              <span class="n">mean</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">stddev</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">embedding_dim</span><span class="p">))),</span>
+          <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+      <span class="n">softmax_output_layer_kernel_vocab_info</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">VocabInfo</span><span class="p">(</span>
+          <span class="n">new_vocab</span><span class="o">=</span><span class="s1">&#39;class_vocab&#39;</span><span class="p">,</span>
+          <span class="n">new_vocab_size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+          <span class="n">num_oov_buckets</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>  <span class="c1"># No OOV for classes.</span>
+          <span class="n">old_vocab</span><span class="o">=</span><span class="s1">&#39;old_class_vocab&#39;</span><span class="p">,</span>
+          <span class="n">old_vocab_size</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+          <span class="n">backup_initializer</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">glorot_uniform_initializer</span><span class="p">(),</span>
+          <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+      <span class="n">softmax_output_layer_bias_vocab_info</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">VocabInfo</span><span class="p">(</span>
+          <span class="n">new_vocab</span><span class="o">=</span><span class="s1">&#39;class_vocab&#39;</span><span class="p">,</span>
+          <span class="n">new_vocab_size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+          <span class="n">num_oov_buckets</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>  <span class="c1"># No OOV for classes.</span>
+          <span class="n">old_vocab</span><span class="o">=</span><span class="s1">&#39;old_class_vocab&#39;</span><span class="p">,</span>
+          <span class="n">old_vocab_size</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+          <span class="n">backup_initializer</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">zeros_initializer</span><span class="p">(),</span>
+          <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+      <span class="c1">#Currently, only axis=0 and axis=1 are supported.</span>
+  <span class="err">```</span>
+
+
+<span class="o">&lt;</span><span class="n">h2</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;__new__&quot;</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="fm">__new__</span><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">h2</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">a</span> <span class="n">target</span><span class="o">=</span><span class="s2">&quot;_blank&quot;</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;/code/stable/tensorflow/python/training/warm_starting_util.py&quot;</span><span class="o">&gt;</span><span class="n">View</span> <span class="n">source</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span>
+
+<span class="err">```</span> <span class="n">python</span>
+<span class="nd">@staticmethod</span>
+<span class="fm">__new__</span><span class="p">(</span>
+    <span class="bp">cls</span><span class="p">,</span>
+    <span class="n">new_vocab</span><span class="p">,</span>
+    <span class="n">new_vocab_size</span><span class="p">,</span>
+    <span class="n">num_oov_buckets</span><span class="p">,</span>
+    <span class="n">old_vocab</span><span class="p">,</span>
+    <span class="n">old_vocab_size</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">backup_initializer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">axis</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Create new instance of VocabInfo(new_vocab, new_vocab_size, num_oov_buckets, old_vocab, old_vocab_size, backup_initializer, axis)</p>
+<h2 id="properties">Properties</h2>
+<h3 id="new_vocab"><code>new_vocab</code></h3>
+
+<h3 id="new_vocab_size"><code>new_vocab_size</code></h3>
+
+<h3 id="num_oov_buckets"><code>num_oov_buckets</code></h3>
+
+<h3 id="old_vocab"><code>old_vocab</code></h3>
+
+<h3 id="old_vocab_size"><code>old_vocab_size</code></h3>
+
+<h3 id="backup_initializer"><code>backup_initializer</code></h3>
+
+<h3 id="axis"><code>axis</code></h3>
+    </body>
+    </html>
+   

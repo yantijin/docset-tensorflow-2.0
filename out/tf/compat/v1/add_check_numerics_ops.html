@@ -1,0 +1,52 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.add_check_numerics_ops" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1add_check_numerics_ops">tf.compat.v1.add_check_numerics_ops</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/numerics.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Connect a <a href="../../../tf/debugging/check_numerics.html"><code>tf.debugging.check_numerics</code></a> to every floating point tensor.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">add_check_numerics_ops</span><span class="p">()</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p><code>check_numerics</code> operations themselves are added for each <code>half</code>, <code>float</code>,
+or <code>double</code> tensor in the current default graph. For all ops in the graph, the
+<code>check_numerics</code> op for all of its (<code>half</code>, <code>float</code>, or <code>double</code>) inputs
+is guaranteed to run before the <code>check_numerics</code> op on any of its outputs.</p>
+<p>Note: This API is not compatible with the use of <a href="../../../tf/cond.html"><code>tf.cond</code></a> or
+<a href="../../../tf/while_loop.html"><code>tf.while_loop</code></a>, and will raise a <code>ValueError</code> if you attempt to call it
+in such a graph.</p>
+<h4 id="returns">Returns:</h4>
+<p>A <code>group</code> op depending on all <code>check_numerics</code> ops added.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: If the graph contains any numeric operations in a control flow
+  structure.</li>
+<li><b><code>RuntimeError</code></b>: If called with eager execution enabled.</li>
+</ul>
+<h4 id="eager-compatibility">Eager Compatibility</h4>
+<p>Not compatible with eager execution. To check for <code>Inf</code>s and <code>NaN</code>s under
+eager execution, call <code>tfe.seterr(inf_or_nan='raise')</code> once before executing
+the checked operations.</p>
+    </body>
+    </html>
+   

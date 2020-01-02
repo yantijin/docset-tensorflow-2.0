@@ -1,0 +1,88 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../default.css" rel="stylesheet">
+    <link href="
+   ../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.dynamic_partition" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfdynamic_partition">tf.dynamic_partition</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p>Defined in generated file: <code>python/ops/gen_data_flow_ops.py</code></p>
+<!-- Start diff -->
+
+<p>Partitions <code>data</code> into <code>num_partitions</code> tensors using indices from <code>partitions</code>.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.dynamic_partition</code></li>
+<li><code>tf.compat.v2.dynamic_partition</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">dynamic_partition</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">,</span>
+    <span class="n">partitions</span><span class="p">,</span>
+    <span class="n">num_partitions</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>For each index tuple <code>js</code> of size <code>partitions.ndim</code>, the slice <code>data[js, ...]</code>
+becomes part of <code>outputs[partitions[js]]</code>.  The slices with <code>partitions[js] = i</code>
+are placed in <code>outputs[i]</code> in lexicographic order of <code>js</code>, and the first
+dimension of <code>outputs[i]</code> is the number of entries in <code>partitions</code> equal to <code>i</code>.
+In detail,</p>
+<div class="codehilite"><pre><span></span>    <span class="n">outputs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="p">[</span><span class="nb">sum</span><span class="p">(</span><span class="n">partitions</span> <span class="o">==</span> <span class="n">i</span><span class="p">)]</span> <span class="o">+</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">partitions</span><span class="o">.</span><span class="n">ndim</span><span class="p">:]</span>
+
+    <span class="n">outputs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">pack</span><span class="p">([</span><span class="n">data</span><span class="p">[</span><span class="n">js</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="k">for</span> <span class="n">js</span> <span class="k">if</span> <span class="n">partitions</span><span class="p">[</span><span class="n">js</span><span class="p">]</span> <span class="o">==</span> <span class="n">i</span><span class="p">])</span>
+</pre></div>
+
+
+<p><code>data.shape</code> must start with <code>partitions.shape</code>.</p>
+<h4 id="for-example">For example:</h4>
+<div class="codehilite"><pre><span></span>    <span class="c1"># Scalar partitions.</span>
+    <span class="n">partitions</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">num_partitions</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
+    <span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># Empty with shape [0, 2]</span>
+    <span class="n">outputs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">]]</span>
+
+    <span class="c1"># Vector partitions.</span>
+    <span class="n">partitions</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="n">num_partitions</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">]</span>
+    <span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">50</span><span class="p">]</span>
+    <span class="n">outputs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">]</span>
+</pre></div>
+
+
+<p>See <code>dynamic_stitch</code> for an example on how to merge partitions back.</p>
+<div style="width:70%; margin:auto; margin-bottom:10px; margin-top:20px;">
+<img style="width:100%" src="https://www.tensorflow.org/images/DynamicPartition.png" alt>
+</div>
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>data</code></b>: A <code>Tensor</code>.</li>
+<li><b><code>partitions</code></b>: A <code>Tensor</code> of type <code>int32</code>.
+  Any shape.  Indices in the range <code>[0, num_partitions)</code>.</li>
+<li><b><code>num_partitions</code></b>: An <code>int</code> that is <code>&gt;= 1</code>.
+  The number of partitions to output.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A list of <code>num_partitions</code> <code>Tensor</code> objects with the same type as <code>data</code>.</p>
+    </body>
+    </html>
+   

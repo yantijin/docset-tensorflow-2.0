@@ -1,0 +1,72 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.estimator.inputs.pandas_input_fn" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1estimatorinputspandas_input_fn">tf.compat.v1.estimator.inputs.pandas_input_fn</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+
+<td>
+  <a target="_blank" href="https://github.com/tensorflow/estimator/tree/master/tensorflow_estimator/python/estimator/inputs/pandas_io.py">
+    <img src="https://www.tensorflow.org/images/GitHub-Mark-32px.png" />
+    View source on GitHub
+  </a>
+</td></table>
+
+<!-- Start diff -->
+
+<p>Returns input function that would feed Pandas DataFrame into the model.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">inputs</span><span class="o">.</span><span class="n">pandas_input_fn</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span>
+    <span class="n">num_epochs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">shuffle</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">queue_capacity</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+    <span class="n">num_threads</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">target_column</span><span class="o">=</span><span class="s1">&#39;target&#39;</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Note: <code>y</code>'s index must match <code>x</code>'s index.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>x</code></b>: pandas <code>DataFrame</code> object.</li>
+<li><b><code>y</code></b>: pandas <code>Series</code> object or <code>DataFrame</code>. <code>None</code> if absent.</li>
+<li><b><code>batch_size</code></b>: int, size of batches to return.</li>
+<li><b><code>num_epochs</code></b>: int, number of epochs to iterate over data. If not <code>None</code>,
+  read attempts that would exceed this value will raise <code>OutOfRangeError</code>.</li>
+<li><b><code>shuffle</code></b>: bool, whether to read the records in random order.</li>
+<li><b><code>queue_capacity</code></b>: int, size of the read queue. If <code>None</code>, it will be set
+  roughly to the size of <code>x</code>.</li>
+<li><b><code>num_threads</code></b>: Integer, number of threads used for reading and enqueueing. In
+  order to have predicted and repeatable order of reading and enqueueing,
+  such as in prediction and evaluation mode, <code>num_threads</code> should be 1.</li>
+<li><b><code>target_column</code></b>: str, name to give the target column <code>y</code>. This parameter
+  is not used when <code>y</code> is a <code>DataFrame</code>.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>Function, that has signature of ()-&gt;(dict of <code>features</code>, <code>target</code>)</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: if <code>x</code> already contains a column with the same name as <code>y</code>, or
+  if the indexes of <code>x</code> and <code>y</code> don't match.</li>
+<li><b><code>ValueError</code></b>: if 'shuffle' is not provided or a bool.</li>
+</ul>
+    </body>
+    </html>
+   

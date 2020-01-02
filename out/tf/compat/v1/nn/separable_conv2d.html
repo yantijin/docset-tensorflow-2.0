@@ -1,0 +1,86 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.nn.separable_conv2d" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1nnseparable_conv2d">tf.compat.v1.nn.separable_conv2d</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/nn_impl.py">View source</a></p>
+<!-- Start diff -->
+
+<p>2-D convolution with separable filters.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">separable_conv2d</span><span class="p">(</span>
+    <span class="nb">input</span><span class="p">,</span>
+    <span class="n">depthwise_filter</span><span class="p">,</span>
+    <span class="n">pointwise_filter</span><span class="p">,</span>
+    <span class="n">strides</span><span class="p">,</span>
+    <span class="n">padding</span><span class="p">,</span>
+    <span class="n">rate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">data_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">dilations</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Performs a depthwise convolution that acts separately on channels followed by
+a pointwise convolution that mixes channels.  Note that this is separability
+between dimensions <code>[1, 2]</code> and <code>3</code>, not spatial separability between
+dimensions <code>1</code> and <code>2</code>.</p>
+<p>In detail, with the default NHWC format,</p>
+<div class="codehilite"><pre><span></span><span class="err">output[b, i, j, k] = sum_{di, dj, q, r}</span>
+<span class="err">    input[b, strides[1] * i + di, strides[2] * j + dj, q] *</span>
+<span class="err">    depthwise_filter[di, dj, q, r] *</span>
+<span class="err">    pointwise_filter[0, 0, q * channel_multiplier + r, k]</span>
+</pre></div>
+
+
+<p><code>strides</code> controls the strides for the depthwise convolution only, since
+the pointwise convolution has implicit strides of <code>[1, 1, 1, 1]</code>.  Must have
+<code>strides[0] = strides[3] = 1</code>.  For the most common case of the same
+horizontal and vertical strides, <code>strides = [1, stride, stride, 1]</code>.
+If any value in <code>rate</code> is greater than 1, we perform atrous depthwise
+convolution, in which case all values in the <code>strides</code> tensor must be equal
+to 1.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>input</code></b>: 4-D <code>Tensor</code> with shape according to <code>data_format</code>.</li>
+<li><b><code>depthwise_filter</code></b>: 4-D <code>Tensor</code> with shape
+  <code>[filter_height, filter_width, in_channels, channel_multiplier]</code>.
+  Contains <code>in_channels</code> convolutional filters of depth 1.</li>
+<li><b><code>pointwise_filter</code></b>: 4-D <code>Tensor</code> with shape
+  <code>[1, 1, channel_multiplier * in_channels, out_channels]</code>.  Pointwise
+  filter to mix channels after <code>depthwise_filter</code> has convolved spatially.</li>
+<li><b><code>strides</code></b>: 1-D of size 4.  The strides for the depthwise convolution for
+  each dimension of <code>input</code>.</li>
+<li><b><code>padding</code></b>: A string, either <code>'VALID'</code> or <code>'SAME'</code>.  The padding algorithm.
+  See the "returns" section of <a href="../../../../tf/nn/convolution.html"><code>tf.nn.convolution</code></a> for details.</li>
+<li><b><code>rate</code></b>: 1-D of size 2. The dilation rate in which we sample input values
+  across the <code>height</code> and <code>width</code> dimensions in atrous convolution. If it is
+  greater than 1, then all values of strides must be 1.</li>
+<li><b><code>name</code></b>: A name for this operation (optional).</li>
+<li><b><code>data_format</code></b>: The data format for input. Either "NHWC" (default) or "NCHW".</li>
+<li><b><code>dilations</code></b>: Alias of rate.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A 4-D <code>Tensor</code> with shape according to 'data_format'. For
+  example, with data_format="NHWC", shape is [batch, out_height,
+  out_width, out_channels].</p>
+    </body>
+    </html>
+   

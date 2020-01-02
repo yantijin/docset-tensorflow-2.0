@@ -1,0 +1,85 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.errors.OpError" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="error_code"/>
+<meta itemprop="property" content="message"/>
+<meta itemprop="property" content="node_def"/>
+<meta itemprop="property" content="op"/>
+<meta itemprop="property" content="__init__"/>
+</div>
+
+<h1 id="tferrorsoperror">tf.errors.OpError</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/errors_impl.py">View source</a></p>
+<h2 id="class-operror">Class <code>OpError</code></h2>
+<!-- Start diff -->
+
+<p>A generic error that is raised when TensorFlow execution fails.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v1.OpError</code></li>
+<li>Class <code>tf.compat.v1.errors.OpError</code></li>
+<li>Class <code>tf.compat.v2.errors.OpError</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<p>Whenever possible, the session will raise a more specific subclass
+of <code>OpError</code> from the <a href="../../tf/errors.html"><code>tf.errors</code></a> module.</p>
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/errors_impl.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">node_def</span><span class="p">,</span>
+    <span class="n">op</span><span class="p">,</span>
+    <span class="n">message</span><span class="p">,</span>
+    <span class="n">error_code</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Creates a new <code>OpError</code> indicating that a particular op failed.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>node_def</code></b>: The <code>node_def_pb2.NodeDef</code> proto representing the op that
+  failed, if known; otherwise None.</li>
+<li><b><code>op</code></b>: The <code>ops.Operation</code> that failed, if known; otherwise None.</li>
+<li><b><code>message</code></b>: The message string describing the failure.</li>
+<li><b><code>error_code</code></b>: The <code>error_codes_pb2.Code</code> describing the error.</li>
+</ul>
+<h2 id="properties">Properties</h2>
+<h3 id="error_code"><code>error_code</code></h3>
+
+<p>The integer error code that describes the error.</p>
+<h3 id="message"><code>message</code></h3>
+
+<p>The error message that describes the error.</p>
+<h3 id="node_def"><code>node_def</code></h3>
+
+<p>The <code>NodeDef</code> proto representing the op that failed.</p>
+<h3 id="op"><code>op</code></h3>
+
+<p>The operation that failed, if known.</p>
+<p><em>N.B.</em> If the failed op was synthesized at runtime, e.g. a <code>Send</code>
+or <code>Recv</code> op, there will be no corresponding
+<a href="../../tf/Operation.html"><code>tf.Operation</code></a>
+object.  In that case, this will return <code>None</code>, and you should
+instead use the <a href="../../tf/errors/OpError.html#node_def"><code>tf.errors.OpError.node_def</code></a> to
+discover information about the op.</p>
+<h4 id="returns">Returns:</h4>
+<p>The <code>Operation</code> that failed, or None.</p>
+    </body>
+    </html>
+   

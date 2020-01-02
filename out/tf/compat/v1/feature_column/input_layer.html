@@ -1,0 +1,93 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.feature_column.input_layer" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1feature_columninput_layer">tf.compat.v1.feature_column.input_layer</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/feature_column/feature_column.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Returns a dense <code>Tensor</code> as input layer based on given <code>feature_columns</code>.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">feature_column</span><span class="o">.</span><span class="n">input_layer</span><span class="p">(</span>
+    <span class="n">features</span><span class="p">,</span>
+    <span class="n">feature_columns</span><span class="p">,</span>
+    <span class="n">weight_collections</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">trainable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">cols_to_vars</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">cols_to_output_tensors</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Generally a single example in training data is described with FeatureColumns.
+At the first layer of the model, this column oriented data should be converted
+to a single <code>Tensor</code>.</p>
+<h4 id="example">Example:</h4>
+<div class="codehilite"><pre><span></span><span class="n">price</span> <span class="o">=</span> <span class="n">numeric_column</span><span class="p">(</span><span class="s1">&#39;price&#39;</span><span class="p">)</span>
+<span class="n">keywords_embedded</span> <span class="o">=</span> <span class="n">embedding_column</span><span class="p">(</span>
+    <span class="n">categorical_column_with_hash_bucket</span><span class="p">(</span><span class="s2">&quot;keywords&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="n">K</span><span class="p">),</span> <span class="n">dimensions</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">price</span><span class="p">,</span> <span class="n">keywords_embedded</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+<span class="n">features</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">parse_example</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="n">make_parse_example_spec</span><span class="p">(</span><span class="n">columns</span><span class="p">))</span>
+<span class="n">dense_tensor</span> <span class="o">=</span> <span class="n">input_layer</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">columns</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">units</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">128</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">32</span><span class="p">]:</span>
+  <span class="n">dense_tensor</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="n">dense_tensor</span><span class="p">,</span> <span class="n">units</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">)</span>
+<span class="n">prediction</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="n">dense_tensor</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>features</code></b>: A mapping from key to tensors. <code>_FeatureColumn</code>s look up via these
+  keys. For example <code>numeric_column('price')</code> will look at 'price' key in
+  this dict. Values can be a <code>SparseTensor</code> or a <code>Tensor</code> depends on
+  corresponding <code>_FeatureColumn</code>.</li>
+<li><b><code>feature_columns</code></b>: An iterable containing the FeatureColumns to use as inputs
+  to your model. All items should be instances of classes derived from
+  <code>_DenseColumn</code> such as <code>numeric_column</code>, <code>embedding_column</code>,
+  <code>bucketized_column</code>, <code>indicator_column</code>. If you have categorical features,
+  you can wrap them with an <code>embedding_column</code> or <code>indicator_column</code>.</li>
+<li><b><code>weight_collections</code></b>: A list of collection names to which the Variable will be
+  added. Note that variables will also be added to collections
+  <code>tf.GraphKeys.GLOBAL_VARIABLES</code> and <code>ops.GraphKeys.MODEL_VARIABLES</code>.</li>
+<li><b><code>trainable</code></b>: If <code>True</code> also add the variable to the graph collection
+  <code>GraphKeys.TRAINABLE_VARIABLES</code> (see <a href="../../../../tf/Variable.html"><code>tf.Variable</code></a>).</li>
+<li><b><code>cols_to_vars</code></b>: If not <code>None</code>, must be a dictionary that will be filled with a
+  mapping from <code>_FeatureColumn</code> to list of <code>Variable</code>s.  For example, after
+  the call, we might have cols_to_vars =
+  {_EmbeddingColumn(
+    categorical_column=_HashedCategoricalColumn(
+      key='sparse_feature', hash_bucket_size=5, dtype=tf.string),
+    dimension=10): [&lt;tf.Variable 'some_variable:0' shape=(5, 10),
+                    &lt;tf.Variable 'some_variable:1' shape=(5, 10)]}
+  If a column creates no variables, its value will be an empty list.</li>
+<li><b><code>cols_to_output_tensors</code></b>: If not <code>None</code>, must be a dictionary that will be
+  filled with a mapping from '_FeatureColumn' to the associated
+  output <code>Tensor</code>s.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>Tensor</code> which represents input layer of a model. Its shape
+is (batch_size, first_layer_dimension) and its dtype is <code>float32</code>.
+first_layer_dimension is determined based on given <code>feature_columns</code>.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: if an item in <code>feature_columns</code> is not a <code>_DenseColumn</code>.</li>
+</ul>
+    </body>
+    </html>
+   

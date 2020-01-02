@@ -1,0 +1,166 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.distribute.cluster_resolver.KubernetesClusterResolver" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="environment"/>
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="cluster_spec"/>
+<meta itemprop="property" content="master"/>
+<meta itemprop="property" content="num_accelerators"/>
+</div>
+
+<h1 id="tfdistributecluster_resolverkubernetesclusterresolver">tf.distribute.cluster_resolver.KubernetesClusterResolver</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/cluster_resolver/kubernetes_cluster_resolver.py">View source</a></p>
+<h2 id="class-kubernetesclusterresolver">Class <code>KubernetesClusterResolver</code></h2>
+<!-- Start diff -->
+
+<p>ClusterResolver for Kubernetes.</p>
+<p>Inherits From: <a href="../../../tf/distribute/cluster_resolver/ClusterResolver.html"><code>ClusterResolver</code></a></p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v1.distribute.cluster_resolver.KubernetesClusterResolver</code></li>
+<li>Class <code>tf.compat.v2.distribute.cluster_resolver.KubernetesClusterResolver</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<p>This is an implementation of cluster resolvers for Kubernetes. When given the
+the Kubernetes namespace and label selector for pods, we will retrieve the
+pod IP addresses of all running pods matching the selector, and return a
+ClusterSpec based on that information.</p>
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/cluster_resolver/kubernetes_cluster_resolver.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">job_to_label_mapping</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">tf_server_port</span><span class="o">=</span><span class="mi">8470</span><span class="p">,</span>
+    <span class="n">rpc_layer</span><span class="o">=</span><span class="s1">&#39;grpc&#39;</span><span class="p">,</span>
+    <span class="n">override_client</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Initializes a new KubernetesClusterResolver.</p>
+<p>This initializes a new Kubernetes ClusterResolver. The ClusterResolver
+will attempt to talk to the Kubernetes master to retrieve all the instances
+of pods matching a label selector.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>job_to_label_mapping</code></b>: A mapping of TensorFlow jobs to label selectors.
+  This allows users to specify many TensorFlow jobs in one Cluster
+  Resolver, and each job can have pods belong with different label
+  selectors. For example, a sample mapping might be
+  <code>{'worker': ['job-name=worker-cluster-a', 'job-name=worker-cluster-b'],
+   'ps': ['job-name=ps-1', 'job-name=ps-2']}</code></li>
+<li><b><code>tf_server_port</code></b>: The port the TensorFlow server is listening on.</li>
+<li><b><code>rpc_layer</code></b>: (Optional) The RPC layer TensorFlow should use to communicate
+  between tasks in Kubernetes. Defaults to 'grpc'.</li>
+<li><b><code>override_client</code></b>: The Kubernetes client (usually automatically retrieved
+  using <code>from kubernetes import client as k8sclient</code>). If you pass this
+  in, you are responsible for setting Kubernetes credentials manually.</li>
+</ul>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ImportError</code></b>: If the Kubernetes Python client is not installed and no
+  <code>override_client</code> is passed in.</li>
+<li><b><code>RuntimeError</code></b>: If autoresolve_task is not a boolean or a callable.</li>
+</ul>
+<h2 id="properties">Properties</h2>
+<h3 id="environment"><code>environment</code></h3>
+
+<p>Returns the current environment which TensorFlow is running in.</p>
+<p>There are two possible return values, "google" (when TensorFlow is running
+in a Google-internal environment) or an empty string (when TensorFlow is
+running elsewhere).</p>
+<p>If you are implementing a ClusterResolver that works in both the Google
+environment and the open-source world (for instance, a TPU ClusterResolver
+or similar), you will have to return the appropriate string depending on the
+environment, which you will have to detect.</p>
+<p>Otherwise, if you are implementing a ClusterResolver that will only work
+in open-source TensorFlow, you do not need to implement this property.</p>
+<h2 id="methods">Methods</h2>
+<h3 id="cluster_spec"><code>cluster_spec</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/cluster_resolver/kubernetes_cluster_resolver.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">cluster_spec</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Returns a ClusterSpec object based on the latest info from Kubernetes.</p>
+<p>We retrieve the information from the Kubernetes master every time this
+method is called.</p>
+<h4 id="returns">Returns:</h4>
+<p>A ClusterSpec containing host information returned from Kubernetes.</p>
+<h4 id="raises_1">Raises:</h4>
+<ul>
+<li><b><code>RuntimeError</code></b>: If any of the pods returned by the master is not in the
+  <code>Running</code> phase.</li>
+</ul>
+<h3 id="master"><code>master</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/cluster_resolver/kubernetes_cluster_resolver.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">master</span><span class="p">(</span>
+    <span class="n">task_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">task_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">rpc_layer</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Returns the master address to use when creating a session.</p>
+<p>You must have set the task_type and task_id object properties before
+calling this function, or pass in the <code>task_type</code> and <code>task_id</code>
+parameters when using this function. If you do both, the function parameters
+will override the object properties.</p>
+<h4 id="args_1">Args:</h4>
+<ul>
+<li><b><code>task_type</code></b>: (Optional) The type of the TensorFlow task of the master.</li>
+<li><b><code>task_id</code></b>: (Optional) The index of the TensorFlow task of the master.</li>
+<li><b><code>rpc_layer</code></b>: (Optional) The RPC protocol for the given cluster.</li>
+</ul>
+<h4 id="returns_1">Returns:</h4>
+<p>The name or URL of the session master.</p>
+<h3 id="num_accelerators"><code>num_accelerators</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/cluster_resolver/cluster_resolver.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">num_accelerators</span><span class="p">(</span>
+    <span class="n">task_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">task_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">config_proto</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Returns the number of accelerator cores per worker.</p>
+<p>This returns the number of accelerator cores (such as GPUs and TPUs)
+available per worker.</p>
+<p>Optionally, we allow callers to specify the task_type, and task_id, for
+if they want to target a specific TensorFlow process to query
+the number of accelerators. This is to support heterogenous environments,
+where the number of accelerators cores per host is different.</p>
+<h4 id="args_2">Args:</h4>
+<ul>
+<li><b><code>task_type</code></b>: (Optional) The type of the TensorFlow task of the machine we
+  want to query.</li>
+<li><b><code>task_id</code></b>: (Optional) The index of the TensorFlow task of the machine we
+  want to query.</li>
+<li><b><code>config_proto</code></b>: (Optional) Configuration for starting a new session to
+  query how many accelerator cores it has.</li>
+</ul>
+<h4 id="returns_2">Returns:</h4>
+<p>A map of accelerator types to number of cores.</p>
+    </body>
+    </html>
+   

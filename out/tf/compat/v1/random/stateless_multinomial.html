@@ -1,0 +1,66 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.random.stateless_multinomial" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1randomstateless_multinomial">tf.compat.v1.random.stateless_multinomial</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/stateless_random_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Draws deterministic pseudorandom samples from a multinomial distribution. (deprecated)</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">stateless_multinomial</span><span class="p">(</span>
+    <span class="n">logits</span><span class="p">,</span>
+    <span class="n">num_samples</span><span class="p">,</span>
+    <span class="n">seed</span><span class="p">,</span>
+    <span class="n">output_dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
+Instructions for updating:
+Use <a href="../../../../tf/random/stateless_categorical.html"><code>tf.random.stateless_categorical</code></a> instead.</p>
+<p>This is a stateless version of <a href="../../../../tf/random/categorical.html"><code>tf.random.categorical</code></a>: if run twice with the
+same seeds, it will produce the same pseudorandom numbers.  The output is
+consistent across multiple runs on the same hardware (and between CPU
+and GPU), but may change between versions of TensorFlow or on non-CPU/GPU
+hardware.</p>
+<h4 id="example">Example:</h4>
+<div class="codehilite"><pre><span></span><span class="c1"># samples has shape [1, 5], where each value is either 0 or 1 with equal</span>
+<span class="c1"># probability.</span>
+<span class="n">samples</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">stateless_categorical</span><span class="p">(</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">([[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]]),</span> <span class="mi">5</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">17</span><span class="p">])</span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>logits</code></b>: 2-D Tensor with shape <code>[batch_size, num_classes]</code>.  Each slice
+  <code>[i, :]</code> represents the unnormalized log-probabilities for all classes.</li>
+<li><b><code>num_samples</code></b>: 0-D.  Number of independent samples to draw for each row slice.</li>
+<li><b><code>seed</code></b>: A shape [2] integer Tensor of seeds to the random number generator.</li>
+<li><b><code>output_dtype</code></b>: integer type to use for the output. Defaults to int64.</li>
+<li><b><code>name</code></b>: Optional name for the operation.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>The drawn samples of shape <code>[batch_size, num_samples]</code>.</p>
+    </body>
+    </html>
+   

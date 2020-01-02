@@ -1,0 +1,147 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.layers.Conv3DTranspose" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__init__"/>
+</div>
+
+<h1 id="tfkeraslayersconv3dtranspose">tf.keras.layers.Conv3DTranspose</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/convolutional.py">View source</a></p>
+<h2 id="class-conv3dtranspose">Class <code>Conv3DTranspose</code></h2>
+<!-- Start diff -->
+
+<p>Transposed convolution layer (sometimes called Deconvolution).</p>
+<p>Inherits From: <a href="../../../tf/keras/layers/Conv3D.html"><code>Conv3D</code></a></p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v1.keras.layers.Conv3DTranspose</code></li>
+<li>Class <code>tf.compat.v1.keras.layers.Convolution3DTranspose</code></li>
+<li>Class <code>tf.compat.v2.keras.layers.Conv3DTranspose</code></li>
+<li>Class <code>tf.compat.v2.keras.layers.Convolution3DTranspose</code></li>
+<li>Class <code>tf.keras.layers.Convolution3DTranspose</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<p>The need for transposed convolutions generally arises
+from the desire to use a transformation going in the opposite direction
+of a normal convolution, i.e., from something that has the shape of the
+output of some convolution to something that has the shape of its input
+while maintaining a connectivity pattern that is compatible with
+said convolution.</p>
+<p>When using this layer as the first layer in a model,
+provide the keyword argument <code>input_shape</code>
+(tuple of integers, does not include the sample axis),
+e.g. <code>input_shape=(128, 128, 128, 3)</code> for a 128x128x128 volume with 3 channels
+if <code>data_format="channels_last"</code>.</p>
+<h4 id="arguments">Arguments:</h4>
+<ul>
+<li><b><code>filters</code></b>: Integer, the dimensionality of the output space
+    (i.e. the number of output filters in the convolution).</li>
+<li><b><code>kernel_size</code></b>: An integer or tuple/list of 3 integers, specifying the
+    depth, height and width of the 3D convolution window.
+    Can be a single integer to specify the same value for
+    all spatial dimensions.</li>
+<li><b><code>strides</code></b>: An integer or tuple/list of 3 integers,
+    specifying the strides of the convolution along the depth, height
+      and width.
+    Can be a single integer to specify the same value for
+    all spatial dimensions.
+    Specifying any stride value != 1 is incompatible with specifying
+    any <code>dilation_rate</code> value != 1.</li>
+<li><b><code>padding</code></b>: one of <code>"valid"</code> or <code>"same"</code> (case-insensitive).</li>
+<li><b><code>output_padding</code></b>: An integer or tuple/list of 3 integers,
+  specifying the amount of padding along the depth, height, and
+  width.
+  Can be a single integer to specify the same value for all
+  spatial dimensions.
+  The amount of output padding along a given dimension must be
+  lower than the stride along that same dimension.
+  If set to <code>None</code> (default), the output shape is inferred.</li>
+<li><b><code>data_format</code></b>: A string,
+  one of <code>channels_last</code> (default) or <code>channels_first</code>.
+  The ordering of the dimensions in the inputs.
+  <code>channels_last</code> corresponds to inputs with shape
+  <code>(batch, depth, height, width, channels)</code> while <code>channels_first</code>
+  corresponds to inputs with shape
+  <code>(batch, channels, depth, height, width)</code>.
+  It defaults to the <code>image_data_format</code> value found in your
+  Keras config file at <code>~/.keras/keras.json</code>.
+  If you never set it, then it will be "channels_last".</li>
+<li><b><code>dilation_rate</code></b>: an integer or tuple/list of 3 integers, specifying
+  the dilation rate to use for dilated convolution.
+  Can be a single integer to specify the same value for
+  all spatial dimensions.
+  Currently, specifying any <code>dilation_rate</code> value != 1 is
+  incompatible with specifying any stride value != 1.</li>
+<li><b><code>activation</code></b>: Activation function to use.
+  If you don't specify anything, no activation is applied
+  (ie. "linear" activation: <code>a(x) = x</code>).</li>
+<li><b><code>use_bias</code></b>: Boolean, whether the layer uses a bias vector.</li>
+<li><b><code>kernel_initializer</code></b>: Initializer for the <code>kernel</code> weights matrix.</li>
+<li><b><code>bias_initializer</code></b>: Initializer for the bias vector.</li>
+<li><b><code>kernel_regularizer</code></b>: Regularizer function applied to
+  the <code>kernel</code> weights matrix.</li>
+<li><b><code>bias_regularizer</code></b>: Regularizer function applied to the bias vector.</li>
+<li><b><code>activity_regularizer</code></b>: Regularizer function applied to
+  the output of the layer (its "activation").</li>
+<li><b><code>kernel_constraint</code></b>: Constraint function applied to the kernel matrix.</li>
+<li><b><code>bias_constraint</code></b>: Constraint function applied to the bias vector.</li>
+</ul>
+<h4 id="input-shape">Input shape:</h4>
+<p>5D tensor with shape:
+<code>(batch, channels, depth, rows, cols)</code> if data_format='channels_first'
+or 5D tensor with shape:
+<code>(batch, depth, rows, cols, channels)</code> if data_format='channels_last'.</p>
+<h4 id="output-shape">Output shape:</h4>
+<p>5D tensor with shape:
+<code>(batch, filters, new_depth, new_rows, new_cols)</code> if
+  data_format='channels_first'
+or 5D tensor with shape:
+<code>(batch, new_depth, new_rows, new_cols, filters)</code> if
+  data_format='channels_last'.
+<code>depth</code> and <code>rows</code> and <code>cols</code> values might have changed due to padding.</p>
+<h4 id="references">References:</h4>
+<ul>
+<li><a href="https://arxiv.org/abs/1603.07285v1">A guide to convolution arithmetic for deep
+  learning</a></li>
+<li><a href="https://www.matthewzeiler.com/mattzeiler/deconvolutionalnetworks.pdf">Deconvolutional
+  Networks</a></li>
+</ul>
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/convolutional.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">filters</span><span class="p">,</span>
+    <span class="n">kernel_size</span><span class="p">,</span>
+    <span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;valid&#39;</span><span class="p">,</span>
+    <span class="n">output_padding</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">data_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">activation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">use_bias</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">kernel_initializer</span><span class="o">=</span><span class="s1">&#39;glorot_uniform&#39;</span><span class="p">,</span>
+    <span class="n">bias_initializer</span><span class="o">=</span><span class="s1">&#39;zeros&#39;</span><span class="p">,</span>
+    <span class="n">kernel_regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">bias_regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">activity_regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">kernel_constraint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">bias_constraint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+    </body>
+    </html>
+   

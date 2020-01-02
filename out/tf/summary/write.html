@@ -1,0 +1,65 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.summary.write" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfsummarywrite">tf.summary.write</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/summary_ops_v2.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Writes a generic summary to the default SummaryWriter if one exists.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v2.summary.write</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">summary</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
+    <span class="n">tag</span><span class="p">,</span>
+    <span class="n">tensor</span><span class="p">,</span>
+    <span class="n">step</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">metadata</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>This exists primarily to support the definition of type-specific summary ops
+like scalar() and image(), and is not intended for direct use unless defining
+a new type-specific summary op.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>tag</code></b>: string tag used to identify the summary (e.g. in TensorBoard), usually
+  generated with <code>tf.summary.summary_scope</code></li>
+<li><b><code>tensor</code></b>: the Tensor holding the summary data to write</li>
+<li><b><code>step</code></b>: Explicit <code>int64</code>-castable monotonic step value for this summary. If
+  omitted, this defaults to <a href="../../tf/summary/experimental/get_step.html"><code>tf.summary.experimental.get_step()</code></a>, which must
+  not be None.</li>
+<li><b><code>metadata</code></b>: Optional SummaryMetadata, as a proto or serialized bytes</li>
+<li><b><code>name</code></b>: Optional string name for this op.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>True on success, or false if no summary was written because no default
+summary writer was available.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: if a default writer exists, but no step was provided and
+  <a href="../../tf/summary/experimental/get_step.html"><code>tf.summary.experimental.get_step()</code></a> is None.</li>
+</ul>
+    </body>
+    </html>
+   

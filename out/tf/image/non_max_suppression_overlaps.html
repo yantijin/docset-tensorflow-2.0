@@ -1,0 +1,73 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.image.non_max_suppression_overlaps" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfimagenon_max_suppression_overlaps">tf.image.non_max_suppression_overlaps</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/image_ops_impl.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Greedily selects a subset of bounding boxes in descending order of score.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.image.non_max_suppression_overlaps</code></li>
+<li><code>tf.compat.v2.image.non_max_suppression_overlaps</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">non_max_suppression_overlaps</span><span class="p">(</span>
+    <span class="n">overlaps</span><span class="p">,</span>
+    <span class="n">scores</span><span class="p">,</span>
+    <span class="n">max_output_size</span><span class="p">,</span>
+    <span class="n">overlap_threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">score_threshold</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="s1">&#39;-inf&#39;</span><span class="p">),</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Prunes away boxes that have high overlap with previously selected boxes.
+N-by-n overlap values are supplied as square matrix.
+The output of this operation is a set of integers indexing into the input
+collection of bounding boxes representing the selected boxes.  The bounding
+box coordinates corresponding to the selected indices can then be obtained
+using the <a href="../../tf/gather.html"><code>tf.gather</code></a> operation.  For example:
+  <code>python
+  selected_indices = tf.image.non_max_suppression_overlaps(
+      overlaps, scores, max_output_size, iou_threshold)
+  selected_boxes = tf.gather(boxes, selected_indices)</code></p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>overlaps</code></b>: A 2-D float <code>Tensor</code> of shape <code>[num_boxes, num_boxes]</code>.</li>
+<li><b><code>scores</code></b>: A 1-D float <code>Tensor</code> of shape <code>[num_boxes]</code> representing a single
+  score corresponding to each box (each row of boxes).</li>
+<li><b><code>max_output_size</code></b>: A scalar integer <code>Tensor</code> representing the maximum number
+  of boxes to be selected by non max suppression.</li>
+<li><b><code>overlap_threshold</code></b>: A float representing the threshold for deciding whether
+  boxes overlap too much with respect to the provided overlap values.</li>
+<li><b><code>score_threshold</code></b>: A float representing the threshold for deciding when to
+  remove boxes based on score.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<ul>
+<li><b><code>selected_indices</code></b>: A 1-D integer <code>Tensor</code> of shape <code>[M]</code> representing the
+  selected indices from the overlaps tensor, where <code>M &lt;= max_output_size</code>.</li>
+</ul>
+    </body>
+    </html>
+   

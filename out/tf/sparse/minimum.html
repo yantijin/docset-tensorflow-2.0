@@ -1,0 +1,64 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.sparse.minimum" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfsparseminimum">tf.sparse.minimum</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/sparse_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Returns the element-wise min of two SparseTensors.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.sparse.minimum</code></li>
+<li><code>tf.compat.v1.sparse_minimum</code></li>
+<li><code>tf.compat.v2.sparse.minimum</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span>
+    <span class="n">sp_a</span><span class="p">,</span>
+    <span class="n">sp_b</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Assumes the two SparseTensors have the same shape, i.e., no broadcasting.
+Example:</p>
+<div class="codehilite"><pre><span></span><span class="n">sp_zero</span> <span class="o">=</span> <span class="n">sparse_tensor</span><span class="o">.</span><span class="n">SparseTensor</span><span class="p">([[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">])</span>
+<span class="n">sp_one</span> <span class="o">=</span> <span class="n">sparse_tensor</span><span class="o">.</span><span class="n">SparseTensor</span><span class="p">([[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">])</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">sp_zero</span><span class="p">,</span> <span class="n">sp_one</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+<span class="c1"># &quot;res&quot; should be equal to SparseTensor([[0], [1]], [0, 0], [7]).</span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>sp_a</code></b>: a <code>SparseTensor</code> operand whose dtype is real, and indices
+  lexicographically ordered.</li>
+<li><b><code>sp_b</code></b>: the other <code>SparseTensor</code> operand with the same requirements (and the
+  same shape).</li>
+<li><b><code>name</code></b>: optional name of the operation.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<ul>
+<li><b><code>output</code></b>: the output SparseTensor.</li>
+</ul>
+    </body>
+    </html>
+   

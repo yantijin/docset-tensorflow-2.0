@@ -1,0 +1,76 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.sparse.transpose" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfsparsetranspose">tf.sparse.transpose</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/sparse_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Transposes a <code>SparseTensor</code></p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.sparse.transpose</code></li>
+<li><code>tf.compat.v1.sparse_transpose</code></li>
+<li><code>tf.compat.v2.sparse.transpose</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span>
+    <span class="n">sp_input</span><span class="p">,</span>
+    <span class="n">perm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>The returned tensor's dimension i will correspond to the input dimension
+<code>perm[i]</code>. If <code>perm</code> is not given, it is set to (n-1...0), where n is
+the rank of the input tensor. Hence by default, this operation performs a
+regular matrix transpose on 2-D input Tensors.</p>
+<p>For example, if <code>sp_input</code> has shape <code>[4, 5]</code> and <code>indices</code> / <code>values</code>:</p>
+<div class="codehilite"><pre><span></span><span class="err">[0, 3]: b</span>
+<span class="err">[0, 1]: a</span>
+<span class="err">[3, 1]: d</span>
+<span class="err">[2, 0]: c</span>
+</pre></div>
+
+
+<p>then the output will be a <code>SparseTensor</code> of shape <code>[5, 4]</code> and
+<code>indices</code> / <code>values</code>:</p>
+<div class="codehilite"><pre><span></span><span class="err">[0, 2]: c</span>
+<span class="err">[1, 0]: a</span>
+<span class="err">[1, 3]: d</span>
+<span class="err">[3, 0]: b</span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>sp_input</code></b>: The input <code>SparseTensor</code>.</li>
+<li><b><code>perm</code></b>: A permutation of the dimensions of <code>sp_input</code>.</li>
+<li><b><code>name</code></b>: A name prefix for the returned tensors (optional)</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A transposed <code>SparseTensor</code>.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>TypeError</code></b>: If <code>sp_input</code> is not a <code>SparseTensor</code>.</li>
+</ul>
+    </body>
+    </html>
+   

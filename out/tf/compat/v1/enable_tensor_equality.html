@@ -1,0 +1,37 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.enable_tensor_equality" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1enable_tensor_equality">tf.compat.v1.enable_tensor_equality</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Compare Tensors with element-wise comparison and thus be unhashable.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">enable_tensor_equality</span><span class="p">()</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Comparing tensors with element-wise allows comparisons such as
+tf.Variable(1.0) == 1.0. Element-wise equality implies that tensors are
+unhashable. Thus tensors can no longer be directly used in sets or as a key in
+a dictionary.</p>
+    </body>
+    </html>
+   

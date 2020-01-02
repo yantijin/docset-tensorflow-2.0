@@ -1,0 +1,107 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.io.TFRecordOptions" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="get_compression_type_string"/>
+<meta itemprop="property" content="compression_type_map"/>
+</div>
+
+<h1 id="tfiotfrecordoptions">tf.io.TFRecordOptions</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/lib/io/tf_record.py">View source</a></p>
+<h2 id="class-tfrecordoptions">Class <code>TFRecordOptions</code></h2>
+<!-- Start diff -->
+
+<p>Options used for manipulating TFRecord files.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v1.io.TFRecordOptions</code></li>
+<li>Class <code>tf.compat.v1.python_io.TFRecordOptions</code></li>
+<li>Class <code>tf.compat.v2.io.TFRecordOptions</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/lib/io/tf_record.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">compression_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">flush_mode</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">input_buffer_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">output_buffer_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">window_bits</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">compression_level</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">compression_method</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">mem_level</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">compression_strategy</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Creates a <code>TFRecordOptions</code> instance.</p>
+<p>Options only effect TFRecordWriter when compression_type is not <code>None</code>.
+Documentation, details, and defaults can be found in
+<a href="https://www.tensorflow.org/code/tensorflow/core/lib/io/zlib_compression_options.h"><code>zlib_compression_options.h</code></a>
+and in the <a href="http://www.zlib.net/manual.html">zlib manual</a>.
+Leaving an option as <code>None</code> allows C++ to set a reasonable default.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>compression_type</code></b>: <code>"GZIP"</code>, <code>"ZLIB"</code>, or <code>""</code> (no compression).</li>
+<li><b><code>flush_mode</code></b>: flush mode or <code>None</code>, Default: Z_NO_FLUSH.</li>
+<li><b><code>input_buffer_size</code></b>: int or <code>None</code>.</li>
+<li><b><code>output_buffer_size</code></b>: int or <code>None</code>.</li>
+<li><b><code>window_bits</code></b>: int or <code>None</code>.</li>
+<li><b><code>compression_level</code></b>: 0 to 9, or <code>None</code>.</li>
+<li><b><code>compression_method</code></b>: compression method or <code>None</code>.</li>
+<li><b><code>mem_level</code></b>: 1 to 9, or <code>None</code>.</li>
+<li><b><code>compression_strategy</code></b>: strategy or <code>None</code>. Default: Z_DEFAULT_STRATEGY.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>TFRecordOptions</code> object.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: If compression_type is invalid.</li>
+</ul>
+<h2 id="methods">Methods</h2>
+<h3 id="get_compression_type_string"><code>get_compression_type_string</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/lib/io/tf_record.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="nd">@classmethod</span>
+<span class="n">get_compression_type_string</span><span class="p">(</span>
+    <span class="bp">cls</span><span class="p">,</span>
+    <span class="n">options</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Convert various option types to a unified string.</p>
+<h4 id="args_1">Args:</h4>
+<ul>
+<li><b><code>options</code></b>: <code>TFRecordOption</code>, <code>TFRecordCompressionType</code>, or string.</li>
+</ul>
+<h4 id="returns_1">Returns:</h4>
+<p>Compression type as string (e.g. <code>'ZLIB'</code>, <code>'GZIP'</code>, or <code>''</code>).</p>
+<h4 id="raises_1">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: If compression_type is invalid.</li>
+</ul>
+<h2 id="class-members">Class Members</h2>
+<ul>
+<li><code>compression_type_map</code> <a id="compression_type_map"></a></li>
+</ul>
+    </body>
+    </html>
+   

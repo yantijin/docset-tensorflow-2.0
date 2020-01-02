@@ -1,0 +1,82 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.nn.RNNCellDeviceWrapper" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="output_size"/>
+<meta itemprop="property" content="state_size"/>
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="get_initial_state"/>
+<meta itemprop="property" content="zero_state"/>
+</div>
+
+<h1 id="tfnnrnncelldevicewrapper">tf.nn.RNNCellDeviceWrapper</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/rnn_cell_wrapper_v2.py">View source</a></p>
+<h2 id="class-rnncelldevicewrapper">Class <code>RNNCellDeviceWrapper</code></h2>
+<!-- Start diff -->
+
+<p>Operator that ensures an RNNCell runs on a particular device.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v2.nn.RNNCellDeviceWrapper</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/rnn_cell_wrapper_v2.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Construct a <code>DeviceWrapper</code> for <code>cell</code> with device <code>device</code>.</p>
+<p>Ensures the wrapped <code>cell</code> is called with <a href="../../tf/device.html"><code>tf.device(device)</code></a>.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>cell</code></b>: An instance of <code>RNNCell</code>.</li>
+<li><b><code>device</code></b>: A device string or function, for passing to <a href="../../tf/device.html"><code>tf.device</code></a>.</li>
+<li><b><code>**kwargs</code></b>: dict of keyword arguments for base layer.</li>
+</ul>
+<h2 id="properties">Properties</h2>
+<h3 id="output_size"><code>output_size</code></h3>
+
+<h3 id="state_size"><code>state_size</code></h3>
+
+<h2 id="methods">Methods</h2>
+<h3 id="get_initial_state"><code>get_initial_state</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/recurrent.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_initial_state</span><span class="p">(</span>
+    <span class="n">inputs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<h3 id="zero_state"><code>zero_state</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/rnn_cell_wrapper_impl.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">zero_state</span><span class="p">(</span>
+    <span class="n">batch_size</span><span class="p">,</span>
+    <span class="n">dtype</span>
+<span class="p">)</span>
+</pre></div>
+    </body>
+    </html>
+   

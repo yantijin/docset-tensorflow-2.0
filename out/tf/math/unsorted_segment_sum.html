@@ -1,0 +1,77 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.math.unsorted_segment_sum" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfmathunsorted_segment_sum">tf.math.unsorted_segment_sum</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p>Defined in generated file: <code>python/ops/gen_math_ops.py</code></p>
+<!-- Start diff -->
+
+<p>Computes the sum along segments of a tensor.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.math.unsorted_segment_sum</code></li>
+<li><code>tf.compat.v1.unsorted_segment_sum</code></li>
+<li><code>tf.compat.v2.math.unsorted_segment_sum</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">unsorted_segment_sum</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">,</span>
+    <span class="n">segment_ids</span><span class="p">,</span>
+    <span class="n">num_segments</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Read
+<a href="https://tensorflow.org/api_docs/python/tf/math#Segmentation">the section on segmentation</a>
+for an explanation of segments.</p>
+<p>Computes a tensor such that
+\(output[i] = \sum_{j...} data[j...]\) where the sum is over tuples <code>j...</code> such
+that <code>segment_ids[j...] == i</code>.  Unlike <code>SegmentSum</code>, <code>segment_ids</code>
+need not be sorted and need not cover all values in the full
+range of valid values.</p>
+<p>If the sum is empty for a given segment ID <code>i</code>, <code>output[i] = 0</code>.
+If the given segment ID <code>i</code> is negative, the value is dropped and will not be
+added to the sum of the segment.</p>
+<p><code>num_segments</code> should equal the number of distinct segment IDs.</p>
+<div style="width:70%; margin:auto; margin-bottom:10px; margin-top:20px;">
+<img style="width:100%" src="https://www.tensorflow.org/images/UnsortedSegmentSum.png" alt>
+</div>
+
+<div class="codehilite"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">unsorted_segment_sum</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]),</span> <span class="n">num_segments</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1"># ==&gt; [[ 5,  5, 5, 5],</span>
+<span class="c1">#       [5,  6, 7, 8]]</span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>data</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>float32</code>, <code>float64</code>, <code>int32</code>, <code>uint8</code>, <code>int16</code>, <code>int8</code>, <code>complex64</code>, <code>int64</code>, <code>qint8</code>, <code>quint8</code>, <code>qint32</code>, <code>bfloat16</code>, <code>uint16</code>, <code>complex128</code>, <code>half</code>, <code>uint32</code>, <code>uint64</code>.</li>
+<li><b><code>segment_ids</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>int32</code>, <code>int64</code>.
+  A tensor whose shape is a prefix of <code>data.shape</code>.</li>
+<li><b><code>num_segments</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>int32</code>, <code>int64</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>Tensor</code>. Has the same type as <code>data</code>.</p>
+    </body>
+    </html>
+   

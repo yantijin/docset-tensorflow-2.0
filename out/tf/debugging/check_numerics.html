@@ -1,0 +1,53 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.debugging.check_numerics" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfdebuggingcheck_numerics">tf.debugging.check_numerics</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p>Defined in generated file: <code>python/ops/gen_array_ops.py</code></p>
+<!-- Start diff -->
+
+<p>Checks a tensor for NaN and Inf values.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.check_numerics</code></li>
+<li><code>tf.compat.v1.debugging.check_numerics</code></li>
+<li><code>tf.compat.v2.debugging.check_numerics</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">debugging</span><span class="o">.</span><span class="n">check_numerics</span><span class="p">(</span>
+    <span class="n">tensor</span><span class="p">,</span>
+    <span class="n">message</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>When run, reports an <code>InvalidArgument</code> error if <code>tensor</code> has any values
+that are not a number (NaN) or infinity (Inf). Otherwise, passes <code>tensor</code> as-is.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>tensor</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>bfloat16</code>, <code>half</code>, <code>float32</code>, <code>float64</code>.</li>
+<li><b><code>message</code></b>: A <code>string</code>. Prefix of the error message.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>Tensor</code>. Has the same type as <code>tensor</code>.</p>
+    </body>
+    </html>
+   

@@ -1,0 +1,151 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.feature_column.linear_model" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1feature_columnlinear_model">tf.compat.v1.feature_column.linear_model</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/feature_column/feature_column.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Returns a linear prediction <code>Tensor</code> based on given <code>feature_columns</code>.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">feature_column</span><span class="o">.</span><span class="n">linear_model</span><span class="p">(</span>
+    <span class="n">features</span><span class="p">,</span>
+    <span class="n">feature_columns</span><span class="p">,</span>
+    <span class="n">units</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">sparse_combiner</span><span class="o">=</span><span class="s1">&#39;sum&#39;</span><span class="p">,</span>
+    <span class="n">weight_collections</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">trainable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">cols_to_vars</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>This function generates a weighted sum based on output dimension <code>units</code>.
+Weighted sum refers to logits in classification problems. It refers to the
+prediction itself for linear regression problems.</p>
+<p>Note on supported columns: <code>linear_model</code> treats categorical columns as
+<code>indicator_column</code>s. To be specific, assume the input as <code>SparseTensor</code> looks
+like:</p>
+<div class="codehilite"><pre><span></span>  <span class="n">shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+  <span class="p">{</span>
+      <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]:</span> <span class="s2">&quot;a&quot;</span>
+      <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]:</span> <span class="s2">&quot;b&quot;</span>
+      <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]:</span> <span class="s2">&quot;c&quot;</span>
+  <span class="p">}</span>
+</pre></div>
+
+
+<p><code>linear_model</code> assigns weights for the presence of "a", "b", "c' implicitly,
+just like <code>indicator_column</code>, while <code>input_layer</code> explicitly requires wrapping
+each of categorical columns with an <code>embedding_column</code> or an
+<code>indicator_column</code>.</p>
+<h4 id="example-of-usage">Example of usage:</h4>
+<div class="codehilite"><pre><span></span><span class="n">price</span> <span class="o">=</span> <span class="n">numeric_column</span><span class="p">(</span><span class="s1">&#39;price&#39;</span><span class="p">)</span>
+<span class="n">price_buckets</span> <span class="o">=</span> <span class="n">bucketized_column</span><span class="p">(</span><span class="n">price</span><span class="p">,</span> <span class="n">boundaries</span><span class="o">=</span><span class="p">[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">10.</span><span class="p">,</span> <span class="mf">100.</span><span class="p">,</span> <span class="mf">1000.</span><span class="p">])</span>
+<span class="n">keywords</span> <span class="o">=</span> <span class="n">categorical_column_with_hash_bucket</span><span class="p">(</span><span class="s2">&quot;keywords&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="n">K</span><span class="p">)</span>
+<span class="n">keywords_price</span> <span class="o">=</span> <span class="n">crossed_column</span><span class="p">(</span><span class="s1">&#39;keywords&#39;</span><span class="p">,</span> <span class="n">price_buckets</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+<span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">price_buckets</span><span class="p">,</span> <span class="n">keywords</span><span class="p">,</span> <span class="n">keywords_price</span> <span class="o">...</span><span class="p">]</span>
+<span class="n">features</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">parse_example</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="n">make_parse_example_spec</span><span class="p">(</span><span class="n">columns</span><span class="p">))</span>
+<span class="n">prediction</span> <span class="o">=</span> <span class="n">linear_model</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">columns</span><span class="p">)</span>
+</pre></div>
+
+
+<p>The <code>sparse_combiner</code> argument works as follows
+For example, for two features represented as the categorical columns:</p>
+<div class="codehilite"><pre><span></span>  <span class="c1"># Feature 1</span>
+
+  <span class="n">shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+  <span class="p">{</span>
+      <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]:</span> <span class="s2">&quot;a&quot;</span>
+      <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]:</span> <span class="s2">&quot;b&quot;</span>
+      <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]:</span> <span class="s2">&quot;c&quot;</span>
+  <span class="p">}</span>
+
+  <span class="c1"># Feature 2</span>
+
+  <span class="n">shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+  <span class="p">{</span>
+      <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]:</span> <span class="s2">&quot;d&quot;</span>
+      <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]:</span> <span class="s2">&quot;e&quot;</span>
+      <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]:</span> <span class="s2">&quot;f&quot;</span>
+      <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]:</span> <span class="s2">&quot;f&quot;</span>
+  <span class="p">}</span>
+</pre></div>
+
+
+<p>with <code>sparse_combiner</code> as "mean", the linear model outputs consequently
+are:</p>
+<div class="codehilite"><pre><span></span><span class="err">  y_0 = 1.0 / 2.0 * ( w_a + w_b ) + w_d + b</span>
+<span class="err">  y_1 = w_c + 1.0 / 3.0 * ( w_e + 2.0 * w_f ) + b</span>
+</pre></div>
+
+
+<p>where <code>y_i</code> is the output, <code>b</code> is the bias, and <code>w_x</code> is the weight
+assigned to the presence of <code>x</code> in the input features.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>features</code></b>: A mapping from key to tensors. <code>_FeatureColumn</code>s look up via these
+  keys. For example <code>numeric_column('price')</code> will look at 'price' key in
+  this dict. Values are <code>Tensor</code> or <code>SparseTensor</code> depending on
+  corresponding <code>_FeatureColumn</code>.</li>
+<li><b><code>feature_columns</code></b>: An iterable containing the FeatureColumns to use as inputs
+  to your model. All items should be instances of classes derived from
+  <code>_FeatureColumn</code>s.</li>
+<li><b><code>units</code></b>: An integer, dimensionality of the output space. Default value is 1.</li>
+<li><b><code>sparse_combiner</code></b>: A string specifying how to reduce if a categorical column
+  is multivalent. Except <code>numeric_column</code>, almost all columns passed to
+  <code>linear_model</code> are considered as categorical columns.  It combines each
+  categorical column independently. Currently "mean", "sqrtn" and "sum" are
+  supported, with "sum" the default for linear model. "sqrtn" often achieves
+  good accuracy, in particular with bag-of-words columns.<ul>
+<li>"sum": do not normalize features in the column</li>
+<li>"mean": do l1 normalization on features in the column</li>
+<li>"sqrtn": do l2 normalization on features in the column</li>
+</ul>
+</li>
+<li><b><code>weight_collections</code></b>: A list of collection names to which the Variable will be
+  added. Note that, variables will also be added to collections
+  <code>tf.GraphKeys.GLOBAL_VARIABLES</code> and <code>ops.GraphKeys.MODEL_VARIABLES</code>.</li>
+<li><b><code>trainable</code></b>: If <code>True</code> also add the variable to the graph collection
+  <code>GraphKeys.TRAINABLE_VARIABLES</code> (see <a href="../../../../tf/Variable.html"><code>tf.Variable</code></a>).</li>
+<li><b><code>cols_to_vars</code></b>: If not <code>None</code>, must be a dictionary that will be filled with a
+  mapping from <code>_FeatureColumn</code> to associated list of <code>Variable</code>s.  For
+  example, after the call, we might have cols_to_vars = {
+    _NumericColumn(
+      key='numeric_feature1', shape=(1,):
+    [<tf.Variable 'linear_model/price2/weights:0' shape=(1, 1)>],
+    'bias': [<tf.Variable 'linear_model/bias_weights:0' shape=(1,)>],
+    _NumericColumn(
+      key='numeric_feature2', shape=(2,)):
+    [<tf.Variable 'linear_model/price1/weights:0' shape=(2, 1)>]}
+  If a column creates no variables, its value will be an empty list. Note
+  that cols_to_vars will also contain a string key 'bias' that maps to a
+  list of Variables.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>Tensor</code> which represents predictions/logits of a linear model. Its shape
+is (batch_size, units) and its dtype is <code>float32</code>.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: if an item in <code>feature_columns</code> is neither a <code>_DenseColumn</code>
+  nor <code>_CategoricalColumn</code>.</li>
+</ul>
+    </body>
+    </html>
+   

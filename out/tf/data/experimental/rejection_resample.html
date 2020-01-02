@@ -1,0 +1,58 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.data.experimental.rejection_resample" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfdataexperimentalrejection_resample">tf.data.experimental.rejection_resample</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/data/experimental/ops/resampling.py">View source</a></p>
+<!-- Start diff -->
+
+<p>A transformation that resamples a dataset to achieve a target distribution.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.data.experimental.rejection_resample</code></li>
+<li><code>tf.compat.v2.data.experimental.rejection_resample</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">rejection_resample</span><span class="p">(</span>
+    <span class="n">class_func</span><span class="p">,</span>
+    <span class="n">target_dist</span><span class="p">,</span>
+    <span class="n">initial_dist</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">seed</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p><strong>NOTE</strong> Resampling is performed via rejection sampling; some fraction
+of the input values will be dropped.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>class_func</code></b>: A function mapping an element of the input dataset to a scalar
+  <a href="../../../tf.html#int32"><code>tf.int32</code></a> tensor. Values should be in <code>[0, num_classes)</code>.</li>
+<li><b><code>target_dist</code></b>: A floating point type tensor, shaped <code>[num_classes]</code>.</li>
+<li><b><code>initial_dist</code></b>: (Optional.)  A floating point type tensor, shaped
+  <code>[num_classes]</code>.  If not provided, the true class distribution is
+  estimated live in a streaming fashion.</li>
+<li><b><code>seed</code></b>: (Optional.) Python integer seed for the resampler.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>Dataset</code> transformation function, which can be passed to
+<a href="../../../tf/data/Dataset.html#apply"><code>tf.data.Dataset.apply</code></a>.</p>
+    </body>
+    </html>
+   

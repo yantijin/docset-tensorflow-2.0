@@ -1,0 +1,57 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.strings.regex_full_match" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfstringsregex_full_match">tf.strings.regex_full_match</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/string_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Check if the input matches the regex pattern.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.strings.regex_full_match</code></li>
+<li><code>tf.compat.v2.strings.regex_full_match</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">strings</span><span class="o">.</span><span class="n">regex_full_match</span><span class="p">(</span>
+    <span class="nb">input</span><span class="p">,</span>
+    <span class="n">pattern</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>The input is a string tensor of any shape. The pattern is a scalar
+string tensor which is applied to every element of the input tensor.
+The boolean values (True or False) of the output tensor indicate
+if the input matches the regex pattern provided.</p>
+<p>The pattern follows the re2 syntax (https://github.com/google/re2/wiki/Syntax)</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>input</code></b>: A <code>Tensor</code> of type <code>string</code>.
+  A string tensor of the text to be processed.</li>
+<li><b><code>pattern</code></b>: A <code>Tensor</code> of type <code>string</code>.
+  A scalar string tensor containing the regular expression to match the input.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>Tensor</code> of type <code>bool</code>.</p>
+    </body>
+    </html>
+   

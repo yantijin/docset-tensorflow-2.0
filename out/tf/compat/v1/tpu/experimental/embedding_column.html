@@ -1,0 +1,92 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.tpu.experimental.embedding_column" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1tpuexperimentalembedding_column">tf.compat.v1.tpu.experimental.embedding_column</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/tpu/feature_column_v2.py">View source</a></p>
+<!-- Start diff -->
+
+<p>TPU version of <a href="../../../../../tf/feature_column/embedding_column.html"><code>tf.compat.v1.feature_column.embedding_column</code></a>.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">tpu</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">embedding_column</span><span class="p">(</span>
+    <span class="n">categorical_column</span><span class="p">,</span>
+    <span class="n">dimension</span><span class="p">,</span>
+    <span class="n">combiner</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span>
+    <span class="n">initializer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">max_sequence_length</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Note that the interface for <code>tf.tpu.experimental.embedding_column</code> is
+different from that of <a href="../../../../../tf/feature_column/embedding_column.html"><code>tf.compat.v1.feature_column.embedding_column</code></a>: The
+following arguments are NOT supported: <code>ckpt_to_load_from</code>,
+<code>tensor_name_in_ckpt</code>, <code>max_norm</code> and <code>trainable</code>.</p>
+<p>Use this function in place of <a href="../../../../../tf/feature_column/embedding_column.html"><code>tf.compat.v1.feature_column.embedding_column</code></a>
+when you want to use the TPU to accelerate your embedding lookups via TPU
+embeddings.</p>
+<div class="codehilite"><pre><span></span><span class="k">column</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">feature_column</span><span class="p">.</span><span class="n">categorical_column_with_identity</span><span class="p">(...)</span><span class="w"></span>
+<span class="n">tpu_column</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">tpu</span><span class="p">.</span><span class="n">experimental</span><span class="p">.</span><span class="n">embedding_column</span><span class="p">(</span><span class="k">column</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"></span>
+<span class="p">...</span><span class="w"></span>
+<span class="n">def</span><span class="w"> </span><span class="n">model_fn</span><span class="p">(</span><span class="n">features</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="w">  </span><span class="n">dense_feature</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">DenseFeature</span><span class="p">(</span><span class="n">tpu_column</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="n">embedded_feature</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dense_feature</span><span class="p">(</span><span class="n">features</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">...</span><span class="w"></span>
+
+<span class="n">estimator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">estimator</span><span class="p">.</span><span class="n">tpu</span><span class="p">.</span><span class="n">TPUEstimator</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">model_fn</span><span class="o">=</span><span class="n">model_fn</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="p">...</span><span class="w"></span>
+<span class="w">    </span><span class="n">embedding_config_spec</span><span class="o">=</span><span class="n">tf</span><span class="p">.</span><span class="n">estimator</span><span class="p">.</span><span class="n">tpu</span><span class="p">.</span><span class="n">experimental</span><span class="p">.</span><span class="n">EmbeddingConfigSpec</span><span class="p">(</span><span class="w"></span>
+<span class="w">      </span><span class="k">column</span><span class="o">=[</span><span class="n">tpu_column</span><span class="o">]</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="p">...))</span><span class="w"></span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>categorical_column</code></b>: A categorical column returned from
+    <code>categorical_column_with_identity</code>, <code>weighted_categorical_column</code>,
+    <code>categorical_column_with_vocabulary_file</code>,
+    <code>categorical_column_with_vocabulary_list</code>,
+    <code>sequence_categorical_column_with_identity</code>,
+    <code>sequence_categorical_column_with_vocabulary_file</code>,
+    <code>sequence_categorical_column_with_vocabulary_list</code></li>
+<li><b><code>dimension</code></b>: An integer specifying dimension of the embedding, must be &gt; 0.</li>
+<li><b><code>combiner</code></b>: A string specifying how to reduce if there are multiple entries
+  in a single row for a non-sequence column. For more information, see
+  <a href="../../../../../tf/feature_column/embedding_column.html"><code>tf.feature_column.embedding_column</code></a>.</li>
+<li><b><code>initializer</code></b>: A variable initializer function to be used in embedding
+  variable initialization. If not specified, defaults to
+  <a href="../../../../../tf/compat/v1/truncated_normal_initializer.html"><code>tf.compat.v1.truncated_normal_initializer</code></a> with mean <code>0.0</code> and
+  standard deviation <code>1/sqrt(dimension)</code>.</li>
+<li><b><code>max_sequence_length</code></b>: An non-negative integer specifying the max sequence
+  length. Any sequence shorter then this will be padded with 0 embeddings
+  and any sequence longer will be truncated. This must be positive for
+  sequence features and 0 for non-sequence features.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A  <code>_TPUEmbeddingColumnV2</code>.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: if <code>dimension</code> not &gt; 0.</li>
+<li><b><code>ValueError</code></b>: if <code>initializer</code> is specified but not callable.</li>
+</ul>
+    </body>
+    </html>
+   

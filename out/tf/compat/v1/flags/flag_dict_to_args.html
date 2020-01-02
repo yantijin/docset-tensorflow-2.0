@@ -1,0 +1,53 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.flags.flag_dict_to_args" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1flagsflag_dict_to_args">tf.compat.v1.flags.flag_dict_to_args</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<!-- Start diff -->
+
+<p>Convert a dict of values into process call parameters.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.app.flags.flag_dict_to_args</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">flags</span><span class="o">.</span><span class="n">flag_dict_to_args</span><span class="p">(</span><span class="n">flag_map</span><span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>This method is used to convert a dictionary into a sequence of parameters
+for a binary that parses arguments using this module.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>flag_map</code></b>: dict, a mapping where the keys are flag names (strings).
+    values are treated according to their type:<ul>
+<li>If value is None, then only the name is emitted.</li>
+<li>If value is True, then only the name is emitted.</li>
+<li>If value is False, then only the name prepended with 'no' is emitted.</li>
+<li>If value is a string then --name=value is emitted.</li>
+<li>If value is a collection, this will emit --name=value1,value2,value3.</li>
+<li>Everything else is converted to string an passed as such.</li>
+</ul>
+</li>
+</ul>
+<h4 id="yields">Yields:</h4>
+<p>sequence of string suitable for a subprocess execution.</p>
+    </body>
+    </html>
+   

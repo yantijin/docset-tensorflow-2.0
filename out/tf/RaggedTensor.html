@@ -1,0 +1,2102 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../default.css" rel="stylesheet">
+    <link href="
+   ../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.RaggedTensor" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="dtype"/>
+<meta itemprop="property" content="flat_values"/>
+<meta itemprop="property" content="nested_row_splits"/>
+<meta itemprop="property" content="ragged_rank"/>
+<meta itemprop="property" content="row_splits"/>
+<meta itemprop="property" content="shape"/>
+<meta itemprop="property" content="values"/>
+<meta itemprop="property" content="__abs__"/>
+<meta itemprop="property" content="__add__"/>
+<meta itemprop="property" content="__and__"/>
+<meta itemprop="property" content="__bool__"/>
+<meta itemprop="property" content="__div__"/>
+<meta itemprop="property" content="__floordiv__"/>
+<meta itemprop="property" content="__ge__"/>
+<meta itemprop="property" content="__getitem__"/>
+<meta itemprop="property" content="__gt__"/>
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="__invert__"/>
+<meta itemprop="property" content="__le__"/>
+<meta itemprop="property" content="__lt__"/>
+<meta itemprop="property" content="__mod__"/>
+<meta itemprop="property" content="__mul__"/>
+<meta itemprop="property" content="__neg__"/>
+<meta itemprop="property" content="__nonzero__"/>
+<meta itemprop="property" content="__or__"/>
+<meta itemprop="property" content="__pow__"/>
+<meta itemprop="property" content="__radd__"/>
+<meta itemprop="property" content="__rand__"/>
+<meta itemprop="property" content="__rdiv__"/>
+<meta itemprop="property" content="__rfloordiv__"/>
+<meta itemprop="property" content="__rmod__"/>
+<meta itemprop="property" content="__rmul__"/>
+<meta itemprop="property" content="__ror__"/>
+<meta itemprop="property" content="__rpow__"/>
+<meta itemprop="property" content="__rsub__"/>
+<meta itemprop="property" content="__rtruediv__"/>
+<meta itemprop="property" content="__rxor__"/>
+<meta itemprop="property" content="__sub__"/>
+<meta itemprop="property" content="__truediv__"/>
+<meta itemprop="property" content="__xor__"/>
+<meta itemprop="property" content="bounding_shape"/>
+<meta itemprop="property" content="consumers"/>
+<meta itemprop="property" content="from_nested_row_lengths"/>
+<meta itemprop="property" content="from_nested_row_splits"/>
+<meta itemprop="property" content="from_nested_value_rowids"/>
+<meta itemprop="property" content="from_row_lengths"/>
+<meta itemprop="property" content="from_row_limits"/>
+<meta itemprop="property" content="from_row_splits"/>
+<meta itemprop="property" content="from_row_starts"/>
+<meta itemprop="property" content="from_sparse"/>
+<meta itemprop="property" content="from_tensor"/>
+<meta itemprop="property" content="from_value_rowids"/>
+<meta itemprop="property" content="nested_row_lengths"/>
+<meta itemprop="property" content="nested_value_rowids"/>
+<meta itemprop="property" content="nrows"/>
+<meta itemprop="property" content="row_lengths"/>
+<meta itemprop="property" content="row_limits"/>
+<meta itemprop="property" content="row_starts"/>
+<meta itemprop="property" content="to_list"/>
+<meta itemprop="property" content="to_sparse"/>
+<meta itemprop="property" content="to_tensor"/>
+<meta itemprop="property" content="value_rowids"/>
+<meta itemprop="property" content="with_flat_values"/>
+<meta itemprop="property" content="with_row_splits_dtype"/>
+<meta itemprop="property" content="with_values"/>
+</div>
+
+<h1 id="tfraggedtensor">tf.RaggedTensor</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/ragged/ragged_tensor.py">View source</a></p>
+<h2 id="class-raggedtensor">Class <code>RaggedTensor</code></h2>
+<!-- Start diff -->
+
+<p>Represents a ragged tensor.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v1.RaggedTensor</code></li>
+<li>Class <code>tf.compat.v2.RaggedTensor</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<p>A <code>RaggedTensor</code> is a tensor with one or more <em>ragged dimensions</em>, which are
+dimensions whose slices may have different lengths.  For example, the inner
+(column) dimension of <code>rt=[[3, 1, 4, 1], [], [5, 9, 2], [6], []]</code> is ragged,
+since the column slices (<code>rt[0, :]</code>, ..., <code>rt[4, :]</code>) have different lengths.
+Dimensions whose slices all have the same length are called <em>uniform
+dimensions</em>.  The outermost dimension of a <code>RaggedTensor</code> is always uniform,
+since it consists of a single slice (and so there is no possibility for
+differing slice lengths).</p>
+<p>The total number of dimensions in a <code>RaggedTensor</code> is called its <em>rank</em>,
+and the number of ragged dimensions in a <code>RaggedTensor</code> is called its
+<em>ragged-rank</em>.  A <code>RaggedTensor</code>'s ragged-rank is fixed at graph creation
+time: it can't depend on the runtime values of <code>Tensor</code>s, and can't vary
+dynamically for different session runs.</p>
+<p>```</p>
+<h3 id="potentially-ragged-tensors">Potentially Ragged Tensors</h3>
+<p>Many ops support both <code>Tensor</code>s and <code>RaggedTensor</code>s.  The term "potentially
+ragged tensor" may be used to refer to a tensor that might be either a
+<code>Tensor</code> or a <code>RaggedTensor</code>.  The ragged-rank of a <code>Tensor</code> is zero.</p>
+<h3 id="documenting-raggedtensor-shapes">Documenting RaggedTensor Shapes</h3>
+<p>When documenting the shape of a RaggedTensor, ragged dimensions can be
+indicated by enclosing them in parentheses.  For example, the shape of
+a 3-D <code>RaggedTensor</code> that stores the fixed-size word embedding for each
+word in a sentence, for each sentence in a batch, could be written as
+<code>[num_sentences, (num_words), embedding_size]</code>.  The parentheses around
+<code>(num_words)</code> indicate that dimension is ragged, and that the length
+of each element list in that dimension may vary for each item.</p>
+<h3 id="component-tensors">Component Tensors</h3>
+<p>Internally, a <code>RaggedTensor</code> consists of a concatenated list of values that
+are partitioned into variable-length rows.  In particular, each <code>RaggedTensor</code>
+consists of:</p>
+<ul>
+<li>
+<p>A <code>values</code> tensor, which concatenates the variable-length rows into a
+    flattened list.  For example, the <code>values</code> tensor for
+    <code>[[3, 1, 4, 1], [], [5, 9, 2], [6], []]</code> is <code>[3, 1, 4, 1, 5, 9, 2, 6]</code>.</p>
+</li>
+<li>
+<p>A <code>row_splits</code> vector, which indicates how those flattened values are
+    divided into rows.  In particular, the values for row <code>rt[i]</code> are stored
+    in the slice <code>rt.values[rt.row_splits[i]:rt.row_splits[i+1]]</code>.</p>
+</li>
+</ul>
+<h4 id="example">Example:</h4>
+<div class="codehilite"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">RaggedTensor</span><span class="o">.</span><span class="n">from_row_splits</span><span class="p">(</span>
+<span class="o">...</span>     <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+<span class="o">...</span>     <span class="n">row_splits</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">]))</span>
+<span class="o">&lt;</span><span class="n">tf</span><span class="o">.</span><span class="n">RaggedTensor</span> <span class="p">[[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="p">[]]</span><span class="o">&gt;</span>
+</pre></div>
+
+
+<h3 id="alternative-row-partitioning-schemes">Alternative Row-Partitioning Schemes</h3>
+<p>In addition to <code>row_splits</code>, ragged tensors provide support for four other
+row-partitioning schemes:</p>
+<ul>
+<li>
+<p><code>row_lengths</code>: a vector with shape <code>[nrows]</code>, which specifies the length
+    of each row.</p>
+</li>
+<li>
+<p><code>value_rowids</code> and <code>nrows</code>: <code>value_rowids</code> is a vector with shape
+    <code>[nvals]</code>, corresponding one-to-one with <code>values</code>, which specifies
+    each value's row index.  In particular, the row <code>rt[row]</code> consists of the
+    values <code>rt.values[j]</code> where <code>value_rowids[j]==row</code>.  <code>nrows</code> is an
+    integer scalar that specifies the number of rows in the
+    <code>RaggedTensor</code>. (<code>nrows</code> is used to indicate trailing empty rows.)</p>
+</li>
+<li>
+<p><code>row_starts</code>: a vector with shape <code>[nrows]</code>, which specifies the start
+    offset of each row.  Equivalent to <code>row_splits[:-1]</code>.</p>
+</li>
+<li>
+<p><code>row_limits</code>: a vector with shape <code>[nrows]</code>, which specifies the stop
+    offset of each row.  Equivalent to <code>row_splits[1:]</code>.</p>
+</li>
+</ul>
+<p>Example: The following ragged tensors are equivalent, and all represent the
+nested list <code>[[3, 1, 4, 1], [], [5, 9, 2], [6], []]</code>.</p>
+<div class="codehilite"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">rt1</span> <span class="o">=</span> <span class="n">RaggedTensor</span><span class="o">.</span><span class="n">from_row_splits</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">row_splits</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">rt2</span> <span class="o">=</span> <span class="n">RaggedTensor</span><span class="o">.</span><span class="n">from_row_lengths</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">row_lengths</span><span class="o">=</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">rt3</span> <span class="o">=</span> <span class="n">RaggedTensor</span><span class="o">.</span><span class="n">from_value_rowids</span><span class="p">(</span>
+<span class="o">...</span>     <span class="n">values</span><span class="p">,</span> <span class="n">value_rowids</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">rt4</span> <span class="o">=</span> <span class="n">RaggedTensor</span><span class="o">.</span><span class="n">from_row_starts</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">row_starts</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">rt5</span> <span class="o">=</span> <span class="n">RaggedTensor</span><span class="o">.</span><span class="n">from_row_limits</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">row_limits</span><span class="o">=</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
+</pre></div>
+
+
+<h3 id="multiple-ragged-dimensions">Multiple Ragged Dimensions</h3>
+<p><code>RaggedTensor</code>s with multiple ragged dimensions can be defined by using
+a nested <code>RaggedTensor</code> for the <code>values</code> tensor.  Each nested <code>RaggedTensor</code>
+adds a single ragged dimension.</p>
+<div class="codehilite"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">inner_rt</span> <span class="o">=</span> <span class="n">RaggedTensor</span><span class="o">.</span><span class="n">from_row_splits</span><span class="p">(</span>  <span class="c1"># =rt1 from above</span>
+<span class="o">...</span>     <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="n">row_splits</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">outer_rt</span> <span class="o">=</span> <span class="n">RaggedTensor</span><span class="o">.</span><span class="n">from_row_splits</span><span class="p">(</span>
+<span class="o">...</span>     <span class="n">values</span><span class="o">=</span><span class="n">inner_rt</span><span class="p">,</span> <span class="n">row_splits</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span> <span class="n">outer_rt</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+<span class="p">[[[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">]],</span> <span class="p">[],</span> <span class="p">[[</span><span class="mi">6</span><span class="p">],</span> <span class="p">[]]]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span> <span class="n">outer_rt</span><span class="o">.</span><span class="n">ragged_rank</span>
+<span class="mi">2</span>
+</pre></div>
+
+
+<p>The factory function <code>RaggedTensor.from_nested_row_splits</code> may be used to
+construct a <code>RaggedTensor</code> with multiple ragged dimensions directly, by
+providing a list of <code>row_splits</code> tensors:</p>
+<div class="codehilite"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">RaggedTensor</span><span class="o">.</span><span class="n">from_nested_row_splits</span><span class="p">(</span>
+<span class="o">...</span>     <span class="n">flat_values</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+<span class="o">...</span>     <span class="n">nested_row_splits</span><span class="o">=</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">]))</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+<span class="p">[[[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">]],</span> <span class="p">[],</span> <span class="p">[[</span><span class="mi">6</span><span class="p">],</span> <span class="p">[]]]</span>
+</pre></div>
+
+
+<h3 id="uniform-inner-dimensions">Uniform Inner Dimensions</h3>
+<p><code>RaggedTensor</code>s with uniform inner dimensions can be defined
+by using a multidimensional <code>Tensor</code> for <code>values</code>.</p>
+<div class="codehilite"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">rt</span> <span class="o">=</span> <span class="n">RaggedTensor</span><span class="o">.</span><span class="n">from_row_splits</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">]),</span>
+<span class="o">..</span>                                    <span class="n">row_splits</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span> <span class="n">rt</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+<span class="p">[[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span>
+ <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]]</span>
+ <span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span> <span class="n">rt</span><span class="o">.</span><span class="n">shape</span>
+ <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="err">?</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+
+<p>```</p>
+<h3 id="raggedtensor-shape-restrictions">RaggedTensor Shape Restrictions</h3>
+<p>The shape of a RaggedTensor is currently restricted to have the following
+form:</p>
+<ul>
+<li>A single uniform dimension</li>
+<li>Followed by one or more ragged dimensions</li>
+<li>Followed by zero or more uniform dimensions.</li>
+</ul>
+<p>This restriction follows from the fact that each nested <code>RaggedTensor</code>
+replaces the uniform outermost dimension of its <code>values</code> with a uniform
+dimension followed by a ragged dimension.</p>
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/ragged/ragged_tensor.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">values</span><span class="p">,</span>
+    <span class="n">row_splits</span><span class="p">,</span>
+    <span class="n">cached_row_lengths</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">cached_value_rowids</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">cached_nrows</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">internal</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Creates a <code>RaggedTensor</code> with a specified partitioning for <code>values</code>.</p>
+<p>This constructor is private -- please use one of the following ops to
+build <code>RaggedTensor</code>s:</p>
+<ul>
+<li><a href="../tf/RaggedTensor.html#from_row_lengths"><code>tf.RaggedTensor.from_row_lengths</code></a></li>
+<li><a href="../tf/RaggedTensor.html#from_value_rowids"><code>tf.RaggedTensor.from_value_rowids</code></a></li>
+<li><a href="../tf/RaggedTensor.html#from_row_splits"><code>tf.RaggedTensor.from_row_splits</code></a></li>
+<li><a href="../tf/RaggedTensor.html#from_row_starts"><code>tf.RaggedTensor.from_row_starts</code></a></li>
+<li><a href="../tf/RaggedTensor.html#from_row_limits"><code>tf.RaggedTensor.from_row_limits</code></a></li>
+<li><a href="../tf/RaggedTensor.html#from_nested_row_splits"><code>tf.RaggedTensor.from_nested_row_splits</code></a></li>
+<li><a href="../tf/RaggedTensor.html#from_nested_row_lengths"><code>tf.RaggedTensor.from_nested_row_lengths</code></a></li>
+<li><a href="../tf/RaggedTensor.html#from_nested_value_rowids"><code>tf.RaggedTensor.from_nested_value_rowids</code></a></li>
+</ul>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>values</code></b>: A potentially ragged tensor of any dtype and shape <code>[nvals, ...]</code>.</li>
+<li><b><code>row_splits</code></b>: A 1-D integer tensor with shape <code>[nrows+1]</code>.</li>
+<li><b><code>cached_row_lengths</code></b>: A 1-D integer tensor with shape <code>[nrows]</code></li>
+<li><b><code>cached_value_rowids</code></b>: A 1-D integer tensor with shape <code>[nvals]</code>.</li>
+<li><b><code>cached_nrows</code></b>: A 1-D integer scalar tensor.</li>
+<li><b><code>internal</code></b>: True if the constructor is being called by one of the factory
+  methods.  If false, an exception will be raised.</li>
+</ul>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>TypeError</code></b>: If a row partitioning tensor has an inappropriate dtype.</li>
+<li><b><code>TypeError</code></b>: If exactly one row partitioning argument was not specified.</li>
+<li><b><code>ValueError</code></b>: If a row partitioning tensor has an inappropriate shape.</li>
+<li><b><code>ValueError</code></b>: If multiple partitioning arguments are specified.</li>
+<li><b><code>ValueError</code></b>: If nrows is specified but value_rowids is not None.</li>
+</ul>
+<h2 id="properties">Properties</h2>
+<h3 id="dtype"><code>dtype</code></h3>
+
+<p>The <code>DType</code> of values in this tensor.</p>
+<h3 id="flat_values"><code>flat_values</code></h3>
+
+<p>The innermost <code>values</code> tensor for this ragged tensor.</p>
+<p>Concretely, if <code>rt.values</code> is a <code>Tensor</code>, then <code>rt.flat_values</code> is
+<code>rt.values</code>; otherwise, <code>rt.flat_values</code> is <code>rt.values.flat_values</code>.</p>
+<p>Conceptually, <code>flat_values</code> is the tensor formed by flattening the
+outermost dimension and all of the ragged dimensions into a single
+dimension.</p>
+<p><code>rt.flat_values.shape = [nvals] + rt.shape[rt.ragged_rank + 1:]</code>
+(where <code>nvals</code> is the number of items in the flattened dimensions).</p>
+<h4 id="returns">Returns:</h4>
+<p>A <code>Tensor</code>.</p>
+<h4 id="example_1">Example:</h4>
+<p>```python</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>rt = ragged.constant([[[3, 1, 4, 1], [], [5, 9, 2]], [], [[6], []]])
+print rt.flat_values()
+  tf.Tensor([3, 1, 4, 1, 5, 9, 2, 6])
+  ```</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h3 id="nested_row_splits"><code>nested_row_splits</code></h3>
+
+<p>A tuple containing the row_splits for all ragged dimensions.</p>
+<p><code>rt.nested_row_splits</code> is a tuple containing the <code>row_splits</code> tensors for
+all ragged dimensions in <code>rt</code>, ordered from outermost to innermost.  In
+particular, <code>rt.nested_row_splits = (rt.row_splits,) + value_splits</code> where:</p>
+<div class="codehilite"><pre><span></span><span class="o">*</span> <span class="ss">`value_splits = ()`</span> <span class="k">if</span> <span class="ss">`rt.values`</span> <span class="k">is</span> <span class="n">a</span> <span class="ss">`Tensor`</span><span class="p">.</span>
+<span class="o">*</span> <span class="ss">`value_splits = rt.values.nested_row_splits`</span> <span class="n">otherwise</span><span class="p">.</span>
+</pre></div>
+
+
+<h4 id="returns_1">Returns:</h4>
+<p>A <code>tuple</code> of 1-D integer <code>Tensor</code>s.</p>
+<h4 id="example_2">Example:</h4>
+<p>```python</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>rt = ragged.constant([[[[3, 1, 4, 1], [], [5, 9, 2]], [], [[6], []]]])
+for i, splits in enumerate(rt.nested_row_splits()):
+  ...   print('Splits for dimension %d: %s' % (i+1, splits))
+  Splits for dimension 1: [0, 1]
+  Splits for dimension 2: [0, 3, 3, 5]
+  Splits for dimension 3: [0, 4, 4, 7, 8, 8]
+  ```</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h3 id="ragged_rank"><code>ragged_rank</code></h3>
+
+<p>The number of ragged dimensions in this ragged tensor.</p>
+<h4 id="returns_2">Returns:</h4>
+<p>A Python <code>int</code> indicating the number of ragged dimensions in this ragged
+tensor.  The outermost dimension is not considered ragged.</p>
+<h3 id="row_splits"><code>row_splits</code></h3>
+
+<p>The row-split indices for this ragged tensor's <code>values</code>.</p>
+<p><code>rt.row_splits</code> specifies where the values for each row begin and end in
+<code>rt.values</code>.  In particular, the values for row <code>rt[i]</code> are stored in
+the slice <code>rt.values[rt.row_splits[i]:rt.row_splits[i+1]]</code>.</p>
+<h4 id="returns_3">Returns:</h4>
+<p>A 1-D integer <code>Tensor</code> with shape <code>[self.nrows+1]</code>.
+The returned tensor is non-empty, and is sorted in ascending order.
+<code>self.row_splits[0]</code> is zero, and <code>self.row_splits[-1]</code> is equal to
+<code>self.values.shape[0]</code>.</p>
+<h4 id="example_3">Example:</h4>
+<p>```python</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>rt = ragged.constant([[3, 1, 4, 1], [], [5, 9, 2], [6], []])
+print rt.row_splits  # indices of row splits in rt.values
+  tf.Tensor([0, 4, 4, 7, 8, 8])
+  ```</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h3 id="shape"><code>shape</code></h3>
+
+<p>The statically known shape of this ragged tensor.</p>
+<h4 id="returns_4">Returns:</h4>
+<p>A <code>TensorShape</code> containing the statically known shape of this ragged
+tensor.  Ragged dimensions have a size of <code>None</code>.</p>
+<h4 id="examples">Examples:</h4>
+<div class="codehilite"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">ragged</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">TensorShape</span><span class="p">([</span><span class="n">Dimension</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">Dimension</span><span class="p">(</span><span class="kc">None</span><span class="p">)])</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">ragged</span><span class="o">.</span><span class="n">constant</span><span class="p">([[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]]],</span> <span class="n">ragged_rank</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">TensorShape</span><span class="p">([</span><span class="n">Dimension</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">Dimension</span><span class="p">(</span><span class="kc">None</span><span class="p">),</span> <span class="n">Dimension</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+
+<h3 id="values"><code>values</code></h3>
+
+<p>The concatenated rows for this ragged tensor.</p>
+<p><code>rt.values</code> is a potentially ragged tensor formed by flattening the two
+outermost dimensions of <code>rt</code> into a single dimension.</p>
+<p><code>rt.values.shape = [nvals] + rt.shape[2:]</code> (where <code>nvals</code> is the
+number of items in the outer two dimensions of <code>rt</code>).</p>
+<p><code>rt.ragged_rank = self.ragged_rank - 1</code></p>
+<h4 id="returns_5">Returns:</h4>
+<p>A potentially ragged tensor.</p>
+<h4 id="example_4">Example:</h4>
+<p>```python</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>rt = ragged.constant([[3, 1, 4, 1], [], [5, 9, 2], [6], []])
+print rt.values
+  tf.Tensor([3, 1, 4, 1, 5, 9, 2, 6])
+  ```</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h2 id="methods">Methods</h2>
+<h3 id="__abs__"><code>__abs__</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/math_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__abs__</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Computes the absolute value of a tensor.</p>
+<p>Given a tensor of integer or floating-point values, this operation returns a
+tensor of the same type, where each element contains the absolute value of the
+corresponding element in the input.</p>
+<p>Given a tensor <code>x</code> of complex numbers, this operation returns a tensor of type
+<code>float32</code> or <code>float64</code> that is the absolute value of each element in <code>x</code>. All
+elements in <code>x</code> must be complex numbers of the form \(a + bj\). The
+absolute value is computed as \( \sqrt{a^2 + b^2}\).  For example:</p>
+<div class="codehilite"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="o">-</span><span class="mf">2.25</span> <span class="o">+</span> <span class="mf">4.75</span><span class="n">j</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">3.25</span> <span class="o">+</span> <span class="mf">5.75</span><span class="n">j</span><span class="p">]])</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># [5.25594902, 6.60492229]</span>
+</pre></div>
+
+
+<h4 id="args_1">Args:</h4>
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code> or <code>SparseTensor</code> of type <code>float16</code>, <code>float32</code>, <code>float64</code>,
+  <code>int32</code>, <code>int64</code>, <code>complex64</code> or <code>complex128</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns_6">Returns:</h4>
+<p>A <code>Tensor</code> or <code>SparseTensor</code> the same size, type, and sparsity as <code>x</code> with
+  absolute values.
+Note, for <code>complex64</code> or <code>complex128</code> input, the returned <code>Tensor</code> will be
+  of type <code>float32</code> or <code>float64</code>, respectively.</p>
+<p>If <code>x</code> is a <code>SparseTensor</code>, returns
+<code>SparseTensor(x.indices, tf.math.abs(x.values, ...), x.dense_shape)</code></p>
+<h3 id="__add__"><code>__add__</code></h3>
+
+<p>Defined in generated file: <code>python/ops/gen_math_ops.py</code></p>
+<div class="codehilite"><pre><span></span><span class="fm">__add__</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Returns x + y element-wise.</p>
+<p><em>NOTE</em>: <a href="../tf/math/add.html"><code>math.add</code></a> supports broadcasting. <code>AddN</code> does not. More about broadcasting
+<a href="http://docs.scipy.org/doc/numpy/user/basics.broadcasting.html">here</a></p>
+<h4 id="args_2">Args:</h4>
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>bfloat16</code>, <code>half</code>, <code>float32</code>, <code>float64</code>, <code>uint8</code>, <code>int8</code>, <code>int16</code>, <code>int32</code>, <code>int64</code>, <code>complex64</code>, <code>complex128</code>, <code>string</code>.</li>
+<li><b><code>y</code></b>: A <code>Tensor</code>. Must have the same type as <code>x</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns_7">Returns:</h4>
+<p>A <code>Tensor</code>. Has the same type as <code>x</code>.</p>
+<h3 id="__and__"><code>__and__</code></h3>
+
+<p>Defined in generated file: <code>python/ops/gen_math_ops.py</code></p>
+<div class="codehilite"><pre><span></span><span class="fm">__and__</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Returns the truth value of x AND y element-wise.</p>
+<p><em>NOTE</em>: <a href="../tf/math/logical_and.html"><code>math.logical_and</code></a> supports broadcasting. More about broadcasting
+<a href="http://docs.scipy.org/doc/numpy/user/basics.broadcasting.html">here</a></p>
+<h4 id="args_3">Args:</h4>
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code> of type <code>bool</code>.</li>
+<li><b><code>y</code></b>: A <code>Tensor</code> of type <code>bool</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns_8">Returns:</h4>
+<p>A <code>Tensor</code> of type <code>bool</code>.</p>
+<h3 id="__bool__"><code>__bool__</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/ragged/ragged_operators.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__bool__</span><span class="p">(</span><span class="n">_</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Dummy method to prevent a RaggedTensor from being used as a Python bool.</p>
+<h3 id="__div__"><code>__div__</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/math_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">__div__</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Divides x / y elementwise (using Python 2 division operator semantics). (deprecated)</p>
+<p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
+Instructions for updating:
+Deprecated in favor of operator or tf.math.divide.</p>
+<p>NOTE: Prefer using the Tensor division operator or tf.divide which obey Python
+3 division operator semantics.</p>
+<p>This function divides <code>x</code> and <code>y</code>, forcing Python 2 semantics. That is, if <code>x</code>
+and <code>y</code> are both integers then the result will be an integer. This is in
+contrast to Python 3, where division with <code>/</code> is always a float while division
+with <code>//</code> is always an integer.</p>
+<h4 id="args_4">Args:</h4>
+<ul>
+<li><b><code>x</code></b>: <code>Tensor</code> numerator of real numeric type.</li>
+<li><b><code>y</code></b>: <code>Tensor</code> denominator of real numeric type.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns_9">Returns:</h4>
+<p><code>x / y</code> returns the quotient of x and y.</p>
+<h3 id="__floordiv__"><code>__floordiv__</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/math_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__floordiv__</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Divides <code>x / y</code> elementwise, rounding toward the most negative integer.</p>
+<p>The same as <a href="../tf/RaggedTensor.html#__div__"><code>tf.compat.v1.div(x,y)</code></a> for integers, but uses
+<code>tf.floor(tf.compat.v1.div(x,y))</code> for
+floating point arguments so that the result is always an integer (though
+possibly an integer represented as floating point).  This op is generated by
+<code>x // y</code> floor division in Python 3 and in Python 2.7 with
+<code>from __future__ import division</code>.</p>
+<p><code>x</code> and <code>y</code> must have the same type, and the result will have the same type
+as well.</p>
+<h4 id="args_5">Args:</h4>
+<ul>
+<li><b><code>x</code></b>: <code>Tensor</code> numerator of real numeric type.</li>
+<li><b><code>y</code></b>: <code>Tensor</code> denominator of real numeric type.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns_10">Returns:</h4>
+<p><code>x / y</code> rounded down.</p>
+<h4 id="raises_1">Raises:</h4>
+<ul>
+<li><b><code>TypeError</code></b>: If the inputs are complex.</li>
+</ul>
+<h3 id="__ge__"><code>__ge__</code></h3>
+
+<p>Defined in generated file: <code>python/ops/gen_math_ops.py</code></p>
+<div class="codehilite"><pre><span></span><span class="fm">__ge__</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Returns the truth value of (x &gt;= y) element-wise.</p>
+<p><em>NOTE</em>: <a href="../tf/math/greater_equal.html"><code>math.greater_equal</code></a> supports broadcasting. More about broadcasting
+<a href="http://docs.scipy.org/doc/numpy/user/basics.broadcasting.html">here</a></p>
+<h4 id="args_6">Args:</h4>
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>float32</code>, <code>float64</code>, <code>int32</code>, <code>uint8</code>, <code>int16</code>, <code>int8</code>, <code>int64</code>, <code>bfloat16</code>, <code>uint16</code>, <code>half</code>, <code>uint32</code>, <code>uint64</code>.</li>
+<li><b><code>y</code></b>: A <code>Tensor</code>. Must have the same type as <code>x</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns_11">Returns:</h4>
+<p>A <code>Tensor</code> of type <code>bool</code>.</p>
+<h3 id="__getitem__"><code>__getitem__</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/ragged/ragged_getitem.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__getitem__</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Returns the specified piece of this RaggedTensor.</p>
+<p>Supports multidimensional indexing and slicing, with one restriction:
+indexing into a ragged inner dimension is not allowed.  This case is
+problematic because the indicated value may exist in some rows but not
+others.  In such cases, it's not obvious whether we should (1) report an
+IndexError; (2) use a default value; or (3) skip that value and return a
+tensor with fewer rows than we started with.  Following the guiding
+principles of Python ("In the face of ambiguity, refuse the temptation to
+guess"), we simply disallow this operation.</p>
+<p>Any dimensions added by <code>array_ops.newaxis</code> will be ragged if the following
+dimension is ragged.</p>
+<h4 id="args_7">Args:</h4>
+<ul>
+<li><b><code>self</code></b>: The RaggedTensor to slice.</li>
+<li>
+<p><b><code>key</code></b>: Indicates which piece of the RaggedTensor to return, using standard
+  Python semantics (e.g., negative values index from the end).  <code>key</code>
+  may have any of the following types:</p>
+</li>
+<li>
+<p><code>int</code> constant</p>
+</li>
+<li>Scalar integer <code>Tensor</code></li>
+<li><code>slice</code> containing integer constants and/or scalar integer
+    <code>Tensor</code>s</li>
+<li><code>Ellipsis</code></li>
+<li><code>tf.newaxis</code></li>
+<li><code>tuple</code> containing any of the above (for multidimentional indexing)</li>
+</ul>
+<h4 id="returns_12">Returns:</h4>
+<p>A <code>Tensor</code> or <code>RaggedTensor</code> object.  Values that include at least one
+ragged dimension are returned as <code>RaggedTensor</code>.  Values that include no
+ragged dimensions are returned as <code>Tensor</code>.  See above for examples of
+expressions that return <code>Tensor</code>s vs <code>RaggedTensor</code>s.</p>
+<h4 id="raises_2">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: If <code>key</code> is out of bounds.</li>
+<li><b><code>ValueError</code></b>: If <code>key</code> is not supported.</li>
+<li><b><code>TypeError</code></b>: If the indices in <code>key</code> have an unsupported type.</li>
+</ul>
+<h4 id="examples_1">Examples:</h4>
+<div class="codehilite"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="c1"># A 2-D ragged tensor with 1 ragged dimension.</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">rt</span> <span class="o">=</span> <span class="n">ragged</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;f&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;g&#39;</span><span class="p">]])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">rt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>       <span class="c1"># First row (1-D `Tensor`)</span>
+<span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">rt</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>      <span class="c1"># First three rows (2-D RaggedTensor)</span>
+<span class="p">[[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">],</span> <span class="s1">&#39;[f&#39;</span><span class="p">],</span> <span class="p">[</span><span class="n">g</span><span class="s1">&#39;]]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">rt</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>    <span class="c1"># 1st element of 4th row (scalar)</span>
+<span class="s1">&#39;g&#39;</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="c1"># A 3-D ragged tensor with 2 ragged dimensions.</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">rt</span> <span class="o">=</span> <span class="n">ragged</span><span class="o">.</span><span class="n">constant</span><span class="p">([[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">]],</span>
+<span class="o">...</span>                    <span class="p">[[</span><span class="mi">5</span><span class="p">],</span> <span class="p">[],</span> <span class="p">[</span><span class="mi">6</span><span class="p">]],</span>
+<span class="o">...</span>                    <span class="p">[[</span><span class="mi">7</span><span class="p">]],</span>
+<span class="o">...</span>                    <span class="p">[[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span> <span class="p">[</span><span class="mi">10</span><span class="p">]]])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">rt</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>       <span class="c1"># Second row (2-D RaggedTensor)</span>
+<span class="p">[[</span><span class="mi">5</span><span class="p">],</span> <span class="p">[],</span> <span class="p">[</span><span class="mi">6</span><span class="p">]]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">rt</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>    <span class="c1"># First element of fourth row (1-D Tensor)</span>
+<span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">rt</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>  <span class="c1"># Items 1-3 of each row (3-D RaggedTensor)</span>
+<span class="p">[[[</span><span class="mi">4</span><span class="p">]],</span> <span class="p">[[],</span> <span class="p">[</span><span class="mi">6</span><span class="p">]],</span> <span class="p">[],</span> <span class="p">[[</span><span class="mi">10</span><span class="p">]]]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">rt</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>  <span class="c1"># Last item of each row (3-D RaggedTensor)</span>
+<span class="p">[[[</span><span class="mi">4</span><span class="p">]],</span> <span class="p">[[</span><span class="mi">6</span><span class="p">]],</span> <span class="p">[[</span><span class="mi">7</span><span class="p">]],</span> <span class="p">[[</span><span class="mi">10</span><span class="p">]]]</span>
+</pre></div>
+
+
+<h3 id="__gt__"><code>__gt__</code></h3>
+
+<p>Defined in generated file: <code>python/ops/gen_math_ops.py</code></p>
+<div class="codehilite"><pre><span></span><span class="fm">__gt__</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Returns the truth value of (x &gt; y) element-wise.</p>
+<p><em>NOTE</em>: <a href="../tf/math/greater.html"><code>math.greater</code></a> supports broadcasting. More about broadcasting
+<a href="http://docs.scipy.org/doc/numpy/user/basics.broadcasting.html">here</a></p>
+<h4 id="args_8">Args:</h4>
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>float32</code>, <code>float64</code>, <code>int32</code>, <code>uint8</code>, <code>int16</code>, <code>int8</code>, <code>int64</code>, <code>bfloat16</code>, <code>uint16</code>, <code>half</code>, <code>uint32</code>, <code>uint64</code>.</li>
+<li><b><code>y</code></b>: A <code>Tensor</code>. Must have the same type as <code>x</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns_13">Returns:</h4>
+<p>A <code>Tensor</code> of type <code>bool</code>.</p>
+<h3 id="__invert__"><code>__invert__</code></h3>
+
+<p>Defined in generated file: <code>python/ops/gen_math_ops.py</code></p>
+<div class="codehilite"><pre><span></span><span class="fm">__invert__</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Returns the truth value of NOT x element-wise.</p>
+<h4 id="args_9">Args:</h4>
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code> of type <code>bool</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns_14">Returns:</h4>
+<p>A <code>Tensor</code> of type <code>bool</code>.</p>
+<h3 id="__le__"><code>__le__</code></h3>
+
+<p>Defined in generated file: <code>python/ops/gen_math_ops.py</code></p>
+<div class="codehilite"><pre><span></span><span class="fm">__le__</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Returns the truth value of (x &lt;= y) element-wise.</p>
+<p><em>NOTE</em>: <a href="../tf/math/less_equal.html"><code>math.less_equal</code></a> supports broadcasting. More about broadcasting
+<a href="http://docs.scipy.org/doc/numpy/user/basics.broadcasting.html">here</a></p>
+<h4 id="args_10">Args:</h4>
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>float32</code>, <code>float64</code>, <code>int32</code>, <code>uint8</code>, <code>int16</code>, <code>int8</code>, <code>int64</code>, <code>bfloat16</code>, <code>uint16</code>, <code>half</code>, <code>uint32</code>, <code>uint64</code>.</li>
+<li><b><code>y</code></b>: A <code>Tensor</code>. Must have the same type as <code>x</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns_15">Returns:</h4>
+<p>A <code>Tensor</code> of type <code>bool</code>.</p>
+<h3 id="__lt__"><code>__lt__</code></h3>
+
+<p>Defined in generated file: <code>python/ops/gen_math_ops.py</code></p>
+<div class="codehilite"><pre><span></span><span class="fm">__lt__</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Returns the truth value of (x &lt; y) element-wise.</p>
+<p><em>NOTE</em>: <a href="../tf/math/less.html"><code>math.less</code></a> supports broadcasting. More about broadcasting
+<a href="http://docs.scipy.org/doc/numpy/user/basics.broadcasting.html">here</a></p>
+<h4 id="args_11">Args:</h4>
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>float32</code>, <code>float64</code>, <code>int32</code>, <code>uint8</code>, <code>int16</code>, <code>int8</code>, <code>int64</code>, <code>bfloat16</code>, <code>uint16</code>, <code>half</code>, <code>uint32</code>, <code>uint64</code>.</li>
+<li><b><code>y</code></b>: A <code>Tensor</code>. Must have the same type as <code>x</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns_16">Returns:</h4>
+<p>A <code>Tensor</code> of type <code>bool</code>.</p>
+<h3 id="__mod__"><code>__mod__</code></h3>
+
+<p>Defined in generated file: <code>python/ops/gen_math_ops.py</code></p>
+<div class="codehilite"><pre><span></span><span class="fm">__mod__</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Returns element-wise remainder of division. When <code>x &lt; 0</code> xor <code>y &lt; 0</code> is</p>
+<p>true, this follows Python semantics in that the result here is consistent
+with a flooring divide. E.g. <code>floor(x / y) * y + mod(x, y) = x</code>.</p>
+<p><em>NOTE</em>: <a href="../tf/math/floormod.html"><code>math.floormod</code></a> supports broadcasting. More about broadcasting
+<a href="http://docs.scipy.org/doc/numpy/user/basics.broadcasting.html">here</a></p>
+<h4 id="args_12">Args:</h4>
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>int32</code>, <code>int64</code>, <code>bfloat16</code>, <code>half</code>, <code>float32</code>, <code>float64</code>.</li>
+<li><b><code>y</code></b>: A <code>Tensor</code>. Must have the same type as <code>x</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns_17">Returns:</h4>
+<p>A <code>Tensor</code>. Has the same type as <code>x</code>.</p>
+<h3 id="__mul__"><code>__mul__</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/math_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__mul__</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Returns x * y element-wise.</p>
+<p><em>NOTE</em>: <a href="../tf/math/multiply.html"><code>tf.multiply</code></a> supports broadcasting. More about broadcasting
+<a href="http://docs.scipy.org/doc/numpy/user/basics.broadcasting.html">here</a></p>
+<h4 id="args_13">Args:</h4>
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>bfloat16</code>, <code>half</code>, <code>float32</code>, <code>float64</code>, <code>uint8</code>, <code>int8</code>, <code>uint16</code>, <code>int16</code>, <code>int32</code>, <code>int64</code>, <code>complex64</code>, <code>complex128</code>.</li>
+<li><b><code>y</code></b>: A <code>Tensor</code>. Must have the same type as <code>x</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns_18">Returns:</h4>
+<p>A <code>Tensor</code>. Has the same type as <code>x</code>.</p>
+<h3 id="__neg__"><code>__neg__</code></h3>
+
+<p>Defined in generated file: <code>python/ops/gen_math_ops.py</code></p>
+<div class="codehilite"><pre><span></span><span class="fm">__neg__</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Computes numerical negative value element-wise.</p>
+<p>I.e., \(y = -x\).</p>
+<h4 id="args_14">Args:</h4>
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>bfloat16</code>, <code>half</code>, <code>float32</code>, <code>float64</code>, <code>int32</code>, <code>int64</code>, <code>complex64</code>, <code>complex128</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns_19">Returns:</h4>
+<p>A <code>Tensor</code>. Has the same type as <code>x</code>.</p>
+<p>If <code>x</code> is a <code>SparseTensor</code>, returns
+<code>SparseTensor(x.indices, tf.math.negative(x.values, ...), x.dense_shape)</code></p>
+<h3 id="__nonzero__"><code>__nonzero__</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/ragged/ragged_operators.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">__nonzero__</span><span class="p">(</span><span class="n">_</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Dummy method to prevent a RaggedTensor from being used as a Python bool.</p>
+<h3 id="__or__"><code>__or__</code></h3>
+
+<p>Defined in generated file: <code>python/ops/gen_math_ops.py</code></p>
+<div class="codehilite"><pre><span></span><span class="fm">__or__</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Returns the truth value of x OR y element-wise.</p>
+<p><em>NOTE</em>: <a href="../tf/math/logical_or.html"><code>math.logical_or</code></a> supports broadcasting. More about broadcasting
+<a href="http://docs.scipy.org/doc/numpy/user/basics.broadcasting.html">here</a></p>
+<h4 id="args_15">Args:</h4>
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code> of type <code>bool</code>.</li>
+<li><b><code>y</code></b>: A <code>Tensor</code> of type <code>bool</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns_20">Returns:</h4>
+<p>A <code>Tensor</code> of type <code>bool</code>.</p>
+<h3 id="__pow__"><code>__pow__</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/math_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__pow__</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Computes the power of one value to another.</p>
+<p>Given a tensor <code>x</code> and a tensor <code>y</code>, this operation computes \(x^y\) for
+corresponding elements in <code>x</code> and <code>y</code>. For example:</p>
+<div class="codehilite"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">16</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]])</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>  <span class="c1"># [[256, 65536], [9, 27]]</span>
+</pre></div>
+
+
+<h4 id="args_16">Args:</h4>
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code> of type <code>float16</code>, <code>float32</code>, <code>float64</code>, <code>int32</code>, <code>int64</code>,
+  <code>complex64</code>, or <code>complex128</code>.</li>
+<li><b><code>y</code></b>: A <code>Tensor</code> of type <code>float16</code>, <code>float32</code>, <code>float64</code>, <code>int32</code>, <code>int64</code>,
+  <code>complex64</code>, or <code>complex128</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns_21">Returns:</h4>
+<p>A <code>Tensor</code>.</p>
+<h3 id="__radd__"><code>__radd__</code></h3>
+
+<p>Defined in generated file: <code>python/ops/gen_math_ops.py</code></p>
+<div class="codehilite"><pre><span></span><span class="fm">__radd__</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Returns x + y element-wise.</p>
+<p><em>NOTE</em>: <a href="../tf/math/add.html"><code>math.add</code></a> supports broadcasting. <code>AddN</code> does not. More about broadcasting
+<a href="http://docs.scipy.org/doc/numpy/user/basics.broadcasting.html">here</a></p>
+<h4 id="args_17">Args:</h4>
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>bfloat16</code>, <code>half</code>, <code>float32</code>, <code>float64</code>, <code>uint8</code>, <code>int8</code>, <code>int16</code>, <code>int32</code>, <code>int64</code>, <code>complex64</code>, <code>complex128</code>, <code>string</code>.</li>
+<li><b><code>y</code></b>: A <code>Tensor</code>. Must have the same type as <code>x</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns_22">Returns:</h4>
+<p>A <code>Tensor</code>. Has the same type as <code>x</code>.</p>
+<h3 id="__rand__"><code>__rand__</code></h3>
+
+<p>Defined in generated file: <code>python/ops/gen_math_ops.py</code></p>
+<div class="codehilite"><pre><span></span><span class="fm">__rand__</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Returns the truth value of x AND y element-wise.</p>
+<p><em>NOTE</em>: <a href="../tf/math/logical_and.html"><code>math.logical_and</code></a> supports broadcasting. More about broadcasting
+<a href="http://docs.scipy.org/doc/numpy/user/basics.broadcasting.html">here</a></p>
+<h4 id="args_18">Args:</h4>
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code> of type <code>bool</code>.</li>
+<li><b><code>y</code></b>: A <code>Tensor</code> of type <code>bool</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns_23">Returns:</h4>
+<p>A <code>Tensor</code> of type <code>bool</code>.</p>
+<h3 id="__rdiv__"><code>__rdiv__</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/math_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">__rdiv__</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Divides x / y elementwise (using Python 2 division operator semantics). (deprecated)</p>
+<p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
+Instructions for updating:
+Deprecated in favor of operator or tf.math.divide.</p>
+<p>NOTE: Prefer using the Tensor division operator or tf.divide which obey Python
+3 division operator semantics.</p>
+<p>This function divides <code>x</code> and <code>y</code>, forcing Python 2 semantics. That is, if <code>x</code>
+and <code>y</code> are both integers then the result will be an integer. This is in
+contrast to Python 3, where division with <code>/</code> is always a float while division
+with <code>//</code> is always an integer.</p>
+<h4 id="args_19">Args:</h4>
+<ul>
+<li><b><code>x</code></b>: <code>Tensor</code> numerator of real numeric type.</li>
+<li><b><code>y</code></b>: <code>Tensor</code> denominator of real numeric type.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns_24">Returns:</h4>
+<p><code>x / y</code> returns the quotient of x and y.</p>
+<h3 id="__rfloordiv__"><code>__rfloordiv__</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/math_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__rfloordiv__</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Divides <code>x / y</code> elementwise, rounding toward the most negative integer.</p>
+<p>The same as <a href="../tf/RaggedTensor.html#__div__"><code>tf.compat.v1.div(x,y)</code></a> for integers, but uses
+<code>tf.floor(tf.compat.v1.div(x,y))</code> for
+floating point arguments so that the result is always an integer (though
+possibly an integer represented as floating point).  This op is generated by
+<code>x // y</code> floor division in Python 3 and in Python 2.7 with
+<code>from __future__ import division</code>.</p>
+<p><code>x</code> and <code>y</code> must have the same type, and the result will have the same type
+as well.</p>
+<h4 id="args_20">Args:</h4>
+<ul>
+<li><b><code>x</code></b>: <code>Tensor</code> numerator of real numeric type.</li>
+<li><b><code>y</code></b>: <code>Tensor</code> denominator of real numeric type.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns_25">Returns:</h4>
+<p><code>x / y</code> rounded down.</p>
+<h4 id="raises_3">Raises:</h4>
+<ul>
+<li><b><code>TypeError</code></b>: If the inputs are complex.</li>
+</ul>
+<h3 id="__rmod__"><code>__rmod__</code></h3>
+
+<p>Defined in generated file: <code>python/ops/gen_math_ops.py</code></p>
+<div class="codehilite"><pre><span></span><span class="fm">__rmod__</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Returns element-wise remainder of division. When <code>x &lt; 0</code> xor <code>y &lt; 0</code> is</p>
+<p>true, this follows Python semantics in that the result here is consistent
+with a flooring divide. E.g. <code>floor(x / y) * y + mod(x, y) = x</code>.</p>
+<p><em>NOTE</em>: <a href="../tf/math/floormod.html"><code>math.floormod</code></a> supports broadcasting. More about broadcasting
+<a href="http://docs.scipy.org/doc/numpy/user/basics.broadcasting.html">here</a></p>
+<h4 id="args_21">Args:</h4>
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>int32</code>, <code>int64</code>, <code>bfloat16</code>, <code>half</code>, <code>float32</code>, <code>float64</code>.</li>
+<li><b><code>y</code></b>: A <code>Tensor</code>. Must have the same type as <code>x</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns_26">Returns:</h4>
+<p>A <code>Tensor</code>. Has the same type as <code>x</code>.</p>
+<h3 id="__rmul__"><code>__rmul__</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/math_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__rmul__</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Returns x * y element-wise.</p>
+<p><em>NOTE</em>: <a href="../tf/math/multiply.html"><code>tf.multiply</code></a> supports broadcasting. More about broadcasting
+<a href="http://docs.scipy.org/doc/numpy/user/basics.broadcasting.html">here</a></p>
+<h4 id="args_22">Args:</h4>
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>bfloat16</code>, <code>half</code>, <code>float32</code>, <code>float64</code>, <code>uint8</code>, <code>int8</code>, <code>uint16</code>, <code>int16</code>, <code>int32</code>, <code>int64</code>, <code>complex64</code>, <code>complex128</code>.</li>
+<li><b><code>y</code></b>: A <code>Tensor</code>. Must have the same type as <code>x</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns_27">Returns:</h4>
+<p>A <code>Tensor</code>. Has the same type as <code>x</code>.</p>
+<h3 id="__ror__"><code>__ror__</code></h3>
+
+<p>Defined in generated file: <code>python/ops/gen_math_ops.py</code></p>
+<div class="codehilite"><pre><span></span><span class="fm">__ror__</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Returns the truth value of x OR y element-wise.</p>
+<p><em>NOTE</em>: <a href="../tf/math/logical_or.html"><code>math.logical_or</code></a> supports broadcasting. More about broadcasting
+<a href="http://docs.scipy.org/doc/numpy/user/basics.broadcasting.html">here</a></p>
+<h4 id="args_23">Args:</h4>
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code> of type <code>bool</code>.</li>
+<li><b><code>y</code></b>: A <code>Tensor</code> of type <code>bool</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns_28">Returns:</h4>
+<p>A <code>Tensor</code> of type <code>bool</code>.</p>
+<h3 id="__rpow__"><code>__rpow__</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/math_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__rpow__</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Computes the power of one value to another.</p>
+<p>Given a tensor <code>x</code> and a tensor <code>y</code>, this operation computes \(x^y\) for
+corresponding elements in <code>x</code> and <code>y</code>. For example:</p>
+<div class="codehilite"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">16</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]])</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>  <span class="c1"># [[256, 65536], [9, 27]]</span>
+</pre></div>
+
+
+<h4 id="args_24">Args:</h4>
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code> of type <code>float16</code>, <code>float32</code>, <code>float64</code>, <code>int32</code>, <code>int64</code>,
+  <code>complex64</code>, or <code>complex128</code>.</li>
+<li><b><code>y</code></b>: A <code>Tensor</code> of type <code>float16</code>, <code>float32</code>, <code>float64</code>, <code>int32</code>, <code>int64</code>,
+  <code>complex64</code>, or <code>complex128</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns_29">Returns:</h4>
+<p>A <code>Tensor</code>.</p>
+<h3 id="__rsub__"><code>__rsub__</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/math_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__rsub__</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Returns x - y element-wise.</p>
+<p><em>NOTE</em>: <code>Subtract</code> supports broadcasting. More about broadcasting
+<a href="http://docs.scipy.org/doc/numpy/user/basics.broadcasting.html">here</a></p>
+<h4 id="args_25">Args:</h4>
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>bfloat16</code>, <code>half</code>, <code>float32</code>, <code>float64</code>, <code>uint8</code>, <code>int8</code>, <code>uint16</code>, <code>int16</code>, <code>int32</code>, <code>int64</code>, <code>complex64</code>, <code>complex128</code>.</li>
+<li><b><code>y</code></b>: A <code>Tensor</code>. Must have the same type as <code>x</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns_30">Returns:</h4>
+<p>A <code>Tensor</code>. Has the same type as <code>x</code>.</p>
+<h3 id="__rtruediv__"><code>__rtruediv__</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/math_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__rtruediv__</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Divides x / y elementwise (using Python 3 division operator semantics).</p>
+<p>NOTE: Prefer using the Tensor operator or tf.divide which obey Python
+division operator semantics.</p>
+<p>This function forces Python 3 division operator semantics where all integer
+arguments are cast to floating types first.   This op is generated by normal
+<code>x / y</code> division in Python 3 and in Python 2.7 with
+<code>from __future__ import division</code>.  If you want integer division that rounds
+down, use <code>x // y</code> or <code>tf.math.floordiv</code>.</p>
+<p><code>x</code> and <code>y</code> must have the same numeric type.  If the inputs are floating
+point, the output will have the same type.  If the inputs are integral, the
+inputs are cast to <code>float32</code> for <code>int8</code> and <code>int16</code> and <code>float64</code> for <code>int32</code>
+and <code>int64</code> (matching the behavior of Numpy).</p>
+<h4 id="args_26">Args:</h4>
+<ul>
+<li><b><code>x</code></b>: <code>Tensor</code> numerator of numeric type.</li>
+<li><b><code>y</code></b>: <code>Tensor</code> denominator of numeric type.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns_31">Returns:</h4>
+<p><code>x / y</code> evaluated in floating point.</p>
+<h4 id="raises_4">Raises:</h4>
+<ul>
+<li><b><code>TypeError</code></b>: If <code>x</code> and <code>y</code> have different dtypes.</li>
+</ul>
+<h3 id="__rxor__"><code>__rxor__</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/math_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__rxor__</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;LogicalXor&#39;</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Logical XOR function.</p>
+<p>x ^ y = (x | y) &amp; ~(x &amp; y)</p>
+<p>Inputs are tensor and if the tensors contains more than one element, an
+element-wise logical XOR is computed.</p>
+<h4 id="usage">Usage:</h4>
+<div class="codehilite"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">],</span> <span class="n">dtype</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">bool</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">],</span> <span class="n">dtype</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">bool</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">logical_xor</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;LogicalXor&quot;</span><span class="p">)</span>
+<span class="c1">#  here z = [False  True  True False]</span>
+</pre></div>
+
+
+<h4 id="args_27">Args:</h4>
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code> type bool.</li>
+<li><b><code>y</code></b>: A <code>Tensor</code> of type bool.</li>
+</ul>
+<h4 id="returns_32">Returns:</h4>
+<p>A <code>Tensor</code> of type bool with the same size as that of x or y.</p>
+<h3 id="__sub__"><code>__sub__</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/math_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__sub__</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Returns x - y element-wise.</p>
+<p><em>NOTE</em>: <code>Subtract</code> supports broadcasting. More about broadcasting
+<a href="http://docs.scipy.org/doc/numpy/user/basics.broadcasting.html">here</a></p>
+<h4 id="args_28">Args:</h4>
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>bfloat16</code>, <code>half</code>, <code>float32</code>, <code>float64</code>, <code>uint8</code>, <code>int8</code>, <code>uint16</code>, <code>int16</code>, <code>int32</code>, <code>int64</code>, <code>complex64</code>, <code>complex128</code>.</li>
+<li><b><code>y</code></b>: A <code>Tensor</code>. Must have the same type as <code>x</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns_33">Returns:</h4>
+<p>A <code>Tensor</code>. Has the same type as <code>x</code>.</p>
+<h3 id="__truediv__"><code>__truediv__</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/math_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__truediv__</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Divides x / y elementwise (using Python 3 division operator semantics).</p>
+<p>NOTE: Prefer using the Tensor operator or tf.divide which obey Python
+division operator semantics.</p>
+<p>This function forces Python 3 division operator semantics where all integer
+arguments are cast to floating types first.   This op is generated by normal
+<code>x / y</code> division in Python 3 and in Python 2.7 with
+<code>from __future__ import division</code>.  If you want integer division that rounds
+down, use <code>x // y</code> or <code>tf.math.floordiv</code>.</p>
+<p><code>x</code> and <code>y</code> must have the same numeric type.  If the inputs are floating
+point, the output will have the same type.  If the inputs are integral, the
+inputs are cast to <code>float32</code> for <code>int8</code> and <code>int16</code> and <code>float64</code> for <code>int32</code>
+and <code>int64</code> (matching the behavior of Numpy).</p>
+<h4 id="args_29">Args:</h4>
+<ul>
+<li><b><code>x</code></b>: <code>Tensor</code> numerator of numeric type.</li>
+<li><b><code>y</code></b>: <code>Tensor</code> denominator of numeric type.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns_34">Returns:</h4>
+<p><code>x / y</code> evaluated in floating point.</p>
+<h4 id="raises_5">Raises:</h4>
+<ul>
+<li><b><code>TypeError</code></b>: If <code>x</code> and <code>y</code> have different dtypes.</li>
+</ul>
+<h3 id="__xor__"><code>__xor__</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/math_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__xor__</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;LogicalXor&#39;</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Logical XOR function.</p>
+<p>x ^ y = (x | y) &amp; ~(x &amp; y)</p>
+<p>Inputs are tensor and if the tensors contains more than one element, an
+element-wise logical XOR is computed.</p>
+<h4 id="usage_1">Usage:</h4>
+<div class="codehilite"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">],</span> <span class="n">dtype</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">bool</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">],</span> <span class="n">dtype</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">bool</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">logical_xor</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;LogicalXor&quot;</span><span class="p">)</span>
+<span class="c1">#  here z = [False  True  True False]</span>
+</pre></div>
+
+
+<h4 id="args_30">Args:</h4>
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code> type bool.</li>
+<li><b><code>y</code></b>: A <code>Tensor</code> of type bool.</li>
+</ul>
+<h4 id="returns_35">Returns:</h4>
+<p>A <code>Tensor</code> of type bool with the same size as that of x or y.</p>
+<h3 id="bounding_shape"><code>bounding_shape</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/ragged/ragged_tensor.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">bounding_shape</span><span class="p">(</span>
+    <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">out_type</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Returns the tight bounding box shape for this <code>RaggedTensor</code>.</p>
+<h4 id="args_31">Args:</h4>
+<ul>
+<li><b><code>axis</code></b>: An integer scalar or vector indicating which axes to return the
+  bounding box for.  If not specified, then the full bounding box is
+  returned.</li>
+<li><b><code>name</code></b>: A name prefix for the returned tensor (optional).</li>
+<li><b><code>out_type</code></b>: <code>dtype</code> for the returned tensor.  Defaults to
+  <code>self.row_splits.dtype</code>.</li>
+</ul>
+<h4 id="returns_36">Returns:</h4>
+<p>An integer <code>Tensor</code> (<code>dtype=self.row_splits.dtype</code>).  If <code>axis</code> is not
+specified, then <code>output</code> is a vector with
+<code>output.shape=[self.shape.ndims]</code>.  If <code>axis</code> is a scalar, then the
+<code>output</code> is a scalar.  If <code>axis</code> is a vector, then <code>output</code> is a vector,
+where <code>output[i]</code> is the bounding size for dimension <code>axis[i]</code>.</p>
+<h4 id="example_5">Example:</h4>
+<p>```python</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>rt = ragged.constant([[1, 2, 3, 4], [5], [], [6, 7, 8, 9], [10]])
+rt.bounding_shape()
+  [5, 4]
+  ```</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h3 id="consumers"><code>consumers</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/ragged/ragged_tensor.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">consumers</span><span class="p">()</span>
+</pre></div>
+
+
+<h3 id="from_nested_row_lengths"><code>from_nested_row_lengths</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/ragged/ragged_tensor.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="nd">@classmethod</span>
+<span class="n">from_nested_row_lengths</span><span class="p">(</span>
+    <span class="bp">cls</span><span class="p">,</span>
+    <span class="n">flat_values</span><span class="p">,</span>
+    <span class="n">nested_row_lengths</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">validate</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Creates a <code>RaggedTensor</code> from a nested list of <code>row_lengths</code> tensors.</p>
+<h4 id="equivalent-to">Equivalent to:</h4>
+<div class="codehilite"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">flat_values</span>
+<span class="k">for</span> <span class="n">row_lengths</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">nested_row_lengths</span><span class="p">):</span>
+  <span class="n">result</span> <span class="o">=</span> <span class="n">from_row_lengths</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">row_lengths</span><span class="p">)</span>
+</pre></div>
+
+
+<h4 id="args_32">Args:</h4>
+<ul>
+<li><b><code>flat_values</code></b>: A potentially ragged tensor.</li>
+<li><b><code>nested_row_lengths</code></b>: A list of 1-D integer tensors.  The <code>i</code>th tensor is
+  used as the <code>row_lengths</code> for the <code>i</code>th ragged dimension.</li>
+<li><b><code>name</code></b>: A name prefix for the RaggedTensor (optional).</li>
+<li><b><code>validate</code></b>: If true, then use assertions to check that the arguments form
+  a valid <code>RaggedTensor</code>.</li>
+</ul>
+<h4 id="returns_37">Returns:</h4>
+<p>A <code>RaggedTensor</code> (or <code>flat_values</code> if <code>nested_row_lengths</code> is empty).</p>
+<h3 id="from_nested_row_splits"><code>from_nested_row_splits</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/ragged/ragged_tensor.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="nd">@classmethod</span>
+<span class="n">from_nested_row_splits</span><span class="p">(</span>
+    <span class="bp">cls</span><span class="p">,</span>
+    <span class="n">flat_values</span><span class="p">,</span>
+    <span class="n">nested_row_splits</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">validate</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Creates a <code>RaggedTensor</code> from a nested list of <code>row_splits</code> tensors.</p>
+<h4 id="equivalent-to_1">Equivalent to:</h4>
+<div class="codehilite"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">flat_values</span>
+<span class="k">for</span> <span class="n">row_splits</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">nested_row_splits</span><span class="p">):</span>
+  <span class="n">result</span> <span class="o">=</span> <span class="n">from_row_splits</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">row_splits</span><span class="p">)</span>
+</pre></div>
+
+
+<h4 id="args_33">Args:</h4>
+<ul>
+<li><b><code>flat_values</code></b>: A potentially ragged tensor.</li>
+<li><b><code>nested_row_splits</code></b>: A list of 1-D integer tensors.  The <code>i</code>th tensor is
+  used as the <code>row_splits</code> for the <code>i</code>th ragged dimension.</li>
+<li><b><code>name</code></b>: A name prefix for the RaggedTensor (optional).</li>
+<li><b><code>validate</code></b>: If true, then use assertions to check that the arguments form a
+  valid <code>RaggedTensor</code>.</li>
+</ul>
+<h4 id="returns_38">Returns:</h4>
+<p>A <code>RaggedTensor</code> (or <code>flat_values</code> if <code>nested_row_splits</code> is empty).</p>
+<h3 id="from_nested_value_rowids"><code>from_nested_value_rowids</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/ragged/ragged_tensor.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="nd">@classmethod</span>
+<span class="n">from_nested_value_rowids</span><span class="p">(</span>
+    <span class="bp">cls</span><span class="p">,</span>
+    <span class="n">flat_values</span><span class="p">,</span>
+    <span class="n">nested_value_rowids</span><span class="p">,</span>
+    <span class="n">nested_nrows</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">validate</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Creates a <code>RaggedTensor</code> from a nested list of <code>value_rowids</code> tensors.</p>
+<h4 id="equivalent-to_2">Equivalent to:</h4>
+<div class="codehilite"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">flat_values</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">rowids</span><span class="p">,</span> <span class="n">nrows</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">nested_value_rowids</span><span class="p">,</span> <span class="n">nested_nrows</span><span class="p">)):</span>
+  <span class="n">result</span> <span class="o">=</span> <span class="n">from_value_rowids</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">rowids</span><span class="p">,</span> <span class="n">nrows</span><span class="p">)</span>
+</pre></div>
+
+
+<h4 id="args_34">Args:</h4>
+<ul>
+<li><b><code>flat_values</code></b>: A potentially ragged tensor.</li>
+<li><b><code>nested_value_rowids</code></b>: A list of 1-D integer tensors.  The <code>i</code>th tensor is
+  used as the <code>value_rowids</code> for the <code>i</code>th ragged dimension.</li>
+<li><b><code>nested_nrows</code></b>: A list of integer scalars.  The <code>i</code>th scalar is used as the
+  <code>nrows</code> for the <code>i</code>th ragged dimension.</li>
+<li><b><code>name</code></b>: A name prefix for the RaggedTensor (optional).</li>
+<li><b><code>validate</code></b>: If true, then use assertions to check that the arguments form
+  a valid <code>RaggedTensor</code>.</li>
+</ul>
+<h4 id="returns_39">Returns:</h4>
+<p>A <code>RaggedTensor</code> (or <code>flat_values</code> if <code>nested_value_rowids</code> is empty).</p>
+<h4 id="raises_6">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: If <code>len(nested_values_rowids) != len(nested_nrows)</code>.</li>
+</ul>
+<h3 id="from_row_lengths"><code>from_row_lengths</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/ragged/ragged_tensor.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="nd">@classmethod</span>
+<span class="n">from_row_lengths</span><span class="p">(</span>
+    <span class="bp">cls</span><span class="p">,</span>
+    <span class="n">values</span><span class="p">,</span>
+    <span class="n">row_lengths</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">validate</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Creates a <code>RaggedTensor</code> with rows partitioned by <code>row_lengths</code>.</p>
+<p>The returned <code>RaggedTensor</code> corresponds with the python list defined by:</p>
+<div class="codehilite"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="p">[[</span><span class="n">values</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span><span class="p">)]</span>
+          <span class="k">for</span> <span class="n">length</span> <span class="ow">in</span> <span class="n">row_lengths</span><span class="p">]</span>
+</pre></div>
+
+
+<h4 id="args_35">Args:</h4>
+<ul>
+<li><b><code>values</code></b>: A potentially ragged tensor with shape <code>[nvals, ...]</code>.</li>
+<li><b><code>row_lengths</code></b>: A 1-D integer tensor with shape <code>[nrows]</code>.  Must be
+  nonnegative.  <code>sum(row_lengths)</code> must be <code>nvals</code>.</li>
+<li><b><code>name</code></b>: A name prefix for the RaggedTensor (optional).</li>
+<li><b><code>validate</code></b>: If true, then use assertions to check that the arguments form
+  a valid <code>RaggedTensor</code>.</li>
+</ul>
+<h4 id="returns_40">Returns:</h4>
+<p>A <code>RaggedTensor</code>.  <code>result.rank = values.rank + 1</code>.
+<code>result.ragged_rank = values.ragged_rank + 1</code>.</p>
+<h4 id="example_6">Example:</h4>
+<p>```python</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>print(tf.RaggedTensor.from_row_lengths(
+  ...     values=[3, 1, 4, 1, 5, 9, 2, 6],
+  ...     row_lengths=[4, 0, 3, 1, 0]))
+  <tf.RaggedTensor [[3, 1, 4, 1], [], [5, 9, 2], [6], []])>
+  ```</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h3 id="from_row_limits"><code>from_row_limits</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/ragged/ragged_tensor.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="nd">@classmethod</span>
+<span class="n">from_row_limits</span><span class="p">(</span>
+    <span class="bp">cls</span><span class="p">,</span>
+    <span class="n">values</span><span class="p">,</span>
+    <span class="n">row_limits</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">validate</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Creates a <code>RaggedTensor</code> with rows partitioned by <code>row_limits</code>.</p>
+<p>Equivalent to: <code>from_row_splits(values, concat([0, row_limits]))</code>.</p>
+<h4 id="args_36">Args:</h4>
+<ul>
+<li><b><code>values</code></b>: A potentially ragged tensor with shape <code>[nvals, ...]</code>.</li>
+<li><b><code>row_limits</code></b>: A 1-D integer tensor with shape <code>[nrows]</code>.  Must be sorted in
+  ascending order.  If <code>nrows&gt;0</code>, then <code>row_limits[-1]</code> must be <code>nvals</code>.</li>
+<li><b><code>name</code></b>: A name prefix for the RaggedTensor (optional).</li>
+<li><b><code>validate</code></b>: If true, then use assertions to check that the arguments form
+  a valid <code>RaggedTensor</code>.</li>
+</ul>
+<h4 id="returns_41">Returns:</h4>
+<p>A <code>RaggedTensor</code>.  <code>result.rank = values.rank + 1</code>.
+<code>result.ragged_rank = values.ragged_rank + 1</code>.</p>
+<h4 id="example_7">Example:</h4>
+<p>```python</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>print(tf.RaggedTensor.from_row_limits(
+  ...     values=[3, 1, 4, 1, 5, 9, 2, 6],
+  ...     row_limits=[4, 4, 7, 8, 8]))
+  <tf.RaggedTensor [[3, 1, 4, 1], [], [5, 9, 2], [6], []]>
+  ```</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h3 id="from_row_splits"><code>from_row_splits</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/ragged/ragged_tensor.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="nd">@classmethod</span>
+<span class="n">from_row_splits</span><span class="p">(</span>
+    <span class="bp">cls</span><span class="p">,</span>
+    <span class="n">values</span><span class="p">,</span>
+    <span class="n">row_splits</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">validate</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Creates a <code>RaggedTensor</code> with rows partitioned by <code>row_splits</code>.</p>
+<p>The returned <code>RaggedTensor</code> corresponds with the python list defined by:</p>
+<div class="codehilite"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="p">[</span><span class="n">values</span><span class="p">[</span><span class="n">row_splits</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span><span class="n">row_splits</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]]</span>
+          <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">row_splits</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)]</span>
+</pre></div>
+
+
+<h4 id="args_37">Args:</h4>
+<ul>
+<li><b><code>values</code></b>: A potentially ragged tensor with shape <code>[nvals, ...]</code>.</li>
+<li><b><code>row_splits</code></b>: A 1-D integer tensor with shape <code>[nrows+1]</code>.  Must not be
+  empty, and must be sorted in ascending order.  <code>row_splits[0]</code> must be
+  zero and <code>row_splits[-1]</code> must be <code>nvals</code>.</li>
+<li><b><code>name</code></b>: A name prefix for the RaggedTensor (optional).</li>
+<li><b><code>validate</code></b>: If true, then use assertions to check that the arguments form
+  a valid <code>RaggedTensor</code>.</li>
+</ul>
+<h4 id="returns_42">Returns:</h4>
+<p>A <code>RaggedTensor</code>.  <code>result.rank = values.rank + 1</code>.
+<code>result.ragged_rank = values.ragged_rank + 1</code>.</p>
+<h4 id="raises_7">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: If <code>row_splits</code> is an empty list.</li>
+</ul>
+<h4 id="example_8">Example:</h4>
+<p>```python</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>print(tf.RaggedTensor.from_row_splits(
+  ...     values=[3, 1, 4, 1, 5, 9, 2, 6],
+  ...     row_splits=[0, 4, 4, 7, 8, 8]))
+  <tf.RaggedTensor [[3, 1, 4, 1], [], [5, 9, 2], [6], []]>
+  ```</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h3 id="from_row_starts"><code>from_row_starts</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/ragged/ragged_tensor.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="nd">@classmethod</span>
+<span class="n">from_row_starts</span><span class="p">(</span>
+    <span class="bp">cls</span><span class="p">,</span>
+    <span class="n">values</span><span class="p">,</span>
+    <span class="n">row_starts</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">validate</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Creates a <code>RaggedTensor</code> with rows partitioned by <code>row_starts</code>.</p>
+<p>Equivalent to: <code>from_row_splits(values, concat([row_starts, nvals]))</code>.</p>
+<h4 id="args_38">Args:</h4>
+<ul>
+<li><b><code>values</code></b>: A potentially ragged tensor with shape <code>[nvals, ...]</code>.</li>
+<li><b><code>row_starts</code></b>: A 1-D integer tensor with shape <code>[nrows]</code>.  Must be
+  nonnegative and sorted in ascending order.  If <code>nrows&gt;0</code>, then
+  <code>row_starts[0]</code> must be zero.</li>
+<li><b><code>name</code></b>: A name prefix for the RaggedTensor (optional).</li>
+<li><b><code>validate</code></b>: If true, then use assertions to check that the arguments form
+  a valid <code>RaggedTensor</code>.</li>
+</ul>
+<h4 id="returns_43">Returns:</h4>
+<p>A <code>RaggedTensor</code>.  <code>result.rank = values.rank + 1</code>.
+<code>result.ragged_rank = values.ragged_rank + 1</code>.</p>
+<h4 id="example_9">Example:</h4>
+<p>```python</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>print(tf.RaggedTensor.from_row_starts(
+  ...     values=[3, 1, 4, 1, 5, 9, 2, 6],
+  ...     row_starts=[0, 4, 4, 7, 8]))
+  <tf.RaggedTensor [[3, 1, 4, 1], [], [5, 9, 2], [6], []]>
+  ```</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h3 id="from_sparse"><code>from_sparse</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/ragged/ragged_tensor.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="nd">@classmethod</span>
+<span class="n">from_sparse</span><span class="p">(</span>
+    <span class="bp">cls</span><span class="p">,</span>
+    <span class="n">st_input</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">row_splits_dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">int64</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Converts a 2D <a href="../tf/sparse/SparseTensor.html"><code>tf.SparseTensor</code></a> to a <code>RaggedTensor</code>.</p>
+<p>Each row of the <code>output</code> <code>RaggedTensor</code> will contain the explicit values
+from the same row in <code>st_input</code>.  <code>st_input</code> must be ragged-right.  If not
+it is not ragged-right, then an error will be generated.</p>
+<h4 id="example_10">Example:</h4>
+<div class="codehilite"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">st</span> <span class="o">=</span> <span class="n">SparseTensor</span><span class="p">(</span><span class="n">indices</span><span class="o">=</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">]],</span>
+<span class="o">...</span>                   <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+<span class="o">...</span>                   <span class="n">dense_shape</span><span class="o">=</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">rt</span><span class="o">.</span><span class="n">RaggedTensor</span><span class="o">.</span><span class="n">from_sparse</span><span class="p">(</span><span class="n">st</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="p">[],</span> <span class="p">[</span><span class="mi">5</span><span class="p">]]</span>
+</pre></div>
+
+
+<p>Currently, only two-dimensional <code>SparseTensors</code> are supported.</p>
+<h4 id="args_39">Args:</h4>
+<ul>
+<li><b><code>st_input</code></b>: The sparse tensor to convert.  Must have rank 2.</li>
+<li><b><code>name</code></b>: A name prefix for the returned tensors (optional).</li>
+<li><b><code>row_splits_dtype</code></b>: <code>dtype</code> for the returned <code>RaggedTensor</code>'s <code>row_splits</code>
+  tensor.  One of <a href="../tf.html#int32"><code>tf.int32</code></a> or <a href="../tf.html#int64"><code>tf.int64</code></a>.</li>
+</ul>
+<h4 id="returns_44">Returns:</h4>
+<p>A <code>RaggedTensor</code> with the same values as <code>st_input</code>.
+<code>output.ragged_rank = rank(st_input) - 1</code>.
+<code>output.shape = [st_input.dense_shape[0], None]</code>.</p>
+<h4 id="raises_8">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: If the number of dimensions in <code>st_input</code> is not known
+  statically, or is not two.</li>
+</ul>
+<h3 id="from_tensor"><code>from_tensor</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/ragged/ragged_tensor.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="nd">@classmethod</span>
+<span class="n">from_tensor</span><span class="p">(</span>
+    <span class="bp">cls</span><span class="p">,</span>
+    <span class="n">tensor</span><span class="p">,</span>
+    <span class="n">lengths</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">padding</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">ragged_rank</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">row_splits_dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">int64</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Converts a <a href="../tf/Tensor.html"><code>tf.Tensor</code></a> into a <code>RaggedTensor</code>.</p>
+<p>The set of absent/default values may be specified using a vector of lengths
+or a padding value (but not both).  If <code>lengths</code> is specified, then the
+output tensor will satisfy <code>output[row] = tensor[row][:lengths[row]]</code>. If
+'lengths' is a list of lists or tuple of lists, those lists will be used
+as nested row lengths. If <code>padding</code> is specified, then any row <em>suffix</em>
+consisting entirely of <code>padding</code> will be excluded from the returned
+<code>RaggedTensor</code>.  If neither <code>lengths</code> nor <code>padding</code> is specified, then the
+returned <code>RaggedTensor</code> will have no absent/default values.</p>
+<h4 id="examples_2">Examples:</h4>
+<div class="codehilite"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">dt</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">tf</span><span class="o">.</span><span class="n">RaggedTensor</span><span class="o">.</span><span class="n">from_tensor</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="n">tf</span><span class="o">.</span><span class="n">RaggedTensor</span> <span class="p">[[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">tf</span><span class="o">.</span><span class="n">RaggedTensor</span><span class="o">.</span><span class="n">from_tensor</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="n">lengths</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="o">&lt;</span><span class="n">tf</span><span class="o">.</span><span class="n">RaggedTensor</span> <span class="p">[[</span><span class="mi">5</span><span class="p">],</span> <span class="p">[],</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]</span><span class="o">&gt;</span>
+</pre></div>
+
+
+<blockquote>
+<blockquote>
+<blockquote>
+<p>tf.RaggedTensor.from_tensor(dt, padding=0)
+<tf.RaggedTensor [[5, 7], [0, 3], [6]]></p>
+</blockquote>
+</blockquote>
+</blockquote>
+<div class="codehilite"><pre><span></span>
+</pre></div>
+
+
+<blockquote>
+<blockquote>
+<blockquote>
+<p>dt = tf.constant([[[5, 0], [7, 0], [0, 0]],
+                      [[0, 0], [3, 0], [0, 0]],
+                      [[6, 0], [0, 0], [0, 0]]])
+tf.RaggedTensor.from_tensor(dt, lengths=([2, 0, 3], [1, 1, 2, 0, 1]))
+<tf.RaggedTensor [[[5], [7]], [], [[6, 0], [], [0]]]></p>
+</blockquote>
+</blockquote>
+</blockquote>
+<div class="codehilite"><pre><span></span>
+</pre></div>
+
+
+<h4 id="args_40">Args:</h4>
+<ul>
+<li><b><code>tensor</code></b>: The <code>Tensor</code> to convert.  Must have rank <code>ragged_rank + 1</code> or
+  higher.</li>
+<li><b><code>lengths</code></b>: An optional set of row lengths, specified using a 1-D integer
+  <code>Tensor</code> whose length is equal to <code>tensor.shape[0]</code> (the number of rows
+  in <code>tensor</code>).  If specified, then <code>output[row]</code> will contain
+  <code>tensor[row][:lengths[row]]</code>.  Negative lengths are treated as zero. You
+  may optionally pass a list or tuple of lengths to this argument, which
+  will be used as nested row lengths to construct a ragged tensor with
+  multiple ragged dimensions.</li>
+<li><b><code>padding</code></b>: An optional padding value.  If specified, then any row suffix
+  consisting entirely of <code>padding</code> will be excluded from the returned
+  RaggedTensor.  <code>padding</code> is a <code>Tensor</code> with the same dtype as <code>tensor</code>
+  and with <code>shape=tensor.shape[ragged_rank + 1:]</code>.</li>
+<li><b><code>ragged_rank</code></b>: Integer specifying the ragged rank for the returned
+  <code>RaggedTensor</code>.  Must be greater than zero.</li>
+<li><b><code>name</code></b>: A name prefix for the returned tensors (optional).</li>
+<li><b><code>row_splits_dtype</code></b>: <code>dtype</code> for the returned <code>RaggedTensor</code>'s <code>row_splits</code>
+  tensor.  One of <a href="../tf.html#int32"><code>tf.int32</code></a> or <a href="../tf.html#int64"><code>tf.int64</code></a>.</li>
+</ul>
+<h4 id="returns_45">Returns:</h4>
+<p>A <code>RaggedTensor</code> with the specified <code>ragged_rank</code>.  The shape of the
+returned ragged tensor is compatible with the shape of <code>tensor</code>.</p>
+<h4 id="raises_9">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: If both <code>lengths</code> and <code>padding</code> are specified.</li>
+</ul>
+<h3 id="from_value_rowids"><code>from_value_rowids</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/ragged/ragged_tensor.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="nd">@classmethod</span>
+<span class="n">from_value_rowids</span><span class="p">(</span>
+    <span class="bp">cls</span><span class="p">,</span>
+    <span class="n">values</span><span class="p">,</span>
+    <span class="n">value_rowids</span><span class="p">,</span>
+    <span class="n">nrows</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">validate</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Creates a <code>RaggedTensor</code> with rows partitioned by <code>value_rowids</code>.</p>
+<p>The returned <code>RaggedTensor</code> corresponds with the python list defined by:</p>
+<div class="codehilite"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="p">[[</span><span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">))</span> <span class="k">if</span> <span class="n">value_rowids</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">row</span><span class="p">]</span>
+          <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nrows</span><span class="p">)]</span>
+</pre></div>
+
+
+<h4 id="args_41">Args:</h4>
+<ul>
+<li><b><code>values</code></b>: A potentially ragged tensor with shape <code>[nvals, ...]</code>.</li>
+<li><b><code>value_rowids</code></b>: A 1-D integer tensor with shape <code>[nvals]</code>, which corresponds
+  one-to-one with <code>values</code>, and specifies each value's row index.  Must be
+  nonnegative, and must be sorted in ascending order.</li>
+<li><b><code>nrows</code></b>: An integer scalar specifying the number of rows.  This should be
+  specified if the <code>RaggedTensor</code> may containing empty training rows. Must
+  be greater than <code>value_rowids[-1]</code> (or zero if <code>value_rowids</code> is empty).
+  Defaults to <code>value_rowids[-1]</code> (or zero if <code>value_rowids</code> is empty).</li>
+<li><b><code>name</code></b>: A name prefix for the RaggedTensor (optional).</li>
+<li><b><code>validate</code></b>: If true, then use assertions to check that the arguments form
+  a valid <code>RaggedTensor</code>.</li>
+</ul>
+<h4 id="returns_46">Returns:</h4>
+<p>A <code>RaggedTensor</code>.  <code>result.rank = values.rank + 1</code>.
+<code>result.ragged_rank = values.ragged_rank + 1</code>.</p>
+<h4 id="raises_10">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: If <code>nrows</code> is incompatible with <code>value_rowids</code>.</li>
+</ul>
+<h4 id="example_11">Example:</h4>
+<p>```python</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>print(tf.RaggedTensor.from_value_rowids(
+  ...     values=[3, 1, 4, 1, 5, 9, 2, 6],
+  ...     value_rowids=[0, 0, 0, 0, 2, 2, 2, 3],
+  ...     nrows=5))
+  <tf.RaggedTensor [[3, 1, 4, 1], [], [5, 9, 2], [6], []]>
+  ```</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h3 id="nested_row_lengths"><code>nested_row_lengths</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/ragged/ragged_tensor.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">nested_row_lengths</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Returns a tuple containing the row_lengths for all ragged dimensions.</p>
+<p><code>rt.nested_row_lengths()</code> is a tuple containing the <code>row_lengths</code> tensors
+for all ragged dimensions in <code>rt</code>, ordered from outermost to innermost.</p>
+<h4 id="args_42">Args:</h4>
+<ul>
+<li><b><code>name</code></b>: A name prefix for the returned tensors (optional).</li>
+</ul>
+<h4 id="returns_47">Returns:</h4>
+<p>A <code>tuple</code> of 1-D integer <code>Tensors</code>.  The length of the tuple is equal to
+<code>self.ragged_rank</code>.</p>
+<h3 id="nested_value_rowids"><code>nested_value_rowids</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/ragged/ragged_tensor.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">nested_value_rowids</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Returns a tuple containing the value_rowids for all ragged dimensions.</p>
+<p><code>rt.nested_value_rowids</code> is a tuple containing the <code>value_rowids</code> tensors
+for
+all ragged dimensions in <code>rt</code>, ordered from outermost to innermost.  In
+particular, <code>rt.nested_value_rowids = (rt.value_rowids(),) + value_ids</code>
+where:</p>
+<div class="codehilite"><pre><span></span><span class="o">*</span> <span class="ss">`value_ids = ()`</span> <span class="k">if</span> <span class="ss">`rt.values`</span> <span class="k">is</span> <span class="n">a</span> <span class="ss">`Tensor`</span><span class="p">.</span>
+<span class="o">*</span> <span class="ss">`value_ids = rt.values.nested_value_rowids`</span> <span class="n">otherwise</span><span class="p">.</span>
+</pre></div>
+
+
+<h4 id="args_43">Args:</h4>
+<ul>
+<li><b><code>name</code></b>: A name prefix for the returned tensors (optional).</li>
+</ul>
+<h4 id="returns_48">Returns:</h4>
+<p>A <code>tuple</code> of 1-D integer <code>Tensor</code>s.</p>
+<h4 id="example_12">Example:</h4>
+<p>```python</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>rt = ragged.constant([[[[3, 1, 4, 1], [], [5, 9, 2]], [], [[6], []]]])
+for i, ids in enumerate(rt.nested_value_rowids()):
+  ...   print('row ids for dimension %d: %s' % (i+1, ids))
+  row ids for dimension 1: [0]
+  row ids for dimension 2: [0, 0, 0, 2, 2]
+  row ids for dimension 3: [0, 0, 0, 0, 2, 2, 2, 3]
+  ```</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h3 id="nrows"><code>nrows</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/ragged/ragged_tensor.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">nrows</span><span class="p">(</span>
+    <span class="n">out_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Returns the number of rows in this ragged tensor.</p>
+<p>I.e., the size of the outermost dimension of the tensor.</p>
+<h4 id="args_44">Args:</h4>
+<ul>
+<li><b><code>out_type</code></b>: <code>dtype</code> for the returned tensor.  Defaults to
+  <code>self.row_splits.dtype</code>.</li>
+<li><b><code>name</code></b>: A name prefix for the returned tensor (optional).</li>
+</ul>
+<h4 id="returns_49">Returns:</h4>
+<p>A scalar <code>Tensor</code> with dtype <code>out_type</code>.</p>
+<h4 id="example_13">Example:</h4>
+<p>```python</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>rt = ragged.constant([[3, 1, 4, 1], [], [5, 9, 2], [6], []])
+rt.nrows()  # rt has 5 rows.
+  5
+  ```</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h3 id="row_lengths"><code>row_lengths</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/ragged/ragged_tensor.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">row_lengths</span><span class="p">(</span>
+    <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Returns the lengths of the rows in this ragged tensor.</p>
+<p><code>rt.row_lengths()[i]</code> indicates the number of values in the
+<code>i</code>th row of <code>rt</code>.</p>
+<h4 id="args_45">Args:</h4>
+<ul>
+<li><b><code>axis</code></b>: An integer constant indicating the axis whose row lengths should be
+  returned.</li>
+<li><b><code>name</code></b>: A name prefix for the returned tensor (optional).</li>
+</ul>
+<h4 id="returns_50">Returns:</h4>
+<p>A potentially ragged integer Tensor with shape <code>self.shape[:axis]</code>.</p>
+<h4 id="raises_11">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: If <code>axis</code> is out of bounds.</li>
+</ul>
+<h4 id="example_14">Example:</h4>
+<p>```python</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>rt = ragged.constant([[[3, 1, 4], [1]], [], [[5, 9], [2]], [[6]], []])
+rt.row_lengths(rt)  # lengths of rows in rt
+  tf.Tensor([2, 0, 2, 1, 0])
+rt.row_lengths(axis=2)  # lengths of axis=2 rows.
+  <tf.RaggedTensor [[3, 1], [], [2, 1], [1], []]>
+  ```</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h3 id="row_limits"><code>row_limits</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/ragged/ragged_tensor.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">row_limits</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Returns the limit indices for rows in this ragged tensor.</p>
+<p>These indices specify where the values for each row end in
+<code>self.values</code>.  <code>rt.row_limits(self)</code> is equal to <code>rt.row_splits[:-1]</code>.</p>
+<h4 id="args_46">Args:</h4>
+<ul>
+<li><b><code>name</code></b>: A name prefix for the returned tensor (optional).</li>
+</ul>
+<h4 id="returns_51">Returns:</h4>
+<p>A 1-D integer Tensor with shape <code>[nrows]</code>.
+The returned tensor is nonnegative, and is sorted in ascending order.</p>
+<h4 id="example_15">Example:</h4>
+<p>```python</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>rt = ragged.constant([[3, 1, 4, 1], [], [5, 9, 2], [6], []])
+rt.values
+  tf.Tensor([3, 1, 4, 1, 5, 9, 2, 6])
+rt.row_limits()  # indices of row limits in rt.values
+  tf.Tensor([4, 4, 7, 8, 8])
+  ```</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h3 id="row_starts"><code>row_starts</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/ragged/ragged_tensor.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">row_starts</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Returns the start indices for rows in this ragged tensor.</p>
+<p>These indices specify where the values for each row begin in
+<code>self.values</code>.  <code>rt.row_starts()</code> is equal to <code>rt.row_splits[:-1]</code>.</p>
+<h4 id="args_47">Args:</h4>
+<ul>
+<li><b><code>name</code></b>: A name prefix for the returned tensor (optional).</li>
+</ul>
+<h4 id="returns_52">Returns:</h4>
+<p>A 1-D integer Tensor with shape <code>[nrows]</code>.
+The returned tensor is nonnegative, and is sorted in ascending order.</p>
+<h4 id="example_16">Example:</h4>
+<p>```python</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>rt = ragged.constant([[3, 1, 4, 1], [], [5, 9, 2], [6], []])
+rt.values
+  tf.Tensor([3, 1, 4, 1, 5, 9, 2, 6])
+rt.row_starts()  # indices of row starts in rt.values
+  tf.Tensor([0, 4, 4, 7, 8])
+  ```</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h3 id="to_list"><code>to_list</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/ragged/ragged_tensor.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">to_list</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Returns a nested Python <code>list</code> with the values for this <code>RaggedTensor</code>.</p>
+<p>Requires that <code>rt</code> was constructed in eager execution mode.</p>
+<h4 id="returns_53">Returns:</h4>
+<p>A nested Python <code>list</code>.</p>
+<h3 id="to_sparse"><code>to_sparse</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/ragged/ragged_tensor.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">to_sparse</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Converts this <code>RaggedTensor</code> into a <a href="../tf/sparse/SparseTensor.html"><code>tf.SparseTensor</code></a>.</p>
+<h4 id="example_17">Example:</h4>
+<div class="codehilite"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">rt</span> <span class="o">=</span> <span class="n">ragged</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="p">[],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">rt</span><span class="o">.</span><span class="n">to_sparse</span><span class="p">()</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+<span class="n">SparseTensorValue</span><span class="p">(</span><span class="n">indices</span><span class="o">=</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span>
+                  <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+                  <span class="n">dense_shape</span><span class="o">=</span><span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+</pre></div>
+
+
+<h4 id="args_48">Args:</h4>
+<ul>
+<li><b><code>name</code></b>: A name prefix for the returned tensors (optional).</li>
+</ul>
+<h4 id="returns_54">Returns:</h4>
+<p>A SparseTensor with the same values as <code>self</code>.</p>
+<h3 id="to_tensor"><code>to_tensor</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/ragged/ragged_tensor.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">to_tensor</span><span class="p">(</span>
+    <span class="n">default_value</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Converts this <code>RaggedTensor</code> into a <a href="../tf/Tensor.html"><code>tf.Tensor</code></a>.</p>
+<h4 id="example_18">Example:</h4>
+<div class="codehilite"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">rt</span> <span class="o">=</span> <span class="n">ragged</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span> <span class="p">[],</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">]])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span> <span class="n">rt</span><span class="o">.</span><span class="n">to_tensor</span><span class="p">()</span>
+<span class="p">[[</span><span class="mi">9</span> <span class="mi">8</span> <span class="mi">7</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">6</span> <span class="mi">5</span> <span class="mi">0</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">4</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">]]</span>
+</pre></div>
+
+
+<h4 id="args_49">Args:</h4>
+<ul>
+<li><b><code>default_value</code></b>: Value to set for indices not specified in <code>self</code>. Defaults
+  to zero.  <code>default_value</code> must be broadcastable to
+  <code>self.shape[self.ragged_rank + 1:]</code>.</li>
+<li><b><code>name</code></b>: A name prefix for the returned tensors (optional).</li>
+</ul>
+<h4 id="returns_55">Returns:</h4>
+<p>A <code>Tensor</code> with shape <code>ragged.bounding_shape(self)</code> and the
+values specified by the non-empty values in <code>self</code>.  Empty values are
+assigned <code>default_value</code>.</p>
+<h3 id="value_rowids"><code>value_rowids</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/ragged/ragged_tensor.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">value_rowids</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Returns the row indices for the <code>values</code> in this ragged tensor.</p>
+<p><code>rt.value_rowids()</code> corresponds one-to-one with the outermost dimension of
+<code>rt.values</code>, and specifies the row containing each value.  In particular,
+the row <code>rt[row]</code> consists of the values <code>rt.values[j]</code> where
+<code>rt.value_rowids()[j] == row</code>.</p>
+<h4 id="args_50">Args:</h4>
+<ul>
+<li><b><code>name</code></b>: A name prefix for the returned tensor (optional).</li>
+</ul>
+<h4 id="returns_56">Returns:</h4>
+<p>A 1-D integer <code>Tensor</code> with shape <code>self.values.shape[:1]</code>.
+The returned tensor is nonnegative, and is sorted in ascending order.</p>
+<h4 id="example_19">Example:</h4>
+<p>```python</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>rt = ragged.constant([[3, 1, 4, 1], [], [5, 9, 2], [6], []])
+rt.values
+  tf.Tensor([3, 1, 4, 1, 5, 9, 2, 6])
+rt.value_rowids()
+  tf.Tensor([0, 0, 0, 0, 2, 2, 2, 3])  # corresponds 1:1 with rt.values
+  ```</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h3 id="with_flat_values"><code>with_flat_values</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/ragged/ragged_tensor.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">with_flat_values</span><span class="p">(</span><span class="n">new_values</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Returns a copy of <code>self</code> with <code>flat_values</code> replaced by <code>new_value</code>.</p>
+<p>Preserves cached row-partitioning tensors such as <code>self.cached_nrows</code> and
+<code>self.cached_value_rowids</code> if they have values.</p>
+<h4 id="args_51">Args:</h4>
+<ul>
+<li><b><code>new_values</code></b>: Potentially ragged tensor that should replace
+<code>self.flat_values</code>.  Must have <code>rank &gt; 0</code>, and must have the same
+number of rows as <code>self.flat_values</code>.</li>
+</ul>
+<h4 id="returns_57">Returns:</h4>
+<p>A <code>RaggedTensor</code>.
+<code>result.rank = self.ragged_rank + new_values.rank</code>.
+<code>result.ragged_rank = self.ragged_rank + new_values.ragged_rank</code>.</p>
+<h3 id="with_row_splits_dtype"><code>with_row_splits_dtype</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/ragged/ragged_tensor.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">with_row_splits_dtype</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Returns a copy of this RaggedTensor with the given <code>row_splits</code> dtype.</p>
+<p>For RaggedTensors with multiple ragged dimensions, the <code>row_splits</code> for all
+nested <code>RaggedTensor</code> objects are cast to the given dtype.</p>
+<h4 id="args_52">Args:</h4>
+<ul>
+<li><b><code>dtype</code></b>: The dtype for <code>row_splits</code>.  One of <a href="../tf.html#int32"><code>tf.int32</code></a> or <a href="../tf.html#int64"><code>tf.int64</code></a>.</li>
+</ul>
+<h4 id="returns_58">Returns:</h4>
+<p>A copy of this RaggedTensor, with the <code>row_splits</code> cast to the given
+type.</p>
+<h3 id="with_values"><code>with_values</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/ragged/ragged_tensor.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">with_values</span><span class="p">(</span><span class="n">new_values</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Returns a copy of <code>self</code> with <code>values</code> replaced by <code>new_value</code>.</p>
+<p>Preserves cached row-partitioning tensors such as <code>self.cached_nrows</code> and
+<code>self.cached_value_rowids</code> if they have values.</p>
+<h4 id="args_53">Args:</h4>
+<ul>
+<li><b><code>new_values</code></b>: Potentially ragged tensor to use as the <code>values</code> for the
+  returned <code>RaggedTensor</code>.  Must have <code>rank &gt; 0</code>, and must have the same
+  number of rows as <code>self.values</code>.</li>
+</ul>
+<h4 id="returns_59">Returns:</h4>
+<p>A <code>RaggedTensor</code>.  <code>result.rank = 1 + new_values.rank</code>.
+<code>result.ragged_rank = 1 + new_values.ragged_rank</code></p>
+    </body>
+    </html>
+   

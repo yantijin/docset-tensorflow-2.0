@@ -1,0 +1,59 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.math.lbeta" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfmathlbeta">tf.math.lbeta</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/special_math_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Computes \(ln(|Beta(x)|)\), reducing along the last dimension.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.lbeta</code></li>
+<li><code>tf.compat.v1.math.lbeta</code></li>
+<li><code>tf.compat.v2.math.lbeta</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">lbeta</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Given one-dimensional <code>z = [z_0,...,z_{K-1}]</code>, we define</p>
+<p>$$Beta(z) = \prod_j Gamma(z_j) / Gamma(\sum_j z_j)$$</p>
+<p>And for <code>n + 1</code> dimensional <code>x</code> with shape <code>[N1, ..., Nn, K]</code>, we define
+$$lbeta(x)[i1, ..., in] = Log(|Beta(x[i1, ..., in, :])|)$$.</p>
+<p>In other words, the last dimension is treated as the <code>z</code> vector.</p>
+<p>Note that if <code>z = [u, v]</code>, then
+\(Beta(z) = int_0^1 t^{u-1} (1 - t)^{v-1} dt\), which defines the
+traditional bivariate beta function.</p>
+<p>If the last dimension is empty, we follow the convention that the sum over
+the empty set is zero, and the product is one.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>x</code></b>: A rank <code>n + 1</code> <code>Tensor</code>, <code>n &gt;= 0</code> with type <code>float</code>, or <code>double</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>The logarithm of \(|Beta(x)|\) reducing along the last dimension.</p>
+    </body>
+    </html>
+   

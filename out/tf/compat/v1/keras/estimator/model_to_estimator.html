@@ -1,0 +1,94 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.keras.estimator.model_to_estimator" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1kerasestimatormodel_to_estimator">tf.compat.v1.keras.estimator.model_to_estimator</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/estimator/__init__.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Constructs an <code>Estimator</code> instance from given keras model.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">model_to_estimator</span><span class="p">(</span>
+    <span class="n">keras_model</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">keras_model_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">custom_objects</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">model_dir</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">checkpoint_format</span><span class="o">=</span><span class="s1">&#39;saver&#39;</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>For usage example, please see:
+<a href="https://tensorflow.org/guide/estimators#model_to_estimator">Creating estimators from Keras
+Models</a>.</p>
+<p><strong>Sample Weights</strong>
+Estimators returned by <code>model_to_estimator</code> are configured to handle sample
+weights (similar to <code>keras_model.fit(x, y, sample_weights)</code>). To pass sample
+weights when training or evaluating the Estimator, the first item returned by
+the input function should be a dictionary with keys <code>features</code> and
+<code>sample_weights</code>. Example below:</p>
+<div class="codehilite"><pre><span></span><span class="n">keras_model</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">Model</span><span class="p">(...)</span>
+<span class="n">keras_model</span><span class="p">.</span><span class="n">compile</span><span class="p">(...)</span>
+
+<span class="n">estimator</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">estimator</span><span class="p">.</span><span class="n">model_to_estimator</span><span class="p">(</span><span class="n">keras_model</span><span class="p">)</span>
+
+<span class="n">def</span> <span class="n">input_fn</span><span class="p">():</span>
+  <span class="k">return</span> <span class="n">dataset_ops</span><span class="p">.</span><span class="n">Dataset</span><span class="p">.</span><span class="n">from_tensors</span><span class="p">(</span>
+      <span class="p">(</span><span class="err">{</span><span class="s1">&#39;features&#39;</span><span class="p">:</span> <span class="n">features</span><span class="p">,</span> <span class="s1">&#39;sample_weights&#39;</span><span class="p">:</span> <span class="n">sample_weights</span><span class="err">}</span><span class="p">,</span>
+       <span class="n">targets</span><span class="p">))</span>
+
+<span class="n">estimator</span><span class="p">.</span><span class="n">train</span><span class="p">(</span><span class="n">input_fn</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>keras_model</code></b>: A compiled Keras model object. This argument is mutually
+  exclusive with <code>keras_model_path</code>.</li>
+<li><b><code>keras_model_path</code></b>: Path to a compiled Keras model saved on disk, in HDF5
+  format, which can be generated with the <code>save()</code> method of a Keras model.
+  This argument is mutually exclusive with <code>keras_model</code>.</li>
+<li><b><code>custom_objects</code></b>: Dictionary for custom objects.</li>
+<li><b><code>model_dir</code></b>: Directory to save <code>Estimator</code> model parameters, graph, summary
+  files for TensorBoard, etc.</li>
+<li><b><code>config</code></b>: <code>RunConfig</code> to config <code>Estimator</code>.</li>
+<li><b><code>checkpoint_format</code></b>: Sets the format of the checkpoint saved by the estimator
+  when training. May be <code>saver</code> or <code>checkpoint</code>, depending on whether to
+  save checkpoints from <code>tf.train.Saver</code> or <a href="../../../../../tf/train/Checkpoint.html"><code>tf.train.Checkpoint</code></a>. This
+  argument currently defaults to <code>saver</code>. When 2.0 is released, the default
+  will be <code>checkpoint</code>. Estimators use name-based <code>tf.train.Saver</code>
+  checkpoints, while Keras models use object-based checkpoints from
+  <a href="../../../../../tf/train/Checkpoint.html"><code>tf.train.Checkpoint</code></a>. Currently, saving object-based checkpoints from
+  <code>model_to_estimator</code> is only supported by Functional and Sequential
+  models.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>An Estimator from given keras model.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: if neither keras_model nor keras_model_path was given.</li>
+<li><b><code>ValueError</code></b>: if both keras_model and keras_model_path was given.</li>
+<li><b><code>ValueError</code></b>: if the keras_model_path is a GCS URI.</li>
+<li><b><code>ValueError</code></b>: if keras_model has not been compiled.</li>
+<li><b><code>ValueError</code></b>: if an invalid checkpoint_format was given.</li>
+</ul>
+    </body>
+    </html>
+   

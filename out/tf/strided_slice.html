@@ -1,0 +1,116 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../default.css" rel="stylesheet">
+    <link href="
+   ../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.strided_slice" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfstrided_slice">tf.strided_slice</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/array_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Extracts a strided slice of a tensor (generalized python array indexing).</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.strided_slice</code></li>
+<li><code>tf.compat.v2.strided_slice</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">strided_slice</span><span class="p">(</span>
+    <span class="n">input_</span><span class="p">,</span>
+    <span class="n">begin</span><span class="p">,</span>
+    <span class="n">end</span><span class="p">,</span>
+    <span class="n">strides</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">begin_mask</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">end_mask</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">ellipsis_mask</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">new_axis_mask</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">shrink_axis_mask</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">var</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p><strong>Instead of calling this op directly most users will want to use the
+NumPy-style slicing syntax (e.g. <code>tensor[..., 3:4:-1, tf.newaxis, 3]</code>), which
+is supported via <a href="../tf/Tensor.html#__getitem__"><code>tf.Tensor.<strong>getitem</strong></code></a> and <a href="../tf/Variable.html#__getitem__"><code>tf.Variable.<strong>getitem</strong></code></a>.</strong>
+The interface of this op is a low-level encoding of the slicing syntax.</p>
+<p>Roughly speaking, this op extracts a slice of size <code>(end-begin)/stride</code>
+from the given <code>input_</code> tensor. Starting at the location specified by <code>begin</code>
+the slice continues by adding <code>stride</code> to the index until all dimensions are
+not less than <code>end</code>.
+Note that a stride can be negative, which causes a reverse slice.</p>
+<p>Given a Python slice <code>input[spec0, spec1, ..., specn]</code>,
+this function will be called as follows.</p>
+<p><code>begin</code>, <code>end</code>, and <code>strides</code> will be vectors of length n.
+n in general is not equal to the rank of the <code>input_</code> tensor.</p>
+<p>In each mask field (<code>begin_mask</code>, <code>end_mask</code>, <code>ellipsis_mask</code>,
+<code>new_axis_mask</code>, <code>shrink_axis_mask</code>) the ith bit will correspond to
+the ith spec.</p>
+<p>If the ith bit of <code>begin_mask</code> is set, <code>begin[i]</code> is ignored and
+the fullest possible range in that dimension is used instead.
+<code>end_mask</code> works analogously, except with the end range.</p>
+<p><code>foo[5:,:,:3]</code> on a 7x8x9 tensor is equivalent to <code>foo[5:7,0:8,0:3]</code>.
+<code>foo[::-1]</code> reverses a tensor with shape 8.</p>
+<p>If the ith bit of <code>ellipsis_mask</code> is set, as many unspecified dimensions
+as needed will be inserted between other dimensions. Only one
+non-zero bit is allowed in <code>ellipsis_mask</code>.</p>
+<p>For example <code>foo[3:5,...,4:5]</code> on a shape 10x3x3x10 tensor is
+equivalent to <code>foo[3:5,:,:,4:5]</code> and
+<code>foo[3:5,...]</code> is equivalent to <code>foo[3:5,:,:,:]</code>.</p>
+<p>If the ith bit of <code>new_axis_mask</code> is set, then <code>begin</code>,
+<code>end</code>, and <code>stride</code> are ignored and a new length 1 dimension is
+added at this point in the output tensor.</p>
+<p>For example,
+<code>foo[:4, tf.newaxis, :2]</code> would produce a shape <code>(4, 1, 2)</code> tensor.</p>
+<p>If the ith bit of <code>shrink_axis_mask</code> is set, it implies that the ith
+specification shrinks the dimensionality by 1, taking on the value at index
+<code>begin[i]</code>. <code>end[i]</code> and <code>strides[i]</code> are ignored in this case. For example in
+Python one might do <code>foo[:, 3, :]</code> which would result in <code>shrink_axis_mask</code>
+equal to 2.</p>
+<p>NOTE: <code>begin</code> and <code>end</code> are zero-indexed.
+<code>strides</code> entries must be non-zero.</p>
+<div class="codehilite"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]],</span>
+                 <span class="p">[[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">]],</span>
+                 <span class="p">[[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">]]])</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">strided_slice</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>  <span class="c1"># [[[3, 3, 3]]]</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">strided_slice</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>  <span class="c1"># [[[3, 3, 3],</span>
+                                                      <span class="c1">#   [4, 4, 4]]]</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">strided_slice</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>  <span class="c1"># [[[4, 4, 4],</span>
+                                                         <span class="c1">#   [3, 3, 3]]]</span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>input_</code></b>: A <code>Tensor</code>.</li>
+<li><b><code>begin</code></b>: An <code>int32</code> or <code>int64</code> <code>Tensor</code>.</li>
+<li><b><code>end</code></b>: An <code>int32</code> or <code>int64</code> <code>Tensor</code>.</li>
+<li><b><code>strides</code></b>: An <code>int32</code> or <code>int64</code> <code>Tensor</code>.</li>
+<li><b><code>begin_mask</code></b>: An <code>int32</code> mask.</li>
+<li><b><code>end_mask</code></b>: An <code>int32</code> mask.</li>
+<li><b><code>ellipsis_mask</code></b>: An <code>int32</code> mask.</li>
+<li><b><code>new_axis_mask</code></b>: An <code>int32</code> mask.</li>
+<li><b><code>shrink_axis_mask</code></b>: An <code>int32</code> mask.</li>
+<li><b><code>var</code></b>: The variable corresponding to <code>input_</code> or None</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>Tensor</code> the same type as <code>input</code>.</p>
+    </body>
+    </html>
+   

@@ -1,0 +1,58 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.assign_sub" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1assign_sub">tf.compat.v1.assign_sub</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/state_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Update <code>ref</code> by subtracting <code>value</code> from it.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">assign_sub</span><span class="p">(</span>
+    <span class="n">ref</span><span class="p">,</span>
+    <span class="n">value</span><span class="p">,</span>
+    <span class="n">use_locking</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>This operation outputs <code>ref</code> after the update is done.
+This makes it easier to chain operations that need to use the reset value.
+Unlike <a href="../../../tf/math/subtract.html"><code>tf.math.subtract</code></a>, this op does not broadcast. <code>ref</code> and <code>value</code>
+must have the same shape.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>ref</code></b>: A mutable <code>Tensor</code>. Must be one of the following types: <code>float32</code>,
+  <code>float64</code>, <code>int64</code>, <code>int32</code>, <code>uint8</code>, <code>uint16</code>, <code>int16</code>, <code>int8</code>,
+  <code>complex64</code>, <code>complex128</code>, <code>qint8</code>, <code>quint8</code>, <code>qint32</code>, <code>half</code>. Should be
+  from a <code>Variable</code> node.</li>
+<li><b><code>value</code></b>: A <code>Tensor</code>. Must have the same shape and dtype as <code>ref</code>. The value to
+  be subtracted to the variable.</li>
+<li><b><code>use_locking</code></b>: An optional <code>bool</code>. Defaults to <code>False</code>. If True, the
+  subtraction will be protected by a lock; otherwise the behavior is
+  undefined, but may exhibit less contention.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>Same as "ref".  Returned as a convenience for operations that want
+to use the new value after the variable has been updated.</p>
+    </body>
+    </html>
+   

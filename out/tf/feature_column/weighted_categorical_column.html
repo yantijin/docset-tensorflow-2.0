@@ -1,0 +1,101 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.feature_column.weighted_categorical_column" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tffeature_columnweighted_categorical_column">tf.feature_column.weighted_categorical_column</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/feature_column/feature_column_v2.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Applies weight values to a <code>CategoricalColumn</code>.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.feature_column.weighted_categorical_column</code></li>
+<li><code>tf.compat.v2.feature_column.weighted_categorical_column</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">feature_column</span><span class="o">.</span><span class="n">weighted_categorical_column</span><span class="p">(</span>
+    <span class="n">categorical_column</span><span class="p">,</span>
+    <span class="n">weight_feature_key</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">float32</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Use this when each of your sparse inputs has both an ID and a value. For
+example, if you're representing text documents as a collection of word
+frequencies, you can provide 2 parallel sparse input features ('terms' and
+'frequencies' below).</p>
+<h4 id="example">Example:</h4>
+<p>Input <code>tf.Example</code> objects:</p>
+<div class="codehilite"><pre><span></span><span class="p">[</span>
+  <span class="n">features</span> <span class="p">{</span>
+    <span class="n">feature</span> <span class="p">{</span>
+      <span class="n">key</span><span class="o">:</span> <span class="s">&quot;terms&quot;</span>
+      <span class="n">value</span> <span class="p">{</span><span class="n">bytes_list</span> <span class="p">{</span><span class="n">value</span><span class="o">:</span> <span class="s">&quot;very&quot;</span> <span class="n">value</span><span class="o">:</span> <span class="s">&quot;model&quot;</span><span class="p">}}</span>
+    <span class="p">}</span>
+    <span class="n">feature</span> <span class="p">{</span>
+      <span class="n">key</span><span class="o">:</span> <span class="s">&quot;frequencies&quot;</span>
+      <span class="n">value</span> <span class="p">{</span><span class="n">float_list</span> <span class="p">{</span><span class="n">value</span><span class="o">:</span> <span class="mf">0.3</span> <span class="n">value</span><span class="o">:</span> <span class="mf">0.1</span><span class="p">}}</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="n">features</span> <span class="p">{</span>
+    <span class="n">feature</span> <span class="p">{</span>
+      <span class="n">key</span><span class="o">:</span> <span class="s">&quot;terms&quot;</span>
+      <span class="n">value</span> <span class="p">{</span><span class="n">bytes_list</span> <span class="p">{</span><span class="n">value</span><span class="o">:</span> <span class="s">&quot;when&quot;</span> <span class="n">value</span><span class="o">:</span> <span class="s">&quot;course&quot;</span> <span class="n">value</span><span class="o">:</span> <span class="s">&quot;human&quot;</span><span class="p">}}</span>
+    <span class="p">}</span>
+    <span class="n">feature</span> <span class="p">{</span>
+      <span class="n">key</span><span class="o">:</span> <span class="s">&quot;frequencies&quot;</span>
+      <span class="n">value</span> <span class="p">{</span><span class="n">float_list</span> <span class="p">{</span><span class="n">value</span><span class="o">:</span> <span class="mf">0.4</span> <span class="n">value</span><span class="o">:</span> <span class="mf">0.1</span> <span class="n">value</span><span class="o">:</span> <span class="mf">0.2</span><span class="p">}}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+
+
+<div class="codehilite"><pre><span></span><span class="n">categorical_column</span> <span class="o">=</span> <span class="n">categorical_column_with_hash_bucket</span><span class="p">(</span>
+    <span class="n">column_name</span><span class="o">=</span><span class="s1">&#39;terms&#39;</span><span class="p">,</span> <span class="n">hash_bucket_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">weighted_column</span> <span class="o">=</span> <span class="n">weighted_categorical_column</span><span class="p">(</span>
+    <span class="n">categorical_column</span><span class="o">=</span><span class="n">categorical_column</span><span class="p">,</span> <span class="n">weight_feature_key</span><span class="o">=</span><span class="s1">&#39;frequencies&#39;</span><span class="p">)</span>
+<span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">weighted_column</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+<span class="n">features</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">parse_example</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="n">make_parse_example_spec</span><span class="p">(</span><span class="n">columns</span><span class="p">))</span>
+<span class="n">linear_prediction</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">linear_model</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">columns</span><span class="p">)</span>
+</pre></div>
+
+
+<p>This assumes the input dictionary contains a <code>SparseTensor</code> for key
+'terms', and a <code>SparseTensor</code> for key 'frequencies'. These 2 tensors must have
+the same indices and dense shape.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>categorical_column</code></b>: A <code>CategoricalColumn</code> created by
+  <code>categorical_column_with_*</code> functions.</li>
+<li><b><code>weight_feature_key</code></b>: String key for weight values.</li>
+<li><b><code>dtype</code></b>: Type of weights, such as <a href="../../tf.html#float32"><code>tf.float32</code></a>. Only float and integer weights
+  are supported.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>CategoricalColumn</code> composed of two sparse features: one represents id,
+the other represents weight (value) of the id feature in that example.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: if <code>dtype</code> is not convertible to float.</li>
+</ul>
+    </body>
+    </html>
+   

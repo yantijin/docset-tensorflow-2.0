@@ -1,0 +1,72 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.sparse.mask" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfsparsemask">tf.sparse.mask</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/array_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Masks elements of <code>IndexedSlices</code>.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.sparse.mask</code></li>
+<li><code>tf.compat.v1.sparse_mask</code></li>
+<li><code>tf.compat.v2.sparse.mask</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">mask</span><span class="p">(</span>
+    <span class="n">a</span><span class="p">,</span>
+    <span class="n">mask_indices</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Given an <code>IndexedSlices</code> instance <code>a</code>, returns another <code>IndexedSlices</code> that
+contains a subset of the slices of <code>a</code>. Only the slices at indices not
+specified in <code>mask_indices</code> are returned.</p>
+<p>This is useful when you need to extract a subset of slices in an
+<code>IndexedSlices</code> object.</p>
+<h4 id="for-example">For example:</h4>
+<div class="codehilite"><pre><span></span><span class="c1"># `a` contains slices at indices [12, 26, 37, 45] from a large tensor</span>
+<span class="c1"># with shape [1000, 10]</span>
+<span class="n">a</span><span class="o">.</span><span class="n">indices</span>  <span class="c1"># [12, 26, 37, 45]</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>  <span class="c1"># [4, 10]</span>
+
+<span class="c1"># `b` will be the subset of `a` slices at its second and third indices, so</span>
+<span class="c1"># we want to mask its first and last indices (which are at absolute</span>
+<span class="c1"># indices 12, 45)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">mask</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">45</span><span class="p">])</span>
+
+<span class="n">b</span><span class="o">.</span><span class="n">indices</span>  <span class="c1"># [26, 37]</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>  <span class="c1"># [2, 10]</span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>a</code></b>: An <code>IndexedSlices</code> instance.</li>
+<li><b><code>mask_indices</code></b>: Indices of elements to mask.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>The masked <code>IndexedSlices</code> instance.</p>
+    </body>
+    </html>
+   

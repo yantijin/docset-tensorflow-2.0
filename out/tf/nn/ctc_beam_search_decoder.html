@@ -1,0 +1,71 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.nn.ctc_beam_search_decoder" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfnnctc_beam_search_decoder">tf.nn.ctc_beam_search_decoder</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/ctc_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Performs beam search decoding on the logits given in input.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.nn.ctc_beam_search_decoder_v2</code></li>
+<li><code>tf.compat.v2.nn.ctc_beam_search_decoder</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ctc_beam_search_decoder</span><span class="p">(</span>
+    <span class="n">inputs</span><span class="p">,</span>
+    <span class="n">sequence_length</span><span class="p">,</span>
+    <span class="n">beam_width</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">top_paths</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p><strong>Note</strong> The <code>ctc_greedy_decoder</code> is a special case of the
+<code>ctc_beam_search_decoder</code> with <code>top_paths=1</code> and <code>beam_width=1</code> (but
+that decoder is faster for this special case).</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>inputs</code></b>: 3-D <code>float</code> <code>Tensor</code>, size <code>[max_time, batch_size, num_classes]</code>.
+  The logits.</li>
+<li><b><code>sequence_length</code></b>: 1-D <code>int32</code> vector containing sequence lengths, having size
+  <code>[batch_size]</code>.</li>
+<li><b><code>beam_width</code></b>: An int scalar &gt;= 0 (beam search beam width).</li>
+<li><b><code>top_paths</code></b>: An int scalar &gt;= 0, &lt;= beam_width (controls output size).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A tuple <code>(decoded, log_probabilities)</code> where</p>
+<ul>
+<li><b><code>decoded</code></b>: A list of length top_paths, where <code>decoded[j]</code>
+  is a <code>SparseTensor</code> containing the decoded outputs:</li>
+</ul>
+<p><code>decoded[j].indices</code>: Indices matrix <code>[total_decoded_outputs[j], 2]</code>;
+    The rows store: <code>[batch, time]</code>.</p>
+<p><code>decoded[j].values</code>: Values vector, size <code>[total_decoded_outputs[j]]</code>.
+    The vector stores the decoded classes for beam <code>j</code>.</p>
+<p><code>decoded[j].dense_shape</code>: Shape vector, size <code>(2)</code>.
+    The shape values are: <code>[batch_size, max_decoded_length[j]]</code>.</p>
+<ul>
+<li><b><code>log_probability</code></b>: A <code>float</code> matrix <code>[batch_size, top_paths]</code> containing
+    sequence log-probabilities.</li>
+</ul>
+    </body>
+    </html>
+   

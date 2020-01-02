@@ -1,0 +1,85 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.nn.safe_embedding_lookup_sparse" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfnnsafe_embedding_lookup_sparse">tf.nn.safe_embedding_lookup_sparse</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/embedding_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Lookup embedding results, accounting for invalid IDs and empty features.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v2.nn.safe_embedding_lookup_sparse</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">safe_embedding_lookup_sparse</span><span class="p">(</span>
+    <span class="n">embedding_weights</span><span class="p">,</span>
+    <span class="n">sparse_ids</span><span class="p">,</span>
+    <span class="n">sparse_weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">combiner</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span>
+    <span class="n">default_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">max_norm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>The partitioned embedding in <code>embedding_weights</code> must all be the same shape
+except for the first dimension. The first dimension is allowed to vary as the
+vocabulary size is not necessarily a multiple of <code>P</code>.  <code>embedding_weights</code>
+may be a <code>PartitionedVariable</code> as returned by using
+<a href="../../tf/compat/v1/get_variable.html"><code>tf.compat.v1.get_variable()</code></a> with a
+partitioner.</p>
+<p>Invalid IDs (&lt; 0) are pruned from input IDs and weights, as well as any IDs
+with non-positive weight. For an entry with no features, the embedding vector
+for <code>default_id</code> is returned, or the 0-vector if <code>default_id</code> is not supplied.</p>
+<p>The ids and weights may be multi-dimensional. Embeddings are always aggregated
+along the last dimension.</p>
+<p>Note: when doing embedding lookup on <code>embedding_weights</code>, "div" partition
+strategy will be used. Support for other partition strategy will be added
+later.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>embedding_weights</code></b>:  A list of <code>P</code> float <code>Tensor</code>s or values representing
+  partitioned embedding <code>Tensor</code>s.  Alternatively, a <code>PartitionedVariable</code>
+  created by partitioning along dimension 0.  The total unpartitioned shape
+  should be <code>[e_0, e_1, ..., e_m]</code>, where <code>e_0</code> represents the vocab size
+  and <code>e_1, ..., e_m</code> are the embedding dimensions.</li>
+<li><b><code>sparse_ids</code></b>: <code>SparseTensor</code> of shape <code>[d_0, d_1, ..., d_n]</code> containing the
+  ids. <code>d_0</code> is typically batch size.</li>
+<li><b><code>sparse_weights</code></b>: <code>SparseTensor</code> of same shape as <code>sparse_ids</code>, containing
+  float weights corresponding to <code>sparse_ids</code>, or <code>None</code> if all weights are
+  be assumed to be 1.0.</li>
+<li><b><code>combiner</code></b>: A string specifying how to combine embedding results for each
+  entry. Currently "mean", "sqrtn" and "sum" are supported, with "mean" the
+  default.</li>
+<li><b><code>default_id</code></b>: The id to use for an entry with no features.</li>
+<li><b><code>max_norm</code></b>: If not <code>None</code>, all embeddings are l2-normalized to max_norm before
+  combining.</li>
+<li><b><code>name</code></b>: A name for this operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>Dense <code>Tensor</code> of shape <code>[d_0, d_1, ..., d_{n-1}, e_1, ..., e_m]</code>.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: if <code>embedding_weights</code> is empty.</li>
+</ul>
+    </body>
+    </html>
+   

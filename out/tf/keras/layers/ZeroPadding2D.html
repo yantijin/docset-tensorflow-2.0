@@ -1,0 +1,83 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.layers.ZeroPadding2D" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__init__"/>
+</div>
+
+<h1 id="tfkeraslayerszeropadding2d">tf.keras.layers.ZeroPadding2D</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/convolutional.py">View source</a></p>
+<h2 id="class-zeropadding2d">Class <code>ZeroPadding2D</code></h2>
+<!-- Start diff -->
+
+<p>Zero-padding layer for 2D input (e.g. picture).</p>
+<p>Inherits From: <a href="../../../tf/keras/layers/Layer.html"><code>Layer</code></a></p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v1.keras.layers.ZeroPadding2D</code></li>
+<li>Class <code>tf.compat.v2.keras.layers.ZeroPadding2D</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<p>This layer can add rows and columns of zeros
+at the top, bottom, left and right side of an image tensor.</p>
+<h4 id="arguments">Arguments:</h4>
+<ul>
+<li><b><code>padding</code></b>: Int, or tuple of 2 ints, or tuple of 2 tuples of 2 ints.</li>
+<li>If int: the same symmetric padding
+    is applied to height and width.</li>
+<li>If tuple of 2 ints:
+    interpreted as two different
+    symmetric padding values for height and width:
+    <code>(symmetric_height_pad, symmetric_width_pad)</code>.</li>
+<li>If tuple of 2 tuples of 2 ints:
+    interpreted as
+    <code>((top_pad, bottom_pad), (left_pad, right_pad))</code></li>
+<li><b><code>data_format</code></b>: A string,
+  one of <code>channels_last</code> (default) or <code>channels_first</code>.
+  The ordering of the dimensions in the inputs.
+  <code>channels_last</code> corresponds to inputs with shape
+  <code>(batch, height, width, channels)</code> while <code>channels_first</code>
+  corresponds to inputs with shape
+  <code>(batch, channels, height, width)</code>.
+  It defaults to the <code>image_data_format</code> value found in your
+  Keras config file at <code>~/.keras/keras.json</code>.
+  If you never set it, then it will be "channels_last".</li>
+</ul>
+<h4 id="input-shape">Input shape:</h4>
+<p>4D tensor with shape:
+- If <code>data_format</code> is <code>"channels_last"</code>:
+    <code>(batch, rows, cols, channels)</code>
+- If <code>data_format</code> is <code>"channels_first"</code>:
+    <code>(batch, channels, rows, cols)</code></p>
+<h4 id="output-shape">Output shape:</h4>
+<p>4D tensor with shape:
+- If <code>data_format</code> is <code>"channels_last"</code>:
+    <code>(batch, padded_rows, padded_cols, channels)</code>
+- If <code>data_format</code> is <code>"channels_first"</code>:
+    <code>(batch, channels, padded_rows, padded_cols)</code></p>
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/convolutional.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">padding</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="n">data_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+    </body>
+    </html>
+   

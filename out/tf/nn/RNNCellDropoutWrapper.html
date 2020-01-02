@@ -1,0 +1,131 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.nn.RNNCellDropoutWrapper" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="output_size"/>
+<meta itemprop="property" content="state_size"/>
+<meta itemprop="property" content="wrapped_cell"/>
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="get_initial_state"/>
+<meta itemprop="property" content="zero_state"/>
+</div>
+
+<h1 id="tfnnrnncelldropoutwrapper">tf.nn.RNNCellDropoutWrapper</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/rnn_cell_wrapper_v2.py">View source</a></p>
+<h2 id="class-rnncelldropoutwrapper">Class <code>RNNCellDropoutWrapper</code></h2>
+<!-- Start diff -->
+
+<p>Operator adding dropout to inputs and outputs of the given cell.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v2.nn.RNNCellDropoutWrapper</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/rnn_cell_wrapper_v2.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Create a cell with added input, state, and/or output dropout.</p>
+<p>If <code>variational_recurrent</code> is set to <code>True</code> (<strong>NOT</strong> the default behavior),
+then the same dropout mask is applied at every step, as described in:
+<a href="https://arxiv.org/abs/1512.05287">A Theoretically Grounded Application of Dropout in Recurrent
+Neural Networks. Y. Gal, Z. Ghahramani</a>.</p>
+<p>Otherwise a different dropout mask is applied at every time step.</p>
+<p>Note, by default (unless a custom <code>dropout_state_filter</code> is provided),
+the memory state (<code>c</code> component of any <code>LSTMStateTuple</code>) passing through
+a <code>DropoutWrapper</code> is never modified.  This behavior is described in the
+above article.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>cell</code></b>: an RNNCell, a projection to output_size is added to it.</li>
+<li><b><code>input_keep_prob</code></b>: unit Tensor or float between 0 and 1, input keep
+  probability; if it is constant and 1, no input dropout will be added.</li>
+<li><b><code>output_keep_prob</code></b>: unit Tensor or float between 0 and 1, output keep
+  probability; if it is constant and 1, no output dropout will be added.</li>
+<li><b><code>state_keep_prob</code></b>: unit Tensor or float between 0 and 1, output keep
+  probability; if it is constant and 1, no output dropout will be added.
+  State dropout is performed on the outgoing states of the cell. <strong>Note</strong>
+  the state components to which dropout is applied when <code>state_keep_prob</code>
+  is in <code>(0, 1)</code> are also determined by the argument
+  <code>dropout_state_filter_visitor</code> (e.g. by default dropout is never applied
+  to the <code>c</code> component of an <code>LSTMStateTuple</code>).</li>
+<li><b><code>variational_recurrent</code></b>: Python bool.  If <code>True</code>, then the same dropout
+  pattern is applied across all time steps per run call. If this parameter
+  is set, <code>input_size</code> <strong>must</strong> be provided.</li>
+<li><b><code>input_size</code></b>: (optional) (possibly nested tuple of) <code>TensorShape</code> objects
+  containing the depth(s) of the input tensors expected to be passed in to
+  the <code>DropoutWrapper</code>.  Required and used <strong>iff</strong> <code>variational_recurrent
+  = True</code> and <code>input_keep_prob &lt; 1</code>.</li>
+<li><b><code>dtype</code></b>: (optional) The <code>dtype</code> of the input, state, and output tensors.
+  Required and used <strong>iff</strong> <code>variational_recurrent = True</code>.</li>
+<li><b><code>seed</code></b>: (optional) integer, the randomness seed.</li>
+<li><b><code>dropout_state_filter_visitor</code></b>: (optional), default: (see below).  Function
+  that takes any hierarchical level of the state and returns a scalar or
+  depth=1 structure of Python booleans describing which terms in the state
+  should be dropped out.  In addition, if the function returns <code>True</code>,
+  dropout is applied across this sublevel.  If the function returns
+  <code>False</code>, dropout is not applied across this entire sublevel.
+  Default behavior: perform dropout on all terms except the memory (<code>c</code>)
+    state of <code>LSTMCellState</code> objects, and don't try to apply dropout to
+  <code>TensorArray</code> objects: <code>def dropout_state_filter_visitor(s):
+    if isinstance(s, LSTMCellState): # Never perform dropout on the c
+      state. return LSTMCellState(c=False, h=True)
+    elif isinstance(s, TensorArray): return False return True</code></li>
+<li><b><code>**kwargs</code></b>: dict of keyword arguments for base layer.</li>
+</ul>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>TypeError</code></b>: if <code>cell</code> is not an <code>RNNCell</code>, or <code>keep_state_fn</code> is provided
+  but not <code>callable</code>.</li>
+<li><b><code>ValueError</code></b>: if any of the keep_probs are not between 0 and 1.</li>
+</ul>
+<h2 id="properties">Properties</h2>
+<h3 id="output_size"><code>output_size</code></h3>
+
+<h3 id="state_size"><code>state_size</code></h3>
+
+<h3 id="wrapped_cell"><code>wrapped_cell</code></h3>
+
+<h2 id="methods">Methods</h2>
+<h3 id="get_initial_state"><code>get_initial_state</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/recurrent.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_initial_state</span><span class="p">(</span>
+    <span class="n">inputs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<h3 id="zero_state"><code>zero_state</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/rnn_cell_wrapper_impl.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">zero_state</span><span class="p">(</span>
+    <span class="n">batch_size</span><span class="p">,</span>
+    <span class="n">dtype</span>
+<span class="p">)</span>
+</pre></div>
+    </body>
+    </html>
+   

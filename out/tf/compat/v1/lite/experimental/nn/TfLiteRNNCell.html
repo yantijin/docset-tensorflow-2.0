@@ -1,0 +1,124 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.lite.experimental.nn.TfLiteRNNCell" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="graph"/>
+<meta itemprop="property" content="output_size"/>
+<meta itemprop="property" content="scope_name"/>
+<meta itemprop="property" content="state_size"/>
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="get_initial_state"/>
+<meta itemprop="property" content="zero_state"/>
+</div>
+
+<h1 id="tfcompatv1liteexperimentalnntfliternncell">tf.compat.v1.lite.experimental.nn.TfLiteRNNCell</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/lite/experimental/examples/lstm/rnn_cell.py">View source</a></p>
+<h2 id="class-tfliternncell">Class <code>TfLiteRNNCell</code></h2>
+<!-- Start diff -->
+
+<p>The most basic RNN cell.</p>
+<!-- Placeholder for "Used in" -->
+
+<p>This is used only for TfLite, it provides hints and it also makes the
+variables in the desired for the tflite ops.</p>
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/lite/experimental/examples/lstm/rnn_cell.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">num_units</span><span class="p">,</span>
+    <span class="n">activation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">reuse</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Initializes the parameters for an RNN cell.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>num_units</code></b>: int, The number of units in the RNN cell.</li>
+<li><b><code>activation</code></b>: Nonlinearity to use.  Default: <code>tanh</code>. It could also be string
+  that is within Keras activation function names.</li>
+<li><b><code>reuse</code></b>: (optional) Python boolean describing whether to reuse variables in
+  an existing scope. Raises an error if not <code>True</code> and the existing scope
+  already has the given variables.</li>
+<li><b><code>name</code></b>: String, the name of the layer. Layers with the same name will share
+  weights, but to avoid mistakes we require reuse=True in such cases.</li>
+<li><b><code>dtype</code></b>: Default dtype of the layer (default of <code>None</code> means use the type of
+  the first input). Required when <code>build</code> is called before <code>call</code>.</li>
+<li><b><code>**kwargs</code></b>: Dict, keyword named properties for common layer attributes, like
+  <code>trainable</code> etc when constructing the cell from configs of get_config().</li>
+</ul>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: If the existing scope already has the given variables.</li>
+</ul>
+<h2 id="properties">Properties</h2>
+<h3 id="graph"><code>graph</code></h3>
+
+<p>DEPRECATED FUNCTION</p>
+<p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
+Instructions for updating:
+Stop using this property because tf.layers layers no longer track their graph.</p>
+<h3 id="output_size"><code>output_size</code></h3>
+
+<p>Integer or TensorShape: size of outputs produced by this cell.</p>
+<h3 id="scope_name"><code>scope_name</code></h3>
+
+<h3 id="state_size"><code>state_size</code></h3>
+
+<p>size(s) of state(s) used by this cell.</p>
+<p>It can be represented by an Integer, a TensorShape or a tuple of Integers
+or TensorShapes.</p>
+<h2 id="methods">Methods</h2>
+<h3 id="get_initial_state"><code>get_initial_state</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/rnn_cell_impl.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_initial_state</span><span class="p">(</span>
+    <span class="n">inputs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<h3 id="zero_state"><code>zero_state</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/rnn_cell_impl.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">zero_state</span><span class="p">(</span>
+    <span class="n">batch_size</span><span class="p">,</span>
+    <span class="n">dtype</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Return zero-filled state tensor(s).</p>
+<h4 id="args_1">Args:</h4>
+<ul>
+<li><b><code>batch_size</code></b>: int, float, or unit Tensor representing the batch size.</li>
+<li><b><code>dtype</code></b>: the data type to use for the state.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>If <code>state_size</code> is an int or TensorShape, then the return value is a
+<code>N-D</code> tensor of shape <code>[batch_size, state_size]</code> filled with zeros.</p>
+<p>If <code>state_size</code> is a nested list or tuple, then the return value is
+a nested list or tuple (of the same structure) of <code>2-D</code> tensors with
+the shapes <code>[batch_size, s]</code> for each s in <code>state_size</code>.</p>
+    </body>
+    </html>
+   

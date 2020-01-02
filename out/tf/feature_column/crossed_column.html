@@ -1,0 +1,135 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.feature_column.crossed_column" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tffeature_columncrossed_column">tf.feature_column.crossed_column</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/feature_column/feature_column_v2.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Returns a column for performing crosses of categorical features.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.feature_column.crossed_column</code></li>
+<li><code>tf.compat.v2.feature_column.crossed_column</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">feature_column</span><span class="o">.</span><span class="n">crossed_column</span><span class="p">(</span>
+    <span class="n">keys</span><span class="p">,</span>
+    <span class="n">hash_bucket_size</span><span class="p">,</span>
+    <span class="n">hash_key</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Crossed features will be hashed according to <code>hash_bucket_size</code>. Conceptually,
+the transformation can be thought of as:
+  Hash(cartesian product of features) % <code>hash_bucket_size</code></p>
+<p>For example, if the input features are:</p>
+<ul>
+<li>SparseTensor referred by first key:</li>
+</ul>
+<p><code>python
+  shape = [2, 2]
+  {
+      [0, 0]: "a"
+      [1, 0]: "b"
+      [1, 1]: "c"
+  }</code></p>
+<ul>
+<li>SparseTensor referred by second key:</li>
+</ul>
+<p><code>python
+  shape = [2, 1]
+  {
+      [0, 0]: "d"
+      [1, 0]: "e"
+  }</code></p>
+<p>then crossed feature will look like:</p>
+<div class="codehilite"><pre><span></span> <span class="n">shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="p">{</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]:</span> <span class="n">Hash64</span><span class="p">(</span><span class="s2">&quot;d&quot;</span><span class="p">,</span> <span class="n">Hash64</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">))</span> <span class="o">%</span> <span class="n">hash_bucket_size</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]:</span> <span class="n">Hash64</span><span class="p">(</span><span class="s2">&quot;e&quot;</span><span class="p">,</span> <span class="n">Hash64</span><span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">))</span> <span class="o">%</span> <span class="n">hash_bucket_size</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]:</span> <span class="n">Hash64</span><span class="p">(</span><span class="s2">&quot;e&quot;</span><span class="p">,</span> <span class="n">Hash64</span><span class="p">(</span><span class="s2">&quot;c&quot;</span><span class="p">))</span> <span class="o">%</span> <span class="n">hash_bucket_size</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Here is an example to create a linear model with crosses of string features:</p>
+<div class="codehilite"><pre><span></span><span class="n">keywords_x_doc_terms</span> <span class="o">=</span> <span class="n">crossed_column</span><span class="p">([</span><span class="s1">&#39;keywords&#39;</span><span class="p">,</span> <span class="s1">&#39;doc_terms&#39;</span><span class="p">],</span> <span class="mi">50</span><span class="n">K</span><span class="p">)</span>
+<span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">keywords_x_doc_terms</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+<span class="n">features</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">parse_example</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="n">make_parse_example_spec</span><span class="p">(</span><span class="n">columns</span><span class="p">))</span>
+<span class="n">linear_prediction</span> <span class="o">=</span> <span class="n">linear_model</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">columns</span><span class="p">)</span>
+</pre></div>
+
+
+<p>You could also use vocabulary lookup before crossing:</p>
+<div class="codehilite"><pre><span></span><span class="n">keywords</span> <span class="o">=</span> <span class="n">categorical_column_with_vocabulary_file</span><span class="p">(</span>
+    <span class="s1">&#39;keywords&#39;</span><span class="p">,</span> <span class="s1">&#39;/path/to/vocabulary/file&#39;</span><span class="p">,</span> <span class="n">vocabulary_size</span><span class="o">=</span><span class="mi">1</span><span class="n">K</span><span class="p">)</span>
+<span class="n">keywords_x_doc_terms</span> <span class="o">=</span> <span class="n">crossed_column</span><span class="p">([</span><span class="n">keywords</span><span class="p">,</span> <span class="s1">&#39;doc_terms&#39;</span><span class="p">],</span> <span class="mi">50</span><span class="n">K</span><span class="p">)</span>
+<span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">keywords_x_doc_terms</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+<span class="n">features</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">parse_example</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="n">make_parse_example_spec</span><span class="p">(</span><span class="n">columns</span><span class="p">))</span>
+<span class="n">linear_prediction</span> <span class="o">=</span> <span class="n">linear_model</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">columns</span><span class="p">)</span>
+</pre></div>
+
+
+<p>If an input feature is of numeric type, you can use
+<code>categorical_column_with_identity</code>, or <code>bucketized_column</code>, as in the example:</p>
+<div class="codehilite"><pre><span></span><span class="c1"># vertical_id is an integer categorical feature.</span>
+<span class="n">vertical_id</span> <span class="o">=</span> <span class="n">categorical_column_with_identity</span><span class="p">(</span><span class="s1">&#39;vertical_id&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="n">K</span><span class="p">)</span>
+<span class="n">price</span> <span class="o">=</span> <span class="n">numeric_column</span><span class="p">(</span><span class="s1">&#39;price&#39;</span><span class="p">)</span>
+<span class="c1"># bucketized_column converts numerical feature to a categorical one.</span>
+<span class="n">bucketized_price</span> <span class="o">=</span> <span class="n">bucketized_column</span><span class="p">(</span><span class="n">price</span><span class="p">,</span> <span class="n">boundaries</span><span class="o">=</span><span class="p">[</span><span class="o">...</span><span class="p">])</span>
+<span class="n">vertical_id_x_price</span> <span class="o">=</span> <span class="n">crossed_column</span><span class="p">([</span><span class="n">vertical_id</span><span class="p">,</span> <span class="n">bucketized_price</span><span class="p">],</span> <span class="mi">50</span><span class="n">K</span><span class="p">)</span>
+<span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">vertical_id_x_price</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+<span class="n">features</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">parse_example</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="n">make_parse_example_spec</span><span class="p">(</span><span class="n">columns</span><span class="p">))</span>
+<span class="n">linear_prediction</span> <span class="o">=</span> <span class="n">linear_model</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">columns</span><span class="p">)</span>
+</pre></div>
+
+
+<p>To use crossed column in DNN model, you need to add it in an embedding column
+as in this example:</p>
+<div class="codehilite"><pre><span></span><span class="n">vertical_id_x_price</span> <span class="o">=</span> <span class="n">crossed_column</span><span class="p">([</span><span class="n">vertical_id</span><span class="p">,</span> <span class="n">bucketized_price</span><span class="p">],</span> <span class="mi">50</span><span class="n">K</span><span class="p">)</span>
+<span class="n">vertical_id_x_price_embedded</span> <span class="o">=</span> <span class="n">embedding_column</span><span class="p">(</span><span class="n">vertical_id_x_price</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">dense_tensor</span> <span class="o">=</span> <span class="n">input_layer</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="p">[</span><span class="n">vertical_id_x_price_embedded</span><span class="p">,</span> <span class="o">...</span><span class="p">])</span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>keys</code></b>: An iterable identifying the features to be crossed. Each element can
+  be either:</li>
+<li>string: Will use the corresponding feature which must be of string type.</li>
+<li><code>CategoricalColumn</code>: Will use the transformed tensor produced by this
+    column. Does not support hashed categorical column.</li>
+<li><b><code>hash_bucket_size</code></b>: An int &gt; 1. The number of buckets.</li>
+<li><b><code>hash_key</code></b>: Specify the hash_key that will be used by the <code>FingerprintCat64</code>
+  function to combine the crosses fingerprints on SparseCrossOp (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>CrossedColumn</code>.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: If <code>len(keys) &lt; 2</code>.</li>
+<li><b><code>ValueError</code></b>: If any of the keys is neither a string nor <code>CategoricalColumn</code>.</li>
+<li><b><code>ValueError</code></b>: If any of the keys is <code>HashedCategoricalColumn</code>.</li>
+<li><b><code>ValueError</code></b>: If <code>hash_bucket_size &lt; 1</code>.</li>
+</ul>
+    </body>
+    </html>
+   

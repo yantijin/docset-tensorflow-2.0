@@ -1,0 +1,87 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.bitwise.invert" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfbitwiseinvert">tf.bitwise.invert</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p>Defined in generated file: <code>python/ops/gen_bitwise_ops.py</code></p>
+<!-- Start diff -->
+
+<p>Invert (flip) each bit of supported types; for example, type <code>uint8</code> value 01010101 becomes 10101010.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.bitwise.invert</code></li>
+<li><code>tf.compat.v2.bitwise.invert</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">bitwise</span><span class="o">.</span><span class="n">invert</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Flip each bit of supported types.  For example, type <code>int8</code> (decimal 2) binary 00000010 becomes (decimal -3) binary 11111101.
+This operation is performed on each element of the tensor argument <code>x</code>.</p>
+<h4 id="example">Example:</h4>
+<div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">from</span> <span class="nn">tensorflow.python.ops</span> <span class="kn">import</span> <span class="n">bitwise_ops</span>
+
+<span class="c1"># flip 2 (00000010) to -3 (11111101)</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">assert_equal</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="n">bitwise_ops</span><span class="o">.</span><span class="n">invert</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="n">dtype_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">dtypes</span><span class="o">.</span><span class="n">int8</span><span class="p">,</span> <span class="n">dtypes</span><span class="o">.</span><span class="n">int16</span><span class="p">,</span> <span class="n">dtypes</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span> <span class="n">dtypes</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span>
+              <span class="n">dtypes</span><span class="o">.</span><span class="n">uint8</span><span class="p">,</span> <span class="n">dtypes</span><span class="o">.</span><span class="n">uint16</span><span class="p">,</span> <span class="n">dtypes</span><span class="o">.</span><span class="n">uint32</span><span class="p">,</span> <span class="n">dtypes</span><span class="o">.</span><span class="n">uint64</span><span class="p">]</span>
+
+<span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">14</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">dtype</span> <span class="ow">in</span> <span class="n">dtype_list</span><span class="p">:</span>
+  <span class="c1"># Because of issues with negative numbers, let&#39;s test this indirectly.</span>
+  <span class="c1"># 1. invert(a) and a = 0</span>
+  <span class="c1"># 2. invert(a) or a = invert(0)</span>
+  <span class="n">input_tensor</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">14</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+  <span class="n">not_a_and_a</span><span class="p">,</span> <span class="n">not_a_or_a</span><span class="p">,</span> <span class="n">not_0</span> <span class="o">=</span> <span class="p">[</span><span class="n">bitwise_ops</span><span class="o">.</span><span class="n">bitwise_and</span><span class="p">(</span>
+                                      <span class="n">input_tensor</span><span class="p">,</span> <span class="n">bitwise_ops</span><span class="o">.</span><span class="n">invert</span><span class="p">(</span><span class="n">input_tensor</span><span class="p">)),</span>
+                                    <span class="n">bitwise_ops</span><span class="o">.</span><span class="n">bitwise_or</span><span class="p">(</span>
+                                      <span class="n">input_tensor</span><span class="p">,</span> <span class="n">bitwise_ops</span><span class="o">.</span><span class="n">invert</span><span class="p">(</span><span class="n">input_tensor</span><span class="p">)),</span>
+                                    <span class="n">bitwise_ops</span><span class="o">.</span><span class="n">invert</span><span class="p">(</span>
+                                      <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">))]</span>
+
+  <span class="n">expected</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+  <span class="n">tf</span><span class="o">.</span><span class="n">assert_equal</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">not_a_and_a</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span> <span class="n">expected</span><span class="p">)</span>
+
+  <span class="n">expected</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">([</span><span class="n">not_0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+  <span class="n">tf</span><span class="o">.</span><span class="n">assert_equal</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">not_a_or_a</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span> <span class="n">expected</span><span class="p">)</span>
+
+  <span class="c1"># For unsigned dtypes let&#39;s also check the result directly.</span>
+  <span class="k">if</span> <span class="n">dtype</span><span class="o">.</span><span class="n">is_unsigned</span><span class="p">:</span>
+    <span class="n">inverted</span> <span class="o">=</span> <span class="n">bitwise_ops</span><span class="o">.</span><span class="n">invert</span><span class="p">(</span><span class="n">input_tensor</span><span class="p">)</span>
+    <span class="n">expected</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="n">dtype</span><span class="o">.</span><span class="n">max</span> <span class="o">-</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">inputs</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">assert_equal</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">inverted</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">expected</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">))</span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>int8</code>, <code>int16</code>, <code>int32</code>, <code>int64</code>, <code>uint8</code>, <code>uint16</code>, <code>uint32</code>, <code>uint64</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>Tensor</code>. Has the same type as <code>x</code>.</p>
+    </body>
+    </html>
+   

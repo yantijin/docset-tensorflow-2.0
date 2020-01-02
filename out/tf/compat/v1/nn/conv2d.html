@@ -1,0 +1,107 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.nn.conv2d" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1nnconv2d">tf.compat.v1.nn.conv2d</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/nn_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Computes a 2-D convolution given 4-D <code>input</code> and <code>filter</code> tensors.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span>
+    <span class="nb">input</span><span class="p">,</span>
+    <span class="nb">filter</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">strides</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">padding</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">use_cudnn_on_gpu</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">data_format</span><span class="o">=</span><span class="s1">&#39;NHWC&#39;</span><span class="p">,</span>
+    <span class="n">dilations</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">filters</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Given an input tensor of shape <code>[batch, in_height, in_width, in_channels]</code>
+and a filter / kernel tensor of shape
+<code>[filter_height, filter_width, in_channels, out_channels]</code>, this op
+performs the following:</p>
+<ol>
+<li>Flattens the filter to a 2-D matrix with shape
+   <code>[filter_height * filter_width * in_channels, output_channels]</code>.</li>
+<li>Extracts image patches from the input tensor to form a <em>virtual</em>
+   tensor of shape <code>[batch, out_height, out_width,
+   filter_height * filter_width * in_channels]</code>.</li>
+<li>For each patch, right-multiplies the filter matrix and the image patch
+   vector.</li>
+</ol>
+<p>In detail, with the default NHWC format,</p>
+<div class="codehilite"><pre><span></span><span class="err">output[b, i, j, k] =</span>
+<span class="err">    sum_{di, dj, q} input[b, strides[1] * i + di, strides[2] * j + dj, q]</span>
+<span class="err">                    * filter[di, dj, q, k]</span>
+</pre></div>
+
+
+<p>Must have <code>strides[0] = strides[3] = 1</code>.  For the most common case of the same
+horizontal and vertices strides, <code>strides = [1, stride, stride, 1]</code>.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>input</code></b>: A <code>Tensor</code>. Must be one of the following types:
+  <code>half</code>, <code>bfloat16</code>, <code>float32</code>, <code>float64</code>.
+  A 4-D tensor. The dimension order is interpreted according to the value
+  of <code>data_format</code>, see below for details.</li>
+<li><b><code>filter</code></b>: A <code>Tensor</code>. Must have the same type as <code>input</code>.
+  A 4-D tensor of shape
+  <code>[filter_height, filter_width, in_channels, out_channels]</code></li>
+<li><b><code>strides</code></b>: An int or list of <code>ints</code> that has length <code>1</code>, <code>2</code> or <code>4</code>.  The
+  stride of the sliding window for each dimension of <code>input</code>. If a single
+  value is given it is replicated in the <code>H</code> and <code>W</code> dimension. By default
+  the <code>N</code> and <code>C</code> dimensions are set to 1. The dimension order is determined
+  by the value of <code>data_format</code>, see below for details.</li>
+<li><b><code>padding</code></b>: Either the <code>string</code> <code>"SAME"</code> or <code>"VALID"</code> indicating the type of
+  padding algorithm to use, or a list indicating the explicit paddings at
+  the start and end of each dimension. When explicit padding is used and
+  data_format is <code>"NHWC"</code>, this should be in the form <code>[[0, 0], [pad_top,
+  pad_bottom], [pad_left, pad_right], [0, 0]]</code>. When explicit padding used
+  and data_format is <code>"NCHW"</code>, this should be in the form <code>[[0, 0], [0, 0],
+  [pad_top, pad_bottom], [pad_left, pad_right]]</code>.</li>
+<li><b><code>use_cudnn_on_gpu</code></b>: An optional <code>bool</code>. Defaults to <code>True</code>.</li>
+<li><b><code>data_format</code></b>: An optional <code>string</code> from: <code>"NHWC", "NCHW"</code>.
+  Defaults to <code>"NHWC"</code>.
+  Specify the data format of the input and output data. With the
+  default format "NHWC", the data is stored in the order of:
+      [batch, height, width, channels].
+  Alternatively, the format could be "NCHW", the data storage order of:
+      [batch, channels, height, width].</li>
+<li><b><code>dilations</code></b>: An int or list of <code>ints</code> that has length <code>1</code>, <code>2</code> or <code>4</code>,
+  defaults to 1. The dilation factor for each dimension of<code>input</code>. If a
+  single value is given it is replicated in the <code>H</code> and <code>W</code> dimension. By
+  default the <code>N</code> and <code>C</code> dimensions are set to 1. If set to k &gt; 1, there
+  will be k-1 skipped cells between each filter element on that dimension.
+  The dimension order is determined by the value of <code>data_format</code>, see above
+  for details. Dilations in the batch and depth dimensions if a 4-d tensor
+  must be 1.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+<li><b><code>filters</code></b>: Alias for filter.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>Tensor</code>. Has the same type as <code>input</code>.</p>
+    </body>
+    </html>
+   

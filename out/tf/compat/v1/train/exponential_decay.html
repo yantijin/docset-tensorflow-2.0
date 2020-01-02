@@ -1,0 +1,93 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.train.exponential_decay" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1trainexponential_decay">tf.compat.v1.train.exponential_decay</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/learning_rate_decay.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Applies exponential decay to the learning rate.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">exponential_decay</span><span class="p">(</span>
+    <span class="n">learning_rate</span><span class="p">,</span>
+    <span class="n">global_step</span><span class="p">,</span>
+    <span class="n">decay_steps</span><span class="p">,</span>
+    <span class="n">decay_rate</span><span class="p">,</span>
+    <span class="n">staircase</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>When training a model, it is often recommended to lower the learning rate as
+the training progresses.  This function applies an exponential decay function
+to a provided initial learning rate.  It requires a <code>global_step</code> value to
+compute the decayed learning rate.  You can just pass a TensorFlow variable
+that you increment at each training step.</p>
+<p>The function returns the decayed learning rate.  It is computed as:</p>
+<div class="codehilite"><pre><span></span><span class="n">decayed_learning_rate</span> <span class="o">=</span> <span class="n">learning_rate</span> <span class="o">*</span>
+                        <span class="n">decay_rate</span> <span class="o">^</span> <span class="p">(</span><span class="n">global_step</span> <span class="o">/</span> <span class="n">decay_steps</span><span class="p">)</span>
+</pre></div>
+
+
+<p>If the argument <code>staircase</code> is <code>True</code>, then <code>global_step / decay_steps</code> is an
+integer division and the decayed learning rate follows a staircase function.</p>
+<p>Example: decay every 100000 steps with a base of 0.96:</p>
+<div class="codehilite"><pre><span></span><span class="o">...</span>
+<span class="n">global_step</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">trainable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">starter_learning_rate</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">learning_rate</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">exponential_decay</span><span class="p">(</span><span class="n">starter_learning_rate</span><span class="p">,</span>
+<span class="n">global_step</span><span class="p">,</span>
+                                           <span class="mi">100000</span><span class="p">,</span> <span class="mf">0.96</span><span class="p">,</span> <span class="n">staircase</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># Passing global_step to minimize() will increment it at each step.</span>
+<span class="n">learning_step</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">GradientDescentOptimizer</span><span class="p">(</span><span class="n">learning_rate</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="o">...</span><span class="n">my</span> <span class="n">loss</span><span class="o">...</span><span class="p">,</span> <span class="n">global_step</span><span class="o">=</span><span class="n">global_step</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>learning_rate</code></b>: A scalar <code>float32</code> or <code>float64</code> <code>Tensor</code> or a Python number.
+  The initial learning rate.</li>
+<li><b><code>global_step</code></b>: A scalar <code>int32</code> or <code>int64</code> <code>Tensor</code> or a Python number. Global
+  step to use for the decay computation.  Must not be negative.</li>
+<li><b><code>decay_steps</code></b>: A scalar <code>int32</code> or <code>int64</code> <code>Tensor</code> or a Python number. Must
+  be positive.  See the decay computation above.</li>
+<li><b><code>decay_rate</code></b>: A scalar <code>float32</code> or <code>float64</code> <code>Tensor</code> or a Python number.
+  The decay rate.</li>
+<li><b><code>staircase</code></b>: Boolean.  If <code>True</code> decay the learning rate at discrete intervals</li>
+<li><b><code>name</code></b>: String.  Optional name of the operation.  Defaults to
+  'ExponentialDecay'.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A scalar <code>Tensor</code> of the same type as <code>learning_rate</code>.  The decayed
+learning rate.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: if <code>global_step</code> is not supplied.</li>
+</ul>
+<h4 id="eager-compatibility">Eager Compatibility</h4>
+<p>When eager execution is enabled, this function returns a function which in
+turn returns the decayed learning rate Tensor. This can be useful for changing
+the learning rate value across different invocations of optimizer functions.</p>
+    </body>
+    </html>
+   

@@ -1,0 +1,118 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../default.css" rel="stylesheet">
+    <link href="
+   ../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.tensor_scatter_nd_sub" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tftensor_scatter_nd_sub">tf.tensor_scatter_nd_sub</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p>Defined in generated file: <code>python/ops/gen_array_ops.py</code></p>
+<!-- Start diff -->
+
+<p>Subtracts sparse <code>updates</code> from an existing tensor according to <code>indices</code>.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.tensor_scatter_nd_sub</code></li>
+<li><code>tf.compat.v1.tensor_scatter_sub</code></li>
+<li><code>tf.compat.v2.tensor_scatter_nd_sub</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">tensor_scatter_nd_sub</span><span class="p">(</span>
+    <span class="n">tensor</span><span class="p">,</span>
+    <span class="n">indices</span><span class="p">,</span>
+    <span class="n">updates</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>This operation creates a new tensor by subtracting sparse <code>updates</code> from the
+passed in <code>tensor</code>.
+This operation is very similar to <code>tf.scatter_nd_sub</code>, except that the updates
+are subtracted from an existing tensor (as opposed to a variable). If the memory
+for the existing tensor cannot be re-used, a copy is made and updated.</p>
+<p><code>indices</code> is an integer tensor containing indices into a new tensor of shape
+<code>shape</code>.  The last dimension of <code>indices</code> can be at most the rank of <code>shape</code>:</p>
+<div class="codehilite"><pre><span></span><span class="err">indices.shape[-1] &lt;= shape.rank</span>
+</pre></div>
+
+
+<p>The last dimension of <code>indices</code> corresponds to indices into elements
+(if <code>indices.shape[-1] = shape.rank</code>) or slices
+(if <code>indices.shape[-1] &lt; shape.rank</code>) along dimension <code>indices.shape[-1]</code> of
+<code>shape</code>.  <code>updates</code> is a tensor with shape</p>
+<div class="codehilite"><pre><span></span><span class="s s-Atom">indices</span><span class="p">.</span><span class="s s-Atom">shape</span><span class="p">[:-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s s-Atom">shape</span><span class="p">[</span><span class="s s-Atom">indices</span><span class="p">.</span><span class="s s-Atom">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="s s-Atom">:</span><span class="p">]</span>
+</pre></div>
+
+
+<p>The simplest form of tensor_scatter_sub is to subtract individual elements
+from a tensor by index. For example, say we want to insert 4 scattered elements
+in a rank-1 tensor with 8 elements.</p>
+<p>In Python, this scatter subtract operation would look like this:</p>
+<div class="codehilite"><pre><span></span>    <span class="n">indices</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">]])</span>
+    <span class="n">updates</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">])</span>
+    <span class="n">tensor</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="mi">8</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+    <span class="n">updated</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">tensor_scatter_sub</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">indices</span><span class="p">,</span> <span class="n">updates</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
+      <span class="nb">print</span><span class="p">(</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">scatter</span><span class="p">))</span>
+</pre></div>
+
+
+<p>The resulting tensor would look like this:</p>
+<div class="codehilite"><pre><span></span><span class="err">[1, -10, 1, -9, -8, 1, 1, -11]</span>
+</pre></div>
+
+
+<p>We can also, insert entire slices of a higher rank tensor all at once. For
+example, if we wanted to insert two slices in the first dimension of a
+rank-3 tensor with two matrices of new values.</p>
+<p>In Python, this scatter add operation would look like this:</p>
+<div class="codehilite"><pre><span></span>    <span class="n">indices</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">]])</span>
+    <span class="n">updates</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+                            <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">]],</span>
+                           <span class="p">[[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+                            <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">]]])</span>
+    <span class="n">tensor</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+    <span class="n">updated</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">tensor_scatter_sub</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">indices</span><span class="p">,</span> <span class="n">updates</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
+      <span class="nb">print</span><span class="p">(</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">scatter</span><span class="p">))</span>
+</pre></div>
+
+
+<p>The resulting tensor would look like this:</p>
+<div class="codehilite"><pre><span></span><span class="err">[[[-4, -4, -4, -4], [-5, -5, -5, -5], [-6, -6, -6, -6], [-7, -7, -7, -7]],</span>
+<span class="err"> [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]],</span>
+<span class="err"> [[-4, -4, -4, -4], [-5, -5, -5, -5], [-6, -6, -6, -6], [-7, -7, -7, -7]],</span>
+<span class="err"> [[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]]]</span>
+</pre></div>
+
+
+<p>Note that on CPU, if an out of bound index is found, an error is returned.
+On GPU, if an out of bound index is found, the index is ignored.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>tensor</code></b>: A <code>Tensor</code>. Tensor to copy/update.</li>
+<li><b><code>indices</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>int32</code>, <code>int64</code>.
+  Index tensor.</li>
+<li><b><code>updates</code></b>: A <code>Tensor</code>. Must have the same type as <code>tensor</code>.
+  Updates to scatter into output.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>Tensor</code>. Has the same type as <code>tensor</code>.</p>
+    </body>
+    </html>
+   

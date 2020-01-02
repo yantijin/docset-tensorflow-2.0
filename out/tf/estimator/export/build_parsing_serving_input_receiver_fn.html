@@ -1,0 +1,57 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.estimator.export.build_parsing_serving_input_receiver_fn" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfestimatorexportbuild_parsing_serving_input_receiver_fn">tf.estimator.export.build_parsing_serving_input_receiver_fn</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+
+<td>
+  <a target="_blank" href="https://github.com/tensorflow/estimator/tree/master/tensorflow_estimator/python/estimator/export/export.py">
+    <img src="https://www.tensorflow.org/images/GitHub-Mark-32px.png" />
+    View source on GitHub
+  </a>
+</td></table>
+
+<!-- Start diff -->
+
+<p>Build a serving_input_receiver_fn expecting fed tf.Examples.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.estimator.export.build_parsing_serving_input_receiver_fn</code></li>
+<li><code>tf.compat.v2.estimator.export.build_parsing_serving_input_receiver_fn</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">export</span><span class="o">.</span><span class="n">build_parsing_serving_input_receiver_fn</span><span class="p">(</span>
+    <span class="n">feature_spec</span><span class="p">,</span>
+    <span class="n">default_batch_size</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Creates a serving_input_receiver_fn that expects a serialized tf.Example fed
+into a string placeholder.  The function parses the tf.Example according to
+the provided feature_spec, and returns all parsed Tensors as features.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>feature_spec</code></b>: a dict of string to <code>VarLenFeature</code>/<code>FixedLenFeature</code>.</li>
+<li><b><code>default_batch_size</code></b>: the number of query examples expected per batch.
+    Leave unset for variable batch size (recommended).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A serving_input_receiver_fn suitable for use in serving.</p>
+    </body>
+    </html>
+   

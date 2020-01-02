@@ -1,0 +1,53 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.image.image_gradients" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfimageimage_gradients">tf.image.image_gradients</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/image_ops_impl.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Returns image gradients (dy, dx) for each color channel.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.image.image_gradients</code></li>
+<li><code>tf.compat.v2.image.image_gradients</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">image_gradients</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Both output tensors have the same shape as the input: [batch_size, h, w,
+d]. The gradient values are organized so that [I(x+1, y) - I(x, y)] is in
+location (x, y). That means that dy will always have zeros in the last row,
+and dx will always have zeros in the last column.</p>
+<h4 id="arguments">Arguments:</h4>
+<ul>
+<li><b><code>image</code></b>: Tensor with shape [batch_size, h, w, d].</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>Pair of tensors (dy, dx) holding the vertical and horizontal image
+gradients (1-step finite difference).</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: If <code>image</code> is not a 4D tensor.</li>
+</ul>
+    </body>
+    </html>
+   

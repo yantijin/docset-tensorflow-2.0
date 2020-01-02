@@ -1,0 +1,57 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.nn.ctc_unique_labels" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfnnctc_unique_labels">tf.nn.ctc_unique_labels</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/ctc_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Get unique labels and indices for batched labels for <a href="../../tf/nn/ctc_loss.html"><code>tf.nn.ctc_loss</code></a>.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.nn.ctc_unique_labels</code></li>
+<li><code>tf.compat.v2.nn.ctc_unique_labels</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">ctc_unique_labels</span><span class="p">(</span>
+    <span class="n">labels</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>For use with <a href="../../tf/nn/ctc_loss.html"><code>tf.nn.ctc_loss</code></a> optional argument <code>unique</code>: This op can be
+used to preprocess labels in input pipeline to for better speed/memory use
+computing the ctc loss on TPU.</p>
+<h4 id="example">Example:</h4>
+<p>ctc_unique_labels([[3, 4, 4, 3]]) -&gt;
+  unique labels padded with 0: [[3, 4, 0, 0]]
+  indices of original labels in unique: [0, 1, 1, 0]</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>labels</code></b>: tensor of shape [batch_size, max_label_length] padded with 0.</li>
+<li><b><code>name</code></b>: A name for this <code>Op</code>. Defaults to "ctc_unique_labels".</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>tuple of
+  - unique labels, tensor of shape <code>[batch_size, max_label_length]</code>
+  - indices into unique labels, shape <code>[batch_size, max_label_length]</code></p>
+    </body>
+    </html>
+   

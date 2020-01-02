@@ -1,0 +1,78 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.dtypes.cast" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfdtypescast">tf.dtypes.cast</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/math_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Casts a tensor to a new type.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.cast</code></li>
+<li><code>tf.compat.v1.cast</code></li>
+<li><code>tf.compat.v1.dtypes.cast</code></li>
+<li><code>tf.compat.v2.cast</code></li>
+<li><code>tf.compat.v2.dtypes.cast</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>The operation casts <code>x</code> (in case of <code>Tensor</code>) or <code>x.values</code>
+(in case of <code>SparseTensor</code> or <code>IndexedSlices</code>) to <code>dtype</code>.</p>
+<h4 id="for-example">For example:</h4>
+<div class="codehilite"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="mf">1.8</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>  <span class="c1"># [1, 2], dtype=tf.int32</span>
+</pre></div>
+
+
+<p>The operation supports data types (for <code>x</code> and <code>dtype</code>) of
+<code>uint8</code>, <code>uint16</code>, <code>uint32</code>, <code>uint64</code>, <code>int8</code>, <code>int16</code>, <code>int32</code>, <code>int64</code>,
+<code>float16</code>, <code>float32</code>, <code>float64</code>, <code>complex64</code>, <code>complex128</code>, <code>bfloat16</code>.
+In case of casting from complex types (<code>complex64</code>, <code>complex128</code>) to real
+types, only the real part of <code>x</code> is returned. In case of casting from real
+types to complex types (<code>complex64</code>, <code>complex128</code>), the imaginary part of the
+returned value is set to <code>0</code>. The handling of complex types here matches the
+behavior of numpy.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code> or <code>SparseTensor</code> or <code>IndexedSlices</code> of numeric type. It could
+  be <code>uint8</code>, <code>uint16</code>, <code>uint32</code>, <code>uint64</code>, <code>int8</code>, <code>int16</code>, <code>int32</code>,
+  <code>int64</code>, <code>float16</code>, <code>float32</code>, <code>float64</code>, <code>complex64</code>, <code>complex128</code>,
+  <code>bfloat16</code>.</li>
+<li><b><code>dtype</code></b>: The destination type. The list of supported dtypes is the same as
+  <code>x</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>Tensor</code> or <code>SparseTensor</code> or <code>IndexedSlices</code> with same shape as <code>x</code> and
+  same type as <code>dtype</code>.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>TypeError</code></b>: If <code>x</code> cannot be cast to the <code>dtype</code>.</li>
+</ul>
+    </body>
+    </html>
+   

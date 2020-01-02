@@ -1,0 +1,90 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.string_split" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1string_split">tf.compat.v1.string_split</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/ragged/ragged_string_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Split elements of <code>source</code> based on <code>delimiter</code>. (deprecated arguments)</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">string_split</span><span class="p">(</span>
+    <span class="n">source</span><span class="p">,</span>
+    <span class="n">sep</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">skip_empty</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">delimiter</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">result_type</span><span class="o">=</span><span class="s1">&#39;SparseTensor&#39;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Warning: SOME ARGUMENTS ARE DEPRECATED: <code>(delimiter)</code>. They will be removed in a future version.
+Instructions for updating:
+delimiter is deprecated, please use sep instead.</p>
+<p>Let N be the size of <code>source</code> (typically N will be the batch size). Split each
+element of <code>source</code> based on <code>delimiter</code> and return a <code>SparseTensor</code>
+or <code>RaggedTensor</code> containing the split tokens. Empty tokens are ignored.</p>
+<p>If <code>sep</code> is an empty string, each element of the <code>source</code> is split
+into individual strings, each containing one byte. (This includes splitting
+multibyte sequences of UTF-8.) If delimiter contains multiple bytes, it is
+treated as a set of delimiters with each considered a potential split point.</p>
+<h4 id="examples">Examples:</h4>
+<div class="codehilite"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">tf</span><span class="o">.</span><span class="n">strings</span><span class="o">.</span><span class="n">split</span><span class="p">([</span><span class="s1">&#39;hello world&#39;</span><span class="p">,</span> <span class="s1">&#39;a b c&#39;</span><span class="p">])</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">SparseTensor</span><span class="p">(</span><span class="n">indices</span><span class="o">=</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]],</span>
+                <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;world&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">]</span>
+                <span class="n">dense_shape</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+</pre></div>
+
+
+<blockquote>
+<blockquote>
+<blockquote>
+<p>tf.strings.split(['hello world', 'a b c'], result_type="RaggedTensor")
+<tf.RaggedTensor [['hello', 'world'], ['a', 'b', 'c']]></p>
+</blockquote>
+</blockquote>
+</blockquote>
+<div class="codehilite"><pre><span></span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>source</code></b>: <code>1-D</code> string <code>Tensor</code>, the strings to split.</li>
+<li><b><code>sep</code></b>: <code>0-D</code> string <code>Tensor</code>, the delimiter character, the string should
+  be length 0 or 1. Default is ' '.</li>
+<li><b><code>skip_empty</code></b>: A <code>bool</code>. If <code>True</code>, skip the empty strings from the result.</li>
+<li><b><code>delimiter</code></b>: deprecated alias for <code>sep</code>.</li>
+<li><b><code>result_type</code></b>: The tensor type for the result: one of <code>"RaggedTensor"</code> or
+  <code>"SparseTensor"</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: If delimiter is not a string.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>SparseTensor</code> or <code>RaggedTensor</code> of rank <code>2</code>, the strings split according
+to the delimiter.  The first column of the indices corresponds to the row
+in <code>source</code> and the second column corresponds to the index of the split
+component in this row.</p>
+    </body>
+    </html>
+   

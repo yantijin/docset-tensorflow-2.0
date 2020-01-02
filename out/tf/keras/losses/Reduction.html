@@ -1,0 +1,96 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.losses.Reduction" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="all"/>
+<meta itemprop="property" content="validate"/>
+<meta itemprop="property" content="AUTO"/>
+<meta itemprop="property" content="NONE"/>
+<meta itemprop="property" content="SUM"/>
+<meta itemprop="property" content="SUM_OVER_BATCH_SIZE"/>
+</div>
+
+<h1 id="tfkeraslossesreduction">tf.keras.losses.Reduction</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/losses/loss_reduction.py">View source</a></p>
+<h2 id="class-reduction">Class <code>Reduction</code></h2>
+<!-- Start diff -->
+
+<p>Types of loss reduction.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v2.keras.losses.Reduction</code></li>
+<li>Class <code>tf.compat.v2.losses.Reduction</code></li>
+<li>Class <code>tf.losses.Reduction</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<p>Contains the following values:</p>
+<ul>
+<li><code>AUTO</code>: Indicates that the reduction option will be determined by the usage
+   context. For almost all cases this defaults to <code>SUM_OVER_BATCH_SIZE</code>. When
+   used with <a href="../../../tf/distribute/Strategy.html"><code>tf.distribute.Strategy</code></a>, outside of built-in training loops such
+   as <a href="../../../tf/keras.html"><code>tf.keras</code></a> <code>compile</code> and <code>fit</code>, we expect reduction value to be
+   <code>SUM</code> or <code>NONE</code>. Using <code>AUTO</code> in that case will raise an error.</li>
+<li><code>NONE</code>: Weighted losses with one dimension reduced (axis=-1, or axis
+   specified by loss function). When this reduction type used with built-in
+   Keras training loops like <code>fit</code>/<code>evaluate</code>, the unreduced vector loss is
+   passed to the optimizer but the reported loss will be a scalar value.</li>
+<li><code>SUM</code>: Scalar sum of weighted losses.</li>
+<li><code>SUM_OVER_BATCH_SIZE</code>: Scalar <code>SUM</code> divided by number of elements in losses.
+   This reduction type is not supported when used with
+   <a href="../../../tf/distribute/Strategy.html"><code>tf.distribute.Strategy</code></a> outside of built-in training loops like <a href="../../../tf/keras.html"><code>tf.keras</code></a>
+   <code>compile</code>/<code>fit</code>.</li>
+</ul>
+<p>You can implement 'SUM_OVER_BATCH_SIZE' using global batch size like:
+   <code>with strategy.scope():
+     loss_obj = tf.keras.losses.CategoricalCrossentropy(
+         reduction=tf.keras.losses.Reduction.NONE)
+     ....
+     loss = tf.reduce_sum(loss_object(labels, predictions)) *
+         (1. / global_batch_size)</code></p>
+<p>Please see
+   https://www.tensorflow.org/alpha/tutorials/distribute/training_loops for
+   more details on this.</p>
+<h2 id="methods">Methods</h2>
+<h3 id="all"><code>all</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/losses/loss_reduction.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="nd">@classmethod</span>
+<span class="nb">all</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
+</pre></div>
+
+
+<h3 id="validate"><code>validate</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/losses/loss_reduction.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="nd">@classmethod</span>
+<span class="n">validate</span><span class="p">(</span>
+    <span class="bp">cls</span><span class="p">,</span>
+    <span class="n">key</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<h2 id="class-members">Class Members</h2>
+<ul>
+<li><code>AUTO = 'auto'</code> <a id="AUTO"></a></li>
+<li><code>NONE = 'none'</code> <a id="NONE"></a></li>
+<li><code>SUM = 'sum'</code> <a id="SUM"></a></li>
+<li><code>SUM_OVER_BATCH_SIZE = 'sum_over_batch_size'</code> <a id="SUM_OVER_BATCH_SIZE"></a></li>
+</ul>
+    </body>
+    </html>
+   

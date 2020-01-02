@@ -1,0 +1,64 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.estimator.experimental.build_raw_supervised_input_receiver_fn" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfestimatorexperimentalbuild_raw_supervised_input_receiver_fn">tf.estimator.experimental.build_raw_supervised_input_receiver_fn</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+
+<td>
+  <a target="_blank" href="https://github.com/tensorflow/estimator/tree/master/tensorflow_estimator/python/estimator/export/export.py">
+    <img src="https://www.tensorflow.org/images/GitHub-Mark-32px.png" />
+    View source on GitHub
+  </a>
+</td></table>
+
+<!-- Start diff -->
+
+<p>Build a supervised_input_receiver_fn for raw features and labels.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.estimator.experimental.build_raw_supervised_input_receiver_fn</code></li>
+<li><code>tf.compat.v2.estimator.experimental.build_raw_supervised_input_receiver_fn</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">build_raw_supervised_input_receiver_fn</span><span class="p">(</span>
+    <span class="n">features</span><span class="p">,</span>
+    <span class="n">labels</span><span class="p">,</span>
+    <span class="n">default_batch_size</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>This function wraps tensor placeholders in a supervised_receiver_fn
+with the expectation that the features and labels appear precisely as
+the model_fn expects them. Features and labels can therefore be dicts of
+tensors, or raw tensors.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>features</code></b>: a dict of string to <code>Tensor</code> or <code>Tensor</code>.</li>
+<li><b><code>labels</code></b>: a dict of string to <code>Tensor</code> or <code>Tensor</code>.</li>
+<li><b><code>default_batch_size</code></b>: the number of query examples expected per batch.
+    Leave unset for variable batch size (recommended).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A supervised_input_receiver_fn.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: if features and labels have overlapping keys.</li>
+</ul>
+    </body>
+    </html>
+   

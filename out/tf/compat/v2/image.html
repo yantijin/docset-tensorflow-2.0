@@ -1,0 +1,86 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v2.image" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="module-tfcompatv2image">Module: tf.compat.v2.image</h1>
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p>Image processing and decoding ops.</p>
+<p>See the <a href="https://tensorflow.org/api_guides/python/image">Images</a> guide.</p>
+<h2 id="classes">Classes</h2>
+<p><a href="../../../tf/image/ResizeMethod.html"><code>class ResizeMethod</code></a></p>
+<h2 id="functions">Functions</h2>
+<p><a href="../../../tf/image/adjust_brightness.html"><code>adjust_brightness(...)</code></a>: Adjust the brightness of RGB or Grayscale images.</p>
+<p><a href="../../../tf/image/adjust_contrast.html"><code>adjust_contrast(...)</code></a>: Adjust contrast of RGB or grayscale images.</p>
+<p><a href="../../../tf/image/adjust_gamma.html"><code>adjust_gamma(...)</code></a>: Performs Gamma Correction on the input image.</p>
+<p><a href="../../../tf/image/adjust_hue.html"><code>adjust_hue(...)</code></a>: Adjust hue of RGB images.</p>
+<p><a href="../../../tf/image/adjust_jpeg_quality.html"><code>adjust_jpeg_quality(...)</code></a>: Adjust jpeg encoding quality of an RGB image.</p>
+<p><a href="../../../tf/image/adjust_saturation.html"><code>adjust_saturation(...)</code></a>: Adjust saturation of RGB images.</p>
+<p><a href="../../../tf/image/central_crop.html"><code>central_crop(...)</code></a>: Crop the central region of the image(s).</p>
+<p><a href="../../../tf/image/combined_non_max_suppression.html"><code>combined_non_max_suppression(...)</code></a>: Greedily selects a subset of bounding boxes in descending order of score.</p>
+<p><a href="../../../tf/image/convert_image_dtype.html"><code>convert_image_dtype(...)</code></a>: Convert <code>image</code> to <code>dtype</code>, scaling its values if needed.</p>
+<p><a href="../../../tf/image/crop_and_resize.html"><code>crop_and_resize(...)</code></a>: Extracts crops from the input image tensor and resizes them.</p>
+<p><a href="../../../tf/image/crop_to_bounding_box.html"><code>crop_to_bounding_box(...)</code></a>: Crops an image to a specified bounding box.</p>
+<p><a href="../../../tf/io/decode_and_crop_jpeg.html"><code>decode_and_crop_jpeg(...)</code></a>: Decode and Crop a JPEG-encoded image to a uint8 tensor.</p>
+<p><a href="../../../tf/io/decode_bmp.html"><code>decode_bmp(...)</code></a>: Decode the first frame of a BMP-encoded image to a uint8 tensor.</p>
+<p><a href="../../../tf/io/decode_gif.html"><code>decode_gif(...)</code></a>: Decode the frame(s) of a GIF-encoded image to a uint8 tensor.</p>
+<p><a href="../../../tf/io/decode_image.html"><code>decode_image(...)</code></a>: Function for <code>decode_bmp</code>, <code>decode_gif</code>, <code>decode_jpeg</code>, and <code>decode_png</code>.</p>
+<p><a href="../../../tf/io/decode_jpeg.html"><code>decode_jpeg(...)</code></a>: Decode a JPEG-encoded image to a uint8 tensor.</p>
+<p><a href="../../../tf/io/decode_png.html"><code>decode_png(...)</code></a>: Decode a PNG-encoded image to a uint8 or uint16 tensor.</p>
+<p><a href="../../../tf/image/draw_bounding_boxes.html"><code>draw_bounding_boxes(...)</code></a>: Draw bounding boxes on a batch of images.</p>
+<p><a href="../../../tf/io/encode_jpeg.html"><code>encode_jpeg(...)</code></a>: JPEG-encode an image.</p>
+<p><a href="../../../tf/image/encode_png.html"><code>encode_png(...)</code></a>: PNG-encode an image.</p>
+<p><a href="../../../tf/image/extract_glimpse.html"><code>extract_glimpse(...)</code></a>: Extracts a glimpse from the input tensor.</p>
+<p><a href="../../../tf/io/extract_jpeg_shape.html"><code>extract_jpeg_shape(...)</code></a>: Extract the shape information of a JPEG-encoded image.</p>
+<p><a href="../../../tf/image/extract_patches.html"><code>extract_patches(...)</code></a>: Extract <code>patches</code> from <code>images</code>.</p>
+<p><a href="../../../tf/image/flip_left_right.html"><code>flip_left_right(...)</code></a>: Flip an image horizontally (left to right).</p>
+<p><a href="../../../tf/image/flip_up_down.html"><code>flip_up_down(...)</code></a>: Flip an image vertically (upside down).</p>
+<p><a href="../../../tf/image/grayscale_to_rgb.html"><code>grayscale_to_rgb(...)</code></a>: Converts one or more images from Grayscale to RGB.</p>
+<p><a href="../../../tf/image/hsv_to_rgb.html"><code>hsv_to_rgb(...)</code></a>: Convert one or more images from HSV to RGB.</p>
+<p><a href="../../../tf/image/image_gradients.html"><code>image_gradients(...)</code></a>: Returns image gradients (dy, dx) for each color channel.</p>
+<p><a href="../../../tf/io/is_jpeg.html"><code>is_jpeg(...)</code></a>: Convenience function to check if the 'contents' encodes a JPEG image.</p>
+<p><a href="../../../tf/image/non_max_suppression.html"><code>non_max_suppression(...)</code></a>: Greedily selects a subset of bounding boxes in descending order of score.</p>
+<p><a href="../../../tf/image/non_max_suppression_overlaps.html"><code>non_max_suppression_overlaps(...)</code></a>: Greedily selects a subset of bounding boxes in descending order of score.</p>
+<p><a href="../../../tf/image/non_max_suppression_padded.html"><code>non_max_suppression_padded(...)</code></a>: Greedily selects a subset of bounding boxes in descending order of score.</p>
+<p><a href="../../../tf/image/non_max_suppression_with_scores.html"><code>non_max_suppression_with_scores(...)</code></a>: Greedily selects a subset of bounding boxes in descending order of score.</p>
+<p><a href="../../../tf/image/pad_to_bounding_box.html"><code>pad_to_bounding_box(...)</code></a>: Pad <code>image</code> with zeros to the specified <code>height</code> and <code>width</code>.</p>
+<p><a href="../../../tf/image/per_image_standardization.html"><code>per_image_standardization(...)</code></a>: Linearly scales each image in <code>image</code> to have mean 0 and variance 1.</p>
+<p><a href="../../../tf/image/psnr.html"><code>psnr(...)</code></a>: Returns the Peak Signal-to-Noise Ratio between a and b.</p>
+<p><a href="../../../tf/image/random_brightness.html"><code>random_brightness(...)</code></a>: Adjust the brightness of images by a random factor.</p>
+<p><a href="../../../tf/image/random_contrast.html"><code>random_contrast(...)</code></a>: Adjust the contrast of an image or images by a random factor.</p>
+<p><a href="../../../tf/image/random_crop.html"><code>random_crop(...)</code></a>: Randomly crops a tensor to a given size.</p>
+<p><a href="../../../tf/image/random_flip_left_right.html"><code>random_flip_left_right(...)</code></a>: Randomly flip an image horizontally (left to right).</p>
+<p><a href="../../../tf/image/random_flip_up_down.html"><code>random_flip_up_down(...)</code></a>: Randomly flips an image vertically (upside down).</p>
+<p><a href="../../../tf/image/random_hue.html"><code>random_hue(...)</code></a>: Adjust the hue of RGB images by a random factor.</p>
+<p><a href="../../../tf/image/random_jpeg_quality.html"><code>random_jpeg_quality(...)</code></a>: Randomly changes jpeg encoding quality for inducing jpeg noise.</p>
+<p><a href="../../../tf/image/random_saturation.html"><code>random_saturation(...)</code></a>: Adjust the saturation of RGB images by a random factor.</p>
+<p><a href="../../../tf/image/resize.html"><code>resize(...)</code></a>: Resize <code>images</code> to <code>size</code> using the specified <code>method</code>.</p>
+<p><a href="../../../tf/image/resize_with_crop_or_pad.html"><code>resize_with_crop_or_pad(...)</code></a>: Crops and/or pads an image to a target width and height.</p>
+<p><a href="../../../tf/image/resize_with_pad.html"><code>resize_with_pad(...)</code></a>: Resizes and pads an image to a target width and height.</p>
+<p><a href="../../../tf/image/rgb_to_grayscale.html"><code>rgb_to_grayscale(...)</code></a>: Converts one or more images from RGB to Grayscale.</p>
+<p><a href="../../../tf/image/rgb_to_hsv.html"><code>rgb_to_hsv(...)</code></a>: Converts one or more images from RGB to HSV.</p>
+<p><a href="../../../tf/image/rgb_to_yiq.html"><code>rgb_to_yiq(...)</code></a>: Converts one or more images from RGB to YIQ.</p>
+<p><a href="../../../tf/image/rgb_to_yuv.html"><code>rgb_to_yuv(...)</code></a>: Converts one or more images from RGB to YUV.</p>
+<p><a href="../../../tf/image/rot90.html"><code>rot90(...)</code></a>: Rotate image(s) counter-clockwise by 90 degrees.</p>
+<p><a href="../../../tf/image/sample_distorted_bounding_box.html"><code>sample_distorted_bounding_box(...)</code></a>: Generate a single randomly distorted bounding box for an image.</p>
+<p><a href="../../../tf/image/sobel_edges.html"><code>sobel_edges(...)</code></a>: Returns a tensor holding Sobel edge maps.</p>
+<p><a href="../../../tf/image/ssim.html"><code>ssim(...)</code></a>: Computes SSIM index between img1 and img2.</p>
+<p><a href="../../../tf/image/ssim_multiscale.html"><code>ssim_multiscale(...)</code></a>: Computes the MS-SSIM between img1 and img2.</p>
+<p><a href="../../../tf/image/total_variation.html"><code>total_variation(...)</code></a>: Calculate and return the total variation for one or more images.</p>
+<p><a href="../../../tf/image/transpose.html"><code>transpose(...)</code></a>: Transpose image(s) by swapping the height and width dimension.</p>
+<p><a href="../../../tf/image/yiq_to_rgb.html"><code>yiq_to_rgb(...)</code></a>: Converts one or more images from YIQ to RGB.</p>
+<p><a href="../../../tf/image/yuv_to_rgb.html"><code>yuv_to_rgb(...)</code></a>: Converts one or more images from YUV to RGB.</p>
+    </body>
+    </html>
+   

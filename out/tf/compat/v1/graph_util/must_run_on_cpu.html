@@ -1,0 +1,48 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.graph_util.must_run_on_cpu" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1graph_utilmust_run_on_cpu">tf.compat.v1.graph_util.must_run_on_cpu</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/graph_util_impl.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Returns True if the given node_def must run on CPU, otherwise False. (deprecated)</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">graph_util</span><span class="o">.</span><span class="n">must_run_on_cpu</span><span class="p">(</span>
+    <span class="n">node</span><span class="p">,</span>
+    <span class="n">pin_variables_on_cpu</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
+Instructions for updating:
+Use <a href="../../../../tf/compat/v1/graph_util/must_run_on_cpu.html"><code>tf.compat.v1.graph_util.must_run_on_cpu</code></a></p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>node</code></b>: The node to be assigned to a device. Could be either an ops.Operation
+  or NodeDef.</li>
+<li><b><code>pin_variables_on_cpu</code></b>: If True, this function will return False if node_def
+  represents a variable-related op.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>True if the given node must run on CPU, otherwise False.</p>
+    </body>
+    </html>
+   

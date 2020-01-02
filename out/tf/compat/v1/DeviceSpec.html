@@ -1,0 +1,271 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.DeviceSpec" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="device_index"/>
+<meta itemprop="property" content="device_type"/>
+<meta itemprop="property" content="job"/>
+<meta itemprop="property" content="replica"/>
+<meta itemprop="property" content="task"/>
+<meta itemprop="property" content="__eq__"/>
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="from_string"/>
+<meta itemprop="property" content="make_merged_spec"/>
+<meta itemprop="property" content="merge_from"/>
+<meta itemprop="property" content="parse_from_string"/>
+<meta itemprop="property" content="replace"/>
+<meta itemprop="property" content="to_string"/>
+</div>
+
+<h1 id="tfcompatv1devicespec">tf.compat.v1.DeviceSpec</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/device_spec.py">View source</a></p>
+<h2 id="class-devicespec">Class <code>DeviceSpec</code></h2>
+<!-- Start diff -->
+
+<p>Represents a (possibly partial) specification for a TensorFlow device.</p>
+<p>Inherits From: <a href="../../../tf/DeviceSpec.html"><code>DeviceSpec</code></a></p>
+<!-- Placeholder for "Used in" -->
+
+<p><code>DeviceSpec</code>s are used throughout TensorFlow to describe where state is stored
+and computations occur. Using <code>DeviceSpec</code> allows you to parse device spec
+strings to verify their validity, merge them or compose them programmatically.</p>
+<h4 id="example">Example:</h4>
+<div class="codehilite"><pre><span></span><span class="c1"># Place the operations on device &quot;GPU:0&quot; in the &quot;ps&quot; job.</span>
+<span class="n">device_spec</span> <span class="o">=</span> <span class="n">DeviceSpec</span><span class="p">(</span><span class="n">job</span><span class="o">=</span><span class="s2">&quot;ps&quot;</span><span class="p">,</span> <span class="n">device_type</span><span class="o">=</span><span class="s2">&quot;GPU&quot;</span><span class="p">,</span> <span class="n">device_index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="n">device_spec</span><span class="p">):</span>
+  <span class="c1"># Both my_var and squared_var will be placed on /job:ps/device:GPU:0.</span>
+  <span class="n">my_var</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_variable&quot;</span><span class="p">)</span>
+  <span class="n">squared_var</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">my_var</span><span class="p">)</span>
+</pre></div>
+
+
+<p>If a <code>DeviceSpec</code> is partially specified, it will be merged with other
+<code>DeviceSpec</code>s according to the scope in which it is defined. <code>DeviceSpec</code>
+components defined in inner scopes take precedence over those defined in
+outer scopes.</p>
+<div class="codehilite"><pre><span></span><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="n">DeviceSpec</span><span class="p">(</span><span class="n">job</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="p">)):</span>
+  <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="n">DeviceSpec</span><span class="p">(</span><span class="n">job</span><span class="o">=</span><span class="s2">&quot;ps&quot;</span><span class="p">,</span> <span class="n">device_type</span><span class="o">=</span><span class="s2">&quot;GPU&quot;</span><span class="p">,</span> <span class="n">device_index</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="c1"># Nodes created here will be assigned to /job:ps/device:GPU:0.</span>
+  <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="n">DeviceSpec</span><span class="p">(</span><span class="n">device_type</span><span class="o">=</span><span class="s2">&quot;GPU&quot;</span><span class="p">,</span> <span class="n">device_index</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="c1"># Nodes created here will be assigned to /job:train/device:GPU:1.</span>
+</pre></div>
+
+
+<p>A <code>DeviceSpec</code> consists of 5 components -- each of
+which is optionally specified:</p>
+<ul>
+<li>Job: The job name.</li>
+<li>Replica: The replica index.</li>
+<li>Task: The task index.</li>
+<li>Device type: The device type string (e.g. "CPU" or "GPU").</li>
+<li>Device index: The device index.</li>
+</ul>
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/device_spec.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">job</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">replica</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">task</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">device_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">device_index</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Create a new <code>DeviceSpec</code> object.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>job</code></b>: string.  Optional job name.</li>
+<li><b><code>replica</code></b>: int.  Optional replica index.</li>
+<li><b><code>task</code></b>: int.  Optional task index.</li>
+<li><b><code>device_type</code></b>: Optional device type string (e.g. "CPU" or "GPU")</li>
+<li><b><code>device_index</code></b>: int.  Optional device index.  If left
+  unspecified, device represents 'any' device_index.</li>
+</ul>
+<h2 id="properties">Properties</h2>
+<h3 id="device_index"><code>device_index</code></h3>
+
+<h3 id="device_type"><code>device_type</code></h3>
+
+<h3 id="job"><code>job</code></h3>
+
+<h3 id="replica"><code>replica</code></h3>
+
+<h3 id="task"><code>task</code></h3>
+
+<h2 id="methods">Methods</h2>
+<h3 id="__eq__"><code>__eq__</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/device_spec.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__eq__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Checks if the <code>other</code> DeviceSpec is same as the current instance, eg have</p>
+<p>same value for all the internal fields.</p>
+<h4 id="args_1">Args:</h4>
+<ul>
+<li><b><code>other</code></b>: Another DeviceSpec</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>Return <code>True</code> if <code>other</code> is also a DeviceSpec instance and has same value
+as the current instance.
+Return <code>False</code> otherwise.</p>
+<h3 id="from_string"><code>from_string</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/device_spec.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">from_string</span><span class="p">(</span>
+    <span class="bp">cls</span><span class="p">,</span>
+    <span class="n">spec</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Construct a <code>DeviceSpec</code> from a string.</p>
+<h4 id="args_2">Args:</h4>
+<ul>
+<li><b><code>spec</code></b>: a string of the form
+ /job:<name>/replica:<id>/task:<id>/device:CPU:<id>
+or
+ /job:<name>/replica:<id>/task:<id>/device:GPU:<id>
+as cpu and gpu are mutually exclusive.
+All entries are optional.</li>
+</ul>
+<h4 id="returns_1">Returns:</h4>
+<p>A DeviceSpec.</p>
+<h3 id="make_merged_spec"><code>make_merged_spec</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/device_spec.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">make_merged_spec</span><span class="p">(</span><span class="n">dev</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Returns a new DeviceSpec which incorporates <code>dev</code>.</p>
+<p>When combining specs, <code>dev</code> will take precidence over the current spec.
+So for instance:</p>
+<div class="codehilite"><pre><span></span><span class="err">first_spec = tf.DeviceSpec(job=0, device_type=&quot;CPU&quot;)</span>
+<span class="err">second_spec = tf.DeviceSpec(device_type=&quot;GPU&quot;)</span>
+<span class="err">combined_spec = first_spec.make_merged_spec(second_spec)</span>
+</pre></div>
+
+
+<p>is equivalent to:</p>
+<div class="codehilite"><pre><span></span><span class="err">combined_spec = tf.DeviceSpec(job=0, device_type=&quot;GPU&quot;)</span>
+</pre></div>
+
+
+<h4 id="args_3">Args:</h4>
+<ul>
+<li><b><code>dev</code></b>: a <code>DeviceSpec</code></li>
+</ul>
+<h4 id="returns_2">Returns:</h4>
+<p>A new <code>DeviceSpec</code> which combines <code>self</code> and <code>dev</code></p>
+<h3 id="merge_from"><code>merge_from</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/device_spec.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">merge_from</span><span class="p">(</span><span class="n">dev</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Merge the properties of "dev" into this <code>DeviceSpec</code>.</p>
+<p>Note: Will be removed in TensorFlow 2.x since DeviceSpecs will become
+      immutable.</p>
+<h4 id="args_4">Args:</h4>
+<ul>
+<li><b><code>dev</code></b>: a <code>DeviceSpec</code>.</li>
+</ul>
+<h3 id="parse_from_string"><code>parse_from_string</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/device_spec.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">parse_from_string</span><span class="p">(</span><span class="n">spec</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Parse a <code>DeviceSpec</code> name into its components.</p>
+<p>2.x behavior change:
+  In TensorFlow 1.x, this function mutates its own state and returns itself.
+  In 2.x, DeviceSpecs are immutable, and this function will return a
+    DeviceSpec which contains the spec.</p>
+<p>Recommended:
+    <code># my_spec and my_updated_spec are unrelated.
+    my_spec = tf.DeviceSpec.from_string("/CPU:0")
+    my_updated_spec = tf.DeviceSpec.from_string("/GPU:0")
+    with tf.device(my_updated_spec):
+      ...</code></p>
+<p>Will work in 1.x and 2.x (though deprecated in 2.x):
+    <code>my_spec = tf.DeviceSpec.from_string("/CPU:0")
+    my_updated_spec = my_spec.parse_from_string("/GPU:0")
+    with tf.device(my_updated_spec):
+      ...</code></p>
+<p>Will NOT work in 2.x:
+    <code>my_spec = tf.DeviceSpec.from_string("/CPU:0")
+    my_spec.parse_from_string("/GPU:0")  # &lt;== Will not update my_spec
+    with tf.device(my_spec):
+      ...</code></p>
+<p>In general, <code>DeviceSpec.from_string</code> should completely replace
+  <code>DeviceSpec.parse_from_string</code>, and <code>DeviceSpec.replace</code> should
+  completely replace setting attributes directly.</p>
+<h4 id="args_5">Args:</h4>
+<ul>
+<li><b><code>spec</code></b>: an optional string of the form
+ /job:<name>/replica:<id>/task:<id>/device:CPU:<id>
+or
+ /job:<name>/replica:<id>/task:<id>/device:GPU:<id>
+as cpu and gpu are mutually exclusive.
+All entries are optional.</li>
+</ul>
+<h4 id="returns_3">Returns:</h4>
+<p>The <code>DeviceSpec</code>.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: if the spec was not valid.</li>
+</ul>
+<h3 id="replace"><code>replace</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/device_spec.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">replace</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Convenience method for making a new DeviceSpec by overriding fields.</p>
+<h4 id="for-instance">For instance:</h4>
+<div class="codehilite"><pre><span></span><span class="err">my_spec = DeviceSpec=(job=&quot;my_job&quot;, device=&quot;CPU&quot;)</span>
+<span class="err">my_updated_spec = my_spec.replace(device=&quot;GPU&quot;)</span>
+<span class="err">my_other_spec = my_spec.replace(device=None)</span>
+</pre></div>
+
+
+<h4 id="args_6">Args:</h4>
+<ul>
+<li><b><code>**kwargs</code></b>: This method takes the same args as the DeviceSpec constructor</li>
+</ul>
+<h4 id="returns_4">Returns:</h4>
+<p>A DeviceSpec with the fields specified in kwargs overridden.</p>
+<h3 id="to_string"><code>to_string</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/device_spec.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">to_string</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Return a string representation of this <code>DeviceSpec</code>.</p>
+<h4 id="returns_5">Returns:</h4>
+<p>a string of the form
+/job:<name>/replica:<id>/task:<id>/device:<device_type>:<id>.</p>
+    </body>
+    </html>
+   

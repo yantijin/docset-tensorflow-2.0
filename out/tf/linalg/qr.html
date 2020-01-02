@@ -1,0 +1,69 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.linalg.qr" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tflinalgqr">tf.linalg.qr</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p>Defined in generated file: <code>python/ops/gen_linalg_ops.py</code></p>
+<!-- Start diff -->
+
+<p>Computes the QR decompositions of one or more matrices.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.linalg.qr</code></li>
+<li><code>tf.compat.v1.qr</code></li>
+<li><code>tf.compat.v2.linalg.qr</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">qr</span><span class="p">(</span>
+    <span class="nb">input</span><span class="p">,</span>
+    <span class="n">full_matrices</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Computes the QR decomposition of each inner matrix in <code>tensor</code> such that
+<code>tensor[..., :, :] = q[..., :, :] * r[..., :,:])</code></p>
+<div class="codehilite"><pre><span></span><span class="c1"># a is a tensor.</span>
+<span class="c1"># q is a tensor of orthonormal matrices.</span>
+<span class="c1"># r is a tensor of upper triangular matrices.</span>
+<span class="n">q</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">qr</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">q_full</span><span class="p">,</span> <span class="n">r_full</span> <span class="o">=</span> <span class="n">qr</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">full_matrices</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>input</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>float64</code>, <code>float32</code>, <code>half</code>, <code>complex64</code>, <code>complex128</code>.
+  A tensor of shape <code>[..., M, N]</code> whose inner-most 2 dimensions
+  form matrices of size <code>[M, N]</code>. Let <code>P</code> be the minimum of <code>M</code> and <code>N</code>.</li>
+<li><b><code>full_matrices</code></b>: An optional <code>bool</code>. Defaults to <code>False</code>.
+  If true, compute full-sized <code>q</code> and <code>r</code>. If false
+  (the default), compute only the leading <code>P</code> columns of <code>q</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A tuple of <code>Tensor</code> objects (q, r).</p>
+<ul>
+<li><b><code>q</code></b>: A <code>Tensor</code>. Has the same type as <code>input</code>.</li>
+<li><b><code>r</code></b>: A <code>Tensor</code>. Has the same type as <code>input</code>.</li>
+</ul>
+    </body>
+    </html>
+   

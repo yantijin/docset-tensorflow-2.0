@@ -1,0 +1,56 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.dtypes.saturate_cast" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfdtypessaturate_cast">tf.dtypes.saturate_cast</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/math_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Performs a safe saturating cast of <code>value</code> to <code>dtype</code>.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.dtypes.saturate_cast</code></li>
+<li><code>tf.compat.v1.saturate_cast</code></li>
+<li><code>tf.compat.v2.dtypes.saturate_cast</code></li>
+<li><code>tf.compat.v2.saturate_cast</code></li>
+<li><code>tf.saturate_cast</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">saturate_cast</span><span class="p">(</span>
+    <span class="n">value</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>This function casts the input to <code>dtype</code> without applying any scaling.  If
+there is a danger that values would over or underflow in the cast, this op
+applies the appropriate clamping before the cast.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>value</code></b>: A <code>Tensor</code>.</li>
+<li><b><code>dtype</code></b>: The desired output <code>DType</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p><code>value</code> safely cast to <code>dtype</code>.</p>
+    </body>
+    </html>
+   

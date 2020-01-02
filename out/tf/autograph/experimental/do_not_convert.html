@@ -1,0 +1,48 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.autograph.experimental.do_not_convert" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfautographexperimentaldo_not_convert">tf.autograph.experimental.do_not_convert</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/autograph/impl/api.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Decorator that suppresses the conversion of a function.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.autograph.experimental.do_not_convert</code></li>
+<li><code>tf.compat.v2.autograph.experimental.do_not_convert</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">autograph</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">do_not_convert</span><span class="p">(</span><span class="n">func</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>func</code></b>: function to decorate.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>If <code>func</code> is not None, returns a <code>Callable</code> which is equivalent to
+<code>func</code>, but is not converted by AutoGraph.
+If <code>func</code> is None, returns a decorator that, when invoked with a
+single <code>func</code> argument, returns a <code>Callable</code> equivalent to the
+above case.</p>
+    </body>
+    </html>
+   

@@ -1,0 +1,57 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../default.css" rel="stylesheet">
+    <link href="
+   ../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.unravel_index" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfunravel_index">tf.unravel_index</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p>Defined in generated file: <code>python/ops/gen_array_ops.py</code></p>
+<!-- Start diff -->
+
+<p>Converts a flat index or array of flat indices into a tuple of</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.unravel_index</code></li>
+<li><code>tf.compat.v2.unravel_index</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">unravel_index</span><span class="p">(</span>
+    <span class="n">indices</span><span class="p">,</span>
+    <span class="n">dims</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>coordinate arrays.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>indices</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>int32</code>, <code>int64</code>.
+  An 0-D or 1-D <code>int</code> Tensor whose elements are indices into the
+  flattened version of an array of dimensions dims.</li>
+<li><b><code>dims</code></b>: A <code>Tensor</code>. Must have the same type as <code>indices</code>.
+  An 1-D <code>int</code> Tensor. The shape of the array to use for unraveling
+  indices.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>Tensor</code>. Has the same type as <code>indices</code>.</p>
+<h4 id="numpy-compatibility">Numpy Compatibility</h4>
+<p>Equivalent to np.unravel_index</p>
+    </body>
+    </html>
+   

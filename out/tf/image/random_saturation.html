@@ -1,0 +1,61 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.image.random_saturation" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfimagerandom_saturation">tf.image.random_saturation</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/image_ops_impl.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Adjust the saturation of RGB images by a random factor.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.image.random_saturation</code></li>
+<li><code>tf.compat.v2.image.random_saturation</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">random_saturation</span><span class="p">(</span>
+    <span class="n">image</span><span class="p">,</span>
+    <span class="n">lower</span><span class="p">,</span>
+    <span class="n">upper</span><span class="p">,</span>
+    <span class="n">seed</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Equivalent to <code>adjust_saturation()</code> but uses a <code>saturation_factor</code> randomly
+picked in the interval <code>[lower, upper]</code>.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>image</code></b>: RGB image or images. Size of the last dimension must be 3.</li>
+<li><b><code>lower</code></b>: float.  Lower bound for the random saturation factor.</li>
+<li><b><code>upper</code></b>: float.  Upper bound for the random saturation factor.</li>
+<li><b><code>seed</code></b>: An operation-specific seed. It will be used in conjunction with the
+  graph-level seed to determine the real seeds that will be used in this
+  operation. Please see the documentation of set_random_seed for its
+  interaction with the graph-level random seed.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>Adjusted image(s), same shape and DType as <code>image</code>.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: if <code>upper &lt;= lower</code> or if <code>lower &lt; 0</code>.</li>
+</ul>
+    </body>
+    </html>
+   

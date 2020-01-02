@@ -1,0 +1,52 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.estimator.experimental.linear_logit_fn_builder" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1estimatorexperimentallinear_logit_fn_builder">tf.compat.v1.estimator.experimental.linear_logit_fn_builder</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+
+<td>
+  <a target="_blank" href="https://github.com/tensorflow/estimator/tree/master/tensorflow_estimator/python/estimator/canned/linear.py">
+    <img src="https://www.tensorflow.org/images/GitHub-Mark-32px.png" />
+    View source on GitHub
+  </a>
+</td></table>
+
+<!-- Start diff -->
+
+<p>Function builder for a linear logit_fn.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">linear_logit_fn_builder</span><span class="p">(</span>
+    <span class="n">units</span><span class="p">,</span>
+    <span class="n">feature_columns</span><span class="p">,</span>
+    <span class="n">sparse_combiner</span><span class="o">=</span><span class="s1">&#39;sum&#39;</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>units</code></b>: An int indicating the dimension of the logit layer.</li>
+<li><b><code>feature_columns</code></b>: An iterable containing all the feature columns used by
+  the model.</li>
+<li><b><code>sparse_combiner</code></b>: A string specifying how to reduce if a categorical column
+  is multivalent.  One of "mean", "sqrtn", and "sum".</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A logit_fn (see below).</p>
+    </body>
+    </html>
+   

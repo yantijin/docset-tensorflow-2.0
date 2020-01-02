@@ -1,0 +1,59 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.strings.regex_replace" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfstringsregex_replace">tf.strings.regex_replace</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/string_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Replace elements of <code>input</code> matching regex <code>pattern</code> with <code>rewrite</code>.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.regex_replace</code></li>
+<li><code>tf.compat.v1.strings.regex_replace</code></li>
+<li><code>tf.compat.v2.strings.regex_replace</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">strings</span><span class="o">.</span><span class="n">regex_replace</span><span class="p">(</span>
+    <span class="nb">input</span><span class="p">,</span>
+    <span class="n">pattern</span><span class="p">,</span>
+    <span class="n">rewrite</span><span class="p">,</span>
+    <span class="n">replace_global</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>input</code></b>: string <code>Tensor</code>, the source strings to process.</li>
+<li><b><code>pattern</code></b>: string or scalar string <code>Tensor</code>, regular expression to use,
+  see more details at https://github.com/google/re2/wiki/Syntax</li>
+<li><b><code>rewrite</code></b>: string or scalar string <code>Tensor</code>, value to use in match
+  replacement, supports backslash-escaped digits (\1 to \9) can be to insert
+  text matching corresponding parenthesized group.</li>
+<li><b><code>replace_global</code></b>: <code>bool</code>, if <code>True</code> replace all non-overlapping matches,
+  else replace only the first match.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>string <code>Tensor</code> of the same shape as <code>input</code> with specified replacements.</p>
+    </body>
+    </html>
+   

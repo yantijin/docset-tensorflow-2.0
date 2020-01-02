@@ -1,0 +1,62 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.config.experimental.set_device_policy" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfconfigexperimentalset_device_policy">tf.config.experimental.set_device_policy</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/config.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Sets the current thread device policy.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.config.experimental.set_device_policy</code></li>
+<li><code>tf.compat.v2.config.experimental.set_device_policy</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">set_device_policy</span><span class="p">(</span><span class="n">device_policy</span><span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>The device policy controls how operations requiring inputs on a specific
+device (e.g., on GPU:0) handle inputs on a different device (e.g. GPU:1).</p>
+<p>When using the default, an appropriate policy will be picked automatically.
+The default policy may change over time.</p>
+<p>This function only sets the device policy for the current thread. Any
+subsequently started thread will again use the default policy.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>device_policy</code></b>: A device policy.
+  Valid values:</li>
+<li>None: Switch to a system default.</li>
+<li>'warn': Copies the tensors which are not on the right device and logs
+      a warning.</li>
+<li>'explicit': Raises an error if the placement is not as required.</li>
+<li>'silent': Silently copies the tensors. Note that this may hide
+      performance problems as there is no notification provided when
+      operations are blocked on the tensor being copied between devices.</li>
+<li>'silent_for_int32': silently copies <code>int32</code> tensors, raising errors on
+      the other ones.</li>
+</ul>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: If an invalid <code>device_policy</code> is passed.</li>
+</ul>
+    </body>
+    </html>
+   

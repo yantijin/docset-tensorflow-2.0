@@ -1,0 +1,77 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.distribute.get_replica_context" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfdistributeget_replica_context">tf.distribute.get_replica_context</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/distribution_strategy_context.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Returns the current <a href="../../tf/distribute/ReplicaContext.html"><code>tf.distribute.ReplicaContext</code></a> or <code>None</code>.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.distribute.get_replica_context</code></li>
+<li><code>tf.compat.v2.distribute.get_replica_context</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">distribute</span><span class="o">.</span><span class="n">get_replica_context</span><span class="p">()</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Returns <code>None</code> if in a cross-replica context.</p>
+<h4 id="note-that-execution">Note that execution:</h4>
+<ol>
+<li>starts in the default (single-replica) replica context (this function
+   will return the default <code>ReplicaContext</code> object);</li>
+<li>switches to cross-replica context (in which case this will return
+   <code>None</code>) when entering a <code>with tf.distribute.Strategy.scope():</code> block;</li>
+<li>switches to a (non-default) replica context inside
+   <code>strategy.experimental_run_v2(fn, ...)</code>;</li>
+<li>if <code>fn</code> calls <code>get_replica_context().merge_call(merge_fn, ...)</code>, then
+   inside <code>merge_fn</code> you are back in the cross-replica context (and again
+   this function will return <code>None</code>).</li>
+</ol>
+<p>Most <a href="../../tf/distribute/Strategy.html"><code>tf.distribute.Strategy</code></a> methods may only be executed in
+a cross-replica context, in a replica context you should use the
+API of the <a href="../../tf/distribute/ReplicaContext.html"><code>tf.distribute.ReplicaContext</code></a> object returned by this
+method instead.</p>
+<div class="codehilite"><pre><span></span><span class="n">assert</span> <span class="n">tf</span><span class="p">.</span><span class="n">distribute</span><span class="p">.</span><span class="n">get_replica_context</span><span class="p">()</span> <span class="k">is</span> <span class="k">not</span> <span class="k">None</span>  <span class="o">#</span> <span class="k">default</span>
+<span class="k">with</span> <span class="n">strategy</span><span class="p">.</span><span class="k">scope</span><span class="p">():</span>
+  <span class="n">assert</span> <span class="n">tf</span><span class="p">.</span><span class="n">distribute</span><span class="p">.</span><span class="n">get_replica_context</span><span class="p">()</span> <span class="k">is</span> <span class="k">None</span>
+
+  <span class="n">def</span> <span class="n">f</span><span class="p">():</span>
+    <span class="n">replica_context</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">distribute</span><span class="p">.</span><span class="n">get_replica_context</span><span class="p">()</span>  <span class="o">#</span> <span class="k">for</span> <span class="n">strategy</span>
+    <span class="n">assert</span> <span class="n">replica_context</span> <span class="k">is</span> <span class="k">not</span> <span class="k">None</span>
+    <span class="n">tf</span><span class="p">.</span><span class="n">print</span><span class="p">(</span><span class="ss">&quot;Replica id: &quot;</span><span class="p">,</span> <span class="n">replica_context</span><span class="p">.</span><span class="n">replica_id_in_sync_group</span><span class="p">,</span>
+             <span class="ss">&quot; of &quot;</span><span class="p">,</span> <span class="n">replica_context</span><span class="p">.</span><span class="n">num_replicas_in_sync</span><span class="p">)</span>
+
+  <span class="n">strategy</span><span class="p">.</span><span class="n">experimental_run_v2</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</pre></div>
+
+
+<h4 id="returns">Returns:</h4>
+<p>The current <a href="../../tf/distribute/ReplicaContext.html"><code>tf.distribute.ReplicaContext</code></a> object when in a replica context
+scope, else <code>None</code>.</p>
+<p>Within a particular block, exactly one of these two things will be true:</p>
+<ul>
+<li><code>get_replica_context()</code> returns non-<code>None</code>, or</li>
+<li><code>tf.distribute.is_cross_replica_context()</code> returns True.</li>
+</ul>
+    </body>
+    </html>
+   

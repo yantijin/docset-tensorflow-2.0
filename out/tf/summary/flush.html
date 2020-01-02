@@ -1,0 +1,50 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.summary.flush" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfsummaryflush">tf.summary.flush</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/summary_ops_v2.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Forces summary writer to send any buffered data to storage.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v2.summary.flush</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">summary</span><span class="o">.</span><span class="n">flush</span><span class="p">(</span>
+    <span class="n">writer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>This operation blocks until that finishes.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>writer</code></b>: The <a href="../../tf/summary/SummaryWriter.html"><code>tf.summary.SummaryWriter</code></a> resource to flush.
+  The thread default will be used if this parameter is None.
+  Otherwise a <a href="../../tf/no_op.html"><code>tf.no_op</code></a> is returned.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>The created <a href="../../tf/Operation.html"><code>tf.Operation</code></a>.</p>
+    </body>
+    </html>
+   

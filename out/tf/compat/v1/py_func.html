@@ -1,0 +1,94 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.py_func" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1py_func">tf.compat.v1.py_func</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/script_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Wraps a python function and uses it as a TensorFlow op.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">py_func</span><span class="p">(</span>
+    <span class="n">func</span><span class="p">,</span>
+    <span class="n">inp</span><span class="p">,</span>
+    <span class="n">Tout</span><span class="p">,</span>
+    <span class="n">stateful</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Given a python function <code>func</code>, which takes numpy arrays as its
+arguments and returns numpy arrays as its outputs, wrap this function as an
+operation in a TensorFlow graph. The following snippet constructs a simple
+TensorFlow graph that invokes the <code>np.sinh()</code> NumPy function as a operation
+in the graph:</p>
+<div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">my_func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+  <span class="c1"># x will be a numpy array with the contents of the placeholder below</span>
+  <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sinh</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">input</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">py_func</span><span class="p">(</span><span class="n">my_func</span><span class="p">,</span> <span class="p">[</span><span class="nb">input</span><span class="p">],</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+</pre></div>
+
+
+<p><strong>N.B.</strong> The <a href="../../../tf/compat/v1/py_func.html"><code>tf.compat.v1.py_func()</code></a> operation has the following known
+limitations:</p>
+<ul>
+<li>
+<p>The body of the function (i.e. <code>func</code>) will not be serialized in a
+  <code>GraphDef</code>. Therefore, you should not use this function if you need to
+  serialize your model and restore it in a different environment.</p>
+</li>
+<li>
+<p>The operation must run in the same address space as the Python program
+  that calls <a href="../../../tf/compat/v1/py_func.html"><code>tf.compat.v1.py_func()</code></a>. If you are using distributed
+  TensorFlow, you
+  must run a <a href="../../../tf/distribute/Server.html"><code>tf.distribute.Server</code></a> in the same process as the program that
+  calls
+  <a href="../../../tf/compat/v1/py_func.html"><code>tf.compat.v1.py_func()</code></a> and you must pin the created operation to a device
+  in that
+  server (e.g. using <code>with tf.device():</code>).</p>
+</li>
+</ul>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>func</code></b>: A Python function, which accepts <code>ndarray</code> objects as arguments and
+  returns a list of <code>ndarray</code> objects (or a single <code>ndarray</code>). This function
+  must accept as many arguments as there are tensors in <code>inp</code>, and these
+  argument types will match the corresponding <a href="../../../tf/Tensor.html"><code>tf.Tensor</code></a> objects in <code>inp</code>.
+  The returns <code>ndarray</code>s must match the number and types defined <code>Tout</code>.
+  Important Note: Input and output numpy <code>ndarray</code>s of <code>func</code> are not
+    guaranteed to be copies. In some cases their underlying memory will be
+    shared with the corresponding TensorFlow tensors. In-place modification
+    or storing <code>func</code> input or return values in python datastructures
+    without explicit (np.)copy can have non-deterministic consequences.</li>
+<li><b><code>inp</code></b>: A list of <code>Tensor</code> objects.</li>
+<li><b><code>Tout</code></b>: A list or tuple of tensorflow data types or a single tensorflow data
+  type if there is only one, indicating what <code>func</code> returns.</li>
+<li><b><code>stateful</code></b>: (Boolean.) If True, the function should be considered stateful. If
+  a function is stateless, when given the same input it will return the same
+  output and have no observable side effects. Optimizations such as common
+  subexpression elimination are only performed on stateless operations.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A list of <code>Tensor</code> or a single <code>Tensor</code> which <code>func</code> computes.</p>
+    </body>
+    </html>
+   

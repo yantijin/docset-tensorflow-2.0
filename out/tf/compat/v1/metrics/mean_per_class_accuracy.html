@@ -1,0 +1,79 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.metrics.mean_per_class_accuracy" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1metricsmean_per_class_accuracy">tf.compat.v1.metrics.mean_per_class_accuracy</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/metrics_impl.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Calculates the mean of the per-class accuracies.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">mean_per_class_accuracy</span><span class="p">(</span>
+    <span class="n">labels</span><span class="p">,</span>
+    <span class="n">predictions</span><span class="p">,</span>
+    <span class="n">num_classes</span><span class="p">,</span>
+    <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">metrics_collections</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">updates_collections</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Calculates the accuracy for each class, then takes the mean of that.</p>
+<p>For estimation of the metric over a stream of data, the function creates an
+<code>update_op</code> operation that updates the accuracy of each class and returns
+them.</p>
+<p>If <code>weights</code> is <code>None</code>, weights default to 1. Use weights of 0 to mask values.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>labels</code></b>: A <code>Tensor</code> of ground truth labels with shape [batch size] and of
+  type <code>int32</code> or <code>int64</code>. The tensor will be flattened if its rank &gt; 1.</li>
+<li><b><code>predictions</code></b>: A <code>Tensor</code> of prediction results for semantic labels, whose
+  shape is [batch size] and type <code>int32</code> or <code>int64</code>. The tensor will be
+  flattened if its rank &gt; 1.</li>
+<li><b><code>num_classes</code></b>: The possible number of labels the prediction task can
+  have. This value must be provided, since two variables with shape =
+  [num_classes] will be allocated.</li>
+<li><b><code>weights</code></b>: Optional <code>Tensor</code> whose rank is either 0, or the same rank as
+  <code>labels</code>, and must be broadcastable to <code>labels</code> (i.e., all dimensions must
+  be either <code>1</code>, or the same as the corresponding <code>labels</code> dimension).</li>
+<li><b><code>metrics_collections</code></b>: An optional list of collections that
+  `mean_per_class_accuracy'
+  should be added to.</li>
+<li><b><code>updates_collections</code></b>: An optional list of collections <code>update_op</code> should be
+  added to.</li>
+<li><b><code>name</code></b>: An optional variable_scope name.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<ul>
+<li><b><code>mean_accuracy</code></b>: A <code>Tensor</code> representing the mean per class accuracy.</li>
+<li><b><code>update_op</code></b>: An operation that updates the accuracy tensor.</li>
+</ul>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: If <code>predictions</code> and <code>labels</code> have mismatched shapes, or if
+  <code>weights</code> is not <code>None</code> and its shape doesn't match <code>predictions</code>, or if
+  either <code>metrics_collections</code> or <code>updates_collections</code> are not a list or
+  tuple.</li>
+<li><b><code>RuntimeError</code></b>: If eager execution is enabled.</li>
+</ul>
+    </body>
+    </html>
+   

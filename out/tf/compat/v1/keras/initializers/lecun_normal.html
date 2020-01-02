@@ -1,0 +1,57 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.keras.initializers.lecun_normal" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1kerasinitializerslecun_normal">tf.compat.v1.keras.initializers.lecun_normal</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/init_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>LeCun normal initializer.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.initializers.lecun_normal</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">initializers</span><span class="o">.</span><span class="n">lecun_normal</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>It draws samples from a truncated normal distribution centered on 0
+with standard deviation (after truncation) given by
+<code>stddev = sqrt(1 / fan_in)</code> where <code>fan_in</code> is the number of
+input units in the weight tensor.</p>
+<h4 id="arguments">Arguments:</h4>
+<ul>
+<li><b><code>seed</code></b>: A Python integer. Used to seed the random generator.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>An initializer.</p>
+<h4 id="references">References:</h4>
+<ul>
+<li>Self-Normalizing Neural Networks,
+<a href="https://papers.nips.cc/paper/6698-self-normalizing-neural-networks">Klambauer et al.,
+2017</a></li>
+</ul>
+<h1 id="pylint-disableline-too-long">pylint: disable=line-too-long</h1>
+<p>(<a href="https://papers.nips.cc/paper/6698-self-normalizing-neural-networks.pdf">pdf</a>)
+- Efficient Backprop,
+<a href="http://yann.lecun.com/exdb/publis/pdf/lecun-98b.pdf">Lecun et al., 1998</a></p>
+    </body>
+    </html>
+   

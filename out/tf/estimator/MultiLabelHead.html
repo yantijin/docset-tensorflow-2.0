@@ -1,0 +1,267 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.estimator.MultiLabelHead" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="logits_dimension"/>
+<meta itemprop="property" content="loss_reduction"/>
+<meta itemprop="property" content="name"/>
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="create_estimator_spec"/>
+<meta itemprop="property" content="loss"/>
+<meta itemprop="property" content="metrics"/>
+<meta itemprop="property" content="predictions"/>
+<meta itemprop="property" content="update_metrics"/>
+</div>
+
+<h1 id="tfestimatormultilabelhead">tf.estimator.MultiLabelHead</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+
+<td>
+  <a target="_blank" href="https://github.com/tensorflow/estimator/tree/master/tensorflow_estimator/python/estimator/head/multi_label_head.py">
+    <img src="https://www.tensorflow.org/images/GitHub-Mark-32px.png" />
+    View source on GitHub
+  </a>
+</td></table>
+
+<h2 id="class-multilabelhead">Class <code>MultiLabelHead</code></h2>
+<!-- Start diff -->
+
+<p>Creates a <code>Head</code> for multi-label classification.</p>
+<p>Inherits From: <a href="../../tf/estimator/Head.html"><code>Head</code></a></p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v1.estimator.MultiLabelHead</code></li>
+<li>Class <code>tf.compat.v2.estimator.MultiLabelHead</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<p>Multi-label classification handles the case where each example may have zero
+or more associated labels, from a discrete set. This is distinct from
+<code>MultiClassHead</code> which has exactly one label per example.</p>
+<p>Uses <code>sigmoid_cross_entropy</code> loss average over classes and weighted sum over
+the batch. Namely, if the input logits have shape <code>[batch_size, n_classes]</code>,
+the loss is the average over <code>n_classes</code> and the weighted sum over
+<code>batch_size</code>.</p>
+<p>The head expects <code>logits</code> with shape <code>[D0, D1, ... DN, n_classes]</code>. In many
+applications, the shape is <code>[batch_size, n_classes]</code>.</p>
+<h4 id="labels-can-be">Labels can be:</h4>
+<ul>
+<li>A multi-hot tensor of shape <code>[D0, D1, ... DN, n_classes]</code></li>
+<li>An integer <code>SparseTensor</code> of class indices. The <code>dense_shape</code> must be
+  <code>[D0, D1, ... DN, ?]</code> and the values within <code>[0, n_classes)</code>.</li>
+<li>If <code>label_vocabulary</code> is given, a string <code>SparseTensor</code>. The <code>dense_shape</code>
+  must be <code>[D0, D1, ... DN, ?]</code> and the values within <code>label_vocabulary</code> or a
+  multi-hot tensor of shape <code>[D0, D1, ... DN, n_classes]</code>.</li>
+</ul>
+<p>If <code>weight_column</code> is specified, weights must be of shape
+<code>[D0, D1, ... DN]</code>, or <code>[D0, D1, ... DN, 1]</code>.</p>
+<p>Also supports custom <code>loss_fn</code>. <code>loss_fn</code> takes <code>(labels, logits)</code> or
+<code>(labels, logits, features)</code> as arguments and returns unreduced loss with
+shape <code>[D0, D1, ... DN, 1]</code>. <code>loss_fn</code> must support indicator <code>labels</code> with
+shape <code>[D0, D1, ... DN, n_classes]</code>. Namely, the head applies
+<code>label_vocabulary</code> to the input labels before passing them to <code>loss_fn</code>.</p>
+<p>The head can be used with a canned estimator. Example:</p>
+<div class="codehilite"><pre><span></span><span class="n">my_head</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">MultiLabelHead</span><span class="p">(</span><span class="n">n_classes</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">my_estimator</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">DNNEstimator</span><span class="p">(</span>
+    <span class="n">head</span><span class="o">=</span><span class="n">my_head</span><span class="p">,</span>
+    <span class="n">hidden_units</span><span class="o">=...</span><span class="p">,</span>
+    <span class="n">feature_columns</span><span class="o">=...</span><span class="p">)</span>
+</pre></div>
+
+
+<p>It can also be used with a custom <code>model_fn</code>. Example:</p>
+<div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">_my_model_fn</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">mode</span><span class="p">):</span>
+  <span class="n">my_head</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">MultiLabelHead</span><span class="p">(</span><span class="n">n_classes</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+  <span class="n">logits</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="o">...</span><span class="p">)(</span><span class="n">features</span><span class="p">)</span>
+
+  <span class="k">return</span> <span class="n">my_head</span><span class="o">.</span><span class="n">create_estimator_spec</span><span class="p">(</span>
+      <span class="n">features</span><span class="o">=</span><span class="n">features</span><span class="p">,</span>
+      <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span>
+      <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span>
+      <span class="n">optimizer</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">Adagrad</span><span class="p">(</span><span class="n">lr</span><span class="o">=</span><span class="mf">0.1</span><span class="p">),</span>
+      <span class="n">logits</span><span class="o">=</span><span class="n">logits</span><span class="p">)</span>
+
+<span class="n">my_estimator</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">Estimator</span><span class="p">(</span><span class="n">model_fn</span><span class="o">=</span><span class="n">_my_model_fn</span><span class="p">)</span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>n_classes</code></b>: Number of classes, must be greater than 1 (for 1 class, use
+  <code>BinaryClassHead</code>).</li>
+<li><b><code>weight_column</code></b>: A string or a <code>NumericColumn</code> created by
+  <a href="../../tf/feature_column/numeric_column.html"><code>tf.feature_column.numeric_column</code></a> defining feature column representing
+  weights. It is used to down weight or boost examples during training. It
+  will be multiplied by the loss of the example.  Per-class weighting is
+  not supported.</li>
+<li><b><code>thresholds</code></b>: Iterable of floats in the range <code>(0, 1)</code>. Accuracy, precision
+  and recall metrics are evaluated for each threshold value. The threshold
+  is applied to the predicted probabilities, i.e. above the threshold is
+  <code>true</code>, below is <code>false</code>.</li>
+<li><b><code>label_vocabulary</code></b>: A list of strings represents possible label values. If it
+  is not given, that means labels are already encoded as integer within
+  [0, n_classes) or multi-hot Tensor. If given, labels must be SparseTensor
+  <code>string</code> type and have any value in <code>label_vocabulary</code>. Also there will be
+  errors if vocabulary is not provided and labels are string.</li>
+<li><b><code>loss_reduction</code></b>: One of <a href="../../tf/keras/losses/Reduction.html"><code>tf.losses.Reduction</code></a> except <code>NONE</code>. Decides how to
+  reduce training loss over batch. Defaults to <code>SUM_OVER_BATCH_SIZE</code>, namely
+  weighted sum of losses divided by batch size.</li>
+<li><b><code>loss_fn</code></b>: Optional loss function.</li>
+<li><b><code>classes_for_class_based_metrics</code></b>: List of integer class IDs or string class
+  names for which per-class metrics are evaluated. If integers, all must be
+  in the range <code>[0, n_classes - 1]</code>. If strings, all must be in
+  <code>label_vocabulary</code>.</li>
+<li><b><code>name</code></b>: Name of the head. If provided, summary and metrics keys will be
+  suffixed by <code>"/" + name</code>. Also used as <code>name_scope</code> when creating ops.</li>
+</ul>
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="https://github.com/tensorflow/estimator/tree/master/tensorflow_estimator/python/estimator/head/multi_label_head.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">n_classes</span><span class="p">,</span>
+    <span class="n">weight_column</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">thresholds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">label_vocabulary</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">loss_reduction</span><span class="o">=</span><span class="n">losses_utils</span><span class="o">.</span><span class="n">ReductionV2</span><span class="o">.</span><span class="n">SUM_OVER_BATCH_SIZE</span><span class="p">,</span>
+    <span class="n">loss_fn</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">classes_for_class_based_metrics</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Initialize self.  See help(type(self)) for accurate signature.</p>
+<h2 id="properties">Properties</h2>
+<h3 id="logits_dimension"><code>logits_dimension</code></h3>
+
+<p>See <code>base_head.Head</code> for details.</p>
+<h3 id="loss_reduction"><code>loss_reduction</code></h3>
+
+<p>See <code>base_head.Head</code> for details.</p>
+<h3 id="name"><code>name</code></h3>
+
+<p>See <code>base_head.Head</code> for details.</p>
+<h2 id="methods">Methods</h2>
+<h3 id="create_estimator_spec"><code>create_estimator_spec</code></h3>
+
+<p><a target="_blank" href="https://github.com/tensorflow/estimator/tree/master/tensorflow_estimator/python/estimator/head/base_head.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">create_estimator_spec</span><span class="p">(</span>
+    <span class="n">features</span><span class="p">,</span>
+    <span class="n">mode</span><span class="p">,</span>
+    <span class="n">logits</span><span class="p">,</span>
+    <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">optimizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">trainable_variables</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">train_op_fn</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">update_ops</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">regularization_losses</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Returns <code>EstimatorSpec</code> that a model_fn can return.</p>
+<p>It is recommended to pass all args via name.</p>
+<h4 id="args_1">Args:</h4>
+<ul>
+<li><b><code>features</code></b>: Input <code>dict</code> mapping string feature names to <code>Tensor</code> or
+  <code>SparseTensor</code> objects containing the values for that feature in a
+  minibatch. Often to be used to fetch example-weight tensor.</li>
+<li><b><code>mode</code></b>: Estimator's <code>ModeKeys</code>.</li>
+<li><b><code>logits</code></b>: Logits <code>Tensor</code> to be used by the head.</li>
+<li><b><code>labels</code></b>: Labels <code>Tensor</code>, or <code>dict</code> mapping string label names to <code>Tensor</code>
+  objects of the label values.</li>
+<li><b><code>optimizer</code></b>: An <a href="../../tf/keras/optimizers/Optimizer.html"><code>tf.keras.optimizers.Optimizer</code></a> instance to optimize the
+  loss in TRAIN mode. Namely, sets <code>train_op = optimizer.get_updates(loss,
+  trainable_variables)</code>, which updates variables to minimize <code>loss</code>.</li>
+<li><b><code>trainable_variables</code></b>: A list or tuple of <code>Variable</code> objects to update to
+  minimize <code>loss</code>. In Tensorflow 1.x, by default these are the list of
+  variables collected in the graph under the key
+  <code>GraphKeys.TRAINABLE_VARIABLES</code>. As Tensorflow 2.x doesn't have
+  collections and GraphKeys, trainable_variables need to be passed
+  explicitly here.</li>
+<li><b><code>train_op_fn</code></b>: Function that takes a scalar loss <code>Tensor</code> and returns an op
+  to optimize the model with the loss in TRAIN mode. Used if <code>optimizer</code>
+  is <code>None</code>. Exactly one of <code>train_op_fn</code> and <code>optimizer</code> must be set in
+  TRAIN mode. By default, it is <code>None</code> in other modes. If you want to
+  optimize loss yourself, you can pass <code>lambda _: tf.no_op()</code> and then use
+  <a href="../../tf/estimator/EstimatorSpec.html#loss"><code>EstimatorSpec.loss</code></a> to compute and apply gradients.</li>
+<li><b><code>update_ops</code></b>: A list or tuple of update ops to be run at training time. For
+  example, layers such as BatchNormalization create mean and variance
+  update ops that need to be run at training time. In Tensorflow 1.x,
+  these are thrown into an UPDATE_OPS collection. As Tensorflow 2.x
+  doesn't have collections, update_ops need to be passed explicitly here.</li>
+<li><b><code>regularization_losses</code></b>: A list of additional scalar losses to be added to
+  the training loss, such as regularization losses.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p><code>EstimatorSpec</code>.</p>
+<h3 id="loss"><code>loss</code></h3>
+
+<p><a target="_blank" href="https://github.com/tensorflow/estimator/tree/master/tensorflow_estimator/python/estimator/head/multi_label_head.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">loss</span><span class="p">(</span>
+    <span class="n">labels</span><span class="p">,</span>
+    <span class="n">logits</span><span class="p">,</span>
+    <span class="n">features</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">mode</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">regularization_losses</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Returns regularized training loss. See <code>base_head.Head</code> for details.</p>
+<h3 id="metrics"><code>metrics</code></h3>
+
+<p><a target="_blank" href="https://github.com/tensorflow/estimator/tree/master/tensorflow_estimator/python/estimator/head/multi_label_head.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">metrics</span><span class="p">(</span><span class="n">regularization_losses</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Creates metrics. See <code>base_head.Head</code> for details.</p>
+<h3 id="predictions"><code>predictions</code></h3>
+
+<p><a target="_blank" href="https://github.com/tensorflow/estimator/tree/master/tensorflow_estimator/python/estimator/head/multi_label_head.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">predictions</span><span class="p">(</span>
+    <span class="n">logits</span><span class="p">,</span>
+    <span class="n">keys</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Return predictions based on keys.  See <code>base_head.Head</code> for details.</p>
+<h4 id="args_2">Args:</h4>
+<ul>
+<li><b><code>logits</code></b>: logits <code>Tensor</code> with shape <code>[D0, D1, ... DN, logits_dimension]</code>.
+  For many applications, the shape is <code>[batch_size, logits_dimension]</code>.</li>
+<li><b><code>keys</code></b>: a list of prediction keys. Key can be either the class variable
+  of prediction_keys.PredictionKeys or its string value, such as:
+  prediction_keys.PredictionKeys.LOGITS or 'logits'.</li>
+</ul>
+<h4 id="returns_1">Returns:</h4>
+<p>A dict of predictions.</p>
+<h3 id="update_metrics"><code>update_metrics</code></h3>
+
+<p><a target="_blank" href="https://github.com/tensorflow/estimator/tree/master/tensorflow_estimator/python/estimator/head/multi_label_head.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">update_metrics</span><span class="p">(</span>
+    <span class="n">eval_metrics</span><span class="p">,</span>
+    <span class="n">features</span><span class="p">,</span>
+    <span class="n">logits</span><span class="p">,</span>
+    <span class="n">labels</span><span class="p">,</span>
+    <span class="n">regularization_losses</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Updates eval metrics. See <code>base_head.Head</code> for details.</p>
+    </body>
+    </html>
+   

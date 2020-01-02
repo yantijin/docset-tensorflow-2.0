@@ -1,0 +1,62 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.data.experimental.sample_from_datasets" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfdataexperimentalsample_from_datasets">tf.data.experimental.sample_from_datasets</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/data/experimental/ops/interleave_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Samples elements at random from the datasets in <code>datasets</code>.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v2.data.experimental.sample_from_datasets</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">sample_from_datasets</span><span class="p">(</span>
+    <span class="n">datasets</span><span class="p">,</span>
+    <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">seed</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>datasets</code></b>: A list of <a href="../../../tf/data/Dataset.html"><code>tf.data.Dataset</code></a> objects with compatible structure.</li>
+<li><b><code>weights</code></b>: (Optional.) A list of <code>len(datasets)</code> floating-point values where
+  <code>weights[i]</code> represents the probability with which an element should be
+  sampled from <code>datasets[i]</code>, or a <a href="../../../tf/data/Dataset.html"><code>tf.data.Dataset</code></a> object where each
+  element is such a list. Defaults to a uniform distribution across
+  <code>datasets</code>.</li>
+<li><b><code>seed</code></b>: (Optional.) A <a href="../../../tf.html#int64"><code>tf.int64</code></a> scalar <a href="../../../tf/Tensor.html"><code>tf.Tensor</code></a>, representing the
+  random seed that will be used to create the distribution. See
+  <a href="../../../tf/compat/v1/set_random_seed.html"><code>tf.compat.v1.set_random_seed</code></a> for behavior.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A dataset that interleaves elements from <code>datasets</code> at random, according to
+<code>weights</code> if provided, otherwise with uniform probability.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>TypeError</code></b>: If the <code>datasets</code> or <code>weights</code> arguments have the wrong type.</li>
+<li><b><code>ValueError</code></b>: If the <code>weights</code> argument is specified and does not match the
+  length of the <code>datasets</code> element.</li>
+</ul>
+    </body>
+    </html>
+   

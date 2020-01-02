@@ -1,0 +1,83 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.linalg.tridiagonal_matmul" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tflinalgtridiagonal_matmul">tf.linalg.tridiagonal_matmul</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/linalg/linalg_impl.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Multiplies tridiagonal matrix by matrix.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.linalg.tridiagonal_matmul</code></li>
+<li><code>tf.compat.v2.linalg.tridiagonal_matmul</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">tridiagonal_matmul</span><span class="p">(</span>
+    <span class="n">diagonals</span><span class="p">,</span>
+    <span class="n">rhs</span><span class="p">,</span>
+    <span class="n">diagonals_format</span><span class="o">=</span><span class="s1">&#39;compact&#39;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p><code>diagonals</code> is representation of 3-diagonal NxN matrix, which depends on
+<code>diagonals_format</code>.</p>
+<p>In <code>matrix</code> format, <code>diagonals</code> must be a tensor of shape <code>[..., M, M]</code>, with
+two inner-most dimensions representing the square tridiagonal matrices.
+Elements outside of the three diagonals will be ignored.</p>
+<p>If <code>sequence</code> format, <code>diagonals</code> is list or tuple of three tensors:
+<code>[superdiag, maindiag, subdiag]</code>, each having shape [..., M]. Last element
+of <code>superdiag</code> first element of <code>subdiag</code> are ignored.</p>
+<p>In <code>compact</code> format the three diagonals are brought together into one tensor
+of shape <code>[..., 3, M]</code>, with last two dimensions containing superdiagonals,
+diagonals, and subdiagonals, in order. Similarly to <code>sequence</code> format,
+elements <code>diagonals[..., 0, M-1]</code> and <code>diagonals[..., 2, 0]</code> are ignored.</p>
+<p>The <code>sequence</code> format is recommended as the one with the best performance.</p>
+<p><code>rhs</code> is matrix to the right of multiplication. It has shape <code>[..., M, N]</code>.</p>
+<h4 id="example">Example:</h4>
+<div class="codehilite"><pre><span></span><span class="n">superdiag</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+<span class="n">maindiag</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+<span class="n">subdiag</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+<span class="n">diagonals</span> <span class="o">=</span> <span class="p">[</span><span class="n">superdiag</span><span class="p">,</span> <span class="n">maindiag</span><span class="p">,</span> <span class="n">subdiag</span><span class="p">]</span>
+<span class="n">rhs</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">tridiagonal_matmul</span><span class="p">(</span><span class="n">diagonals</span><span class="p">,</span> <span class="n">rhs</span><span class="p">,</span> <span class="n">diagonals_format</span><span class="o">=</span><span class="s1">&#39;sequence&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>diagonals</code></b>: A <code>Tensor</code> or tuple of <code>Tensor</code>s describing left-hand sides. The
+  shape depends of <code>diagonals_format</code>, see description above. Must be
+  <code>float32</code>, <code>float64</code>, <code>complex64</code>, or <code>complex128</code>.</li>
+<li><b><code>rhs</code></b>: A <code>Tensor</code> of shape [..., M, N] and with the same dtype as <code>diagonals</code>.</li>
+<li><b><code>diagonals_format</code></b>: one of <code>sequence</code>, or <code>compact</code>. Default is <code>compact</code>.</li>
+<li><b><code>name</code></b>:  A name to give this <code>Op</code> (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>Tensor</code> of shape [..., M, N] containing the result of multiplication.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: An unsupported type is provided as input, or when the input
+tensors have incorrect shapes.</li>
+</ul>
+    </body>
+    </html>
+   

@@ -1,0 +1,85 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.activations.selu" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfkerasactivationsselu">tf.keras.activations.selu</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/activations.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Scaled Exponential Linear Unit (SELU).</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.keras.activations.selu</code></li>
+<li><code>tf.compat.v2.keras.activations.selu</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">activations</span><span class="o">.</span><span class="n">selu</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>The Scaled Exponential Linear Unit (SELU) activation function is:
+<code>scale * x</code> if <code>x &gt; 0</code> and <code>scale * alpha * (exp(x) - 1)</code> if <code>x &lt; 0</code>
+where <code>alpha</code> and <code>scale</code> are pre-defined constants
+(<code>alpha = 1.67326324</code>
+and <code>scale = 1.05070098</code>).
+The SELU activation function multiplies  <code>scale</code> &gt; 1 with the
+<code>[elu](https://www.tensorflow.org/versions/r2.0/api_docs/python/tf/keras/activations/elu)</code>
+(Exponential Linear Unit (ELU)) to ensure a slope larger than one
+for positive net inputs.</p>
+<p>The values of <code>alpha</code> and <code>scale</code> are
+chosen so that the mean and variance of the inputs are preserved
+between two consecutive layers as long as the weights are initialized
+correctly (see [<code>lecun_normal</code> initialization]
+(https://www.tensorflow.org/api_docs/python/tf/keras/initializers/lecun_normal))
+and the number of inputs is "large enough"
+(see references for more information).</p>
+<p><img alt="" src="https://cdn-images-1.medium.com/max/1600/1*m0e8lZU_Zrkh4ESfQkY2Pw.png" />
+(Courtesy: Blog on Towards DataScience at
+https://towardsdatascience.com/selu-make-fnns-great-again-snn-8d61526802a9)</p>
+<h4 id="example-usage">Example Usage:</h4>
+<div class="codehilite"><pre><span></span><span class="n">n_classes</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1">#10-class problem</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">Sequential</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="n">kernel_initializer</span><span class="o">=</span><span class="s1">&#39;lecun_normal&#39;</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;selu&#39;</span><span class="p">,</span>
+<span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">1</span><span class="p">))))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="n">kernel_initializer</span><span class="o">=</span><span class="s1">&#39;lecun_normal&#39;</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;selu&#39;</span><span class="p">))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">kernel_initializer</span><span class="o">=</span><span class="s1">&#39;lecun_normal&#39;</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;selu&#39;</span><span class="p">))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="n">n_classes</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;softmax&#39;</span><span class="p">))</span>
+</pre></div>
+
+
+<h4 id="arguments">Arguments:</h4>
+<ul>
+<li><b><code>x</code></b>: A tensor or variable to compute the activation function for.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>The scaled exponential unit activation: <code>scale * elu(x, alpha)</code>.</p>
+<h1 id="note">Note</h1>
+<div class="codehilite"><pre><span></span><span class="o">-</span><span class="w"> </span><span class="k">To</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">used</span><span class="w"> </span><span class="n">together</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">initialization</span><span class="w"> </span><span class="ss">&quot;[lecun_normal]</span>
+<span class="ss">(https://www.tensorflow.org/api_docs/python/tf/keras/initializers/lecun_normal)&quot;</span><span class="p">.</span><span class="w"></span>
+<span class="o">-</span><span class="w"> </span><span class="k">To</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">used</span><span class="w"> </span><span class="n">together</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">dropout</span><span class="w"> </span><span class="n">variant</span><span class="w"> </span><span class="ss">&quot;[AlphaDropout]</span>
+<span class="ss">(https://www.tensorflow.org/api_docs/python/tf/keras/layers/AlphaDropout)&quot;</span><span class="p">.</span><span class="w"></span>
+</pre></div>
+
+
+<h4 id="references">References:</h4>
+<p>[Self-Normalizing Neural Networks (Klambauer et al, 2017)]
+(https://arxiv.org/abs/1706.02515)</p>
+    </body>
+    </html>
+   

@@ -1,0 +1,191 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.layers.SimpleRNNCell" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="get_dropout_mask_for_cell"/>
+<meta itemprop="property" content="get_initial_state"/>
+<meta itemprop="property" content="get_recurrent_dropout_mask_for_cell"/>
+<meta itemprop="property" content="reset_dropout_mask"/>
+<meta itemprop="property" content="reset_recurrent_dropout_mask"/>
+</div>
+
+<h1 id="tfkeraslayerssimplernncell">tf.keras.layers.SimpleRNNCell</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/recurrent.py">View source</a></p>
+<h2 id="class-simplernncell">Class <code>SimpleRNNCell</code></h2>
+<!-- Start diff -->
+
+<p>Cell class for SimpleRNN.</p>
+<p>Inherits From: <a href="../../../tf/keras/layers/Layer.html"><code>Layer</code></a></p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v1.keras.layers.SimpleRNNCell</code></li>
+<li>Class <code>tf.compat.v2.keras.layers.SimpleRNNCell</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<h4 id="arguments">Arguments:</h4>
+<ul>
+<li><b><code>units</code></b>: Positive integer, dimensionality of the output space.</li>
+<li><b><code>activation</code></b>: Activation function to use.
+  Default: hyperbolic tangent (<code>tanh</code>).
+  If you pass <code>None</code>, no activation is applied
+  (ie. "linear" activation: <code>a(x) = x</code>).</li>
+<li><b><code>use_bias</code></b>: Boolean, whether the layer uses a bias vector.</li>
+<li><b><code>kernel_initializer</code></b>: Initializer for the <code>kernel</code> weights matrix,
+  used for the linear transformation of the inputs.</li>
+<li><b><code>recurrent_initializer</code></b>: Initializer for the <code>recurrent_kernel</code>
+  weights matrix, used for the linear transformation of the recurrent state.</li>
+<li><b><code>bias_initializer</code></b>: Initializer for the bias vector.</li>
+<li><b><code>kernel_regularizer</code></b>: Regularizer function applied to
+  the <code>kernel</code> weights matrix.</li>
+<li><b><code>recurrent_regularizer</code></b>: Regularizer function applied to
+  the <code>recurrent_kernel</code> weights matrix.</li>
+<li><b><code>bias_regularizer</code></b>: Regularizer function applied to the bias vector.</li>
+<li><b><code>kernel_constraint</code></b>: Constraint function applied to
+  the <code>kernel</code> weights matrix.</li>
+<li><b><code>recurrent_constraint</code></b>: Constraint function applied to
+  the <code>recurrent_kernel</code> weights matrix.</li>
+<li><b><code>bias_constraint</code></b>: Constraint function applied to the bias vector.</li>
+<li><b><code>dropout</code></b>: Float between 0 and 1.
+  Fraction of the units to drop for
+  the linear transformation of the inputs.</li>
+<li><b><code>recurrent_dropout</code></b>: Float between 0 and 1.
+  Fraction of the units to drop for
+  the linear transformation of the recurrent state.</li>
+</ul>
+<h4 id="call-arguments">Call arguments:</h4>
+<ul>
+<li><b><code>inputs</code></b>: A 2D tensor.</li>
+<li><b><code>states</code></b>: List of state tensors corresponding to the previous timestep.</li>
+<li><b><code>training</code></b>: Python boolean indicating whether the layer should behave in
+  training mode or in inference mode. Only relevant when <code>dropout</code> or
+  <code>recurrent_dropout</code> is used.</li>
+</ul>
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/recurrent.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">units</span><span class="p">,</span>
+    <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;tanh&#39;</span><span class="p">,</span>
+    <span class="n">use_bias</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">kernel_initializer</span><span class="o">=</span><span class="s1">&#39;glorot_uniform&#39;</span><span class="p">,</span>
+    <span class="n">recurrent_initializer</span><span class="o">=</span><span class="s1">&#39;orthogonal&#39;</span><span class="p">,</span>
+    <span class="n">bias_initializer</span><span class="o">=</span><span class="s1">&#39;zeros&#39;</span><span class="p">,</span>
+    <span class="n">kernel_regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">recurrent_regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">bias_regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">kernel_constraint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">recurrent_constraint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">bias_constraint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">dropout</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">recurrent_dropout</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<h2 id="methods">Methods</h2>
+<h3 id="get_dropout_mask_for_cell"><code>get_dropout_mask_for_cell</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/recurrent.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_dropout_mask_for_cell</span><span class="p">(</span>
+    <span class="n">inputs</span><span class="p">,</span>
+    <span class="n">training</span><span class="p">,</span>
+    <span class="n">count</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Get the dropout mask for RNN cell's input.</p>
+<p>It will create mask based on context if there isn't any existing cached
+mask. If a new mask is generated, it will update the cache in the cell.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>inputs</code></b>: the input tensor whose shape will be used to generate dropout
+  mask.</li>
+<li><b><code>training</code></b>: boolean tensor, whether its in training mode, dropout will be
+  ignored in non-training mode.</li>
+<li><b><code>count</code></b>: int, how many dropout mask will be generated. It is useful for cell
+  that has internal weights fused together.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>List of mask tensor, generated or cached mask based on context.</p>
+<h3 id="get_initial_state"><code>get_initial_state</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/recurrent.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_initial_state</span><span class="p">(</span>
+    <span class="n">inputs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<h3 id="get_recurrent_dropout_mask_for_cell"><code>get_recurrent_dropout_mask_for_cell</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/recurrent.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_recurrent_dropout_mask_for_cell</span><span class="p">(</span>
+    <span class="n">inputs</span><span class="p">,</span>
+    <span class="n">training</span><span class="p">,</span>
+    <span class="n">count</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Get the recurrent dropout mask for RNN cell.</p>
+<p>It will create mask based on context if there isn't any existing cached
+mask. If a new mask is generated, it will update the cache in the cell.</p>
+<h4 id="args_1">Args:</h4>
+<ul>
+<li><b><code>inputs</code></b>: the input tensor whose shape will be used to generate dropout
+  mask.</li>
+<li><b><code>training</code></b>: boolean tensor, whether its in training mode, dropout will be
+  ignored in non-training mode.</li>
+<li><b><code>count</code></b>: int, how many dropout mask will be generated. It is useful for cell
+  that has internal weights fused together.</li>
+</ul>
+<h4 id="returns_1">Returns:</h4>
+<p>List of mask tensor, generated or cached mask based on context.</p>
+<h3 id="reset_dropout_mask"><code>reset_dropout_mask</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/recurrent.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">reset_dropout_mask</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Reset the cached dropout masks if any.</p>
+<p>This is important for the RNN layer to invoke this in it call() method so
+that the cached mask is cleared before calling the cell.call(). The mask
+should be cached across the timestep within the same batch, but shouldn't
+be cached between batches. Otherwise it will introduce unreasonable bias
+against certain index of data within the batch.</p>
+<h3 id="reset_recurrent_dropout_mask"><code>reset_recurrent_dropout_mask</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/recurrent.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">reset_recurrent_dropout_mask</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Reset the cached recurrent dropout masks if any.</p>
+<p>This is important for the RNN layer to invoke this in it call() method so
+that the cached mask is cleared before calling the cell.call(). The mask
+should be cached across the timestep within the same batch, but shouldn't
+be cached between batches. Otherwise it will introduce unreasonable bias
+against certain index of data within the batch.</p>
+    </body>
+    </html>
+   

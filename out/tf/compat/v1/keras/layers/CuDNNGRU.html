@@ -1,0 +1,110 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.keras.layers.CuDNNGRU" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="cell"/>
+<meta itemprop="property" content="states"/>
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="get_initial_state"/>
+<meta itemprop="property" content="reset_states"/>
+</div>
+
+<h1 id="tfcompatv1keraslayerscudnngru">tf.compat.v1.keras.layers.CuDNNGRU</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/cudnn_recurrent.py">View source</a></p>
+<h2 id="class-cudnngru">Class <code>CuDNNGRU</code></h2>
+<!-- Start diff -->
+
+<p>Fast GRU implementation backed by cuDNN.</p>
+<!-- Placeholder for "Used in" -->
+
+<p>More information about cuDNN can be found on the <a href="https://developer.nvidia.com/cudnn">NVIDIA
+developer website</a>.
+Can only be run on GPU.</p>
+<h4 id="arguments">Arguments:</h4>
+<ul>
+<li><b><code>units</code></b>: Positive integer, dimensionality of the output space.</li>
+<li><b><code>kernel_initializer</code></b>: Initializer for the <code>kernel</code> weights matrix, used for
+  the linear transformation of the inputs.</li>
+<li><b><code>recurrent_initializer</code></b>: Initializer for the <code>recurrent_kernel</code> weights
+  matrix, used for the linear transformation of the recurrent state.</li>
+<li><b><code>bias_initializer</code></b>: Initializer for the bias vector.</li>
+<li><b><code>kernel_regularizer</code></b>: Regularizer function applied to the <code>kernel</code> weights
+  matrix.</li>
+<li><b><code>recurrent_regularizer</code></b>: Regularizer function applied to the
+  <code>recurrent_kernel</code> weights matrix.</li>
+<li><b><code>bias_regularizer</code></b>: Regularizer function applied to the bias vector.</li>
+<li><b><code>activity_regularizer</code></b>: Regularizer function applied to the output of the
+  layer (its "activation").</li>
+<li><b><code>kernel_constraint</code></b>: Constraint function applied to the <code>kernel</code> weights
+  matrix.</li>
+<li><b><code>recurrent_constraint</code></b>: Constraint function applied to the
+  <code>recurrent_kernel</code> weights matrix.</li>
+<li><b><code>bias_constraint</code></b>: Constraint function applied to the bias vector.</li>
+<li><b><code>return_sequences</code></b>: Boolean. Whether to return the last output in the output
+  sequence, or the full sequence.</li>
+<li><b><code>return_state</code></b>: Boolean. Whether to return the last state in addition to the
+  output.</li>
+<li><b><code>go_backwards</code></b>: Boolean (default False). If True, process the input sequence
+  backwards and return the reversed sequence.</li>
+<li><b><code>stateful</code></b>: Boolean (default False). If True, the last state for each sample
+  at index i in a batch will be used as initial state for the sample of
+  index i in the following batch.</li>
+</ul>
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/cudnn_recurrent.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">units</span><span class="p">,</span>
+    <span class="n">kernel_initializer</span><span class="o">=</span><span class="s1">&#39;glorot_uniform&#39;</span><span class="p">,</span>
+    <span class="n">recurrent_initializer</span><span class="o">=</span><span class="s1">&#39;orthogonal&#39;</span><span class="p">,</span>
+    <span class="n">bias_initializer</span><span class="o">=</span><span class="s1">&#39;zeros&#39;</span><span class="p">,</span>
+    <span class="n">kernel_regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">recurrent_regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">bias_regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">activity_regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">kernel_constraint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">recurrent_constraint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">bias_constraint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">return_sequences</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">return_state</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">go_backwards</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">stateful</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<h2 id="properties">Properties</h2>
+<h3 id="cell"><code>cell</code></h3>
+
+<h3 id="states"><code>states</code></h3>
+
+<h2 id="methods">Methods</h2>
+<h3 id="get_initial_state"><code>get_initial_state</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/recurrent.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_initial_state</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+</pre></div>
+
+
+<h3 id="reset_states"><code>reset_states</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/recurrent.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">reset_states</span><span class="p">(</span><span class="n">states</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+    </body>
+    </html>
+   

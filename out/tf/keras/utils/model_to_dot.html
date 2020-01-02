@@ -1,0 +1,67 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.utils.model_to_dot" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfkerasutilsmodel_to_dot">tf.keras.utils.model_to_dot</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/utils/vis_utils.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Convert a Keras model to dot format.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.keras.utils.model_to_dot</code></li>
+<li><code>tf.compat.v2.keras.utils.model_to_dot</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">model_to_dot</span><span class="p">(</span>
+    <span class="n">model</span><span class="p">,</span>
+    <span class="n">show_shapes</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">show_layer_names</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">rankdir</span><span class="o">=</span><span class="s1">&#39;TB&#39;</span><span class="p">,</span>
+    <span class="n">expand_nested</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">dpi</span><span class="o">=</span><span class="mi">96</span><span class="p">,</span>
+    <span class="n">subgraph</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<h4 id="arguments">Arguments:</h4>
+<ul>
+<li><b><code>model</code></b>: A Keras model instance.</li>
+<li><b><code>show_shapes</code></b>: whether to display shape information.</li>
+<li><b><code>show_layer_names</code></b>: whether to display layer names.</li>
+<li><b><code>rankdir</code></b>: <code>rankdir</code> argument passed to PyDot,
+    a string specifying the format of the plot:
+    'TB' creates a vertical plot;
+    'LR' creates a horizontal plot.</li>
+<li><b><code>expand_nested</code></b>: whether to expand nested models into clusters.</li>
+<li><b><code>dpi</code></b>: Dots per inch.</li>
+<li><b><code>subgraph</code></b>: whether to return a <code>pydot.Cluster</code> instance.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>pydot.Dot</code> instance representing the Keras model or
+a <code>pydot.Cluster</code> instance representing nested model if
+<code>subgraph=True</code>.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ImportError</code></b>: if graphviz or pydot are not available.</li>
+</ul>
+    </body>
+    </html>
+   

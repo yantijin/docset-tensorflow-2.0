@@ -1,0 +1,67 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.layers.Dropout" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__init__"/>
+</div>
+
+<h1 id="tfkeraslayersdropout">tf.keras.layers.Dropout</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/core.py">View source</a></p>
+<h2 id="class-dropout">Class <code>Dropout</code></h2>
+<!-- Start diff -->
+
+<p>Applies Dropout to the input.</p>
+<p>Inherits From: <a href="../../../tf/keras/layers/Layer.html"><code>Layer</code></a></p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v1.keras.layers.Dropout</code></li>
+<li>Class <code>tf.compat.v2.keras.layers.Dropout</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<p>Dropout consists in randomly setting
+a fraction <code>rate</code> of input units to 0 at each update during training time,
+which helps prevent overfitting.</p>
+<h4 id="arguments">Arguments:</h4>
+<ul>
+<li><b><code>rate</code></b>: Float between 0 and 1. Fraction of the input units to drop.</li>
+<li><b><code>noise_shape</code></b>: 1D integer tensor representing the shape of the
+  binary dropout mask that will be multiplied with the input.
+  For instance, if your inputs have shape
+  <code>(batch_size, timesteps, features)</code> and
+  you want the dropout mask to be the same for all timesteps,
+  you can use <code>noise_shape=(batch_size, 1, features)</code>.</li>
+<li><b><code>seed</code></b>: A Python integer to use as random seed.</li>
+</ul>
+<h4 id="call-arguments">Call arguments:</h4>
+<ul>
+<li><b><code>inputs</code></b>: Input tensor (of any rank).</li>
+<li><b><code>training</code></b>: Python boolean indicating whether the layer should behave in
+  training mode (adding dropout) or in inference mode (doing nothing).</li>
+</ul>
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/core.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">rate</span><span class="p">,</span>
+    <span class="n">noise_shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+    </body>
+    </html>
+   

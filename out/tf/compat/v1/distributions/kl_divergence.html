@@ -1,0 +1,69 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.distributions.kl_divergence" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1distributionskl_divergence">tf.compat.v1.distributions.kl_divergence</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/distributions/kullback_leibler.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Get the KL-divergence KL(distribution_a || distribution_b). (deprecated)</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">distributions</span><span class="o">.</span><span class="n">kl_divergence</span><span class="p">(</span>
+    <span class="n">distribution_a</span><span class="p">,</span>
+    <span class="n">distribution_b</span><span class="p">,</span>
+    <span class="n">allow_nan_stats</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed after 2019-01-01.
+Instructions for updating:
+The TensorFlow Distributions library has moved to TensorFlow Probability (https://github.com/tensorflow/probability). You should update all references to use <code>tfp.distributions</code> instead of <code>tf.distributions</code>.</p>
+<p>If there is no KL method registered specifically for <code>type(distribution_a)</code>
+and <code>type(distribution_b)</code>, then the class hierarchies of these types are
+searched.</p>
+<p>If one KL method is registered between any pairs of classes in these two
+parent hierarchies, it is used.</p>
+<p>If more than one such registered method exists, the method whose registered
+classes have the shortest sum MRO paths to the input types is used.</p>
+<p>If more than one such shortest path exists, the first method
+identified in the search is used (favoring a shorter MRO distance to
+<code>type(distribution_a)</code>).</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>distribution_a</code></b>: The first distribution.</li>
+<li><b><code>distribution_b</code></b>: The second distribution.</li>
+<li><b><code>allow_nan_stats</code></b>: Python <code>bool</code>, default <code>True</code>. When <code>True</code>,
+  statistics (e.g., mean, mode, variance) use the value "<code>NaN</code>" to
+  indicate the result is undefined. When <code>False</code>, an exception is raised
+  if one or more of the statistic's batch members are undefined.</li>
+<li><b><code>name</code></b>: Python <code>str</code> name prefixed to Ops created by this class.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A Tensor with the batchwise KL-divergence between <code>distribution_a</code>
+and <code>distribution_b</code>.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>NotImplementedError</code></b>: If no KL method is defined for distribution types
+  of <code>distribution_a</code> and <code>distribution_b</code>.</li>
+</ul>
+    </body>
+    </html>
+   

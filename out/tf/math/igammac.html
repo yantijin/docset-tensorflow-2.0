@@ -1,0 +1,58 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.math.igammac" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfmathigammac">tf.math.igammac</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p>Defined in generated file: <code>python/ops/gen_math_ops.py</code></p>
+<!-- Start diff -->
+
+<p>Compute the upper regularized incomplete Gamma function <code>Q(a, x)</code>.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.igammac</code></li>
+<li><code>tf.compat.v1.math.igammac</code></li>
+<li><code>tf.compat.v2.math.igammac</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">igammac</span><span class="p">(</span>
+    <span class="n">a</span><span class="p">,</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>The upper regularized incomplete Gamma function is defined as:</p>
+<p>\(Q(a, x) = Gamma(a, x) / Gamma(a) = 1 - P(a, x)\)</p>
+<p>where</p>
+<p>\(Gamma(a, x) = int_{x}^{\infty} t^{a-1} exp(-t) dt\)</p>
+<p>is the upper incomplete Gama function.</p>
+<p>Note, above <code>P(a, x)</code> (<code>Igamma</code>) is the lower regularized complete
+Gamma function.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>a</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>float32</code>, <code>float64</code>.</li>
+<li><b><code>x</code></b>: A <code>Tensor</code>. Must have the same type as <code>a</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>Tensor</code>. Has the same type as <code>a</code>.</p>
+    </body>
+    </html>
+   

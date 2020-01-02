@@ -1,0 +1,97 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.distribute.InputContext" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="input_pipeline_id"/>
+<meta itemprop="property" content="num_input_pipelines"/>
+<meta itemprop="property" content="num_replicas_in_sync"/>
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="get_per_replica_batch_size"/>
+</div>
+
+<h1 id="tfdistributeinputcontext">tf.distribute.InputContext</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/distribute_lib.py">View source</a></p>
+<h2 id="class-inputcontext">Class <code>InputContext</code></h2>
+<!-- Start diff -->
+
+<p>A class wrapping information needed by an input function.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v1.distribute.InputContext</code></li>
+<li>Class <code>tf.compat.v2.distribute.InputContext</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<p>This is a context class that is passed to the user's input function and
+contains information about the compute replicas and input pipelines. The
+number of compute replicas (in sync training) helps compute the local batch
+size from the desired global batch size for each replica. The input pipeline
+information can be used to return a different subset of the input in each
+replica (for e.g. shard the input pipeline, use a different input
+source etc).</p>
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/distribute_lib.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">num_input_pipelines</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">input_pipeline_id</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">num_replicas_in_sync</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Initializes an InputContext object.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>num_input_pipelines</code></b>: the number of input pipelines in a cluster.</li>
+<li><b><code>input_pipeline_id</code></b>: the current input pipeline id, should be an int in
+  [0,<code>num_input_pipelines</code>).</li>
+<li><b><code>num_replicas_in_sync</code></b>: the number of replicas that are in sync.</li>
+</ul>
+<h2 id="properties">Properties</h2>
+<h3 id="input_pipeline_id"><code>input_pipeline_id</code></h3>
+
+<p>Returns the input pipeline ID.</p>
+<h3 id="num_input_pipelines"><code>num_input_pipelines</code></h3>
+
+<p>Returns the number of input pipelines.</p>
+<h3 id="num_replicas_in_sync"><code>num_replicas_in_sync</code></h3>
+
+<p>Returns the number of compute replicas in sync.</p>
+<h2 id="methods">Methods</h2>
+<h3 id="get_per_replica_batch_size"><code>get_per_replica_batch_size</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/distribute_lib.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_per_replica_batch_size</span><span class="p">(</span><span class="n">global_batch_size</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Returns the per-replica batch size.</p>
+<h4 id="args_1">Args:</h4>
+<ul>
+<li><b><code>global_batch_size</code></b>: the global batch size which should be divisible by
+  <code>num_replicas_in_sync</code>.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>the per-replica batch size.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: if <code>global_batch_size</code> not divisible by
+  <code>num_replicas_in_sync</code>.</li>
+</ul>
+    </body>
+    </html>
+   

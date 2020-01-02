@@ -1,0 +1,389 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.distribute.Strategy" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="extended"/>
+<meta itemprop="property" content="num_replicas_in_sync"/>
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="experimental_distribute_dataset"/>
+<meta itemprop="property" content="experimental_distribute_datasets_from_function"/>
+<meta itemprop="property" content="experimental_local_results"/>
+<meta itemprop="property" content="experimental_make_numpy_dataset"/>
+<meta itemprop="property" content="experimental_run_v2"/>
+<meta itemprop="property" content="reduce"/>
+<meta itemprop="property" content="scope"/>
+</div>
+
+<h1 id="tfdistributestrategy">tf.distribute.Strategy</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/distribute_lib.py">View source</a></p>
+<h2 id="class-strategy">Class <code>Strategy</code></h2>
+<!-- Start diff -->
+
+<p>A state &amp; compute distribution policy on a list of devices.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v2.distribute.Strategy</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<p>See <a href="https://www.tensorflow.org/alpha/guide/distribute_strategy">the guide</a>
+for overview and examples.</p>
+<h4 id="in-short">In short:</h4>
+<ul>
+<li>To use it with Keras <code>compile</code>/<code>fit</code>,
+  <a href="https://www.tensorflow.org/alpha/guide/distribute_strategy#using_tfdistributestrategy_with_keras">please
+  read</a>.</li>
+<li>You may pass descendant of <a href="../../tf/distribute/Strategy.html"><code>tf.distribute.Strategy</code></a> to
+  <a href="../../tf/estimator/RunConfig.html"><code>tf.estimator.RunConfig</code></a> to specify how a <a href="../../tf/estimator/Estimator.html"><code>tf.estimator.Estimator</code></a>
+  should distribute its computation. See
+  <a href="https://www.tensorflow.org/alpha/guide/distribute_strategy#using_tfdistributestrategy_with_estimator">guide</a>.</li>
+<li>Otherwise, use <a href="../../tf/distribute/Strategy.html#scope"><code>tf.distribute.Strategy.scope</code></a> to specify that a
+  strategy should be used when building an executing your model.
+  (This puts you in the "cross-replica context" for this strategy, which
+  means the strategy is put in control of things like variable placement.)</li>
+<li>
+<p>If you are writing a custom training loop, you will need to call a few more
+  methods,
+  <a href="https://www.tensorflow.org/alpha/guide/distribute_strategy#using_tfdistributestrategy_with_custom_training_loops">see the
+  guide</a>:</p>
+<ul>
+<li>Start by either creating a <a href="../../tf/data/Dataset.html"><code>tf.data.Dataset</code></a> normally or using
+  <code>tf.distribute.experimental_make_numpy_dataset</code> to make a dataset out of
+  a <code>numpy</code> array.</li>
+<li>Use <a href="../../tf/distribute/Strategy.html#experimental_distribute_dataset"><code>tf.distribute.Strategy.experimental_distribute_dataset</code></a> to convert
+  a <a href="../../tf/data/Dataset.html"><code>tf.data.Dataset</code></a> to something that produces "per-replica" values.
+  If you want to manually specify how the dataset should be partitioned
+  across replicas, use
+  <a href="../../tf/distribute/Strategy.html#experimental_distribute_datasets_from_function"><code>tf.distribute.Strategy.experimental_distribute_datasets_from_function</code></a>
+  instead.</li>
+<li>Use <a href="../../tf/distribute/Strategy.html#experimental_run_v2"><code>tf.distribute.Strategy.experimental_run_v2</code></a> to run a function
+  once per replica, taking values that may be "per-replica" (e.g.
+  from a distributed dataset) and returning "per-replica" values.
+  This function is executed in "replica context", which means each
+  operation is performed separately on each replica.</li>
+<li>Finally use a method (such as <a href="../../tf/distribute/Strategy.html#reduce"><code>tf.distribute.Strategy.reduce</code></a>) to
+  convert the resulting "per-replica" values into ordinary <code>Tensor</code>s.</li>
+</ul>
+</li>
+</ul>
+<p>A custom training loop can be as simple as:</p>
+<div class="codehilite"><pre><span></span><span class="k">with</span><span class="w"> </span><span class="n">my_strategy</span><span class="p">.</span><span class="k">scope</span><span class="p">()</span><span class="err">:</span><span class="w"></span>
+<span class="w">  </span><span class="nv">@tf</span><span class="p">.</span><span class="k">function</span><span class="w"></span>
+<span class="w">  </span><span class="n">def</span><span class="w"> </span><span class="n">distribute_train_epoch</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">replica_fn</span><span class="p">(</span><span class="k">input</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="w">      </span><span class="err">#</span><span class="w"> </span><span class="n">process</span><span class="w"> </span><span class="k">input</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="k">result</span><span class="w"></span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="k">result</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">total_result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nl">dataset</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="n">per_replica_result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">my_strategy</span><span class="p">.</span><span class="n">experimental_run_v2</span><span class="p">(</span><span class="n">replica_fn</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                                           </span><span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="p">,))</span><span class="w"></span>
+<span class="w">      </span><span class="n">total_result</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">my_strategy</span><span class="p">.</span><span class="n">reduce</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">distribute</span><span class="p">.</span><span class="n">ReduceOp</span><span class="p">.</span><span class="nf">SUM</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                         </span><span class="n">per_replica_result</span><span class="p">,</span><span class="w"> </span><span class="n">axis</span><span class="o">=</span><span class="k">None</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">total_result</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">dist_dataset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">my_strategy</span><span class="p">.</span><span class="n">experimental_distribute_dataset</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="n">_</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">range</span><span class="p">(</span><span class="n">EPOCHS</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="w">    </span><span class="n">train_result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">distribute_train_epoch</span><span class="p">(</span><span class="n">dist_dataset</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+
+
+<p>This takes an ordinary <code>dataset</code> and <code>replica_fn</code> and runs it
+distributed using a particular <a href="../../tf/distribute/Strategy.html"><code>tf.distribute.Strategy</code></a> named
+<code>my_strategy</code> above. Any variables created in <code>replica_fn</code> are created
+using <code>my_strategy</code>'s policy, and library functions called by
+<code>replica_fn</code> can use the <code>get_replica_context()</code> API to implement
+distributed-specific behavior.</p>
+<p>You can use the <code>reduce</code> API to aggregate results across replicas and use
+this as a return value from one iteration over the distributed dataset. Or
+you can use <a href="../../tf/keras/metrics.html"><code>tf.keras.metrics</code></a> (such as loss, accuracy, etc.) to
+accumulate metrics across steps in a given epoch.</p>
+<p>See the
+<a href="https://www.tensorflow.org/alpha/tutorials/distribute/training_loops">custom training loop
+tutorial</a>
+for a more detailed example.</p>
+<p>Note: <a href="../../tf/distribute/Strategy.html"><code>tf.distribute.Strategy</code></a> currently does not support TensorFlow's
+partitioned variables (where a single variable is split across multiple
+devices) at this time.</p>
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/distribute_lib.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span><span class="n">extended</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Initialize self.  See help(type(self)) for accurate signature.</p>
+<h2 id="properties">Properties</h2>
+<h3 id="extended"><code>extended</code></h3>
+
+<p><a href="../../tf/distribute/StrategyExtended.html"><code>tf.distribute.StrategyExtended</code></a> with additional methods.</p>
+<h3 id="num_replicas_in_sync"><code>num_replicas_in_sync</code></h3>
+
+<p>Returns number of replicas over which gradients are aggregated.</p>
+<h2 id="methods">Methods</h2>
+<h3 id="experimental_distribute_dataset"><code>experimental_distribute_dataset</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/distribute_lib.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">experimental_distribute_dataset</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Distributes a tf.data.Dataset instance provided via <code>dataset</code>.</p>
+<p>The returned distributed dataset can be iterated over similar to how
+regular datasets can.
+NOTE: Currently, the user cannot add any more transformations to a
+distributed dataset.</p>
+<p>The following is an example:</p>
+<div class="codehilite"><pre><span></span><span class="n">strategy</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">distribute</span><span class="o">.</span><span class="n">MirroredStrategy</span><span class="p">()</span>
+
+<span class="c1"># Create a dataset</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset_ops</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">TFRecordDataset</span><span class="p">([</span>
+  <span class="s2">&quot;/a/1.tfr&quot;</span><span class="p">,</span> <span class="s2">&quot;/a/2.tfr&quot;</span><span class="p">,</span> <span class="s2">&quot;/a/3.tfr&quot;</span><span class="p">,</span> <span class="s2">&quot;/a/4.tfr&quot;</span><span class="p">])</span>
+
+<span class="c1"># Distribute that dataset</span>
+<span class="n">dist_dataset</span> <span class="o">=</span> <span class="n">strategy</span><span class="o">.</span><span class="n">experimental_distribute_dataset</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+<span class="c1"># Iterate over the distributed dataset</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">dist_dataset</span><span class="p">:</span>
+  <span class="c1"># process dataset elements</span>
+  <span class="n">strategy</span><span class="o">.</span><span class="n">experimental_run_v2</span><span class="p">(</span><span class="n">train_step</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="p">,))</span>
+</pre></div>
+
+
+<p>We will assume that the input dataset is batched by the
+global batch size. With this assumption, we will make a best effort to
+divide each batch across all the replicas (one or more workers).</p>
+<p>In a multi-worker setting, we will first attempt to distribute the dataset
+by attempting to detect whether the dataset is being created out of
+ReaderDatasets (e.g. TFRecordDataset, TextLineDataset, etc.) and if so,
+attempting to shard the input files. Note that there has to be at least one
+input file per worker. If you have less than one input file per worker, we
+suggest that you should disable distributing your dataset using the method
+below.</p>
+<p>If that attempt is unsuccessful (e.g. the dataset is created from a
+Dataset.range), we will shard the dataset evenly at the end by appending a
+<code>.shard</code> operation to the end of the processing pipeline. This will cause
+the entire preprocessing pipeline for all the data to be run on every
+worker, and each worker will do redundant work. We will print a warning
+if this method of sharding is selected. In this case, consider using
+<code>experimental_distribute_datasets_from_function</code> instead.</p>
+<p>You can disable dataset sharding across workers using the <code>auto_shard</code>
+option in <a href="../../tf/data/experimental/DistributeOptions.html"><code>tf.data.experimental.DistributeOptions</code></a>.</p>
+<p>Within each worker, we will also split the data among all the worker
+devices (if more than one a present), and this will happen even if
+multi-worker sharding is disabled using the method above.</p>
+<p>If the above batch splitting and dataset sharding logic is undesirable,
+please use <code>experimental_distribute_datasets_from_function</code> instead, which
+does not do any automatic splitting or sharding.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>dataset</code></b>: <a href="../../tf/data/Dataset.html"><code>tf.data.Dataset</code></a> that will be sharded across all replicas using
+  the rules stated above.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A "distributed <code>Dataset</code>", which acts like a <a href="../../tf/data/Dataset.html"><code>tf.data.Dataset</code></a> except
+it produces "per-replica" values.</p>
+<h3 id="experimental_distribute_datasets_from_function"><code>experimental_distribute_datasets_from_function</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/distribute_lib.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">experimental_distribute_datasets_from_function</span><span class="p">(</span><span class="n">dataset_fn</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Distributes <a href="../../tf/data/Dataset.html"><code>tf.data.Dataset</code></a> instances created by calls to <code>dataset_fn</code>.</p>
+<p><code>dataset_fn</code> will be called once for each worker in the strategy. Each
+replica on that worker will dequeue one batch of inputs from the local
+<code>Dataset</code> (i.e. if a worker has two replicas, two batches will be dequeued
+from the <code>Dataset</code> every step).</p>
+<p>This method can be used for several purposes. For example, where
+<code>experimental_distribute_dataset</code> is unable to shard the input files, this
+method might be used to manually shard the dataset (avoiding the slow
+fallback behavior in <code>experimental_distribute_dataset</code>). In cases where the
+dataset is infinite, this sharding can be done by creating dataset replicas
+that differ only in their random seed.
+<code>experimental_distribute_dataset</code> may also sometimes fail to split the
+batch across replicas on a worker. In that case, this method can be used
+where that limitation does not exist.</p>
+<p>The <code>dataset_fn</code> should take an <a href="../../tf/distribute/InputContext.html"><code>tf.distribute.InputContext</code></a> instance where
+information about batching and input replication can be accessed:</p>
+<div class="codehilite"><pre><span></span><span class="n">def</span> <span class="n">dataset_fn</span><span class="p">(</span><span class="n">input_context</span><span class="p">):</span>
+  <span class="n">batch_size</span> <span class="o">=</span> <span class="n">input_context</span><span class="p">.</span><span class="n">get_per_replica_batch_size</span><span class="p">(</span><span class="n">global_batch_size</span><span class="p">)</span>
+  <span class="n">d</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="k">data</span><span class="p">.</span><span class="n">Dataset</span><span class="p">.</span><span class="n">from_tensors</span><span class="p">([[</span><span class="mi">1</span><span class="p">.]]).</span><span class="n">repeat</span><span class="p">().</span><span class="n">batch</span><span class="p">(</span><span class="n">batch_size</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">d</span><span class="p">.</span><span class="n">shard</span><span class="p">(</span>
+      <span class="n">input_context</span><span class="p">.</span><span class="n">num_input_pipelines</span><span class="p">,</span> <span class="n">input_context</span><span class="p">.</span><span class="n">input_pipeline_id</span><span class="p">)</span>
+
+<span class="n">inputs</span> <span class="o">=</span> <span class="n">strategy</span><span class="p">.</span><span class="n">experimental_distribute_datasets_from_function</span><span class="p">(</span><span class="n">dataset_fn</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">batch</span> <span class="k">in</span> <span class="n">inputs</span><span class="p">:</span>
+  <span class="n">replica_results</span> <span class="o">=</span> <span class="n">strategy</span><span class="p">.</span><span class="n">experimental_run_v2</span><span class="p">(</span><span class="n">replica_fn</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">batch</span><span class="p">,))</span>
+</pre></div>
+
+
+<p>IMPORTANT: The <a href="../../tf/data/Dataset.html"><code>tf.data.Dataset</code></a> returned by <code>dataset_fn</code> should have a
+per-replica batch size, unlike <code>experimental_distribute_dataset</code>, which uses
+the global batch size.  This may be computed using
+<code>input_context.get_per_replica_batch_size</code>.</p>
+<h4 id="args_1">Args:</h4>
+<ul>
+<li><b><code>dataset_fn</code></b>: A function taking a <a href="../../tf/distribute/InputContext.html"><code>tf.distribute.InputContext</code></a> instance and
+  returning a <a href="../../tf/data/Dataset.html"><code>tf.data.Dataset</code></a>.</li>
+</ul>
+<h4 id="returns_1">Returns:</h4>
+<p>A "distributed <code>Dataset</code>", which acts like a <a href="../../tf/data/Dataset.html"><code>tf.data.Dataset</code></a> except
+it produces "per-replica" values.</p>
+<h3 id="experimental_local_results"><code>experimental_local_results</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/distribute_lib.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">experimental_local_results</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Returns the list of all local per-replica values contained in <code>value</code>.</p>
+<p>Note: This only returns values on the worker initiated by this client.
+When using a <a href="../../tf/distribute/Strategy.html"><code>tf.distribute.Strategy</code></a> like
+<a href="../../tf/distribute/experimental/MultiWorkerMirroredStrategy.html"><code>tf.distribute.experimental.MultiWorkerMirroredStrategy</code></a>, each worker
+will be its own client, and this function will only return values
+computed on that worker.</p>
+<h4 id="args_2">Args:</h4>
+<ul>
+<li><b><code>value</code></b>: A value returned by <code>experimental_run()</code>, <code>experimental_run_v2()</code>,
+  <code>extended.call_for_each_replica()</code>, or a variable created in <code>scope</code>.</li>
+</ul>
+<h4 id="returns_2">Returns:</h4>
+<p>A tuple of values contained in <code>value</code>. If <code>value</code> represents a single
+value, this returns <code>(value,).</code></p>
+<h3 id="experimental_make_numpy_dataset"><code>experimental_make_numpy_dataset</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/distribute_lib.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">experimental_make_numpy_dataset</span><span class="p">(</span><span class="n">numpy_input</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Makes a <a href="../../tf/data/Dataset.html"><code>tf.data.Dataset</code></a> for input provided via a numpy array.</p>
+<p>This avoids adding <code>numpy_input</code> as a large constant in the graph,
+and copies the data to the machine or machines that will be processing
+the input.</p>
+<p>Note that you will likely need to use <code>experimental_distribute_dataset</code>
+with the returned dataset to further distribute it with the strategy.</p>
+<h4 id="example">Example:</h4>
+<div class="codehilite"><pre><span></span><span class="err">numpy_input = np.ones([10], dtype=np.float32)</span>
+<span class="err">dataset = strategy.experimental_make_numpy_dataset(numpy_input)</span>
+<span class="err">dist_dataset = strategy.experimental_distribute_dataset(dataset)</span>
+</pre></div>
+
+
+<h4 id="args_3">Args:</h4>
+<ul>
+<li><b><code>numpy_input</code></b>: A nest of NumPy input arrays that will be converted into a
+dataset. Note that lists of Numpy arrays are stacked, as that is normal
+<a href="../../tf/data/Dataset.html"><code>tf.data.Dataset</code></a> behavior.</li>
+</ul>
+<h4 id="returns_3">Returns:</h4>
+<p>A <a href="../../tf/data/Dataset.html"><code>tf.data.Dataset</code></a> representing <code>numpy_input</code>.</p>
+<h3 id="experimental_run_v2"><code>experimental_run_v2</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/distribute_lib.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">experimental_run_v2</span><span class="p">(</span>
+    <span class="n">fn</span><span class="p">,</span>
+    <span class="n">args</span><span class="o">=</span><span class="p">(),</span>
+    <span class="n">kwargs</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Run <code>fn</code> on each replica, with the given arguments.</p>
+<p>Executes ops specified by <code>fn</code> on each replica. If <code>args</code> or <code>kwargs</code> have
+"per-replica" values, such as those produced by a "distributed <code>Dataset</code>",
+when <code>fn</code> is executed on a particular replica, it will be executed with the
+component of those "per-replica" values that correspond to that replica.</p>
+<p><code>fn</code> may call <a href="../../tf/distribute/get_replica_context.html"><code>tf.distribute.get_replica_context()</code></a> to access members such
+as <code>all_reduce</code>.</p>
+<p>All arguments in <code>args</code> or <code>kwargs</code> should either be nest of tensors or
+per-replica objects containing tensors or composite tensors.</p>
+<p>IMPORTANT: Depending on the implementation of <a href="../../tf/distribute/Strategy.html"><code>tf.distribute.Strategy</code></a> and
+whether eager execution is enabled, <code>fn</code> may be called one or more times (
+once for each replica).</p>
+<h4 id="args_4">Args:</h4>
+<ul>
+<li><b><code>fn</code></b>: The function to run. The output must be a <a href="../../tf/nest.html"><code>tf.nest</code></a> of <code>Tensor</code>s.</li>
+<li><b><code>args</code></b>: (Optional) Positional arguments to <code>fn</code>.</li>
+<li><b><code>kwargs</code></b>: (Optional) Keyword arguments to <code>fn</code>.</li>
+</ul>
+<h4 id="returns_4">Returns:</h4>
+<p>Merged return value of <code>fn</code> across replicas. The structure of the return
+value is the same as the return value from <code>fn</code>. Each element in the
+structure can either be "per-replica" <code>Tensor</code> objects or <code>Tensor</code>s
+(for example, if running on a single replica).</p>
+<h3 id="reduce"><code>reduce</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/distribute_lib.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">reduce</span><span class="p">(</span>
+    <span class="n">reduce_op</span><span class="p">,</span>
+    <span class="n">value</span><span class="p">,</span>
+    <span class="n">axis</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Reduce <code>value</code> across replicas.</p>
+<p>Given a per-replica value returned by <code>experimental_run_v2</code>, say a
+per-example loss, the batch will be divided across all the replicas.  This
+function allows you to aggregate across replicas and optionally also across
+batch elements.  For example, if you have a global batch size of 8 and 2
+replicas, values for examples <code>[0, 1, 2, 3]</code> will be on replica 0 and
+<code>[4, 5, 6, 7]</code> will be on replica 1. By default, <code>reduce</code> will just
+aggregate across replicas, returning <code>[0+4, 1+5, 2+6, 3+7]</code>. This is useful
+when each replica is computing a scalar or some other value that doesn't
+have a "batch" dimension (like a gradient). More often you will want to
+aggregate across the global batch, which you can get by specifying the batch
+dimension as the <code>axis</code>, typically <code>axis=0</code>. In this case it would return a
+scalar <code>0+1+2+3+4+5+6+7</code>.</p>
+<p>If there is a last partial batch, you will need to specify an axis so
+that the resulting shape is consistent across replicas. So if the last
+batch has size 6 and it is divided into [0, 1, 2, 3] and [4, 5], you
+would get a shape mismatch unless you specify <code>axis=0</code>. If you specify
+<a href="../../tf/distribute/ReduceOp.html#MEAN"><code>tf.distribute.ReduceOp.MEAN</code></a>, using <code>axis=0</code> will use the correct
+denominator of 6. Contrast this with computing <code>reduce_mean</code> to get a
+scalar value on each replica and this function to average those means,
+which will weigh some values <code>1/8</code> and others <code>1/4</code>.</p>
+<h4 id="args_5">Args:</h4>
+<ul>
+<li><b><code>reduce_op</code></b>: A <a href="../../tf/distribute/ReduceOp.html"><code>tf.distribute.ReduceOp</code></a> value specifying how values should
+  be combined.</li>
+<li><b><code>value</code></b>: A "per replica" value, e.g. returned by <code>experimental_run_v2</code> to
+  be combined into a single tensor.</li>
+<li><b><code>axis</code></b>: Specifies the dimension to reduce along within each
+  replica's tensor. Should typically be set to the batch dimension, or
+  <code>None</code> to only reduce across replicas (e.g. if the tensor has no batch
+  dimension).</li>
+</ul>
+<h4 id="returns_5">Returns:</h4>
+<p>A <code>Tensor</code>.</p>
+<h3 id="scope"><code>scope</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/distribute_lib.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">scope</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Returns a context manager selecting this Strategy as current.</p>
+<p>Inside a <code>with strategy.scope():</code> code block, this thread
+will use a variable creator set by <code>strategy</code>, and will
+enter its "cross-replica context".</p>
+<h4 id="returns_6">Returns:</h4>
+<p>A context manager.</p>
+    </body>
+    </html>
+   

@@ -1,0 +1,71 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.preprocessing.text.hashing_trick" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfkeraspreprocessingtexthashing_trick">tf.keras.preprocessing.text.hashing_trick</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<!-- Start diff -->
+
+<p>Converts a text to a sequence of indexes in a fixed-size hashing space.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.keras.preprocessing.text.hashing_trick</code></li>
+<li><code>tf.compat.v2.keras.preprocessing.text.hashing_trick</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">preprocessing</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">hashing_trick</span><span class="p">(</span>
+    <span class="n">text</span><span class="p">,</span>
+    <span class="n">n</span><span class="p">,</span>
+    <span class="n">hash_function</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">filters</span><span class="o">=</span><span class="s1">&#39;!&quot;#$%&amp;()*+,-./:;&lt;=&gt;?@[</span><span class="se">\\</span><span class="s1">]^_`{|}~</span><span class="se">\t\n</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="n">lower</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">split</span><span class="o">=</span><span class="s1">&#39; &#39;</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<h1 id="arguments">Arguments</h1>
+<div class="codehilite"><pre><span></span><span class="kt">text</span><span class="p">:</span> <span class="n">Input</span> <span class="kt">text</span> <span class="p">(</span><span class="n">string</span><span class="p">).</span>
+<span class="n">n</span><span class="p">:</span> <span class="n">Dimension</span> <span class="n">of</span> <span class="n">the</span> <span class="n">hashing</span> <span class="n">space</span><span class="p">.</span>
+<span class="n">hash_function</span><span class="p">:</span> <span class="n">defaults</span> <span class="k">to</span> <span class="n">python</span> <span class="ss">`hash`</span> <span class="n">function</span><span class="p">,</span> <span class="n">can</span> <span class="n">be</span> <span class="s1">&#39.html5&#39;</span> <span class="k">or</span>
+    <span class="n">any</span> <span class="n">function</span> <span class="n">that</span> <span class="n">takes</span> <span class="k">in</span> <span class="n">input</span> <span class="n">a</span> <span class="n">string</span> <span class="k">and</span> <span class="n">returns</span> <span class="n">a</span> <span class="kt">int</span><span class="p">.</span>
+    <span class="n">Note</span> <span class="n">that</span> <span class="s1">&#39;hash&#39;</span> <span class="k">is</span> <span class="k">not</span> <span class="n">a</span> <span class="n">stable</span> <span class="n">hashing</span> <span class="n">function</span><span class="p">,</span> <span class="n">so</span>
+    <span class="n">it</span> <span class="k">is</span> <span class="k">not</span> <span class="n">consistent</span> <span class="n">across</span> <span class="n">different</span> <span class="n">runs</span><span class="p">,</span> <span class="k">while</span> <span class="s1">&#39.html5&#39;</span>
+    <span class="k">is</span> <span class="n">a</span> <span class="n">stable</span> <span class="n">hashing</span> <span class="n">function</span><span class="p">.</span>
+<span class="n">filters</span><span class="p">:</span> <span class="nf">list</span> <span class="p">(</span><span class="k">or</span> <span class="n">concatenation</span><span class="p">)</span> <span class="n">of</span> <span class="n">characters</span> <span class="k">to</span> <span class="n">filter</span> <span class="k">out</span><span class="p">,</span> <span class="n">such</span> <span class="k">as</span>
+    <span class="n">punctuation</span><span class="p">.</span> <span class="k">Default</span><span class="p">:</span> <span class="ss">``</span><span class="o">!</span><span class="err">&quot;</span><span class="c1">#$%&amp;()*+,-./:;&lt;=&gt;?@[\]^_`{|}~\t\n``,</span>
+    <span class="n">includes</span> <span class="n">basic</span> <span class="n">punctuation</span><span class="p">,</span> <span class="n">tabs</span><span class="p">,</span> <span class="k">and</span> <span class="n">newlines</span><span class="p">.</span>
+<span class="n">lower</span><span class="p">:</span> <span class="n">boolean</span><span class="p">.</span> <span class="n">Whether</span> <span class="k">to</span> <span class="kt">set</span> <span class="n">the</span> <span class="kt">text</span> <span class="k">to</span> <span class="n">lowercase</span><span class="p">.</span>
+<span class="n">split</span><span class="p">:</span> <span class="n">str</span><span class="p">.</span> <span class="k">Separator</span> <span class="k">for</span> <span class="n">word</span> <span class="n">splitting</span><span class="p">.</span>
+</pre></div>
+
+
+<h1 id="returns">Returns</h1>
+<div class="codehilite"><pre><span></span><span class="err">A list of integer word indices (unicity non-guaranteed).</span>
+</pre></div>
+
+
+<p><code>0</code> is a reserved index that won't be assigned to any word.</p>
+<p>Two or more words may be assigned to the same index, due to possible
+collisions by the hashing function.
+The <a href="https://en.wikipedia.org/wiki/Birthday_problem#Probability_table">probability</a>
+of a collision is in relation to the dimension of the hashing space and
+the number of distinct objects.</p>
+    </body>
+    </html>
+   

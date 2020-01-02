@@ -1,0 +1,63 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../default.css" rel="stylesheet">
+    <link href="
+   ../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.io" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="module-tfio">Module: tf.io</h1>
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p>Public API for tf.io namespace.</p>
+<h2 id="modules">Modules</h2>
+<p><a href="../tf/io/gfile.html"><code>gfile</code></a> module: Public API for tf.io.gfile namespace.</p>
+<h2 id="classes">Classes</h2>
+<p><a href="../tf/io/FixedLenFeature.html"><code>class FixedLenFeature</code></a>: Configuration for parsing a fixed-length input feature.</p>
+<p><a href="../tf/io/FixedLenSequenceFeature.html"><code>class FixedLenSequenceFeature</code></a>: Configuration for parsing a variable-length input feature into a <code>Tensor</code>.</p>
+<p><a href="../tf/io/SparseFeature.html"><code>class SparseFeature</code></a>: Configuration for parsing a sparse input feature from an <code>Example</code>.</p>
+<p><a href="../tf/io/TFRecordOptions.html"><code>class TFRecordOptions</code></a>: Options used for manipulating TFRecord files.</p>
+<p><a href="../tf/io/TFRecordWriter.html"><code>class TFRecordWriter</code></a>: A class to write records to a TFRecords file.</p>
+<p><a href="../tf/io/VarLenFeature.html"><code>class VarLenFeature</code></a>: Configuration for parsing a variable-length input feature.</p>
+<h2 id="functions">Functions</h2>
+<p><a href="../tf/io/decode_and_crop_jpeg.html"><code>decode_and_crop_jpeg(...)</code></a>: Decode and Crop a JPEG-encoded image to a uint8 tensor.</p>
+<p><a href="../tf/io/decode_base64.html"><code>decode_base64(...)</code></a>: Decode web-safe base64-encoded strings.</p>
+<p><a href="../tf/io/decode_bmp.html"><code>decode_bmp(...)</code></a>: Decode the first frame of a BMP-encoded image to a uint8 tensor.</p>
+<p><a href="../tf/io/decode_compressed.html"><code>decode_compressed(...)</code></a>: Decompress strings.</p>
+<p><a href="../tf/io/decode_csv.html"><code>decode_csv(...)</code></a>: Convert CSV records to tensors. Each column maps to one tensor.</p>
+<p><a href="../tf/io/decode_gif.html"><code>decode_gif(...)</code></a>: Decode the frame(s) of a GIF-encoded image to a uint8 tensor.</p>
+<p><a href="../tf/io/decode_image.html"><code>decode_image(...)</code></a>: Function for <code>decode_bmp</code>, <code>decode_gif</code>, <code>decode_jpeg</code>, and <code>decode_png</code>.</p>
+<p><a href="../tf/io/decode_jpeg.html"><code>decode_jpeg(...)</code></a>: Decode a JPEG-encoded image to a uint8 tensor.</p>
+<p><a href="../tf/io/decode_json_example.html"><code>decode_json_example(...)</code></a>: Convert JSON-encoded Example records to binary protocol buffer strings.</p>
+<p><a href="../tf/io/decode_png.html"><code>decode_png(...)</code></a>: Decode a PNG-encoded image to a uint8 or uint16 tensor.</p>
+<p><a href="../tf/io/decode_proto.html"><code>decode_proto(...)</code></a>: The op extracts fields from a serialized protocol buffers message into tensors.</p>
+<p><a href="../tf/io/decode_raw.html"><code>decode_raw(...)</code></a>: Convert raw byte strings into tensors.</p>
+<p><a href="../tf/io/deserialize_many_sparse.html"><code>deserialize_many_sparse(...)</code></a>: Deserialize and concatenate <code>SparseTensors</code> from a serialized minibatch.</p>
+<p><a href="../tf/io/encode_base64.html"><code>encode_base64(...)</code></a>: Encode strings into web-safe base64 format.</p>
+<p><a href="../tf/io/encode_jpeg.html"><code>encode_jpeg(...)</code></a>: JPEG-encode an image.</p>
+<p><a href="../tf/io/encode_proto.html"><code>encode_proto(...)</code></a>: The op serializes protobuf messages provided in the input tensors.</p>
+<p><a href="../tf/io/extract_jpeg_shape.html"><code>extract_jpeg_shape(...)</code></a>: Extract the shape information of a JPEG-encoded image.</p>
+<p><a href="../tf/io/is_jpeg.html"><code>is_jpeg(...)</code></a>: Convenience function to check if the 'contents' encodes a JPEG image.</p>
+<p><a href="../tf/io/match_filenames_once.html"><code>match_filenames_once(...)</code></a>: Save the list of files matching pattern, so it is only computed once.</p>
+<p><a href="../tf/io/matching_files.html"><code>matching_files(...)</code></a>: Returns the set of files matching one or more glob patterns.</p>
+<p><a href="../tf/io/parse_example.html"><code>parse_example(...)</code></a>: Parses <code>Example</code> protos into a <code>dict</code> of tensors.</p>
+<p><a href="../tf/io/parse_sequence_example.html"><code>parse_sequence_example(...)</code></a>: Parses a batch of <code>SequenceExample</code> protos.</p>
+<p><a href="../tf/io/parse_single_example.html"><code>parse_single_example(...)</code></a>: Parses a single <code>Example</code> proto.</p>
+<p><a href="../tf/io/parse_single_sequence_example.html"><code>parse_single_sequence_example(...)</code></a>: Parses a single <code>SequenceExample</code> proto.</p>
+<p><a href="../tf/io/parse_tensor.html"><code>parse_tensor(...)</code></a>: Transforms a serialized tensorflow.TensorProto proto into a Tensor.</p>
+<p><a href="../tf/io/read_file.html"><code>read_file(...)</code></a>: Reads and outputs the entire contents of the input filename.</p>
+<p><a href="../tf/io/serialize_many_sparse.html"><code>serialize_many_sparse(...)</code></a>: Serialize <code>N</code>-minibatch <code>SparseTensor</code> into an <code>[N, 3]</code> <code>Tensor</code>.</p>
+<p><a href="../tf/io/serialize_sparse.html"><code>serialize_sparse(...)</code></a>: Serialize a <code>SparseTensor</code> into a 3-vector (1-D <code>Tensor</code>) object.</p>
+<p><a href="../tf/io/serialize_tensor.html"><code>serialize_tensor(...)</code></a>: Transforms a Tensor into a serialized TensorProto proto.</p>
+<p><a href="../tf/io/write_file.html"><code>write_file(...)</code></a>: Writes contents to the file at input filename. Creates file and recursively</p>
+<p><a href="../tf/io/write_graph.html"><code>write_graph(...)</code></a>: Writes a graph proto to a file.</p>
+    </body>
+    </html>
+   

@@ -1,0 +1,196 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.data.experimental.CheckpointInputPipelineHook" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="after_create_session"/>
+<meta itemprop="property" content="after_run"/>
+<meta itemprop="property" content="before_run"/>
+<meta itemprop="property" content="begin"/>
+<meta itemprop="property" content="end"/>
+</div>
+
+<h1 id="tfdataexperimentalcheckpointinputpipelinehook">tf.data.experimental.CheckpointInputPipelineHook</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/data/experimental/ops/iterator_ops.py">View source</a></p>
+<h2 id="class-checkpointinputpipelinehook">Class <code>CheckpointInputPipelineHook</code></h2>
+<!-- Start diff -->
+
+<p>Checkpoints input pipeline state every N steps or seconds.</p>
+<p>Inherits From: <a href="../../../tf/estimator/SessionRunHook.html"><code>SessionRunHook</code></a></p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v1.data.experimental.CheckpointInputPipelineHook</code></li>
+<li>Class <code>tf.compat.v2.data.experimental.CheckpointInputPipelineHook</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<p>This hook saves the state of the iterators in the <code>Graph</code> so that when
+training is resumed the input pipeline continues from where it left off.
+This could potentially avoid overfitting in certain pipelines where the
+number of training steps per eval are small compared to the dataset
+size or if the training pipeline is pre-empted.</p>
+<p>Differences from <code>CheckpointSaverHook</code>:
+1. Saves only the input pipelines in the "iterators" collection and not the
+   global variables or other saveable objects.
+2. Does not write the <code>GraphDef</code> and <code>MetaGraphDef</code> to the summary.</p>
+<p>Example of checkpointing the training pipeline:</p>
+<div class="codehilite"><pre><span></span><span class="n">est</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">Estimator</span><span class="p">(</span><span class="n">model_fn</span><span class="p">)</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+  <span class="n">est</span><span class="o">.</span><span class="n">train</span><span class="p">(</span>
+      <span class="n">train_input_fn</span><span class="p">,</span>
+      <span class="n">hooks</span><span class="o">=</span><span class="p">[</span><span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">CheckpointInputPipelineHook</span><span class="p">(</span><span class="n">est</span><span class="p">)],</span>
+      <span class="n">steps</span><span class="o">=</span><span class="n">train_steps_per_eval</span><span class="p">)</span>
+  <span class="c1"># Note: We do not pass the hook here.</span>
+  <span class="n">metrics</span> <span class="o">=</span> <span class="n">est</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">eval_input_fn</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">should_stop_the_training</span><span class="p">(</span><span class="n">metrics</span><span class="p">):</span>
+    <span class="k">break</span>
+</pre></div>
+
+
+<p>This hook should be used if the input pipeline state needs to be saved
+separate from the model checkpoint. Doing so may be useful for a few reasons:
+1. The input pipeline checkpoint may be large, if there are large shuffle
+   or prefetch buffers for instance, and may bloat the checkpoint size.
+2. If the input pipeline is shared between training and validation, restoring
+   the checkpoint during validation may override the validation input
+   pipeline.</p>
+<p>For saving the input pipeline checkpoint alongside the model weights use
+<a href="../../../tf/data/experimental/make_saveable_from_iterator.html"><code>tf.data.experimental.make_saveable_from_iterator</code></a> directly to create a
+<code>SaveableObject</code> and add to the <code>SAVEABLE_OBJECTS</code> collection. Note, however,
+that you will need to be careful not to restore the training iterator during
+eval. You can do that by not adding the iterator to the SAVEABLE_OBJECTS
+collector when building the eval graph.</p>
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/data/experimental/ops/iterator_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span><span class="n">estimator</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Initializes a <code>CheckpointInputPipelineHook</code>.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>estimator</code></b>: Estimator.</li>
+</ul>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: One of <code>save_steps</code> or <code>save_secs</code> should be set.</li>
+<li><b><code>ValueError</code></b>: At most one of saver or scaffold should be set.</li>
+</ul>
+<h2 id="methods">Methods</h2>
+<h3 id="after_create_session"><code>after_create_session</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/session_run_hook.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">after_create_session</span><span class="p">(</span>
+    <span class="n">session</span><span class="p">,</span>
+    <span class="n">coord</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Called when new TensorFlow session is created.</p>
+<p>This is called to signal the hooks that a new session has been created. This
+has two essential differences with the situation in which <code>begin</code> is called:</p>
+<ul>
+<li>When this is called, the graph is finalized and ops can no longer be added
+    to the graph.</li>
+<li>This method will also be called as a result of recovering a wrapped
+    session, not only at the beginning of the overall session.</li>
+</ul>
+<h4 id="args_1">Args:</h4>
+<ul>
+<li><b><code>session</code></b>: A TensorFlow Session that has been created.</li>
+<li><b><code>coord</code></b>: A Coordinator object which keeps track of all threads.</li>
+</ul>
+<h3 id="after_run"><code>after_run</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/data/experimental/ops/iterator_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">after_run</span><span class="p">(</span>
+    <span class="n">run_context</span><span class="p">,</span>
+    <span class="n">run_values</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Called after each call to run().</p>
+<p>The <code>run_values</code> argument contains results of requested ops/tensors by
+<code>before_run()</code>.</p>
+<p>The <code>run_context</code> argument is the same one send to <code>before_run</code> call.
+<code>run_context.request_stop()</code> can be called to stop the iteration.</p>
+<p>If <code>session.run()</code> raises any exceptions then <code>after_run()</code> is not called.</p>
+<h4 id="args_2">Args:</h4>
+<ul>
+<li><b><code>run_context</code></b>: A <code>SessionRunContext</code> object.</li>
+<li><b><code>run_values</code></b>: A SessionRunValues object.</li>
+</ul>
+<h3 id="before_run"><code>before_run</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/data/experimental/ops/iterator_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">before_run</span><span class="p">(</span><span class="n">run_context</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Called before each call to run().</p>
+<p>You can return from this call a <code>SessionRunArgs</code> object indicating ops or
+tensors to add to the upcoming <code>run()</code> call.  These ops/tensors will be run
+together with the ops/tensors originally passed to the original run() call.
+The run args you return can also contain feeds to be added to the run()
+call.</p>
+<p>The <code>run_context</code> argument is a <code>SessionRunContext</code> that provides
+information about the upcoming <code>run()</code> call: the originally requested
+op/tensors, the TensorFlow Session.</p>
+<p>At this point graph is finalized and you can not add ops.</p>
+<h4 id="args_3">Args:</h4>
+<ul>
+<li><b><code>run_context</code></b>: A <code>SessionRunContext</code> object.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>None or a <code>SessionRunArgs</code> object.</p>
+<h3 id="begin"><code>begin</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/data/experimental/ops/iterator_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">begin</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Called once before using the session.</p>
+<p>When called, the default graph is the one that will be launched in the
+session.  The hook can modify the graph by adding new operations to it.
+After the <code>begin()</code> call the graph will be finalized and the other callbacks
+can not modify the graph anymore. Second call of <code>begin()</code> on the same
+graph, should not change the graph.</p>
+<h3 id="end"><code>end</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/data/experimental/ops/iterator_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">end</span><span class="p">(</span><span class="n">session</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Called at the end of session.</p>
+<p>The <code>session</code> argument can be used in case the hook wants to run final ops,
+such as saving a last checkpoint.</p>
+<p>If <code>session.run()</code> raises exception other than OutOfRangeError or
+StopIteration then <code>end()</code> is not called.
+Note the difference between <code>end()</code> and <code>after_run()</code> behavior when
+<code>session.run()</code> raises OutOfRangeError or StopIteration. In that case
+<code>end()</code> is called but <code>after_run()</code> is not called.</p>
+<h4 id="args_4">Args:</h4>
+<ul>
+<li><b><code>session</code></b>: A TensorFlow Session that will be soon closed.</li>
+</ul>
+    </body>
+    </html>
+   

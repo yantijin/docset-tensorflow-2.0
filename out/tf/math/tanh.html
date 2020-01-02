@@ -1,0 +1,62 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.math.tanh" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfmathtanh">tf.math.tanh</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p>Defined in generated file: <code>python/ops/gen_math_ops.py</code></p>
+<!-- Start diff -->
+
+<p>Computes hyperbolic tangent of <code>x</code> element-wise.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.math.tanh</code></li>
+<li><code>tf.compat.v1.nn.tanh</code></li>
+<li><code>tf.compat.v1.tanh</code></li>
+<li><code>tf.compat.v2.math.tanh</code></li>
+<li><code>tf.compat.v2.nn.tanh</code></li>
+<li><code>tf.compat.v2.tanh</code></li>
+<li><code>tf.nn.tanh</code></li>
+<li><code>tf.tanh</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Given an input tensor, this function computes hyperbolic tangent of every
+  element in the tensor. Input range is <code>[-inf, inf]</code> and
+  output range is <code>[-1,1]</code>.</p>
+<p><code>python
+  x = tf.constant([-float("inf"), -5, -0.5, 1, 1.2, 2, 3, float("inf")])
+  tf.math.tanh(x) ==&gt; [-1. -0.99990916 -0.46211717 0.7615942 0.8336547 0.9640276 0.9950547 1.]</code></p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>bfloat16</code>, <code>half</code>, <code>float32</code>, <code>float64</code>, <code>complex64</code>, <code>complex128</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>Tensor</code>. Has the same type as <code>x</code>.</p>
+<p>If <code>x</code> is a <code>SparseTensor</code>, returns
+<code>SparseTensor(x.indices, tf.math.tanh(x.values, ...), x.dense_shape)</code></p>
+    </body>
+    </html>
+   

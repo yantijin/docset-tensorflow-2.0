@@ -1,0 +1,65 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.image.resize_image_with_pad" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1imageresize_image_with_pad">tf.compat.v1.image.resize_image_with_pad</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/image_ops_impl.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Resizes and pads an image to a target width and height.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">resize_image_with_pad</span><span class="p">(</span>
+    <span class="n">image</span><span class="p">,</span>
+    <span class="n">target_height</span><span class="p">,</span>
+    <span class="n">target_width</span><span class="p">,</span>
+    <span class="n">method</span><span class="o">=</span><span class="n">ResizeMethodV1</span><span class="o">.</span><span class="n">BILINEAR</span><span class="p">,</span>
+    <span class="n">align_corners</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Resizes an image to a target width and height by keeping
+the aspect ratio the same without distortion. If the target
+dimensions don't match the image dimensions, the image
+is resized and then padded with zeroes to match requested
+dimensions.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>image</code></b>: 4-D Tensor of shape <code>[batch, height, width, channels]</code> or 3-D Tensor
+  of shape <code>[height, width, channels]</code>.</li>
+<li><b><code>target_height</code></b>: Target height.</li>
+<li><b><code>target_width</code></b>: Target width.</li>
+<li><b><code>method</code></b>: Method to use for resizing image. See <code>resize_images()</code></li>
+<li><b><code>align_corners</code></b>: bool.  If True, the centers of the 4 corner pixels of the
+  input and output tensors are aligned, preserving the values at the corner
+  pixels. Defaults to <code>False</code>.</li>
+</ul>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: if <code>target_height</code> or <code>target_width</code> are zero or negative.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>Resized and padded image.
+If <code>images</code> was 4-D, a 4-D float Tensor of shape
+<code>[batch, new_height, new_width, channels]</code>.
+If <code>images</code> was 3-D, a 3-D float Tensor of shape
+<code>[new_height, new_width, channels]</code>.</p>
+    </body>
+    </html>
+   

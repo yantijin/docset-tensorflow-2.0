@@ -1,0 +1,2258 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.test.TestCase" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="failureException"/>
+<meta itemprop="property" content="__call__"/>
+<meta itemprop="property" content="__eq__"/>
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="addCleanup"/>
+<meta itemprop="property" content="addTypeEqualityFunc"/>
+<meta itemprop="property" content="assertAllClose"/>
+<meta itemprop="property" content="assertAllCloseAccordingToType"/>
+<meta itemprop="property" content="assertAllEqual"/>
+<meta itemprop="property" content="assertAllGreater"/>
+<meta itemprop="property" content="assertAllGreaterEqual"/>
+<meta itemprop="property" content="assertAllInRange"/>
+<meta itemprop="property" content="assertAllInSet"/>
+<meta itemprop="property" content="assertAllLess"/>
+<meta itemprop="property" content="assertAllLessEqual"/>
+<meta itemprop="property" content="assertAlmostEqual"/>
+<meta itemprop="property" content="assertAlmostEquals"/>
+<meta itemprop="property" content="assertArrayNear"/>
+<meta itemprop="property" content="assertBetween"/>
+<meta itemprop="property" content="assertCommandFails"/>
+<meta itemprop="property" content="assertCommandSucceeds"/>
+<meta itemprop="property" content="assertContainsExactSubsequence"/>
+<meta itemprop="property" content="assertContainsInOrder"/>
+<meta itemprop="property" content="assertContainsSubsequence"/>
+<meta itemprop="property" content="assertContainsSubset"/>
+<meta itemprop="property" content="assertCountEqual"/>
+<meta itemprop="property" content="assertDTypeEqual"/>
+<meta itemprop="property" content="assertDeviceEqual"/>
+<meta itemprop="property" content="assertDictContainsSubset"/>
+<meta itemprop="property" content="assertDictEqual"/>
+<meta itemprop="property" content="assertEmpty"/>
+<meta itemprop="property" content="assertEndsWith"/>
+<meta itemprop="property" content="assertEqual"/>
+<meta itemprop="property" content="assertEquals"/>
+<meta itemprop="property" content="assertFalse"/>
+<meta itemprop="property" content="assertGreater"/>
+<meta itemprop="property" content="assertGreaterEqual"/>
+<meta itemprop="property" content="assertIn"/>
+<meta itemprop="property" content="assertIs"/>
+<meta itemprop="property" content="assertIsInstance"/>
+<meta itemprop="property" content="assertIsNone"/>
+<meta itemprop="property" content="assertIsNot"/>
+<meta itemprop="property" content="assertIsNotNone"/>
+<meta itemprop="property" content="assertItemsEqual"/>
+<meta itemprop="property" content="assertJsonEqual"/>
+<meta itemprop="property" content="assertLen"/>
+<meta itemprop="property" content="assertLess"/>
+<meta itemprop="property" content="assertLessEqual"/>
+<meta itemprop="property" content="assertListEqual"/>
+<meta itemprop="property" content="assertLogs"/>
+<meta itemprop="property" content="assertMultiLineEqual"/>
+<meta itemprop="property" content="assertNDArrayNear"/>
+<meta itemprop="property" content="assertNear"/>
+<meta itemprop="property" content="assertNoCommonElements"/>
+<meta itemprop="property" content="assertNotAllClose"/>
+<meta itemprop="property" content="assertNotAllEqual"/>
+<meta itemprop="property" content="assertNotAlmostEqual"/>
+<meta itemprop="property" content="assertNotAlmostEquals"/>
+<meta itemprop="property" content="assertNotEmpty"/>
+<meta itemprop="property" content="assertNotEndsWith"/>
+<meta itemprop="property" content="assertNotEqual"/>
+<meta itemprop="property" content="assertNotEquals"/>
+<meta itemprop="property" content="assertNotIn"/>
+<meta itemprop="property" content="assertNotIsInstance"/>
+<meta itemprop="property" content="assertNotRegex"/>
+<meta itemprop="property" content="assertNotRegexpMatches"/>
+<meta itemprop="property" content="assertNotStartsWith"/>
+<meta itemprop="property" content="assertProtoEquals"/>
+<meta itemprop="property" content="assertProtoEqualsVersion"/>
+<meta itemprop="property" content="assertRaises"/>
+<meta itemprop="property" content="assertRaisesOpError"/>
+<meta itemprop="property" content="assertRaisesRegex"/>
+<meta itemprop="property" content="assertRaisesRegexp"/>
+<meta itemprop="property" content="assertRaisesWithLiteralMatch"/>
+<meta itemprop="property" content="assertRaisesWithPredicateMatch"/>
+<meta itemprop="property" content="assertRegex"/>
+<meta itemprop="property" content="assertRegexMatch"/>
+<meta itemprop="property" content="assertRegexpMatches"/>
+<meta itemprop="property" content="assertSameElements"/>
+<meta itemprop="property" content="assertSameStructure"/>
+<meta itemprop="property" content="assertSequenceAlmostEqual"/>
+<meta itemprop="property" content="assertSequenceEqual"/>
+<meta itemprop="property" content="assertSequenceStartsWith"/>
+<meta itemprop="property" content="assertSetEqual"/>
+<meta itemprop="property" content="assertShapeEqual"/>
+<meta itemprop="property" content="assertStartsWith"/>
+<meta itemprop="property" content="assertTotallyOrdered"/>
+<meta itemprop="property" content="assertTrue"/>
+<meta itemprop="property" content="assertTupleEqual"/>
+<meta itemprop="property" content="assertUrlEqual"/>
+<meta itemprop="property" content="assertWarns"/>
+<meta itemprop="property" content="assertWarnsRegex"/>
+<meta itemprop="property" content="assert_"/>
+<meta itemprop="property" content="cached_session"/>
+<meta itemprop="property" content="captureWritesToStream"/>
+<meta itemprop="property" content="checkedThread"/>
+<meta itemprop="property" content="countTestCases"/>
+<meta itemprop="property" content="create_tempdir"/>
+<meta itemprop="property" content="create_tempfile"/>
+<meta itemprop="property" content="debug"/>
+<meta itemprop="property" content="defaultTestResult"/>
+<meta itemprop="property" content="doCleanups"/>
+<meta itemprop="property" content="evaluate"/>
+<meta itemprop="property" content="fail"/>
+<meta itemprop="property" content="failIf"/>
+<meta itemprop="property" content="failIfAlmostEqual"/>
+<meta itemprop="property" content="failIfEqual"/>
+<meta itemprop="property" content="failUnless"/>
+<meta itemprop="property" content="failUnlessAlmostEqual"/>
+<meta itemprop="property" content="failUnlessEqual"/>
+<meta itemprop="property" content="failUnlessRaises"/>
+<meta itemprop="property" content="get_temp_dir"/>
+<meta itemprop="property" content="id"/>
+<meta itemprop="property" content="run"/>
+<meta itemprop="property" content="session"/>
+<meta itemprop="property" content="setUp"/>
+<meta itemprop="property" content="setUpClass"/>
+<meta itemprop="property" content="shortDescription"/>
+<meta itemprop="property" content="skipTest"/>
+<meta itemprop="property" content="subTest"/>
+<meta itemprop="property" content="tearDown"/>
+<meta itemprop="property" content="tearDownClass"/>
+<meta itemprop="property" content="test_session"/>
+<meta itemprop="property" content="maxDiff"/>
+<meta itemprop="property" content="tempfile_cleanup"/>
+</div>
+
+<h1 id="tftesttestcase">tf.test.TestCase</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/test_util.py">View source</a></p>
+<h2 id="class-testcase">Class <code>TestCase</code></h2>
+<!-- Start diff -->
+
+<p>Base class for tests that need to test TensorFlow.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v1.test.TestCase</code></li>
+<li>Class <code>tf.compat.v2.test.TestCase</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/test_util.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span><span class="n">methodName</span><span class="o">=</span><span class="s1">&#39;runTest&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Create an instance of the class that will use the named test
+method when executed. Raises a ValueError if the instance does
+not have a method with the specified name.</p>
+<h2 id="child-classes">Child Classes</h2>
+<p><a href="../../tf/test/TestCase/failureException.html"><code>class failureException</code></a></p>
+<h2 id="methods">Methods</h2>
+<h3 id="__call__"><code>__call__</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="fm">__call__</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwds</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Call self as a function.</p>
+<h3 id="__eq__"><code>__eq__</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="fm">__eq__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Return self==value.</p>
+<h3 id="addCleanup"><code>addCleanup</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">addCleanup</span><span class="p">(</span>
+    <span class="n">function</span><span class="p">,</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Add a function, with arguments, to be called when the test is
+completed. Functions added are called on a LIFO basis and are
+called after tearDown on test failure or success.</p>
+<p>Cleanup items are called even if setUp fails (unlike tearDown).</p>
+<h3 id="addTypeEqualityFunc"><code>addTypeEqualityFunc</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">addTypeEqualityFunc</span><span class="p">(</span>
+    <span class="n">typeobj</span><span class="p">,</span>
+    <span class="n">function</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Add a type specific assertEqual style function to compare a type.</p>
+<p>This method is for use by TestCase subclasses that need to register
+their own type equality functions to provide nicer error messages.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>typeobj</code></b>: The data type to call this function on when both values
+        are of the same type in assertEqual().</li>
+<li><b><code>function</code></b>: The callable taking two arguments and an optional
+        msg= argument that raises self.failureException with a
+        useful error message when the two arguments are not equal.</li>
+</ul>
+<h3 id="assertAllClose"><code>assertAllClose</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/test_util.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">assertAllClose</span><span class="p">(</span>
+    <span class="n">a</span><span class="p">,</span>
+    <span class="n">b</span><span class="p">,</span>
+    <span class="n">rtol</span><span class="o">=</span><span class="mf">1e-06</span><span class="p">,</span>
+    <span class="n">atol</span><span class="o">=</span><span class="mf">1e-06</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Asserts that two structures of numpy arrays or Tensors, have near values.</p>
+<p><code>a</code> and <code>b</code> can be arbitrarily nested structures. A layer of a nested
+structure can be a <code>dict</code>, <code>namedtuple</code>, <code>tuple</code> or <code>list</code>.</p>
+<h4 id="args_1">Args:</h4>
+<ul>
+<li><b><code>a</code></b>: The expected numpy <code>ndarray</code>, or anything that can be converted into a
+  numpy <code>ndarray</code> (including Tensor), or any arbitrarily nested of
+  structure of these.</li>
+<li><b><code>b</code></b>: The actual numpy <code>ndarray</code>, or anything that can be converted into a
+  numpy <code>ndarray</code> (including Tensor), or any arbitrarily nested of
+  structure of these.</li>
+<li><b><code>rtol</code></b>: relative tolerance.</li>
+<li><b><code>atol</code></b>: absolute tolerance.</li>
+<li><b><code>msg</code></b>: Optional message to report on failure.</li>
+</ul>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: if only one of <code>a[p]</code> and <code>b[p]</code> is a dict or
+    <code>a[p]</code> and <code>b[p]</code> have different length, where <code>[p]</code> denotes a path
+    to the nested structure, e.g. given <code>a = [(1, 1), {'d': (6, 7)}]</code> and
+    <code>[p] = [1]['d']</code>, then <code>a[p] = (6, 7)</code>.</li>
+</ul>
+<h3 id="assertAllCloseAccordingToType"><code>assertAllCloseAccordingToType</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/test_util.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">assertAllCloseAccordingToType</span><span class="p">(</span>
+    <span class="n">a</span><span class="p">,</span>
+    <span class="n">b</span><span class="p">,</span>
+    <span class="n">rtol</span><span class="o">=</span><span class="mf">1e-06</span><span class="p">,</span>
+    <span class="n">atol</span><span class="o">=</span><span class="mf">1e-06</span><span class="p">,</span>
+    <span class="n">float_rtol</span><span class="o">=</span><span class="mf">1e-06</span><span class="p">,</span>
+    <span class="n">float_atol</span><span class="o">=</span><span class="mf">1e-06</span><span class="p">,</span>
+    <span class="n">half_rtol</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span>
+    <span class="n">half_atol</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span>
+    <span class="n">bfloat16_rtol</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
+    <span class="n">bfloat16_atol</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Like assertAllClose, but also suitable for comparing fp16 arrays.</p>
+<p>In particular, the tolerance is reduced to 1e-3 if at least
+one of the arguments is of type float16.</p>
+<h4 id="args_2">Args:</h4>
+<ul>
+<li><b><code>a</code></b>: the expected numpy ndarray or anything can be converted to one.</li>
+<li><b><code>b</code></b>: the actual numpy ndarray or anything can be converted to one.</li>
+<li><b><code>rtol</code></b>: relative tolerance.</li>
+<li><b><code>atol</code></b>: absolute tolerance.</li>
+<li><b><code>float_rtol</code></b>: relative tolerance for float32.</li>
+<li><b><code>float_atol</code></b>: absolute tolerance for float32.</li>
+<li><b><code>half_rtol</code></b>: relative tolerance for float16.</li>
+<li><b><code>half_atol</code></b>: absolute tolerance for float16.</li>
+<li><b><code>bfloat16_rtol</code></b>: relative tolerance for bfloat16.</li>
+<li><b><code>bfloat16_atol</code></b>: absolute tolerance for bfloat16.</li>
+<li><b><code>msg</code></b>: Optional message to report on failure.</li>
+</ul>
+<h3 id="assertAllEqual"><code>assertAllEqual</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/test_util.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">assertAllEqual</span><span class="p">(</span>
+    <span class="n">a</span><span class="p">,</span>
+    <span class="n">b</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Asserts that two numpy arrays or Tensors have the same values.</p>
+<h4 id="args_3">Args:</h4>
+<ul>
+<li><b><code>a</code></b>: the expected numpy ndarray or anything can be converted to one.</li>
+<li><b><code>b</code></b>: the actual numpy ndarray or anything can be converted to one.</li>
+<li><b><code>msg</code></b>: Optional message to report on failure.</li>
+</ul>
+<h3 id="assertAllGreater"><code>assertAllGreater</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/test_util.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">assertAllGreater</span><span class="p">(</span>
+    <span class="n">a</span><span class="p">,</span>
+    <span class="n">comparison_target</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Assert element values are all greater than a target value.</p>
+<h4 id="args_4">Args:</h4>
+<ul>
+<li><b><code>a</code></b>: The numpy <code>ndarray</code>, or anything that can be converted into a numpy
+  <code>ndarray</code> (including Tensor).</li>
+<li><b><code>comparison_target</code></b>: The target value of comparison.</li>
+</ul>
+<h3 id="assertAllGreaterEqual"><code>assertAllGreaterEqual</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/test_util.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">assertAllGreaterEqual</span><span class="p">(</span>
+    <span class="n">a</span><span class="p">,</span>
+    <span class="n">comparison_target</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Assert element values are all greater than or equal to a target value.</p>
+<h4 id="args_5">Args:</h4>
+<ul>
+<li><b><code>a</code></b>: The numpy <code>ndarray</code>, or anything that can be converted into a numpy
+  <code>ndarray</code> (including Tensor).</li>
+<li><b><code>comparison_target</code></b>: The target value of comparison.</li>
+</ul>
+<h3 id="assertAllInRange"><code>assertAllInRange</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/test_util.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">assertAllInRange</span><span class="p">(</span>
+    <span class="n">target</span><span class="p">,</span>
+    <span class="n">lower_bound</span><span class="p">,</span>
+    <span class="n">upper_bound</span><span class="p">,</span>
+    <span class="n">open_lower_bound</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">open_upper_bound</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Assert that elements in a Tensor are all in a given range.</p>
+<h4 id="args_6">Args:</h4>
+<ul>
+<li><b><code>target</code></b>: The numpy <code>ndarray</code>, or anything that can be converted into a
+  numpy <code>ndarray</code> (including Tensor).</li>
+<li><b><code>lower_bound</code></b>: lower bound of the range</li>
+<li><b><code>upper_bound</code></b>: upper bound of the range</li>
+<li><b><code>open_lower_bound</code></b>: (<code>bool</code>) whether the lower bound is open (i.e., &gt; rather
+  than the default &gt;=)</li>
+<li><b><code>open_upper_bound</code></b>: (<code>bool</code>) whether the upper bound is open (i.e., &lt; rather
+  than the default &lt;=)</li>
+</ul>
+<h4 id="raises_1">Raises:</h4>
+<ul>
+<li><b><code>AssertionError</code></b>:   if the value tensor does not have an ordered numeric type (float<em> or
+    int</em>), or
+  if there are nan values, or
+  if any of the elements do not fall in the specified range.</li>
+</ul>
+<h3 id="assertAllInSet"><code>assertAllInSet</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/test_util.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">assertAllInSet</span><span class="p">(</span>
+    <span class="n">target</span><span class="p">,</span>
+    <span class="n">expected_set</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Assert that elements of a Tensor are all in a given closed set.</p>
+<h4 id="args_7">Args:</h4>
+<ul>
+<li><b><code>target</code></b>: The numpy <code>ndarray</code>, or anything that can be converted into a
+  numpy <code>ndarray</code> (including Tensor).</li>
+<li><b><code>expected_set</code></b>: (<code>list</code>, <code>tuple</code> or <code>set</code>) The closed set that the elements
+  of the value of <code>target</code> are expected to fall into.</li>
+</ul>
+<h4 id="raises_2">Raises:</h4>
+<ul>
+<li><b><code>AssertionError</code></b>:   if any of the elements do not fall into <code>expected_set</code>.</li>
+</ul>
+<h3 id="assertAllLess"><code>assertAllLess</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/test_util.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">assertAllLess</span><span class="p">(</span>
+    <span class="n">a</span><span class="p">,</span>
+    <span class="n">comparison_target</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Assert element values are all less than a target value.</p>
+<h4 id="args_8">Args:</h4>
+<ul>
+<li><b><code>a</code></b>: The numpy <code>ndarray</code>, or anything that can be converted into a numpy
+  <code>ndarray</code> (including Tensor).</li>
+<li><b><code>comparison_target</code></b>: The target value of comparison.</li>
+</ul>
+<h3 id="assertAllLessEqual"><code>assertAllLessEqual</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/test_util.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">assertAllLessEqual</span><span class="p">(</span>
+    <span class="n">a</span><span class="p">,</span>
+    <span class="n">comparison_target</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Assert element values are all less than or equal to a target value.</p>
+<h4 id="args_9">Args:</h4>
+<ul>
+<li><b><code>a</code></b>: The numpy <code>ndarray</code>, or anything that can be converted into a numpy
+  <code>ndarray</code> (including Tensor).</li>
+<li><b><code>comparison_target</code></b>: The target value of comparison.</li>
+</ul>
+<h3 id="assertAlmostEqual"><code>assertAlmostEqual</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertAlmostEqual</span><span class="p">(</span>
+    <span class="n">first</span><span class="p">,</span>
+    <span class="n">second</span><span class="p">,</span>
+    <span class="n">places</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">delta</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Fail if the two objects are unequal as determined by their
+difference rounded to the given number of decimal places
+(default 7) and comparing to zero, or by comparing that the
+difference between the two objects is more than the given
+delta.</p>
+<p>Note that decimal places (from zero) are usually not the same
+as significant digits (measured from the most significant digit).</p>
+<p>If the two objects compare equal then they will automatically
+compare almost equal.</p>
+<h3 id="assertAlmostEquals"><code>assertAlmostEquals</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertAlmostEquals</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<h3 id="assertArrayNear"><code>assertArrayNear</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/test_util.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">assertArrayNear</span><span class="p">(</span>
+    <span class="n">farray1</span><span class="p">,</span>
+    <span class="n">farray2</span><span class="p">,</span>
+    <span class="n">err</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Asserts that two float arrays are near each other.</p>
+<p>Checks that for all elements of farray1 and farray2
+|f1 - f2| &lt; err.  Asserts a test failure if not.</p>
+<h4 id="args_10">Args:</h4>
+<ul>
+<li><b><code>farray1</code></b>: a list of float values.</li>
+<li><b><code>farray2</code></b>: a list of float values.</li>
+<li><b><code>err</code></b>: a float value.</li>
+<li><b><code>msg</code></b>: Optional message to report on failure.</li>
+</ul>
+<h3 id="assertBetween"><code>assertBetween</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertBetween</span><span class="p">(</span>
+    <span class="n">value</span><span class="p">,</span>
+    <span class="n">minv</span><span class="p">,</span>
+    <span class="n">maxv</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Asserts that value is between minv and maxv (inclusive).</p>
+<h3 id="assertCommandFails"><code>assertCommandFails</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertCommandFails</span><span class="p">(</span>
+    <span class="n">command</span><span class="p">,</span>
+    <span class="n">regexes</span><span class="p">,</span>
+    <span class="n">env</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">close_fds</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Asserts a shell command fails and the error matches a regex in a list.</p>
+<h4 id="args_11">Args:</h4>
+<ul>
+<li><b><code>command</code></b>: List or string representing the command to run.</li>
+<li><b><code>regexes</code></b>: the list of regular expression strings.</li>
+<li><b><code>env</code></b>: Dictionary of environment variable settings. If None, no environment
+    variables will be set for the child process. This is to make tests
+    more hermetic. NOTE: this behavior is different than the standard
+    subprocess module.</li>
+<li><b><code>close_fds</code></b>: Whether or not to close all open fd's in the child after
+    forking.</li>
+<li><b><code>msg</code></b>: Optional message to report on failure.</li>
+</ul>
+<h3 id="assertCommandSucceeds"><code>assertCommandSucceeds</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertCommandSucceeds</span><span class="p">(</span>
+    <span class="n">command</span><span class="p">,</span>
+    <span class="n">regexes</span><span class="o">=</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;&#39;</span><span class="p">,),</span>
+    <span class="n">env</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">close_fds</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Asserts that a shell command succeeds (i.e. exits with code 0).</p>
+<h4 id="args_12">Args:</h4>
+<ul>
+<li><b><code>command</code></b>: List or string representing the command to run.</li>
+<li><b><code>regexes</code></b>: List of regular expression byte strings that match success.</li>
+<li><b><code>env</code></b>: Dictionary of environment variable settings. If None, no environment
+    variables will be set for the child process. This is to make tests
+    more hermetic. NOTE: this behavior is different than the standard
+    subprocess module.</li>
+<li><b><code>close_fds</code></b>: Whether or not to close all open fd's in the child after
+    forking.</li>
+<li><b><code>msg</code></b>: Optional message to report on failure.</li>
+</ul>
+<h3 id="assertContainsExactSubsequence"><code>assertContainsExactSubsequence</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertContainsExactSubsequence</span><span class="p">(</span>
+    <span class="n">container</span><span class="p">,</span>
+    <span class="n">subsequence</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Asserts that "container" contains "subsequence" as an exact subsequence.</p>
+<p>Asserts that "container" contains all the elements of "subsequence", in
+order, and without other elements interspersed. For example, [1, 2, 3] is an
+exact subsequence of [0, 0, 1, 2, 3, 0] but not of [0, 0, 1, 2, 0, 3, 0].</p>
+<h4 id="args_13">Args:</h4>
+<ul>
+<li><b><code>container</code></b>: the list we're testing for subsequence inclusion.</li>
+<li><b><code>subsequence</code></b>: the list we hope will be an exact subsequence of container.</li>
+<li><b><code>msg</code></b>: Optional message to report on failure.</li>
+</ul>
+<h3 id="assertContainsInOrder"><code>assertContainsInOrder</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertContainsInOrder</span><span class="p">(</span>
+    <span class="n">strings</span><span class="p">,</span>
+    <span class="n">target</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Asserts that the strings provided are found in the target in order.</p>
+<p>This may be useful for checking HTML output.</p>
+<h4 id="args_14">Args:</h4>
+<ul>
+<li><b><code>strings</code></b>: A list of strings, such as [ 'fox', 'dog' ]</li>
+<li><b><code>target</code></b>: A target string in which to look for the strings, such as
+    'The quick brown fox jumped over the lazy dog'.</li>
+<li><b><code>msg</code></b>: Optional message to report on failure.</li>
+</ul>
+<h3 id="assertContainsSubsequence"><code>assertContainsSubsequence</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertContainsSubsequence</span><span class="p">(</span>
+    <span class="n">container</span><span class="p">,</span>
+    <span class="n">subsequence</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Asserts that "container" contains "subsequence" as a subsequence.</p>
+<p>Asserts that "container" contains all the elements of "subsequence", in
+order, but possibly with other elements interspersed. For example, [1, 2, 3]
+is a subsequence of [0, 0, 1, 2, 0, 3, 0] but not of [0, 0, 1, 3, 0, 2, 0].</p>
+<h4 id="args_15">Args:</h4>
+<ul>
+<li><b><code>container</code></b>: the list we're testing for subsequence inclusion.</li>
+<li><b><code>subsequence</code></b>: the list we hope will be a subsequence of container.</li>
+<li><b><code>msg</code></b>: Optional message to report on failure.</li>
+</ul>
+<h3 id="assertContainsSubset"><code>assertContainsSubset</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertContainsSubset</span><span class="p">(</span>
+    <span class="n">expected_subset</span><span class="p">,</span>
+    <span class="n">actual_set</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Checks whether actual iterable is a superset of expected iterable.</p>
+<h3 id="assertCountEqual"><code>assertCountEqual</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertCountEqual</span><span class="p">(</span>
+    <span class="n">first</span><span class="p">,</span>
+    <span class="n">second</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>An unordered sequence comparison asserting that the same elements,
+regardless of order.  If the same element occurs more than once,
+it verifies that the elements occur the same number of times.</p>
+<div class="codehilite"><pre><span></span><span class="err">self.assertEqual(Counter(list(first)),</span>
+<span class="err">                 Counter(list(second)))</span>
+</pre></div>
+
+
+<p>Example:
+    - [0, 1, 1] and [1, 0, 1] compare equal.
+    - [0, 0, 1] and [0, 1] compare unequal.</p>
+<h3 id="assertDTypeEqual"><code>assertDTypeEqual</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/test_util.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">assertDTypeEqual</span><span class="p">(</span>
+    <span class="n">target</span><span class="p">,</span>
+    <span class="n">expected_dtype</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Assert ndarray data type is equal to expected.</p>
+<h4 id="args_16">Args:</h4>
+<ul>
+<li><b><code>target</code></b>: The numpy <code>ndarray</code>, or anything that can be converted into a
+  numpy <code>ndarray</code> (including Tensor).</li>
+<li><b><code>expected_dtype</code></b>: Expected data type.</li>
+</ul>
+<h3 id="assertDeviceEqual"><code>assertDeviceEqual</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/test_util.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">assertDeviceEqual</span><span class="p">(</span>
+    <span class="n">device1</span><span class="p">,</span>
+    <span class="n">device2</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Asserts that the two given devices are the same.</p>
+<h4 id="args_17">Args:</h4>
+<ul>
+<li><b><code>device1</code></b>: A string device name or TensorFlow <code>DeviceSpec</code> object.</li>
+<li><b><code>device2</code></b>: A string device name or TensorFlow <code>DeviceSpec</code> object.</li>
+<li><b><code>msg</code></b>: Optional message to report on failure.</li>
+</ul>
+<h3 id="assertDictContainsSubset"><code>assertDictContainsSubset</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertDictContainsSubset</span><span class="p">(</span>
+    <span class="n">subset</span><span class="p">,</span>
+    <span class="n">dictionary</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Checks whether dictionary is a superset of subset.</p>
+<h3 id="assertDictEqual"><code>assertDictEqual</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertDictEqual</span><span class="p">(</span>
+    <span class="n">a</span><span class="p">,</span>
+    <span class="n">b</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Raises AssertionError if a and b are not equal dictionaries.</p>
+<h4 id="args_18">Args:</h4>
+<ul>
+<li><b><code>a</code></b>: A dict, the expected value.</li>
+<li><b><code>b</code></b>: A dict, the actual value.</li>
+<li><b><code>msg</code></b>: An optional str, the associated message.</li>
+</ul>
+<h4 id="raises_3">Raises:</h4>
+<ul>
+<li><b><code>AssertionError</code></b>: if the dictionaries are not equal.</li>
+</ul>
+<h3 id="assertEmpty"><code>assertEmpty</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertEmpty</span><span class="p">(</span>
+    <span class="n">container</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Asserts that an object has zero length.</p>
+<h4 id="args_19">Args:</h4>
+<ul>
+<li><b><code>container</code></b>: Anything that implements the collections.abc.Sized interface.</li>
+<li><b><code>msg</code></b>: Optional message to report on failure.</li>
+</ul>
+<h3 id="assertEndsWith"><code>assertEndsWith</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertEndsWith</span><span class="p">(</span>
+    <span class="n">actual</span><span class="p">,</span>
+    <span class="n">expected_end</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Asserts that actual.endswith(expected_end) is True.</p>
+<h4 id="args_20">Args:</h4>
+<ul>
+<li><b><code>actual</code></b>: str</li>
+<li><b><code>expected_end</code></b>: str</li>
+<li><b><code>msg</code></b>: Optional message to report on failure.</li>
+</ul>
+<h3 id="assertEqual"><code>assertEqual</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertEqual</span><span class="p">(</span>
+    <span class="n">first</span><span class="p">,</span>
+    <span class="n">second</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Fail if the two objects are unequal as determined by the '=='
+operator.</p>
+<h3 id="assertEquals"><code>assertEquals</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertEquals</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<h3 id="assertFalse"><code>assertFalse</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertFalse</span><span class="p">(</span>
+    <span class="n">expr</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Check that the expression is false.</p>
+<h3 id="assertGreater"><code>assertGreater</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertGreater</span><span class="p">(</span>
+    <span class="n">a</span><span class="p">,</span>
+    <span class="n">b</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Just like self.assertTrue(a &gt; b), but with a nicer default message.</p>
+<h3 id="assertGreaterEqual"><code>assertGreaterEqual</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertGreaterEqual</span><span class="p">(</span>
+    <span class="n">a</span><span class="p">,</span>
+    <span class="n">b</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Just like self.assertTrue(a &gt;= b), but with a nicer default message.</p>
+<h3 id="assertIn"><code>assertIn</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertIn</span><span class="p">(</span>
+    <span class="n">member</span><span class="p">,</span>
+    <span class="n">container</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Just like self.assertTrue(a in b), but with a nicer default message.</p>
+<h3 id="assertIs"><code>assertIs</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertIs</span><span class="p">(</span>
+    <span class="n">expr1</span><span class="p">,</span>
+    <span class="n">expr2</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Just like self.assertTrue(a is b), but with a nicer default message.</p>
+<h3 id="assertIsInstance"><code>assertIsInstance</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertIsInstance</span><span class="p">(</span>
+    <span class="n">obj</span><span class="p">,</span>
+    <span class="bp">cls</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Same as self.assertTrue(isinstance(obj, cls)), with a nicer
+default message.</p>
+<h3 id="assertIsNone"><code>assertIsNone</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertIsNone</span><span class="p">(</span>
+    <span class="n">obj</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Same as self.assertTrue(obj is None), with a nicer default message.</p>
+<h3 id="assertIsNot"><code>assertIsNot</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertIsNot</span><span class="p">(</span>
+    <span class="n">expr1</span><span class="p">,</span>
+    <span class="n">expr2</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Just like self.assertTrue(a is not b), but with a nicer default message.</p>
+<h3 id="assertIsNotNone"><code>assertIsNotNone</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertIsNotNone</span><span class="p">(</span>
+    <span class="n">obj</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Included for symmetry with assertIsNone.</p>
+<h3 id="assertItemsEqual"><code>assertItemsEqual</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertItemsEqual</span><span class="p">(</span>
+    <span class="n">first</span><span class="p">,</span>
+    <span class="n">second</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>An unordered sequence comparison asserting that the same elements,
+regardless of order.  If the same element occurs more than once,
+it verifies that the elements occur the same number of times.</p>
+<div class="codehilite"><pre><span></span><span class="err">self.assertEqual(Counter(list(first)),</span>
+<span class="err">                 Counter(list(second)))</span>
+</pre></div>
+
+
+<p>Example:
+    - [0, 1, 1] and [1, 0, 1] compare equal.
+    - [0, 0, 1] and [0, 1] compare unequal.</p>
+<h3 id="assertJsonEqual"><code>assertJsonEqual</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertJsonEqual</span><span class="p">(</span>
+    <span class="n">first</span><span class="p">,</span>
+    <span class="n">second</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Asserts that the JSON objects defined in two strings are equal.</p>
+<p>A summary of the differences will be included in the failure message
+using assertSameStructure.</p>
+<h4 id="args_21">Args:</h4>
+<ul>
+<li><b><code>first</code></b>: A string containing JSON to decode and compare to second.</li>
+<li><b><code>second</code></b>: A string containing JSON to decode and compare to first.</li>
+<li><b><code>msg</code></b>: Additional text to include in the failure message.</li>
+</ul>
+<h3 id="assertLen"><code>assertLen</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertLen</span><span class="p">(</span>
+    <span class="n">container</span><span class="p">,</span>
+    <span class="n">expected_len</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Asserts that an object has the expected length.</p>
+<h4 id="args_22">Args:</h4>
+<ul>
+<li><b><code>container</code></b>: Anything that implements the collections.abc.Sized interface.</li>
+<li><b><code>expected_len</code></b>: The expected length of the container.</li>
+<li><b><code>msg</code></b>: Optional message to report on failure.</li>
+</ul>
+<h3 id="assertLess"><code>assertLess</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertLess</span><span class="p">(</span>
+    <span class="n">a</span><span class="p">,</span>
+    <span class="n">b</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Just like self.assertTrue(a &lt; b), but with a nicer default message.</p>
+<h3 id="assertLessEqual"><code>assertLessEqual</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertLessEqual</span><span class="p">(</span>
+    <span class="n">a</span><span class="p">,</span>
+    <span class="n">b</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Just like self.assertTrue(a &lt;= b), but with a nicer default message.</p>
+<h3 id="assertListEqual"><code>assertListEqual</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertListEqual</span><span class="p">(</span>
+    <span class="n">list1</span><span class="p">,</span>
+    <span class="n">list2</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>A list-specific equality assertion.</p>
+<h4 id="args_23">Args:</h4>
+<ul>
+<li><b><code>list1</code></b>: The first list to compare.</li>
+<li><b><code>list2</code></b>: The second list to compare.</li>
+<li><b><code>msg</code></b>: Optional message to use on failure instead of a list of
+        differences.</li>
+</ul>
+<h3 id="assertLogs"><code>assertLogs</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertLogs</span><span class="p">(</span>
+    <span class="n">logger</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">level</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Fail unless a log message of level <em>level</em> or higher is emitted
+on <em>logger_name</em> or its children.  If omitted, <em>level</em> defaults to
+INFO and <em>logger</em> defaults to the root logger.</p>
+<p>This method must be used as a context manager, and will yield
+a recording object with two attributes: <code>output</code> and <code>records</code>.
+At the end of the context manager, the <code>output</code> attribute will
+be a list of the matching formatted log messages and the
+<code>records</code> attribute will be a list of the corresponding LogRecord
+objects.</p>
+<p>Example::</p>
+<div class="codehilite"><pre><span></span><span class="err">with self.assertLogs(&#39;foo&#39;, level=&#39;INFO&#39;) as cm:</span>
+<span class="err">    logging.getLogger(&#39;foo&#39;).info(&#39;first message&#39;)</span>
+<span class="err">    logging.getLogger(&#39;foo.bar&#39;).error(&#39;second message&#39;)</span>
+<span class="err">self.assertEqual(cm.output, [&#39;INFO:foo:first message&#39;,</span>
+<span class="err">                             &#39;ERROR:foo.bar:second message&#39;])</span>
+</pre></div>
+
+
+<h3 id="assertMultiLineEqual"><code>assertMultiLineEqual</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertMultiLineEqual</span><span class="p">(</span>
+    <span class="n">first</span><span class="p">,</span>
+    <span class="n">second</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Asserts that two multi-line strings are equal.</p>
+<h3 id="assertNDArrayNear"><code>assertNDArrayNear</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/test_util.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">assertNDArrayNear</span><span class="p">(</span>
+    <span class="n">ndarray1</span><span class="p">,</span>
+    <span class="n">ndarray2</span><span class="p">,</span>
+    <span class="n">err</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Asserts that two numpy arrays have near values.</p>
+<h4 id="args_24">Args:</h4>
+<ul>
+<li><b><code>ndarray1</code></b>: a numpy ndarray.</li>
+<li><b><code>ndarray2</code></b>: a numpy ndarray.</li>
+<li><b><code>err</code></b>: a float. The maximum absolute difference allowed.</li>
+<li><b><code>msg</code></b>: Optional message to report on failure.</li>
+</ul>
+<h3 id="assertNear"><code>assertNear</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/test_util.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">assertNear</span><span class="p">(</span>
+    <span class="n">f1</span><span class="p">,</span>
+    <span class="n">f2</span><span class="p">,</span>
+    <span class="n">err</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Asserts that two floats are near each other.</p>
+<p>Checks that |f1 - f2| &lt; err and asserts a test failure
+if not.</p>
+<h4 id="args_25">Args:</h4>
+<ul>
+<li><b><code>f1</code></b>: A float value.</li>
+<li><b><code>f2</code></b>: A float value.</li>
+<li><b><code>err</code></b>: A float value.</li>
+<li><b><code>msg</code></b>: An optional string message to append to the failure message.</li>
+</ul>
+<h3 id="assertNoCommonElements"><code>assertNoCommonElements</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertNoCommonElements</span><span class="p">(</span>
+    <span class="n">expected_seq</span><span class="p">,</span>
+    <span class="n">actual_seq</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Checks whether actual iterable and expected iterable are disjoint.</p>
+<h3 id="assertNotAllClose"><code>assertNotAllClose</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/test_util.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">assertNotAllClose</span><span class="p">(</span>
+    <span class="n">a</span><span class="p">,</span>
+    <span class="n">b</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Assert that two numpy arrays, or Tensors, do not have near values.</p>
+<h4 id="args_26">Args:</h4>
+<ul>
+<li><b><code>a</code></b>: the first value to compare.</li>
+<li><b><code>b</code></b>: the second value to compare.</li>
+<li><b><code>**kwargs</code></b>: additional keyword arguments to be passed to the underlying
+  <code>assertAllClose</code> call.</li>
+</ul>
+<h4 id="raises_4">Raises:</h4>
+<ul>
+<li><b><code>AssertionError</code></b>: If <code>a</code> and <code>b</code> are unexpectedly close at all elements.</li>
+</ul>
+<h3 id="assertNotAllEqual"><code>assertNotAllEqual</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/test_util.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">assertNotAllEqual</span><span class="p">(</span>
+    <span class="n">a</span><span class="p">,</span>
+    <span class="n">b</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Asserts that two numpy arrays or Tensors do not have the same values.</p>
+<h4 id="args_27">Args:</h4>
+<ul>
+<li><b><code>a</code></b>: the expected numpy ndarray or anything can be converted to one.</li>
+<li><b><code>b</code></b>: the actual numpy ndarray or anything can be converted to one.</li>
+<li><b><code>msg</code></b>: Optional message to report on failure.</li>
+</ul>
+<h3 id="assertNotAlmostEqual"><code>assertNotAlmostEqual</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertNotAlmostEqual</span><span class="p">(</span>
+    <span class="n">first</span><span class="p">,</span>
+    <span class="n">second</span><span class="p">,</span>
+    <span class="n">places</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">delta</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Fail if the two objects are equal as determined by their
+difference rounded to the given number of decimal places
+(default 7) and comparing to zero, or by comparing that the
+difference between the two objects is less than the given delta.</p>
+<p>Note that decimal places (from zero) are usually not the same
+as significant digits (measured from the most significant digit).</p>
+<p>Objects that are equal automatically fail.</p>
+<h3 id="assertNotAlmostEquals"><code>assertNotAlmostEquals</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertNotAlmostEquals</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<h3 id="assertNotEmpty"><code>assertNotEmpty</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertNotEmpty</span><span class="p">(</span>
+    <span class="n">container</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Asserts that an object has non-zero length.</p>
+<h4 id="args_28">Args:</h4>
+<ul>
+<li><b><code>container</code></b>: Anything that implements the collections.abc.Sized interface.</li>
+<li><b><code>msg</code></b>: Optional message to report on failure.</li>
+</ul>
+<h3 id="assertNotEndsWith"><code>assertNotEndsWith</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertNotEndsWith</span><span class="p">(</span>
+    <span class="n">actual</span><span class="p">,</span>
+    <span class="n">unexpected_end</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Asserts that actual.endswith(unexpected_end) is False.</p>
+<h4 id="args_29">Args:</h4>
+<ul>
+<li><b><code>actual</code></b>: str</li>
+<li><b><code>unexpected_end</code></b>: str</li>
+<li><b><code>msg</code></b>: Optional message to report on failure.</li>
+</ul>
+<h3 id="assertNotEqual"><code>assertNotEqual</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertNotEqual</span><span class="p">(</span>
+    <span class="n">first</span><span class="p">,</span>
+    <span class="n">second</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Fail if the two objects are equal as determined by the '!='
+operator.</p>
+<h3 id="assertNotEquals"><code>assertNotEquals</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertNotEquals</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<h3 id="assertNotIn"><code>assertNotIn</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertNotIn</span><span class="p">(</span>
+    <span class="n">member</span><span class="p">,</span>
+    <span class="n">container</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Just like self.assertTrue(a not in b), but with a nicer default message.</p>
+<h3 id="assertNotIsInstance"><code>assertNotIsInstance</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertNotIsInstance</span><span class="p">(</span>
+    <span class="n">obj</span><span class="p">,</span>
+    <span class="bp">cls</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Included for symmetry with assertIsInstance.</p>
+<h3 id="assertNotRegex"><code>assertNotRegex</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertNotRegex</span><span class="p">(</span>
+    <span class="n">text</span><span class="p">,</span>
+    <span class="n">unexpected_regex</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Fail the test if the text matches the regular expression.</p>
+<h3 id="assertNotRegexpMatches"><code>assertNotRegexpMatches</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertNotRegexpMatches</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<h3 id="assertNotStartsWith"><code>assertNotStartsWith</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertNotStartsWith</span><span class="p">(</span>
+    <span class="n">actual</span><span class="p">,</span>
+    <span class="n">unexpected_start</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Asserts that actual.startswith(unexpected_start) is False.</p>
+<h4 id="args_30">Args:</h4>
+<ul>
+<li><b><code>actual</code></b>: str</li>
+<li><b><code>unexpected_start</code></b>: str</li>
+<li><b><code>msg</code></b>: Optional message to report on failure.</li>
+</ul>
+<h3 id="assertProtoEquals"><code>assertProtoEquals</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/test_util.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">assertProtoEquals</span><span class="p">(</span>
+    <span class="n">expected_message_maybe_ascii</span><span class="p">,</span>
+    <span class="n">message</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Asserts that message is same as parsed expected_message_ascii.</p>
+<p>Creates another prototype of message, reads the ascii message into it and
+then compares them using self._AssertProtoEqual().</p>
+<h4 id="args_31">Args:</h4>
+<ul>
+<li><b><code>expected_message_maybe_ascii</code></b>: proto message in original or ascii form.</li>
+<li><b><code>message</code></b>: the message to validate.</li>
+<li><b><code>msg</code></b>: Optional message to report on failure.</li>
+</ul>
+<h3 id="assertProtoEqualsVersion"><code>assertProtoEqualsVersion</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/test_util.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">assertProtoEqualsVersion</span><span class="p">(</span>
+    <span class="n">expected</span><span class="p">,</span>
+    <span class="n">actual</span><span class="p">,</span>
+    <span class="n">producer</span><span class="o">=</span><span class="n">versions</span><span class="o">.</span><span class="n">GRAPH_DEF_VERSION</span><span class="p">,</span>
+    <span class="n">min_consumer</span><span class="o">=</span><span class="n">versions</span><span class="o">.</span><span class="n">GRAPH_DEF_VERSION_MIN_CONSUMER</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<h3 id="assertRaises"><code>assertRaises</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertRaises</span><span class="p">(</span>
+    <span class="n">expected_exception</span><span class="p">,</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Fail unless an exception of class expected_exception is raised
+by the callable when invoked with specified positional and
+keyword arguments. If a different type of exception is
+raised, it will not be caught, and the test case will be
+deemed to have suffered an error, exactly as for an
+unexpected exception.</p>
+<p>If called with the callable and arguments omitted, will return a
+context object used like this::</p>
+<div class="codehilite"><pre><span></span><span class="err"> with self.assertRaises(SomeException):</span>
+<span class="err">     do_something()</span>
+</pre></div>
+
+
+<p>An optional keyword argument 'msg' can be provided when assertRaises
+is used as a context object.</p>
+<p>The context manager keeps a reference to the exception as
+the 'exception' attribute. This allows you to inspect the
+exception after the assertion::</p>
+<div class="codehilite"><pre><span></span><span class="err">with self.assertRaises(SomeException) as cm:</span>
+<span class="err">    do_something()</span>
+<span class="err">the_exception = cm.exception</span>
+<span class="err">self.assertEqual(the_exception.error_code, 3)</span>
+</pre></div>
+
+
+<h3 id="assertRaisesOpError"><code>assertRaisesOpError</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/test_util.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">assertRaisesOpError</span><span class="p">(</span><span class="n">expected_err_re_or_predicate</span><span class="p">)</span>
+</pre></div>
+
+
+<h3 id="assertRaisesRegex"><code>assertRaisesRegex</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertRaisesRegex</span><span class="p">(</span>
+    <span class="n">expected_exception</span><span class="p">,</span>
+    <span class="n">expected_regex</span><span class="p">,</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Asserts that the message in a raised exception matches a regex.</p>
+<h4 id="args_32">Args:</h4>
+<ul>
+<li><b><code>expected_exception</code></b>: Exception class expected to be raised.</li>
+<li><b><code>expected_regex</code></b>: Regex (re pattern object or string) expected
+        to be found in error message.</li>
+<li><b><code>args</code></b>: Function to be called and extra positional args.</li>
+<li><b><code>kwargs</code></b>: Extra kwargs.</li>
+<li><b><code>msg</code></b>: Optional message used in case of failure. Can only be used
+        when assertRaisesRegex is used as a context manager.</li>
+</ul>
+<h3 id="assertRaisesRegexp"><code>assertRaisesRegexp</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertRaisesRegexp</span><span class="p">(</span>
+    <span class="n">expected_exception</span><span class="p">,</span>
+    <span class="n">expected_regex</span><span class="p">,</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Asserts that the message in a raised exception matches a regex.</p>
+<h4 id="args_33">Args:</h4>
+<ul>
+<li><b><code>expected_exception</code></b>: Exception class expected to be raised.</li>
+<li><b><code>expected_regex</code></b>: Regex (re pattern object or string) expected
+        to be found in error message.</li>
+<li><b><code>args</code></b>: Function to be called and extra positional args.</li>
+<li><b><code>kwargs</code></b>: Extra kwargs.</li>
+<li><b><code>msg</code></b>: Optional message used in case of failure. Can only be used
+        when assertRaisesRegex is used as a context manager.</li>
+</ul>
+<h3 id="assertRaisesWithLiteralMatch"><code>assertRaisesWithLiteralMatch</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertRaisesWithLiteralMatch</span><span class="p">(</span>
+    <span class="n">expected_exception</span><span class="p">,</span>
+    <span class="n">expected_exception_message</span><span class="p">,</span>
+    <span class="n">callable_obj</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Asserts that the message in a raised exception equals the given string.</p>
+<p>Unlike assertRaisesRegex, this method takes a literal string, not
+a regular expression.</p>
+<p>with self.assertRaisesWithLiteralMatch(ExType, 'message'):
+  DoSomething()</p>
+<h4 id="args_34">Args:</h4>
+<ul>
+<li><b><code>expected_exception</code></b>: Exception class expected to be raised.</li>
+<li><b><code>expected_exception_message</code></b>: String message expected in the raised
+    exception.  For a raise exception e, expected_exception_message must
+    equal str(e).</li>
+<li><b><code>callable_obj</code></b>: Function to be called, or None to return a context.</li>
+<li><b><code>*args</code></b>: Extra args.</li>
+<li><b><code>**kwargs</code></b>: Extra kwargs.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A context manager if callable_obj is None. Otherwise, None.</p>
+<h4 id="raises_5">Raises:</h4>
+<p>self.failureException if callable_obj does not raise a matching exception.</p>
+<h3 id="assertRaisesWithPredicateMatch"><code>assertRaisesWithPredicateMatch</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertRaisesWithPredicateMatch</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwds</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Returns a context manager to enclose code expected to raise an exception.</p>
+<p>If the exception is an OpError, the op stack is also included in the message
+predicate search.</p>
+<h4 id="args_35">Args:</h4>
+<ul>
+<li><b><code>exception_type</code></b>: The expected type of exception that should be raised.</li>
+<li><b><code>expected_err_re_or_predicate</code></b>: If this is callable, it should be a function
+  of one argument that inspects the passed-in exception and returns True
+  (success) or False (please fail the test). Otherwise, the error message
+  is expected to match this regular expression partially.</li>
+</ul>
+<h4 id="returns_1">Returns:</h4>
+<p>A context manager to surround code that is expected to raise an
+exception.</p>
+<h3 id="assertRegex"><code>assertRegex</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertRegex</span><span class="p">(</span>
+    <span class="n">text</span><span class="p">,</span>
+    <span class="n">expected_regex</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Fail the test unless the text matches the regular expression.</p>
+<h3 id="assertRegexMatch"><code>assertRegexMatch</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertRegexMatch</span><span class="p">(</span>
+    <span class="n">actual_str</span><span class="p">,</span>
+    <span class="n">regexes</span><span class="p">,</span>
+    <span class="n">message</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Asserts that at least one regex in regexes matches str.</p>
+<p>If possible you should use <code>assertRegex</code>, which is a simpler
+version of this method. <code>assertRegex</code> takes a single regular
+expression (a string or re compiled object) instead of a list.</p>
+<h4 id="notes">Notes:</h4>
+<ol>
+<li>
+<p>This function uses substring matching, i.e. the matching
+   succeeds if <em>any</em> substring of the error message matches <em>any</em>
+   regex in the list.  This is more convenient for the user than
+   full-string matching.</p>
+</li>
+<li>
+<p>If regexes is the empty list, the matching will always fail.</p>
+</li>
+<li>
+<p>Use regexes=[''] for a regex that will always pass.</p>
+</li>
+<li>
+<p>'.' matches any single character <em>except</em> the newline.  To
+   match any character, use '(.|\n)'.</p>
+</li>
+<li>
+<p>'^' matches the beginning of each line, not just the beginning
+   of the string.  Similarly, '$' matches the end of each line.</p>
+</li>
+<li>
+<p>An exception will be thrown if regexes contains an invalid
+   regex.</p>
+</li>
+</ol>
+<h4 id="args_36">Args:</h4>
+<ul>
+<li><b><code>actual_str</code></b>:  The string we try to match with the items in regexes.</li>
+<li><b><code>regexes</code></b>:  The regular expressions we want to match against str.
+    See "Notes" above for detailed notes on how this is interpreted.</li>
+<li><b><code>message</code></b>:  The message to be printed if the test fails.</li>
+</ul>
+<h3 id="assertRegexpMatches"><code>assertRegexpMatches</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertRegexpMatches</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<h3 id="assertSameElements"><code>assertSameElements</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertSameElements</span><span class="p">(</span>
+    <span class="n">expected_seq</span><span class="p">,</span>
+    <span class="n">actual_seq</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Asserts that two sequences have the same elements (in any order).</p>
+<p>This method, unlike assertCountEqual, doesn't care about any
+duplicates in the expected and actual sequences.</p>
+<blockquote>
+<blockquote>
+<p>assertSameElements([1, 1, 1, 0, 0, 0], [0, 1])
+  # Doesn't raise an AssertionError</p>
+</blockquote>
+</blockquote>
+<p>If possible, you should use assertCountEqual instead of
+assertSameElements.</p>
+<h4 id="args_37">Args:</h4>
+<ul>
+<li><b><code>expected_seq</code></b>: A sequence containing elements we are expecting.</li>
+<li><b><code>actual_seq</code></b>: The sequence that we are testing.</li>
+<li><b><code>msg</code></b>: The message to be printed if the test fails.</li>
+</ul>
+<h3 id="assertSameStructure"><code>assertSameStructure</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertSameStructure</span><span class="p">(</span>
+    <span class="n">a</span><span class="p">,</span>
+    <span class="n">b</span><span class="p">,</span>
+    <span class="n">aname</span><span class="o">=</span><span class="s1">&#39;a&#39;</span><span class="p">,</span>
+    <span class="n">bname</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Asserts that two values contain the same structural content.</p>
+<p>The two arguments should be data trees consisting of trees of dicts and
+lists. They will be deeply compared by walking into the contents of dicts
+and lists; other items will be compared using the == operator.
+If the two structures differ in content, the failure message will indicate
+the location within the structures where the first difference is found.
+This may be helpful when comparing large structures.</p>
+<p>Mixed Sequence and Set types are supported. Mixed Mapping types are
+supported, but the order of the keys will not be considered in the
+comparison.</p>
+<h4 id="args_38">Args:</h4>
+<ul>
+<li><b><code>a</code></b>: The first structure to compare.</li>
+<li><b><code>b</code></b>: The second structure to compare.</li>
+<li><b><code>aname</code></b>: Variable name to use for the first structure in assertion messages.</li>
+<li><b><code>bname</code></b>: Variable name to use for the second structure.</li>
+<li><b><code>msg</code></b>: Additional text to include in the failure message.</li>
+</ul>
+<h3 id="assertSequenceAlmostEqual"><code>assertSequenceAlmostEqual</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertSequenceAlmostEqual</span><span class="p">(</span>
+    <span class="n">expected_seq</span><span class="p">,</span>
+    <span class="n">actual_seq</span><span class="p">,</span>
+    <span class="n">places</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">delta</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>An approximate equality assertion for ordered sequences.</p>
+<p>Fail if the two sequences are unequal as determined by their value
+differences rounded to the given number of decimal places (default 7) and
+comparing to zero, or by comparing that the difference between each value
+in the two sequences is more than the given delta.</p>
+<p>Note that decimal places (from zero) are usually not the same as significant
+digits (measured from the most significant digit).</p>
+<p>If the two sequences compare equal then they will automatically compare
+almost equal.</p>
+<h4 id="args_39">Args:</h4>
+<ul>
+<li><b><code>expected_seq</code></b>: A sequence containing elements we are expecting.</li>
+<li><b><code>actual_seq</code></b>: The sequence that we are testing.</li>
+<li><b><code>places</code></b>: The number of decimal places to compare.</li>
+<li><b><code>msg</code></b>: The message to be printed if the test fails.</li>
+<li><b><code>delta</code></b>: The OK difference between compared values.</li>
+</ul>
+<h3 id="assertSequenceEqual"><code>assertSequenceEqual</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertSequenceEqual</span><span class="p">(</span>
+    <span class="n">seq1</span><span class="p">,</span>
+    <span class="n">seq2</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">seq_type</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>An equality assertion for ordered sequences (like lists and tuples).</p>
+<p>For the purposes of this function, a valid ordered sequence type is one
+which can be indexed, has a length, and has an equality operator.</p>
+<h4 id="args_40">Args:</h4>
+<ul>
+<li><b><code>seq1</code></b>: The first sequence to compare.</li>
+<li><b><code>seq2</code></b>: The second sequence to compare.</li>
+<li><b><code>seq_type</code></b>: The expected datatype of the sequences, or None if no
+        datatype should be enforced.</li>
+<li><b><code>msg</code></b>: Optional message to use on failure instead of a list of
+        differences.</li>
+</ul>
+<h3 id="assertSequenceStartsWith"><code>assertSequenceStartsWith</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertSequenceStartsWith</span><span class="p">(</span>
+    <span class="n">prefix</span><span class="p">,</span>
+    <span class="n">whole</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>An equality assertion for the beginning of ordered sequences.</p>
+<p>If prefix is an empty sequence, it will raise an error unless whole is also
+an empty sequence.</p>
+<p>If prefix is not a sequence, it will raise an error if the first element of
+whole does not match.</p>
+<h4 id="args_41">Args:</h4>
+<ul>
+<li><b><code>prefix</code></b>: A sequence expected at the beginning of the whole parameter.</li>
+<li><b><code>whole</code></b>: The sequence in which to look for prefix.</li>
+<li><b><code>msg</code></b>: Optional message to report on failure.</li>
+</ul>
+<h3 id="assertSetEqual"><code>assertSetEqual</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertSetEqual</span><span class="p">(</span>
+    <span class="n">set1</span><span class="p">,</span>
+    <span class="n">set2</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>A set-specific equality assertion.</p>
+<h4 id="args_42">Args:</h4>
+<ul>
+<li><b><code>set1</code></b>: The first set to compare.</li>
+<li><b><code>set2</code></b>: The second set to compare.</li>
+<li><b><code>msg</code></b>: Optional message to use on failure instead of a list of
+        differences.</li>
+</ul>
+<p>assertSetEqual uses ducktyping to support different types of sets, and
+is optimized for sets specifically (parameters must support a
+difference method).</p>
+<h3 id="assertShapeEqual"><code>assertShapeEqual</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/test_util.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">assertShapeEqual</span><span class="p">(</span>
+    <span class="n">np_array</span><span class="p">,</span>
+    <span class="n">tf_tensor</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Asserts that a Numpy ndarray and a TensorFlow tensor have the same shape.</p>
+<h4 id="args_43">Args:</h4>
+<ul>
+<li><b><code>np_array</code></b>: A Numpy ndarray or Numpy scalar.</li>
+<li><b><code>tf_tensor</code></b>: A Tensor.</li>
+<li><b><code>msg</code></b>: Optional message to report on failure.</li>
+</ul>
+<h4 id="raises_6">Raises:</h4>
+<ul>
+<li><b><code>TypeError</code></b>: If the arguments have the wrong type.</li>
+</ul>
+<h3 id="assertStartsWith"><code>assertStartsWith</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/test_util.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">assertStartsWith</span><span class="p">(</span>
+    <span class="n">actual</span><span class="p">,</span>
+    <span class="n">expected_start</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Assert that actual.startswith(expected_start) is True.</p>
+<h4 id="args_44">Args:</h4>
+<ul>
+<li><b><code>actual</code></b>: str</li>
+<li><b><code>expected_start</code></b>: str</li>
+<li><b><code>msg</code></b>: Optional message to report on failure.</li>
+</ul>
+<h3 id="assertTotallyOrdered"><code>assertTotallyOrdered</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertTotallyOrdered</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">groups</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Asserts that total ordering has been implemented correctly.</p>
+<p>For example, say you have a class A that compares only on its attribute x.
+Comparators other than <strong>lt</strong> are omitted for brevity.</p>
+<p>class A(object):
+  def <strong>init</strong>(self, x, y):
+    self.x = x
+    self.y = y</p>
+<p>def <strong>hash</strong>(self):
+    return hash(self.x)</p>
+<p>def <strong>lt</strong>(self, other):
+    try:
+      return self.x &lt; other.x
+    except AttributeError:
+      return NotImplemented</p>
+<p>assertTotallyOrdered will check that instances can be ordered correctly.
+For example,</p>
+<p>self.assertTotallyOrdered(
+  [None],  # None should come before everything else.
+  [1],     # Integers sort earlier.
+  [A(1, 'a')],
+  [A(2, 'b')],  # 2 is after 1.
+  [A(3, 'c'), A(3, 'd')],  # The second argument is irrelevant.
+  [A(4, 'z')],
+  ['foo'])  # Strings sort last.</p>
+<h4 id="args_45">Args:</h4>
+<ul>
+<li><b><code>*groups</code></b>: A list of groups of elements.  Each group of elements is a list
+    of objects that are equal.  The elements in each group must be less
+    than the elements in the group after it.  For example, these groups are
+    totally ordered: [None], [1], [2, 2], [3].
+ **kwargs: optional msg keyword argument can be passed.</li>
+</ul>
+<h3 id="assertTrue"><code>assertTrue</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertTrue</span><span class="p">(</span>
+    <span class="n">expr</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Check that the expression is true.</p>
+<h3 id="assertTupleEqual"><code>assertTupleEqual</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertTupleEqual</span><span class="p">(</span>
+    <span class="n">tuple1</span><span class="p">,</span>
+    <span class="n">tuple2</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>A tuple-specific equality assertion.</p>
+<h4 id="args_46">Args:</h4>
+<ul>
+<li><b><code>tuple1</code></b>: The first tuple to compare.</li>
+<li><b><code>tuple2</code></b>: The second tuple to compare.</li>
+<li><b><code>msg</code></b>: Optional message to use on failure instead of a list of
+        differences.</li>
+</ul>
+<h3 id="assertUrlEqual"><code>assertUrlEqual</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertUrlEqual</span><span class="p">(</span>
+    <span class="n">a</span><span class="p">,</span>
+    <span class="n">b</span><span class="p">,</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Asserts that urls are equal, ignoring ordering of query params.</p>
+<h3 id="assertWarns"><code>assertWarns</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertWarns</span><span class="p">(</span>
+    <span class="n">expected_warning</span><span class="p">,</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Fail unless a warning of class warnClass is triggered
+by the callable when invoked with specified positional and
+keyword arguments.  If a different type of warning is
+triggered, it will not be handled: depending on the other
+warning filtering rules in effect, it might be silenced, printed
+out, or raised as an exception.</p>
+<p>If called with the callable and arguments omitted, will return a
+context object used like this::</p>
+<div class="codehilite"><pre><span></span><span class="err"> with self.assertWarns(SomeWarning):</span>
+<span class="err">     do_something()</span>
+</pre></div>
+
+
+<p>An optional keyword argument 'msg' can be provided when assertWarns
+is used as a context object.</p>
+<p>The context manager keeps a reference to the first matching
+warning as the 'warning' attribute; similarly, the 'filename'
+and 'lineno' attributes give you information about the line
+of Python code from which the warning was triggered.
+This allows you to inspect the warning after the assertion::</p>
+<div class="codehilite"><pre><span></span><span class="err">with self.assertWarns(SomeWarning) as cm:</span>
+<span class="err">    do_something()</span>
+<span class="err">the_warning = cm.warning</span>
+<span class="err">self.assertEqual(the_warning.some_attribute, 147)</span>
+</pre></div>
+
+
+<h3 id="assertWarnsRegex"><code>assertWarnsRegex</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assertWarnsRegex</span><span class="p">(</span>
+    <span class="n">expected_warning</span><span class="p">,</span>
+    <span class="n">expected_regex</span><span class="p">,</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Asserts that the message in a triggered warning matches a regexp.
+Basic functioning is similar to assertWarns() with the addition
+that only warnings whose messages also match the regular expression
+are considered successful matches.</p>
+<h4 id="args_47">Args:</h4>
+<ul>
+<li><b><code>expected_warning</code></b>: Warning class expected to be triggered.</li>
+<li><b><code>expected_regex</code></b>: Regex (re pattern object or string) expected
+        to be found in error message.</li>
+<li><b><code>args</code></b>: Function to be called and extra positional args.</li>
+<li><b><code>kwargs</code></b>: Extra kwargs.</li>
+<li><b><code>msg</code></b>: Optional message used in case of failure. Can only be used
+        when assertWarnsRegex is used as a context manager.</li>
+</ul>
+<h3 id="assert_"><code>assert_</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">assert_</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<h3 id="cached_session"><code>cached_session</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">cached_session</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwds</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Returns a TensorFlow Session for use in executing tests.</p>
+<p>This method behaves differently than self.session(): for performance reasons
+<code>cached_session</code> will by default reuse the same session within the same
+test. The session returned by this function will only be closed at the end
+of the test (in the TearDown function).</p>
+<p>Use the <code>use_gpu</code> and <code>force_gpu</code> options to control where ops are run. If
+<code>force_gpu</code> is True, all ops are pinned to <code>/device:GPU:0</code>. Otherwise, if
+<code>use_gpu</code> is True, TensorFlow tries to run as many ops on the GPU as
+possible. If both <code>force_gpu and</code>use_gpu` are False, all ops are pinned to
+the CPU.</p>
+<h4 id="example">Example:</h4>
+<div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">MyOperatorTest</span><span class="p">(</span><span class="n">test_util</span><span class="o">.</span><span class="n">TensorFlowTestCase</span><span class="p">):</span>
+  <span class="k">def</span> <span class="nf">testMyOperator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">cached_session</span><span class="p">(</span><span class="n">use_gpu</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
+      <span class="n">valid_input</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">]</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">MyOperator</span><span class="p">(</span><span class="n">valid_input</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">]</span>
+      <span class="n">invalid_input</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">]</span>
+      <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaisesOpError</span><span class="p">(</span><span class="s2">&quot;negative input not supported&quot;</span><span class="p">):</span>
+        <span class="n">MyOperator</span><span class="p">(</span><span class="n">invalid_input</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+</pre></div>
+
+
+<h4 id="args_48">Args:</h4>
+<ul>
+<li><b><code>graph</code></b>: Optional graph to use during the returned session.</li>
+<li><b><code>config</code></b>: An optional config_pb2.ConfigProto to use to configure the
+  session.</li>
+<li><b><code>use_gpu</code></b>: If True, attempt to run as many ops as possible on GPU.</li>
+<li><b><code>force_gpu</code></b>: If True, pin all ops to <code>/device:GPU:0</code>.</li>
+</ul>
+<h4 id="yields">Yields:</h4>
+<p>A Session object that should be used as a context manager to surround
+the graph building and execution code in a test case.</p>
+<h3 id="captureWritesToStream"><code>captureWritesToStream</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">captureWritesToStream</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwds</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>A context manager that captures the writes to a given stream.</p>
+<p>This context manager captures all writes to a given stream inside of a
+<code>CapturedWrites</code> object. When this context manager is created, it yields
+the <code>CapturedWrites</code> object. The captured contents can be accessed  by
+calling <code>.contents()</code> on the <code>CapturedWrites</code>.</p>
+<p>For this function to work, the stream must have a file descriptor that
+can be modified using <code>os.dup</code> and <code>os.dup2</code>, and the stream must support
+a <code>.flush()</code> method. The default python sys.stdout and sys.stderr are
+examples of this. Note that this does not work in Colab or Jupyter
+notebooks, because those use alternate stdout streams.</p>
+<h4 id="example_1">Example:</h4>
+<div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">MyOperatorTest</span><span class="p">(</span><span class="n">test_util</span><span class="o">.</span><span class="n">TensorFlowTestCase</span><span class="p">):</span>
+  <span class="k">def</span> <span class="nf">testMyOperator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="nb">input</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">]</span>
+    <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">captureWritesToStream</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">)</span> <span class="k">as</span> <span class="n">captured</span><span class="p">:</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">MyOperator</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">assertStartsWith</span><span class="p">(</span><span class="n">captured</span><span class="o">.</span><span class="n">contents</span><span class="p">(),</span> <span class="s2">&quot;This was printed.&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<h4 id="args_49">Args:</h4>
+<ul>
+<li><b><code>stream</code></b>: The stream whose writes should be captured. This stream must have
+  a file descriptor, support writing via using that file descriptor, and
+  must have a <code>.flush()</code> method.</li>
+</ul>
+<h4 id="yields_1">Yields:</h4>
+<p>A <code>CapturedWrites</code> object that contains all writes to the specified stream
+made during this context.</p>
+<h3 id="checkedThread"><code>checkedThread</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/test_util.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">checkedThread</span><span class="p">(</span>
+    <span class="n">target</span><span class="p">,</span>
+    <span class="n">args</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">kwargs</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Returns a Thread wrapper that asserts 'target' completes successfully.</p>
+<p>This method should be used to create all threads in test cases, as
+otherwise there is a risk that a thread will silently fail, and/or
+assertions made in the thread will not be respected.</p>
+<h4 id="args_50">Args:</h4>
+<ul>
+<li><b><code>target</code></b>: A callable object to be executed in the thread.</li>
+<li><b><code>args</code></b>: The argument tuple for the target invocation. Defaults to ().</li>
+<li><b><code>kwargs</code></b>: A dictionary of keyword arguments for the target invocation.
+  Defaults to {}.</li>
+</ul>
+<h4 id="returns_2">Returns:</h4>
+<p>A wrapper for threading.Thread that supports start() and join() methods.</p>
+<h3 id="countTestCases"><code>countTestCases</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">countTestCases</span><span class="p">()</span>
+</pre></div>
+
+
+<h3 id="create_tempdir"><code>create_tempdir</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">create_tempdir</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">cleanup</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Create a temporary directory specific to the test.</p>
+<p>NOTE: The directory and its contents will be recursively cleared before
+creation. This ensures that there is no pre-existing state.</p>
+<p>This creates a named directory on disk that is isolated to this test, and
+will be properly cleaned up by the test. This avoids several pitfalls of
+creating temporary directories for test purposes, as well as makes it easier
+to setup directories and verify their contents.</p>
+<p>See also: <code>create_tempfile()</code> for creating temporary files.</p>
+<h4 id="args_51">Args:</h4>
+<ul>
+<li><b><code>name</code></b>: Optional name of the directory. If not given, a unique
+  name will be generated and used.</li>
+<li><b><code>cleanup</code></b>: Optional cleanup policy on when/if to remove the directory (and
+  all its contents) at the end of the test. If None, then uses
+  <code>self.tempfile_cleanup</code>.</li>
+</ul>
+<h4 id="returns_3">Returns:</h4>
+<p>A _TempDir representing the created directory.</p>
+<h3 id="create_tempfile"><code>create_tempfile</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">create_tempfile</span><span class="p">(</span>
+    <span class="n">file_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">content</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span>
+    <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf8&#39;</span><span class="p">,</span>
+    <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;strict&#39;</span><span class="p">,</span>
+    <span class="n">cleanup</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Create a temporary file specific to the test.</p>
+<p>This creates a named file on disk that is isolated to this test, and will
+be properly cleaned up by the test. This avoids several pitfalls of
+creating temporary files for test purposes, as well as makes it easier
+to setup files, their data, read them back, and inspect them when
+a test fails.</p>
+<p>NOTE: This will zero-out the file. This ensures there is no pre-existing
+state.
+NOTE: If the file already exists, it will be made writable and overwritten.</p>
+<p>See also: <code>create_tempdir()</code> for creating temporary directories, and
+<code>_TempDir.create_file</code> for creating files within a temporary directory.</p>
+<h4 id="args_52">Args:</h4>
+<ul>
+<li><b><code>file_path</code></b>: Optional file path for the temp file. If not given, a unique
+  file name will be generated and used. Slashes are allowed in the name;
+  any missing intermediate directories will be created. NOTE: This path is
+  the path that will be cleaned up, including any directories in the path,
+  e.g., 'foo/bar/baz.txt' will <code>rm -r foo</code>.</li>
+<li><b><code>content</code></b>: Optional string or
+  bytes to initially write to the file. If not
+  specified, then an empty file is created.</li>
+<li><b><code>mode</code></b>: Mode string to use when writing content. Only used if <code>content</code> is
+  non-empty.</li>
+<li><b><code>encoding</code></b>: Encoding to use when writing string content. Only used if
+  <code>content</code> is text.</li>
+<li><b><code>errors</code></b>: How to handle text to bytes encoding errors. Only used if
+  <code>content</code> is text.</li>
+<li><b><code>cleanup</code></b>: Optional cleanup policy on when/if to remove the directory (and
+  all its contents) at the end of the test. If None, then uses
+  <code>self.tempfile_cleanup</code>.</li>
+</ul>
+<h4 id="returns_4">Returns:</h4>
+<p>A _TempFile representing the created file.</p>
+<h3 id="debug"><code>debug</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">debug</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Run the test without collecting errors in a TestResult</p>
+<h3 id="defaultTestResult"><code>defaultTestResult</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">defaultTestResult</span><span class="p">()</span>
+</pre></div>
+
+
+<h3 id="doCleanups"><code>doCleanups</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">doCleanups</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Execute all cleanup functions. Normally called for you after
+tearDown.</p>
+<h3 id="evaluate"><code>evaluate</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/test_util.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">evaluate</span><span class="p">(</span><span class="n">tensors</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Evaluates tensors and returns numpy values.</p>
+<h4 id="args_53">Args:</h4>
+<ul>
+<li><b><code>tensors</code></b>: A Tensor or a nested list/tuple of Tensors.</li>
+</ul>
+<h4 id="returns_5">Returns:</h4>
+<p>tensors numpy values.</p>
+<h3 id="fail"><code>fail</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">fail</span><span class="p">(</span>
+    <span class="n">msg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">prefix</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Fail immediately with the given message, optionally prefixed.</p>
+<h3 id="failIf"><code>failIf</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">failIf</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<h3 id="failIfAlmostEqual"><code>failIfAlmostEqual</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">failIfAlmostEqual</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<h3 id="failIfEqual"><code>failIfEqual</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">failIfEqual</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<h3 id="failUnless"><code>failUnless</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">failUnless</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<h3 id="failUnlessAlmostEqual"><code>failUnlessAlmostEqual</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">failUnlessAlmostEqual</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<h3 id="failUnlessEqual"><code>failUnlessEqual</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">failUnlessEqual</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<h3 id="failUnlessRaises"><code>failUnlessRaises</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">failUnlessRaises</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<h3 id="get_temp_dir"><code>get_temp_dir</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/test_util.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_temp_dir</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Returns a unique temporary directory for the test to use.</p>
+<p>If you call this method multiple times during in a test, it will return the
+same folder. However, across different runs the directories will be
+different. This will ensure that across different runs tests will not be
+able to pollute each others environment.
+If you need multiple unique directories within a single test, you should
+use tempfile.mkdtemp as follows:
+  tempfile.mkdtemp(dir=self.get_temp_dir()):</p>
+<h4 id="returns_6">Returns:</h4>
+<p>string, the path to the unique temporary directory created for this test.</p>
+<h3 id="id"><code>id</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="nb">id</span><span class="p">()</span>
+</pre></div>
+
+
+<h3 id="run"><code>run</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">run</span><span class="p">(</span><span class="n">result</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+
+
+<h3 id="session"><code>session</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">session</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwds</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Returns a TensorFlow Session for use in executing tests.</p>
+<p>Note that this will set this session and the graph as global defaults.</p>
+<p>Use the <code>use_gpu</code> and <code>force_gpu</code> options to control where ops are run. If
+<code>force_gpu</code> is True, all ops are pinned to <code>/device:GPU:0</code>. Otherwise, if
+<code>use_gpu</code> is True, TensorFlow tries to run as many ops on the GPU as
+possible. If both <code>force_gpu and</code>use_gpu` are False, all ops are pinned to
+the CPU.</p>
+<h4 id="example_2">Example:</h4>
+<div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">MyOperatorTest</span><span class="p">(</span><span class="n">test_util</span><span class="o">.</span><span class="n">TensorFlowTestCase</span><span class="p">):</span>
+  <span class="k">def</span> <span class="nf">testMyOperator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="p">(</span><span class="n">use_gpu</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+      <span class="n">valid_input</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">]</span>
+      <span class="n">result</span> <span class="o">=</span> <span class="n">MyOperator</span><span class="p">(</span><span class="n">valid_input</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">]</span>
+      <span class="n">invalid_input</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">7.0</span><span class="p">]</span>
+      <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">assertRaisesOpError</span><span class="p">(</span><span class="s2">&quot;negative input not supported&quot;</span><span class="p">):</span>
+        <span class="n">MyOperator</span><span class="p">(</span><span class="n">invalid_input</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+</pre></div>
+
+
+<h4 id="args_54">Args:</h4>
+<ul>
+<li><b><code>graph</code></b>: Optional graph to use during the returned session.</li>
+<li><b><code>config</code></b>: An optional config_pb2.ConfigProto to use to configure the
+  session.</li>
+<li><b><code>use_gpu</code></b>: If True, attempt to run as many ops as possible on GPU.</li>
+<li><b><code>force_gpu</code></b>: If True, pin all ops to <code>/device:GPU:0</code>.</li>
+</ul>
+<h4 id="yields_2">Yields:</h4>
+<p>A Session object that should be used as a context manager to surround
+the graph building and execution code in a test case.</p>
+<h3 id="setUp"><code>setUp</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/test_util.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">setUp</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Hook method for setting up the test fixture before exercising it.</p>
+<h3 id="setUpClass"><code>setUpClass</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">setUpClass</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Hook method for setting up class fixture before running tests in the class.</p>
+<h3 id="shortDescription"><code>shortDescription</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">shortDescription</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Formats both the test method name and the first line of its docstring.</p>
+<p>If no docstring is given, only returns the method name.</p>
+<p>This method overrides unittest.TestCase.shortDescription(), which
+only returns the first line of the docstring, obscuring the name
+of the test upon failure.</p>
+<h4 id="returns_7">Returns:</h4>
+<ul>
+<li><b><code>desc</code></b>: A short description of a test method.</li>
+</ul>
+<h3 id="skipTest"><code>skipTest</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">skipTest</span><span class="p">(</span><span class="n">reason</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Skip this test.</p>
+<h3 id="subTest"><code>subTest</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">subTest</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwds</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Return a context manager that will return the enclosed block
+of code in a subtest identified by the optional message and
+keyword parameters.  A failure in the subtest marks the test
+case as failed but resumes execution at the end of the enclosed
+block, allowing further test code to be executed.</p>
+<h3 id="tearDown"><code>tearDown</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/test_util.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">tearDown</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Hook method for deconstructing the test fixture after testing it.</p>
+<h3 id="tearDownClass"><code>tearDownClass</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">tearDownClass</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Hook method for deconstructing the class fixture after running all tests in the class.</p>
+<h3 id="test_session"><code>test_session</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/test_util.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">test_session</span><span class="p">(</span>
+    <span class="n">graph</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">use_gpu</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">force_gpu</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Use cached_session instead. (deprecated)</p>
+<p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
+Instructions for updating:
+Use <code>self.session()</code> or <code>self.cached_session()</code> instead.</p>
+<h2 id="class-members">Class Members</h2>
+<ul>
+<li><code>maxDiff = 1600</code> <a id="maxDiff"></a></li>
+<li><code>tempfile_cleanup</code> <a id="tempfile_cleanup"></a></li>
+</ul>
+    </body>
+    </html>
+   

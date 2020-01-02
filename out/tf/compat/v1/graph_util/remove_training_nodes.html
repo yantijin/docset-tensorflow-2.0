@@ -1,0 +1,54 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.graph_util.remove_training_nodes" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1graph_utilremove_training_nodes">tf.compat.v1.graph_util.remove_training_nodes</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/graph_util_impl.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Prunes out nodes that aren't needed for inference. (deprecated)</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">graph_util</span><span class="o">.</span><span class="n">remove_training_nodes</span><span class="p">(</span>
+    <span class="n">input_graph</span><span class="p">,</span>
+    <span class="n">protected_nodes</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
+Instructions for updating:
+Use <a href="../../../../tf/compat/v1/graph_util/remove_training_nodes.html"><code>tf.compat.v1.graph_util.remove_training_nodes</code></a></p>
+<p>There are nodes like Identity and CheckNumerics that are only useful
+during training, and can be removed in graphs that will be used for
+nothing but inference. Here we identify and remove them, returning an
+equivalent graph. To be specific, CheckNumerics nodes are always removed, and
+Identity nodes that aren't involved in control edges are spliced out so that
+their input and outputs are directly connected.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>input_graph</code></b>: Model to analyze and prune.</li>
+<li><b><code>protected_nodes</code></b>: An optional list of names of nodes to be kept
+  unconditionally. This is for example useful to preserve Identity output
+  nodes.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A list of nodes with the unnecessary ones removed.</p>
+    </body>
+    </html>
+   

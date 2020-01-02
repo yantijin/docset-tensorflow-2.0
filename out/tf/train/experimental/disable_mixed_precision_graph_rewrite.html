@@ -1,0 +1,47 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.train.experimental.disable_mixed_precision_graph_rewrite" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tftrainexperimentaldisable_mixed_precision_graph_rewrite">tf.train.experimental.disable_mixed_precision_graph_rewrite</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/experimental/mixed_precision.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Disables the mixed precision graph rewrite.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v2.train.experimental.disable_mixed_precision_graph_rewrite</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">disable_mixed_precision_graph_rewrite</span><span class="p">()</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>After this is called, the mixed precision graph rewrite will no longer run for
+tf.functions, and so float32 operations will no longer be converted to
+float16.</p>
+<p>This does not undo the effects of loss scaling. Any optimizers wrapped with a
+LossScaleOptimizer will continue to do loss scaling, although this loss
+scaling will no longer be useful, as the graph rewrite no longer converts
+tf.functions to use float16.</p>
+<p>This function is useful for unit testing. A unit test can test using the mixed
+precision graph rewrite, then disable it so future unit tests continue using
+float32.</p>
+    </body>
+    </html>
+   

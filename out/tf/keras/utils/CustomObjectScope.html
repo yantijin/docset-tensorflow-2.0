@@ -1,0 +1,75 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.utils.CustomObjectScope" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__enter__"/>
+<meta itemprop="property" content="__exit__"/>
+<meta itemprop="property" content="__init__"/>
+</div>
+
+<h1 id="tfkerasutilscustomobjectscope">tf.keras.utils.CustomObjectScope</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/utils/generic_utils.py">View source</a></p>
+<h2 id="class-customobjectscope">Class <code>CustomObjectScope</code></h2>
+<!-- Start diff -->
+
+<p>Provides a scope that changes to <code>_GLOBAL_CUSTOM_OBJECTS</code> cannot escape.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v1.keras.utils.CustomObjectScope</code></li>
+<li>Class <code>tf.compat.v2.keras.utils.CustomObjectScope</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<p>Code within a <code>with</code> statement will be able to access custom objects
+by name. Changes to global custom objects persist
+within the enclosing <code>with</code> statement. At end of the <code>with</code> statement,
+global custom objects are reverted to state
+at beginning of the <code>with</code> statement.</p>
+<h4 id="example">Example:</h4>
+<p>Consider a custom object <code>MyObject</code> (e.g. a class):</p>
+<div class="codehilite"><pre><span></span>    <span class="k">with</span> <span class="n">CustomObjectScope</span><span class="p">({</span><span class="s1">&#39;MyObject&#39;</span><span class="p">:</span><span class="n">MyObject</span><span class="p">}):</span>
+        <span class="n">layer</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">kernel_regularizer</span><span class="o">=</span><span class="s1">&#39;MyObject&#39;</span><span class="p">)</span>
+        <span class="c1"># save, load, etc. will recognize custom object by name</span>
+</pre></div>
+
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/utils/generic_utils.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Initialize self.  See help(type(self)) for accurate signature.</p>
+<h2 id="methods">Methods</h2>
+<h3 id="__enter__"><code>__enter__</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/utils/generic_utils.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__enter__</span><span class="p">()</span>
+</pre></div>
+
+
+<h3 id="__exit__"><code>__exit__</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/utils/generic_utils.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__exit__</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+    </body>
+    </html>
+   

@@ -1,0 +1,138 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.train.import_meta_graph" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1trainimport_meta_graph">tf.compat.v1.train.import_meta_graph</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/saver.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Recreates a Graph saved in a <code>MetaGraphDef</code> proto.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">import_meta_graph</span><span class="p">(</span>
+    <span class="n">meta_graph_or_file</span><span class="p">,</span>
+    <span class="n">clear_devices</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">import_scope</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>This function takes a <code>MetaGraphDef</code> protocol buffer as input. If
+the argument is a file containing a <code>MetaGraphDef</code> protocol buffer ,
+it constructs a protocol buffer from the file content. The function
+then adds all the nodes from the <code>graph_def</code> field to the
+current graph, recreates all the collections, and returns a saver
+constructed from the <code>saver_def</code> field.</p>
+<p>In combination with <code>export_meta_graph()</code>, this function can be used to</p>
+<ul>
+<li>
+<p>Serialize a graph along with other Python objects such as <code>QueueRunner</code>,
+  <code>Variable</code> into a <code>MetaGraphDef</code>.</p>
+</li>
+<li>
+<p>Restart training from a saved graph and checkpoints.</p>
+</li>
+<li>
+<p>Run inference from a saved graph and checkpoints.</p>
+</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="o">...</span>
+<span class="c1"># Create a saver.</span>
+<span class="n">saver</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">Saver</span><span class="p">(</span><span class="o">...</span><span class="n">variables</span><span class="o">...</span><span class="p">)</span>
+<span class="c1"># Remember the training_op we want to run by adding it to a collection.</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">add_to_collection</span><span class="p">(</span><span class="s1">&#39;train_op&#39;</span><span class="p">,</span> <span class="n">train_op</span><span class="p">)</span>
+<span class="n">sess</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="mi">1000000</span><span class="p">):</span>
+    <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">train_op</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">step</span> <span class="o">%</span> <span class="mi">1000</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="c1"># Saves checkpoint, which by default also exports a meta_graph</span>
+        <span class="c1"># named &#39;my-model-global_step.meta&#39;.</span>
+        <span class="n">saver</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">sess</span><span class="p">,</span> <span class="s1">&#39;my-model&#39;</span><span class="p">,</span> <span class="n">global_step</span><span class="o">=</span><span class="n">step</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Later we can continue training from this saved <code>meta_graph</code> without building
+the model from scratch.</p>
+<div class="codehilite"><pre><span></span><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
+  <span class="n">new_saver</span> <span class="o">=</span>
+  <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">import_meta_graph</span><span class="p">(</span><span class="s1">&#39;my-save-dir/my-model-10000.meta&#39;</span><span class="p">)</span>
+  <span class="n">new_saver</span><span class="o">.</span><span class="n">restore</span><span class="p">(</span><span class="n">sess</span><span class="p">,</span> <span class="s1">&#39;my-save-dir/my-model-10000&#39;</span><span class="p">)</span>
+  <span class="c1"># tf.get_collection() returns a list. In this example we only want</span>
+  <span class="c1"># the first one.</span>
+  <span class="n">train_op</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_collection</span><span class="p">(</span><span class="s1">&#39;train_op&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+  <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="mi">1000000</span><span class="p">):</span>
+    <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">train_op</span><span class="p">)</span>
+</pre></div>
+
+
+<p>NOTE: Restarting training from saved <code>meta_graph</code> only works if the
+device assignments have not changed.</p>
+<h4 id="example">Example:</h4>
+<p>Variables, placeholders, and independent operations can also be stored, as
+shown in the following example.</p>
+<div class="codehilite"><pre><span></span><span class="c1"># Saving contents and operations.</span>
+<span class="n">v1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;v1&quot;</span><span class="p">)</span>
+<span class="n">v2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;v2&quot;</span><span class="p">)</span>
+<span class="n">v3</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">)</span>
+<span class="n">vx</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;vx&quot;</span><span class="p">)</span>
+<span class="n">v4</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">v3</span><span class="p">,</span> <span class="n">vx</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;v4&quot;</span><span class="p">)</span>
+<span class="n">saver</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">Saver</span><span class="p">([</span><span class="n">vx</span><span class="p">])</span>
+<span class="n">sess</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+<span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">global_variables_initializer</span><span class="p">())</span>
+<span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">vx</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">vx</span><span class="p">,</span> <span class="n">vx</span><span class="p">)))</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">v4</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">v1</span><span class="p">:</span><span class="mf">12.0</span><span class="p">,</span> <span class="n">v2</span><span class="p">:</span><span class="mf">3.3</span><span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="n">saver</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">sess</span><span class="p">,</span> <span class="s2">&quot;./model_ex1&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Later this model can be restored and contents loaded.</p>
+<div class="codehilite"><pre><span></span><span class="c1"># Restoring variables and running operations.</span>
+<span class="n">saver</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">import_meta_graph</span><span class="p">(</span><span class="s2">&quot;./model_ex1.meta&quot;</span><span class="p">)</span>
+<span class="n">sess</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+<span class="n">saver</span><span class="o">.</span><span class="n">restore</span><span class="p">(</span><span class="n">sess</span><span class="p">,</span> <span class="s2">&quot;./model_ex1&quot;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;v4:0&quot;</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;v1:0&quot;</span><span class="p">:</span> <span class="mf">12.0</span><span class="p">,</span> <span class="s2">&quot;v2:0&quot;</span><span class="p">:</span> <span class="mf">3.3</span><span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>meta_graph_or_file</code></b>: <code>MetaGraphDef</code> protocol buffer or filename (including
+  the path) containing a <code>MetaGraphDef</code>.</li>
+<li><b><code>clear_devices</code></b>: Whether or not to clear the device field for an <code>Operation</code>
+  or <code>Tensor</code> during import.</li>
+<li><b><code>import_scope</code></b>: Optional <code>string</code>. Name scope to add. Only used when
+  initializing from protocol buffer.</li>
+<li><b><code>**kwargs</code></b>: Optional keyed arguments.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A saver constructed from <code>saver_def</code> in <code>MetaGraphDef</code> or None.</p>
+<p>A None value is returned if no variables exist in the <code>MetaGraphDef</code>
+(i.e., there are no variables to restore).</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>RuntimeError</code></b>: If called with eager execution enabled.</li>
+</ul>
+<h4 id="eager-compatibility">Eager Compatibility</h4>
+<p>Exporting/importing meta graphs is not supported. No graph exists when eager
+execution is enabled.</p>
+    </body>
+    </html>
+   

@@ -1,0 +1,68 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../default.css" rel="stylesheet">
+    <link href="
+   ../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.sort" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfsort">tf.sort</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/sort_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Sorts a tensor.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.sort</code></li>
+<li><code>tf.compat.v2.sort</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span>
+    <span class="n">values</span><span class="p">,</span>
+    <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;ASCENDING&#39;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<h4 id="usage">Usage:</h4>
+<div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">26.9</span><span class="p">,</span> <span class="mf">2.8</span><span class="p">,</span> <span class="mf">166.32</span><span class="p">,</span> <span class="mf">62.3</span><span class="p">]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span><span class="n">direction</span><span class="o">=</span><span class="s1">&#39;ASCENDING&#39;</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">backend</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="c1"># Here, c = [  1.     2.8   10.    26.9   62.3  166.32]</span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>values</code></b>: 1-D or higher numeric <code>Tensor</code>.</li>
+<li><b><code>axis</code></b>: The axis along which to sort. The default is -1, which sorts the last
+  axis.</li>
+<li><b><code>direction</code></b>: The direction in which to sort the values (<code>'ASCENDING'</code> or
+  <code>'DESCENDING'</code>).</li>
+<li><b><code>name</code></b>: Optional name for the operation.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>Tensor</code> with the same dtype and shape as <code>values</code>, with the elements
+    sorted along the given <code>axis</code>.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: If axis is not a constant scalar, or the direction is invalid.</li>
+</ul>
+    </body>
+    </html>
+   

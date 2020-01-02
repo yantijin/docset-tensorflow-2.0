@@ -1,0 +1,69 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.quantization.fake_quant_with_min_max_vars_gradient" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfquantizationfake_quant_with_min_max_vars_gradient">tf.quantization.fake_quant_with_min_max_vars_gradient</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p>Defined in generated file: <code>python/ops/gen_array_ops.py</code></p>
+<!-- Start diff -->
+
+<p>Compute gradients for a FakeQuantWithMinMaxVars operation.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.fake_quant_with_min_max_vars_gradient</code></li>
+<li><code>tf.compat.v1.quantization.fake_quant_with_min_max_vars_gradient</code></li>
+<li><code>tf.compat.v2.quantization.fake_quant_with_min_max_vars_gradient</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">quantization</span><span class="o">.</span><span class="n">fake_quant_with_min_max_vars_gradient</span><span class="p">(</span>
+    <span class="n">gradients</span><span class="p">,</span>
+    <span class="n">inputs</span><span class="p">,</span>
+    <span class="nb">min</span><span class="p">,</span>
+    <span class="nb">max</span><span class="p">,</span>
+    <span class="n">num_bits</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+    <span class="n">narrow_range</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>gradients</code></b>: A <code>Tensor</code> of type <code>float32</code>.
+  Backpropagated gradients above the FakeQuantWithMinMaxVars operation.</li>
+<li><b><code>inputs</code></b>: A <code>Tensor</code> of type <code>float32</code>.
+  Values passed as inputs to the FakeQuantWithMinMaxVars operation.
+  min, max: Quantization interval, scalar floats.</li>
+<li><b><code>min</code></b>: A <code>Tensor</code> of type <code>float32</code>.</li>
+<li><b><code>max</code></b>: A <code>Tensor</code> of type <code>float32</code>.</li>
+<li><b><code>num_bits</code></b>: An optional <code>int</code>. Defaults to <code>8</code>.
+  The bitwidth of the quantization; between 2 and 8, inclusive.</li>
+<li><b><code>narrow_range</code></b>: An optional <code>bool</code>. Defaults to <code>False</code>.
+  Whether to quantize into 2^num_bits - 1 distinct values.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A tuple of <code>Tensor</code> objects (backprops_wrt_input, backprop_wrt_min, backprop_wrt_max).</p>
+<ul>
+<li><b><code>backprops_wrt_input</code></b>: A <code>Tensor</code> of type <code>float32</code>.</li>
+<li><b><code>backprop_wrt_min</code></b>: A <code>Tensor</code> of type <code>float32</code>.</li>
+<li><b><code>backprop_wrt_max</code></b>: A <code>Tensor</code> of type <code>float32</code>.</li>
+</ul>
+    </body>
+    </html>
+   

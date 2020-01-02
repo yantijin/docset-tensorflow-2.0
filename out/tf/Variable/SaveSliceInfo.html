@@ -1,0 +1,96 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.Variable.SaveSliceInfo" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="spec"/>
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="to_proto"/>
+</div>
+
+<h1 id="tfvariablesavesliceinfo">tf.Variable.SaveSliceInfo</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+<h2 id="class-savesliceinfo">Class <code>SaveSliceInfo</code></h2>
+<!-- Start diff -->
+
+<p>Information on how to save this Variable as a slice.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v1.Variable.SaveSliceInfo</code></li>
+<li>Class <code>tf.compat.v2.Variable.SaveSliceInfo</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<p>Provides internal support for saving variables as slices of a larger
+variable.  This API is not public and is subject to change.</p>
+<h4 id="available-properties">Available properties:</h4>
+<ul>
+<li>full_name</li>
+<li>full_shape</li>
+<li>var_offset</li>
+<li>var_shape</li>
+</ul>
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">full_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">full_shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">var_offset</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">var_shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">save_slice_info_def</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">import_scope</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Create a <code>SaveSliceInfo</code>.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>full_name</code></b>: Name of the full variable of which this <code>Variable</code> is a
+  slice.</li>
+<li><b><code>full_shape</code></b>: Shape of the full variable, as a list of int.</li>
+<li><b><code>var_offset</code></b>: Offset of this <code>Variable</code> into the full variable, as a list
+  of int.</li>
+<li><b><code>var_shape</code></b>: Shape of this <code>Variable</code>, as a list of int.</li>
+<li><b><code>save_slice_info_def</code></b>: <code>SaveSliceInfoDef</code> protocol buffer. If not <code>None</code>,
+  recreates the SaveSliceInfo object its contents. <code>save_slice_info_def</code>
+  and other arguments are mutually exclusive.</li>
+<li><b><code>import_scope</code></b>: Optional <code>string</code>. Name scope to add. Only used when
+  initializing from protocol buffer.</li>
+</ul>
+<h2 id="properties">Properties</h2>
+<h3 id="spec"><code>spec</code></h3>
+
+<p>Computes the spec string used for saving.</p>
+<h2 id="methods">Methods</h2>
+<h3 id="to_proto"><code>to_proto</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">to_proto</span><span class="p">(</span><span class="n">export_scope</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Returns a SaveSliceInfoDef() proto.</p>
+<h4 id="args_1">Args:</h4>
+<ul>
+<li><b><code>export_scope</code></b>: Optional <code>string</code>. Name scope to remove.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>SaveSliceInfoDef</code> protocol buffer, or None if the <code>Variable</code> is not
+in the specified name scope.</p>
+    </body>
+    </html>
+   

@@ -1,0 +1,113 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.nn.pool" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1nnpool">tf.compat.v1.nn.pool</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/nn_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Performs an N-D pooling operation.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">pool</span><span class="p">(</span>
+    <span class="nb">input</span><span class="p">,</span>
+    <span class="n">window_shape</span><span class="p">,</span>
+    <span class="n">pooling_type</span><span class="p">,</span>
+    <span class="n">padding</span><span class="p">,</span>
+    <span class="n">dilation_rate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">strides</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">data_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">dilations</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>In the case that <code>data_format</code> does not start with "NC", computes for
+    0 &lt;= b &lt; batch_size,
+    0 &lt;= x[i] &lt; output_spatial_shape[i],
+    0 &lt;= c &lt; num_channels:</p>
+<div class="codehilite"><pre><span></span><span class="err">  output[b, x[0], ..., x[N-1], c] =</span>
+<span class="err">    REDUCE_{z[0], ..., z[N-1]}</span>
+<span class="err">      input[b,</span>
+<span class="err">            x[0] * strides[0] - pad_before[0] + dilation_rate[0]*z[0],</span>
+<span class="err">            ...</span>
+<span class="err">            x[N-1]*strides[N-1] - pad_before[N-1] + dilation_rate[N-1]*z[N-1],</span>
+<span class="err">            c],</span>
+</pre></div>
+
+
+<p>where the reduction function REDUCE depends on the value of <code>pooling_type</code>,
+and pad_before is defined based on the value of <code>padding</code> as described in
+the "returns" section of <a href="../../../../tf/nn/convolution.html"><code>tf.nn.convolution</code></a> for details.
+The reduction never includes out-of-bounds positions.</p>
+<p>In the case that <code>data_format</code> starts with <code>"NC"</code>, the <code>input</code> and output are
+simply transposed as follows:</p>
+<div class="codehilite"><pre><span></span><span class="err">  pool(input, data_format, **kwargs) =</span>
+<span class="err">    tf.transpose(pool(tf.transpose(input, [0] + range(2,N+2) + [1]),</span>
+<span class="err">                      **kwargs),</span>
+<span class="err">                 [0, N+1] + range(1, N+1))</span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>input</code></b>: Tensor of rank N+2, of shape
+  <code>[batch_size] + input_spatial_shape + [num_channels]</code> if data_format does
+  not start with "NC" (default), or
+  <code>[batch_size, num_channels] + input_spatial_shape</code> if data_format starts
+  with "NC".  Pooling happens over the spatial dimensions only.</li>
+<li><b><code>window_shape</code></b>: Sequence of N ints &gt;= 1.</li>
+<li><b><code>pooling_type</code></b>: Specifies pooling operation, must be "AVG" or "MAX".</li>
+<li><b><code>padding</code></b>: The padding algorithm, must be "SAME" or "VALID".
+  See the "returns" section of <a href="../../../../tf/nn/convolution.html"><code>tf.nn.convolution</code></a> for details.</li>
+<li><b><code>dilation_rate</code></b>: Optional.  Dilation rate.  List of N ints &gt;= 1.
+  Defaults to [1]*N.  If any value of dilation_rate is &gt; 1, then all values
+  of strides must be 1.</li>
+<li><b><code>strides</code></b>: Optional.  Sequence of N ints &gt;= 1.  Defaults to [1]*N.
+  If any value of strides is &gt; 1, then all values of dilation_rate must be
+  1.</li>
+<li><b><code>name</code></b>: Optional. Name of the op.</li>
+<li><b><code>data_format</code></b>: A string or None.  Specifies whether the channel dimension of
+  the <code>input</code> and output is the last dimension (default, or if <code>data_format</code>
+  does not start with "NC"), or the second dimension (if <code>data_format</code>
+  starts with "NC").  For N=1, the valid values are "NWC" (default) and
+  "NCW".  For N=2, the valid values are "NHWC" (default) and "NCHW".
+  For N=3, the valid values are "NDHWC" (default) and "NCDHW".</li>
+<li><b><code>dilations</code></b>: Alias for dilation_rate</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>Tensor of rank N+2, of shape
+  [batch_size] + output_spatial_shape + [num_channels]</p>
+<p>if data_format is None or does not start with "NC", or</p>
+<p>[batch_size, num_channels] + output_spatial_shape</p>
+<p>if data_format starts with "NC",
+where <code>output_spatial_shape</code> depends on the value of padding:</p>
+<p>If padding = "SAME":
+  output_spatial_shape[i] = ceil(input_spatial_shape[i] / strides[i])</p>
+<p>If padding = "VALID":
+  output_spatial_shape[i] =
+    ceil((input_spatial_shape[i] - (window_shape[i] - 1) * dilation_rate[i])
+         / strides[i]).</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: if arguments are invalid.</li>
+</ul>
+    </body>
+    </html>
+   

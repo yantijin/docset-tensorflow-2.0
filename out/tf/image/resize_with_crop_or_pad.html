@@ -1,0 +1,67 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.image.resize_with_crop_or_pad" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfimageresize_with_crop_or_pad">tf.image.resize_with_crop_or_pad</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/image_ops_impl.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Crops and/or pads an image to a target width and height.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.image.resize_image_with_crop_or_pad</code></li>
+<li><code>tf.compat.v1.image.resize_with_crop_or_pad</code></li>
+<li><code>tf.compat.v2.image.resize_with_crop_or_pad</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">resize_with_crop_or_pad</span><span class="p">(</span>
+    <span class="n">image</span><span class="p">,</span>
+    <span class="n">target_height</span><span class="p">,</span>
+    <span class="n">target_width</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Resizes an image to a target width and height by either centrally
+cropping the image or padding it evenly with zeros.</p>
+<p>If <code>width</code> or <code>height</code> is greater than the specified <code>target_width</code> or
+<code>target_height</code> respectively, this op centrally crops along that dimension.
+If <code>width</code> or <code>height</code> is smaller than the specified <code>target_width</code> or
+<code>target_height</code> respectively, this op centrally pads with 0 along that
+dimension.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>image</code></b>: 4-D Tensor of shape <code>[batch, height, width, channels]</code> or 3-D Tensor
+  of shape <code>[height, width, channels]</code>.</li>
+<li><b><code>target_height</code></b>: Target height.</li>
+<li><b><code>target_width</code></b>: Target width.</li>
+</ul>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: if <code>target_height</code> or <code>target_width</code> are zero or negative.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>Cropped and/or padded image.
+If <code>images</code> was 4-D, a 4-D float Tensor of shape
+<code>[batch, new_height, new_width, channels]</code>.
+If <code>images</code> was 3-D, a 3-D float Tensor of shape
+<code>[new_height, new_width, channels]</code>.</p>
+    </body>
+    </html>
+   

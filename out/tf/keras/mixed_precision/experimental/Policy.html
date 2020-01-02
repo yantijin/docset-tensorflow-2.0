@@ -1,0 +1,210 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.mixed_precision.experimental.Policy" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="compute_dtype"/>
+<meta itemprop="property" content="loss_scale"/>
+<meta itemprop="property" content="name"/>
+<meta itemprop="property" content="should_cast_variables"/>
+<meta itemprop="property" content="variable_dtype"/>
+<meta itemprop="property" content="__init__"/>
+</div>
+
+<h1 id="tfkerasmixed_precisionexperimentalpolicy">tf.keras.mixed_precision.experimental.Policy</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/mixed_precision/experimental/policy.py">View source</a></p>
+<h2 id="class-policy">Class <code>Policy</code></h2>
+<!-- Start diff -->
+
+<p>A dtype policy for a Keras layer.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v1.keras.mixed_precision.experimental.Policy</code></li>
+<li>Class <code>tf.compat.v2.keras.mixed_precision.experimental.Policy</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<p>A dtype policy determines dtype-related aspects of a layer, such as its
+computation and variable dtypes. Each layer has a policy. Policies can be
+passed to the 'dtype' argument of layer constructors, or a global policy can
+be set with 'tf.keras.mixed_precision.experimental.set_policy'. A layer will
+default to the global policy if no policy is passed to it's constructor.</p>
+<p>For most models, each layer will have the same computation dtype and variable
+dtype, which will typically be float32. However, when mixed precision
+training is used, most layers will instead have a float16 computation dtype
+and a float32 variable dtype. See <a href="https://docs.nvidia.com/deeplearning/sdk/mixed-precision-training/index.html">this
+link</a>
+for more information on mixed precision training. When the variable dtype does
+not match the computation dtype, variables will be automatically casted to the
+computation dtype to avoid type errors.</p>
+<p>Policies also have a <a href="../../../../tf/train/experimental/LossScale.html"><code>tf.train.experimental.LossScale</code></a> instance, which is used
+by <a href="../../../../tf/keras/Model.html"><code>tf.keras.Model</code></a>s to performance loss scaling. Loss scaling is only done by
+Models in <a href="../../../../tf/keras/Model.html#fit"><code>Model.fit</code></a> and <a href="../../../../tf/keras/Model.html#train_on_batch"><code>Model.train_on_batch</code></a>. Layers which are not Models
+ignore the loss scale.</p>
+<p>Policies are constructed by passing a string to the constructor, e.g.
+<code>tf.keras.mixed_precision.experimental.Policy('float32')</code>. The string
+determines the compute and variable dtypes. It can be one of the following:</p>
+<ul>
+<li>Any dtype name, such as 'float32' or 'float64'. Both the variable and
+    compute dtypes will be that dtype. No loss scaling is done by default.</li>
+<li>'mixed_float16' or 'mixed_bfloat16': The compute dtype is float16 or
+    bfloat16, while the variable dtype is float32. These policies are used for
+    mixed precision training. With 'mixed_float16', a dynamic loss scale is
+    used by default. 'mixed_bfloat16' does no loss scaling by default, as loss
+    scaling is unnecessary with bfloat16.</li>
+</ul>
+<h3 id="how-to-use-mixed-precision-in-layers-with-policies">How to use mixed precision in layers with Policies</h3>
+<p>To use mixed precision in a model, the 'mixed_float16' policy can
+be used. <a href="../../../../tf/keras/mixed_precision/experimental/set_policy.html"><code>tf.keras.mixed_precision.experimental.set_policy</code></a> can be used to set
+the default policy for layers if no policy is passed to them. For example:</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">mixed_precision</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">set_policy</span><span class="p">(</span><span class="s1">&#39;mixed_float16&#39;</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Input</span><span class="p">((</span><span class="mi">100</span><span class="p">,)),</span>
+    <span class="c1"># Dense layers use global policy of &#39;mixed_float16&#39;, which does</span>
+    <span class="c1"># computations in float16 while keeping variables in float32.</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span>
+    <span class="c1"># Softmax should be done in float32 for numeric stability. We pass</span>
+    <span class="c1"># dtype=&#39;float32&#39; to use float32 instead of the global policy.</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Activation</span><span class="p">(</span><span class="s1">&#39;Softmax&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>  <span class="c1"># Train `model`</span>
+</pre></div>
+
+
+<p>Alternatively, the policy can be passed to individual layers instead of
+setting the global policy with <code>set_policy</code>:</p>
+<div class="codehilite"><pre><span></span><span class="n">policy</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">mixed_precision</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">Policy</span><span class="p">(</span><span class="s1">&#39;mixed_float16&#39;</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Input</span><span class="p">((</span><span class="mi">100</span><span class="p">,)),</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">policy</span><span class="p">),</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">policy</span><span class="p">),</span>
+    <span class="c1"># Softmax should be done in float32 for numeric stability.</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Activation</span><span class="p">(</span><span class="s1">&#39;Softmax&#39;</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>  <span class="c1"># Train `model`</span>
+</pre></div>
+
+
+<p>As the above example shows, strings can be directly passed to layer
+constructors in the <code>dtype</code> argument instead of policies, but only if the
+string is convertible to a dtype.</p>
+<p>Note the 'mixed_float16' policy will apply loss scaling by default in
+<a href="../../../../tf/keras/Model.html#fit"><code>Model.fit</code></a> and <a href="../../../../tf/keras/Model.html#train_on_batch"><code>Model.train_on_batch</code></a>. If neither method is used (e.g., a
+custom training loop is used) and 'mixed_float16' is used, the loss scale must
+be manually applied. See
+<a href="../../../../tf/keras/mixed_precision/experimental/LossScaleOptimizer.html"><code>tf.keras.mixed_precision.experimental.LossScaleOptimizer</code></a> for details. For
+'mixed_bfloat16', no loss scaling is done and loss scaling never needs to be
+manually applied.</p>
+<h3 id="the-deprecated-infer-policy">The deprecated "infer" policy</h3>
+<p>In addition to a dtype or "<dtype>_with_float32_vars", a policy can also be
+"infer". This Policy is deprecated, and it is not recommended. When a layer
+has an infer policy, it will infer the computation and variable dtype from
+the first input the first time the layer is called.</p>
+<p>Once the layer is called for the first time, the layer's policy will change to
+the dtype of the first input.</p>
+<p>Similarly to "infer", there is a deprecated "infer_with_float32_vars" policy
+that infers the compute dtype, but not the variable dtype. Once a layer with
+an "infer_with_float32_vars" policy is called for the first time, the layer's
+policy will change to "<dtype>_with_float32_vars", where <dtype> is the dtype
+of the first input. These policies force variables in float32.</p>
+<p>Warning: Policies ending in "_with_float32_vars" will be removed in TensorFlow
+2.1. Please use "mixed_float16" or "mixed_bfloat16" instead.</p>
+<p>In TensorFlow 1, only the "infer" and "infer_with_float32_vars" policies are
+available.</p>
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/mixed_precision/experimental/policy.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">name</span><span class="p">,</span>
+    <span class="n">loss_scale</span><span class="o">=</span><span class="n">USE_DEFAULT</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Constructs the policy.</p>
+<p>The <code>name</code> argument determines the compute and variable dtype, and has no
+additional effect on the Policy. The compute and variable dtypes can only be
+specified through <code>name</code>, and cannot be specified directly.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>name</code></b>: A string. Can be one of the following values:</li>
+<li>Any dtype name, such as 'float32' or 'float64'. Both the variable and
+    compute dtypes will be that dtype.</li>
+<li>'mixed_float16' or 'mixed_bfloat16': The compute dtype is float16 or
+    bfloat16, while the variable dtype is float32. With 'mixed_float16',
+    a dynamic loss scale is used. These policies are used for mixed
+    precision training.</li>
+<li>'infer' (deprecated): Infer the compute and variable dtype from the
+    input dtype.</li>
+<li><b><code>loss_scale</code></b>: A <a href="../../../../tf/train/experimental/LossScale.html"><code>tf.train.experimental.LossScale</code></a>, or a value convertible to
+  one such as "dynamic". Defaults to using no loss scaling unless <code>name</code>
+  is "mixed_float16", in which case this defaults to "dynamic". Only
+  <a href="../../../../tf/keras/Model.html"><code>tf.keras.Model</code></a>s, not layers, use the loss scale, and it is only used
+  during <a href="../../../../tf/keras/Model.html#fit"><code>Model.fit</code></a> or <a href="../../../../tf/keras/Model.html#train_on_batch"><code>Model.train_on_batch</code></a>.</li>
+</ul>
+<h2 id="properties">Properties</h2>
+<h3 id="compute_dtype"><code>compute_dtype</code></h3>
+
+<p>The compute dtype of this policy.</p>
+<p>This is the dtype layers will do their computations in.</p>
+<p>If this is None, the policy is "infer" or "infer_with_float32_vars" and
+<code>variable_dtype</code> is either None or float32 respectively.</p>
+<p>Note that even if the compute dtype is float16 or bfloat16, hardware devices
+may not do individual adds, multiplies, and other fundamental operations in
+[b]float16, but instead may do some of them in float32 for numeric
+stability. The compute dtype is the dtype of the inputs and outputs of the
+TensorFlow ops that the layer executes. Internally, many TensorFlow ops will
+do certain internal calculations in float32, or some other device-internal
+intermediate format with higher precision than [b]float16, to increase
+numeric stability.</p>
+<p>For example, a <a href="../../../../tf/keras/layers/Dense.html"><code>tf.keras.layers.Dense</code></a> layer, when run on a GPU with a
+float16 compute dtype, will pass float16 inputs to tf.matmul. But, tf.matmul
+will do use float32 intermediate math. The performance benefit of float16 is
+still apparent, due to increased memory bandwidth and the fact GPUs have
+specialized hardware for computating matmuls on float16 while still keeping
+intermediate computations in float32.</p>
+<h4 id="returns">Returns:</h4>
+<p>The variable dtype of this policy, or None if the variable dtype should be
+inferred from the inputs.</p>
+<h3 id="loss_scale"><code>loss_scale</code></h3>
+
+<p>Returns the loss scale of this Policy.</p>
+<h4 id="returns_1">Returns:</h4>
+<p>A <a href="../../../../tf/train/experimental/LossScale.html"><code>tf.train.experimental.LossScale</code></a>, or None.</p>
+<h3 id="name"><code>name</code></h3>
+
+<p>Returns the name of this policy.</p>
+<h3 id="should_cast_variables"><code>should_cast_variables</code></h3>
+
+<p>Returns True if variables should be casted.</p>
+<p>This is true if the variable dtype is not the same as the compute dtype.</p>
+<h4 id="returns_2">Returns:</h4>
+<p>True, if variables should be casted.</p>
+<h3 id="variable_dtype"><code>variable_dtype</code></h3>
+
+<p>The variable dtype of this policy.</p>
+<p>This is the dtype layers will create their variables in, unless a layer
+explicit chooses a different dtype. If this is different than
+<a href="../../../../tf/keras/mixed_precision/experimental/Policy.html#compute_dtype"><code>Policy.compute_dtype</code></a> and both are non-None, Layers will cast variables to
+the compute dtype to avoid type errors.</p>
+<p>If this is None, the policy is "infer" and the <code>compute_dtype</code> is also None.
+If <code>compute_dtype</code> is None, this is either None or float32.</p>
+<h4 id="returns_3">Returns:</h4>
+<p>The variable dtype of this policy, or None if the variable dtype should be
+inferred from the inputs.</p>
+    </body>
+    </html>
+   

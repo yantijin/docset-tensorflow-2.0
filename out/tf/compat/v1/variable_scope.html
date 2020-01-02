@@ -1,0 +1,231 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.variable_scope" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__enter__"/>
+<meta itemprop="property" content="__exit__"/>
+<meta itemprop="property" content="__init__"/>
+</div>
+
+<h1 id="tfcompatv1variable_scope">tf.compat.v1.variable_scope</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variable_scope.py">View source</a></p>
+<h2 id="class-variable_scope">Class <code>variable_scope</code></h2>
+<!-- Start diff -->
+
+<p>A context manager for defining ops that creates variables (layers).</p>
+<!-- Placeholder for "Used in" -->
+
+<p>This context manager validates that the (optional) <code>values</code> are from the same
+graph, ensures that graph is the default graph, and pushes a name scope and a
+variable scope.</p>
+<p>If <code>name_or_scope</code> is not None, it is used as is. If <code>name_or_scope</code> is None,
+then <code>default_name</code> is used.  In that case, if the same name has been
+previously used in the same scope, it will be made unique by appending <code>_N</code>
+to it.</p>
+<p>Variable scope allows you to create new variables and to share already created
+ones while providing checks to not create or share by accident. For details,
+see the <a href="https://tensorflow.org/guide/variables">Variable Scope How To</a>, here
+we present only a few basic examples.</p>
+<p>Simple example of how to create a new variable:</p>
+<div class="codehilite"><pre><span></span><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">variable_scope</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">variable_scope</span><span class="p">(</span><span class="s2">&quot;bar&quot;</span><span class="p">):</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="s2">&quot;v&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">assert</span> <span class="n">v</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;foo/bar/v:0&quot;</span>
+</pre></div>
+
+
+<p>Simple example of how to reenter a premade variable scope safely:</p>
+<div class="codehilite"><pre><span></span><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">variable_scope</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">vs</span><span class="p">:</span>
+  <span class="k">pass</span>
+
+<span class="c1"># Re-enter the variable scope.</span>
+<span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">variable_scope</span><span class="p">(</span><span class="n">vs</span><span class="p">,</span>
+                       <span class="n">auxiliary_name_scope</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="k">as</span> <span class="n">vs1</span><span class="p">:</span>
+  <span class="c1"># Restore the original name_scope.</span>
+  <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">name_scope</span><span class="p">(</span><span class="n">vs1</span><span class="o">.</span><span class="n">original_name_scope</span><span class="p">):</span>
+      <span class="n">v</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="s2">&quot;v&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+      <span class="k">assert</span> <span class="n">v</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;foo/v:0&quot;</span>
+      <span class="n">c</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="mi">1</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;c&quot;</span><span class="p">)</span>
+      <span class="k">assert</span> <span class="n">c</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;foo/c:0&quot;</span>
+</pre></div>
+
+
+<p>Basic example of sharing a variable AUTO_REUSE:</p>
+<div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">foo</span><span class="p">():</span>
+  <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">variable_scope</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="n">reuse</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">AUTO_REUSE</span><span class="p">):</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="s2">&quot;v&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+  <span class="k">return</span> <span class="n">v</span>
+
+<span class="n">v1</span> <span class="o">=</span> <span class="n">foo</span><span class="p">()</span>  <span class="c1"># Creates v.</span>
+<span class="n">v2</span> <span class="o">=</span> <span class="n">foo</span><span class="p">()</span>  <span class="c1"># Gets the same, existing v.</span>
+<span class="k">assert</span> <span class="n">v1</span> <span class="o">==</span> <span class="n">v2</span>
+</pre></div>
+
+
+<p>Basic example of sharing a variable with reuse=True:</p>
+<div class="codehilite"><pre><span></span><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">variable_scope</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">):</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="s2">&quot;v&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">variable_scope</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="n">reuse</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="n">v1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="s2">&quot;v&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="k">assert</span> <span class="n">v1</span> <span class="o">==</span> <span class="n">v</span>
+</pre></div>
+
+
+<p>Sharing a variable by capturing a scope and setting reuse:</p>
+<div class="codehilite"><pre><span></span><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">variable_scope</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">scope</span><span class="p">:</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="s2">&quot;v&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">scope</span><span class="o">.</span><span class="n">reuse_variables</span><span class="p">()</span>
+    <span class="n">v1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="s2">&quot;v&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="k">assert</span> <span class="n">v1</span> <span class="o">==</span> <span class="n">v</span>
+</pre></div>
+
+
+<p>To prevent accidental sharing of variables, we raise an exception when getting
+an existing variable in a non-reusing scope.</p>
+<div class="codehilite"><pre><span></span><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">variable_scope</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">):</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="s2">&quot;v&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">v1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="s2">&quot;v&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="c1">#  Raises ValueError(&quot;... v already exists ...&quot;).</span>
+</pre></div>
+
+
+<p>Similarly, we raise an exception when trying to get a variable that does not
+exist in reuse mode.</p>
+<div class="codehilite"><pre><span></span><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">variable_scope</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="n">reuse</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="s2">&quot;v&quot;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="c1">#  Raises ValueError(&quot;... v does not exists ...&quot;).</span>
+</pre></div>
+
+
+<p>Note that the <code>reuse</code> flag is inherited: if we open a reusing scope, then all
+its sub-scopes become reusing as well.</p>
+<p>A note about name scoping: Setting <code>reuse</code> does not impact the naming of other
+ops such as mult. See related discussion on
+<a href="https://github.com/tensorflow/tensorflow/issues/6189">github#6189</a></p>
+<p>Note that up to and including version 1.0, it was allowed (though explicitly
+discouraged) to pass False to the reuse argument, yielding undocumented
+behaviour slightly different from None. Starting at 1.1.0 passing None and
+False as reuse has exactly the same effect.</p>
+<p>A note about using variable scopes in multi-threaded environment: Variable
+scopes are thread local, so one thread will not see another thread's current
+scope. Also, when using <code>default_name</code>, unique scopes names are also generated
+only on a per thread basis. If the same name was used within a different
+thread, that doesn't prevent a new thread from creating the same scope.
+However, the underlying variable store is shared across threads (within the
+same graph). As such, if another thread tries to create a new variable with
+the same name as a variable created by a previous thread, it will fail unless
+reuse is True.</p>
+<p>Further, each thread starts with an empty variable scope. So if you wish to
+preserve name prefixes from a scope from the main thread, you should capture
+the main thread's scope and re-enter it in each thread. For e.g.</p>
+<div class="codehilite"><pre><span></span><span class="n">main_thread_scope</span> <span class="o">=</span> <span class="n">variable_scope</span><span class="p">.</span><span class="n">get_variable_scope</span><span class="p">()</span>
+
+<span class="o">#</span> <span class="n">Thread</span><span class="err">&#39;</span><span class="n">s</span> <span class="n">target</span> <span class="k">function</span><span class="p">:</span>
+<span class="n">def</span> <span class="n">thread_target_fn</span><span class="p">(</span><span class="n">captured_scope</span><span class="p">):</span>
+  <span class="k">with</span> <span class="n">variable_scope</span><span class="p">.</span><span class="n">variable_scope</span><span class="p">(</span><span class="n">captured_scope</span><span class="p">):</span>
+    <span class="o">#</span> <span class="p">....</span> <span class="n">regular</span> <span class="n">code</span> <span class="k">for</span> <span class="n">this</span> <span class="n">thread</span>
+
+
+<span class="n">thread</span> <span class="o">=</span> <span class="n">threading</span><span class="p">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">thread_target_fn</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">main_thread_scope</span><span class="p">,))</span>
+</pre></div>
+
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variable_scope.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">name_or_scope</span><span class="p">,</span>
+    <span class="n">default_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">values</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">initializer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">caching_device</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">partitioner</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">custom_getter</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">reuse</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">use_resource</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">constraint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">auxiliary_name_scope</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Initialize the context manager.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>name_or_scope</code></b>: <code>string</code> or <code>VariableScope</code>: the scope to open.</li>
+<li><b><code>default_name</code></b>: The default name to use if the <code>name_or_scope</code> argument is
+  <code>None</code>, this name will be uniquified. If name_or_scope is provided it
+  won't be used and therefore it is not required and can be None.</li>
+<li><b><code>values</code></b>: The list of <code>Tensor</code> arguments that are passed to the op function.</li>
+<li><b><code>initializer</code></b>: default initializer for variables within this scope.</li>
+<li><b><code>regularizer</code></b>: default regularizer for variables within this scope.</li>
+<li><b><code>caching_device</code></b>: default caching device for variables within this scope.</li>
+<li><b><code>partitioner</code></b>: default partitioner for variables within this scope.</li>
+<li><b><code>custom_getter</code></b>: default custom getter for variables within this scope.</li>
+<li><b><code>reuse</code></b>: <code>True</code>, None, or tf.compat.v1.AUTO_REUSE; if <code>True</code>, we go into
+  reuse mode for this scope as well as all sub-scopes; if
+  tf.compat.v1.AUTO_REUSE, we create variables if they do not exist, and
+  return them otherwise; if None, we inherit the parent scope's reuse
+  flag. When eager execution is enabled, new variables are always created
+  unless an EagerVariableStore or template is currently active.</li>
+<li><b><code>dtype</code></b>: type of variables created in this scope (defaults to the type in
+  the passed scope, or inherited from parent scope).</li>
+<li><b><code>use_resource</code></b>: If False, all variables will be regular Variables. If True,
+  experimental ResourceVariables with well-defined semantics will be used
+  instead. Defaults to False (will later change to True). When eager
+  execution is enabled this argument is always forced to be True.</li>
+<li><b><code>constraint</code></b>: An optional projection function to be applied to the variable
+  after being updated by an <code>Optimizer</code> (e.g. used to implement norm
+  constraints or value constraints for layer weights). The function must
+  take as input the unprojected Tensor representing the value of the
+  variable and return the Tensor for the projected value (which must have
+  the same shape). Constraints are not safe to use when doing asynchronous
+  distributed training.</li>
+<li><b><code>auxiliary_name_scope</code></b>: If <code>True</code>, we create an auxiliary name scope with
+  the scope. If <code>False</code>, we don't create it. Note that the argument is not
+  inherited, and it only takes effect for once when creating. You should
+  only use it for re-entering a premade variable scope.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A scope that can be captured and reused.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: when trying to reuse within a create scope, or create within
+  a reuse scope.</li>
+<li><b><code>TypeError</code></b>: when the types of some arguments are not appropriate.</li>
+</ul>
+<h2 id="methods">Methods</h2>
+<h3 id="__enter__"><code>__enter__</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variable_scope.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__enter__</span><span class="p">()</span>
+</pre></div>
+
+
+<h3 id="__exit__"><code>__exit__</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variable_scope.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__exit__</span><span class="p">(</span>
+    <span class="n">type_arg</span><span class="p">,</span>
+    <span class="n">value_arg</span><span class="p">,</span>
+    <span class="n">traceback_arg</span>
+<span class="p">)</span>
+</pre></div>
+    </body>
+    </html>
+   

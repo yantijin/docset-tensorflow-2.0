@@ -1,0 +1,61 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.sparse_matmul" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1sparse_matmul">tf.compat.v1.sparse_matmul</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p>Defined in generated file: <code>python/ops/gen_math_ops.py</code></p>
+<!-- Start diff -->
+
+<p>Multiply matrix "a" by matrix "b".</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">sparse_matmul</span><span class="p">(</span>
+    <span class="n">a</span><span class="p">,</span>
+    <span class="n">b</span><span class="p">,</span>
+    <span class="n">transpose_a</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">transpose_b</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">a_is_sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">b_is_sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>The inputs must be two-dimensional matrices and the inner dimension of "a" must
+match the outer dimension of "b". Both "a" and "b" must be <code>Tensor</code>s not
+<code>SparseTensor</code>s.  This op is optimized for the case where at least one of "a" or
+"b" is sparse, in the sense that they have a large proportion of zero values.
+The breakeven for using this versus a dense matrix multiply on one platform was
+30% zero values in the sparse matrix.</p>
+<p>The gradient computation of this operation will only take advantage of sparsity
+in the input gradient when that gradient comes from a Relu.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>a</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>float32</code>, <code>bfloat16</code>.</li>
+<li><b><code>b</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>float32</code>, <code>bfloat16</code>.</li>
+<li><b><code>transpose_a</code></b>: An optional <code>bool</code>. Defaults to <code>False</code>.</li>
+<li><b><code>transpose_b</code></b>: An optional <code>bool</code>. Defaults to <code>False</code>.</li>
+<li><b><code>a_is_sparse</code></b>: An optional <code>bool</code>. Defaults to <code>False</code>.</li>
+<li><b><code>b_is_sparse</code></b>: An optional <code>bool</code>. Defaults to <code>False</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>Tensor</code> of type <code>float32</code>.</p>
+    </body>
+    </html>
+   

@@ -1,0 +1,133 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.feature_column.shared_embedding_columns" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1feature_columnshared_embedding_columns">tf.compat.v1.feature_column.shared_embedding_columns</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/feature_column/feature_column_v2.py">View source</a></p>
+<!-- Start diff -->
+
+<p>List of dense columns that convert from sparse, categorical input.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">feature_column</span><span class="o">.</span><span class="n">shared_embedding_columns</span><span class="p">(</span>
+    <span class="n">categorical_columns</span><span class="p">,</span>
+    <span class="n">dimension</span><span class="p">,</span>
+    <span class="n">combiner</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span>
+    <span class="n">initializer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">shared_embedding_collection_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">ckpt_to_load_from</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">tensor_name_in_ckpt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">max_norm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">trainable</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>This is similar to <code>embedding_column</code>, except that it produces a list of
+embedding columns that share the same embedding weights.</p>
+<p>Use this when your inputs are sparse and of the same type (e.g. watched and
+impression video IDs that share the same vocabulary), and you want to convert
+them to a dense representation (e.g., to feed to a DNN).</p>
+<p>Inputs must be a list of categorical columns created by any of the
+<code>categorical_column_*</code> function. They must all be of the same type and have
+the same arguments except <code>key</code>. E.g. they can be
+categorical_column_with_vocabulary_file with the same vocabulary_file. Some or
+all columns could also be weighted_categorical_column.</p>
+<p>Here is an example embedding of two features for a DNNClassifier model:</p>
+<div class="codehilite"><pre><span></span><span class="n">watched_video_id</span> <span class="o">=</span> <span class="n">categorical_column_with_vocabulary_file</span><span class="p">(</span>
+    <span class="s1">&#39;watched_video_id&#39;</span><span class="p">,</span> <span class="n">video_vocabulary_file</span><span class="p">,</span> <span class="n">video_vocabulary_size</span><span class="p">)</span>
+<span class="n">impression_video_id</span> <span class="o">=</span> <span class="n">categorical_column_with_vocabulary_file</span><span class="p">(</span>
+    <span class="s1">&#39;impression_video_id&#39;</span><span class="p">,</span> <span class="n">video_vocabulary_file</span><span class="p">,</span> <span class="n">video_vocabulary_size</span><span class="p">)</span>
+<span class="n">columns</span> <span class="o">=</span> <span class="n">shared_embedding_columns</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">watched_video_id</span><span class="p">,</span> <span class="n">impression_video_id</span><span class="p">],</span> <span class="n">dimension</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="n">estimator</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">DNNClassifier</span><span class="p">(</span><span class="n">feature_columns</span><span class="o">=</span><span class="n">columns</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+
+<span class="n">label_column</span> <span class="o">=</span> <span class="o">...</span>
+<span class="k">def</span> <span class="nf">input_fn</span><span class="p">():</span>
+  <span class="n">features</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">parse_example</span><span class="p">(</span>
+      <span class="o">...</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="n">make_parse_example_spec</span><span class="p">(</span><span class="n">columns</span> <span class="o">+</span> <span class="p">[</span><span class="n">label_column</span><span class="p">]))</span>
+  <span class="n">labels</span> <span class="o">=</span> <span class="n">features</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">label_column</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">features</span><span class="p">,</span> <span class="n">labels</span>
+
+<span class="n">estimator</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">input_fn</span><span class="o">=</span><span class="n">input_fn</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Here is an example using <code>shared_embedding_columns</code> with model_fn:</p>
+<div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">model_fn</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="o">...</span><span class="p">):</span>
+  <span class="n">watched_video_id</span> <span class="o">=</span> <span class="n">categorical_column_with_vocabulary_file</span><span class="p">(</span>
+      <span class="s1">&#39;watched_video_id&#39;</span><span class="p">,</span> <span class="n">video_vocabulary_file</span><span class="p">,</span> <span class="n">video_vocabulary_size</span><span class="p">)</span>
+  <span class="n">impression_video_id</span> <span class="o">=</span> <span class="n">categorical_column_with_vocabulary_file</span><span class="p">(</span>
+      <span class="s1">&#39;impression_video_id&#39;</span><span class="p">,</span> <span class="n">video_vocabulary_file</span><span class="p">,</span> <span class="n">video_vocabulary_size</span><span class="p">)</span>
+  <span class="n">columns</span> <span class="o">=</span> <span class="n">shared_embedding_columns</span><span class="p">(</span>
+      <span class="p">[</span><span class="n">watched_video_id</span><span class="p">,</span> <span class="n">impression_video_id</span><span class="p">],</span> <span class="n">dimension</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+  <span class="n">dense_tensor</span> <span class="o">=</span> <span class="n">input_layer</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">columns</span><span class="p">)</span>
+  <span class="c1"># Form DNN layers, calculate loss, and return EstimatorSpec.</span>
+  <span class="o">...</span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>categorical_columns</code></b>: List of categorical columns created by a
+  <code>categorical_column_with_*</code> function. These columns produce the sparse IDs
+  that are inputs to the embedding lookup. All columns must be of the same
+  type and have the same arguments except <code>key</code>. E.g. they can be
+  categorical_column_with_vocabulary_file with the same vocabulary_file.
+  Some or all columns could also be weighted_categorical_column.</li>
+<li><b><code>dimension</code></b>: An integer specifying dimension of the embedding, must be &gt; 0.</li>
+<li><b><code>combiner</code></b>: A string specifying how to reduce if there are multiple entries in
+  a single row. Currently 'mean', 'sqrtn' and 'sum' are supported, with
+  'mean' the default. 'sqrtn' often achieves good accuracy, in particular
+  with bag-of-words columns. Each of this can be thought as example level
+  normalizations on the column. For more information, see
+  <code>tf.embedding_lookup_sparse</code>.</li>
+<li><b><code>initializer</code></b>: A variable initializer function to be used in embedding
+  variable initialization. If not specified, defaults to
+  <code>truncated_normal_initializer</code> with mean <code>0.0</code> and
+  standard deviation <code>1/sqrt(dimension)</code>.</li>
+<li><b><code>shared_embedding_collection_name</code></b>: Optional name of the collection where
+  shared embedding weights are added. If not given, a reasonable name will
+  be chosen based on the names of <code>categorical_columns</code>. This is also used
+  in <code>variable_scope</code> when creating shared embedding weights.</li>
+<li><b><code>ckpt_to_load_from</code></b>: String representing checkpoint name/pattern from which to
+  restore column weights. Required if <code>tensor_name_in_ckpt</code> is not <code>None</code>.</li>
+<li><b><code>tensor_name_in_ckpt</code></b>: Name of the <code>Tensor</code> in <code>ckpt_to_load_from</code> from which
+  to restore the column weights. Required if <code>ckpt_to_load_from</code> is not
+  <code>None</code>.</li>
+<li><b><code>max_norm</code></b>: If not <code>None</code>, each embedding is clipped if its l2-norm is larger
+  than this value, before combining.</li>
+<li><b><code>trainable</code></b>: Whether or not the embedding is trainable. Default is True.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A list of dense columns that converts from sparse input. The order of
+results follows the ordering of <code>categorical_columns</code>.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: if <code>dimension</code> not &gt; 0.</li>
+<li><b><code>ValueError</code></b>: if any of the given <code>categorical_columns</code> is of different type
+  or has different arguments than the others.</li>
+<li><b><code>ValueError</code></b>: if exactly one of <code>ckpt_to_load_from</code> and <code>tensor_name_in_ckpt</code>
+  is specified.</li>
+<li><b><code>ValueError</code></b>: if <code>initializer</code> is specified and is not callable.</li>
+<li><b><code>RuntimeError</code></b>: if eager execution is enabled.</li>
+</ul>
+    </body>
+    </html>
+   

@@ -1,0 +1,96 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.utils.Progbar" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="add"/>
+<meta itemprop="property" content="update"/>
+</div>
+
+<h1 id="tfkerasutilsprogbar">tf.keras.utils.Progbar</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/utils/generic_utils.py">View source</a></p>
+<h2 id="class-progbar">Class <code>Progbar</code></h2>
+<!-- Start diff -->
+
+<p>Displays a progress bar.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v1.keras.utils.Progbar</code></li>
+<li>Class <code>tf.compat.v2.keras.utils.Progbar</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<h4 id="arguments">Arguments:</h4>
+<ul>
+<li><b><code>target</code></b>: Total number of steps expected, None if unknown.</li>
+<li><b><code>width</code></b>: Progress bar width on screen.</li>
+<li><b><code>verbose</code></b>: Verbosity mode, 0 (silent), 1 (verbose), 2 (semi-verbose)</li>
+<li><b><code>stateful_metrics</code></b>: Iterable of string names of metrics that
+    should <em>not</em> be averaged over time. Metrics in this list
+    will be displayed as-is. All others will be averaged
+    by the progbar before display.</li>
+<li><b><code>interval</code></b>: Minimum visual progress update interval (in seconds).</li>
+<li><b><code>unit_name</code></b>: Display name for step counts (usually "step" or "sample").</li>
+</ul>
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/utils/generic_utils.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">target</span><span class="p">,</span>
+    <span class="n">width</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">interval</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+    <span class="n">stateful_metrics</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">unit_name</span><span class="o">=</span><span class="s1">&#39;step&#39;</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Initialize self.  See help(type(self)) for accurate signature.</p>
+<h2 id="methods">Methods</h2>
+<h3 id="add"><code>add</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/utils/generic_utils.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">add</span><span class="p">(</span>
+    <span class="n">n</span><span class="p">,</span>
+    <span class="n">values</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<h3 id="update"><code>update</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/utils/generic_utils.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">update</span><span class="p">(</span>
+    <span class="n">current</span><span class="p">,</span>
+    <span class="n">values</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Updates the progress bar.</p>
+<h4 id="arguments_1">Arguments:</h4>
+<ul>
+<li><b><code>current</code></b>: Index of current step.</li>
+<li><b><code>values</code></b>: List of tuples:
+    <code>(name, value_for_last_step)</code>.
+    If <code>name</code> is in <code>stateful_metrics</code>,
+    <code>value_for_last_step</code> will be displayed as-is.
+    Else, an average of the metric over time will be displayed.</li>
+</ul>
+    </body>
+    </html>
+   

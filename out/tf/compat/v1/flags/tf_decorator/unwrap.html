@@ -1,0 +1,48 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.flags.tf_decorator.unwrap" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1flagstf_decoratorunwrap">tf.compat.v1.flags.tf_decorator.unwrap</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/util/tf_decorator.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Unwraps an object into a list of TFDecorators and a final target.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.app.flags.tf_decorator.unwrap</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">flags</span><span class="o">.</span><span class="n">tf_decorator</span><span class="o">.</span><span class="n">unwrap</span><span class="p">(</span><span class="n">maybe_tf_decorator</span><span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>maybe_tf_decorator</code></b>: Any callable object.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A tuple whose first element is an list of TFDecorator-derived objects that
+were applied to the final callable target, and whose second element is the
+final undecorated callable target. If the <code>maybe_tf_decorator</code> parameter is
+not decorated by any TFDecorators, the first tuple element will be an empty
+list. The <code>TFDecorator</code> list is ordered from outermost to innermost
+decorators.</p>
+    </body>
+    </html>
+   

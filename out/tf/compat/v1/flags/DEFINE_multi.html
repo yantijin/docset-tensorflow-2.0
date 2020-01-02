@@ -1,0 +1,67 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.flags.DEFINE_multi" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1flagsdefine_multi">tf.compat.v1.flags.DEFINE_multi</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<!-- Start diff -->
+
+<p>Registers a generic MultiFlag that parses its args with a given parser.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.app.flags.DEFINE_multi</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">flags</span><span class="o">.</span><span class="n">DEFINE_multi</span><span class="p">(</span>
+    <span class="n">parser</span><span class="p">,</span>
+    <span class="n">serializer</span><span class="p">,</span>
+    <span class="n">name</span><span class="p">,</span>
+    <span class="n">default</span><span class="p">,</span>
+    <span class="n">help</span><span class="p">,</span>
+    <span class="n">flag_values</span><span class="o">=</span><span class="n">_flagvalues</span><span class="o">.</span><span class="n">FLAGS</span><span class="p">,</span>
+    <span class="n">module_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">args</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Auxiliary function.  Normal users should NOT use it directly.</p>
+<p>Developers who need to create their own 'Parser' classes for options
+which can appear multiple times can call this module function to
+register their flags.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>parser</code></b>: ArgumentParser, used to parse the flag arguments.</li>
+<li><b><code>serializer</code></b>: ArgumentSerializer, the flag serializer instance.</li>
+<li><b><code>name</code></b>: str, the flag name.</li>
+<li><b><code>default</code></b>: Union[Iterable[T], Text, None], the default value of the flag.
+    If the value is text, it will be parsed as if it was provided from
+    the command line. If the value is a non-string iterable, it will be
+    iterated over to create a shallow copy of the values. If it is None,
+    it is left as-is.</li>
+<li><b><code>help</code></b>: str, the help message.</li>
+<li><b><code>flag_values</code></b>: FlagValues, the FlagValues instance with which the flag will
+    be registered. This should almost never need to be overridden.</li>
+<li><b><code>module_name</code></b>: A string, the name of the Python module declaring this flag.
+    If not provided, it will be computed using the stack trace of this call.</li>
+<li><b><code>**args</code></b>: Dictionary with extra keyword args that are passed to the
+    Flag <strong>init</strong>.</li>
+</ul>
+    </body>
+    </html>
+   

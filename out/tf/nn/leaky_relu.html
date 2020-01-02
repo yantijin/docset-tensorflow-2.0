@@ -1,0 +1,53 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.nn.leaky_relu" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfnnleaky_relu">tf.nn.leaky_relu</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/nn_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Compute the Leaky ReLU activation function.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.nn.leaky_relu</code></li>
+<li><code>tf.compat.v2.nn.leaky_relu</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">leaky_relu</span><span class="p">(</span>
+    <span class="n">features</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Source: <a href="https://ai.stanford.edu/~amaas/papers/relu_hybrid_icml2013_final.pdf">Rectifier Nonlinearities Improve Neural Network Acoustic Models.
+AL Maas, AY Hannun, AY Ng - Proc. ICML, 2013</a>.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>features</code></b>: A <code>Tensor</code> representing preactivation values. Must be one of
+  the following types: <code>float16</code>, <code>float32</code>, <code>float64</code>, <code>int32</code>, <code>int64</code>.</li>
+<li><b><code>alpha</code></b>: Slope of the activation function at x &lt; 0.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>The activation value.</p>
+    </body>
+    </html>
+   

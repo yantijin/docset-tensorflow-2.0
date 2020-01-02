@@ -1,0 +1,645 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.preprocessing.image.ImageDataGenerator" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="apply_transform"/>
+<meta itemprop="property" content="fit"/>
+<meta itemprop="property" content="flow"/>
+<meta itemprop="property" content="flow_from_dataframe"/>
+<meta itemprop="property" content="flow_from_directory"/>
+<meta itemprop="property" content="get_random_transform"/>
+<meta itemprop="property" content="random_transform"/>
+<meta itemprop="property" content="standardize"/>
+</div>
+
+<h1 id="tfkeraspreprocessingimageimagedatagenerator">tf.keras.preprocessing.image.ImageDataGenerator</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/preprocessing/image.py">View source</a></p>
+<h2 id="class-imagedatagenerator">Class <code>ImageDataGenerator</code></h2>
+<!-- Start diff -->
+
+<p>Generate batches of tensor image data with real-time data augmentation.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v1.keras.preprocessing.image.ImageDataGenerator</code></li>
+<li>Class <code>tf.compat.v2.keras.preprocessing.image.ImageDataGenerator</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<p>The data will be looped over (in batches).</p>
+<h4 id="arguments">Arguments:</h4>
+<ul>
+<li><b><code>featurewise_center</code></b>: Boolean.
+    Set input mean to 0 over the dataset, feature-wise.</li>
+<li><b><code>samplewise_center</code></b>: Boolean. Set each sample mean to 0.</li>
+<li><b><code>featurewise_std_normalization</code></b>: Boolean.
+    Divide inputs by std of the dataset, feature-wise.</li>
+<li><b><code>samplewise_std_normalization</code></b>: Boolean. Divide each input by its std.</li>
+<li><b><code>zca_epsilon</code></b>: epsilon for ZCA whitening. Default is 1e-6.</li>
+<li><b><code>zca_whitening</code></b>: Boolean. Apply ZCA whitening.</li>
+<li><b><code>rotation_range</code></b>: Int. Degree range for random rotations.</li>
+<li><b><code>width_shift_range</code></b>: Float, 1-D array-like or int<ul>
+<li>float: fraction of total width, if &lt; 1, or pixels if &gt;= 1.</li>
+<li>1-D array-like: random elements from the array.</li>
+<li>int: integer number of pixels from interval
+    <code>(-width_shift_range, +width_shift_range)</code></li>
+<li>With <code>width_shift_range=2</code> possible values
+    are integers <code>[-1, 0, +1]</code>,
+    same as with <code>width_shift_range=[-1, 0, +1]</code>,
+    while with <code>width_shift_range=1.0</code> possible values are floats
+    in the interval [-1.0, +1.0).</li>
+</ul>
+</li>
+<li><b><code>height_shift_range</code></b>: Float, 1-D array-like or int<ul>
+<li>float: fraction of total height, if &lt; 1, or pixels if &gt;= 1.</li>
+<li>1-D array-like: random elements from the array.</li>
+<li>int: integer number of pixels from interval
+    <code>(-height_shift_range, +height_shift_range)</code></li>
+<li>With <code>height_shift_range=2</code> possible values
+    are integers <code>[-1, 0, +1]</code>,
+    same as with <code>height_shift_range=[-1, 0, +1]</code>,
+    while with <code>height_shift_range=1.0</code> possible values are floats
+    in the interval [-1.0, +1.0).</li>
+</ul>
+</li>
+<li><b><code>brightness_range</code></b>: Tuple or list of two floats. Range for picking
+    a brightness shift value from.</li>
+<li><b><code>shear_range</code></b>: Float. Shear Intensity
+    (Shear angle in counter-clockwise direction in degrees)</li>
+<li><b><code>zoom_range</code></b>: Float or [lower, upper]. Range for random zoom.
+    If a float, <code>[lower, upper] = [1-zoom_range, 1+zoom_range]</code>.</li>
+<li><b><code>channel_shift_range</code></b>: Float. Range for random channel shifts.</li>
+<li><b><code>fill_mode</code></b>: One of {"constant", "nearest", "reflect" or "wrap"}.
+    Default is 'nearest'.
+    Points outside the boundaries of the input are filled
+    according to the given mode:<ul>
+<li>'constant': kkkkkkkk|abcd|kkkkkkkk (cval=k)</li>
+<li>'nearest':  aaaaaaaa|abcd|dddddddd</li>
+<li>'reflect':  abcddcba|abcd|dcbaabcd</li>
+<li>'wrap':  abcdabcd|abcd|abcdabcd</li>
+</ul>
+</li>
+<li><b><code>cval</code></b>: Float or Int.
+    Value used for points outside the boundaries
+    when <code>fill_mode = "constant"</code>.</li>
+<li><b><code>horizontal_flip</code></b>: Boolean. Randomly flip inputs horizontally.</li>
+<li><b><code>vertical_flip</code></b>: Boolean. Randomly flip inputs vertically.</li>
+<li><b><code>rescale</code></b>: rescaling factor. Defaults to None.
+    If None or 0, no rescaling is applied,
+    otherwise we multiply the data by the value provided
+    (after applying all other transformations).</li>
+<li><b><code>preprocessing_function</code></b>: function that will be implied on each input.
+    The function will run after the image is resized and augmented.
+    The function should take one argument:
+    one image (Numpy tensor with rank 3),
+    and should output a Numpy tensor with the same shape.</li>
+<li><b><code>data_format</code></b>: Image data format,
+    either "channels_first" or "channels_last".
+    "channels_last" mode means that the images should have shape
+    <code>(samples, height, width, channels)</code>,
+    "channels_first" mode means that the images should have shape
+    <code>(samples, channels, height, width)</code>.
+    It defaults to the <code>image_data_format</code> value found in your
+    Keras config file at <code>~/.keras/keras.json</code>.
+    If you never set it, then it will be "channels_last".</li>
+<li><b><code>validation_split</code></b>: Float. Fraction of images reserved for validation
+    (strictly between 0 and 1).</li>
+<li><b><code>dtype</code></b>: Dtype to use for the generated arrays.</li>
+</ul>
+<h4 id="examples">Examples:</h4>
+<p>Example of using <code>.flow(x, y)</code>:</p>
+<div class="codehilite"><pre><span></span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">),</span> <span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span> <span class="o">=</span> <span class="n">cifar10</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">np_utils</span><span class="o">.</span><span class="n">to_categorical</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">)</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">np_utils</span><span class="o">.</span><span class="n">to_categorical</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">)</span>
+<span class="n">datagen</span> <span class="o">=</span> <span class="n">ImageDataGenerator</span><span class="p">(</span>
+    <span class="n">featurewise_center</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">featurewise_std_normalization</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">rotation_range</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+    <span class="n">width_shift_range</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+    <span class="n">height_shift_range</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+    <span class="n">horizontal_flip</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># compute quantities required for featurewise normalization</span>
+<span class="c1"># (std, mean, and principal components if ZCA whitening is applied)</span>
+<span class="n">datagen</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">)</span>
+<span class="c1"># fits the model on batches with real-time data augmentation:</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit_generator</span><span class="p">(</span><span class="n">datagen</span><span class="o">.</span><span class="n">flow</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">),</span>
+                    <span class="n">steps_per_epoch</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">x_train</span><span class="p">)</span> <span class="o">/</span> <span class="mi">32</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="n">epochs</span><span class="p">)</span>
+<span class="c1"># here&#39;s a more &quot;manual&quot; example</span>
+<span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Epoch&#39;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+    <span class="n">batches</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">x_batch</span><span class="p">,</span> <span class="n">y_batch</span> <span class="ow">in</span> <span class="n">datagen</span><span class="o">.</span><span class="n">flow</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">):</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_batch</span><span class="p">,</span> <span class="n">y_batch</span><span class="p">)</span>
+        <span class="n">batches</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">batches</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_train</span><span class="p">)</span> <span class="o">/</span> <span class="mi">32</span><span class="p">:</span>
+            <span class="c1"># we need to break the loop by hand because</span>
+            <span class="c1"># the generator loops indefinitely</span>
+            <span class="k">break</span>
+</pre></div>
+
+
+<p>Example of using <code>.flow_from_directory(directory)</code>:</p>
+<div class="codehilite"><pre><span></span><span class="n">train_datagen</span> <span class="o">=</span> <span class="n">ImageDataGenerator</span><span class="p">(</span>
+        <span class="n">rescale</span><span class="o">=</span><span class="mf">1.</span><span class="o">/</span><span class="mi">255</span><span class="p">,</span>
+        <span class="n">shear_range</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+        <span class="n">zoom_range</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+        <span class="n">horizontal_flip</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">test_datagen</span> <span class="o">=</span> <span class="n">ImageDataGenerator</span><span class="p">(</span><span class="n">rescale</span><span class="o">=</span><span class="mf">1.</span><span class="o">/</span><span class="mi">255</span><span class="p">)</span>
+<span class="n">train_generator</span> <span class="o">=</span> <span class="n">train_datagen</span><span class="o">.</span><span class="n">flow_from_directory</span><span class="p">(</span>
+        <span class="s1">&#39;data/train&#39;</span><span class="p">,</span>
+        <span class="n">target_size</span><span class="o">=</span><span class="p">(</span><span class="mi">150</span><span class="p">,</span> <span class="mi">150</span><span class="p">),</span>
+        <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>
+        <span class="n">class_mode</span><span class="o">=</span><span class="s1">&#39;binary&#39;</span><span class="p">)</span>
+<span class="n">validation_generator</span> <span class="o">=</span> <span class="n">test_datagen</span><span class="o">.</span><span class="n">flow_from_directory</span><span class="p">(</span>
+        <span class="s1">&#39;data/validation&#39;</span><span class="p">,</span>
+        <span class="n">target_size</span><span class="o">=</span><span class="p">(</span><span class="mi">150</span><span class="p">,</span> <span class="mi">150</span><span class="p">),</span>
+        <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>
+        <span class="n">class_mode</span><span class="o">=</span><span class="s1">&#39;binary&#39;</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit_generator</span><span class="p">(</span>
+        <span class="n">train_generator</span><span class="p">,</span>
+        <span class="n">steps_per_epoch</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span>
+        <span class="n">epochs</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+        <span class="n">validation_data</span><span class="o">=</span><span class="n">validation_generator</span><span class="p">,</span>
+        <span class="n">validation_steps</span><span class="o">=</span><span class="mi">800</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Example of transforming images and masks together.</p>
+<div class="codehilite"><pre><span></span><span class="c1"># we create two instances with the same arguments</span>
+<span class="n">data_gen_args</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">featurewise_center</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                     <span class="n">featurewise_std_normalization</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                     <span class="n">rotation_range</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span>
+                     <span class="n">width_shift_range</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+                     <span class="n">height_shift_range</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+                     <span class="n">zoom_range</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">image_datagen</span> <span class="o">=</span> <span class="n">ImageDataGenerator</span><span class="p">(</span><span class="o">**</span><span class="n">data_gen_args</span><span class="p">)</span>
+<span class="n">mask_datagen</span> <span class="o">=</span> <span class="n">ImageDataGenerator</span><span class="p">(</span><span class="o">**</span><span class="n">data_gen_args</span><span class="p">)</span>
+<span class="c1"># Provide the same seed and keyword arguments to the fit and flow methods</span>
+<span class="n">seed</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">image_datagen</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">images</span><span class="p">,</span> <span class="n">augment</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">)</span>
+<span class="n">mask_datagen</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">masks</span><span class="p">,</span> <span class="n">augment</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">)</span>
+<span class="n">image_generator</span> <span class="o">=</span> <span class="n">image_datagen</span><span class="o">.</span><span class="n">flow_from_directory</span><span class="p">(</span>
+    <span class="s1">&#39;data/images&#39;</span><span class="p">,</span>
+    <span class="n">class_mode</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">)</span>
+<span class="n">mask_generator</span> <span class="o">=</span> <span class="n">mask_datagen</span><span class="o">.</span><span class="n">flow_from_directory</span><span class="p">(</span>
+    <span class="s1">&#39;data/masks&#39;</span><span class="p">,</span>
+    <span class="n">class_mode</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">)</span>
+<span class="c1"># combine generators into one which yields image and masks</span>
+<span class="n">train_generator</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="n">image_generator</span><span class="p">,</span> <span class="n">mask_generator</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit_generator</span><span class="p">(</span>
+    <span class="n">train_generator</span><span class="p">,</span>
+    <span class="n">steps_per_epoch</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span>
+    <span class="n">epochs</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+</pre></div>
+
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/preprocessing/image.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">featurewise_center</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">samplewise_center</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">featurewise_std_normalization</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">samplewise_std_normalization</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">zca_whitening</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">zca_epsilon</span><span class="o">=</span><span class="mf">1e-06</span><span class="p">,</span>
+    <span class="n">rotation_range</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">width_shift_range</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">height_shift_range</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">brightness_range</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">shear_range</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">zoom_range</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">channel_shift_range</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">fill_mode</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">,</span>
+    <span class="n">cval</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">horizontal_flip</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">vertical_flip</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">rescale</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">preprocessing_function</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">data_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">validation_split</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Initialize self.  See help(type(self)) for accurate signature.</p>
+<h2 id="methods">Methods</h2>
+<h3 id="apply_transform"><code>apply_transform</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">apply_transform</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">transform_parameters</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Applies a transformation to an image according to given parameters.</p>
+<h1 id="arguments_1">Arguments</h1>
+<div class="codehilite"><pre><span></span><span class="n">x</span><span class="o">:</span> <span class="mi">3</span><span class="n">D</span> <span class="n">tensor</span><span class="o">,</span> <span class="n">single</span> <span class="n">image</span><span class="o">.</span>
+<span class="n">transform_parameters</span><span class="o">:</span> <span class="n">Dictionary</span> <span class="k">with</span> <span class="n">string</span> <span class="o">-</span> <span class="n">parameter</span> <span class="n">pairs</span>
+    <span class="n">describing</span> <span class="n">the</span> <span class="n">transformation</span><span class="o">.</span>
+    <span class="n">Currently</span><span class="o">,</span> <span class="n">the</span> <span class="n">following</span> <span class="n">parameters</span>
+    <span class="n">from</span> <span class="n">the</span> <span class="n">dictionary</span> <span class="n">are</span> <span class="n">used</span><span class="o">:</span>
+    <span class="o">-</span> <span class="err">`</span><span class="s1">&#39;theta&#39;</span><span class="err">`</span><span class="o">:</span> <span class="n">Float</span><span class="o">.</span> <span class="n">Rotation</span> <span class="n">angle</span> <span class="k">in</span> <span class="n">degrees</span><span class="o">.</span>
+    <span class="o">-</span> <span class="err">`</span><span class="s1">&#39;tx&#39;</span><span class="err">`</span><span class="o">:</span> <span class="n">Float</span><span class="o">.</span> <span class="n">Shift</span> <span class="k">in</span> <span class="n">the</span> <span class="n">x</span> <span class="n">direction</span><span class="o">.</span>
+    <span class="o">-</span> <span class="err">`</span><span class="s1">&#39;ty&#39;</span><span class="err">`</span><span class="o">:</span> <span class="n">Float</span><span class="o">.</span> <span class="n">Shift</span> <span class="k">in</span> <span class="n">the</span> <span class="n">y</span> <span class="n">direction</span><span class="o">.</span>
+    <span class="o">-</span> <span class="err">`</span><span class="s1">&#39;shear&#39;</span><span class="err">`</span><span class="o">:</span> <span class="n">Float</span><span class="o">.</span> <span class="n">Shear</span> <span class="n">angle</span> <span class="k">in</span> <span class="n">degrees</span><span class="o">.</span>
+    <span class="o">-</span> <span class="err">`</span><span class="s1">&#39;zx&#39;</span><span class="err">`</span><span class="o">:</span> <span class="n">Float</span><span class="o">.</span> <span class="n">Zoom</span> <span class="k">in</span> <span class="n">the</span> <span class="n">x</span> <span class="n">direction</span><span class="o">.</span>
+    <span class="o">-</span> <span class="err">`</span><span class="s1">&#39;zy&#39;</span><span class="err">`</span><span class="o">:</span> <span class="n">Float</span><span class="o">.</span> <span class="n">Zoom</span> <span class="k">in</span> <span class="n">the</span> <span class="n">y</span> <span class="n">direction</span><span class="o">.</span>
+    <span class="o">-</span> <span class="err">`</span><span class="s1">&#39;flip_horizontal&#39;</span><span class="err">`</span><span class="o">:</span> <span class="n">Boolean</span><span class="o">.</span> <span class="n">Horizontal</span> <span class="n">flip</span><span class="o">.</span>
+    <span class="o">-</span> <span class="err">`</span><span class="s1">&#39;flip_vertical&#39;</span><span class="err">`</span><span class="o">:</span> <span class="n">Boolean</span><span class="o">.</span> <span class="n">Vertical</span> <span class="n">flip</span><span class="o">.</span>
+    <span class="o">-</span> <span class="err">`</span><span class="s1">&#39;channel_shift_intencity&#39;</span><span class="err">`</span><span class="o">:</span> <span class="n">Float</span><span class="o">.</span> <span class="n">Channel</span> <span class="n">shift</span> <span class="n">intensity</span><span class="o">.</span>
+    <span class="o">-</span> <span class="err">`</span><span class="s1">&#39;brightness&#39;</span><span class="err">`</span><span class="o">:</span> <span class="n">Float</span><span class="o">.</span> <span class="n">Brightness</span> <span class="n">shift</span> <span class="n">intensity</span><span class="o">.</span>
+</pre></div>
+
+
+<h1 id="returns">Returns</h1>
+<div class="codehilite"><pre><span></span><span class="err">A transformed version of the input (same shape).</span>
+</pre></div>
+
+
+<h3 id="fit"><code>fit</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">fit</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">augment</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">rounds</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">seed</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Fits the data generator to some sample data.</p>
+<p>This computes the internal data stats related to the
+data-dependent transformations, based on an array of sample data.</p>
+<p>Only required if <code>featurewise_center</code> or
+<code>featurewise_std_normalization</code> or <code>zca_whitening</code> are set to True.</p>
+<h1 id="arguments_2">Arguments</h1>
+<div class="codehilite"><pre><span></span><span class="n">x</span><span class="o">:</span> <span class="n">Sample</span> <span class="n">data</span><span class="o">.</span> <span class="n">Should</span> <span class="n">have</span> <span class="n">rank</span> <span class="mi">4</span><span class="o">.</span>
+ <span class="n">In</span> <span class="k">case</span> <span class="n">of</span> <span class="n">grayscale</span> <span class="n">data</span><span class="o">,</span>
+ <span class="n">the</span> <span class="n">channels</span> <span class="n">axis</span> <span class="n">should</span> <span class="n">have</span> <span class="n">value</span> <span class="mi">1</span><span class="o">,</span> <span class="k">in</span> <span class="k">case</span>
+ <span class="n">of</span> <span class="n">RGB</span> <span class="n">data</span><span class="o">,</span> <span class="n">it</span> <span class="n">should</span> <span class="n">have</span> <span class="n">value</span> <span class="mi">3</span><span class="o">,</span> <span class="n">and</span> <span class="k">in</span> <span class="k">case</span>
+ <span class="n">of</span> <span class="n">RGBA</span> <span class="n">data</span><span class="o">,</span> <span class="n">it</span> <span class="n">should</span> <span class="n">have</span> <span class="n">value</span> <span class="mi">4</span><span class="o">.</span>
+<span class="n">augment</span><span class="o">:</span> <span class="n">Boolean</span> <span class="o">(</span><span class="k">default</span><span class="o">:</span> <span class="n">False</span><span class="o">).</span>
+    <span class="n">Whether</span> <span class="n">to</span> <span class="n">fit</span> <span class="n">on</span> <span class="n">randomly</span> <span class="n">augmented</span> <span class="n">samples</span><span class="o">.</span>
+<span class="n">rounds</span><span class="o">:</span> <span class="n">Int</span> <span class="o">(</span><span class="k">default</span><span class="o">:</span> <span class="mi">1</span><span class="o">).</span>
+    <span class="n">If</span> <span class="n">using</span> <span class="n">data</span> <span class="n">augmentation</span> <span class="o">(</span><span class="err">`</span><span class="n">augment</span><span class="o">=</span><span class="n">True</span><span class="err">`</span><span class="o">),</span>
+    <span class="k">this</span> <span class="k">is</span> <span class="n">how</span> <span class="n">many</span> <span class="n">augmentation</span> <span class="n">passes</span> <span class="n">over</span> <span class="n">the</span> <span class="n">data</span> <span class="n">to</span> <span class="n">use</span><span class="o">.</span>
+<span class="n">seed</span><span class="o">:</span> <span class="n">Int</span> <span class="o">(</span><span class="k">default</span><span class="o">:</span> <span class="n">None</span><span class="o">).</span> <span class="n">Random</span> <span class="n">seed</span><span class="o">.</span>
+</pre></div>
+
+
+<h3 id="flow"><code>flow</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">flow</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>
+    <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">save_to_dir</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">save_prefix</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">save_format</span><span class="o">=</span><span class="s1">&#39;png&#39;</span><span class="p">,</span>
+    <span class="n">subset</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Takes data &amp; label arrays, generates batches of augmented data.</p>
+<h1 id="arguments_3">Arguments</h1>
+<div class="codehilite"><pre><span></span><span class="n">x</span><span class="p">:</span> <span class="n">Input</span> <span class="n">data</span><span class="p">.</span> <span class="n">Numpy</span> <span class="n">array</span> <span class="n">of</span> <span class="n">rank</span> <span class="mi">4</span> <span class="k">or</span> <span class="n">a</span> <span class="n">tuple</span><span class="p">.</span>
+    <span class="k">If</span> <span class="n">tuple</span><span class="p">,</span> <span class="n">the</span> <span class="n">first</span> <span class="n">element</span>
+    <span class="n">should</span> <span class="n">contain</span> <span class="n">the</span> <span class="n">images</span> <span class="k">and</span> <span class="n">the</span> <span class="n">second</span> <span class="n">element</span>
+    <span class="n">another</span> <span class="n">numpy</span> <span class="n">array</span> <span class="k">or</span> <span class="n">a</span> <span class="n">list</span> <span class="n">of</span> <span class="n">numpy</span> <span class="n">arrays</span>
+    <span class="n">that</span> <span class="n">gets</span> <span class="n">passed</span> <span class="k">to</span> <span class="n">the</span> <span class="n">output</span>
+    <span class="n">without</span> <span class="n">any</span> <span class="n">modifications</span><span class="p">.</span>
+    <span class="n">Can</span> <span class="n">be</span> <span class="n">used</span> <span class="k">to</span> <span class="n">feed</span> <span class="n">the</span> <span class="n">model</span> <span class="n">miscellaneous</span> <span class="n">data</span>
+    <span class="n">along</span> <span class="k">with</span> <span class="n">the</span> <span class="n">images</span><span class="p">.</span>
+    <span class="k">In</span> <span class="k">case</span> <span class="n">of</span> <span class="n">grayscale</span> <span class="n">data</span><span class="p">,</span> <span class="n">the</span> <span class="n">channels</span> <span class="n">axis</span> <span class="n">of</span> <span class="n">the</span> <span class="n">image</span> <span class="n">array</span>
+    <span class="n">should</span> <span class="n">have</span> <span class="n">value</span> <span class="mi">1</span><span class="p">,</span> <span class="k">in</span> <span class="k">case</span>
+    <span class="n">of</span> <span class="n">RGB</span> <span class="n">data</span><span class="p">,</span> <span class="n">it</span> <span class="n">should</span> <span class="n">have</span> <span class="n">value</span> <span class="mi">3</span><span class="p">,</span> <span class="k">and</span> <span class="k">in</span> <span class="k">case</span>
+    <span class="n">of</span> <span class="n">RGBA</span> <span class="n">data</span><span class="p">,</span> <span class="n">it</span> <span class="n">should</span> <span class="n">have</span> <span class="n">value</span> <span class="mi">4</span><span class="p">.</span>
+<span class="n">y</span><span class="p">:</span> <span class="n">Labels</span><span class="p">.</span>
+<span class="n">batch_size</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">(</span><span class="k">default</span><span class="p">:</span> <span class="mi">32</span><span class="p">).</span>
+<span class="n">shuffle</span><span class="p">:</span> <span class="nf">Boolean</span> <span class="p">(</span><span class="k">default</span><span class="p">:</span> <span class="no">True</span><span class="p">).</span>
+<span class="n">sample_weight</span><span class="p">:</span> <span class="n">Sample</span> <span class="n">weights</span><span class="p">.</span>
+<span class="n">seed</span><span class="p">:</span> <span class="kt">Int</span> <span class="p">(</span><span class="k">default</span><span class="p">:</span> <span class="n">None</span><span class="p">).</span>
+<span class="n">save_to_dir</span><span class="p">:</span> <span class="n">None</span> <span class="k">or</span> <span class="nf">str</span> <span class="p">(</span><span class="k">default</span><span class="p">:</span> <span class="n">None</span><span class="p">).</span>
+    <span class="n">This</span> <span class="n">allows</span> <span class="n">you</span> <span class="k">to</span> <span class="k">optionally</span> <span class="n">specify</span> <span class="n">a</span> <span class="n">directory</span>
+    <span class="k">to</span> <span class="n">which</span> <span class="k">to</span> <span class="n">save</span> <span class="n">the</span> <span class="n">augmented</span> <span class="n">pictures</span> <span class="n">being</span> <span class="nf">generated</span>
+    <span class="p">(</span><span class="n">useful</span> <span class="k">for</span> <span class="n">visualizing</span> <span class="n">what</span> <span class="n">you</span> <span class="n">are</span> <span class="n">doing</span><span class="p">).</span>
+<span class="n">save_prefix</span><span class="p">:</span> <span class="nf">Str</span> <span class="p">(</span><span class="k">default</span><span class="p">:</span> <span class="ss">`&#39;&#39;`</span><span class="p">).</span>
+    <span class="n">Prefix</span> <span class="k">to</span> <span class="k">use</span> <span class="k">for</span> <span class="n">filenames</span> <span class="n">of</span> <span class="n">saved</span> <span class="nf">pictures</span>
+    <span class="p">(</span><span class="n">only</span> <span class="n">relevant</span> <span class="k">if</span> <span class="ss">`save_to_dir`</span> <span class="k">is</span> <span class="kt">set</span><span class="p">).</span>
+<span class="n">save_format</span><span class="p">:</span> <span class="n">one</span> <span class="n">of</span> <span class="s2">&quot;png&quot;</span><span class="p">,</span> <span class="s2">&quot;jpeg&quot;</span>
+    <span class="p">(</span><span class="n">only</span> <span class="n">relevant</span> <span class="k">if</span> <span class="ss">`save_to_dir`</span> <span class="k">is</span> <span class="kt">set</span><span class="p">).</span> <span class="k">Default</span><span class="p">:</span> <span class="s2">&quot;png&quot;</span><span class="p">.</span>
+<span class="n">subset</span><span class="p">:</span> <span class="n">Subset</span> <span class="n">of</span> <span class="nf">data</span> <span class="p">(</span><span class="ss">`&quot;training&quot;`</span> <span class="k">or</span> <span class="ss">`&quot;validation&quot;`</span><span class="p">)</span> <span class="k">if</span>
+    <span class="ss">`validation_split`</span> <span class="k">is</span> <span class="kt">set</span> <span class="k">in</span> <span class="ss">`ImageDataGenerator`</span><span class="p">.</span>
+</pre></div>
+
+
+<h1 id="returns_1">Returns</h1>
+<div class="codehilite"><pre><span></span><span class="n">An</span> <span class="ss">`Iterator`</span> <span class="n">yielding</span> <span class="n">tuples</span> <span class="n">of</span> <span class="ss">`(x, y)`</span>
+    <span class="k">where</span> <span class="ss">`x`</span> <span class="k">is</span> <span class="n">a</span> <span class="n">numpy</span> <span class="n">array</span> <span class="n">of</span> <span class="n">image</span> <span class="nf">data</span>
+    <span class="p">(</span><span class="k">in</span> <span class="n">the</span> <span class="k">case</span> <span class="n">of</span> <span class="n">a</span> <span class="n">single</span> <span class="n">image</span> <span class="n">input</span><span class="p">)</span> <span class="k">or</span> <span class="n">a</span> <span class="n">list</span>
+    <span class="n">of</span> <span class="n">numpy</span> <span class="nf">arrays</span> <span class="p">(</span><span class="k">in</span> <span class="n">the</span> <span class="k">case</span> <span class="k">with</span>
+    <span class="n">additional</span> <span class="n">inputs</span><span class="p">)</span> <span class="k">and</span> <span class="ss">`y`</span> <span class="k">is</span> <span class="n">a</span> <span class="n">numpy</span> <span class="n">array</span>
+    <span class="n">of</span> <span class="n">corresponding</span> <span class="n">labels</span><span class="p">.</span> <span class="k">If</span> <span class="s1">&#39;sample_weight&#39;</span> <span class="k">is</span> <span class="k">not</span> <span class="n">None</span><span class="p">,</span>
+    <span class="n">the</span> <span class="n">yielded</span> <span class="n">tuples</span> <span class="n">are</span> <span class="n">of</span> <span class="n">the</span> <span class="n">form</span> <span class="ss">`(x, y, sample_weight)`</span><span class="p">.</span>
+    <span class="k">If</span> <span class="ss">`y`</span> <span class="k">is</span> <span class="n">None</span><span class="p">,</span> <span class="n">only</span> <span class="n">the</span> <span class="n">numpy</span> <span class="n">array</span> <span class="ss">`x`</span> <span class="k">is</span> <span class="n">returned</span><span class="p">.</span>
+</pre></div>
+
+
+<h3 id="flow_from_dataframe"><code>flow_from_dataframe</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">flow_from_dataframe</span><span class="p">(</span>
+    <span class="n">dataframe</span><span class="p">,</span>
+    <span class="n">directory</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">x_col</span><span class="o">=</span><span class="s1">&#39;filename&#39;</span><span class="p">,</span>
+    <span class="n">y_col</span><span class="o">=</span><span class="s1">&#39;class&#39;</span><span class="p">,</span>
+    <span class="n">weight_col</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">target_size</span><span class="o">=</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">),</span>
+    <span class="n">color_mode</span><span class="o">=</span><span class="s1">&#39;rgb&#39;</span><span class="p">,</span>
+    <span class="n">classes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">class_mode</span><span class="o">=</span><span class="s1">&#39;categorical&#39;</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>
+    <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">save_to_dir</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">save_prefix</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">save_format</span><span class="o">=</span><span class="s1">&#39;png&#39;</span><span class="p">,</span>
+    <span class="n">subset</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">,</span>
+    <span class="n">validate_filenames</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Takes the dataframe and the path to a directory
+ and generates batches of augmented/normalized data.</p>
+<p><strong>A simple tutorial can be found </strong><a href="http://bit.ly/keras_flow_from_dataframe">here</a>.</p>
+<h1 id="arguments_4">Arguments</h1>
+<div class="codehilite"><pre><span></span><span class="n">dataframe</span><span class="p">:</span> <span class="n">Pandas</span> <span class="n">dataframe</span> <span class="n">containing</span> <span class="n">the</span> <span class="n">filepaths</span> <span class="n">relative</span> <span class="k">to</span>
+    <span class="ss">`directory`</span> <span class="p">(</span><span class="k">or</span> <span class="n">absolute</span> <span class="n">paths</span> <span class="k">if</span> <span class="ss">`directory`</span> <span class="k">is</span> <span class="n">None</span><span class="p">)</span> <span class="n">of</span> <span class="n">the</span>
+    <span class="n">images</span> <span class="k">in</span> <span class="n">a</span> <span class="n">string</span> <span class="k">column</span><span class="p">.</span> <span class="n">It</span> <span class="n">should</span> <span class="n">include</span> <span class="n">other</span> <span class="k">column</span><span class="o">/</span><span class="n">s</span>
+    <span class="n">depending</span> <span class="k">on</span> <span class="n">the</span> <span class="ss">`class_mode`</span><span class="p">:</span>
+    <span class="o">-</span> <span class="k">if</span> <span class="ss">`class_mode`</span> <span class="k">is</span> <span class="ss">`&quot;categorical&quot;`</span> <span class="p">(</span><span class="k">default</span> <span class="n">value</span><span class="p">)</span> <span class="n">it</span> <span class="n">must</span>
+        <span class="n">include</span> <span class="n">the</span> <span class="ss">`y_col`</span> <span class="k">column</span> <span class="k">with</span> <span class="n">the</span> <span class="n">class</span><span class="o">/</span><span class="n">es</span> <span class="n">of</span> <span class="k">each</span> <span class="n">image</span><span class="p">.</span>
+        <span class="k">Values</span> <span class="k">in</span> <span class="k">column</span> <span class="n">can</span> <span class="n">be</span> <span class="n">string</span><span class="o">/</span><span class="n">list</span><span class="o">/</span><span class="n">tuple</span> <span class="k">if</span> <span class="n">a</span> <span class="n">single</span> <span class="n">class</span>
+        <span class="k">or</span> <span class="n">list</span><span class="o">/</span><span class="n">tuple</span> <span class="k">if</span> <span class="n">multiple</span> <span class="n">classes</span><span class="p">.</span>
+    <span class="o">-</span> <span class="k">if</span> <span class="ss">`class_mode`</span> <span class="k">is</span> <span class="ss">`&quot;binary&quot;`</span> <span class="k">or</span> <span class="ss">`&quot;sparse&quot;`</span> <span class="n">it</span> <span class="n">must</span> <span class="n">include</span>
+        <span class="n">the</span> <span class="n">given</span> <span class="ss">`y_col`</span> <span class="k">column</span> <span class="k">with</span> <span class="n">class</span> <span class="k">values</span> <span class="k">as</span> <span class="n">strings</span><span class="p">.</span>
+    <span class="o">-</span> <span class="k">if</span> <span class="ss">`class_mode`</span> <span class="k">is</span> <span class="ss">`&quot;raw&quot;`</span> <span class="k">or</span> <span class="ss">`&quot;multi_output&quot;`</span> <span class="n">it</span> <span class="n">should</span> <span class="n">contain</span>
+    <span class="n">the</span> <span class="n">columns</span> <span class="n">specified</span> <span class="k">in</span> <span class="ss">`y_col`</span><span class="p">.</span>
+    <span class="o">-</span> <span class="k">if</span> <span class="ss">`class_mode`</span> <span class="k">is</span> <span class="ss">`&quot;input&quot;`</span> <span class="k">or</span> <span class="ss">`None`</span> <span class="n">no</span> <span class="n">extra</span> <span class="k">column</span> <span class="k">is</span> <span class="n">needed</span><span class="p">.</span>
+<span class="n">directory</span><span class="p">:</span> <span class="n">string</span><span class="p">,</span> <span class="n">path</span> <span class="k">to</span> <span class="n">the</span> <span class="n">directory</span> <span class="k">to</span> <span class="k">read</span> <span class="n">images</span> <span class="k">from</span><span class="p">.</span> <span class="k">If</span> <span class="ss">`None`</span><span class="p">,</span>
+    <span class="n">data</span> <span class="k">in</span> <span class="ss">`x_col`</span> <span class="k">column</span> <span class="n">should</span> <span class="n">be</span> <span class="n">absolute</span> <span class="n">paths</span><span class="p">.</span>
+<span class="n">x_col</span><span class="p">:</span> <span class="n">string</span><span class="p">,</span> <span class="k">column</span> <span class="k">in</span> <span class="ss">`dataframe`</span> <span class="n">that</span> <span class="n">contains</span> <span class="n">the</span> <span class="nf">filenames</span> <span class="p">(</span><span class="k">or</span>
+    <span class="n">absolute</span> <span class="n">paths</span> <span class="k">if</span> <span class="ss">`directory`</span> <span class="k">is</span> <span class="ss">`None`</span><span class="p">).</span>
+<span class="n">y_col</span><span class="p">:</span> <span class="n">string</span> <span class="k">or</span> <span class="n">list</span><span class="p">,</span> <span class="k">column</span><span class="o">/</span><span class="n">s</span> <span class="k">in</span> <span class="ss">`dataframe`</span> <span class="n">that</span> <span class="n">has</span> <span class="n">the</span> <span class="n">target</span> <span class="n">data</span><span class="p">.</span>
+<span class="n">weight_col</span><span class="p">:</span> <span class="n">string</span><span class="p">,</span> <span class="k">column</span> <span class="k">in</span> <span class="ss">`dataframe`</span> <span class="n">that</span> <span class="n">contains</span> <span class="n">the</span> <span class="n">sample</span>
+    <span class="n">weights</span><span class="p">.</span> <span class="k">Default</span><span class="p">:</span> <span class="ss">`None`</span><span class="p">.</span>
+<span class="n">target_size</span><span class="p">:</span> <span class="n">tuple</span> <span class="n">of</span> <span class="n">integers</span> <span class="ss">`(height, width)`</span><span class="p">,</span> <span class="k">default</span><span class="p">:</span> <span class="ss">`(256, 256)`</span><span class="p">.</span>
+    <span class="n">The</span> <span class="n">dimensions</span> <span class="k">to</span> <span class="n">which</span> <span class="k">all</span> <span class="n">images</span> <span class="n">found</span> <span class="n">will</span> <span class="n">be</span> <span class="n">resized</span><span class="p">.</span>
+<span class="n">color_mode</span><span class="p">:</span> <span class="n">one</span> <span class="n">of</span> <span class="s2">&quot;grayscale&quot;</span><span class="p">,</span> <span class="s2">&quot;rgb&quot;</span><span class="p">,</span> <span class="s2">&quot;rgba&quot;</span><span class="p">.</span> <span class="k">Default</span><span class="p">:</span> <span class="s2">&quot;rgb&quot;</span><span class="p">.</span>
+    <span class="n">Whether</span> <span class="n">the</span> <span class="n">images</span> <span class="n">will</span> <span class="n">be</span> <span class="n">converted</span> <span class="k">to</span> <span class="n">have</span> <span class="mi">1</span> <span class="k">or</span> <span class="mi">3</span> <span class="n">color</span> <span class="n">channels</span><span class="p">.</span>
+<span class="n">classes</span><span class="p">:</span> <span class="n">optional</span> <span class="n">list</span> <span class="n">of</span> <span class="nf">classes</span> <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">g</span><span class="p">.</span> <span class="ss">`[&#39;dogs&#39;, &#39;cats&#39;]`</span><span class="p">).</span>
+    <span class="k">Default</span><span class="p">:</span> <span class="n">None</span><span class="p">.</span> <span class="k">If</span> <span class="k">not</span> <span class="n">provided</span><span class="p">,</span> <span class="n">the</span> <span class="n">list</span> <span class="n">of</span> <span class="n">classes</span> <span class="n">will</span> <span class="n">be</span>
+    <span class="n">automatically</span> <span class="n">inferred</span> <span class="k">from</span> <span class="n">the</span> <span class="ss">`y_col`</span><span class="p">,</span>
+    <span class="n">which</span> <span class="n">will</span> <span class="n">map</span> <span class="k">to</span> <span class="n">the</span> <span class="n">label</span> <span class="n">indices</span><span class="p">,</span> <span class="n">will</span> <span class="n">be</span> <span class="n">alphanumeric</span><span class="p">).</span>
+    <span class="n">The</span> <span class="n">dictionary</span> <span class="n">containing</span> <span class="n">the</span> <span class="n">mapping</span> <span class="k">from</span> <span class="n">class</span> <span class="n">names</span> <span class="k">to</span> <span class="n">class</span>
+    <span class="n">indices</span> <span class="n">can</span> <span class="n">be</span> <span class="n">obtained</span> <span class="n">via</span> <span class="n">the</span> <span class="n">attribute</span> <span class="ss">`class_indices`</span><span class="p">.</span>
+<span class="n">class_mode</span><span class="p">:</span> <span class="n">one</span> <span class="n">of</span> <span class="s2">&quot;binary&quot;</span><span class="p">,</span> <span class="s2">&quot;categorical&quot;</span><span class="p">,</span> <span class="s2">&quot;input&quot;</span><span class="p">,</span> <span class="s2">&quot;multi_output&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;raw&quot;</span><span class="p">,</span> <span class="n">sparse</span><span class="s2">&quot; or None. Default: &quot;</span><span class="n">categorical</span><span class="s2">&quot;.</span>
+<span class="s2">    Mode for yielding the targets:</span>
+<span class="s2">    - `&quot;</span><span class="k">binary</span><span class="s2">&quot;`: 1D numpy array of binary labels,</span>
+<span class="s2">    - `&quot;</span><span class="n">categorical</span><span class="s2">&quot;`: 2D numpy array of one-hot encoded labels.</span>
+<span class="s2">        Supports multi-label output.</span>
+<span class="s2">    - `&quot;</span><span class="n">input</span><span class="s2">&quot;`: images identical to input images (mainly used to</span>
+<span class="s2">        work with autoencoders),</span>
+<span class="s2">    - `&quot;</span><span class="n">multi_output</span><span class="s2">&quot;`: list with the values of the different columns,</span>
+<span class="s2">    - `&quot;</span><span class="n">raw</span><span class="s2">&quot;`: numpy array of values in `y_col` column(s),</span>
+<span class="s2">    - `&quot;</span><span class="n">sparse</span><span class="s2">&quot;`: 1D numpy array of integer labels,</span>
+<span class="s2">    - `None`, no targets are returned (the generator will only yield</span>
+<span class="s2">        batches of image data, which is useful to use in</span>
+<span class="s2">        `model.predict_generator()`).</span>
+<span class="s2">batch_size: size of the batches of data (default: 32).</span>
+<span class="s2">shuffle: whether to shuffle the data (default: True)</span>
+<span class="s2">seed: optional random seed for shuffling and transformations.</span>
+<span class="s2">save_to_dir: None or str (default: None).</span>
+<span class="s2">    This allows you to optionally specify a directory</span>
+<span class="s2">    to which to save the augmented pictures being generated</span>
+<span class="s2">    (useful for visualizing what you are doing).</span>
+<span class="s2">save_prefix: str. Prefix to use for filenames of saved pictures</span>
+<span class="s2">    (only relevant if `save_to_dir` is set).</span>
+<span class="s2">save_format: one of &quot;</span><span class="n">png</span><span class="s2">&quot;, &quot;</span><span class="n">jpeg</span><span class="s2">&quot;</span>
+<span class="s2">    (only relevant if `save_to_dir` is set). Default: &quot;</span><span class="n">png</span><span class="s2">&quot;.</span>
+<span class="s2">follow_links: whether to follow symlinks inside class subdirectories</span>
+<span class="s2">    (default: False).</span>
+<span class="s2">subset: Subset of data (`&quot;</span><span class="n">training</span><span class="s2">&quot;` or `&quot;</span><span class="n">validation</span><span class="s2">&quot;`) if</span>
+<span class="s2">    `validation_split` is set in `ImageDataGenerator`.</span>
+<span class="s2">interpolation: Interpolation method used to resample the image if the</span>
+<span class="s2">    target size is different from that of the loaded image.</span>
+<span class="s2">    Supported methods are `&quot;</span><span class="n">nearest</span><span class="s2">&quot;`, `&quot;</span><span class="n">bilinear</span><span class="s2">&quot;`, and `&quot;</span><span class="n">bicubic</span><span class="s2">&quot;`.</span>
+<span class="s2">    If PIL version 1.1.3 or newer is installed, `&quot;</span><span class="n">lanczos</span><span class="s2">&quot;` is also</span>
+<span class="s2">    supported. If PIL version 3.4.0 or newer is installed, `&quot;</span><span class="n">box</span><span class="s2">&quot;` and</span>
+<span class="s2">    `&quot;</span><span class="n">hamming</span><span class="s2">&quot;` are also supported. By default, `&quot;</span><span class="n">nearest</span><span class="err">&quot;</span><span class="ss">` is used.</span>
+<span class="ss">validate_filenames: Boolean, whether to validate image filenames in</span>
+<span class="ss">    `</span><span class="n">x_col</span><span class="ss">`. If `</span><span class="no">True</span><span class="ss">`, invalid images will be ignored. Disabling this</span>
+<span class="ss">    option can lead to speed-up in the execution of this function.</span>
+<span class="ss">    Default: `</span><span class="no">True</span><span class="o">`</span><span class="p">.</span>
+</pre></div>
+
+
+<h1 id="returns_2">Returns</h1>
+<div class="codehilite"><pre><span></span><span class="n">A</span> <span class="ss">`DataFrameIterator`</span> <span class="n">yielding</span> <span class="n">tuples</span> <span class="n">of</span> <span class="ss">`(x, y)`</span>
+<span class="k">where</span> <span class="ss">`x`</span> <span class="k">is</span> <span class="n">a</span> <span class="n">numpy</span> <span class="n">array</span> <span class="n">containing</span> <span class="n">a</span> <span class="n">batch</span>
+<span class="n">of</span> <span class="n">images</span> <span class="k">with</span> <span class="n">shape</span> <span class="ss">`(batch_size, *target_size, channels)`</span>
+<span class="k">and</span> <span class="ss">`y`</span> <span class="k">is</span> <span class="n">a</span> <span class="n">numpy</span> <span class="n">array</span> <span class="n">of</span> <span class="n">corresponding</span> <span class="n">labels</span><span class="p">.</span>
+</pre></div>
+
+
+<h3 id="flow_from_directory"><code>flow_from_directory</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">flow_from_directory</span><span class="p">(</span>
+    <span class="n">directory</span><span class="p">,</span>
+    <span class="n">target_size</span><span class="o">=</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">),</span>
+    <span class="n">color_mode</span><span class="o">=</span><span class="s1">&#39;rgb&#39;</span><span class="p">,</span>
+    <span class="n">classes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">class_mode</span><span class="o">=</span><span class="s1">&#39;categorical&#39;</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>
+    <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">save_to_dir</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">save_prefix</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">save_format</span><span class="o">=</span><span class="s1">&#39;png&#39;</span><span class="p">,</span>
+    <span class="n">follow_links</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">subset</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Takes the path to a directory &amp; generates batches of augmented data.</p>
+<h1 id="arguments_5">Arguments</h1>
+<div class="codehilite"><pre><span></span><span class="nl">directory</span><span class="p">:</span> <span class="n">string</span><span class="p">,</span> <span class="n">path</span> <span class="n">to</span> <span class="n">the</span> <span class="n">target</span> <span class="n">directory</span><span class="p">.</span>
+    <span class="n">It</span> <span class="n">should</span> <span class="n">contain</span> <span class="n">one</span> <span class="n">subdirectory</span> <span class="n">per</span> <span class="k">class</span><span class="p">.</span>
+    <span class="n">Any</span> <span class="n">PNG</span><span class="p">,</span> <span class="n">JPG</span><span class="p">,</span> <span class="n">BMP</span><span class="p">,</span> <span class="n">PPM</span> <span class="n">or</span> <span class="n">TIF</span> <span class="n">images</span>
+    <span class="n">inside</span> <span class="n">each</span> <span class="n">of</span> <span class="n">the</span> <span class="n">subdirectories</span> <span class="n">directory</span> <span class="n">tree</span>
+    <span class="n">will</span> <span class="n">be</span> <span class="n">included</span> <span class="k">in</span> <span class="n">the</span> <span class="n">generator</span><span class="p">.</span>
+    <span class="n">See</span> <span class="p">[</span><span class="n">this</span> <span class="n">script</span><span class="p">](</span>
+    <span class="nl">https</span><span class="p">:</span><span class="c1">//gist.github.com/fchollet/0830affa1f7f19fd47b06d4cf89ed44d)</span>
+    <span class="k">for</span> <span class="n">more</span> <span class="n">details</span><span class="p">.</span>
+<span class="nl">target_size</span><span class="p">:</span> <span class="n">Tuple</span> <span class="n">of</span> <span class="n">integers</span> <span class="err">`</span><span class="p">(</span><span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">)</span><span class="err">`</span><span class="p">,</span>
+    <span class="k">default</span><span class="o">:</span> <span class="err">`</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">)</span><span class="err">`</span><span class="p">.</span>
+    <span class="n">The</span> <span class="n">dimensions</span> <span class="n">to</span> <span class="n">which</span> <span class="n">all</span> <span class="n">images</span> <span class="n">found</span> <span class="n">will</span> <span class="n">be</span> <span class="n">resized</span><span class="p">.</span>
+<span class="nl">color_mode</span><span class="p">:</span> <span class="n">One</span> <span class="n">of</span> <span class="s">&quot;grayscale&quot;</span><span class="p">,</span> <span class="s">&quot;rgb&quot;</span><span class="p">,</span> <span class="s">&quot;rgba&quot;</span><span class="p">.</span> <span class="nl">Default</span><span class="p">:</span> <span class="s">&quot;rgb&quot;</span><span class="p">.</span>
+    <span class="n">Whether</span> <span class="n">the</span> <span class="n">images</span> <span class="n">will</span> <span class="n">be</span> <span class="n">converted</span> <span class="n">to</span>
+    <span class="n">have</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">or</span> <span class="mi">4</span> <span class="n">channels</span><span class="p">.</span>
+<span class="nl">classes</span><span class="p">:</span> <span class="n">Optional</span> <span class="n">list</span> <span class="n">of</span> <span class="k">class</span> <span class="n">subdirectories</span>
+    <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">g</span><span class="p">.</span> <span class="err">`</span><span class="p">[</span><span class="err">&#39;</span><span class="n">dogs</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">cats</span><span class="err">&#39;</span><span class="p">]</span><span class="err">`</span><span class="p">).</span> <span class="nl">Default</span><span class="p">:</span> <span class="n">None</span><span class="p">.</span>
+    <span class="n">If</span> <span class="n">not</span> <span class="n">provided</span><span class="p">,</span> <span class="n">the</span> <span class="n">list</span> <span class="n">of</span> <span class="n">classes</span> <span class="n">will</span> <span class="n">be</span> <span class="n">automatically</span>
+    <span class="n">inferred</span> <span class="n">from</span> <span class="n">the</span> <span class="n">subdirectory</span> <span class="n">names</span><span class="o">/</span><span class="n">structure</span>
+    <span class="n">under</span> <span class="err">`</span><span class="n">directory</span><span class="err">`</span><span class="p">,</span> <span class="n">where</span> <span class="n">each</span> <span class="n">subdirectory</span> <span class="n">will</span>
+    <span class="n">be</span> <span class="n">treated</span> <span class="n">as</span> <span class="n">a</span> <span class="n">different</span> <span class="k">class</span>
+    <span class="p">(</span><span class="n">and</span> <span class="n">the</span> <span class="n">order</span> <span class="n">of</span> <span class="n">the</span> <span class="n">classes</span><span class="p">,</span> <span class="n">which</span> <span class="n">will</span> <span class="n">map</span> <span class="n">to</span> <span class="n">the</span> <span class="n">label</span>
+    <span class="n">indices</span><span class="p">,</span> <span class="n">will</span> <span class="n">be</span> <span class="n">alphanumeric</span><span class="p">).</span>
+    <span class="n">The</span> <span class="n">dictionary</span> <span class="n">containing</span> <span class="n">the</span> <span class="n">mapping</span> <span class="n">from</span> <span class="k">class</span> <span class="n">names</span> <span class="n">to</span> <span class="k">class</span>
+    <span class="n">indices</span> <span class="n">can</span> <span class="n">be</span> <span class="n">obtained</span> <span class="n">via</span> <span class="n">the</span> <span class="n">attribute</span> <span class="err">`</span><span class="n">class_indices</span><span class="err">`</span><span class="p">.</span>
+<span class="nl">class_mode</span><span class="p">:</span> <span class="n">One</span> <span class="n">of</span> <span class="s">&quot;categorical&quot;</span><span class="p">,</span> <span class="s">&quot;binary&quot;</span><span class="p">,</span> <span class="s">&quot;sparse&quot;</span><span class="p">,</span>
+    <span class="s">&quot;input&quot;</span><span class="p">,</span> <span class="n">or</span> <span class="n">None</span><span class="p">.</span> <span class="nl">Default</span><span class="p">:</span> <span class="s">&quot;categorical&quot;</span><span class="p">.</span>
+    <span class="n">Determines</span> <span class="n">the</span> <span class="n">type</span> <span class="n">of</span> <span class="n">label</span> <span class="n">arrays</span> <span class="n">that</span> <span class="n">are</span> <span class="nl">returned</span><span class="p">:</span>
+    <span class="o">-</span> <span class="s">&quot;categorical&quot;</span> <span class="n">will</span> <span class="n">be</span> <span class="mi">2</span><span class="n">D</span> <span class="n">one</span><span class="o">-</span><span class="n">hot</span> <span class="n">encoded</span> <span class="n">labels</span><span class="p">,</span>
+    <span class="o">-</span> <span class="s">&quot;binary&quot;</span> <span class="n">will</span> <span class="n">be</span> <span class="mi">1</span><span class="n">D</span> <span class="n">binary</span> <span class="n">labels</span><span class="p">,</span>
+        <span class="s">&quot;sparse&quot;</span> <span class="n">will</span> <span class="n">be</span> <span class="mi">1</span><span class="n">D</span> <span class="n">integer</span> <span class="n">labels</span><span class="p">,</span>
+    <span class="o">-</span> <span class="s">&quot;input&quot;</span> <span class="n">will</span> <span class="n">be</span> <span class="n">images</span> <span class="n">identical</span>
+        <span class="n">to</span> <span class="n">input</span> <span class="n">images</span> <span class="p">(</span><span class="n">mainly</span> <span class="n">used</span> <span class="n">to</span> <span class="n">work</span> <span class="n">with</span> <span class="n">autoencoders</span><span class="p">).</span>
+    <span class="o">-</span> <span class="n">If</span> <span class="n">None</span><span class="p">,</span> <span class="n">no</span> <span class="n">labels</span> <span class="n">are</span> <span class="n">returned</span>
+      <span class="p">(</span><span class="n">the</span> <span class="n">generator</span> <span class="n">will</span> <span class="n">only</span> <span class="n">yield</span> <span class="n">batches</span> <span class="n">of</span> <span class="n">image</span> <span class="n">data</span><span class="p">,</span>
+      <span class="n">which</span> <span class="n">is</span> <span class="n">useful</span> <span class="n">to</span> <span class="n">use</span> <span class="n">with</span> <span class="err">`</span><span class="n">model</span><span class="p">.</span><span class="n">predict_generator</span><span class="p">()</span><span class="err">`</span><span class="p">).</span>
+      <span class="n">Please</span> <span class="n">note</span> <span class="n">that</span> <span class="k">in</span> <span class="k">case</span> <span class="n">of</span> <span class="n">class_mode</span> <span class="n">None</span><span class="p">,</span>
+      <span class="n">the</span> <span class="n">data</span> <span class="n">still</span> <span class="n">needs</span> <span class="n">to</span> <span class="n">reside</span> <span class="k">in</span> <span class="n">a</span> <span class="n">subdirectory</span>
+      <span class="n">of</span> <span class="err">`</span><span class="n">directory</span><span class="err">`</span> <span class="k">for</span> <span class="n">it</span> <span class="n">to</span> <span class="n">work</span> <span class="n">correctly</span><span class="p">.</span>
+<span class="nl">batch_size</span><span class="p">:</span> <span class="n">Size</span> <span class="n">of</span> <span class="n">the</span> <span class="n">batches</span> <span class="n">of</span> <span class="n">data</span> <span class="p">(</span><span class="k">default</span><span class="o">:</span> <span class="mi">32</span><span class="p">).</span>
+<span class="nl">shuffle</span><span class="p">:</span> <span class="n">Whether</span> <span class="n">to</span> <span class="n">shuffle</span> <span class="n">the</span> <span class="n">data</span> <span class="p">(</span><span class="k">default</span><span class="o">:</span> <span class="n">True</span><span class="p">)</span>
+    <span class="n">If</span> <span class="n">set</span> <span class="n">to</span> <span class="n">False</span><span class="p">,</span> <span class="n">sorts</span> <span class="n">the</span> <span class="n">data</span> <span class="k">in</span> <span class="n">alphanumeric</span> <span class="n">order</span><span class="p">.</span>
+<span class="nl">seed</span><span class="p">:</span> <span class="n">Optional</span> <span class="n">random</span> <span class="n">seed</span> <span class="k">for</span> <span class="n">shuffling</span> <span class="n">and</span> <span class="n">transformations</span><span class="p">.</span>
+<span class="nl">save_to_dir</span><span class="p">:</span> <span class="n">None</span> <span class="n">or</span> <span class="n">str</span> <span class="p">(</span><span class="k">default</span><span class="o">:</span> <span class="n">None</span><span class="p">).</span>
+    <span class="n">This</span> <span class="n">allows</span> <span class="n">you</span> <span class="n">to</span> <span class="n">optionally</span> <span class="n">specify</span>
+    <span class="n">a</span> <span class="n">directory</span> <span class="n">to</span> <span class="n">which</span> <span class="n">to</span> <span class="n">save</span>
+    <span class="n">the</span> <span class="n">augmented</span> <span class="n">pictures</span> <span class="n">being</span> <span class="n">generated</span>
+    <span class="p">(</span><span class="n">useful</span> <span class="k">for</span> <span class="n">visualizing</span> <span class="n">what</span> <span class="n">you</span> <span class="n">are</span> <span class="n">doing</span><span class="p">).</span>
+<span class="nl">save_prefix</span><span class="p">:</span> <span class="n">Str</span><span class="p">.</span> <span class="n">Prefix</span> <span class="n">to</span> <span class="n">use</span> <span class="k">for</span> <span class="n">filenames</span> <span class="n">of</span> <span class="n">saved</span> <span class="n">pictures</span>
+    <span class="p">(</span><span class="n">only</span> <span class="n">relevant</span> <span class="k">if</span> <span class="err">`</span><span class="n">save_to_dir</span><span class="err">`</span> <span class="n">is</span> <span class="n">set</span><span class="p">).</span>
+<span class="nl">save_format</span><span class="p">:</span> <span class="n">One</span> <span class="n">of</span> <span class="s">&quot;png&quot;</span><span class="p">,</span> <span class="s">&quot;jpeg&quot;</span>
+    <span class="p">(</span><span class="n">only</span> <span class="n">relevant</span> <span class="k">if</span> <span class="err">`</span><span class="n">save_to_dir</span><span class="err">`</span> <span class="n">is</span> <span class="n">set</span><span class="p">).</span> <span class="nl">Default</span><span class="p">:</span> <span class="s">&quot;png&quot;</span><span class="p">.</span>
+<span class="nl">follow_links</span><span class="p">:</span> <span class="n">Whether</span> <span class="n">to</span> <span class="n">follow</span> <span class="n">symlinks</span> <span class="n">inside</span>
+    <span class="k">class</span> <span class="n">subdirectories</span> <span class="p">(</span><span class="k">default</span><span class="o">:</span> <span class="n">False</span><span class="p">).</span>
+<span class="nl">subset</span><span class="p">:</span> <span class="n">Subset</span> <span class="n">of</span> <span class="n">data</span> <span class="p">(</span><span class="err">`</span><span class="s">&quot;training&quot;</span><span class="err">`</span> <span class="n">or</span> <span class="err">`</span><span class="s">&quot;validation&quot;</span><span class="err">`</span><span class="p">)</span> <span class="k">if</span>
+    <span class="err">`</span><span class="n">validation_split</span><span class="err">`</span> <span class="n">is</span> <span class="n">set</span> <span class="k">in</span> <span class="err">`</span><span class="n">ImageDataGenerator</span><span class="err">`</span><span class="p">.</span>
+<span class="nl">interpolation</span><span class="p">:</span> <span class="n">Interpolation</span> <span class="n">method</span> <span class="n">used</span> <span class="n">to</span>
+    <span class="n">resample</span> <span class="n">the</span> <span class="n">image</span> <span class="k">if</span> <span class="n">the</span>
+    <span class="n">target</span> <span class="n">size</span> <span class="n">is</span> <span class="n">different</span> <span class="n">from</span> <span class="n">that</span> <span class="n">of</span> <span class="n">the</span> <span class="n">loaded</span> <span class="n">image</span><span class="p">.</span>
+    <span class="n">Supported</span> <span class="n">methods</span> <span class="n">are</span> <span class="err">`</span><span class="s">&quot;nearest&quot;</span><span class="err">`</span><span class="p">,</span> <span class="err">`</span><span class="s">&quot;bilinear&quot;</span><span class="err">`</span><span class="p">,</span>
+    <span class="n">and</span> <span class="err">`</span><span class="s">&quot;bicubic&quot;</span><span class="err">`</span><span class="p">.</span>
+    <span class="n">If</span> <span class="n">PIL</span> <span class="n">version</span> <span class="mf">1.1.3</span> <span class="n">or</span> <span class="n">newer</span> <span class="n">is</span> <span class="n">installed</span><span class="p">,</span> <span class="err">`</span><span class="s">&quot;lanczos&quot;</span><span class="err">`</span> <span class="n">is</span> <span class="n">also</span>
+    <span class="n">supported</span><span class="p">.</span> <span class="n">If</span> <span class="n">PIL</span> <span class="n">version</span> <span class="mf">3.4.0</span> <span class="n">or</span> <span class="n">newer</span> <span class="n">is</span> <span class="n">installed</span><span class="p">,</span>
+    <span class="err">`</span><span class="s">&quot;box&quot;</span><span class="err">`</span> <span class="n">and</span> <span class="err">`</span><span class="s">&quot;hamming&quot;</span><span class="err">`</span> <span class="n">are</span> <span class="n">also</span> <span class="n">supported</span><span class="p">.</span>
+    <span class="n">By</span> <span class="k">default</span><span class="p">,</span> <span class="err">`</span><span class="s">&quot;nearest&quot;</span><span class="err">`</span> <span class="n">is</span> <span class="n">used</span><span class="p">.</span>
+</pre></div>
+
+
+<h1 id="returns_3">Returns</h1>
+<div class="codehilite"><pre><span></span><span class="n">A</span> <span class="ss">`DirectoryIterator`</span> <span class="n">yielding</span> <span class="n">tuples</span> <span class="n">of</span> <span class="ss">`(x, y)`</span>
+    <span class="k">where</span> <span class="ss">`x`</span> <span class="k">is</span> <span class="n">a</span> <span class="n">numpy</span> <span class="n">array</span> <span class="n">containing</span> <span class="n">a</span> <span class="n">batch</span>
+    <span class="n">of</span> <span class="n">images</span> <span class="k">with</span> <span class="n">shape</span> <span class="ss">`(batch_size, *target_size, channels)`</span>
+    <span class="k">and</span> <span class="ss">`y`</span> <span class="k">is</span> <span class="n">a</span> <span class="n">numpy</span> <span class="n">array</span> <span class="n">of</span> <span class="n">corresponding</span> <span class="n">labels</span><span class="p">.</span>
+</pre></div>
+
+
+<h3 id="get_random_transform"><code>get_random_transform</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">get_random_transform</span><span class="p">(</span>
+    <span class="n">img_shape</span><span class="p">,</span>
+    <span class="n">seed</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Generates random parameters for a transformation.</p>
+<h1 id="arguments_6">Arguments</h1>
+<div class="codehilite"><pre><span></span><span class="n">seed</span><span class="o">:</span> <span class="n">Random</span> <span class="n">seed</span><span class="o">.</span>
+<span class="n">img_shape</span><span class="o">:</span> <span class="n">Tuple</span> <span class="n">of</span> <span class="n">integers</span><span class="o">.</span>
+    <span class="n">Shape</span> <span class="n">of</span> <span class="n">the</span> <span class="n">image</span> <span class="n">that</span> <span class="k">is</span> <span class="n">transformed</span><span class="o">.</span>
+</pre></div>
+
+
+<h1 id="returns_4">Returns</h1>
+<div class="codehilite"><pre><span></span><span class="err">A dictionary containing randomly chosen parameters describing the</span>
+<span class="err">transformation.</span>
+</pre></div>
+
+
+<h3 id="random_transform"><code>random_transform</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">random_transform</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">seed</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Applies a random transformation to an image.</p>
+<h1 id="arguments_7">Arguments</h1>
+<div class="codehilite"><pre><span></span><span class="n">x</span><span class="o">:</span> <span class="mi">3</span><span class="n">D</span> <span class="n">tensor</span><span class="o">,</span> <span class="n">single</span> <span class="n">image</span><span class="o">.</span>
+<span class="n">seed</span><span class="o">:</span> <span class="n">Random</span> <span class="n">seed</span><span class="o">.</span>
+</pre></div>
+
+
+<h1 id="returns_5">Returns</h1>
+<div class="codehilite"><pre><span></span><span class="err">A randomly transformed version of the input (same shape).</span>
+</pre></div>
+
+
+<h3 id="standardize"><code>standardize</code></h3>
+
+<div class="codehilite"><pre><span></span><span class="n">standardize</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Applies the normalization configuration in-place to a batch of inputs.</p>
+<p><code>x</code> is changed in-place since the function is mainly used internally
+to standarize images and feed them to your network. If a copy of <code>x</code>
+would be created instead it would have a significant performance cost.
+If you want to apply this method without changing the input in-place
+you can call the method creating a copy before:</p>
+<p>standarize(np.copy(x))</p>
+<h1 id="arguments_8">Arguments</h1>
+<div class="codehilite"><pre><span></span><span class="n">x</span><span class="o">:</span> <span class="n">Batch</span> <span class="n">of</span> <span class="n">inputs</span> <span class="n">to</span> <span class="n">be</span> <span class="n">normalized</span><span class="o">.</span>
+</pre></div>
+
+
+<h1 id="returns_6">Returns</h1>
+<div class="codehilite"><pre><span></span><span class="err">The inputs, normalized.</span>
+</pre></div>
+    </body>
+    </html>
+   

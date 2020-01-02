@@ -1,0 +1,69 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.io.FixedLenFeature" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="shape"/>
+<meta itemprop="property" content="dtype"/>
+<meta itemprop="property" content="default_value"/>
+<meta itemprop="property" content="__new__"/>
+</div>
+
+<h1 id="tfiofixedlenfeature">tf.io.FixedLenFeature</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/parsing_ops.py">View source</a></p>
+<h2 id="class-fixedlenfeature">Class <code>FixedLenFeature</code></h2>
+<!-- Start diff -->
+
+<p>Configuration for parsing a fixed-length input feature.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v1.FixedLenFeature</code></li>
+<li>Class <code>tf.compat.v1.io.FixedLenFeature</code></li>
+<li>Class <code>tf.compat.v2.io.FixedLenFeature</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<p>To treat sparse input as dense, provide a <code>default_value</code>; otherwise,
+the parse functions will fail on any examples missing this feature.</p>
+<h4 id="fields">Fields:</h4>
+<ul>
+<li><b><code>shape</code></b>: Shape of input data.</li>
+<li><b><code>dtype</code></b>: Data type of input.</li>
+<li><b><code>default_value</code></b>: Value to be used if an example is missing this feature. It
+    must be compatible with <code>dtype</code> and of the specified <code>shape</code>.</li>
+</ul>
+<h2 id="__new__"><code>__new__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/parsing_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="nd">@staticmethod</span>
+<span class="fm">__new__</span><span class="p">(</span>
+    <span class="bp">cls</span><span class="p">,</span>
+    <span class="n">shape</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="p">,</span>
+    <span class="n">default_value</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Create new instance of FixedLenFeature(shape, dtype, default_value)</p>
+<h2 id="properties">Properties</h2>
+<h3 id="shape"><code>shape</code></h3>
+
+<h3 id="dtype"><code>dtype</code></h3>
+
+<h3 id="default_value"><code>default_value</code></h3>
+    </body>
+    </html>
+   

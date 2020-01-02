@@ -1,0 +1,81 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.saved_model.Asset" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="asset_path"/>
+<meta itemprop="property" content="__init__"/>
+</div>
+
+<h1 id="tfsaved_modelasset">tf.saved_model.Asset</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/tracking/tracking.py">View source</a></p>
+<h2 id="class-asset">Class <code>Asset</code></h2>
+<!-- Start diff -->
+
+<p>Represents a file asset to hermetically include in a SavedModel.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v1.saved_model.Asset</code></li>
+<li>Class <code>tf.compat.v2.saved_model.Asset</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<p>A SavedModel can include arbitrary files, called assets, that are needed
+for its use. For example a vocabulary file used initialize a lookup table.</p>
+<p>When a trackable object is exported via <a href="../../tf/saved_model/save.html"><code>tf.saved_model.save()</code></a>, all the
+<code>Asset</code>s reachable from it are copied into the SavedModel assets directory.
+Upon loading, the assets and the serialized functions that depend on them
+will refer to the correct filepaths inside the SavedModel directory.</p>
+<h4 id="example">Example:</h4>
+<div class="codehilite"><pre><span></span><span class="n">filename</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">saved_model</span><span class="p">.</span><span class="n">Asset</span><span class="p">(</span><span class="ss">&quot;file.txt&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="nv">@tf</span><span class="p">.</span><span class="k">function</span><span class="p">(</span><span class="n">input_signature</span><span class="o">=</span><span class="err">[]</span><span class="p">)</span><span class="w"></span>
+<span class="n">def</span><span class="w"> </span><span class="n">func</span><span class="p">()</span><span class="err">:</span><span class="w"></span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">io</span><span class="p">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="w"></span>
+
+<span class="n">trackable_obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">train</span><span class="p">.</span><span class="k">Checkpoint</span><span class="p">()</span><span class="w"></span>
+<span class="n">trackable_obj</span><span class="p">.</span><span class="n">func</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">func</span><span class="w"></span>
+<span class="n">trackable_obj</span><span class="p">.</span><span class="n">filename</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">filename</span><span class="w"></span>
+<span class="n">tf</span><span class="p">.</span><span class="n">saved_model</span><span class="p">.</span><span class="k">save</span><span class="p">(</span><span class="n">trackable_obj</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;/tmp/saved_model&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="err">#</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">created</span><span class="w"> </span><span class="n">SavedModel</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">hermetic</span><span class="p">,</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="n">does</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">depend</span><span class="w"> </span><span class="k">on</span><span class="w"></span>
+<span class="err">#</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">original</span><span class="w"> </span><span class="k">file</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">moved</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">another</span><span class="w"> </span><span class="k">path</span><span class="p">.</span><span class="w"></span>
+<span class="n">tf</span><span class="p">.</span><span class="n">io</span><span class="p">.</span><span class="n">gfile</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="ss">&quot;file.txt&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="n">tf</span><span class="p">.</span><span class="n">io</span><span class="p">.</span><span class="n">gfile</span><span class="p">.</span><span class="n">rename</span><span class="p">(</span><span class="ss">&quot;/tmp/saved_model&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;/tmp/new_location&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="n">reloaded_obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="n">saved_model</span><span class="p">.</span><span class="k">load</span><span class="p">(</span><span class="ss">&quot;/tmp/new_location&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="k">print</span><span class="p">(</span><span class="n">reloaded_obj</span><span class="p">.</span><span class="n">func</span><span class="p">())</span><span class="w"></span>
+</pre></div>
+
+
+<h4 id="attributes">Attributes:</h4>
+<ul>
+<li><b><code>asset_path</code></b>: A 0-D <a href="../../tf.html#string"><code>tf.string</code></a> tensor with path to the asset.</li>
+</ul>
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/tracking/tracking.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Record the full path to the asset.</p>
+<h2 id="properties">Properties</h2>
+<h3 id="asset_path"><code>asset_path</code></h3>
+
+<p>Fetch the current asset path.</p>
+    </body>
+    </html>
+   

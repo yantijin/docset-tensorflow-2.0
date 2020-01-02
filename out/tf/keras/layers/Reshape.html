@@ -1,0 +1,74 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.layers.Reshape" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__init__"/>
+</div>
+
+<h1 id="tfkeraslayersreshape">tf.keras.layers.Reshape</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/core.py">View source</a></p>
+<h2 id="class-reshape">Class <code>Reshape</code></h2>
+<!-- Start diff -->
+
+<p>Reshapes an output to a certain shape.</p>
+<p>Inherits From: <a href="../../../tf/keras/layers/Layer.html"><code>Layer</code></a></p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v1.keras.layers.Reshape</code></li>
+<li>Class <code>tf.compat.v2.keras.layers.Reshape</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<h4 id="arguments">Arguments:</h4>
+<ul>
+<li><b><code>target_shape</code></b>: Target shape. Tuple of integers,
+  does not include the samples dimension (batch size).</li>
+</ul>
+<h4 id="input-shape">Input shape:</h4>
+<p>Arbitrary, although all dimensions in the input shaped must be fixed.
+Use the keyword argument <code>input_shape</code>
+(tuple of integers, does not include the samples axis)
+when using this layer as the first layer in a model.</p>
+<h4 id="output-shape">Output shape:</h4>
+<p><code>(batch_size,) + target_shape</code></p>
+<h4 id="example">Example:</h4>
+<div class="codehilite"><pre><span></span><span class="c1"># as first layer in a Sequential model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Reshape</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,)))</span>
+<span class="c1"># now: model.output_shape == (None, 3, 4)</span>
+<span class="c1"># note: `None` is the batch dimension</span>
+
+<span class="c1"># as intermediate layer in a Sequential model</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Reshape</span><span class="p">((</span><span class="mi">6</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
+<span class="c1"># now: model.output_shape == (None, 6, 2)</span>
+
+<span class="c1"># also supports shape inference using `-1` as dimension</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>
+<span class="c1"># now: model.output_shape == (None, None, 2, 2)</span>
+</pre></div>
+
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/core.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">target_shape</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+    </body>
+    </html>
+   

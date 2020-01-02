@@ -1,0 +1,86 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.layers.AveragePooling3D" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__init__"/>
+</div>
+
+<h1 id="tfkeraslayersaveragepooling3d">tf.keras.layers.AveragePooling3D</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/pooling.py">View source</a></p>
+<h2 id="class-averagepooling3d">Class <code>AveragePooling3D</code></h2>
+<!-- Start diff -->
+
+<p>Average pooling operation for 3D data (spatial or spatio-temporal).</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v1.keras.layers.AveragePooling3D</code></li>
+<li>Class <code>tf.compat.v1.keras.layers.AvgPool3D</code></li>
+<li>Class <code>tf.compat.v2.keras.layers.AveragePooling3D</code></li>
+<li>Class <code>tf.compat.v2.keras.layers.AvgPool3D</code></li>
+<li>Class <code>tf.keras.layers.AvgPool3D</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<h4 id="arguments">Arguments:</h4>
+<ul>
+<li><b><code>pool_size</code></b>: tuple of 3 integers,
+  factors by which to downscale (dim1, dim2, dim3).
+  <code>(2, 2, 2)</code> will halve the size of the 3D input in each dimension.</li>
+<li><b><code>strides</code></b>: tuple of 3 integers, or None. Strides values.</li>
+<li><b><code>padding</code></b>: One of <code>"valid"</code> or <code>"same"</code> (case-insensitive).</li>
+<li><b><code>data_format</code></b>: A string,
+  one of <code>channels_last</code> (default) or <code>channels_first</code>.
+  The ordering of the dimensions in the inputs.
+  <code>channels_last</code> corresponds to inputs with shape
+  <code>(batch, spatial_dim1, spatial_dim2, spatial_dim3, channels)</code>
+  while <code>channels_first</code> corresponds to inputs with shape
+  <code>(batch, channels, spatial_dim1, spatial_dim2, spatial_dim3)</code>.
+  It defaults to the <code>image_data_format</code> value found in your
+  Keras config file at <code>~/.keras/keras.json</code>.
+  If you never set it, then it will be "channels_last".</li>
+</ul>
+<h4 id="input-shape">Input shape:</h4>
+<ul>
+<li>If <code>data_format='channels_last'</code>:
+  5D tensor with shape:
+  <code>(batch_size, spatial_dim1, spatial_dim2, spatial_dim3, channels)</code></li>
+<li>If <code>data_format='channels_first'</code>:
+  5D tensor with shape:
+  <code>(batch_size, channels, spatial_dim1, spatial_dim2, spatial_dim3)</code></li>
+</ul>
+<h4 id="output-shape">Output shape:</h4>
+<ul>
+<li>If <code>data_format='channels_last'</code>:
+  5D tensor with shape:
+  <code>(batch_size, pooled_dim1, pooled_dim2, pooled_dim3, channels)</code></li>
+<li>If <code>data_format='channels_first'</code>:
+  5D tensor with shape:
+  <code>(batch_size, channels, pooled_dim1, pooled_dim2, pooled_dim3)</code></li>
+</ul>
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/pooling.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">pool_size</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+    <span class="n">strides</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;valid&#39;</span><span class="p">,</span>
+    <span class="n">data_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+    </body>
+    </html>
+   

@@ -1,0 +1,83 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.sparse.softmax" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfsparsesoftmax">tf.sparse.softmax</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/sparse_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Applies softmax to a batched N-D <code>SparseTensor</code>.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.sparse.softmax</code></li>
+<li><code>tf.compat.v1.sparse_softmax</code></li>
+<li><code>tf.compat.v2.sparse.softmax</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span>
+    <span class="n">sp_input</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>The inputs represent an N-D SparseTensor with logical shape <code>[..., B, C]</code>
+(where <code>N &gt;= 2</code>), and with indices sorted in the canonical lexicographic
+order.</p>
+<p>This op is equivalent to applying the normal <a href="../../tf/nn/softmax.html"><code>tf.nn.softmax()</code></a> to each
+innermost logical submatrix with shape <code>[B, C]</code>, but with the catch that <em>the
+implicitly zero elements do not participate</em>.  Specifically, the algorithm is
+equivalent to:</p>
+<p>(1) Applies <a href="../../tf/nn/softmax.html"><code>tf.nn.softmax()</code></a> to a densified view of each innermost
+      submatrix with shape <code>[B, C]</code>, along the size-C dimension;
+  (2) Masks out the original implicitly-zero locations;
+  (3) Renormalizes the remaining elements.</p>
+<p>Hence, the <code>SparseTensor</code> result has exactly the same non-zero indices and
+shape.</p>
+<h4 id="example">Example:</h4>
+<div class="codehilite"><pre><span></span><span class="c1"># First batch:</span>
+<span class="c1"># [?   e.]</span>
+<span class="c1"># [1.  ? ]</span>
+<span class="c1"># Second batch:</span>
+<span class="c1"># [e   ? ]</span>
+<span class="c1"># [e   e ]</span>
+<span class="n">shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>  <span class="c1"># 3-D SparseTensor</span>
+<span class="n">values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([[[</span><span class="mf">0.</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">e</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">]],</span> <span class="p">[[</span><span class="n">np</span><span class="o">.</span><span class="n">e</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">e</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">e</span><span class="p">]]])</span>
+<span class="n">indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">values</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">SparseTensor</span><span class="p">(</span><span class="n">indices</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">shape</span><span class="p">))</span>
+<span class="c1"># ...returning a 3-D SparseTensor, equivalent to:</span>
+<span class="c1"># [?   1.]     [1    ?]</span>
+<span class="c1"># [1.  ? ] and [.5  .5]</span>
+<span class="c1"># where ? means implicitly zero.</span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>sp_input</code></b>: N-D <code>SparseTensor</code>, where <code>N &gt;= 2</code>.</li>
+<li><b><code>name</code></b>: optional name of the operation.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<ul>
+<li><b><code>output</code></b>: N-D <code>SparseTensor</code> representing the results.</li>
+</ul>
+    </body>
+    </html>
+   

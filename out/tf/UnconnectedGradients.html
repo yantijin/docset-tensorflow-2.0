@@ -1,0 +1,54 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../default.css" rel="stylesheet">
+    <link href="
+   ../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.UnconnectedGradients" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="NONE"/>
+<meta itemprop="property" content="ZERO"/>
+</div>
+
+<h1 id="tfunconnectedgradients">tf.UnconnectedGradients</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/unconnected_gradients.py">View source</a></p>
+<h2 id="class-unconnectedgradients">Class <code>UnconnectedGradients</code></h2>
+<!-- Start diff -->
+
+<p>Controls how gradient computation behaves when y does not depend on x.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v1.UnconnectedGradients</code></li>
+<li>Class <code>tf.compat.v2.UnconnectedGradients</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<p>The gradient of y with respect to x can be zero in two different ways: there
+could be no differentiable path in the graph connecting x to y (and so we can
+statically prove that the gradient is zero) or it could be that runtime values
+of tensors in a particular execution lead to a gradient of zero (say, if a
+relu unit happens to not be activated). To allow you to distinguish between
+these two cases you can choose what value gets returned for the gradient when
+there is no path in the graph from x to y:</p>
+<ul>
+<li><code>NONE</code>: Indicates that [None] will be returned if there is no path from x
+  to y</li>
+<li><code>ZERO</code>: Indicates that a zero tensor will be returned in the shape of x.</li>
+</ul>
+<h2 id="class-members">Class Members</h2>
+<ul>
+<li><code>NONE</code> <a id="NONE"></a></li>
+<li><code>ZERO</code> <a id="ZERO"></a></li>
+</ul>
+    </body>
+    </html>
+   

@@ -1,0 +1,47 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.tpu.cross_replica_sum" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1tpucross_replica_sum">tf.compat.v1.tpu.cross_replica_sum</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/tpu/ops/tpu_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Sum the input tensor across replicas according to group_assignment.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">tpu</span><span class="o">.</span><span class="n">cross_replica_sum</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">group_assignment</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>x</code></b>: The local tensor to the sum.</li>
+<li><b><code>group_assignment</code></b>: Optional 2d int32 lists with shape [num_groups,
+  num_replicas_per_group]. <code>group_assignment[i]</code> represents the replica
+  ids in the ith subgroup.</li>
+<li><b><code>name</code></b>: Optional op name.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>Tensor</code> which is summed across replicas.</p>
+    </body>
+    </html>
+   

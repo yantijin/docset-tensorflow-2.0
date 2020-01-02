@@ -1,0 +1,137 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.estimator.experimental.LinearSDCA" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="get_train_step"/>
+</div>
+
+<h1 id="tfestimatorexperimentallinearsdca">tf.estimator.experimental.LinearSDCA</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+
+<td>
+  <a target="_blank" href="https://github.com/tensorflow/estimator/tree/master/tensorflow_estimator/python/estimator/canned/linear.py">
+    <img src="https://www.tensorflow.org/images/GitHub-Mark-32px.png" />
+    View source on GitHub
+  </a>
+</td></table>
+
+<h2 id="class-linearsdca">Class <code>LinearSDCA</code></h2>
+<!-- Start diff -->
+
+<p>Stochastic Dual Coordinate Ascent helper for linear estimators.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v1.estimator.experimental.LinearSDCA</code></li>
+<li>Class <code>tf.compat.v2.estimator.experimental.LinearSDCA</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<p>Objects of this class are intended to be provided as the optimizer argument
+(though LinearSDCA objects do not implement the <code>tf.train.Optimizer</code> interface)
+when creating <a href="../../../tf/estimator/LinearClassifier.html"><code>tf.estimator.LinearClassifier</code></a> or <a href="../../../tf/estimator/LinearRegressor.html"><code>tf.estimator.LinearRegressor</code></a>.</p>
+<p>SDCA can only be used with <code>LinearClassifier</code> and <code>LinearRegressor</code> under the
+following conditions:</p>
+<ul>
+<li>Feature columns are of type V2.</li>
+<li>Multivalent categorical columns are not normalized. In other words the
+    <code>sparse_combiner</code> argument in the estimator constructor should be "sum".</li>
+<li>For classification: binary label.</li>
+<li>For regression: one-dimensional label.</li>
+</ul>
+<h4 id="example-usage">Example usage:</h4>
+<div class="codehilite"><pre><span></span><span class="n">real_feature_column</span> <span class="o">=</span> <span class="n">numeric_column</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="n">sparse_feature_column</span> <span class="o">=</span> <span class="n">categorical_column_with_hash_bucket</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="n">linear_sdca</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">LinearSDCA</span><span class="p">(</span>
+    <span class="n">example_id_column</span><span class="o">=</span><span class="s1">&#39;example_id&#39;</span><span class="p">,</span>
+    <span class="n">num_loss_partitions</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">num_table_shards</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">symmetric_l2_regularization</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">LinearClassifier</span><span class="p">(</span>
+    <span class="n">feature_columns</span><span class="o">=</span><span class="p">[</span><span class="n">real_feature_column</span><span class="p">,</span> <span class="n">sparse_feature_column</span><span class="p">],</span>
+    <span class="n">weight_column</span><span class="o">=...</span><span class="p">,</span>
+    <span class="n">optimizer</span><span class="o">=</span><span class="n">linear_sdca</span><span class="p">)</span>
+<span class="n">classifier</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">input_fn_train</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">classifier</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">input_fn</span><span class="o">=</span><span class="n">input_fn_eval</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Here the expectation is that the <code>input_fn_*</code> functions passed to train and
+evaluate return a pair (dict, label_tensor) where dict has <code>example_id_column</code>
+as <code>key</code> whose value is a <code>Tensor</code> of shape [batch_size] and dtype string.
+num_loss_partitions defines sigma' in eq (11) of [3]. Convergence of (global)
+loss is guaranteed if <code>num_loss_partitions</code> is larger or equal to the product
+<code>(#concurrent train ops/per worker) x (#workers)</code>. Larger values for
+<code>num_loss_partitions</code> lead to slower convergence. The recommended value for
+<code>num_loss_partitions</code> in <a href="../../../tf/estimator.html"><code>tf.estimator</code></a> (where currently there is one process
+per worker) is the number of workers running the train steps. It defaults to 1
+(single machine).
+<code>num_table_shards</code> defines the number of shards for the internal state
+table, typically set to match the number of parameter servers for large
+data sets.</p>
+<p>The SDCA algorithm was originally introduced in [1] and it was followed by
+the L1 proximal step [2], a distributed version [3] and adaptive sampling [4].
+[1] www.jmlr.org/papers/volume14/shalev-shwartz13a/shalev-shwartz13a.pdf
+[2] https://arxiv.org/pdf/1309.2375.pdf
+[3] https://arxiv.org/pdf/1502.03508.pdf
+[4] https://arxiv.org/pdf/1502.08053.pdf
+Details specific to this implementation are provided in:
+https://github.com/tensorflow/estimator/tree/master/tensorflow_estimator/python/estimator/canned/linear_optimizer/doc/sdca.ipynb</p>
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="https://github.com/tensorflow/estimator/tree/master/tensorflow_estimator/python/estimator/canned/linear.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">example_id_column</span><span class="p">,</span>
+    <span class="n">num_loss_partitions</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">num_table_shards</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">symmetric_l1_regularization</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">symmetric_l2_regularization</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+    <span class="n">adaptive</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Construct a new SDCA optimizer for linear estimators.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>example_id_column</code></b>: The column name containing the example ids.</li>
+<li><b><code>num_loss_partitions</code></b>: Number of workers.</li>
+<li><b><code>num_table_shards</code></b>: Number of shards of the internal state table, typically
+  set to match the number of parameter servers.</li>
+<li><b><code>symmetric_l1_regularization</code></b>: A float value, must be greater than or
+  equal to zero.</li>
+<li><b><code>symmetric_l2_regularization</code></b>: A float value, must be greater than zero and
+  should typically be greater than 1.</li>
+<li><b><code>adaptive</code></b>: A boolean indicating whether to use adaptive sampling.</li>
+</ul>
+<h2 id="methods">Methods</h2>
+<h3 id="get_train_step"><code>get_train_step</code></h3>
+
+<p><a target="_blank" href="https://github.com/tensorflow/estimator/tree/master/tensorflow_estimator/python/estimator/canned/linear.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_train_step</span><span class="p">(</span>
+    <span class="n">state_manager</span><span class="p">,</span>
+    <span class="n">weight_column_name</span><span class="p">,</span>
+    <span class="n">loss_type</span><span class="p">,</span>
+    <span class="n">feature_columns</span><span class="p">,</span>
+    <span class="n">features</span><span class="p">,</span>
+    <span class="n">targets</span><span class="p">,</span>
+    <span class="n">bias_var</span><span class="p">,</span>
+    <span class="n">global_step</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Returns the training operation of an SdcaModel optimizer.</p>
+    </body>
+    </html>
+   

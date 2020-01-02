@@ -1,0 +1,62 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.tpu.experimental.StochasticGradientDescentParameters" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__init__"/>
+</div>
+
+<h1 id="tfcompatv1tpuexperimentalstochasticgradientdescentparameters">tf.compat.v1.tpu.experimental.StochasticGradientDescentParameters</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/tpu/tpu_embedding.py">View source</a></p>
+<h2 id="class-stochasticgradientdescentparameters">Class <code>StochasticGradientDescentParameters</code></h2>
+<!-- Start diff -->
+
+<p>Optimization parameters for stochastic gradient descent for TPU embeddings.</p>
+<!-- Placeholder for "Used in" -->
+
+<p>Pass this to <code>tf.estimator.tpu.experimental.EmbeddingConfigSpec</code> via the
+<code>optimization_parameters</code> argument to set the optimizer and its parameters.
+See the documentation for <code>tf.estimator.tpu.experimental.EmbeddingConfigSpec</code>
+for more details.</p>
+<div class="codehilite"><pre><span></span><span class="err">estimator = tf.estimator.tpu.TPUEstimator(</span>
+<span class="err">    ...</span>
+<span class="err">    embedding_config_spec=tf.estimator.tpu.experimental.EmbeddingConfigSpec(</span>
+<span class="err">        ...</span>
+<span class="err">        optimization_parameters=(</span>
+<span class="err">            tf.tpu.experimental.StochasticGradientDescentParameters(0.1))))</span>
+</pre></div>
+
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/tpu/tpu_embedding.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">learning_rate</span><span class="p">,</span>
+    <span class="n">clip_weight_min</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">clip_weight_max</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Optimization parameters for stochastic gradient descent.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>learning_rate</code></b>: a floating point value. The learning rate.</li>
+<li><b><code>clip_weight_min</code></b>: the minimum value to clip by; None means -infinity.</li>
+<li><b><code>clip_weight_max</code></b>: the maximum value to clip by; None means +infinity.</li>
+</ul>
+    </body>
+    </html>
+   

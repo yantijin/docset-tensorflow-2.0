@@ -1,0 +1,64 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.config.experimental.get_virtual_device_configuration" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfconfigexperimentalget_virtual_device_configuration">tf.config.experimental.get_virtual_device_configuration</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/config.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Get the virtual device configuration for a PhysicalDevice.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.config.experimental.get_virtual_device_configuration</code></li>
+<li><code>tf.compat.v2.config.experimental.get_virtual_device_configuration</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">get_virtual_device_configuration</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Returns the list of VirtualDeviceConfiguration objects previously configured
+by a call to <a href="../../../tf/config/experimental/set_virtual_device_configuration.html"><code>tf.config.experimental.set_virtual_device_configuration()</code></a>.</p>
+<h4 id="for-example">For example:</h4>
+<div class="codehilite"><pre><span></span><span class="n">physical_devices</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">list_physical_devices</span><span class="p">(</span><span class="s1">&#39;CPU&#39;</span><span class="p">)</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">physical_devices</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;No CPUs found&quot;</span>
+<span class="n">configs</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">get_virtual_device_configuration</span><span class="p">(</span>
+    <span class="n">physical_devices</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="k">assert</span> <span class="n">configs</span> <span class="ow">is</span> <span class="kc">None</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">set_virtual_device_configuration</span><span class="p">(</span>
+    <span class="n">physical_devices</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="p">[</span><span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">VirtualDeviceConfiguration</span><span class="p">(),</span>
+     <span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">VirtualDeviceConfiguration</span><span class="p">()])</span>
+<span class="n">configs</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">get_virtual_device_configuration</span><span class="p">(</span>
+    <span class="n">physical_devices</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">configs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>device</code></b>: PhysicalDevice to query</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>List of <a href="../../../tf/config/experimental/VirtualDeviceConfiguration.html"><code>tf.config.experimental.VirtualDeviceConfiguration</code></a> objects or
+<code>None</code> if no virtual device configuration has been set for this physical
+device.</p>
+    </body>
+    </html>
+   

@@ -1,0 +1,326 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.optimizers.Adamax" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="iterations"/>
+<meta itemprop="property" content="weights"/>
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="add_slot"/>
+<meta itemprop="property" content="add_weight"/>
+<meta itemprop="property" content="apply_gradients"/>
+<meta itemprop="property" content="from_config"/>
+<meta itemprop="property" content="get_config"/>
+<meta itemprop="property" content="get_gradients"/>
+<meta itemprop="property" content="get_slot"/>
+<meta itemprop="property" content="get_slot_names"/>
+<meta itemprop="property" content="get_updates"/>
+<meta itemprop="property" content="get_weights"/>
+<meta itemprop="property" content="minimize"/>
+<meta itemprop="property" content="set_weights"/>
+<meta itemprop="property" content="variables"/>
+</div>
+
+<h1 id="tfkerasoptimizersadamax">tf.keras.optimizers.Adamax</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/adamax.py">View source</a></p>
+<h2 id="class-adamax">Class <code>Adamax</code></h2>
+<!-- Start diff -->
+
+<p>Optimizer that implements the Adamax algorithm.</p>
+<p>Inherits From: <a href="../../../tf/keras/optimizers/Optimizer.html"><code>Optimizer</code></a></p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v1.keras.optimizers.Adamax</code></li>
+<li>Class <code>tf.compat.v2.keras.optimizers.Adamax</code></li>
+<li>Class <code>tf.compat.v2.optimizers.Adamax</code></li>
+<li>Class <code>tf.optimizers.Adamax</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<p>It is a variant of Adam based on the infinity norm.
+Default parameters follow those provided in the paper.
+Adamax is sometimes superior to adam, specially in models with embeddings.</p>
+<p>References
+  see Section 7 of <a href="http://arxiv.org/abs/1412.6980">Kingma et al., 2014</a>
+    (<a href="http://arxiv.org/pdf/1412.6980.pdf">pdf</a>).</p>
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/adamax.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span>
+    <span class="n">beta_1</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
+    <span class="n">beta_2</span><span class="o">=</span><span class="mf">0.999</span><span class="p">,</span>
+    <span class="n">epsilon</span><span class="o">=</span><span class="mf">1e-07</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Adamax&#39;</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Construct a new Adamax optimizer.</p>
+<h4 id="initialization">Initialization:</h4>
+<div class="codehilite"><pre><span></span><span class="n">m_0</span> <span class="o">&lt;-</span> <span class="m">0</span> <span class="p">(</span><span class="n">Initialize</span> <span class="n">initial</span> <span class="m">1</span><span class="n">st</span> <span class="n">moment</span> <span class="n">vector</span><span class="p">)</span>
+<span class="n">v_0</span> <span class="o">&lt;-</span> <span class="m">0</span> <span class="p">(</span><span class="n">Initialize</span> <span class="n">the</span> <span class="n">exponentially</span> <span class="n">weighted</span> <span class="n">infinity</span> <span class="n">norm</span><span class="p">)</span>
+<span class="n">t</span> <span class="o">&lt;-</span> <span class="m">0</span> <span class="p">(</span><span class="n">Initialize</span> <span class="n">timestep</span><span class="p">)</span>
+</pre></div>
+
+
+<p>The update rule for <code>variable</code> with gradient <code>g</code> uses an optimization
+described at the end of section 7.1 of the paper:</p>
+<div class="codehilite"><pre><span></span><span class="n">t</span> <span class="o">&lt;-</span> <span class="n">t</span> <span class="o">+</span> <span class="m">1</span>
+
+<span class="n">m_t</span> <span class="o">&lt;-</span> <span class="n">beta1</span> <span class="o">*</span> <span class="n">m_</span><span class="p">{</span><span class="n">t</span><span class="m">-1</span><span class="p">}</span> <span class="o">+</span> <span class="p">(</span><span class="m">1</span> <span class="o">-</span> <span class="n">beta1</span><span class="p">)</span> <span class="o">*</span> <span class="n">g</span>
+<span class="n">v_t</span> <span class="o">&lt;-</span> <span class="nf">max</span><span class="p">(</span><span class="n">beta2</span> <span class="o">*</span> <span class="n">v_</span><span class="p">{</span><span class="n">t</span><span class="m">-1</span><span class="p">},</span> <span class="nf">abs</span><span class="p">(</span><span class="n">g</span><span class="p">))</span>
+<span class="n">variable</span> <span class="o">&lt;-</span> <span class="n">variable</span> <span class="o">-</span> <span class="n">learning_rate</span> <span class="o">/</span> <span class="p">(</span><span class="m">1</span> <span class="o">-</span> <span class="n">beta1^t</span><span class="p">)</span> <span class="o">*</span> <span class="n">m_t</span> <span class="o">/</span> <span class="p">(</span><span class="n">v_t</span> <span class="o">+</span> <span class="n">epsilon</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Similar to AdamOptimizer, the epsilon is added for numerical stability
+(especially to get rid of division by zero when v_t = 0).</p>
+<p>Contrast to AdamOptimizer, the sparse implementation of this algorithm
+(used when the gradient is an IndexedSlices object, typically because of
+<a href="../../../tf/gather.html"><code>tf.gather</code></a> or an embedding lookup in the forward pass) only updates
+variable slices and corresponding <code>m_t</code>, <code>v_t</code> terms when that part of
+the variable was used in the forward pass. This means that the sparse
+behavior is contrast to the dense behavior (similar to some momentum
+implementations which ignore momentum unless a variable slice was actually
+used).</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>learning_rate</code></b>: A Tensor or a floating point value.  The learning rate.</li>
+<li><b><code>beta_1</code></b>: A float value or a constant float tensor. The exponential decay
+  rate for the 1st moment estimates.</li>
+<li><b><code>beta_2</code></b>: A float value or a constant float tensor. The exponential decay
+  rate for the exponentially weighted infinity norm.</li>
+<li><b><code>epsilon</code></b>: A small constant for numerical stability.</li>
+<li><b><code>name</code></b>: Optional name for the operations created when applying gradients.
+  Defaults to "Adamax".</li>
+<li><b><code>**kwargs</code></b>: keyword arguments. Allowed to be {<code>clipnorm</code>, <code>clipvalue</code>, <code>lr</code>,
+  <code>decay</code>}. <code>clipnorm</code> is clip gradients by norm; <code>clipvalue</code> is clip
+  gradients by value, <code>decay</code> is included for backward compatibility to
+  allow time inverse decay of learning rate. <code>lr</code> is included for backward
+  compatibility, recommended to use <code>learning_rate</code> instead.</li>
+</ul>
+<h2 id="properties">Properties</h2>
+<h3 id="iterations"><code>iterations</code></h3>
+
+<p>Variable. The number of training steps this Optimizer has run.</p>
+<h3 id="weights"><code>weights</code></h3>
+
+<p>Returns variables of this Optimizer based on the order created.</p>
+<h2 id="methods">Methods</h2>
+<h3 id="add_slot"><code>add_slot</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/optimizer_v2.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">add_slot</span><span class="p">(</span>
+    <span class="n">var</span><span class="p">,</span>
+    <span class="n">slot_name</span><span class="p">,</span>
+    <span class="n">initializer</span><span class="o">=</span><span class="s1">&#39;zeros&#39;</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Add a new slot variable for <code>var</code>.</p>
+<h3 id="add_weight"><code>add_weight</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/optimizer_v2.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">add_weight</span><span class="p">(</span>
+    <span class="n">name</span><span class="p">,</span>
+    <span class="n">shape</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">initializer</span><span class="o">=</span><span class="s1">&#39;zeros&#39;</span><span class="p">,</span>
+    <span class="n">trainable</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">synchronization</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">VariableSynchronization</span><span class="o">.</span><span class="n">AUTO</span><span class="p">,</span>
+    <span class="n">aggregation</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">VariableAggregation</span><span class="o">.</span><span class="n">NONE</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<h3 id="apply_gradients"><code>apply_gradients</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/optimizer_v2.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">apply_gradients</span><span class="p">(</span>
+    <span class="n">grads_and_vars</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Apply gradients to variables.</p>
+<p>This is the second part of <code>minimize()</code>. It returns an <code>Operation</code> that
+applies gradients.</p>
+<h4 id="args_1">Args:</h4>
+<ul>
+<li><b><code>grads_and_vars</code></b>: List of (gradient, variable) pairs.</li>
+<li><b><code>name</code></b>: Optional name for the returned operation.  Default to the name
+  passed to the <code>Optimizer</code> constructor.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>An <code>Operation</code> that applies the specified gradients. If <code>global_step</code>
+was not None, that operation also increments <code>global_step</code>.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>TypeError</code></b>: If <code>grads_and_vars</code> is malformed.</li>
+<li><b><code>ValueError</code></b>: If none of the variables have gradients.</li>
+</ul>
+<h3 id="from_config"><code>from_config</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/optimizer_v2.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">from_config</span><span class="p">(</span>
+    <span class="bp">cls</span><span class="p">,</span>
+    <span class="n">config</span><span class="p">,</span>
+    <span class="n">custom_objects</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Creates an optimizer from its config.</p>
+<p>This method is the reverse of <code>get_config</code>,
+capable of instantiating the same optimizer from the config
+dictionary.</p>
+<h4 id="arguments">Arguments:</h4>
+<ul>
+<li><b><code>config</code></b>: A Python dictionary, typically the output of get_config.</li>
+<li><b><code>custom_objects</code></b>: A Python dictionary mapping names to additional Python
+  objects used to create this optimizer, such as a function used for a
+  hyperparameter.</li>
+</ul>
+<h4 id="returns_1">Returns:</h4>
+<p>An optimizer instance.</p>
+<h3 id="get_config"><code>get_config</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/adamax.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_config</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Returns the config of the optimimizer.</p>
+<p>An optimizer config is a Python dictionary (serializable)
+containing the configuration of an optimizer.
+The same optimizer can be reinstantiated later
+(without any saved state) from this configuration.</p>
+<h4 id="returns_2">Returns:</h4>
+<p>Python dictionary.</p>
+<h3 id="get_gradients"><code>get_gradients</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/optimizer_v2.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_gradients</span><span class="p">(</span>
+    <span class="n">loss</span><span class="p">,</span>
+    <span class="n">params</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Returns gradients of <code>loss</code> with respect to <code>params</code>.</p>
+<h4 id="arguments_1">Arguments:</h4>
+<ul>
+<li><b><code>loss</code></b>: Loss tensor.</li>
+<li><b><code>params</code></b>: List of variables.</li>
+</ul>
+<h4 id="returns_3">Returns:</h4>
+<p>List of gradient tensors.</p>
+<h4 id="raises_1">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: In case any gradient cannot be computed (e.g. if gradient
+  function not implemented).</li>
+</ul>
+<h3 id="get_slot"><code>get_slot</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/optimizer_v2.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_slot</span><span class="p">(</span>
+    <span class="n">var</span><span class="p">,</span>
+    <span class="n">slot_name</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<h3 id="get_slot_names"><code>get_slot_names</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/optimizer_v2.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_slot_names</span><span class="p">()</span>
+</pre></div>
+
+
+<p>A list of names for this optimizer's slots.</p>
+<h3 id="get_updates"><code>get_updates</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/optimizer_v2.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_updates</span><span class="p">(</span>
+    <span class="n">loss</span><span class="p">,</span>
+    <span class="n">params</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<h3 id="get_weights"><code>get_weights</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/optimizer_v2.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_weights</span><span class="p">()</span>
+</pre></div>
+
+
+<h3 id="minimize"><code>minimize</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/optimizer_v2.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">minimize</span><span class="p">(</span>
+    <span class="n">loss</span><span class="p">,</span>
+    <span class="n">var_list</span><span class="p">,</span>
+    <span class="n">grad_loss</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Minimize <code>loss</code> by updating <code>var_list</code>.</p>
+<p>This method simply computes gradient using <a href="../../../tf/GradientTape.html"><code>tf.GradientTape</code></a> and calls
+<code>apply_gradients()</code>. If you want to process the gradient before applying
+then call <a href="../../../tf/GradientTape.html"><code>tf.GradientTape</code></a> and <code>apply_gradients()</code> explicitly instead
+of using this function.</p>
+<h4 id="args_2">Args:</h4>
+<ul>
+<li><b><code>loss</code></b>: A callable taking no arguments which returns the value to minimize.</li>
+<li><b><code>var_list</code></b>: list or tuple of <code>Variable</code> objects to update to minimize
+  <code>loss</code>, or a callable returning the list or tuple of <code>Variable</code> objects.
+  Use callable when the variable list would otherwise be incomplete before
+  <code>minimize</code> since the variables are created at the first time <code>loss</code> is
+  called.</li>
+<li><b><code>grad_loss</code></b>: Optional. A <code>Tensor</code> holding the gradient computed for <code>loss</code>.</li>
+<li><b><code>name</code></b>: Optional name for the returned operation.</li>
+</ul>
+<h4 id="returns_4">Returns:</h4>
+<p>An Operation that updates the variables in <code>var_list</code>.  If <code>global_step</code>
+was not <code>None</code>, that operation also increments <code>global_step</code>.</p>
+<h4 id="raises_2">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: If some of the variables are not <code>Variable</code> objects.</li>
+</ul>
+<h3 id="set_weights"><code>set_weights</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/optimizer_v2.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">set_weights</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span>
+</pre></div>
+
+
+<h3 id="variables"><code>variables</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/optimizer_v2.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">variables</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Returns variables of this Optimizer based on the order created.</p>
+    </body>
+    </html>
+   

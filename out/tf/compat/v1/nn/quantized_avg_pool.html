@@ -1,0 +1,66 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.nn.quantized_avg_pool" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1nnquantized_avg_pool">tf.compat.v1.nn.quantized_avg_pool</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p>Defined in generated file: <code>python/ops/gen_nn_ops.py</code></p>
+<!-- Start diff -->
+
+<p>Produces the average pool of the input tensor for quantized types.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">quantized_avg_pool</span><span class="p">(</span>
+    <span class="nb">input</span><span class="p">,</span>
+    <span class="n">min_input</span><span class="p">,</span>
+    <span class="n">max_input</span><span class="p">,</span>
+    <span class="n">ksize</span><span class="p">,</span>
+    <span class="n">strides</span><span class="p">,</span>
+    <span class="n">padding</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>input</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>qint8</code>, <code>quint8</code>, <code>qint32</code>, <code>qint16</code>, <code>quint16</code>.
+  4-D with shape <code>[batch, height, width, channels]</code>.</li>
+<li><b><code>min_input</code></b>: A <code>Tensor</code> of type <code>float32</code>.
+  The float value that the lowest quantized input value represents.</li>
+<li><b><code>max_input</code></b>: A <code>Tensor</code> of type <code>float32</code>.
+  The float value that the highest quantized input value represents.</li>
+<li><b><code>ksize</code></b>: A list of <code>ints</code>.
+  The size of the window for each dimension of the input tensor.
+  The length must be 4 to match the number of dimensions of the input.</li>
+<li><b><code>strides</code></b>: A list of <code>ints</code>.
+  The stride of the sliding window for each dimension of the input
+  tensor.  The length must be 4 to match the number of dimensions of the input.</li>
+<li><b><code>padding</code></b>: A <code>string</code> from: <code>"SAME", "VALID"</code>.
+  The type of padding algorithm to use.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A tuple of <code>Tensor</code> objects (output, min_output, max_output).</p>
+<ul>
+<li><b><code>output</code></b>: A <code>Tensor</code>. Has the same type as <code>input</code>.</li>
+<li><b><code>min_output</code></b>: A <code>Tensor</code> of type <code>float32</code>.</li>
+<li><b><code>max_output</code></b>: A <code>Tensor</code> of type <code>float32</code>.</li>
+</ul>
+    </body>
+    </html>
+   

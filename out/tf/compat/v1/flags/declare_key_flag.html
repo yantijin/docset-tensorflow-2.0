@@ -1,0 +1,59 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.flags.declare_key_flag" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1flagsdeclare_key_flag">tf.compat.v1.flags.declare_key_flag</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<!-- Start diff -->
+
+<p>Declares one flag as key to the current module.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.app.flags.declare_key_flag</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">flags</span><span class="o">.</span><span class="n">declare_key_flag</span><span class="p">(</span>
+    <span class="n">flag_name</span><span class="p">,</span>
+    <span class="n">flag_values</span><span class="o">=</span><span class="n">_flagvalues</span><span class="o">.</span><span class="n">FLAGS</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Key flags are flags that are deemed really important for a module.
+They are important when listing help messages; e.g., if the
+--helpshort command-line flag is used, then only the key flags of the
+main module are listed (instead of all flags, as in the case of
+--helpfull).</p>
+<h4 id="sample-usage">Sample usage:</h4>
+<p>flags.declare_key_flag('flag_1')</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>flag_name</code></b>: str, the name of an already declared flag.
+    (Redeclaring flags as key, including flags implicitly key
+    because they were declared in this module, is a no-op.)</li>
+<li><b><code>flag_values</code></b>: FlagValues, the FlagValues instance in which the flag will
+    be declared as a key flag. This should almost never need to be
+    overridden.</li>
+</ul>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: Raised if flag_name not defined as a Python flag.</li>
+</ul>
+    </body>
+    </html>
+   

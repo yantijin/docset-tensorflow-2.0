@@ -1,0 +1,77 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.losses.Reduction" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="all"/>
+<meta itemprop="property" content="validate"/>
+<meta itemprop="property" content="MEAN"/>
+<meta itemprop="property" content="NONE"/>
+<meta itemprop="property" content="SUM"/>
+<meta itemprop="property" content="SUM_BY_NONZERO_WEIGHTS"/>
+<meta itemprop="property" content="SUM_OVER_BATCH_SIZE"/>
+<meta itemprop="property" content="SUM_OVER_NONZERO_WEIGHTS"/>
+</div>
+
+<h1 id="tfcompatv1lossesreduction">tf.compat.v1.losses.Reduction</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/losses/losses_impl.py">View source</a></p>
+<h2 id="class-reduction">Class <code>Reduction</code></h2>
+<!-- Start diff -->
+
+<p>Types of loss reduction.</p>
+<!-- Placeholder for "Used in" -->
+
+<p>Contains the following values:</p>
+<ul>
+<li><code>NONE</code>: Un-reduced weighted losses with the same shape as input.</li>
+<li><code>SUM</code>: Scalar sum of weighted losses.</li>
+<li><code>MEAN</code>: Scalar <code>SUM</code> divided by sum of weights. DEPRECATED.</li>
+<li><code>SUM_OVER_BATCH_SIZE</code>: Scalar <code>SUM</code> divided by number of elements in losses.</li>
+<li><code>SUM_OVER_NONZERO_WEIGHTS</code>: Scalar <code>SUM</code> divided by number of non-zero
+   weights. DEPRECATED.</li>
+<li><code>SUM_BY_NONZERO_WEIGHTS</code>: Same as <code>SUM_OVER_NONZERO_WEIGHTS</code>. DEPRECATED.</li>
+</ul>
+<h2 id="methods">Methods</h2>
+<h3 id="all"><code>all</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/losses/losses_impl.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="nd">@classmethod</span>
+<span class="nb">all</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
+</pre></div>
+
+
+<h3 id="validate"><code>validate</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/losses/losses_impl.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="nd">@classmethod</span>
+<span class="n">validate</span><span class="p">(</span>
+    <span class="bp">cls</span><span class="p">,</span>
+    <span class="n">key</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<h2 id="class-members">Class Members</h2>
+<ul>
+<li><code>MEAN = 'weighted_mean'</code> <a id="MEAN"></a></li>
+<li><code>NONE = 'none'</code> <a id="NONE"></a></li>
+<li><code>SUM = 'weighted_sum'</code> <a id="SUM"></a></li>
+<li><code>SUM_BY_NONZERO_WEIGHTS = 'weighted_sum_by_nonzero_weights'</code> <a id="SUM_BY_NONZERO_WEIGHTS"></a></li>
+<li><code>SUM_OVER_BATCH_SIZE = 'weighted_sum_over_batch_size'</code> <a id="SUM_OVER_BATCH_SIZE"></a></li>
+<li><code>SUM_OVER_NONZERO_WEIGHTS = 'weighted_sum_by_nonzero_weights'</code> <a id="SUM_OVER_NONZERO_WEIGHTS"></a></li>
+</ul>
+    </body>
+    </html>
+   

@@ -1,0 +1,59 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.saved_model.get_tensor_from_tensor_info" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1saved_modelget_tensor_from_tensor_info">tf.compat.v1.saved_model.get_tensor_from_tensor_info</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/saved_model/utils_impl.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Returns the Tensor or SparseTensor described by a TensorInfo proto. (deprecated)</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.saved_model.utils.get_tensor_from_tensor_info</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">saved_model</span><span class="o">.</span><span class="n">get_tensor_from_tensor_info</span><span class="p">(</span>
+    <span class="n">tensor_info</span><span class="p">,</span>
+    <span class="n">graph</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">import_scope</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
+Instructions for updating:
+This function will only be available through the v1 compatibility library as tf.compat.v1.saved_model.utils.get_tensor_from_tensor_info or tf.compat.v1.saved_model.get_tensor_from_tensor_info.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>tensor_info</code></b>: A TensorInfo proto describing a Tensor or SparseTensor.</li>
+<li><b><code>graph</code></b>: The tf.Graph in which tensors are looked up. If None, the
+    current default graph is used.</li>
+<li><b><code>import_scope</code></b>: If not None, names in <code>tensor_info</code> are prefixed with this
+    string before lookup.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>The Tensor or SparseTensor in <code>graph</code> described by <code>tensor_info</code>.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>KeyError</code></b>: If <code>tensor_info</code> does not correspond to a tensor in <code>graph</code>.</li>
+<li><b><code>ValueError</code></b>: If <code>tensor_info</code> is malformed.</li>
+</ul>
+    </body>
+    </html>
+   

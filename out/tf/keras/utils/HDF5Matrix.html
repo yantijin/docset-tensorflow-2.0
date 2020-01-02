@@ -1,0 +1,117 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.utils.HDF5Matrix" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="dtype"/>
+<meta itemprop="property" content="ndim"/>
+<meta itemprop="property" content="shape"/>
+<meta itemprop="property" content="size"/>
+<meta itemprop="property" content="__getitem__"/>
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="__len__"/>
+<meta itemprop="property" content="refs"/>
+</div>
+
+<h1 id="tfkerasutilshdf5matrix">tf.keras.utils.HDF5Matrix</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/utils/io_utils.py">View source</a></p>
+<h2 id="class-hdf5matrix">Class <code>HDF5Matrix</code></h2>
+<!-- Start diff -->
+
+<p>Representation of HDF5 dataset to be used instead of a Numpy array.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v1.keras.utils.HDF5Matrix</code></li>
+<li>Class <code>tf.compat.v2.keras.utils.HDF5Matrix</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<h4 id="example">Example:</h4>
+<div class="codehilite"><pre><span></span>    <span class="n">x_data</span> <span class="o">=</span> <span class="n">HDF5Matrix</span><span class="p">(</span><span class="s1">&#39;input/file.hdf5&#39;</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_data</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Providing <code>start</code> and <code>end</code> allows use of a slice of the dataset.</p>
+<p>Optionally, a normalizer function (or lambda) can be given. This will
+be called on every slice of data retrieved.</p>
+<h4 id="arguments">Arguments:</h4>
+<ul>
+<li><b><code>datapath</code></b>: string, path to a HDF5 file</li>
+<li><b><code>dataset</code></b>: string, name of the HDF5 dataset in the file specified
+    in datapath</li>
+<li><b><code>start</code></b>: int, start of desired slice of the specified dataset</li>
+<li><b><code>end</code></b>: int, end of desired slice of the specified dataset</li>
+<li><b><code>normalizer</code></b>: function to be called on data when retrieved</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>An array-like HDF5 dataset.</p>
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/utils/io_utils.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">datapath</span><span class="p">,</span>
+    <span class="n">dataset</span><span class="p">,</span>
+    <span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">end</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">normalizer</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Initialize self.  See help(type(self)) for accurate signature.</p>
+<h2 id="properties">Properties</h2>
+<h3 id="dtype"><code>dtype</code></h3>
+
+<p>Gets the datatype of the dataset.</p>
+<h4 id="returns_1">Returns:</h4>
+<p>A numpy dtype string.</p>
+<h3 id="ndim"><code>ndim</code></h3>
+
+<p>Gets the number of dimensions (rank) of the dataset.</p>
+<h4 id="returns_2">Returns:</h4>
+<p>An integer denoting the number of dimensions (rank) of the dataset.</p>
+<h3 id="shape"><code>shape</code></h3>
+
+<p>Gets a numpy-style shape tuple giving the dataset dimensions.</p>
+<h4 id="returns_3">Returns:</h4>
+<p>A numpy-style shape tuple.</p>
+<h3 id="size"><code>size</code></h3>
+
+<p>Gets the total dataset size (number of elements).</p>
+<h4 id="returns_4">Returns:</h4>
+<p>An integer denoting the number of elements in the dataset.</p>
+<h2 id="methods">Methods</h2>
+<h3 id="__getitem__"><code>__getitem__</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/utils/io_utils.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__getitem__</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</pre></div>
+
+
+<h3 id="__len__"><code>__len__</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/utils/io_utils.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__len__</span><span class="p">()</span>
+</pre></div>
+
+
+<h2 id="class-members">Class Members</h2>
+<ul>
+<li><code>refs</code> <a id="refs"></a></li>
+</ul>
+    </body>
+    </html>
+   

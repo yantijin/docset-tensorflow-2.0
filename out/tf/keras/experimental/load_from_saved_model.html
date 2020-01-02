@@ -1,0 +1,75 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.experimental.load_from_saved_model" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfkerasexperimentalload_from_saved_model">tf.keras.experimental.load_from_saved_model</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/saving/saved_model_experimental.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Loads a keras Model from a SavedModel created by <code>export_saved_model()</code>. (deprecated)</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.keras.experimental.load_from_saved_model</code></li>
+<li><code>tf.compat.v2.keras.experimental.load_from_saved_model</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">load_from_saved_model</span><span class="p">(</span>
+    <span class="n">saved_model_path</span><span class="p">,</span>
+    <span class="n">custom_objects</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
+Instructions for updating:
+The experimental save and load functions have been  deprecated. Please switch to <a href="../../../tf/keras/models/load_model.html"><code>tf.keras.models.load_model</code></a>.</p>
+<p>This function reinstantiates model state by:
+1) loading model topology from json (this will eventually come
+   from metagraph).
+2) loading model weights from checkpoint.</p>
+<h4 id="example">Example:</h4>
+<div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+
+<span class="c1"># Create a tf.keras model.</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Sequential</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">]))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+
+<span class="c1"># Save the tf.keras model in the SavedModel format.</span>
+<span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/tmp/simple_keras_model&#39;</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">export_saved_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+
+<span class="c1"># Load the saved keras model back.</span>
+<span class="n">new_model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">load_from_saved_model</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+<span class="n">new_model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>saved_model_path</code></b>: a string specifying the path to an existing SavedModel.</li>
+<li><b><code>custom_objects</code></b>: Optional dictionary mapping names
+    (strings) to custom classes or functions to be
+    considered during deserialization.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>a keras.Model instance.</p>
+    </body>
+    </html>
+   

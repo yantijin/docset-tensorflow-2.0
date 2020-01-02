@@ -1,0 +1,63 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.config.experimental_connect_to_host" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfconfigexperimental_connect_to_host">tf.config.experimental_connect_to_host</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/eager/remote.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Connects to a single machine to enable remote execution on it.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.config.experimental_connect_to_host</code></li>
+<li><code>tf.compat.v2.config.experimental_connect_to_host</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental_connect_to_host</span><span class="p">(</span>
+    <span class="n">remote_host</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">job_name</span><span class="o">=</span><span class="s1">&#39;worker&#39;</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Will make devices on the remote host available to use. Note that calling this
+more than once will work, but will invalidate any tensor handles on the old
+remote devices.
+Using the default job_name of worker, you can schedule ops to run remotely as
+follows:</p>
+<div class="codehilite"><pre><span></span><span class="c1"># Enable eager execution, and connect to the remote host.</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">enable_eager_execution</span><span class="p">()</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">contrib</span><span class="o">.</span><span class="n">eager</span><span class="o">.</span><span class="n">connect_to_remote_host</span><span class="p">(</span><span class="s2">&quot;exampleaddr.com:9876&quot;</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">ops</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;job:worker/replica:0/task:1/device:CPU:0&quot;</span><span class="p">):</span>
+  <span class="c1"># The following tensors should be resident on the remote device, and the op</span>
+  <span class="c1"># will also execute remotely.</span>
+  <span class="n">x1</span> <span class="o">=</span> <span class="n">array_ops</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+  <span class="n">x2</span> <span class="o">=</span> <span class="n">array_ops</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+  <span class="n">y</span> <span class="o">=</span> <span class="n">math_ops</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Args:
+  remote_host: a single or a list the remote server addr in host-port format.
+  job_name: The job name under which the new server will be accessible.
+Raises:
+  ValueError: if remote_host is None.</p>
+    </body>
+    </html>
+   

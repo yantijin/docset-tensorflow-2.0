@@ -1,0 +1,87 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.metrics.recall_at_top_k" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1metricsrecall_at_top_k">tf.compat.v1.metrics.recall_at_top_k</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/metrics_impl.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Computes recall@k of top-k predictions with respect to sparse labels.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">recall_at_top_k</span><span class="p">(</span>
+    <span class="n">labels</span><span class="p">,</span>
+    <span class="n">predictions_idx</span><span class="p">,</span>
+    <span class="n">k</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">class_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">metrics_collections</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">updates_collections</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Differs from <code>recall_at_k</code> in that predictions must be in the form of top <code>k</code>
+class indices, whereas <code>recall_at_k</code> expects logits. Refer to <code>recall_at_k</code>
+for more details.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>labels</code></b>: <code>int64</code> <code>Tensor</code> or <code>SparseTensor</code> with shape
+  [D1, ... DN, num_labels] or [D1, ... DN], where the latter implies
+  num_labels=1. N &gt;= 1 and num_labels is the number of target classes for
+  the associated prediction. Commonly, N=1 and <code>labels</code> has shape
+  [batch_size, num_labels]. [D1, ... DN] must match <code>predictions</code>. Values
+  should be in range [0, num_classes), where num_classes is the last
+  dimension of <code>predictions</code>. Values outside this range always count
+  towards <code>false_negative_at_&lt;k&gt;</code>.</li>
+<li><b><code>predictions_idx</code></b>: Integer <code>Tensor</code> with shape [D1, ... DN, k] where N &gt;= 1.
+  Commonly, N=1 and predictions has shape [batch size, k]. The final
+  dimension contains the top <code>k</code> predicted class indices. [D1, ... DN] must
+  match <code>labels</code>.</li>
+<li><b><code>k</code></b>: Integer, k for @k metric. Only used for the default op name.</li>
+<li><b><code>class_id</code></b>: Integer class ID for which we want binary metrics. This should be
+  in range [0, num_classes), where num_classes is the last dimension of
+  <code>predictions</code>. If class_id is outside this range, the method returns NAN.</li>
+<li><b><code>weights</code></b>: <code>Tensor</code> whose rank is either 0, or n-1, where n is the rank of
+  <code>labels</code>. If the latter, it must be broadcastable to <code>labels</code> (i.e., all
+  dimensions must be either <code>1</code>, or the same as the corresponding <code>labels</code>
+  dimension).</li>
+<li><b><code>metrics_collections</code></b>: An optional list of collections that values should
+  be added to.</li>
+<li><b><code>updates_collections</code></b>: An optional list of collections that updates should
+  be added to.</li>
+<li><b><code>name</code></b>: Name of new update operation, and namespace for other dependent ops.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<ul>
+<li><b><code>recall</code></b>: Scalar <code>float64</code> <code>Tensor</code> with the value of <code>true_positives</code> divided
+  by the sum of <code>true_positives</code> and <code>false_negatives</code>.</li>
+<li><b><code>update_op</code></b>: <code>Operation</code> that increments <code>true_positives</code> and
+  <code>false_negatives</code> variables appropriately, and whose value matches
+  <code>recall</code>.</li>
+</ul>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: If <code>weights</code> is not <code>None</code> and its shape doesn't match
+<code>predictions</code>, or if either <code>metrics_collections</code> or <code>updates_collections</code>
+are not a list or tuple.</li>
+</ul>
+    </body>
+    </html>
+   

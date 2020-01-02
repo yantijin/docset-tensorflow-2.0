@@ -1,0 +1,83 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.create_partitioned_variables" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1create_partitioned_variables">tf.compat.v1.create_partitioned_variables</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/partitioned_variables.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Create a list of partitioned variables according to the given <code>slicing</code>. (deprecated)</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">create_partitioned_variables</span><span class="p">(</span>
+    <span class="n">shape</span><span class="p">,</span>
+    <span class="n">slicing</span><span class="p">,</span>
+    <span class="n">initializer</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
+    <span class="n">trainable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">collections</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">reuse</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
+Instructions for updating:
+Use <code>tf.get_variable</code> with a partitioner set.</p>
+<p>Currently only one dimension of the full variable can be sliced, and the
+full variable can be reconstructed by the concatenation of the returned
+list along that dimension.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>shape</code></b>: List of integers.  The shape of the full variable.</li>
+<li><b><code>slicing</code></b>: List of integers.  How to partition the variable.
+  Must be of the same length as <code>shape</code>.  Each value
+  indicate how many slices to create in the corresponding
+  dimension.  Presently only one of the values can be more than 1;
+  that is, the variable can only be sliced along one dimension.</li>
+</ul>
+<p>For convenience, The requested number of partitions does not have to
+  divide the corresponding dimension evenly.  If it does not, the
+  shapes of the partitions are incremented by 1 starting from partition
+  0 until all slack is absorbed.  The adjustment rules may change in the
+  future, but as you can save/restore these variables with different
+  slicing specifications this should not be a problem.
+* <b><code>initializer</code></b>: A <code>Tensor</code> of shape <code>shape</code> or a variable initializer
+  function.  If a function, it will be called once for each slice,
+  passing the shape and data type of the slice as parameters.  The
+  function must return a tensor with the same shape as the slice.
+* <b><code>dtype</code></b>: Type of the variables. Ignored if <code>initializer</code> is a <code>Tensor</code>.
+* <b><code>trainable</code></b>: If True also add all the variables to the graph collection
+  <code>GraphKeys.TRAINABLE_VARIABLES</code>.
+* <b><code>collections</code></b>: List of graph collections keys to add the variables to.
+  Defaults to <code>[GraphKeys.GLOBAL_VARIABLES]</code>.
+* <b><code>name</code></b>: Optional name for the full variable.  Defaults to
+  <code>"PartitionedVariable"</code> and gets uniquified automatically.
+* <b><code>reuse</code></b>: Boolean or <code>None</code>; if <code>True</code> and name is set, it would reuse
+  previously created variables. if <code>False</code> it will create new variables.
+  if <code>None</code>, it would inherit the parent scope reuse.</p>
+<h4 id="returns">Returns:</h4>
+<p>A list of Variables corresponding to the slicing.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: If any of the arguments is malformed.</li>
+</ul>
+    </body>
+    </html>
+   

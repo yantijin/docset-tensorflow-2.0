@@ -1,0 +1,157 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.distribute.cluster_resolver.TFConfigClusterResolver" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="environment"/>
+<meta itemprop="property" content="rpc_layer"/>
+<meta itemprop="property" content="task_id"/>
+<meta itemprop="property" content="task_type"/>
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="cluster_spec"/>
+<meta itemprop="property" content="master"/>
+<meta itemprop="property" content="num_accelerators"/>
+</div>
+
+<h1 id="tfdistributecluster_resolvertfconfigclusterresolver">tf.distribute.cluster_resolver.TFConfigClusterResolver</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/cluster_resolver/tfconfig_cluster_resolver.py">View source</a></p>
+<h2 id="class-tfconfigclusterresolver">Class <code>TFConfigClusterResolver</code></h2>
+<!-- Start diff -->
+
+<p>Implementation of a ClusterResolver which reads the TF_CONFIG EnvVar.</p>
+<p>Inherits From: <a href="../../../tf/distribute/cluster_resolver/ClusterResolver.html"><code>ClusterResolver</code></a></p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v1.distribute.cluster_resolver.TFConfigClusterResolver</code></li>
+<li>Class <code>tf.compat.v2.distribute.cluster_resolver.TFConfigClusterResolver</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<p>This is an implementation of cluster resolvers when using TF_CONFIG to set
+information about the cluster. The cluster spec returned will be
+initialized from the TF_CONFIG environment variable.</p>
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/cluster_resolver/tfconfig_cluster_resolver.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">task_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">task_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">rpc_layer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">environment</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Creates a new TFConfigClusterResolver.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>task_type</code></b>: (String, optional) Overrides the task type specified in the
+  TF_CONFIG environment variable.</li>
+<li><b><code>task_id</code></b>: (Integer, optional) Overrides the task index specified in the
+  TF_CONFIG environment variable.</li>
+<li><b><code>rpc_layer</code></b>: (String, optional) Overrides the rpc layer TensorFlow uses.</li>
+<li><b><code>environment</code></b>: (String, optional) Overrides the environment TensorFlow
+  operates in.</li>
+</ul>
+<h2 id="properties">Properties</h2>
+<h3 id="environment"><code>environment</code></h3>
+
+<p>Returns the current environment which TensorFlow is running in.</p>
+<p>There are two possible return values, "google" (when TensorFlow is running
+in a Google-internal environment) or an empty string (when TensorFlow is
+running elsewhere).</p>
+<p>If you are implementing a ClusterResolver that works in both the Google
+environment and the open-source world (for instance, a TPU ClusterResolver
+or similar), you will have to return the appropriate string depending on the
+environment, which you will have to detect.</p>
+<p>Otherwise, if you are implementing a ClusterResolver that will only work
+in open-source TensorFlow, you do not need to implement this property.</p>
+<h3 id="rpc_layer"><code>rpc_layer</code></h3>
+
+<h3 id="task_id"><code>task_id</code></h3>
+
+<h3 id="task_type"><code>task_type</code></h3>
+
+<h2 id="methods">Methods</h2>
+<h3 id="cluster_spec"><code>cluster_spec</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/cluster_resolver/tfconfig_cluster_resolver.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">cluster_spec</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Returns a ClusterSpec based on the TF_CONFIG environment variable.</p>
+<h4 id="returns">Returns:</h4>
+<p>A ClusterSpec with information from the TF_CONFIG environment variable.</p>
+<h3 id="master"><code>master</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/cluster_resolver/tfconfig_cluster_resolver.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">master</span><span class="p">(</span>
+    <span class="n">task_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">task_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">rpc_layer</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Returns the master address to use when creating a TensorFlow session.</p>
+<h4 id="args_1">Args:</h4>
+<ul>
+<li><b><code>task_type</code></b>: (String, optional) Overrides and sets the task_type of the
+  master.</li>
+<li><b><code>task_id</code></b>: (Integer, optional) Overrides and sets the task id of the
+  master.</li>
+<li><b><code>rpc_layer</code></b>: (String, optional) Overrides and sets the protocol over which
+  TensorFlow nodes communicate with each other.</li>
+</ul>
+<h4 id="returns_1">Returns:</h4>
+<p>The address of the master.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>RuntimeError</code></b>: If the task_type or task_id is not specified and the
+  <code>TF_CONFIG</code> environment variable does not contain a task section.</li>
+</ul>
+<h3 id="num_accelerators"><code>num_accelerators</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/cluster_resolver/tfconfig_cluster_resolver.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">num_accelerators</span><span class="p">(</span>
+    <span class="n">task_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">task_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">config_proto</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Returns the number of accelerator cores per worker.</p>
+<p>This returns the number of accelerator cores (such as GPUs and TPUs)
+available per worker.</p>
+<p>Optionally, we allow callers to specify the task_type, and task_id, for
+if they want to target a specific TensorFlow process to query
+the number of accelerators. This is to support heterogenous environments,
+where the number of accelerators cores per host is different.</p>
+<h4 id="args_2">Args:</h4>
+<ul>
+<li><b><code>task_type</code></b>: (Optional) The type of the TensorFlow task of the machine we
+  want to query.</li>
+<li><b><code>task_id</code></b>: (Optional) The index of the TensorFlow task of the machine we
+  want to query.</li>
+<li><b><code>config_proto</code></b>: (Optional) Configuration for starting a new session to
+  query how many accelerator cores it has.</li>
+</ul>
+<h4 id="returns_2">Returns:</h4>
+<p>A map of accelerator types to number of cores.</p>
+    </body>
+    </html>
+   

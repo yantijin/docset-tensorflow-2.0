@@ -1,0 +1,120 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.substr" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1substr">tf.compat.v1.substr</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/string_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Return substrings from <code>Tensor</code> of strings.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">substr</span><span class="p">(</span>
+    <span class="nb">input</span><span class="p">,</span>
+    <span class="n">pos</span><span class="p">,</span>
+    <span class="nb">len</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;BYTE&#39;</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>For each string in the input <code>Tensor</code>, creates a substring starting at index
+<code>pos</code> with a total length of <code>len</code>.</p>
+<p>If <code>len</code> defines a substring that would extend beyond the length of the input
+string, then as many characters as possible are used.</p>
+<p>A negative <code>pos</code> indicates distance within the string backwards from the end.</p>
+<p>If <code>pos</code> specifies an index which is out of range for any of the input strings,
+then an <code>InvalidArgumentError</code> is thrown.</p>
+<p><code>pos</code> and <code>len</code> must have the same shape, otherwise a <code>ValueError</code> is thrown on
+Op creation.</p>
+<p><em>NOTE</em>: <code>Substr</code> supports broadcasting up to two dimensions. More about
+broadcasting
+<a href="http://docs.scipy.org/doc/numpy/user/basics.broadcasting.html">here</a></p>
+<hr />
+<p>Examples</p>
+<p>Using scalar <code>pos</code> and <code>len</code>:</p>
+<div class="codehilite"><pre><span></span><span class="nb">input</span> <span class="o">=</span> <span class="p">[</span><span class="sa">b</span><span class="s1">&#39;Hello&#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;World&#39;</span><span class="p">]</span>
+<span class="n">position</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">length</span> <span class="o">=</span> <span class="mi">3</span>
+
+<span class="n">output</span> <span class="o">=</span> <span class="p">[</span><span class="sa">b</span><span class="s1">&#39;ell&#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;orl&#39;</span><span class="p">]</span>
+</pre></div>
+
+
+<p>Using <code>pos</code> and <code>len</code> with same shape as <code>input</code>:</p>
+<div class="codehilite"><pre><span></span><span class="nb">input</span> <span class="o">=</span> <span class="p">[[</span><span class="sa">b</span><span class="s1">&#39;ten&#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;eleven&#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;twelve&#39;</span><span class="p">],</span>
+         <span class="p">[</span><span class="sa">b</span><span class="s1">&#39;thirteen&#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;fourteen&#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;fifteen&#39;</span><span class="p">],</span>
+         <span class="p">[</span><span class="sa">b</span><span class="s1">&#39;sixteen&#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;seventeen&#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;eighteen&#39;</span><span class="p">]]</span>
+<span class="n">position</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+            <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+            <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]</span>
+<span class="n">length</span> <span class="o">=</span>   <span class="p">[[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+            <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+            <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">]]</span>
+
+<span class="n">output</span> <span class="o">=</span> <span class="p">[[</span><span class="sa">b</span><span class="s1">&#39;en&#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;eve&#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;lve&#39;</span><span class="p">],</span>
+          <span class="p">[</span><span class="sa">b</span><span class="s1">&#39;hirt&#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;urt&#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;te&#39;</span><span class="p">],</span>
+          <span class="p">[</span><span class="sa">b</span><span class="s1">&#39;ixtee&#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;vente&#39;</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;hteen&#39;</span><span class="p">]]</span>
+</pre></div>
+
+
+<p>Broadcasting <code>pos</code> and <code>len</code> onto <code>input</code>:</p>
+<div class="codehilite"><pre><span></span><span class="k">input</span> <span class="o">=</span> <span class="p">[[</span><span class="n">b</span><span class="s1">&#39;ten&#39;</span><span class="p">,</span> <span class="n">b</span><span class="s1">&#39;eleven&#39;</span><span class="p">,</span> <span class="n">b</span><span class="s1">&#39;twelve&#39;</span><span class="p">],</span>
+         <span class="p">[</span><span class="n">b</span><span class="s1">&#39;thirteen&#39;</span><span class="p">,</span> <span class="n">b</span><span class="s1">&#39;fourteen&#39;</span><span class="p">,</span> <span class="n">b</span><span class="s1">&#39;fifteen&#39;</span><span class="p">],</span>
+         <span class="p">[</span><span class="n">b</span><span class="s1">&#39;sixteen&#39;</span><span class="p">,</span> <span class="n">b</span><span class="s1">&#39;seventeen&#39;</span><span class="p">,</span> <span class="n">b</span><span class="s1">&#39;eighteen&#39;</span><span class="p">],</span>
+         <span class="p">[</span><span class="n">b</span><span class="s1">&#39;nineteen&#39;</span><span class="p">,</span> <span class="n">b</span><span class="s1">&#39;twenty&#39;</span><span class="p">,</span> <span class="n">b</span><span class="s1">&#39;twentyone&#39;</span><span class="p">]]</span>
+<span class="k">position</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="k">length</span> <span class="o">=</span>   <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+
+<span class="k">output</span> <span class="o">=</span> <span class="p">[[</span><span class="n">b</span><span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="n">b</span><span class="s1">&#39;ev&#39;</span><span class="p">,</span> <span class="n">b</span><span class="s1">&#39;lve&#39;</span><span class="p">],</span>
+          <span class="p">[</span><span class="n">b</span><span class="s1">&#39;h&#39;</span><span class="p">,</span> <span class="n">b</span><span class="s1">&#39;ur&#39;</span><span class="p">,</span> <span class="n">b</span><span class="s1">&#39;tee&#39;</span><span class="p">],</span>
+          <span class="p">[</span><span class="n">b</span><span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="n">b</span><span class="s1">&#39;ve&#39;</span><span class="p">,</span> <span class="n">b</span><span class="s1">&#39;hte&#39;</span><span class="p">],</span>
+          <span class="p">[</span><span class="n">b</span><span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="n">b</span><span class="s1">&#39;en&#39;</span><span class="p">,</span> <span class="n">b</span><span class="s1">&#39;nty&#39;</span><span class="p">]]</span>
+</pre></div>
+
+
+<p>Broadcasting <code>input</code> onto <code>pos</code> and <code>len</code>:</p>
+<div class="codehilite"><pre><span></span><span class="k">input</span> <span class="o">=</span> <span class="n">b</span><span class="s1">&#39;thirteen&#39;</span>
+<span class="k">position</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+<span class="k">length</span> <span class="o">=</span>   <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+
+<span class="k">output</span> <span class="o">=</span> <span class="p">[</span><span class="n">b</span><span class="s1">&#39;hir&#39;</span><span class="p">,</span> <span class="n">b</span><span class="s1">&#39;ee&#39;</span><span class="p">,</span> <span class="n">b</span><span class="s1">&#39;n&#39;</span><span class="p">]</span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>input</code></b>: A <code>Tensor</code> of type <code>string</code>. Tensor of strings</li>
+<li><b><code>pos</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>int32</code>, <code>int64</code>.
+  Scalar defining the position of first character in each substring</li>
+<li><b><code>len</code></b>: A <code>Tensor</code>. Must have the same type as <code>pos</code>.
+  Scalar defining the number of characters to include in each substring</li>
+<li><b><code>unit</code></b>: An optional <code>string</code> from: <code>"BYTE", "UTF8_CHAR"</code>. Defaults to <code>"BYTE"</code>.
+  The unit that is used to create the substring.  One of: <code>"BYTE"</code> (for
+  defining position and length by bytes) or <code>"UTF8_CHAR"</code> (for the UTF-8
+  encoded Unicode code points).  The default is <code>"BYTE"</code>. Results are undefined if
+  <code>unit=UTF8_CHAR</code> and the <code>input</code> strings do not contain structurally valid
+  UTF-8.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>Tensor</code> of type <code>string</code>.</p>
+    </body>
+    </html>
+   

@@ -1,0 +1,77 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.metrics.mean_tensor" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1metricsmean_tensor">tf.compat.v1.metrics.mean_tensor</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/metrics_impl.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Computes the element-wise (weighted) mean of the given tensors.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">mean_tensor</span><span class="p">(</span>
+    <span class="n">values</span><span class="p">,</span>
+    <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">metrics_collections</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">updates_collections</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>In contrast to the <code>mean</code> function which returns a scalar with the
+mean,  this function returns an average tensor with the same shape as the
+input tensors.</p>
+<p>The <code>mean_tensor</code> function creates two local variables,
+<code>total_tensor</code> and <code>count_tensor</code> that are used to compute the average of
+<code>values</code>. This average is ultimately returned as <code>mean</code> which is an idempotent
+operation that simply divides <code>total</code> by <code>count</code>.</p>
+<p>For estimation of the metric over a stream of data, the function creates an
+<code>update_op</code> operation that updates these variables and returns the <code>mean</code>.
+<code>update_op</code> increments <code>total</code> with the reduced sum of the product of <code>values</code>
+and <code>weights</code>, and it increments <code>count</code> with the reduced sum of <code>weights</code>.</p>
+<p>If <code>weights</code> is <code>None</code>, weights default to 1. Use weights of 0 to mask values.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>values</code></b>: A <code>Tensor</code> of arbitrary dimensions.</li>
+<li><b><code>weights</code></b>: Optional <code>Tensor</code> whose rank is either 0, or the same rank as
+  <code>values</code>, and must be broadcastable to <code>values</code> (i.e., all dimensions must
+  be either <code>1</code>, or the same as the corresponding <code>values</code> dimension).</li>
+<li><b><code>metrics_collections</code></b>: An optional list of collections that <code>mean</code>
+  should be added to.</li>
+<li><b><code>updates_collections</code></b>: An optional list of collections that <code>update_op</code>
+  should be added to.</li>
+<li><b><code>name</code></b>: An optional variable_scope name.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<ul>
+<li><b><code>mean</code></b>: A float <code>Tensor</code> representing the current mean, the value of <code>total</code>
+  divided by <code>count</code>.</li>
+<li><b><code>update_op</code></b>: An operation that increments the <code>total</code> and <code>count</code> variables
+  appropriately and whose value matches <code>mean_value</code>.</li>
+</ul>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: If <code>weights</code> is not <code>None</code> and its shape doesn't match <code>values</code>,
+  or if either <code>metrics_collections</code> or <code>updates_collections</code> are not a list
+  or tuple.</li>
+<li><b><code>RuntimeError</code></b>: If eager execution is enabled.</li>
+</ul>
+    </body>
+    </html>
+   

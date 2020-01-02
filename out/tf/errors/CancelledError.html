@@ -1,0 +1,81 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.errors.CancelledError" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="error_code"/>
+<meta itemprop="property" content="message"/>
+<meta itemprop="property" content="node_def"/>
+<meta itemprop="property" content="op"/>
+<meta itemprop="property" content="__init__"/>
+</div>
+
+<h1 id="tferrorscancellederror">tf.errors.CancelledError</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/errors_impl.py">View source</a></p>
+<h2 id="class-cancellederror">Class <code>CancelledError</code></h2>
+<!-- Start diff -->
+
+<p>Raised when an operation or step is cancelled.</p>
+<p>Inherits From: <a href="../../tf/errors/OpError.html"><code>OpError</code></a></p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v1.errors.CancelledError</code></li>
+<li>Class <code>tf.compat.v2.errors.CancelledError</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<p>For example, a long-running operation (e.g.
+<code>tf.QueueBase.enqueue</code> may be
+cancelled by running another operation (e.g.
+<code>tf.QueueBase.close</code>,
+or by <code>tf.Session.close</code>.
+A step that is running such a long-running operation will fail by raising
+<code>CancelledError</code>.</p>
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/errors_impl.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">node_def</span><span class="p">,</span>
+    <span class="n">op</span><span class="p">,</span>
+    <span class="n">message</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Creates a <code>CancelledError</code>.</p>
+<h2 id="properties">Properties</h2>
+<h3 id="error_code"><code>error_code</code></h3>
+
+<p>The integer error code that describes the error.</p>
+<h3 id="message"><code>message</code></h3>
+
+<p>The error message that describes the error.</p>
+<h3 id="node_def"><code>node_def</code></h3>
+
+<p>The <code>NodeDef</code> proto representing the op that failed.</p>
+<h3 id="op"><code>op</code></h3>
+
+<p>The operation that failed, if known.</p>
+<p><em>N.B.</em> If the failed op was synthesized at runtime, e.g. a <code>Send</code>
+or <code>Recv</code> op, there will be no corresponding
+<a href="../../tf/Operation.html"><code>tf.Operation</code></a>
+object.  In that case, this will return <code>None</code>, and you should
+instead use the <a href="../../tf/errors/OpError.html#node_def"><code>tf.errors.OpError.node_def</code></a> to
+discover information about the op.</p>
+<h4 id="returns">Returns:</h4>
+<p>The <code>Operation</code> that failed, or None.</p>
+    </body>
+    </html>
+   

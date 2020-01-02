@@ -1,0 +1,84 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.layers.Layer" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="graph"/>
+<meta itemprop="property" content="scope_name"/>
+<meta itemprop="property" content="__init__"/>
+</div>
+
+<h1 id="tfcompatv1layerslayer">tf.compat.v1.layers.Layer</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/layers/base.py">View source</a></p>
+<h2 id="class-layer">Class <code>Layer</code></h2>
+<!-- Start diff -->
+
+<p>Base layer class.</p>
+<p>Inherits From: <a href="../../../../tf/keras/layers/Layer.html"><code>Layer</code></a></p>
+<!-- Placeholder for "Used in" -->
+
+<p>It is considered legacy, and we recommend the use of <a href="../../../../tf/keras/layers/Layer.html"><code>tf.keras.layers.Layer</code></a>
+instead.</p>
+<h4 id="arguments">Arguments:</h4>
+<ul>
+<li><b><code>trainable</code></b>: Boolean, whether the layer's variables should be trainable.</li>
+<li><b><code>name</code></b>: String name of the layer.</li>
+<li><b><code>dtype</code></b>: Default dtype of the layer's weights (default of <code>None</code> means use the
+  type of the first input).</li>
+</ul>
+<p>Read-only properties:
+  name: The name of the layer (string).
+  dtype: Default dtype of the layer's weights (default of <code>None</code> means use the
+    type of the first input).
+  trainable_variables: List of trainable variables.
+  non_trainable_variables: List of non-trainable variables.
+  variables: List of all variables of this layer, trainable and
+    non-trainable.
+  updates: List of update ops of this layer.
+  losses: List of losses added by this layer.
+  trainable_weights: List of variables to be included in backprop.
+  non_trainable_weights: List of variables that should not be
+    included in backprop.
+  weights: The concatenation of the lists trainable_weights and
+    non_trainable_weights (in this order).</p>
+<h4 id="mutable-properties">Mutable properties:</h4>
+<ul>
+<li><b><code>trainable</code></b>: Whether the layer should be trained (boolean).</li>
+<li><b><code>input_spec</code></b>: Optional (list of) <code>InputSpec</code> object(s) specifying the
+  constraints on inputs that can be accepted by the layer.</li>
+</ul>
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/layers/base.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">trainable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<h2 id="properties">Properties</h2>
+<h3 id="graph"><code>graph</code></h3>
+
+<p>DEPRECATED FUNCTION</p>
+<p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
+Instructions for updating:
+Stop using this property because tf.layers layers no longer track their graph.</p>
+<h3 id="scope_name"><code>scope_name</code></h3>
+    </body>
+    </html>
+   

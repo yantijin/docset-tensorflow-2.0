@@ -1,0 +1,77 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.ragged.map_flat_values" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfraggedmap_flat_values">tf.ragged.map_flat_values</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/ragged/ragged_functional_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Applies <code>op</code> to the values of one or more RaggedTensors.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.ragged.map_flat_values</code></li>
+<li><code>tf.compat.v2.ragged.map_flat_values</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">ragged</span><span class="o">.</span><span class="n">map_flat_values</span><span class="p">(</span>
+    <span class="n">op</span><span class="p">,</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Replaces any <code>RaggedTensor</code> in <code>args</code> or <code>kwargs</code> with its <code>flat_values</code>
+tensor, and then calls <code>op</code>.  Returns a <code>RaggedTensor</code> that is constructed
+from the input <code>RaggedTensor</code>s' <code>nested_row_splits</code> and the value returned by
+the <code>op</code>.</p>
+<p>If the input arguments contain multiple <code>RaggedTensor</code>s, then they must have
+identical <code>nested_row_splits</code>.</p>
+<h4 id="examples">Examples:</h4>
+<div class="codehilite"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">rt</span> <span class="o">=</span> <span class="n">ragged</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">6</span><span class="p">]])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">ragged</span><span class="o">.</span><span class="n">map_flat_values</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">ones_like</span><span class="p">,</span> <span class="n">rt</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">ragged</span><span class="o">.</span><span class="n">map_flat_values</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">multiply</span><span class="p">,</span> <span class="n">rt</span><span class="p">,</span> <span class="n">rt</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span> <span class="p">[],</span> <span class="p">[</span><span class="mi">16</span><span class="p">,</span> <span class="mi">25</span><span class="p">],</span> <span class="p">[</span><span class="mi">36</span><span class="p">]]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">ragged</span><span class="o">.</span><span class="n">map_flat_values</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">add</span><span class="p">,</span> <span class="n">rt</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="p">[[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span> <span class="p">[],</span> <span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="p">[</span><span class="mi">11</span><span class="p">]]</span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>op</code></b>: The operation that should be applied to the RaggedTensor <code>flat_values</code>.
+  <code>op</code> is typically an element-wise operation (such as math_ops.add), but
+  any operation that preserves the size of the outermost dimension can be
+  used.  I.e., <code>shape[0]</code> of the value returned by <code>op</code> must match
+  <code>shape[0]</code> of the <code>RaggedTensor</code>s' <code>flat_values</code> tensors.</li>
+<li><b><code>*args</code></b>: Arguments for <code>op</code>.</li>
+<li><b><code>**kwargs</code></b>: Keyword arguments for <code>op</code>.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>RaggedTensor</code> whose <code>ragged_rank</code> matches the <code>ragged_rank</code> of all
+input <code>RaggedTensor</code>s.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: If args contains no <code>RaggedTensors</code>, or if the <code>nested_splits</code>
+  of the input <code>RaggedTensor</code>s are not identical.</li>
+</ul>
+    </body>
+    </html>
+   

@@ -1,0 +1,140 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.sparse_concat" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1sparse_concat">tf.compat.v1.sparse_concat</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/sparse_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Concatenates a list of <code>SparseTensor</code> along the specified dimension. (deprecated arguments)</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.sparse.concat</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">sparse_concat</span><span class="p">(</span>
+    <span class="n">axis</span><span class="p">,</span>
+    <span class="n">sp_inputs</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">expand_nonconcat_dim</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">concat_dim</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">expand_nonconcat_dims</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Warning: SOME ARGUMENTS ARE DEPRECATED: <code>(concat_dim)</code>. They will be removed in a future version.
+Instructions for updating:
+concat_dim is deprecated, use axis instead</p>
+<p>Concatenation is with respect to the dense versions of each sparse input.
+It is assumed that each inputs is a <code>SparseTensor</code> whose elements are ordered
+along increasing dimension number.</p>
+<p>If expand_nonconcat_dim is False, all inputs' shapes must match, except for
+the concat dimension. If expand_nonconcat_dim is True, then inputs' shapes are
+allowed to vary among all inputs.</p>
+<p>The <code>indices</code>, <code>values</code>, and <code>shapes</code> lists must have the same length.</p>
+<p>If expand_nonconcat_dim is False, then the output shape is identical to the
+inputs', except along the concat dimension, where it is the sum of the inputs'
+sizes along that dimension.</p>
+<p>If expand_nonconcat_dim is True, then the output shape along the non-concat
+dimensions will be expand to be the largest among all inputs, and it is the
+sum of the inputs sizes along the concat dimension.</p>
+<p>The output elements will be resorted to preserve the sort order along
+increasing dimension number.</p>
+<p>This op runs in <code>O(M log M)</code> time, where <code>M</code> is the total number of non-empty
+values across all inputs. This is due to the need for an internal sort in
+order to concatenate efficiently across an arbitrary dimension.</p>
+<p>For example, if <code>axis = 1</code> and the inputs are</p>
+<div class="codehilite"><pre><span></span><span class="n">sp_inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="n">shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]:</span> <span class="ss">&quot;a&quot;</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]:</span> <span class="ss">&quot;b&quot;</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]:</span> <span class="ss">&quot;c&quot;</span>
+
+<span class="n">sp_inputs</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="n">shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]:</span> <span class="ss">&quot;d&quot;</span>
+<span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]:</span> <span class="ss">&quot;e&quot;</span>
+</pre></div>
+
+
+<p>then the output will be</p>
+<div class="codehilite"><pre><span></span><span class="err">shape = [2, 7]</span>
+<span class="err">[0, 2]: &quot;a&quot;</span>
+<span class="err">[0, 4]: &quot;d&quot;</span>
+<span class="err">[0, 5]: &quot;e&quot;</span>
+<span class="err">[1, 0]: &quot;b&quot;</span>
+<span class="err">[1, 1]: &quot;c&quot;</span>
+</pre></div>
+
+
+<p>Graphically this is equivalent to doing</p>
+<div class="codehilite"><pre><span></span><span class="k">[    a] concat [  d e  ] = [    a   d e  ]</span>
+<span class="k">[b c  ]        [       ]   [b c          ]</span>
+</pre></div>
+
+
+<p>Another example, if 'axis = 1' and the inputs are</p>
+<div class="codehilite"><pre><span></span><span class="n">sp_inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="n">shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]:</span> <span class="ss">&quot;a&quot;</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]:</span> <span class="ss">&quot;b&quot;</span>
+<span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]:</span> <span class="ss">&quot;c&quot;</span>
+
+<span class="n">sp_inputs</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="n">shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]:</span> <span class="ss">&quot;d&quot;</span>
+<span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]:</span> <span class="ss">&quot;e&quot;</span>
+</pre></div>
+
+
+<p>if expand_nonconcat_dim = False, this will result in an error. But if
+expand_nonconcat_dim = True, this will result in:</p>
+<div class="codehilite"><pre><span></span><span class="err">shape = [3, 7]</span>
+<span class="err">[0, 2]: &quot;a&quot;</span>
+<span class="err">[0, 4]: &quot;d&quot;</span>
+<span class="err">[0, 5]: &quot;e&quot;</span>
+<span class="err">[1, 0]: &quot;b&quot;</span>
+<span class="err">[2, 1]: &quot;c&quot;</span>
+</pre></div>
+
+
+<p>Graphically this is equivalent to doing</p>
+<div class="codehilite"><pre><span></span><span class="k">[    a] concat [  d e  ] = [    a   d e  ]</span>
+<span class="k">[b    ]        [       ]   [b            ]</span>
+<span class="k">[  c  ]                    [  c          ]</span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>axis</code></b>: Dimension to concatenate along. Must be in range [-rank, rank),
+  where rank is the number of dimensions in each input <code>SparseTensor</code>.</li>
+<li><b><code>sp_inputs</code></b>: List of <code>SparseTensor</code> to concatenate.</li>
+<li><b><code>name</code></b>: A name prefix for the returned tensors (optional).</li>
+<li><b><code>expand_nonconcat_dim</code></b>: Whether to allow the expansion in the non-concat
+  dimensions. Defaulted to False.</li>
+<li><b><code>concat_dim</code></b>: The old (deprecated) name for axis.</li>
+<li><b><code>expand_nonconcat_dims</code></b>: alias for expand_nonconcat_dim</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>SparseTensor</code> with the concatenated output.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>TypeError</code></b>: If <code>sp_inputs</code> is not a list of <code>SparseTensor</code>.</li>
+</ul>
+    </body>
+    </html>
+   

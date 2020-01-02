@@ -1,0 +1,80 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.nest.map_structure" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfnestmap_structure">tf.nest.map_structure</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/util/nest.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Applies <code>func</code> to each entry in <code>structure</code> and returns a new structure.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.nest.map_structure</code></li>
+<li><code>tf.compat.v2.nest.map_structure</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">nest</span><span class="o">.</span><span class="n">map_structure</span><span class="p">(</span>
+    <span class="n">func</span><span class="p">,</span>
+    <span class="o">*</span><span class="n">structure</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Applies <code>func(x[0], x[1], ...)</code> where x[i] is an entry in
+<code>structure[i]</code>.  All structures in <code>structure</code> must have the same arity,
+and the return value will contain results with the same structure layout.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>func</code></b>: A callable that accepts as many arguments as there are structures.</li>
+<li><b><code>*structure</code></b>: scalar, or tuple or list of constructed scalars and/or other
+  tuples/lists, or scalars.  Note: numpy arrays are considered as scalars.</li>
+<li>
+<p><b><code>**kwargs</code></b>: Valid keyword args are:</p>
+</li>
+<li>
+<p><code>check_types</code>: If set to <code>True</code> (default) the types of
+    iterables within the structures have to be same (e.g.
+    <code>map_structure(func, [1], (1,))</code> raises a <code>TypeError</code>
+    exception). To allow this set this argument to <code>False</code>.
+    Note that namedtuples with identical name and fields are always
+    considered to have the same shallow structure.</p>
+</li>
+<li><code>expand_composites</code>: If set to <code>True</code>, then composite tensors such
+    as <a href="../../tf/sparse/SparseTensor.html"><code>tf.SparseTensor</code></a> and <a href="../../tf/RaggedTensor.html"><code>tf.RaggedTensor</code></a> are expanded into their
+    component tensors.  If <code>False</code> (the default), then composite tensors
+    are not expanded.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A new structure with the same arity as <code>structure</code>, whose values correspond
+to <code>func(x[0], x[1], ...)</code> where <code>x[i]</code> is a value in the corresponding
+location in <code>structure[i]</code>. If there are different sequence types and
+<code>check_types</code> is <code>False</code> the sequence types of the first structure will be
+used.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>TypeError</code></b>: If <code>func</code> is not callable or if the structures do not match
+  each other by depth tree.</li>
+<li><b><code>ValueError</code></b>: If no structure is provided or if the structures do not match
+  each other by type.</li>
+<li><b><code>ValueError</code></b>: If wrong keyword arguments are provided.</li>
+</ul>
+    </body>
+    </html>
+   

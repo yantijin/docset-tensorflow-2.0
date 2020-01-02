@@ -1,0 +1,143 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.layers.LocallyConnected1D" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__init__"/>
+</div>
+
+<h1 id="tfkeraslayerslocallyconnected1d">tf.keras.layers.LocallyConnected1D</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/local.py">View source</a></p>
+<h2 id="class-locallyconnected1d">Class <code>LocallyConnected1D</code></h2>
+<!-- Start diff -->
+
+<p>Locally-connected layer for 1D inputs.</p>
+<p>Inherits From: <a href="../../../tf/keras/layers/Layer.html"><code>Layer</code></a></p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v1.keras.layers.LocallyConnected1D</code></li>
+<li>Class <code>tf.compat.v2.keras.layers.LocallyConnected1D</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<p>The <code>LocallyConnected1D</code> layer works similarly to
+the <code>Conv1D</code> layer, except that weights are unshared,
+that is, a different set of filters is applied at each different patch
+of the input.</p>
+<h4 id="example">Example:</h4>
+<div class="codehilite"><pre><span></span>    <span class="c1"># apply a unshared weight convolution 1d of length 3 to a sequence with</span>
+    <span class="c1"># 10 timesteps, with 64 output filters</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">LocallyConnected1D</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">32</span><span class="p">)))</span>
+    <span class="c1"># now model.output_shape == (None, 8, 64)</span>
+    <span class="c1"># add a new conv1d on top</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">LocallyConnected1D</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+    <span class="c1"># now model.output_shape == (None, 6, 32)</span>
+</pre></div>
+
+
+<h4 id="arguments">Arguments:</h4>
+<ul>
+<li><b><code>filters</code></b>: Integer, the dimensionality of the output space
+    (i.e. the number of output filters in the convolution).</li>
+<li><b><code>kernel_size</code></b>: An integer or tuple/list of a single integer,
+    specifying the length of the 1D convolution window.</li>
+<li><b><code>strides</code></b>: An integer or tuple/list of a single integer,
+    specifying the stride length of the convolution.
+    Specifying any stride value != 1 is incompatible with specifying
+    any <code>dilation_rate</code> value != 1.</li>
+<li><b><code>padding</code></b>: Currently only supports <code>"valid"</code> (case-insensitive).
+    <code>"same"</code> may be supported in the future.</li>
+<li><b><code>data_format</code></b>: A string,
+    one of <code>channels_last</code> (default) or <code>channels_first</code>.
+    The ordering of the dimensions in the inputs.
+    <code>channels_last</code> corresponds to inputs with shape
+    <code>(batch, length, channels)</code> while <code>channels_first</code>
+    corresponds to inputs with shape
+    <code>(batch, channels, length)</code>.
+    It defaults to the <code>image_data_format</code> value found in your
+    Keras config file at <code>~/.keras/keras.json</code>.
+    If you never set it, then it will be "channels_last".</li>
+<li><b><code>activation</code></b>: Activation function to use.
+    If you don't specify anything, no activation is applied
+    (ie. "linear" activation: <code>a(x) = x</code>).</li>
+<li><b><code>use_bias</code></b>: Boolean, whether the layer uses a bias vector.</li>
+<li><b><code>kernel_initializer</code></b>: Initializer for the <code>kernel</code> weights matrix.</li>
+<li><b><code>bias_initializer</code></b>: Initializer for the bias vector.</li>
+<li><b><code>kernel_regularizer</code></b>: Regularizer function applied to
+    the <code>kernel</code> weights matrix.</li>
+<li><b><code>bias_regularizer</code></b>: Regularizer function applied to the bias vector.</li>
+<li><b><code>activity_regularizer</code></b>: Regularizer function applied to
+    the output of the layer (its "activation")..</li>
+<li><b><code>kernel_constraint</code></b>: Constraint function applied to the kernel matrix.</li>
+<li><b><code>bias_constraint</code></b>: Constraint function applied to the bias vector.</li>
+<li>
+<p><b><code>implementation</code></b>: implementation mode, either <code>1</code>, <code>2</code>, or <code>3</code>.
+    <code>1</code> loops over input spatial locations to perform the forward pass.
+    It is memory-efficient but performs a lot of (small) ops.</p>
+<p><code>2</code> stores layer weights in a dense but sparsely-populated 2D matrix
+and implements the forward pass as a single matrix-multiply. It uses
+a lot of RAM but performs few (large) ops.</p>
+<p><code>3</code> stores layer weights in a sparse tensor and implements the forward
+pass as a single sparse matrix-multiply.</p>
+<p>How to choose:</p>
+<p><code>1</code>: large, dense models,
+<code>2</code>: small models,
+<code>3</code>: large, sparse models,</p>
+<p>where "large" stands for large input/output activations
+(i.e. many <code>filters</code>, <code>input_filters</code>, large <code>input_size</code>,
+<code>output_size</code>), and "sparse" stands for few connections between inputs
+and outputs, i.e. small ratio
+<code>filters * input_filters * kernel_size / (input_size * strides)</code>,
+where inputs to and outputs of the layer are assumed to have shapes
+<code>(input_size, input_filters)</code>, <code>(output_size, filters)</code>
+respectively.</p>
+<p>It is recommended to benchmark each in the setting of interest to pick
+the most efficient one (in terms of speed and memory usage). Correct
+choice of implementation can lead to dramatic speed improvements (e.g.
+50X), potentially at the expense of RAM.</p>
+<p>Also, only <code>padding="valid"</code> is supported by <code>implementation=1</code>.</p>
+</li>
+</ul>
+<h4 id="input-shape">Input shape:</h4>
+<p>3D tensor with shape: <code>(batch_size, steps, input_dim)</code></p>
+<h4 id="output-shape">Output shape:</h4>
+<p>3D tensor with shape: <code>(batch_size, new_steps, filters)</code>
+<code>steps</code> value might have changed due to padding or strides.</p>
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/local.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">filters</span><span class="p">,</span>
+    <span class="n">kernel_size</span><span class="p">,</span>
+    <span class="n">strides</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;valid&#39;</span><span class="p">,</span>
+    <span class="n">data_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">activation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">use_bias</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">kernel_initializer</span><span class="o">=</span><span class="s1">&#39;glorot_uniform&#39;</span><span class="p">,</span>
+    <span class="n">bias_initializer</span><span class="o">=</span><span class="s1">&#39;zeros&#39;</span><span class="p">,</span>
+    <span class="n">kernel_regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">bias_regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">activity_regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">kernel_constraint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">bias_constraint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">implementation</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+    </body>
+    </html>
+   

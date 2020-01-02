@@ -1,0 +1,61 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.backend.spatial_3d_padding" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfkerasbackendspatial_3d_padding">tf.keras.backend.spatial_3d_padding</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/backend.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Pads 5D tensor with zeros along the depth, height, width dimensions.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.keras.backend.spatial_3d_padding</code></li>
+<li><code>tf.compat.v2.keras.backend.spatial_3d_padding</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">backend</span><span class="o">.</span><span class="n">spatial_3d_padding</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">padding</span><span class="o">=</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)),</span>
+    <span class="n">data_format</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Pads these dimensions with respectively
+"padding[0]", "padding[1]" and "padding[2]" zeros left and right.</p>
+<p>For 'channels_last' data_format,
+the 2nd, 3rd and 4th dimension will be padded.
+For 'channels_first' data_format,
+the 3rd, 4th and 5th dimension will be padded.</p>
+<h4 id="arguments">Arguments:</h4>
+<ul>
+<li><b><code>x</code></b>: Tensor or variable.</li>
+<li><b><code>padding</code></b>: Tuple of 3 tuples, padding pattern.</li>
+<li><b><code>data_format</code></b>: One of <code>channels_last</code> or <code>channels_first</code>.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A padded 5D tensor.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: if <code>data_format</code> is neither
+    <code>channels_last</code> or <code>channels_first</code>.</li>
+</ul>
+    </body>
+    </html>
+   

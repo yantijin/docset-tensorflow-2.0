@@ -1,0 +1,108 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.image.resize" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfimageresize">tf.image.resize</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/image_ops_impl.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Resize <code>images</code> to <code>size</code> using the specified <code>method</code>.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v2.image.resize</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span>
+    <span class="n">images</span><span class="p">,</span>
+    <span class="n">size</span><span class="p">,</span>
+    <span class="n">method</span><span class="o">=</span><span class="n">ResizeMethod</span><span class="o">.</span><span class="n">BILINEAR</span><span class="p">,</span>
+    <span class="n">preserve_aspect_ratio</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">antialias</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Resized images will be distorted if their original aspect ratio is not
+the same as <code>size</code>.  To avoid distortions see
+<a href="../../tf/image/resize_with_pad.html"><code>tf.image.resize_with_pad</code></a>.</p>
+<p>When 'antialias' is true, the sampling filter will anti-alias the input image
+as well as interpolate.  When downsampling an image with <a href="https://en.wikipedia.org/wiki/Spatial_anti-aliasing">anti-aliasing</a> the sampling filter
+kernel is scaled in order to properly anti-alias the input image signal.
+'antialias' has no effect when upsampling an image.</p>
+<ul>
+<li><b><code>bilinear</code></b>: <a href="https://en.wikipedia.org/wiki/Bilinear_interpolation">Bilinear interpolation.</a> If 'antialias' is
+  true, becomes a hat/tent filter function with radius 1 when downsampling.</li>
+<li><b><code>lanczos3</code></b>:  <a href="https://en.wikipedia.org/wiki/Lanczos_resampling">Lanczos kernel</a> with radius 3.
+  High-quality practical filter but may have some ringing especially on
+  synthetic images.</li>
+<li><b><code>lanczos5</code></b>: [Lanczos kernel] (
+  https://en.wikipedia.org/wiki/Lanczos_resampling) with radius 5.
+  Very-high-quality filter but may have stronger ringing.</li>
+<li><b><code>bicubic</code></b>: <a href="https://en.wikipedia.org/wiki/Bicubic_interpolation">Cubic interpolant</a> of Keys. Equivalent to
+  Catmull-Rom kernel. Reasonably good quality and faster than Lanczos3Kernel,
+  particularly when upsampling.</li>
+<li><b><code>gaussian</code></b>: <a href="https://en.wikipedia.org/wiki/Gaussian_filter">Gaussian kernel</a> with radius 3,
+  sigma = 1.5 / 3.0.</li>
+<li><b><code>nearest</code></b>: <a href="https://en.wikipedia.org/wiki/Nearest-neighbor_interpolation">Nearest neighbor interpolation.</a>
+  'antialias' has no effect when used with nearest neighbor interpolation.</li>
+<li><b><code>area</code></b>: Anti-aliased resampling with area interpolation.
+  'antialias' has no effect when used with area interpolation; it
+  always anti-aliases.</li>
+<li><b><code>mitchellcubic</code></b>: Mitchell-Netravali Cubic non-interpolating filter.
+  For synthetic images (especially those lacking proper prefiltering), less
+  ringing than Keys cubic kernel but less sharp.</li>
+</ul>
+<p>Note that near image edges the filtering kernel may be partially outside the
+image boundaries. For these pixels, only input pixels inside the image will be
+included in the filter sum, and the output value will be appropriately
+normalized.</p>
+<p>The return value has the same type as <code>images</code> if <code>method</code> is
+<a href="../../tf/image/ResizeMethod.html#NEAREST_NEIGHBOR"><code>ResizeMethod.NEAREST_NEIGHBOR</code></a>. Otherwise, the return value has type
+<code>float32</code>.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>images</code></b>: 4-D Tensor of shape <code>[batch, height, width, channels]</code> or 3-D Tensor
+  of shape <code>[height, width, channels]</code>.</li>
+<li><b><code>size</code></b>: A 1-D int32 Tensor of 2 elements: <code>new_height, new_width</code>.  The new
+  size for the images.</li>
+<li><b><code>method</code></b>: ResizeMethod.  Defaults to <code>bilinear</code>.</li>
+<li><b><code>preserve_aspect_ratio</code></b>: Whether to preserve the aspect ratio. If this is set,
+  then <code>images</code> will be resized to a size that fits in <code>size</code> while
+  preserving the aspect ratio of the original image. Scales up the image if
+  <code>size</code> is bigger than the current size of the <code>image</code>. Defaults to False.</li>
+<li><b><code>antialias</code></b>: Whether to use an anti-aliasing filter when downsampling an
+  image.</li>
+<li><b><code>name</code></b>: A name for this operation (optional).</li>
+</ul>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: if the shape of <code>images</code> is incompatible with the
+  shape arguments to this function</li>
+<li><b><code>ValueError</code></b>: if <code>size</code> has invalid shape or type.</li>
+<li><b><code>ValueError</code></b>: if an unsupported resize method is specified.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>If <code>images</code> was 4-D, a 4-D float Tensor of shape
+<code>[batch, new_height, new_width, channels]</code>.
+If <code>images</code> was 3-D, a 3-D float Tensor of shape
+<code>[new_height, new_width, channels]</code>.</p>
+    </body>
+    </html>
+   

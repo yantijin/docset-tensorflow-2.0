@@ -1,0 +1,108 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.linalg.triangular_solve" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tflinalgtriangular_solve">tf.linalg.triangular_solve</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p>Defined in generated file: <code>python/ops/gen_linalg_ops.py</code></p>
+<!-- Start diff -->
+
+<p>Solves systems of linear equations with upper or lower triangular matrices by backsubstitution.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.linalg.triangular_solve</code></li>
+<li><code>tf.compat.v1.matrix_triangular_solve</code></li>
+<li><code>tf.compat.v2.linalg.triangular_solve</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">triangular_solve</span><span class="p">(</span>
+    <span class="n">matrix</span><span class="p">,</span>
+    <span class="n">rhs</span><span class="p">,</span>
+    <span class="n">lower</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">adjoint</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p><code>matrix</code> is a tensor of shape <code>[..., M, M]</code> whose inner-most 2 dimensions form
+square matrices. If <code>lower</code> is <code>True</code> then the strictly upper triangular part
+of each inner-most matrix is assumed to be zero and not accessed.
+If <code>lower</code> is False then the strictly lower triangular part of each inner-most
+matrix is assumed to be zero and not accessed.
+<code>rhs</code> is a tensor of shape <code>[..., M, K]</code>.</p>
+<p>The output is a tensor of shape <code>[..., M, K]</code>. If <code>adjoint</code> is
+<code>True</code> then the innermost matrices in <code>output</code> satisfy matrix equations
+<code>matrix[..., :, :] * output[..., :, :] = rhs[..., :, :]</code>.
+If <code>adjoint</code> is <code>False</code> then the strictly then the  innermost matrices in
+<code>output</code> satisfy matrix equations
+<code>adjoint(matrix[..., i, k]) * output[..., k, j] = rhs[..., i, j]</code>.</p>
+<h4 id="example">Example:</h4>
+<div class="codehilite"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="mi">3</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                 <span class="p">[</span><span class="mi">2</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                 <span class="p">[</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">0</span><span class="p">],</span>
+                 <span class="p">[</span><span class="mi">1</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span>  <span class="mi">1</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="mi">4</span><span class="p">],</span>
+                 <span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                 <span class="p">[</span><span class="mi">4</span><span class="p">],</span>
+                 <span class="p">[</span><span class="mi">2</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">triangular_solve</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">x</span>
+<span class="c1"># &lt;tf.Tensor: id=257, shape=(4, 1), dtype=float32, numpy=</span>
+<span class="c1"># array([[ 1.3333334 ],</span>
+<span class="c1">#        [-0.66666675],</span>
+<span class="c1">#        [ 2.6666665 ],</span>
+<span class="c1">#        [-1.3333331 ]], dtype=float32)&gt;</span>
+
+<span class="c1"># in python3 one can use `a@x`</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="c1"># &lt;tf.Tensor: id=263, shape=(4, 1), dtype=float32, numpy=</span>
+<span class="c1"># array([[4.       ],</span>
+<span class="c1">#        [2.       ],</span>
+<span class="c1">#        [4.       ],</span>
+<span class="c1">#        [1.9999999]], dtype=float32)&gt;</span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>matrix</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>float64</code>, <code>float32</code>, <code>half</code>, <code>complex64</code>, <code>complex128</code>.
+  Shape is <code>[..., M, M]</code>.</li>
+<li><b><code>rhs</code></b>: A <code>Tensor</code>. Must have the same type as <code>matrix</code>.
+  Shape is <code>[..., M, K]</code>.</li>
+<li><b><code>lower</code></b>: An optional <code>bool</code>. Defaults to <code>True</code>.
+  Boolean indicating whether the innermost matrices in <code>matrix</code> are
+  lower or upper triangular.</li>
+<li>
+<p><b><code>adjoint</code></b>: An optional <code>bool</code>. Defaults to <code>False</code>.
+  Boolean indicating whether to solve with <code>matrix</code> or its (block-wise)
+           adjoint.</p>
+</li>
+<li>
+<p><b><code>name</code></b>: A name for the operation (optional).</p>
+</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>Tensor</code>. Has the same type as <code>matrix</code>.</p>
+<h4 id="numpy-compatibility">Numpy Compatibility</h4>
+<p>Equivalent to scipy.linalg.solve_triangular</p>
+    </body>
+    </html>
+   

@@ -1,0 +1,85 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.train.warm_start" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1trainwarm_start">tf.compat.v1.train.warm_start</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/warm_starting_util.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Warm-starts a model using the given settings.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">warm_start</span><span class="p">(</span>
+    <span class="n">ckpt_to_initialize_from</span><span class="p">,</span>
+    <span class="n">vars_to_warm_start</span><span class="o">=</span><span class="s1">&#39;.*&#39;</span><span class="p">,</span>
+    <span class="n">var_name_to_vocab_info</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">var_name_to_prev_var_name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>If you are using a tf.estimator.Estimator, this will automatically be called
+during training.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>ckpt_to_initialize_from</code></b>: [Required] A string specifying the directory with
+  checkpoint file(s) or path to checkpoint from which to warm-start the
+  model parameters.</li>
+<li>
+<p><b><code>vars_to_warm_start</code></b>: [Optional] One of the following:</p>
+</li>
+<li>
+<p>A regular expression (string) that captures which variables to
+    warm-start (see tf.compat.v1.get_collection).  This expression will only
+    consider variables in the TRAINABLE_VARIABLES collection -- if you need
+    to warm-start non_TRAINABLE vars (such as optimizer accumulators or
+    batch norm statistics), please use the below option.</p>
+</li>
+<li>A list of strings, each a regex scope provided to
+    tf.compat.v1.get_collection with GLOBAL_VARIABLES (please see
+    tf.compat.v1.get_collection).  For backwards compatibility reasons,
+    this is separate from the single-string argument type.</li>
+<li>A list of Variables to warm-start.  If you do not have access to the
+    <code>Variable</code> objects at the call site, please use the above option.</li>
+<li><code>None</code>, in which case only TRAINABLE variables specified in
+    <code>var_name_to_vocab_info</code> will be warm-started.</li>
+</ul>
+<p>Defaults to <code>'.*'</code>, which warm-starts all variables in the
+  TRAINABLE_VARIABLES collection.  Note that this excludes variables such
+  as accumulators and moving statistics from batch norm.
+* <b><code>var_name_to_vocab_info</code></b>: [Optional] Dict of variable names (strings) to
+  <a href="../../../../tf/estimator/VocabInfo.html"><code>tf.estimator.VocabInfo</code></a>. The variable names should be "full" variables,
+  not the names of the partitions.  If not explicitly provided, the variable
+  is assumed to have no (changes to) vocabulary.
+* <b><code>var_name_to_prev_var_name</code></b>: [Optional] Dict of variable names (strings) to
+  name of the previously-trained variable in <code>ckpt_to_initialize_from</code>. If
+  not explicitly provided, the name of the variable is assumed to be same
+  between previous checkpoint and current model.  Note that this has no
+  effect on the set of variables that is warm-started, and only controls
+  name mapping (use <code>vars_to_warm_start</code> for controlling what variables to
+  warm-start).</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: If the WarmStartSettings contains prev_var_name or VocabInfo
+  configuration for variable names that are not used.  This is to ensure
+  a stronger check for variable configuration than relying on users to
+  examine the logs.</li>
+</ul>
+    </body>
+    </html>
+   

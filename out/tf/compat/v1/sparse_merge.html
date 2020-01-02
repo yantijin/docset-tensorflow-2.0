@@ -1,0 +1,131 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.sparse_merge" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1sparse_merge">tf.compat.v1.sparse_merge</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/sparse_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Combines a batch of feature ids and values into a single <code>SparseTensor</code>. (deprecated)</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.sparse.merge</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">sparse_merge</span><span class="p">(</span>
+    <span class="n">sp_ids</span><span class="p">,</span>
+    <span class="n">sp_values</span><span class="p">,</span>
+    <span class="n">vocab_size</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">already_sorted</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
+Instructions for updating:
+No similar op available at this time.</p>
+<p>The most common use case for this function occurs when feature ids and
+their corresponding values are stored in <code>Example</code> protos on disk.
+<code>parse_example</code> will return a batch of ids and a batch of values, and this
+function joins them into a single logical <code>SparseTensor</code> for use in
+functions such as <code>sparse_tensor_dense_matmul</code>, <code>sparse_to_dense</code>, etc.</p>
+<p>The <code>SparseTensor</code> returned by this function has the following properties:</p>
+<ul>
+<li><code>indices</code> is equivalent to <code>sp_ids.indices</code> with the last
+    dimension discarded and replaced with <code>sp_ids.values</code>.</li>
+<li><code>values</code> is simply <code>sp_values.values</code>.</li>
+<li>If <code>sp_ids.dense_shape = [D0, D1, ..., Dn, K]</code>, then
+    <code>output.shape = [D0, D1, ..., Dn, vocab_size]</code>.</li>
+</ul>
+<p>For example, consider the following feature vectors:</p>
+<div class="codehilite"><pre><span></span>  <span class="n">vector1</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+  <span class="n">vector2</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+  <span class="n">vector3</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+</pre></div>
+
+
+<p>These might be stored sparsely in the following Example protos by storing
+only the feature ids (column number if the vectors are treated as a matrix)
+of the non-zero elements and the corresponding values:</p>
+<div class="codehilite"><pre><span></span>  <span class="n">examples</span> <span class="o">=</span> <span class="p">[</span><span class="n">Example</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="p">{</span>
+                  <span class="s2">&quot;ids&quot;</span><span class="p">:</span> <span class="n">Feature</span><span class="p">(</span><span class="n">int64_list</span><span class="o">=</span><span class="n">Int64List</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">])),</span>
+                  <span class="s2">&quot;values&quot;</span><span class="p">:</span> <span class="n">Feature</span><span class="p">(</span><span class="n">float_list</span><span class="o">=</span><span class="n">FloatList</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">]))}),</span>
+              <span class="n">Example</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="p">{</span>
+                  <span class="s2">&quot;ids&quot;</span><span class="p">:</span> <span class="n">Feature</span><span class="p">(</span><span class="n">int64_list</span><span class="o">=</span><span class="n">Int64List</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">])),</span>
+                  <span class="s2">&quot;values&quot;</span><span class="p">:</span> <span class="n">Feature</span><span class="p">(</span><span class="n">float_list</span><span class="o">=</span><span class="n">FloatList</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">]))}),</span>
+              <span class="n">Example</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="p">{</span>
+                  <span class="s2">&quot;ids&quot;</span><span class="p">:</span> <span class="n">Feature</span><span class="p">(</span><span class="n">int64_list</span><span class="o">=</span><span class="n">Int64List</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">])),</span>
+                  <span class="s2">&quot;values&quot;</span><span class="p">:</span> <span class="n">Feature</span><span class="p">(</span><span class="n">float_list</span><span class="o">=</span><span class="n">FloatList</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">]))})]</span>
+</pre></div>
+
+
+<p>The result of calling parse_example on these examples will produce a
+dictionary with entries for "ids" and "values". Passing those two objects
+to this function along with vocab_size=6, will produce a <code>SparseTensor</code> that
+sparsely represents all three instances. Namely, the <code>indices</code> property will
+contain the coordinates of the non-zero entries in the feature matrix (the
+first dimension is the row number in the matrix, i.e., the index within the
+batch, and the second dimension is the column number, i.e., the feature id);
+<code>values</code> will contain the actual values. <code>shape</code> will be the shape of the
+original matrix, i.e., (3, 6). For our example above, the output will be
+equal to:</p>
+<div class="codehilite"><pre><span></span>  <span class="n">SparseTensor</span><span class="p">(</span><span class="n">indices</span><span class="o">=</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]],</span>
+               <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span>
+               <span class="n">dense_shape</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
+</pre></div>
+
+
+<p>This method generalizes to higher-dimensions by simply providing a list for
+both the sp_ids as well as the vocab_size.
+In this case the resulting <code>SparseTensor</code> has the following properties:
+  - <code>indices</code> is equivalent to <code>sp_ids[0].indices</code> with the last
+    dimension discarded and concatenated with
+    <code>sp_ids[0].values, sp_ids[1].values, ...</code>.
+  - <code>values</code> is simply <code>sp_values.values</code>.
+  - If <code>sp_ids.dense_shape = [D0, D1, ..., Dn, K]</code>, then
+    <code>output.shape = [D0, D1, ..., Dn] + vocab_size</code>.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>sp_ids</code></b>: A single <code>SparseTensor</code> with <code>values</code> property of type <code>int32</code>
+  or <code>int64</code> or a Python list of such <code>SparseTensor</code>s or a list thereof.</li>
+<li><b><code>sp_values</code></b>: A <code>SparseTensor</code> of any type.</li>
+<li><b><code>vocab_size</code></b>: A scalar <code>int64</code> Tensor (or Python int) containing the new size
+  of the last dimension, <code>all(0 &lt;= sp_ids.values &lt; vocab_size)</code>.
+  Or a list thereof with <code>all(0 &lt;= sp_ids[i].values &lt; vocab_size[i])</code> for
+  all <code>i</code>.</li>
+<li><b><code>name</code></b>: A name prefix for the returned tensors (optional)</li>
+<li><b><code>already_sorted</code></b>: A boolean to specify whether the per-batch values in
+ <code>sp_values</code> are already sorted. If so skip sorting, False by default
+ (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>SparseTensor</code> compactly representing a batch of feature ids and values,
+useful for passing to functions that expect such a <code>SparseTensor</code>.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>TypeError</code></b>: If <code>sp_values</code> is not a <code>SparseTensor</code>. Or if <code>sp_ids</code> is neither
+  a <code>SparseTensor</code> nor a list thereof. Or if <code>vocab_size</code> is not a
+  <code>Tensor</code> or a Python int and <code>sp_ids</code> is a <code>SparseTensor</code>. Or if
+  <code>vocab_size</code> is not a or list thereof and <code>sp_ids</code> is a list.</li>
+<li><b><code>ValueError</code></b>: If <code>sp_ids</code> and <code>vocab_size</code> are lists of different lengths.</li>
+</ul>
+    </body>
+    </html>
+   

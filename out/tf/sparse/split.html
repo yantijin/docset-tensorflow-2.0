@@ -1,0 +1,76 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.sparse.split" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfsparsesplit">tf.sparse.split</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/sparse_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Split a <code>SparseTensor</code> into <code>num_split</code> tensors along <code>axis</code>.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v2.sparse.split</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">split</span><span class="p">(</span>
+    <span class="n">sp_input</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">num_split</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>If the <code>sp_input.dense_shape[axis]</code> is not an integer multiple of <code>num_split</code>
+each slice starting from 0:<code>shape[axis] % num_split</code> gets extra one
+dimension. For example, if <code>axis = 1</code> and <code>num_split = 2</code> and the
+input is:</p>
+<div class="codehilite"><pre><span></span><span class="n">input_tensor</span> <span class="o">=</span> <span class="n">shape</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+<span class="p">[</span>    <span class="n">a</span>   <span class="n">d</span> <span class="n">e</span>  <span class="p">]</span>
+<span class="p">[</span><span class="n">b</span> <span class="n">c</span>          <span class="p">]</span>
+</pre></div>
+
+
+<p>Graphically the output tensors are:</p>
+<div class="codehilite"><pre><span></span><span class="n">output_tensor</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span>
+<span class="p">[</span>    <span class="n">a</span> <span class="p">]</span>
+<span class="p">[</span><span class="n">b</span> <span class="n">c</span>   <span class="p">]</span>
+
+<span class="n">output_tensor</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span>
+<span class="p">[</span> <span class="n">d</span> <span class="n">e</span>  <span class="p">]</span>
+<span class="p">[</span>      <span class="p">]</span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>sp_input</code></b>: The <code>SparseTensor</code> to split.</li>
+<li><b><code>num_split</code></b>: A Python integer. The number of ways to split.</li>
+<li><b><code>axis</code></b>: A 0-D <code>int32</code> <code>Tensor</code>. The dimension along which to split.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p><code>num_split</code> <code>SparseTensor</code> objects resulting from splitting <code>value</code>.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>TypeError</code></b>: If <code>sp_input</code> is not a <code>SparseTensor</code>.</li>
+</ul>
+    </body>
+    </html>
+   

@@ -1,0 +1,324 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.lite.TFLiteConverter" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="convert"/>
+<meta itemprop="property" content="from_frozen_graph"/>
+<meta itemprop="property" content="from_keras_model_file"/>
+<meta itemprop="property" content="from_saved_model"/>
+<meta itemprop="property" content="from_session"/>
+<meta itemprop="property" content="get_input_arrays"/>
+</div>
+
+<h1 id="tfcompatv1litetfliteconverter">tf.compat.v1.lite.TFLiteConverter</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/lite/python/lite.py">View source</a></p>
+<h2 id="class-tfliteconverter">Class <code>TFLiteConverter</code></h2>
+<!-- Start diff -->
+
+<p>Convert a TensorFlow model into <code>output_format</code>.</p>
+<!-- Placeholder for "Used in" -->
+
+<p>This is used to convert from a TensorFlow GraphDef, SavedModel or tf.keras
+model into either a TFLite FlatBuffer or graph visualization.</p>
+<h4 id="attributes">Attributes:</h4>
+<ul>
+<li><b><code>inference_type</code></b>: Target data type of real-number arrays in the output file.
+  Must be <code>{tf.float32, tf.uint8}</code>. If <code>optimzations</code> are provided, this
+  parameter is ignored. (default tf.float32)</li>
+<li><b><code>inference_input_type</code></b>: Target data type of real-number input arrays. Allows
+  for a different type for input arrays.
+  If an integer type is provided and <code>optimizations</code> are not used,
+  <code>quantized_inputs_stats</code> must be provided.
+  If <code>inference_type</code> is tf.uint8, signaling conversion to a fully quantized
+  model from a quantization-aware trained input model, then
+  <code>inference_input_type</code> defaults to tf.uint8.
+  In all other cases, <code>inference_input_type</code> defaults to tf.float32.
+  Must be <code>{tf.float32, tf.uint8, tf.int8}</code></li>
+<li><b><code>inference_output_type</code></b>: Target data type of real-number output arrays. Allows
+  for a different type for output arrays.
+  If <code>inference_type</code> is tf.uint8, signaling conversion to a fully quantized
+  model from a quantization-aware trained output model, then
+  <code>inference_output_type</code> defaults to tf.uint8.
+  In all other cases, <code>inference_output_type</code> must be tf.float32, an error
+  will be thrown otherwise.
+  Must be <code>{tf.float32, tf.uint8, tf.int8}</code></li>
+<li><b><code>output_format</code></b>: Output file format. Currently must be <code>{TFLITE,
+  GRAPHVIZ_DOT}</code>. (default TFLITE)</li>
+<li><b><code>quantized_input_stats</code></b>: Dict of strings representing input tensor names
+  mapped to tuple of floats representing the mean and standard deviation
+  of the training data (e.g., {"foo" : (0., 1.)}). Only need if
+  <code>inference_input_type</code> is <code>QUANTIZED_UINT8</code>.
+  real_input_value = (quantized_input_value - mean_value) / std_dev_value.
+  (default {})</li>
+<li><b><code>default_ranges_stats</code></b>: Tuple of integers representing (min, max) range values
+  for all arrays without a specified range. Intended for experimenting with
+  quantization via "dummy quantization". (default None)</li>
+<li><b><code>drop_control_dependency</code></b>: Boolean indicating whether to drop control
+  dependencies silently. This is due to TFLite not supporting control
+  dependencies. (default True)</li>
+<li><b><code>reorder_across_fake_quant</code></b>: Boolean indicating whether to reorder FakeQuant
+  nodes in unexpected locations. Used when the location of the FakeQuant
+  nodes is preventing graph transformations necessary to convert the graph.
+  Results in a graph that differs from the quantized training graph,
+  potentially causing differing arithmetic behavior. (default False)</li>
+<li><b><code>change_concat_input_ranges</code></b>: Boolean to change behavior of min/max ranges for
+  inputs and outputs of the concat operator for quantized models. Changes
+  the ranges of concat operator overlap when true. (default False)</li>
+<li><b><code>allow_custom_ops</code></b>: Boolean indicating whether to allow custom operations.
+  When false any unknown operation is an error. When true, custom ops are
+  created for any op that is unknown. The developer will need to provide
+  these to the TensorFlow Lite runtime with a custom resolver.
+  (default False)</li>
+<li><b><code>post_training_quantize</code></b>: Deprecated. Please specify <code>[Optimize.DEFAULT]</code> for
+  <code>optimizations</code> instead. Boolean indicating whether to quantize the
+  weights of the converted float model.  Model size will be reduced and
+  there will be latency improvements (at the cost of accuracy).
+  (default False)</li>
+<li><b><code>dump_graphviz_dir</code></b>: Full filepath of folder to dump the graphs at various
+  stages of processing GraphViz .dot files. Preferred over
+  --output_format=GRAPHVIZ_DOT in order to keep the requirements of the
+  output file. (default None)</li>
+<li><b><code>dump_graphviz_video</code></b>: Boolean indicating whether to dump the graph after
+  every graph transformation. (default False)</li>
+<li><b><code>target_ops</code></b>: Deprecated. Please specify <code>target_spec.supported_ops</code> instead.
+  Set of OpsSet options indicating which converter to use.
+  (default set([OpsSet.TFLITE_BUILTINS]))</li>
+<li><b><code>target_spec</code></b>: Experimental flag, subject to change. Specification of target
+  device.</li>
+<li><b><code>optimizations</code></b>: Experimental flag, subject to change. A list of optimizations
+  to apply when converting the model. E.g. <code>[Optimize.DEFAULT]</code></li>
+<li><b><code>representative_dataset</code></b>: A representative dataset that can be used to
+  generate input and output samples for the model. The converter can use
+  the dataset to evaluate different optimizations.</li>
+<li><b><code>experimental_enable_mlir_converter</code></b>: Experimental flag, subject to change.
+  Enables the MLIR converter instead of the TOCO converter.</li>
+</ul>
+<h4 id="example-usage">Example usage:</h4>
+<div class="codehilite"><pre><span></span><span class="c1"># Converting a GraphDef from session.</span>
+<span class="n">converter</span> <span class="o">=</span> <span class="n">lite</span><span class="o">.</span><span class="n">TFLiteConverter</span><span class="o">.</span><span class="n">from_session</span><span class="p">(</span><span class="n">sess</span><span class="p">,</span> <span class="n">in_tensors</span><span class="p">,</span> <span class="n">out_tensors</span><span class="p">)</span>
+<span class="n">tflite_model</span> <span class="o">=</span> <span class="n">converter</span><span class="o">.</span><span class="n">convert</span><span class="p">()</span>
+<span class="nb">open</span><span class="p">(</span><span class="s2">&quot;converted_model.tflite&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">tflite_model</span><span class="p">)</span>
+
+<span class="c1"># Converting a GraphDef from file.</span>
+<span class="n">converter</span> <span class="o">=</span> <span class="n">lite</span><span class="o">.</span><span class="n">TFLiteConverter</span><span class="o">.</span><span class="n">from_frozen_graph</span><span class="p">(</span>
+  <span class="n">graph_def_file</span><span class="p">,</span> <span class="n">input_arrays</span><span class="p">,</span> <span class="n">output_arrays</span><span class="p">)</span>
+<span class="n">tflite_model</span> <span class="o">=</span> <span class="n">converter</span><span class="o">.</span><span class="n">convert</span><span class="p">()</span>
+<span class="nb">open</span><span class="p">(</span><span class="s2">&quot;converted_model.tflite&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">tflite_model</span><span class="p">)</span>
+
+<span class="c1"># Converting a SavedModel.</span>
+<span class="n">converter</span> <span class="o">=</span> <span class="n">lite</span><span class="o">.</span><span class="n">TFLiteConverter</span><span class="o">.</span><span class="n">from_saved_model</span><span class="p">(</span><span class="n">saved_model_dir</span><span class="p">)</span>
+<span class="n">tflite_model</span> <span class="o">=</span> <span class="n">converter</span><span class="o">.</span><span class="n">convert</span><span class="p">()</span>
+<span class="nb">open</span><span class="p">(</span><span class="s2">&quot;converted_model.tflite&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">tflite_model</span><span class="p">)</span>
+
+<span class="c1"># Converting a tf.keras model.</span>
+<span class="n">converter</span> <span class="o">=</span> <span class="n">lite</span><span class="o">.</span><span class="n">TFLiteConverter</span><span class="o">.</span><span class="n">from_keras_model_file</span><span class="p">(</span><span class="n">keras_model</span><span class="p">)</span>
+<span class="n">tflite_model</span> <span class="o">=</span> <span class="n">converter</span><span class="o">.</span><span class="n">convert</span><span class="p">()</span>
+<span class="nb">open</span><span class="p">(</span><span class="s2">&quot;converted_model.tflite&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">tflite_model</span><span class="p">)</span>
+</pre></div>
+
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/lite/python/lite.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">graph_def</span><span class="p">,</span>
+    <span class="n">input_tensors</span><span class="p">,</span>
+    <span class="n">output_tensors</span><span class="p">,</span>
+    <span class="n">input_arrays_with_shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">output_arrays</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">experimental_debug_info_func</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Constructor for TFLiteConverter.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>graph_def</code></b>: Frozen TensorFlow GraphDef.</li>
+<li><b><code>input_tensors</code></b>: List of input tensors. Type and shape are computed using
+  <code>foo.shape</code> and <code>foo.dtype</code>.</li>
+<li><b><code>output_tensors</code></b>: List of output tensors (only .name is used from this).</li>
+<li><b><code>input_arrays_with_shape</code></b>: Tuple of strings representing input tensor names
+  and list of integers representing input shapes
+  (e.g., [("foo" : [1, 16, 16, 3])]). Use only when graph cannot be loaded
+    into TensorFlow and when <code>input_tensors</code> and <code>output_tensors</code> are
+    None. (default None)</li>
+<li><b><code>output_arrays</code></b>: List of output tensors to freeze graph with. Use only when
+  graph cannot be loaded into TensorFlow and when <code>input_tensors</code> and
+  <code>output_tensors</code> are None. (default None)</li>
+<li><b><code>experimental_debug_info_func</code></b>: An experimental function to retrieve the
+  graph debug info for a set of nodes from the <code>graph_def</code>.</li>
+</ul>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: Invalid arguments.</li>
+</ul>
+<h2 id="methods">Methods</h2>
+<h3 id="convert"><code>convert</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/lite/python/lite.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">convert</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Converts a TensorFlow GraphDef based on instance variables.</p>
+<h4 id="returns">Returns:</h4>
+<p>The converted data in serialized format. Either a TFLite Flatbuffer or a
+Graphviz graph depending on value in <code>output_format</code>.</p>
+<h4 id="raises_1">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>:   Input shape is not specified.
+  None value for dimension in input_tensor.</li>
+</ul>
+<h3 id="from_frozen_graph"><code>from_frozen_graph</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/lite/python/lite.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="nd">@classmethod</span>
+<span class="n">from_frozen_graph</span><span class="p">(</span>
+    <span class="bp">cls</span><span class="p">,</span>
+    <span class="n">graph_def_file</span><span class="p">,</span>
+    <span class="n">input_arrays</span><span class="p">,</span>
+    <span class="n">output_arrays</span><span class="p">,</span>
+    <span class="n">input_shapes</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Creates a TFLiteConverter class from a file containing a frozen GraphDef.</p>
+<h4 id="args_1">Args:</h4>
+<ul>
+<li><b><code>graph_def_file</code></b>: Full filepath of file containing frozen GraphDef.</li>
+<li><b><code>input_arrays</code></b>: List of input tensors to freeze graph with.</li>
+<li><b><code>output_arrays</code></b>: List of output tensors to freeze graph with.</li>
+<li><b><code>input_shapes</code></b>: Dict of strings representing input tensor names to list of
+  integers representing input shapes (e.g., {"foo" : [1, 16, 16, 3]}).
+  Automatically determined when input shapes is None (e.g., {"foo" :
+    None}). (default None)</li>
+</ul>
+<h4 id="returns_1">Returns:</h4>
+<p>TFLiteConverter class.</p>
+<h4 id="raises_2">Raises:</h4>
+<ul>
+<li><b><code>IOError</code></b>:   File not found.
+  Unable to parse input file.</li>
+<li><b><code>ValueError</code></b>:   The graph is not frozen.
+  input_arrays or output_arrays contains an invalid tensor name.
+  input_shapes is not correctly defined when required</li>
+</ul>
+<h3 id="from_keras_model_file"><code>from_keras_model_file</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/lite/python/lite.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="nd">@classmethod</span>
+<span class="n">from_keras_model_file</span><span class="p">(</span>
+    <span class="bp">cls</span><span class="p">,</span>
+    <span class="n">model_file</span><span class="p">,</span>
+    <span class="n">input_arrays</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">input_shapes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">output_arrays</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">custom_objects</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Creates a TFLiteConverter class from a tf.keras model file.</p>
+<h4 id="args_2">Args:</h4>
+<ul>
+<li><b><code>model_file</code></b>: Full filepath of HDF5 file containing the tf.keras model.</li>
+<li><b><code>input_arrays</code></b>: List of input tensors to freeze graph with. Uses input
+  arrays from SignatureDef when none are provided. (default None)</li>
+<li><b><code>input_shapes</code></b>: Dict of strings representing input tensor names to list of
+  integers representing input shapes (e.g., {"foo" : [1, 16, 16, 3]}).
+  Automatically determined when input shapes is None (e.g., {"foo" :
+    None}). (default None)</li>
+<li><b><code>output_arrays</code></b>: List of output tensors to freeze graph with. Uses output
+  arrays from SignatureDef when none are provided. (default None)</li>
+<li><b><code>custom_objects</code></b>: Dict mapping names (strings) to custom classes or
+  functions to be considered during model deserialization. (default None)</li>
+</ul>
+<h4 id="returns_2">Returns:</h4>
+<p>TFLiteConverter class.</p>
+<h3 id="from_saved_model"><code>from_saved_model</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/lite/python/lite.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="nd">@classmethod</span>
+<span class="n">from_saved_model</span><span class="p">(</span>
+    <span class="bp">cls</span><span class="p">,</span>
+    <span class="n">saved_model_dir</span><span class="p">,</span>
+    <span class="n">input_arrays</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">input_shapes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">output_arrays</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">tag_set</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">signature_key</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Creates a TFLiteConverter class from a SavedModel.</p>
+<h4 id="args_3">Args:</h4>
+<ul>
+<li><b><code>saved_model_dir</code></b>: SavedModel directory to convert.</li>
+<li><b><code>input_arrays</code></b>: List of input tensors to freeze graph with. Uses input
+  arrays from SignatureDef when none are provided. (default None)</li>
+<li><b><code>input_shapes</code></b>: Dict of strings representing input tensor names to list of
+  integers representing input shapes (e.g., {"foo" : [1, 16, 16, 3]}).
+  Automatically determined when input shapes is None (e.g., {"foo" :
+    None}). (default None)</li>
+<li><b><code>output_arrays</code></b>: List of output tensors to freeze graph with. Uses output
+  arrays from SignatureDef when none are provided. (default None)</li>
+<li><b><code>tag_set</code></b>: Set of tags identifying the MetaGraphDef within the SavedModel to
+  analyze. All tags in the tag set must be present. (default set("serve"))</li>
+<li><b><code>signature_key</code></b>: Key identifying SignatureDef containing inputs and outputs.
+  (default DEFAULT_SERVING_SIGNATURE_DEF_KEY)</li>
+</ul>
+<h4 id="returns_3">Returns:</h4>
+<p>TFLiteConverter class.</p>
+<h3 id="from_session"><code>from_session</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/lite/python/lite.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="nd">@classmethod</span>
+<span class="n">from_session</span><span class="p">(</span>
+    <span class="bp">cls</span><span class="p">,</span>
+    <span class="n">sess</span><span class="p">,</span>
+    <span class="n">input_tensors</span><span class="p">,</span>
+    <span class="n">output_tensors</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Creates a TFLiteConverter class from a TensorFlow Session.</p>
+<h4 id="args_4">Args:</h4>
+<ul>
+<li><b><code>sess</code></b>: TensorFlow Session.</li>
+<li><b><code>input_tensors</code></b>: List of input tensors. Type and shape are computed using
+  <code>foo.shape</code> and <code>foo.dtype</code>.</li>
+<li><b><code>output_tensors</code></b>: List of output tensors (only .name is used from this).</li>
+</ul>
+<h4 id="returns_4">Returns:</h4>
+<p>TFLiteConverter class.</p>
+<h3 id="get_input_arrays"><code>get_input_arrays</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/lite/python/lite.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_input_arrays</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Returns a list of the names of the input tensors.</p>
+<h4 id="returns_5">Returns:</h4>
+<p>List of strings.</p>
+    </body>
+    </html>
+   

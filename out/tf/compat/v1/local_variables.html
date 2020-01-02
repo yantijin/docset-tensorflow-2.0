@@ -1,0 +1,52 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.local_variables" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1local_variables">tf.compat.v1.local_variables</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Returns local variables.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">local_variables</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Local variables - per process variables, usually not saved/restored to
+checkpoint and used for temporary or intermediate values.
+For example, they can be used as counters for metrics computation or
+number of epochs this machine has read data.
+The <code>tf.contrib.framework.local_variable()</code> function automatically adds the
+new variable to <code>GraphKeys.LOCAL_VARIABLES</code>.
+This convenience function returns the contents of that collection.</p>
+<p>An alternative to local variables are global variables. See
+<a href="../../../tf/compat/v1/global_variables.html"><code>tf.compat.v1.global_variables</code></a></p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>scope</code></b>: (Optional.) A string. If supplied, the resulting list is filtered to
+  include only items whose <code>name</code> attribute matches <code>scope</code> using
+  <code>re.match</code>. Items without a <code>name</code> attribute are never returned if a scope
+  is supplied. The choice of <code>re.match</code> means that a <code>scope</code> without special
+  tokens filters by prefix.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A list of local <code>Variable</code> objects.</p>
+    </body>
+    </html>
+   

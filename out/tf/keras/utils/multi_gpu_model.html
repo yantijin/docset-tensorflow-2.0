@@ -1,0 +1,153 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.utils.multi_gpu_model" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfkerasutilsmulti_gpu_model">tf.keras.utils.multi_gpu_model</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/utils/multi_gpu_utils.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Replicates a model on different GPUs. (deprecated)</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.keras.utils.multi_gpu_model</code></li>
+<li><code>tf.compat.v2.keras.utils.multi_gpu_model</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">multi_gpu_model</span><span class="p">(</span>
+    <span class="n">model</span><span class="p">,</span>
+    <span class="n">gpus</span><span class="p">,</span>
+    <span class="n">cpu_merge</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">cpu_relocation</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed after 2020-04-01.
+Instructions for updating:
+Use <a href="../../../tf/distribute/MirroredStrategy.html"><code>tf.distribute.MirroredStrategy</code></a> instead.</p>
+<p>Specifically, this function implements single-machine
+multi-GPU data parallelism. It works in the following way:</p>
+<ul>
+<li>Divide the model's input(s) into multiple sub-batches.</li>
+<li>Apply a model copy on each sub-batch. Every model copy
+    is executed on a dedicated GPU.</li>
+<li>Concatenate the results (on CPU) into one big batch.</li>
+</ul>
+<p>E.g. if your <code>batch_size</code> is 64 and you use <code>gpus=2</code>,
+then we will divide the input into 2 sub-batches of 32 samples,
+process each sub-batch on one GPU, then return the full
+batch of 64 processed samples.</p>
+<p>This induces quasi-linear speedup on up to 8 GPUs.</p>
+<p>This function is only available with the TensorFlow backend
+for the time being.</p>
+<h4 id="arguments">Arguments:</h4>
+<ul>
+<li><b><code>model</code></b>: A Keras model instance. To avoid OOM errors,
+    this model could have been built on CPU, for instance
+    (see usage example below).</li>
+<li><b><code>gpus</code></b>: Integer &gt;= 2, number of on GPUs on which to create
+    model replicas.</li>
+<li><b><code>cpu_merge</code></b>: A boolean value to identify whether to force
+    merging model weights under the scope of the CPU or not.</li>
+<li><b><code>cpu_relocation</code></b>: A boolean value to identify whether to
+    create the model's weights under the scope of the CPU.
+    If the model is not defined under any preceding device
+    scope, you can still rescue it by activating this option.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A Keras <code>Model</code> instance which can be used just like the initial
+<code>model</code> argument, but which distributes its workload on multiple GPUs.</p>
+<p>Example 1: Training models with weights merge on CPU</p>
+<div class="codehilite"><pre><span></span>    <span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+    <span class="kn">from</span> <span class="nn">keras.applications</span> <span class="kn">import</span> <span class="n">Xception</span>
+    <span class="kn">from</span> <span class="nn">keras.utils</span> <span class="kn">import</span> <span class="n">multi_gpu_model</span>
+    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+    <span class="n">num_samples</span> <span class="o">=</span> <span class="mi">1000</span>
+    <span class="n">height</span> <span class="o">=</span> <span class="mi">224</span>
+    <span class="n">width</span> <span class="o">=</span> <span class="mi">224</span>
+    <span class="n">num_classes</span> <span class="o">=</span> <span class="mi">1000</span>
+
+    <span class="c1"># Instantiate the base model (or &quot;template&quot; model).</span>
+    <span class="c1"># We recommend doing this with under a CPU device scope,</span>
+    <span class="c1"># so that the model&#39;s weights are hosted on CPU memory.</span>
+    <span class="c1"># Otherwise they may end up hosted on a GPU, which would</span>
+    <span class="c1"># complicate weight sharing.</span>
+    <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s1">&#39;/cpu:0&#39;</span><span class="p">):</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">Xception</span><span class="p">(</span><span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                         <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
+                         <span class="n">classes</span><span class="o">=</span><span class="n">num_classes</span><span class="p">)</span>
+
+    <span class="c1"># Replicates the model on 8 GPUs.</span>
+    <span class="c1"># This assumes that your machine has 8 available GPUs.</span>
+    <span class="n">parallel_model</span> <span class="o">=</span> <span class="n">multi_gpu_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">gpus</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+    <span class="n">parallel_model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s1">&#39;categorical_crossentropy&#39;</span><span class="p">,</span>
+                           <span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;rmsprop&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Generate dummy data.</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="n">num_samples</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="n">num_samples</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">))</span>
+
+    <span class="c1"># This `fit` call will be distributed on 8 GPUs.</span>
+    <span class="c1"># Since the batch size is 256, each GPU will process 32 samples.</span>
+    <span class="n">parallel_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">256</span><span class="p">)</span>
+
+    <span class="c1"># Save model via the template model (which shares the same weights):</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;my_model.h5&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Example 2: Training models with weights merge on CPU using cpu_relocation</p>
+<div class="codehilite"><pre><span></span>     <span class="o">..</span>
+     <span class="c1"># Not needed to change the device scope for model definition:</span>
+     <span class="n">model</span> <span class="o">=</span> <span class="n">Xception</span><span class="p">(</span><span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">..</span><span class="p">)</span>
+
+     <span class="k">try</span><span class="p">:</span>
+         <span class="n">model</span> <span class="o">=</span> <span class="n">multi_gpu_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">cpu_relocation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Training using multiple GPUs..&quot;</span><span class="p">)</span>
+     <span class="k">except</span><span class="p">:</span>
+         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Training using single GPU or CPU..&quot;</span><span class="p">)</span>
+
+     <span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="o">..</span><span class="p">)</span>
+     <span class="o">..</span>
+</pre></div>
+
+
+<p>Example 3: Training models with weights merge on GPU (recommended for NV-link)</p>
+<div class="codehilite"><pre><span></span>     <span class="o">..</span>
+     <span class="c1"># Not needed to change the device scope for model definition:</span>
+     <span class="n">model</span> <span class="o">=</span> <span class="n">Xception</span><span class="p">(</span><span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">..</span><span class="p">)</span>
+
+     <span class="k">try</span><span class="p">:</span>
+         <span class="n">model</span> <span class="o">=</span> <span class="n">multi_gpu_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">cpu_merge</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Training using multiple GPUs..&quot;</span><span class="p">)</span>
+     <span class="k">except</span><span class="p">:</span>
+         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Training using single GPU or CPU..&quot;</span><span class="p">)</span>
+     <span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="o">..</span><span class="p">)</span>
+     <span class="o">..</span>
+</pre></div>
+
+
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: if the <code>gpus</code> argument does not match available devices.</li>
+</ul>
+    </body>
+    </html>
+   

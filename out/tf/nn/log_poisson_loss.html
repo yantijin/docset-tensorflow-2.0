@@ -1,0 +1,79 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.nn.log_poisson_loss" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfnnlog_poisson_loss">tf.nn.log_poisson_loss</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/nn_impl.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Computes log Poisson loss given <code>log_input</code>.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.nn.log_poisson_loss</code></li>
+<li><code>tf.compat.v2.nn.log_poisson_loss</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">log_poisson_loss</span><span class="p">(</span>
+    <span class="n">targets</span><span class="p">,</span>
+    <span class="n">log_input</span><span class="p">,</span>
+    <span class="n">compute_full_loss</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Gives the log-likelihood loss between the prediction and the target under the
+assumption that the target has a Poisson distribution.
+Caveat: By default, this is not the exact loss, but the loss minus a
+  constant term [log(z!)]. That has no effect for optimization, but
+  does not play well with relative loss comparisons. To compute an
+  approximation of the log factorial term, specify
+  compute_full_loss=True to enable Stirling's Approximation.</p>
+<p>For brevity, let <code>c = log(x) = log_input</code>, <code>z = targets</code>.  The log Poisson
+loss is</p>
+<div class="codehilite"><pre><span></span><span class="err">  -log(exp(-x) * (x^z) / z!)</span>
+<span class="err">= -log(exp(-x) * (x^z)) + log(z!)</span>
+<span class="err">~ -log(exp(-x)) - log(x^z) [+ z * log(z) - z + 0.5 * log(2 * pi * z)]</span>
+<span class="err">    [ Note the second term is the Stirling&#39;s Approximation for log(z!).</span>
+<span class="err">      It is invariant to x and does not affect optimization, though</span>
+<span class="err">      important for correct relative loss comparisons. It is only</span>
+<span class="err">      computed when compute_full_loss == True. ]</span>
+<span class="err">= x - z * log(x) [+ z * log(z) - z + 0.5 * log(2 * pi * z)]</span>
+<span class="err">= exp(c) - z * c [+ z * log(z) - z + 0.5 * log(2 * pi * z)]</span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>targets</code></b>: A <code>Tensor</code> of the same type and shape as <code>log_input</code>.</li>
+<li><b><code>log_input</code></b>: A <code>Tensor</code> of type <code>float32</code> or <code>float64</code>.</li>
+<li><b><code>compute_full_loss</code></b>: whether to compute the full loss. If false, a constant
+  term is dropped in favor of more efficient optimization.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>Tensor</code> of the same shape as <code>log_input</code> with the componentwise
+logistic losses.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: If <code>log_input</code> and <code>targets</code> do not have the same shape.</li>
+</ul>
+    </body>
+    </html>
+   

@@ -1,0 +1,90 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.layers.LayerNormalization" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__init__"/>
+</div>
+
+<h1 id="tfkeraslayerslayernormalization">tf.keras.layers.LayerNormalization</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/normalization.py">View source</a></p>
+<h2 id="class-layernormalization">Class <code>LayerNormalization</code></h2>
+<!-- Start diff -->
+
+<p>Layer normalization layer (Ba et al., 2016).</p>
+<p>Inherits From: <a href="../../../tf/keras/layers/Layer.html"><code>Layer</code></a></p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v1.keras.layers.LayerNormalization</code></li>
+<li>Class <code>tf.compat.v2.keras.layers.LayerNormalization</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<p>Normalize the activations of the previous layer for each given example in a
+batch independently, rather than across a batch like Batch Normalization.
+i.e. applies a transformation that maintains the mean activation within each
+example close to 0 and the activation standard deviation close to 1.</p>
+<h4 id="arguments">Arguments:</h4>
+<ul>
+<li><b><code>axis</code></b>: Integer or List/Tuple. The axis that should be normalized
+  (typically the features axis).</li>
+<li><b><code>epsilon</code></b>: Small float added to variance to avoid dividing by zero.</li>
+<li><b><code>center</code></b>: If True, add offset of <code>beta</code> to normalized tensor.
+    If False, <code>beta</code> is ignored.</li>
+<li><b><code>scale</code></b>: If True, multiply by <code>gamma</code>.
+  If False, <code>gamma</code> is not used.
+  When the next layer is linear (also e.g. <a href="../../../tf/nn/relu.html"><code>nn.relu</code></a>),
+  this can be disabled since the scaling
+  will be done by the next layer.</li>
+<li><b><code>beta_initializer</code></b>: Initializer for the beta weight.</li>
+<li><b><code>gamma_initializer</code></b>: Initializer for the gamma weight.</li>
+<li><b><code>beta_regularizer</code></b>: Optional regularizer for the beta weight.</li>
+<li><b><code>gamma_regularizer</code></b>: Optional regularizer for the gamma weight.</li>
+<li><b><code>beta_constraint</code></b>: Optional constraint for the beta weight.</li>
+<li><b><code>gamma_constraint</code></b>: Optional constraint for the gamma weight.</li>
+<li><b><code>trainable</code></b>: Boolean, if <code>True</code> the variables will be marked as trainable.</li>
+</ul>
+<h4 id="input-shape">Input shape:</h4>
+<p>Arbitrary. Use the keyword argument <code>input_shape</code>
+(tuple of integers, does not include the samples axis)
+when using this layer as the first layer in a model.</p>
+<h4 id="output-shape">Output shape:</h4>
+<p>Same shape as input.</p>
+<h4 id="references">References:</h4>
+<ul>
+<li><a href="https://arxiv.org/abs/1607.06450">Layer Normalization</a></li>
+</ul>
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/normalization.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span>
+    <span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">scale</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">beta_initializer</span><span class="o">=</span><span class="s1">&#39;zeros&#39;</span><span class="p">,</span>
+    <span class="n">gamma_initializer</span><span class="o">=</span><span class="s1">&#39;ones&#39;</span><span class="p">,</span>
+    <span class="n">beta_regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">gamma_regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">beta_constraint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">gamma_constraint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">trainable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+    </body>
+    </html>
+   

@@ -1,0 +1,94 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.ragged.boolean_mask" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfraggedboolean_mask">tf.ragged.boolean_mask</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/ragged/ragged_array_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Applies a boolean mask to <code>data</code> without flattening the mask dimensions.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.ragged.boolean_mask</code></li>
+<li><code>tf.compat.v2.ragged.boolean_mask</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">ragged</span><span class="o">.</span><span class="n">boolean_mask</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">,</span>
+    <span class="n">mask</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Returns a potentially ragged tensor that is formed by retaining the elements
+in <code>data</code> where the corresponding value in <code>mask</code> is <code>True</code>.</p>
+<ul>
+<li><code>output[a1...aA, i, b1...bB] = data[a1...aA, j, b1...bB]</code></li>
+</ul>
+<p>Where <code>j</code> is the <code>i</code>th <code>True</code> entry of <code>mask[a1...aA]</code>.</p>
+<p>Note that <code>output</code> preserves the mask dimensions <code>a1...aA</code>; this differs
+from <a href="../../tf/boolean_mask.html"><code>tf.boolean_mask</code></a>, which flattens those dimensions.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>data</code></b>: A potentially ragged tensor.</li>
+<li><b><code>mask</code></b>: A potentially ragged boolean tensor.  <code>mask</code>'s shape must be a prefix
+  of <code>data</code>'s shape.  <code>rank(mask)</code> must be known statically.</li>
+<li><b><code>name</code></b>: A name prefix for the returned tensor (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A potentially ragged tensor that is formed by retaining the elements in
+<code>data</code> where the corresponding value in <code>mask</code> is <code>True</code>.</p>
+<ul>
+<li><code>rank(output) = rank(data)</code>.</li>
+<li><code>output.ragged_rank = max(data.ragged_rank, rank(mask) - 1)</code>.</li>
+</ul>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: if <code>rank(mask)</code> is not known statically; or if <code>mask.shape</code> is
+  not a prefix of <code>data.shape</code>.</li>
+</ul>
+<p>```</p>
+<h4 id="examples">Examples:</h4>
+<p>```python</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<h1 id="aliases-for-true-false-so-data-and-mask-line-up">Aliases for True &amp; False so data and mask line up.</h1>
+<p>T, F = (True, False)</p>
+<p>tf.ragged.boolean_mask(  # Mask a 2D Tensor.
+  ...     data=[[1, 2, 3], [4, 5, 6], [7, 8, 9]],
+  ...     mask=[[T, F, T], [F, F, F], [T, F, F]]).tolist()
+  [[1, 3], [], [7]]</p>
+<p>tf.ragged.boolean_mask(  # Mask a 2D RaggedTensor.
+  ...     tf.ragged.constant([[1, 2, 3], [4], [5, 6]]),
+  ...     tf.ragged.constant([[F, F, T], [F], [T, T]])).tolist()
+  [[3], [], [5, 6]]
+  ```</p>
+<p>tf.ragged.boolean_mask(  # Mask rows of a 2D RaggedTensor.
+  ...     tf.ragged.constant([[1, 2, 3], [4], [5, 6]]),
+  ...     tf.ragged.constant([True, False, True])).tolist()
+  [[1, 2, 3], [5, 6]]
+  ```</p>
+</blockquote>
+</blockquote>
+</blockquote>
+    </body>
+    </html>
+   

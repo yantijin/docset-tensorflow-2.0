@@ -1,0 +1,56 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.image.random_flip_up_down" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfimagerandom_flip_up_down">tf.image.random_flip_up_down</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/image_ops_impl.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Randomly flips an image vertically (upside down).</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.image.random_flip_up_down</code></li>
+<li><code>tf.compat.v2.image.random_flip_up_down</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">random_flip_up_down</span><span class="p">(</span>
+    <span class="n">image</span><span class="p">,</span>
+    <span class="n">seed</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>With a 1 in 2 chance, outputs the contents of <code>image</code> flipped along the first
+dimension, which is <code>height</code>.  Otherwise output the image as-is.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>image</code></b>: 4-D Tensor of shape <code>[batch, height, width, channels]</code> or 3-D Tensor
+  of shape <code>[height, width, channels]</code>.</li>
+<li><b><code>seed</code></b>: A Python integer. Used to create a random seed. See
+  <a href="../../tf/compat/v1/set_random_seed.html"><code>tf.compat.v1.set_random_seed</code></a> for behavior.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A tensor of the same type and shape as <code>image</code>.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: if the shape of <code>image</code> not supported.</li>
+</ul>
+    </body>
+    </html>
+   

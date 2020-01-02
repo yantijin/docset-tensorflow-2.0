@@ -1,0 +1,111 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.sets.difference" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfsetsdifference">tf.sets.difference</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/sets_impl.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Compute set difference of elements in last dimension of <code>a</code> and <code>b</code>.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.sets.difference</code></li>
+<li><code>tf.compat.v1.sets.set_difference</code></li>
+<li><code>tf.compat.v2.sets.difference</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">sets</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span>
+    <span class="n">a</span><span class="p">,</span>
+    <span class="n">b</span><span class="p">,</span>
+    <span class="n">aminusb</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">validate_indices</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>All but the last dimension of <code>a</code> and <code>b</code> must match.</p>
+<h4 id="example">Example:</h4>
+<div class="codehilite"><pre><span></span>  <span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+  <span class="kn">import</span> <span class="nn">collections</span>
+
+  <span class="c1"># Represent the following array of sets as a sparse tensor:</span>
+  <span class="c1"># a = np.array([[{1, 2}, {3}], [{4}, {5, 6}]])</span>
+  <span class="n">a</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">OrderedDict</span><span class="p">([</span>
+      <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">1</span><span class="p">),</span>
+      <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">2</span><span class="p">),</span>
+      <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">3</span><span class="p">),</span>
+      <span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">4</span><span class="p">),</span>
+      <span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">5</span><span class="p">),</span>
+      <span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">6</span><span class="p">),</span>
+  <span class="p">])</span>
+  <span class="n">a</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">SparseTensor</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="nb">list</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="n">dense_shape</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+
+  <span class="c1"># np.array([[{1, 3}, {2}], [{4, 5}, {5, 6, 7, 8}]])</span>
+  <span class="n">b</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">OrderedDict</span><span class="p">([</span>
+      <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">1</span><span class="p">),</span>
+      <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">3</span><span class="p">),</span>
+      <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">2</span><span class="p">),</span>
+      <span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">4</span><span class="p">),</span>
+      <span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">5</span><span class="p">),</span>
+      <span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">5</span><span class="p">),</span>
+      <span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">6</span><span class="p">),</span>
+      <span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">7</span><span class="p">),</span>
+      <span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="mi">8</span><span class="p">),</span>
+  <span class="p">])</span>
+  <span class="n">b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">SparseTensor</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="nb">list</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="n">dense_shape</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+
+  <span class="c1"># `set_difference` is applied to each aligned pair of sets.</span>
+  <span class="n">tf</span><span class="o">.</span><span class="n">sets</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+
+  <span class="c1"># The result will be equivalent to either of:</span>
+  <span class="c1">#</span>
+  <span class="c1"># np.array([[{2}, {3}], [{}, {}]])</span>
+  <span class="c1">#</span>
+  <span class="c1"># collections.OrderedDict([</span>
+  <span class="c1">#     ((0, 0, 0), 2),</span>
+  <span class="c1">#     ((0, 1, 0), 3),</span>
+  <span class="c1"># ])</span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>a</code></b>: <code>Tensor</code> or <code>SparseTensor</code> of the same type as <code>b</code>. If sparse, indices
+    must be sorted in row-major order.</li>
+<li><b><code>b</code></b>: <code>Tensor</code> or <code>SparseTensor</code> of the same type as <code>a</code>. If sparse, indices
+    must be sorted in row-major order.</li>
+<li><b><code>aminusb</code></b>: Whether to subtract <code>b</code> from <code>a</code>, vs vice versa.</li>
+<li><b><code>validate_indices</code></b>: Whether to validate the order and range of sparse indices
+   in <code>a</code> and <code>b</code>.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>SparseTensor</code> whose shape is the same rank as <code>a</code> and <code>b</code>, and all but
+the last dimension the same. Elements along the last dimension contain the
+differences.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>TypeError</code></b>: If inputs are invalid types, or if <code>a</code> and <code>b</code> have
+    different types.</li>
+<li><b><code>ValueError</code></b>: If <code>a</code> is sparse and <code>b</code> is dense.</li>
+<li><b><code>errors_impl.InvalidArgumentError</code></b>: If the shapes of <code>a</code> and <code>b</code> do not
+    match in any dimension other than the last dimension.</li>
+</ul>
+    </body>
+    </html>
+   

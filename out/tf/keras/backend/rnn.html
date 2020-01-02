@@ -1,0 +1,105 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.backend.rnn" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfkerasbackendrnn">tf.keras.backend.rnn</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/backend.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Iterates over the time dimension of a tensor.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.keras.backend.rnn</code></li>
+<li><code>tf.compat.v2.keras.backend.rnn</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">backend</span><span class="o">.</span><span class="n">rnn</span><span class="p">(</span>
+    <span class="n">step_function</span><span class="p">,</span>
+    <span class="n">inputs</span><span class="p">,</span>
+    <span class="n">initial_states</span><span class="p">,</span>
+    <span class="n">go_backwards</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">mask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">constants</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">unroll</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">input_length</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">time_major</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">zero_output_for_mask</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<h4 id="arguments">Arguments:</h4>
+<ul>
+<li><b><code>step_function</code></b>: RNN step function.
+    Args;
+        input; Tensor with shape <code>(samples, ...)</code> (no time dimension),
+            representing input for the batch of samples at a certain
+            time step.
+        states; List of tensors.
+    Returns;
+        output; Tensor with shape <code>(samples, output_dim)</code>
+            (no time dimension).
+        new_states; List of tensors, same length and shapes
+            as 'states'. The first state in the list must be the
+            output tensor at the previous timestep.</li>
+<li><b><code>inputs</code></b>: Tensor of temporal data of shape <code>(samples, time, ...)</code>
+    (at least 3D), or nested tensors, and each of which has shape
+    <code>(samples, time, ...)</code>.</li>
+<li><b><code>initial_states</code></b>: Tensor with shape <code>(samples, state_size)</code>
+    (no time dimension), containing the initial values for the states used
+    in the step function. In the case that state_size is in a nested
+    shape, the shape of initial_states will also follow the nested
+    structure.</li>
+<li><b><code>go_backwards</code></b>: Boolean. If True, do the iteration over the time
+    dimension in reverse order and return the reversed sequence.</li>
+<li><b><code>mask</code></b>: Binary tensor with shape <code>(samples, time, 1)</code>,
+    with a zero for every element that is masked.</li>
+<li><b><code>constants</code></b>: List of constant values passed at each step.</li>
+<li><b><code>unroll</code></b>: Whether to unroll the RNN or to use a symbolic <code>while_loop</code>.</li>
+<li><b><code>input_length</code></b>: If specified, assume time dimension is of this length.</li>
+<li><b><code>time_major</code></b>: Boolean. If true, the inputs and outputs will be in shape
+    <code>(timesteps, batch, ...)</code>, whereas in the False case, it will be
+    <code>(batch, timesteps, ...)</code>. Using <code>time_major = True</code> is a bit more
+    efficient because it avoids transposes at the beginning and end of the
+    RNN calculation. However, most TensorFlow data is batch-major, so by
+    default this function accepts input and emits output in batch-major
+    form.</li>
+<li><b><code>zero_output_for_mask</code></b>: Boolean. If True, the output for masked timestep
+    will be zeros, whereas in the False case, output from previous
+    timestep is returned.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A tuple, <code>(last_output, outputs, new_states)</code>.
+    last_output: the latest output of the rnn, of shape <code>(samples, ...)</code>
+    outputs: tensor with shape <code>(samples, time, ...)</code> where each
+        entry <code>outputs[s, t]</code> is the output of the step function
+        at time <code>t</code> for sample <code>s</code>.
+    new_states: list of tensors, latest states returned by
+        the step function, of shape <code>(samples, ...)</code>.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: if input dimension is less than 3.</li>
+<li><b><code>ValueError</code></b>: if <code>unroll</code> is <code>True</code> but input timestep is not a fixed
+number.</li>
+<li><b><code>ValueError</code></b>: if <code>mask</code> is provided (not <code>None</code>) but states is not provided
+    (<code>len(states)</code> == 0).</li>
+</ul>
+    </body>
+    </html>
+   

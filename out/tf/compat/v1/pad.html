@@ -1,0 +1,87 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.pad" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1pad">tf.compat.v1.pad</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/array_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Pads a tensor.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span>
+    <span class="n">tensor</span><span class="p">,</span>
+    <span class="n">paddings</span><span class="p">,</span>
+    <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;CONSTANT&#39;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">constant_values</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>This operation pads a <code>tensor</code> according to the <code>paddings</code> you specify.
+<code>paddings</code> is an integer tensor with shape <code>[n, 2]</code>, where n is the rank of
+<code>tensor</code>. For each dimension D of <code>input</code>, <code>paddings[D, 0]</code> indicates how
+many values to add before the contents of <code>tensor</code> in that dimension, and
+<code>paddings[D, 1]</code> indicates how many values to add after the contents of
+<code>tensor</code> in that dimension. If <code>mode</code> is "REFLECT" then both <code>paddings[D, 0]</code>
+and <code>paddings[D, 1]</code> must be no greater than <code>tensor.dim_size(D) - 1</code>. If
+<code>mode</code> is "SYMMETRIC" then both <code>paddings[D, 0]</code> and <code>paddings[D, 1]</code> must be
+no greater than <code>tensor.dim_size(D)</code>.</p>
+<p>The padded size of each dimension D of the output is:</p>
+<p><code>paddings[D, 0] + tensor.dim_size(D) + paddings[D, 1]</code></p>
+<h4 id="for-example">For example:</h4>
+<div class="codehilite"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>
+<span class="n">paddings</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>
+<span class="c1"># &#39;constant_values&#39; is 0.</span>
+<span class="c1"># rank of &#39;t&#39; is 2.</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">paddings</span><span class="p">,</span> <span class="s2">&quot;CONSTANT&quot;</span><span class="p">)</span>  <span class="c1"># [[0, 0, 0, 0, 0, 0, 0],</span>
+                                 <span class="c1">#  [0, 0, 1, 2, 3, 0, 0],</span>
+                                 <span class="c1">#  [0, 0, 4, 5, 6, 0, 0],</span>
+                                 <span class="c1">#  [0, 0, 0, 0, 0, 0, 0]]</span>
+
+<span class="n">tf</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">paddings</span><span class="p">,</span> <span class="s2">&quot;REFLECT&quot;</span><span class="p">)</span>  <span class="c1"># [[6, 5, 4, 5, 6, 5, 4],</span>
+                                <span class="c1">#  [3, 2, 1, 2, 3, 2, 1],</span>
+                                <span class="c1">#  [6, 5, 4, 5, 6, 5, 4],</span>
+                                <span class="c1">#  [3, 2, 1, 2, 3, 2, 1]]</span>
+
+<span class="n">tf</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">paddings</span><span class="p">,</span> <span class="s2">&quot;SYMMETRIC&quot;</span><span class="p">)</span>  <span class="c1"># [[2, 1, 1, 2, 3, 3, 2],</span>
+                                  <span class="c1">#  [2, 1, 1, 2, 3, 3, 2],</span>
+                                  <span class="c1">#  [5, 4, 4, 5, 6, 6, 5],</span>
+                                  <span class="c1">#  [5, 4, 4, 5, 6, 6, 5]]</span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>tensor</code></b>: A <code>Tensor</code>.</li>
+<li><b><code>paddings</code></b>: A <code>Tensor</code> of type <code>int32</code>.</li>
+<li><b><code>mode</code></b>: One of "CONSTANT", "REFLECT", or "SYMMETRIC" (case-insensitive)</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+<li><b><code>constant_values</code></b>: In "CONSTANT" mode, the scalar pad value to use. Must be
+  same type as <code>tensor</code>.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>Tensor</code>. Has the same type as <code>tensor</code>.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: When mode is not one of "CONSTANT", "REFLECT", or "SYMMETRIC".</li>
+</ul>
+    </body>
+    </html>
+   

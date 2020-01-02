@@ -1,0 +1,57 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.train.basic_train_loop" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1trainbasic_train_loop">tf.compat.v1.train.basic_train_loop</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/basic_loops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Basic loop to train a model.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">basic_train_loop</span><span class="p">(</span>
+    <span class="n">supervisor</span><span class="p">,</span>
+    <span class="n">train_step_fn</span><span class="p">,</span>
+    <span class="n">args</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">kwargs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">master</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Calls <code>train_step_fn</code> in a loop to train a model.  The function is called as:</p>
+<div class="codehilite"><pre><span></span><span class="n">train_step_fn</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</pre></div>
+
+
+<p>It is passed a <a href="../../../../tf/compat/v1/Session.html"><code>tf.compat.v1.Session</code></a> in addition to <code>args</code> and <code>kwargs</code>.  The
+function
+typically runs one training step in the session.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>supervisor</code></b>: <a href="../../../../tf/compat/v1/train/Supervisor.html"><code>tf.compat.v1.train.Supervisor</code></a> to run the training services.</li>
+<li><b><code>train_step_fn</code></b>: Callable to execute one training step.  Called repeatedly as
+  <code>train_step_fn(session, *args **kwargs)</code>.</li>
+<li><b><code>args</code></b>: Optional positional arguments passed to <code>train_step_fn</code>.</li>
+<li><b><code>kwargs</code></b>: Optional keyword arguments passed to <code>train_step_fn</code>.</li>
+<li><b><code>master</code></b>: Master to use to create the training session.  Defaults to <code>""</code>
+  which causes the session to be created in the local process.</li>
+</ul>
+    </body>
+    </html>
+   

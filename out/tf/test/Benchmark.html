@@ -1,0 +1,149 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.test.Benchmark" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="evaluate"/>
+<meta itemprop="property" content="is_abstract"/>
+<meta itemprop="property" content="report_benchmark"/>
+<meta itemprop="property" content="run_op_benchmark"/>
+</div>
+
+<h1 id="tftestbenchmark">tf.test.Benchmark</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/platform/benchmark.py">View source</a></p>
+<h2 id="class-benchmark">Class <code>Benchmark</code></h2>
+<!-- Start diff -->
+
+<p>Abstract class that provides helpers for TensorFlow benchmarks.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v1.test.Benchmark</code></li>
+<li>Class <code>tf.compat.v2.test.Benchmark</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/platform/benchmark.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Initialize self.  See help(type(self)) for accurate signature.</p>
+<h2 id="methods">Methods</h2>
+<h3 id="evaluate"><code>evaluate</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/platform/benchmark.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">evaluate</span><span class="p">(</span><span class="n">tensors</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Evaluates tensors and returns numpy values.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>tensors</code></b>: A Tensor or a nested list/tuple of Tensors.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>tensors numpy values.</p>
+<h3 id="is_abstract"><code>is_abstract</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/platform/benchmark.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="nd">@classmethod</span>
+<span class="n">is_abstract</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
+</pre></div>
+
+
+<h3 id="report_benchmark"><code>report_benchmark</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/platform/benchmark.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">report_benchmark</span><span class="p">(</span>
+    <span class="n">iters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">cpu_time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">wall_time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">throughput</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">extras</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">metrics</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Report a benchmark.</p>
+<h4 id="args_1">Args:</h4>
+<ul>
+<li><b><code>iters</code></b>: (optional) How many iterations were run</li>
+<li><b><code>cpu_time</code></b>: (optional) Median or mean cpu time in seconds.</li>
+<li><b><code>wall_time</code></b>: (optional) Median or mean wall time in seconds.</li>
+<li><b><code>throughput</code></b>: (optional) Throughput (in MB/s)</li>
+<li><b><code>extras</code></b>: (optional) Dict mapping string keys to additional benchmark info.
+  Values may be either floats or values that are convertible to strings.</li>
+<li><b><code>name</code></b>: (optional) Override the BenchmarkEntry name with <code>name</code>.
+  Otherwise it is inferred from the top-level method name.</li>
+<li><b><code>metrics</code></b>: (optional) A list of dict, where each dict has the keys below
+  name (required), string, metric name
+  value (required), double, metric value
+  min_value (optional), double, minimum acceptable metric value
+  max_value (optional), double, maximum acceptable metric value</li>
+</ul>
+<h3 id="run_op_benchmark"><code>run_op_benchmark</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/platform/benchmark.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">run_op_benchmark</span><span class="p">(</span>
+    <span class="n">sess</span><span class="p">,</span>
+    <span class="n">op_or_tensor</span><span class="p">,</span>
+    <span class="n">feed_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">burn_iters</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">min_iters</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">store_trace</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">store_memory_usage</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">extras</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">mbs</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Run an op or tensor in the given session.  Report the results.</p>
+<h4 id="args_2">Args:</h4>
+<ul>
+<li><b><code>sess</code></b>: <code>Session</code> object to use for timing.</li>
+<li><b><code>op_or_tensor</code></b>: <code>Operation</code> or <code>Tensor</code> to benchmark.</li>
+<li><b><code>feed_dict</code></b>: A <code>dict</code> of values to feed for each op iteration (see the
+  <code>feed_dict</code> parameter of <code>Session.run</code>).</li>
+<li><b><code>burn_iters</code></b>: Number of burn-in iterations to run.</li>
+<li><b><code>min_iters</code></b>: Minimum number of iterations to use for timing.</li>
+<li><b><code>store_trace</code></b>: Boolean, whether to run an extra untimed iteration and
+  store the trace of iteration in returned extras.
+  The trace will be stored as a string in Google Chrome trace format
+  in the extras field "full_trace_chrome_format". Note that trace
+  will not be stored in test_log_pb2.TestResults proto.</li>
+<li><b><code>store_memory_usage</code></b>: Boolean, whether to run an extra untimed iteration,
+  calculate memory usage, and store that in extras fields.</li>
+<li><b><code>name</code></b>: (optional) Override the BenchmarkEntry name with <code>name</code>.
+  Otherwise it is inferred from the top-level method name.</li>
+<li><b><code>extras</code></b>: (optional) Dict mapping string keys to additional benchmark info.
+  Values may be either floats or values that are convertible to strings.</li>
+<li><b><code>mbs</code></b>: (optional) The number of megabytes moved by this op, used to
+  calculate the ops throughput.</li>
+</ul>
+<h4 id="returns_1">Returns:</h4>
+<p>A <code>dict</code> containing the key-value pairs that were passed to
+<code>report_benchmark</code>. If <code>store_trace</code> option is used, then
+<code>full_chrome_trace_format</code> will be included in return dictionary even
+though it is not passed to <code>report_benchmark</code> with <code>extras</code>.</p>
+    </body>
+    </html>
+   

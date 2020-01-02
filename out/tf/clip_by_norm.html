@@ -1,0 +1,74 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../default.css" rel="stylesheet">
+    <link href="
+   ../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.clip_by_norm" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfclip_by_norm">tf.clip_by_norm</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/clip_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Clips tensor values to a maximum L2-norm.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.clip_by_norm</code></li>
+<li><code>tf.compat.v2.clip_by_norm</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">clip_by_norm</span><span class="p">(</span>
+    <span class="n">t</span><span class="p">,</span>
+    <span class="n">clip_norm</span><span class="p">,</span>
+    <span class="n">axes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Given a tensor <code>t</code>, and a maximum clip value <code>clip_norm</code>, this operation
+normalizes <code>t</code> so that its L2-norm is less than or equal to <code>clip_norm</code>,
+along the dimensions given in <code>axes</code>. Specifically, in the default case
+where all dimensions are used for calculation, if the L2-norm of <code>t</code> is
+already less than or equal to <code>clip_norm</code>, then <code>t</code> is not modified. If
+the L2-norm is greater than <code>clip_norm</code>, then this operation returns a
+tensor of the same type and shape as <code>t</code> with its values set to:</p>
+<p><code>t * clip_norm / l2norm(t)</code></p>
+<p>In this case, the L2-norm of the output tensor is <code>clip_norm</code>.</p>
+<p>As another example, if <code>t</code> is a matrix and <code>axes == [1]</code>, then each row
+of the output will have L2-norm less than or equal to <code>clip_norm</code>. If
+<code>axes == [0]</code> instead, each column of the output will be clipped.</p>
+<p>This operation is typically used to clip gradients before applying them with
+an optimizer.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>t</code></b>: A <code>Tensor</code> or <code>IndexedSlices</code>.</li>
+<li><b><code>clip_norm</code></b>: A 0-D (scalar) <code>Tensor</code> &gt; 0. A maximum clipping value.</li>
+<li><b><code>axes</code></b>: A 1-D (vector) <code>Tensor</code> of type int32 containing the dimensions
+  to use for computing the L2-norm. If <code>None</code> (the default), uses all
+  dimensions.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A clipped <code>Tensor</code> or <code>IndexedSlices</code>.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: If the clip_norm tensor is not a 0-D scalar tensor.</li>
+<li><b><code>TypeError</code></b>: If dtype of the input is not a floating point or
+  complex type.</li>
+</ul>
+    </body>
+    </html>
+   

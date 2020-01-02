@@ -1,0 +1,188 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.estimator.EstimatorSpec" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="mode"/>
+<meta itemprop="property" content="predictions"/>
+<meta itemprop="property" content="loss"/>
+<meta itemprop="property" content="train_op"/>
+<meta itemprop="property" content="eval_metric_ops"/>
+<meta itemprop="property" content="export_outputs"/>
+<meta itemprop="property" content="training_chief_hooks"/>
+<meta itemprop="property" content="training_hooks"/>
+<meta itemprop="property" content="scaffold"/>
+<meta itemprop="property" content="evaluation_hooks"/>
+<meta itemprop="property" content="prediction_hooks"/>
+<meta itemprop="property" content="__new__"/>
+</div>
+
+<h1 id="tfestimatorestimatorspec">tf.estimator.EstimatorSpec</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+
+<td>
+  <a target="_blank" href="https://github.com/tensorflow/estimator/tree/master/tensorflow_estimator/python/estimator/model_fn.py">
+    <img src="https://www.tensorflow.org/images/GitHub-Mark-32px.png" />
+    View source on GitHub
+  </a>
+</td></table>
+
+<h2 id="class-estimatorspec">Class <code>EstimatorSpec</code></h2>
+<!-- Start diff -->
+
+<p>Ops and objects returned from a <code>model_fn</code> and passed to an <code>Estimator</code>.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v1.estimator.EstimatorSpec</code></li>
+<li>Class <code>tf.compat.v2.estimator.EstimatorSpec</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<p><code>EstimatorSpec</code> fully defines the model to be run by an <code>Estimator</code>.</p>
+<h2 id="__new__"><code>__new__</code></h2>
+
+<p><a target="_blank" href="https://github.com/tensorflow/estimator/tree/master/tensorflow_estimator/python/estimator/model_fn.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="nd">@staticmethod</span>
+<span class="fm">__new__</span><span class="p">(</span>
+    <span class="bp">cls</span><span class="p">,</span>
+    <span class="n">mode</span><span class="p">,</span>
+    <span class="n">predictions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">loss</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">train_op</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">eval_metric_ops</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">export_outputs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">training_chief_hooks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">training_hooks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">scaffold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">evaluation_hooks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">prediction_hooks</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Creates a validated <code>EstimatorSpec</code> instance.</p>
+<p>Depending on the value of <code>mode</code>, different arguments are required. Namely</p>
+<ul>
+<li>For <code>mode == ModeKeys.TRAIN</code>: required fields are <code>loss</code> and <code>train_op</code>.</li>
+<li>For <code>mode == ModeKeys.EVAL</code>: required field is <code>loss</code>.</li>
+<li>For <code>mode == ModeKeys.PREDICT</code>: required fields are <code>predictions</code>.</li>
+</ul>
+<p>model_fn can populate all arguments independent of mode. In this case, some
+arguments will be ignored by an <code>Estimator</code>. E.g. <code>train_op</code> will be
+ignored in eval and infer modes. Example:</p>
+<div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">my_model_fn</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">mode</span><span class="p">):</span>
+  <span class="n">predictions</span> <span class="o">=</span> <span class="o">...</span>
+  <span class="n">loss</span> <span class="o">=</span> <span class="o">...</span>
+  <span class="n">train_op</span> <span class="o">=</span> <span class="o">...</span>
+  <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">EstimatorSpec</span><span class="p">(</span>
+      <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span>
+      <span class="n">predictions</span><span class="o">=</span><span class="n">predictions</span><span class="p">,</span>
+      <span class="n">loss</span><span class="o">=</span><span class="n">loss</span><span class="p">,</span>
+      <span class="n">train_op</span><span class="o">=</span><span class="n">train_op</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Alternatively, model_fn can just populate the arguments appropriate to the
+given mode. Example:</p>
+<div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">my_model_fn</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">mode</span><span class="p">):</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">mode</span> <span class="o">==</span> <span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">ModeKeys</span><span class="o">.</span><span class="n">TRAIN</span> <span class="ow">or</span>
+      <span class="n">mode</span> <span class="o">==</span> <span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">ModeKeys</span><span class="o">.</span><span class="n">EVAL</span><span class="p">):</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="o">...</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="kc">None</span>
+  <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">ModeKeys</span><span class="o">.</span><span class="n">TRAIN</span><span class="p">:</span>
+    <span class="n">train_op</span> <span class="o">=</span> <span class="o">...</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="n">train_op</span> <span class="o">=</span> <span class="kc">None</span>
+  <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">ModeKeys</span><span class="o">.</span><span class="n">PREDICT</span><span class="p">:</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="o">...</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="kc">None</span>
+
+  <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">EstimatorSpec</span><span class="p">(</span>
+      <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span>
+      <span class="n">predictions</span><span class="o">=</span><span class="n">predictions</span><span class="p">,</span>
+      <span class="n">loss</span><span class="o">=</span><span class="n">loss</span><span class="p">,</span>
+      <span class="n">train_op</span><span class="o">=</span><span class="n">train_op</span><span class="p">)</span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>mode</code></b>: A <code>ModeKeys</code>. Specifies if this is training, evaluation or
+  prediction.</li>
+<li><b><code>predictions</code></b>: Predictions <code>Tensor</code> or dict of <code>Tensor</code>.</li>
+<li><b><code>loss</code></b>: Training loss <code>Tensor</code>. Must be either scalar, or with shape <code>[1]</code>.</li>
+<li><b><code>train_op</code></b>: Op for the training step.</li>
+<li><b><code>eval_metric_ops</code></b>: Dict of metric results keyed by name.
+  The values of the dict can be one of the following:
+  (1) instance of <code>Metric</code> class.
+  (2) Results of calling a metric function, namely a
+  <code>(metric_tensor, update_op)</code> tuple. <code>metric_tensor</code> should be
+  evaluated without any impact on state (typically is a pure computation
+  results based on variables.). For example, it should not trigger the
+  <code>update_op</code> or requires any input fetching.</li>
+<li><b><code>export_outputs</code></b>: Describes the output signatures to be exported to
+  <code>SavedModel</code> and used during serving.
+  A dict <code>{name: output}</code> where:</li>
+<li>name: An arbitrary name for this output.</li>
+<li>output: an <code>ExportOutput</code> object such as <code>ClassificationOutput</code>,
+      <code>RegressionOutput</code>, or <code>PredictOutput</code>.
+  Single-headed models only need to specify one entry in this dictionary.
+  Multi-headed models should specify one entry for each head, one of
+  which must be named using
+  <code>tf.saved_model.signature_constants.DEFAULT_SERVING_SIGNATURE_DEF_KEY</code>.
+  If no entry is provided, a default <code>PredictOutput</code> mapping to
+  <code>predictions</code> will be created.</li>
+<li><b><code>training_chief_hooks</code></b>: Iterable of <code>tf.train.SessionRunHook</code> objects to
+  run on the chief worker during training.</li>
+<li><b><code>training_hooks</code></b>: Iterable of <code>tf.train.SessionRunHook</code> objects to run
+  on all workers during training.</li>
+<li><b><code>scaffold</code></b>: A <code>tf.train.Scaffold</code> object that can be used to set
+  initialization, saver, and more to be used in training.</li>
+<li><b><code>evaluation_hooks</code></b>: Iterable of <code>tf.train.SessionRunHook</code> objects to
+  run during evaluation.</li>
+<li><b><code>prediction_hooks</code></b>: Iterable of <code>tf.train.SessionRunHook</code> objects to
+  run during predictions.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A validated <code>EstimatorSpec</code> object.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: If validation fails.</li>
+<li><b><code>TypeError</code></b>: If any of the arguments is not the expected type.</li>
+</ul>
+<h2 id="properties">Properties</h2>
+<h3 id="mode"><code>mode</code></h3>
+
+<h3 id="predictions"><code>predictions</code></h3>
+
+<h3 id="loss"><code>loss</code></h3>
+
+<h3 id="train_op"><code>train_op</code></h3>
+
+<h3 id="eval_metric_ops"><code>eval_metric_ops</code></h3>
+
+<h3 id="export_outputs"><code>export_outputs</code></h3>
+
+<h3 id="training_chief_hooks"><code>training_chief_hooks</code></h3>
+
+<h3 id="training_hooks"><code>training_hooks</code></h3>
+
+<h3 id="scaffold"><code>scaffold</code></h3>
+
+<h3 id="evaluation_hooks"><code>evaluation_hooks</code></h3>
+
+<h3 id="prediction_hooks"><code>prediction_hooks</code></h3>
+    </body>
+    </html>
+   

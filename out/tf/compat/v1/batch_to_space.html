@@ -1,0 +1,63 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.batch_to_space" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1batch_to_space">tf.compat.v1.batch_to_space</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/array_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>BatchToSpace for 4-D tensors of type T.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">batch_to_space</span><span class="p">(</span>
+    <span class="nb">input</span><span class="p">,</span>
+    <span class="n">crops</span><span class="p">,</span>
+    <span class="n">block_size</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">block_shape</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>This is a legacy version of the more general BatchToSpaceND.</p>
+<p>Rearranges (permutes) data from batch into blocks of spatial data, followed by
+cropping. This is the reverse transformation of SpaceToBatch. More specifically,
+this op outputs a copy of the input tensor where values from the <code>batch</code>
+dimension are moved in spatial blocks to the <code>height</code> and <code>width</code> dimensions,
+followed by cropping along the <code>height</code> and <code>width</code> dimensions.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>input</code></b>: A <code>Tensor</code>. 4-D tensor with shape
+  <code>[batch*block_size*block_size, height_pad/block_size, width_pad/block_size,
+    depth]</code>. Note that the batch size of the input tensor must be divisible by
+  <code>block_size * block_size</code>.</li>
+<li>
+<p><b><code>crops</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>int32</code>, <code>int64</code>.
+  2-D tensor of non-negative integers with shape <code>[2, 2]</code>. It specifies
+  how many elements to crop from the intermediate result across the spatial
+  dimensions as follows:</p>
+<p>crops = [[crop_top, crop_bottom], [crop_left, crop_right]]
+* <b><code>block_size</code></b>: An <code>int</code> that is <code>&gt;= 2</code>.
+* <b><code>name</code></b>: A name for the operation (optional).</p>
+</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>Tensor</code>. Has the same type as <code>input</code>.</p>
+    </body>
+    </html>
+   

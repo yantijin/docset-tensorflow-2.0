@@ -1,0 +1,54 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.activations.elu" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfkerasactivationselu">tf.keras.activations.elu</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/activations.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Exponential linear unit.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.keras.activations.elu</code></li>
+<li><code>tf.compat.v2.keras.activations.elu</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">activations</span><span class="o">.</span><span class="n">elu</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">1.0</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<h4 id="arguments">Arguments:</h4>
+<ul>
+<li><b><code>x</code></b>: Input tensor.</li>
+<li><b><code>alpha</code></b>: A scalar, slope of negative section.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>The exponential linear activation: <code>x</code> if <code>x &gt; 0</code> and
+  <code>alpha * (exp(x)-1)</code> if <code>x &lt; 0</code>.</p>
+<h4 id="reference">Reference:</h4>
+<ul>
+<li><a href="https://arxiv.org/abs/1511.07289">Fast and Accurate Deep Network Learning by Exponential
+  Linear Units (ELUs)</a></li>
+</ul>
+    </body>
+    </html>
+   

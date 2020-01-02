@@ -1,0 +1,176 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.lite.TFLiteConverter" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="convert"/>
+<meta itemprop="property" content="from_concrete_functions"/>
+<meta itemprop="property" content="from_keras_model"/>
+<meta itemprop="property" content="from_saved_model"/>
+</div>
+
+<h1 id="tflitetfliteconverter">tf.lite.TFLiteConverter</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/lite/python/lite.py">View source</a></p>
+<h2 id="class-tfliteconverter">Class <code>TFLiteConverter</code></h2>
+<!-- Start diff -->
+
+<p>Converts a TensorFlow model into TensorFlow Lite model.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v2.lite.TFLiteConverter</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<h4 id="attributes">Attributes:</h4>
+<ul>
+<li><b><code>allow_custom_ops</code></b>: Boolean indicating whether to allow custom operations.
+  When false any unknown operation is an error. When true, custom ops are
+  created for any op that is unknown. The developer will need to provide
+  these to the TensorFlow Lite runtime with a custom resolver.
+  (default False)</li>
+<li><b><code>target_spec</code></b>: Experimental flag, subject to change. Specification of target
+  device.</li>
+<li><b><code>optimizations</code></b>: Experimental flag, subject to change. A list of optimizations
+  to apply when converting the model. E.g. `[Optimize.DEFAULT]</li>
+<li><b><code>representative_dataset</code></b>: A representative dataset that can be used to
+  generate input and output samples for the model. The converter can use the
+  dataset to evaluate different optimizations.</li>
+<li><b><code>experimental_enable_mlir_converter</code></b>: Experimental flag, subject to change.
+  Enables the MLIR converter instead of the TOCO converter.</li>
+</ul>
+<h4 id="example-usage">Example usage:</h4>
+<div class="codehilite"><pre><span></span><span class="c1"># Converting a SavedModel to a TensorFlow Lite model.</span>
+<span class="n">converter</span> <span class="o">=</span> <span class="n">lite</span><span class="o">.</span><span class="n">TFLiteConverter</span><span class="o">.</span><span class="n">from_saved_model</span><span class="p">(</span><span class="n">saved_model_dir</span><span class="p">)</span>
+<span class="n">tflite_model</span> <span class="o">=</span> <span class="n">converter</span><span class="o">.</span><span class="n">convert</span><span class="p">()</span>
+
+<span class="c1"># Converting a tf.Keras model to a TensorFlow Lite model.</span>
+<span class="n">converter</span> <span class="o">=</span> <span class="n">lite</span><span class="o">.</span><span class="n">TFLiteConverter</span><span class="o">.</span><span class="n">from_keras_model</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+<span class="n">tflite_model</span> <span class="o">=</span> <span class="n">converter</span><span class="o">.</span><span class="n">convert</span><span class="p">()</span>
+
+<span class="c1"># Converting ConcreteFunctions to a TensorFlow Lite model.</span>
+<span class="n">converter</span> <span class="o">=</span> <span class="n">lite</span><span class="o">.</span><span class="n">TFLiteConverter</span><span class="o">.</span><span class="n">from_concrete_functions</span><span class="p">([</span><span class="n">func</span><span class="p">])</span>
+<span class="n">tflite_model</span> <span class="o">=</span> <span class="n">converter</span><span class="o">.</span><span class="n">convert</span><span class="p">()</span>
+</pre></div>
+
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/lite/python/lite.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">funcs</span><span class="p">,</span>
+    <span class="n">trackable_obj</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Constructor for TFLiteConverter.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>funcs</code></b>: List of TensorFlow ConcreteFunctions. The list should not contain
+  duplicate elements.</li>
+<li><b><code>trackable_obj</code></b>: tf.AutoTrackable object associated with <code>funcs</code>. A
+  reference to this object needs to be maintained so that Variables do not
+  get garbage collected since functions have a weak reference to
+  Variables. This is only required when the tf.AutoTrackable object is not
+  maintained by the user (e.g. <code>from_saved_model</code>).</li>
+</ul>
+<h2 id="methods">Methods</h2>
+<h3 id="convert"><code>convert</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/lite/python/lite.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">convert</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Converts a TensorFlow GraphDef based on instance variables.</p>
+<h4 id="returns">Returns:</h4>
+<p>The converted data in serialized format.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>:   Multiple concrete functions are specified.
+  Input shape is not specified.
+  Invalid quantization parameters.</li>
+</ul>
+<h3 id="from_concrete_functions"><code>from_concrete_functions</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/lite/python/lite.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="nd">@classmethod</span>
+<span class="n">from_concrete_functions</span><span class="p">(</span>
+    <span class="bp">cls</span><span class="p">,</span>
+    <span class="n">funcs</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Creates a TFLiteConverter object from ConcreteFunctions.</p>
+<h4 id="args_1">Args:</h4>
+<ul>
+<li><b><code>funcs</code></b>: List of TensorFlow ConcreteFunctions. The list should not contain
+  duplicate elements.</li>
+</ul>
+<h4 id="returns_1">Returns:</h4>
+<p>TFLiteConverter object.</p>
+<h4 id="raises_1">Raises:</h4>
+<p>Invalid input type.</p>
+<h3 id="from_keras_model"><code>from_keras_model</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/lite/python/lite.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="nd">@classmethod</span>
+<span class="n">from_keras_model</span><span class="p">(</span>
+    <span class="bp">cls</span><span class="p">,</span>
+    <span class="n">model</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Creates a TFLiteConverter object from a Keras model.</p>
+<h4 id="args_2">Args:</h4>
+<ul>
+<li><b><code>model</code></b>: tf.Keras.Model</li>
+</ul>
+<h4 id="returns_2">Returns:</h4>
+<p>TFLiteConverter object.</p>
+<h3 id="from_saved_model"><code>from_saved_model</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/lite/python/lite.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="nd">@classmethod</span>
+<span class="n">from_saved_model</span><span class="p">(</span>
+    <span class="bp">cls</span><span class="p">,</span>
+    <span class="n">saved_model_dir</span><span class="p">,</span>
+    <span class="n">signature_keys</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">tags</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Creates a TFLiteConverter object from a SavedModel directory.</p>
+<h4 id="args_3">Args:</h4>
+<ul>
+<li><b><code>saved_model_dir</code></b>: SavedModel directory to convert.</li>
+<li><b><code>signature_keys</code></b>: List of keys identifying SignatureDef containing inputs
+  and outputs. Elements should not be duplicated. By default the
+  <code>signatures</code> attribute of the MetaGraphdef is used. (default
+  saved_model.signatures)</li>
+<li><b><code>tags</code></b>: Set of tags identifying the MetaGraphDef within the SavedModel to
+  analyze. All tags in the tag set must be present. (default set(SERVING))</li>
+</ul>
+<h4 id="returns_3">Returns:</h4>
+<p>TFLiteConverter object.</p>
+<h4 id="raises_2">Raises:</h4>
+<p>Invalid signature keys.</p>
+    </body>
+    </html>
+   

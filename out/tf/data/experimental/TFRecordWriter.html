@@ -1,0 +1,86 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.data.experimental.TFRecordWriter" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="write"/>
+</div>
+
+<h1 id="tfdataexperimentaltfrecordwriter">tf.data.experimental.TFRecordWriter</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/data/experimental/ops/writers.py">View source</a></p>
+<h2 id="class-tfrecordwriter">Class <code>TFRecordWriter</code></h2>
+<!-- Start diff -->
+
+<p>Writes data to a TFRecord file.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v1.data.experimental.TFRecordWriter</code></li>
+<li>Class <code>tf.compat.v2.data.experimental.TFRecordWriter</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<p>To write a <code>dataset</code> to a single TFRecord file:</p>
+<div class="codehilite"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="o">...</span> <span class="c1"># dataset to be written</span>
+<span class="n">writer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">TFRecordWriter</span><span class="p">(</span><span class="n">PATH</span><span class="p">)</span>
+<span class="n">writer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+</pre></div>
+
+
+<p>To shard a <code>dataset</code> across multiple TFRecord files:</p>
+<div class="codehilite"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="o">...</span> <span class="c1"># dataset to be written</span>
+
+<span class="k">def</span> <span class="nf">reduce_func</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">dataset</span><span class="p">):</span>
+  <span class="n">filename</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">strings</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">PATH_PREFIX</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">strings</span><span class="o">.</span><span class="n">as_string</span><span class="p">(</span><span class="n">key</span><span class="p">)])</span>
+  <span class="n">writer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">TFRecordWriter</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+  <span class="n">writer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">_</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">))</span>
+  <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">from_tensors</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">enumerate</span><span class="p">()</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">group_by_window</span><span class="p">(</span>
+  <span class="k">lambda</span> <span class="n">i</span><span class="p">,</span> <span class="n">_</span><span class="p">:</span> <span class="n">i</span> <span class="o">%</span> <span class="n">NUM_SHARDS</span><span class="p">,</span> <span class="n">reduce_func</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">int64</span><span class="o">.</span><span class="n">max</span>
+<span class="p">))</span>
+</pre></div>
+
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/data/experimental/ops/writers.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">filename</span><span class="p">,</span>
+    <span class="n">compression_type</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Initialize self.  See help(type(self)) for accurate signature.</p>
+<h2 id="methods">Methods</h2>
+<h3 id="write"><code>write</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/data/experimental/ops/writers.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">write</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Returns a <a href="../../../tf/Operation.html"><code>tf.Operation</code></a> to write a dataset to a file.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>dataset</code></b>: a <a href="../../../tf/data/Dataset.html"><code>tf.data.Dataset</code></a> whose elements are to be written to a file</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <a href="../../../tf/Operation.html"><code>tf.Operation</code></a> that, when run, writes contents of <code>dataset</code> to a file.</p>
+    </body>
+    </html>
+   

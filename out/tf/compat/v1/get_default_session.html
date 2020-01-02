@@ -1,0 +1,41 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.get_default_session" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1get_default_session">tf.compat.v1.get_default_session</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Returns the default session for the current thread.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">get_default_session</span><span class="p">()</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>The returned <code>Session</code> will be the innermost session on which a
+<code>Session</code> or <code>Session.as_default()</code> context has been entered.</p>
+<p>NOTE: The default session is a property of the current thread. If you
+create a new thread, and wish to use the default session in that
+thread, you must explicitly add a <code>with sess.as_default():</code> in that
+thread's function.</p>
+<h4 id="returns">Returns:</h4>
+<p>The default <code>Session</code> being used in the current thread.</p>
+    </body>
+    </html>
+   

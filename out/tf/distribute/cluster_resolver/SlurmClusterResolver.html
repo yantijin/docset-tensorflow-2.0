@@ -1,0 +1,189 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.distribute.cluster_resolver.SlurmClusterResolver" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="environment"/>
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="cluster_spec"/>
+<meta itemprop="property" content="get_task_info"/>
+<meta itemprop="property" content="master"/>
+<meta itemprop="property" content="num_accelerators"/>
+</div>
+
+<h1 id="tfdistributecluster_resolverslurmclusterresolver">tf.distribute.cluster_resolver.SlurmClusterResolver</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/cluster_resolver/slurm_cluster_resolver.py">View source</a></p>
+<h2 id="class-slurmclusterresolver">Class <code>SlurmClusterResolver</code></h2>
+<!-- Start diff -->
+
+<p>ClusterResolver for system with Slurm workload manager.</p>
+<p>Inherits From: <a href="../../../tf/distribute/cluster_resolver/ClusterResolver.html"><code>ClusterResolver</code></a></p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v1.distribute.cluster_resolver.SlurmClusterResolver</code></li>
+<li>Class <code>tf.compat.v2.distribute.cluster_resolver.SlurmClusterResolver</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<p>This is an implementation of cluster resolvers for Slurm clusters. This allows
+the specification of jobs and task counts, number of tasks per node, number of
+GPUs on each node and number of GPUs for each task. It retrieves system
+attributes by Slurm environment variables, resolves allocated computing node
+names, constructs a cluster and returns a ClusterResolver object which can be
+use for distributed TensorFlow.</p>
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/cluster_resolver/slurm_cluster_resolver.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">jobs</span><span class="p">,</span>
+    <span class="n">port_base</span><span class="o">=</span><span class="mi">8888</span><span class="p">,</span>
+    <span class="n">gpus_per_node</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">gpus_per_task</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">tasks_per_node</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">auto_set_gpu</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">rpc_layer</span><span class="o">=</span><span class="s1">&#39;grpc&#39;</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Creates a new SlurmClusterResolver object.</p>
+<p>This takes in parameters and creates a SlurmClusterResolver object. It uses
+those parameters to check which nodes will processes reside on and resolves
+their hostnames. With the number of the GPUs on each node and number of GPUs
+for each task it offsets the port number for each process and allocates
+GPUs to tasks by setting environment variables. The resolver currently
+supports homogeneous tasks and default Slurm process allocation.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>jobs</code></b>: Dictionary with job names as key and number of tasks in the job as
+  value.</li>
+<li><b><code>port_base</code></b>: The first port number to start with for processes on a node.</li>
+<li><b><code>gpus_per_node</code></b>: Number of GPUs available on each node.</li>
+<li><b><code>gpus_per_task</code></b>: Number of GPUs to be used for each task.</li>
+<li><b><code>tasks_per_node</code></b>: Number of tasks to run on each node, if not set defaults
+  to Slurm's output environment variable SLURM_NTASKS_PER_NODE.</li>
+<li><b><code>auto_set_gpu</code></b>: Set the visible CUDA devices automatically while resolving
+  the cluster by setting CUDA_VISIBLE_DEVICES environment variable.
+  Defaults to True.</li>
+<li><b><code>rpc_layer</code></b>: (Optional) The protocol TensorFlow uses to communicate between
+  nodes. Defaults to 'grpc'.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A ClusterResolver object which can be used with distributed TensorFlow.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>RuntimeError</code></b>: If requested more GPUs per node then available or requested
+more tasks then assigned tasks.</li>
+</ul>
+<h2 id="properties">Properties</h2>
+<h3 id="environment"><code>environment</code></h3>
+
+<p>Returns the current environment which TensorFlow is running in.</p>
+<p>There are two possible return values, "google" (when TensorFlow is running
+in a Google-internal environment) or an empty string (when TensorFlow is
+running elsewhere).</p>
+<p>If you are implementing a ClusterResolver that works in both the Google
+environment and the open-source world (for instance, a TPU ClusterResolver
+or similar), you will have to return the appropriate string depending on the
+environment, which you will have to detect.</p>
+<p>Otherwise, if you are implementing a ClusterResolver that will only work
+in open-source TensorFlow, you do not need to implement this property.</p>
+<h2 id="methods">Methods</h2>
+<h3 id="cluster_spec"><code>cluster_spec</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/cluster_resolver/slurm_cluster_resolver.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">cluster_spec</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Returns a ClusterSpec object based on the latest instance group info.</p>
+<p>This returns a ClusterSpec object for use based on information from the
+specified initialization parameters and Slurm environment variables. The
+cluster specification is resolved each time this function is called. The
+resolver extract hostnames of nodes by scontrol and pack tasks in that
+order until a node a has number of tasks that is equal to specification.
+GPUs on nodes are allocated to tasks by specification through setting
+CUDA_VISIBLE_DEVICES environment variable.</p>
+<h4 id="returns_1">Returns:</h4>
+<p>A ClusterSpec containing host information retrieved from Slurm's
+  environment variables.</p>
+<h3 id="get_task_info"><code>get_task_info</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/cluster_resolver/slurm_cluster_resolver.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_task_info</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Returns job name and task_id for the process which calls this.</p>
+<p>This returns the job name and task index for the process which calls this
+function according to its rank and cluster specification. The job name and
+task index are set after a cluster is constructed by cluster_spec otherwise
+defaults to None.</p>
+<h4 id="returns_2">Returns:</h4>
+<p>A string specifying job name the process belongs to and an integner
+  specifying the task index the process belongs to in that job.</p>
+<h3 id="master"><code>master</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/cluster_resolver/slurm_cluster_resolver.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">master</span><span class="p">(</span>
+    <span class="n">task_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">task_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">rpc_layer</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Returns the master string for connecting to a TensorFlow master.</p>
+<h4 id="args_1">Args:</h4>
+<ul>
+<li><b><code>task_type</code></b>: (Optional) Overrides the default auto-selected task type.</li>
+<li><b><code>task_id</code></b>: (Optional) Overrides the default auto-slected task index.</li>
+<li><b><code>rpc_layer</code></b>: (Optional) Overrides the default RPC protocol TensorFlow uses
+  to communicate across nodes.</li>
+</ul>
+<h4 id="returns_3">Returns:</h4>
+<p>A connection string for connecting to a TensorFlow master.</p>
+<h3 id="num_accelerators"><code>num_accelerators</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/cluster_resolver/slurm_cluster_resolver.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">num_accelerators</span><span class="p">(</span>
+    <span class="n">task_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">task_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">config_proto</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Returns the number of accelerator cores per worker.</p>
+<p>This returns the number of accelerator cores (such as GPUs and TPUs)
+available per worker.</p>
+<p>Optionally, we allow callers to specify the task_type, and task_id, for
+if they want to target a specific TensorFlow process to query
+the number of accelerators. This is to support heterogenous environments,
+where the number of accelerators cores per host is different.</p>
+<h4 id="args_2">Args:</h4>
+<ul>
+<li><b><code>task_type</code></b>: (Optional) The type of the TensorFlow task of the machine we
+  want to query.</li>
+<li><b><code>task_id</code></b>: (Optional) The index of the TensorFlow task of the machine we
+  want to query.</li>
+<li><b><code>config_proto</code></b>: (Optional) Configuration for starting a new session to
+  query how many accelerator cores it has.</li>
+</ul>
+<h4 id="returns_4">Returns:</h4>
+<p>A map of accelerator types to number of cores.</p>
+    </body>
+    </html>
+   

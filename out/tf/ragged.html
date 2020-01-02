@@ -1,0 +1,164 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../default.css" rel="stylesheet">
+    <link href="
+   ../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.ragged" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="module-tfragged">Module: tf.ragged</h1>
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p>Ragged Tensors.</p>
+<p>This package defines ops for manipulating ragged tensors (<a href="../tf/RaggedTensor.html"><code>tf.RaggedTensor</code></a>),
+which are tensors with non-uniform shapes.  In particular, each <code>RaggedTensor</code>
+has one or more <em>ragged dimensions</em>, which are dimensions whose slices may have
+different lengths.  For example, the inner (column) dimension of
+<code>rt=[[3, 1, 4, 1], [], [5, 9, 2], [6], []]</code> is ragged, since the column slices
+(<code>rt[0, :]</code>, ..., <code>rt[4, :]</code>) have different lengths.  For a more detailed
+description of ragged tensors, see the <a href="../tf/RaggedTensor.html"><code>tf.RaggedTensor</code></a> class documentation
+and the <a href="/guide/ragged_tensors">Ragged Tensor Guide</a>.</p>
+<h3 id="additional-ops-that-support-raggedtensor">Additional ops that support <code>RaggedTensor</code></h3>
+<p>Arguments that accept <code>RaggedTensor</code>s are marked in <strong>bold</strong>.</p>
+<ul>
+<li><code>tf.batch_gather</code>(<strong>params</strong>, <strong>indices</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/bitwise/bitwise_and.html"><code>tf.bitwise.bitwise_and</code></a>(<strong>x</strong>, <strong>y</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/bitwise/bitwise_or.html"><code>tf.bitwise.bitwise_or</code></a>(<strong>x</strong>, <strong>y</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/bitwise/bitwise_xor.html"><code>tf.bitwise.bitwise_xor</code></a>(<strong>x</strong>, <strong>y</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/bitwise/invert.html"><code>tf.bitwise.invert</code></a>(<strong>x</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/bitwise/left_shift.html"><code>tf.bitwise.left_shift</code></a>(<strong>x</strong>, <strong>y</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/bitwise/right_shift.html"><code>tf.bitwise.right_shift</code></a>(<strong>x</strong>, <strong>y</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/clip_by_value.html"><code>tf.clip_by_value</code></a>(<strong>t</strong>, clip_value_min, clip_value_max, name=<code>None</code>)</li>
+<li><a href="../tf/concat.html"><code>tf.concat</code></a>(<strong>values</strong>, axis, name=<code>'concat'</code>)</li>
+<li><a href="../tf/debugging/check_numerics.html"><code>tf.debugging.check_numerics</code></a>(<strong>tensor</strong>, message, name=<code>None</code>)</li>
+<li><a href="../tf/dtypes/cast.html"><code>tf.dtypes.cast</code></a>(<strong>x</strong>, dtype, name=<code>None</code>)</li>
+<li><a href="../tf/dtypes/complex.html"><code>tf.dtypes.complex</code></a>(<strong>real</strong>, <strong>imag</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/dtypes/saturate_cast.html"><code>tf.dtypes.saturate_cast</code></a>(<strong>value</strong>, dtype, name=<code>None</code>)</li>
+<li><a href="../tf/dynamic_partition.html"><code>tf.dynamic_partition</code></a>(<strong>data</strong>, <strong>partitions</strong>, num_partitions, name=<code>None</code>)</li>
+<li><a href="../tf/expand_dims.html"><code>tf.expand_dims</code></a>(<strong>input</strong>, axis=<code>None</code>, name=<code>None</code>, dim=<code>None</code>)</li>
+<li><a href="../tf/gather_nd.html"><code>tf.gather_nd</code></a>(<strong>params</strong>, <strong>indices</strong>, name=<code>None</code>, batch_dims=<code>0</code>)</li>
+<li><a href="../tf/gather.html"><code>tf.gather</code></a>(<strong>params</strong>, <strong>indices</strong>, validate_indices=<code>None</code>, name=<code>None</code>, axis=<code>None</code>, batch_dims=<code>0</code>)</li>
+<li><a href="../tf/identity.html"><code>tf.identity</code></a>(<strong>input</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/io/decode_base64.html"><code>tf.io.decode_base64</code></a>(<strong>input</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/io/decode_compressed.html"><code>tf.io.decode_compressed</code></a>(<strong>bytes</strong>, compression_type=<code>''</code>, name=<code>None</code>)</li>
+<li><a href="../tf/io/encode_base64.html"><code>tf.io.encode_base64</code></a>(<strong>input</strong>, pad=<code>False</code>, name=<code>None</code>)</li>
+<li><a href="../tf/math/abs.html"><code>tf.math.abs</code></a>(<strong>x</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/acos.html"><code>tf.math.acos</code></a>(<strong>x</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/acosh.html"><code>tf.math.acosh</code></a>(<strong>x</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/add_n.html"><code>tf.math.add_n</code></a>(<strong>inputs</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/add.html"><code>tf.math.add</code></a>(<strong>x</strong>, <strong>y</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/angle.html"><code>tf.math.angle</code></a>(<strong>input</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/asin.html"><code>tf.math.asin</code></a>(<strong>x</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/asinh.html"><code>tf.math.asinh</code></a>(<strong>x</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/atan2.html"><code>tf.math.atan2</code></a>(<strong>y</strong>, <strong>x</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/atan.html"><code>tf.math.atan</code></a>(<strong>x</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/atanh.html"><code>tf.math.atanh</code></a>(<strong>x</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/ceil.html"><code>tf.math.ceil</code></a>(<strong>x</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/conj.html"><code>tf.math.conj</code></a>(<strong>x</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/cos.html"><code>tf.math.cos</code></a>(<strong>x</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/cosh.html"><code>tf.math.cosh</code></a>(<strong>x</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/digamma.html"><code>tf.math.digamma</code></a>(<strong>x</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/divide_no_nan.html"><code>tf.math.divide_no_nan</code></a>(<strong>x</strong>, <strong>y</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/divide.html"><code>tf.math.divide</code></a>(<strong>x</strong>, <strong>y</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/equal.html"><code>tf.math.equal</code></a>(<strong>x</strong>, <strong>y</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/erf.html"><code>tf.math.erf</code></a>(<strong>x</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/erfc.html"><code>tf.math.erfc</code></a>(<strong>x</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/exp.html"><code>tf.math.exp</code></a>(<strong>x</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/expm1.html"><code>tf.math.expm1</code></a>(<strong>x</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/floor.html"><code>tf.math.floor</code></a>(<strong>x</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/floordiv.html"><code>tf.math.floordiv</code></a>(<strong>x</strong>, <strong>y</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/floormod.html"><code>tf.math.floormod</code></a>(<strong>x</strong>, <strong>y</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/greater_equal.html"><code>tf.math.greater_equal</code></a>(<strong>x</strong>, <strong>y</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/greater.html"><code>tf.math.greater</code></a>(<strong>x</strong>, <strong>y</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/imag.html"><code>tf.math.imag</code></a>(<strong>input</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/is_finite.html"><code>tf.math.is_finite</code></a>(<strong>x</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/is_inf.html"><code>tf.math.is_inf</code></a>(<strong>x</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/is_nan.html"><code>tf.math.is_nan</code></a>(<strong>x</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/less_equal.html"><code>tf.math.less_equal</code></a>(<strong>x</strong>, <strong>y</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/less.html"><code>tf.math.less</code></a>(<strong>x</strong>, <strong>y</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/lgamma.html"><code>tf.math.lgamma</code></a>(<strong>x</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/log1p.html"><code>tf.math.log1p</code></a>(<strong>x</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/log_sigmoid.html"><code>tf.math.log_sigmoid</code></a>(<strong>x</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/log.html"><code>tf.math.log</code></a>(<strong>x</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/logical_and.html"><code>tf.math.logical_and</code></a>(<strong>x</strong>, <strong>y</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/logical_not.html"><code>tf.math.logical_not</code></a>(<strong>x</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/logical_or.html"><code>tf.math.logical_or</code></a>(<strong>x</strong>, <strong>y</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/logical_xor.html"><code>tf.math.logical_xor</code></a>(<strong>x</strong>, <strong>y</strong>, name=<code>'LogicalXor'</code>)</li>
+<li><a href="../tf/math/maximum.html"><code>tf.math.maximum</code></a>(<strong>x</strong>, <strong>y</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/minimum.html"><code>tf.math.minimum</code></a>(<strong>x</strong>, <strong>y</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/multiply.html"><code>tf.math.multiply</code></a>(<strong>x</strong>, <strong>y</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/negative.html"><code>tf.math.negative</code></a>(<strong>x</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/not_equal.html"><code>tf.math.not_equal</code></a>(<strong>x</strong>, <strong>y</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/pow.html"><code>tf.math.pow</code></a>(<strong>x</strong>, <strong>y</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/real.html"><code>tf.math.real</code></a>(<strong>input</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/reciprocal.html"><code>tf.math.reciprocal</code></a>(<strong>x</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/reduce_any.html"><code>tf.math.reduce_any</code></a>(<strong>input_tensor</strong>, axis=<code>None</code>, keepdims=<code>False</code>, name=<code>None</code>)</li>
+<li><a href="../tf/math/reduce_max.html"><code>tf.math.reduce_max</code></a>(<strong>input_tensor</strong>, axis=<code>None</code>, keepdims=<code>False</code>, name=<code>None</code>)</li>
+<li><a href="../tf/math/reduce_mean.html"><code>tf.math.reduce_mean</code></a>(<strong>input_tensor</strong>, axis=<code>None</code>, keepdims=<code>False</code>, name=<code>None</code>)</li>
+<li><a href="../tf/math/reduce_min.html"><code>tf.math.reduce_min</code></a>(<strong>input_tensor</strong>, axis=<code>None</code>, keepdims=<code>False</code>, name=<code>None</code>)</li>
+<li><a href="../tf/math/reduce_prod.html"><code>tf.math.reduce_prod</code></a>(<strong>input_tensor</strong>, axis=<code>None</code>, keepdims=<code>False</code>, name=<code>None</code>)</li>
+<li><a href="../tf/math/reduce_sum.html"><code>tf.math.reduce_sum</code></a>(<strong>input_tensor</strong>, axis=<code>None</code>, keepdims=<code>False</code>, name=<code>None</code>)</li>
+<li><a href="../tf/math/rint.html"><code>tf.math.rint</code></a>(<strong>x</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/round.html"><code>tf.math.round</code></a>(<strong>x</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/rsqrt.html"><code>tf.math.rsqrt</code></a>(<strong>x</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/sign.html"><code>tf.math.sign</code></a>(<strong>x</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/sin.html"><code>tf.math.sin</code></a>(<strong>x</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/sinh.html"><code>tf.math.sinh</code></a>(<strong>x</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/sqrt.html"><code>tf.math.sqrt</code></a>(<strong>x</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/square.html"><code>tf.math.square</code></a>(<strong>x</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/squared_difference.html"><code>tf.math.squared_difference</code></a>(<strong>x</strong>, <strong>y</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/subtract.html"><code>tf.math.subtract</code></a>(<strong>x</strong>, <strong>y</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/tan.html"><code>tf.math.tan</code></a>(<strong>x</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/truediv.html"><code>tf.math.truediv</code></a>(<strong>x</strong>, <strong>y</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/math/unsorted_segment_max.html"><code>tf.math.unsorted_segment_max</code></a>(<strong>data</strong>, <strong>segment_ids</strong>, num_segments, name=<code>None</code>)</li>
+<li><a href="../tf/math/unsorted_segment_mean.html"><code>tf.math.unsorted_segment_mean</code></a>(<strong>data</strong>, <strong>segment_ids</strong>, num_segments, name=<code>None</code>)</li>
+<li><a href="../tf/math/unsorted_segment_min.html"><code>tf.math.unsorted_segment_min</code></a>(<strong>data</strong>, <strong>segment_ids</strong>, num_segments, name=<code>None</code>)</li>
+<li><a href="../tf/math/unsorted_segment_prod.html"><code>tf.math.unsorted_segment_prod</code></a>(<strong>data</strong>, <strong>segment_ids</strong>, num_segments, name=<code>None</code>)</li>
+<li><a href="../tf/math/unsorted_segment_sqrt_n.html"><code>tf.math.unsorted_segment_sqrt_n</code></a>(<strong>data</strong>, <strong>segment_ids</strong>, num_segments, name=<code>None</code>)</li>
+<li><a href="../tf/math/unsorted_segment_sum.html"><code>tf.math.unsorted_segment_sum</code></a>(<strong>data</strong>, <strong>segment_ids</strong>, num_segments, name=<code>None</code>)</li>
+<li><a href="../tf/ones_like.html"><code>tf.ones_like</code></a>(<strong>tensor</strong>, dtype=<code>None</code>, name=<code>None</code>, optimize=<code>True</code>)</li>
+<li><a href="../tf/rank.html"><code>tf.rank</code></a>(<strong>input</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/realdiv.html"><code>tf.realdiv</code></a>(<strong>x</strong>, <strong>y</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/reduce_all.html"><code>tf.reduce_all</code></a>(<strong>input_tensor</strong>, axis=<code>None</code>, keepdims=<code>False</code>, name=<code>None</code>)</li>
+<li><a href="../tf/size.html"><code>tf.size</code></a>(<strong>input</strong>, name=<code>None</code>, out_type=<a href="../tf.html#int32"><code>tf.int32</code></a>)</li>
+<li><a href="../tf/squeeze.html"><code>tf.squeeze</code></a>(<strong>input</strong>, axis=<code>None</code>, name=<code>None</code>, squeeze_dims=<code>None</code>)</li>
+<li><a href="../tf/stack.html"><code>tf.stack</code></a>(<strong>values</strong>, axis=<code>0</code>, name=<code>'stack'</code>)</li>
+<li><a href="../tf/strings/as_string.html"><code>tf.strings.as_string</code></a>(<strong>input</strong>, precision=<code>-1</code>, scientific=<code>False</code>, shortest=<code>False</code>, width=<code>-1</code>, fill=<code>''</code>, name=<code>None</code>)</li>
+<li><a href="../tf/strings/join.html"><code>tf.strings.join</code></a>(<strong>inputs</strong>, separator=<code>''</code>, name=<code>None</code>)</li>
+<li><a href="../tf/strings/length.html"><code>tf.strings.length</code></a>(<strong>input</strong>, name=<code>None</code>, unit=<code>'BYTE'</code>)</li>
+<li><a href="../tf/strings/reduce_join.html"><code>tf.strings.reduce_join</code></a>(<strong>inputs</strong>, axis=<code>None</code>, keepdims=<code>False</code>, separator=<code>''</code>, name=<code>None</code>)</li>
+<li><a href="../tf/strings/regex_full_match.html"><code>tf.strings.regex_full_match</code></a>(<strong>input</strong>, pattern, name=<code>None</code>)</li>
+<li><a href="../tf/strings/regex_replace.html"><code>tf.strings.regex_replace</code></a>(<strong>input</strong>, pattern, rewrite, replace_global=<code>True</code>, name=<code>None</code>)</li>
+<li><a href="../tf/strings/strip.html"><code>tf.strings.strip</code></a>(<strong>input</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/strings/substr.html"><code>tf.strings.substr</code></a>(<strong>input</strong>, pos, len, name=<code>None</code>, unit=<code>'BYTE'</code>)</li>
+<li><a href="../tf/strings/to_hash_bucket_fast.html"><code>tf.strings.to_hash_bucket_fast</code></a>(<strong>input</strong>, num_buckets, name=<code>None</code>)</li>
+<li><a href="../tf/strings/to_hash_bucket_strong.html"><code>tf.strings.to_hash_bucket_strong</code></a>(<strong>input</strong>, num_buckets, key, name=<code>None</code>)</li>
+<li><a href="../tf/strings/to_hash_bucket.html"><code>tf.strings.to_hash_bucket</code></a>(<strong>input</strong>, num_buckets, name=<code>None</code>)</li>
+<li><a href="../tf/strings/to_hash_bucket.html"><code>tf.strings.to_hash_bucket</code></a>(<strong>input</strong>, num_buckets, name=<code>None</code>)</li>
+<li><a href="../tf/strings/to_number.html"><code>tf.strings.to_number</code></a>(<strong>input</strong>, out_type=<a href="../tf.html#float32"><code>tf.float32</code></a>, name=<code>None</code>)</li>
+<li><a href="../tf/strings/unicode_script.html"><code>tf.strings.unicode_script</code></a>(<strong>input</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/tile.html"><code>tf.tile</code></a>(<strong>input</strong>, multiples, name=<code>None</code>)</li>
+<li><a href="../tf/truncatediv.html"><code>tf.truncatediv</code></a>(<strong>x</strong>, <strong>y</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/truncatemod.html"><code>tf.truncatemod</code></a>(<strong>x</strong>, <strong>y</strong>, name=<code>None</code>)</li>
+<li><a href="../tf/where.html"><code>tf.where</code></a>(<strong>condition</strong>, <strong>x</strong>=<code>None</code>, <strong>y</strong>=<code>None</code>, name=<code>None</code>)</li>
+<li><a href="../tf/zeros_like.html"><code>tf.zeros_like</code></a>(<strong>tensor</strong>, dtype=<code>None</code>, name=<code>None</code>, optimize=<code>True</code>)n</li>
+</ul>
+<h2 id="functions">Functions</h2>
+<p><a href="../tf/ragged/boolean_mask.html"><code>boolean_mask(...)</code></a>: Applies a boolean mask to <code>data</code> without flattening the mask dimensions.</p>
+<p><a href="../tf/ragged/constant.html"><code>constant(...)</code></a>: Constructs a constant RaggedTensor from a nested Python list.</p>
+<p><a href="../tf/ragged/map_flat_values.html"><code>map_flat_values(...)</code></a>: Applies <code>op</code> to the values of one or more RaggedTensors.</p>
+<p><a href="../tf/ragged/range.html"><code>range(...)</code></a>: Returns a <code>RaggedTensor</code> containing the specified sequences of numbers.</p>
+<p><a href="../tf/ragged/row_splits_to_segment_ids.html"><code>row_splits_to_segment_ids(...)</code></a>: Generates the segmentation corresponding to a RaggedTensor <code>row_splits</code>.</p>
+<p><a href="../tf/ragged/segment_ids_to_row_splits.html"><code>segment_ids_to_row_splits(...)</code></a>: Generates the RaggedTensor <code>row_splits</code> corresponding to a segmentation.</p>
+<p><a href="../tf/ragged/stack.html"><code>stack(...)</code></a>: Stacks a list of rank-<code>R</code> tensors into one rank-<code>(R+1)</code> <code>RaggedTensor</code>.</p>
+<p><a href="../tf/ragged/stack_dynamic_partitions.html"><code>stack_dynamic_partitions(...)</code></a>: Stacks dynamic partitions of a Tensor or RaggedTensor.</p>
+    </body>
+    </html>
+   

@@ -1,0 +1,69 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.distribute.experimental_set_strategy" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfdistributeexperimental_set_strategy">tf.distribute.experimental_set_strategy</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/distribution_strategy_context.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Set a <a href="../../tf/distribute/Strategy.html"><code>tf.distribute.Strategy</code></a> as current without <code>with strategy.scope()</code>.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.distribute.experimental_set_strategy</code></li>
+<li><code>tf.compat.v2.distribute.experimental_set_strategy</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">distribute</span><span class="o">.</span><span class="n">experimental_set_strategy</span><span class="p">(</span><span class="n">strategy</span><span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<div class="codehilite"><pre><span></span><span class="err">tf.distribute.experimental_set_strategy(strategy1)</span>
+<span class="err">f()</span>
+<span class="err">tf.distribute.experimental_set_strategy(strategy2)</span>
+<span class="err">g()</span>
+<span class="err">tf.distribute.experimental_set_strategy(None)</span>
+<span class="err">h()</span>
+</pre></div>
+
+
+<p>is equivalent to:</p>
+<div class="codehilite"><pre><span></span><span class="err">with strategy1.scope():</span>
+<span class="err">  f()</span>
+<span class="err">with strategy2.scope():</span>
+<span class="err">  g()</span>
+<span class="err">h()</span>
+</pre></div>
+
+
+<p>In general, you should use the <code>with strategy.scope():</code> API, but this
+alternative may be convenient in notebooks where you would have to put
+each cell in a <code>with strategy.scope():</code> block.</p>
+<p>Note: This should only be called outside of any TensorFlow scope to
+avoid improper nesting.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>strategy</code></b>: A <a href="../../tf/distribute/Strategy.html"><code>tf.distribute.Strategy</code></a> object or None.</li>
+</ul>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>RuntimeError</code></b>: If called inside a <code>with strategy.scope():</code>.</li>
+</ul>
+    </body>
+    </html>
+   

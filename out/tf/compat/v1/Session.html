@@ -1,0 +1,515 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.Session" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="graph"/>
+<meta itemprop="property" content="graph_def"/>
+<meta itemprop="property" content="sess_str"/>
+<meta itemprop="property" content="__enter__"/>
+<meta itemprop="property" content="__exit__"/>
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="as_default"/>
+<meta itemprop="property" content="close"/>
+<meta itemprop="property" content="list_devices"/>
+<meta itemprop="property" content="make_callable"/>
+<meta itemprop="property" content="partial_run"/>
+<meta itemprop="property" content="partial_run_setup"/>
+<meta itemprop="property" content="reset"/>
+<meta itemprop="property" content="run"/>
+</div>
+
+<h1 id="tfcompatv1session">tf.compat.v1.Session</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/client/session.py">View source</a></p>
+<h2 id="class-session">Class <code>Session</code></h2>
+<!-- Start diff -->
+
+<p>A class for running TensorFlow operations.</p>
+<!-- Placeholder for "Used in" -->
+
+<p>A <code>Session</code> object encapsulates the environment in which <code>Operation</code>
+objects are executed, and <code>Tensor</code> objects are evaluated. For
+example:</p>
+<div class="codehilite"><pre><span></span><span class="c1"># Build a graph.</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="mf">6.0</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span>
+
+<span class="c1"># Launch the graph in a session.</span>
+<span class="n">sess</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+
+<span class="c1"># Evaluate the tensor `c`.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
+</pre></div>
+
+
+<p>A session may own resources, such as
+<a href="../../../tf/Variable.html"><code>tf.Variable</code></a>, <a href="../../../tf/queue/QueueBase.html"><code>tf.queue.QueueBase</code></a>,
+and <a href="../../../tf/compat/v1/ReaderBase.html"><code>tf.compat.v1.ReaderBase</code></a>. It is important to release
+these resources when they are no longer required. To do this, either
+invoke the <code>tf.Session.close</code> method on the session, or use
+the session as a context manager. The following two examples are
+equivalent:</p>
+<div class="codehilite"><pre><span></span><span class="c1"># Using the `close()` method.</span>
+<span class="n">sess</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+<span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="n">sess</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="c1"># Using the context manager.</span>
+<span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
+  <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</pre></div>
+
+
+<p>The
+<a href="https://www.tensorflow.org/code/tensorflow/core/protobuf/config.proto"><code>ConfigProto</code></a>
+protocol buffer exposes various configuration options for a
+session. For example, to create a session that uses soft constraints
+for device placement, and log the resulting placement decisions,
+create a session as follows:</p>
+<div class="codehilite"><pre><span></span><span class="c1"># Launch the graph in a session that allows soft device placement and</span>
+<span class="c1"># logs the placement decisions.</span>
+<span class="n">sess</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">Session</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">ConfigProto</span><span class="p">(</span>
+    <span class="n">allow_soft_placement</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">log_device_placement</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/client/session.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">target</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">graph</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">config</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Creates a new TensorFlow session.</p>
+<p>If no <code>graph</code> argument is specified when constructing the session,
+the default graph will be launched in the session. If you are
+using more than one graph (created with <a href="../../../tf/Graph.html"><code>tf.Graph()</code></a>) in the same
+process, you will have to use different sessions for each graph,
+but each graph can be used in multiple sessions. In this case, it
+is often clearer to pass the graph to be launched explicitly to
+the session constructor.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>target</code></b>: (Optional.) The execution engine to connect to. Defaults to using
+  an in-process engine. See
+  <a href="https://tensorflow.org/deploy/distributed">Distributed TensorFlow</a> for
+    more examples.</li>
+<li><b><code>graph</code></b>: (Optional.) The <code>Graph</code> to be launched (described above).</li>
+<li><b><code>config</code></b>: (Optional.) A
+  <a href="https://www.tensorflow.org/code/tensorflow/core/protobuf/config.proto"><code>ConfigProto</code></a>
+    protocol buffer with configuration options for the session.</li>
+</ul>
+<h2 id="properties">Properties</h2>
+<h3 id="graph"><code>graph</code></h3>
+
+<p>The graph that was launched in this session.</p>
+<h3 id="graph_def"><code>graph_def</code></h3>
+
+<p>A serializable version of the underlying TensorFlow graph.</p>
+<h4 id="returns">Returns:</h4>
+<p>A graph_pb2.GraphDef proto containing nodes for all of the Operations in
+the underlying TensorFlow graph.</p>
+<h3 id="sess_str"><code>sess_str</code></h3>
+
+<p>The TensorFlow process to which this session will connect.</p>
+<h2 id="methods">Methods</h2>
+<h3 id="__enter__"><code>__enter__</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/client/session.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__enter__</span><span class="p">()</span>
+</pre></div>
+
+
+<h3 id="__exit__"><code>__exit__</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/client/session.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__exit__</span><span class="p">(</span>
+    <span class="n">exec_type</span><span class="p">,</span>
+    <span class="n">exec_value</span><span class="p">,</span>
+    <span class="n">exec_tb</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<h3 id="as_default"><code>as_default</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/client/session.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">as_default</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Returns a context manager that makes this object the default session.</p>
+<p>Use with the <code>with</code> keyword to specify that calls to
+<a href="../../../tf/Operation.html#run"><code>tf.Operation.run</code></a> or <a href="../../../tf/Tensor.html#eval"><code>tf.Tensor.eval</code></a> should be executed in
+this session.</p>
+<div class="codehilite"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="o">..</span><span class="p">)</span>
+<span class="n">sess</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+
+<span class="k">with</span> <span class="n">sess</span><span class="o">.</span><span class="n">as_default</span><span class="p">():</span>
+  <span class="k">assert</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">get_default_session</span><span class="p">()</span> <span class="ow">is</span> <span class="n">sess</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">eval</span><span class="p">())</span>
+</pre></div>
+
+
+<p>To get the current default session, use <a href="../../../tf/compat/v1/get_default_session.html"><code>tf.compat.v1.get_default_session</code></a>.</p>
+<p><em>N.B.</em> The <code>as_default</code> context manager <em>does not</em> close the
+session when you exit the context, and you must close the session
+explicitly.</p>
+<div class="codehilite"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="n">sess</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+<span class="k">with</span> <span class="n">sess</span><span class="o">.</span><span class="n">as_default</span><span class="p">():</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">eval</span><span class="p">())</span>
+<span class="c1"># ...</span>
+<span class="k">with</span> <span class="n">sess</span><span class="o">.</span><span class="n">as_default</span><span class="p">():</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">eval</span><span class="p">())</span>
+
+<span class="n">sess</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Alternatively, you can use <code>with tf.compat.v1.Session():</code> to create a
+session that is automatically closed on exiting the context,
+including when an uncaught exception is raised.</p>
+<p><em>N.B.</em> The default session is a property of the current thread. If you
+create a new thread, and wish to use the default session in that
+thread, you must explicitly add a <code>with sess.as_default():</code> in that
+thread's function.</p>
+<p><em>N.B.</em> Entering a <code>with sess.as_default():</code> block does not affect
+the current default graph. If you are using multiple graphs, and
+<code>sess.graph</code> is different from the value of
+<a href="../../../tf/compat/v1/get_default_graph.html"><code>tf.compat.v1.get_default_graph</code></a>, you must explicitly enter a
+<code>with sess.graph.as_default():</code> block to make <code>sess.graph</code> the default
+graph.</p>
+<h4 id="returns_1">Returns:</h4>
+<p>A context manager using this session as the default session.</p>
+<h3 id="close"><code>close</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/client/session.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Closes this session.</p>
+<p>Calling this method frees all resources associated with the session.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>tf.errors.OpError</code></b>: Or one of its subclasses if an error occurs while
+  closing the TensorFlow session.</li>
+</ul>
+<h3 id="list_devices"><code>list_devices</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/client/session.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">list_devices</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Lists available devices in this session.</p>
+<div class="codehilite"><pre><span></span><span class="n">devices</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">list_devices</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">devices</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+
+
+<h4 id="where">Where:</h4>
+<p>Each element in the list has the following properties</p>
+<ul>
+<li><b><code>name</code></b>: A string with the full name of the device. ex:
+    <code>/job:worker/replica:0/task:3/device:CPU:0</code></li>
+<li><b><code>device_type</code></b>: The type of the device (e.g. <code>CPU</code>, <code>GPU</code>, <code>TPU</code>.)</li>
+<li><b><code>memory_limit</code></b>: The maximum amount of memory available on the device.
+    Note: depending on the device, it is possible the usable memory could
+    be substantially less.</li>
+</ul>
+<h4 id="raises_1">Raises:</h4>
+<ul>
+<li><b><code>tf.errors.OpError</code></b>: If it encounters an error (e.g. session is in an
+invalid state, or network errors occur).</li>
+</ul>
+<h4 id="returns_2">Returns:</h4>
+<p>A list of devices in the session.</p>
+<h3 id="make_callable"><code>make_callable</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/client/session.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">make_callable</span><span class="p">(</span>
+    <span class="n">fetches</span><span class="p">,</span>
+    <span class="n">feed_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">accept_options</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Returns a Python callable that runs a particular step.</p>
+<p>The returned callable will take <code>len(feed_list)</code> arguments whose types
+must be compatible feed values for the respective elements of <code>feed_list</code>.
+For example, if element <code>i</code> of <code>feed_list</code> is a <a href="../../../tf/Tensor.html"><code>tf.Tensor</code></a>, the <code>i</code>th
+argument to the returned callable must be a numpy ndarray (or something
+convertible to an ndarray) with matching element type and shape. See
+<code>tf.Session.run</code> for details of the allowable feed key and value types.</p>
+<p>The returned callable will have the same return type as
+<code>tf.Session.run(fetches, ...)</code>. For example, if <code>fetches</code> is a <a href="../../../tf/Tensor.html"><code>tf.Tensor</code></a>,
+the callable will return a numpy ndarray; if <code>fetches</code> is a <a href="../../../tf/Operation.html"><code>tf.Operation</code></a>,
+it will return <code>None</code>.</p>
+<h4 id="args_1">Args:</h4>
+<ul>
+<li><b><code>fetches</code></b>: A value or list of values to fetch. See <code>tf.Session.run</code> for
+  details of the allowable fetch types.</li>
+<li><b><code>feed_list</code></b>: (Optional.) A list of <code>feed_dict</code> keys. See <code>tf.Session.run</code>
+  for details of the allowable feed key types.</li>
+<li><b><code>accept_options</code></b>: (Optional.) If <code>True</code>, the returned <code>Callable</code> will be
+  able to accept <a href="../../../tf/compat/v1/RunOptions.html"><code>tf.compat.v1.RunOptions</code></a> and <a href="../../../tf/compat/v1/RunMetadata.html"><code>tf.compat.v1.RunMetadata</code></a>
+  as optional keyword arguments <code>options</code> and <code>run_metadata</code>,
+  respectively, with the same syntax and semantics as <code>tf.Session.run</code>,
+  which is useful for certain use cases (profiling and debugging) but will
+  result in measurable slowdown of the <code>Callable</code>'s
+  performance. Default: <code>False</code>.</li>
+</ul>
+<h4 id="returns_3">Returns:</h4>
+<p>A function that when called will execute the step defined by
+<code>feed_list</code> and <code>fetches</code> in this session.</p>
+<h4 id="raises_2">Raises:</h4>
+<ul>
+<li><b><code>TypeError</code></b>: If <code>fetches</code> or <code>feed_list</code> cannot be interpreted
+  as arguments to <code>tf.Session.run</code>.</li>
+</ul>
+<h3 id="partial_run"><code>partial_run</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/client/session.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">partial_run</span><span class="p">(</span>
+    <span class="n">handle</span><span class="p">,</span>
+    <span class="n">fetches</span><span class="p">,</span>
+    <span class="n">feed_dict</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Continues the execution with more feeds and fetches.</p>
+<p>This is EXPERIMENTAL and subject to change.</p>
+<p>To use partial execution, a user first calls <code>partial_run_setup()</code> and
+then a sequence of <code>partial_run()</code>. <code>partial_run_setup</code> specifies the
+list of feeds and fetches that will be used in the subsequent
+<code>partial_run</code> calls.</p>
+<p>The optional <code>feed_dict</code> argument allows the caller to override
+the value of tensors in the graph. See run() for more information.</p>
+<p>Below is a simple example:</p>
+<div class="codehilite"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">array_ops</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">dtypes</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">array_ops</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">dtypes</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[])</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">array_ops</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">dtypes</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[])</span>
+<span class="n">r1</span> <span class="o">=</span> <span class="n">math_ops</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="n">r2</span> <span class="o">=</span> <span class="n">math_ops</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+
+<span class="n">h</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">partial_run_setup</span><span class="p">([</span><span class="n">r1</span><span class="p">,</span> <span class="n">r2</span><span class="p">],</span> <span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">])</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">partial_run</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">r1</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">a</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="mi">2</span><span class="p">})</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">partial_run</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">r2</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">c</span><span class="p">:</span> <span class="n">res</span><span class="p">})</span>
+</pre></div>
+
+
+<h4 id="args_2">Args:</h4>
+<ul>
+<li><b><code>handle</code></b>: A handle for a sequence of partial runs.</li>
+<li><b><code>fetches</code></b>: A single graph element, a list of graph elements, or a dictionary
+  whose values are graph elements or lists of graph elements (see
+  documentation for <code>run</code>).</li>
+<li><b><code>feed_dict</code></b>: A dictionary that maps graph elements to values (described
+  above).</li>
+</ul>
+<h4 id="returns_4">Returns:</h4>
+<p>Either a single value if <code>fetches</code> is a single graph element, or
+a list of values if <code>fetches</code> is a list, or a dictionary with the
+same keys as <code>fetches</code> if that is a dictionary
+(see documentation for <code>run</code>).</p>
+<h4 id="raises_3">Raises:</h4>
+<ul>
+<li><b><code>tf.errors.OpError</code></b>: Or one of its subclasses on error.</li>
+</ul>
+<h3 id="partial_run_setup"><code>partial_run_setup</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/client/session.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">partial_run_setup</span><span class="p">(</span>
+    <span class="n">fetches</span><span class="p">,</span>
+    <span class="n">feeds</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Sets up a graph with feeds and fetches for partial run.</p>
+<p>This is EXPERIMENTAL and subject to change.</p>
+<p>Note that contrary to <code>run</code>, <code>feeds</code> only specifies the graph elements.
+The tensors will be supplied by the subsequent <code>partial_run</code> calls.</p>
+<h4 id="args_3">Args:</h4>
+<ul>
+<li><b><code>fetches</code></b>: A single graph element, or a list of graph elements.</li>
+<li><b><code>feeds</code></b>: A single graph element, or a list of graph elements.</li>
+</ul>
+<h4 id="returns_5">Returns:</h4>
+<p>A handle for partial run.</p>
+<h4 id="raises_4">Raises:</h4>
+<ul>
+<li><b><code>RuntimeError</code></b>: If this <code>Session</code> is in an invalid state (e.g. has been
+  closed).</li>
+<li><b><code>TypeError</code></b>: If <code>fetches</code> or <code>feed_dict</code> keys are of an inappropriate type.</li>
+<li><b><code>tf.errors.OpError</code></b>: Or one of its subclasses if a TensorFlow error happens.</li>
+</ul>
+<h3 id="reset"><code>reset</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/client/session.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="nd">@staticmethod</span>
+<span class="n">reset</span><span class="p">(</span>
+    <span class="n">target</span><span class="p">,</span>
+    <span class="n">containers</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">config</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Resets resource containers on <code>target</code>, and close all connected sessions.</p>
+<p>A resource container is distributed across all workers in the
+same cluster as <code>target</code>.  When a resource container on <code>target</code>
+is reset, resources associated with that container will be cleared.
+In particular, all Variables in the container will become undefined:
+they lose their values and shapes.</p>
+<h4 id="note">NOTE:</h4>
+<p>(i) reset() is currently only implemented for distributed sessions.
+(ii) Any sessions on the master named by <code>target</code> will be closed.</p>
+<p>If no resource containers are provided, all containers are reset.</p>
+<h4 id="args_4">Args:</h4>
+<ul>
+<li><b><code>target</code></b>: The execution engine to connect to.</li>
+<li><b><code>containers</code></b>: A list of resource container name strings, or <code>None</code> if all of
+  all the containers are to be reset.</li>
+<li><b><code>config</code></b>: (Optional.) Protocol buffer with configuration options.</li>
+</ul>
+<h4 id="raises_5">Raises:</h4>
+<ul>
+<li><b><code>tf.errors.OpError</code></b>: Or one of its subclasses if an error occurs while
+  resetting containers.</li>
+</ul>
+<h3 id="run"><code>run</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/client/session.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">run</span><span class="p">(</span>
+    <span class="n">fetches</span><span class="p">,</span>
+    <span class="n">feed_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">run_metadata</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Runs operations and evaluates tensors in <code>fetches</code>.</p>
+<p>This method runs one "step" of TensorFlow computation, by
+running the necessary graph fragment to execute every <code>Operation</code>
+and evaluate every <code>Tensor</code> in <code>fetches</code>, substituting the values in
+<code>feed_dict</code> for the corresponding input values.</p>
+<p>The <code>fetches</code> argument may be a single graph element, or an arbitrarily
+nested list, tuple, namedtuple, dict, or OrderedDict containing graph
+elements at its leaves.  A graph element can be one of the following types:</p>
+<ul>
+<li>A <a href="../../../tf/Operation.html"><code>tf.Operation</code></a>.
+  The corresponding fetched value will be <code>None</code>.</li>
+<li>A <a href="../../../tf/Tensor.html"><code>tf.Tensor</code></a>.
+  The corresponding fetched value will be a numpy ndarray containing the
+  value of that tensor.</li>
+<li>A <a href="../../../tf/sparse/SparseTensor.html"><code>tf.SparseTensor</code></a>.
+  The corresponding fetched value will be a
+  <a href="../../../tf/compat/v1/SparseTensorValue.html"><code>tf.compat.v1.SparseTensorValue</code></a>
+  containing the value of that sparse tensor.</li>
+<li>A <code>get_tensor_handle</code> op.  The corresponding fetched value will be a
+  numpy ndarray containing the handle of that tensor.</li>
+<li>A <code>string</code> which is the name of a tensor or operation in the graph.</li>
+</ul>
+<p>The value returned by <code>run()</code> has the same shape as the <code>fetches</code> argument,
+where the leaves are replaced by the corresponding values returned by
+TensorFlow.</p>
+<h4 id="example">Example:</h4>
+<div class="codehilite"><pre><span></span>   <span class="n">a</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">])</span>
+   <span class="n">b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">])</span>
+   <span class="c1"># &#39;fetches&#39; can be a singleton</span>
+   <span class="n">v</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+   <span class="c1"># v is the numpy array [10, 20]</span>
+   <span class="c1"># &#39;fetches&#39; can be a list.</span>
+   <span class="n">v</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">])</span>
+   <span class="c1"># v is a Python list with 2 numpy arrays: the 1-D array [10, 20] and the</span>
+   <span class="c1"># 1-D array [1.0, 2.0]</span>
+   <span class="c1"># &#39;fetches&#39; can be arbitrary lists, tuples, namedtuple, dicts:</span>
+   <span class="n">MyData</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;MyData&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">])</span>
+   <span class="n">v</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">run</span><span class="p">({</span><span class="s1">&#39;k1&#39;</span><span class="p">:</span> <span class="n">MyData</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">),</span> <span class="s1">&#39;k2&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">]})</span>
+   <span class="c1"># v is a dict with</span>
+   <span class="c1"># v[&#39;k1&#39;] is a MyData namedtuple with &#39;a&#39; (the numpy array [10, 20]) and</span>
+   <span class="c1"># &#39;b&#39; (the numpy array [1.0, 2.0])</span>
+   <span class="c1"># v[&#39;k2&#39;] is a list with the numpy array [1.0, 2.0] and the numpy array</span>
+   <span class="c1"># [10, 20].</span>
+</pre></div>
+
+
+<p>The optional <code>feed_dict</code> argument allows the caller to override
+the value of tensors in the graph. Each key in <code>feed_dict</code> can be
+one of the following types:</p>
+<ul>
+<li>If the key is a <a href="../../../tf/Tensor.html"><code>tf.Tensor</code></a>, the
+  value may be a Python scalar, string, list, or numpy ndarray
+  that can be converted to the same <code>dtype</code> as that
+  tensor. Additionally, if the key is a
+  <a href="../../../tf/compat/v1/placeholder.html"><code>tf.compat.v1.placeholder</code></a>, the shape of
+  the value will be checked for compatibility with the placeholder.</li>
+<li>If the key is a
+  <a href="../../../tf/sparse/SparseTensor.html"><code>tf.SparseTensor</code></a>,
+  the value should be a
+  <a href="../../../tf/compat/v1/SparseTensorValue.html"><code>tf.compat.v1.SparseTensorValue</code></a>.</li>
+<li>If the key is a nested tuple of <code>Tensor</code>s or <code>SparseTensor</code>s, the value
+  should be a nested tuple with the same structure that maps to their
+  corresponding values as above.</li>
+</ul>
+<p>Each value in <code>feed_dict</code> must be convertible to a numpy array of the dtype
+of the corresponding key.</p>
+<p>The optional <code>options</code> argument expects a [<code>RunOptions</code>] proto. The options
+allow controlling the behavior of this particular step (e.g. turning tracing
+on).</p>
+<p>The optional <code>run_metadata</code> argument expects a [<code>RunMetadata</code>] proto. When
+appropriate, the non-Tensor output of this step will be collected there. For
+example, when users turn on tracing in <code>options</code>, the profiled info will be
+collected into this argument and passed back.</p>
+<h4 id="args_5">Args:</h4>
+<ul>
+<li><b><code>fetches</code></b>: A single graph element, a list of graph elements, or a dictionary
+  whose values are graph elements or lists of graph elements (described
+  above).</li>
+<li><b><code>feed_dict</code></b>: A dictionary that maps graph elements to values (described
+  above).</li>
+<li><b><code>options</code></b>: A [<code>RunOptions</code>] protocol buffer</li>
+<li><b><code>run_metadata</code></b>: A [<code>RunMetadata</code>] protocol buffer</li>
+</ul>
+<h4 id="returns_6">Returns:</h4>
+<p>Either a single value if <code>fetches</code> is a single graph element, or
+a list of values if <code>fetches</code> is a list, or a dictionary with the
+same keys as <code>fetches</code> if that is a dictionary (described above).
+Order in which <code>fetches</code> operations are evaluated inside the call
+is undefined.</p>
+<h4 id="raises_6">Raises:</h4>
+<ul>
+<li><b><code>RuntimeError</code></b>: If this <code>Session</code> is in an invalid state (e.g. has been
+  closed).</li>
+<li><b><code>TypeError</code></b>: If <code>fetches</code> or <code>feed_dict</code> keys are of an inappropriate type.</li>
+<li><b><code>ValueError</code></b>: If <code>fetches</code> or <code>feed_dict</code> keys are invalid or refer to a
+  <code>Tensor</code> that doesn't exist.</li>
+</ul>
+    </body>
+    </html>
+   

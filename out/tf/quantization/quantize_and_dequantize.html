@@ -1,0 +1,68 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.quantization.quantize_and_dequantize" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfquantizationquantize_and_dequantize">tf.quantization.quantize_and_dequantize</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/array_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Quantizes then dequantizes a tensor.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.quantization.quantize_and_dequantize</code></li>
+<li><code>tf.compat.v2.quantization.quantize_and_dequantize</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">quantization</span><span class="o">.</span><span class="n">quantize_and_dequantize</span><span class="p">(</span>
+    <span class="nb">input</span><span class="p">,</span>
+    <span class="n">input_min</span><span class="p">,</span>
+    <span class="n">input_max</span><span class="p">,</span>
+    <span class="n">signed_input</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">num_bits</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+    <span class="n">range_given</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">round_mode</span><span class="o">=</span><span class="s1">&#39;HALF_TO_EVEN&#39;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">narrow_range</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>input</code></b>: A <code>Tensor</code> to quantize and dequantize.</li>
+<li><b><code>input_min</code></b>: If range_given=True, the minimum input value that needs to be
+  represented in the quantized representation.</li>
+<li><b><code>input_max</code></b>: If range_given=True, the maximum input value that needs to be
+  represented in the quantized representation.</li>
+<li><b><code>signed_input</code></b>: True if the quantization is signed or unsigned.</li>
+<li><b><code>num_bits</code></b>: The bitwidth of the quantization.</li>
+<li><b><code>range_given</code></b>: If true use <code>input_min</code> and <code>input_max</code> for the range of the
+  input, otherwise determine min and max from the input <code>Tensor</code>.</li>
+<li><b><code>round_mode</code></b>: Rounding mode when rounding from float values to quantized ones.</li>
+<li><b><code>name</code></b>: Optional name for the operation.</li>
+<li><b><code>narrow_range</code></b>: If true, then the absolute value of the quantized minimum
+  value is the same as the quantized maximum value, instead of 1 greater.
+  i.e. for 8 bit quantization, the minimum value is -127 instead of -128.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>Tensor</code>. Each element is the result of quantizing and dequantizing the
+corresponding element of <code>input</code>.</p>
+    </body>
+    </html>
+   

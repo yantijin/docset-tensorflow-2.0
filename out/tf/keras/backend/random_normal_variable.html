@@ -1,0 +1,65 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.backend.random_normal_variable" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfkerasbackendrandom_normal_variable">tf.keras.backend.random_normal_variable</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/backend.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Instantiates a variable with values drawn from a normal distribution.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.keras.backend.random_normal_variable</code></li>
+<li><code>tf.compat.v2.keras.backend.random_normal_variable</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">backend</span><span class="o">.</span><span class="n">random_normal_variable</span><span class="p">(</span>
+    <span class="n">shape</span><span class="p">,</span>
+    <span class="n">mean</span><span class="p">,</span>
+    <span class="n">scale</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">seed</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<h4 id="arguments">Arguments:</h4>
+<ul>
+<li><b><code>shape</code></b>: Tuple of integers, shape of returned Keras variable.</li>
+<li><b><code>mean</code></b>: Float, mean of the normal distribution.</li>
+<li><b><code>scale</code></b>: Float, standard deviation of the normal distribution.</li>
+<li><b><code>dtype</code></b>: String, dtype of returned Keras variable.</li>
+<li><b><code>name</code></b>: String, name of returned Keras variable.</li>
+<li><b><code>seed</code></b>: Integer, random seed.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A Keras variable, filled with drawn samples.</p>
+<h4 id="example">Example:</h4>
+<div class="codehilite"><pre><span></span>    <span class="c1"># TensorFlow example</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="n">kvar</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="n">random_normal_variable</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="n">kvar</span>
+    <span class="o">&lt;</span><span class="n">tensorflow</span><span class="o">.</span><span class="n">python</span><span class="o">.</span><span class="n">ops</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">Variable</span> <span class="nb">object</span> <span class="n">at</span> <span class="mh">0x10ab12dd0</span><span class="o">&gt;</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="n">K</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">kvar</span><span class="p">)</span>
+    <span class="n">array</span><span class="p">([[</span> <span class="mf">1.19591331</span><span class="p">,</span>  <span class="mf">0.68685907</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.63814116</span><span class="p">],</span>
+           <span class="p">[</span> <span class="mf">0.92629528</span><span class="p">,</span>  <span class="mf">0.28055015</span><span class="p">,</span>  <span class="mf">1.70484698</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float32</span><span class="p">)</span>
+</pre></div>
+    </body>
+    </html>
+   

@@ -1,0 +1,53 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.math.bessel_i0e" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfmathbessel_i0e">tf.math.bessel_i0e</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p>Defined in generated file: <code>python/ops/gen_math_ops.py</code></p>
+<!-- Start diff -->
+
+<p>Computes the Bessel i0e function of <code>x</code> element-wise.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.math.bessel_i0e</code></li>
+<li><code>tf.compat.v2.math.bessel_i0e</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">bessel_i0e</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Exponentially scaled modified Bessel function of order 0 defined as
+<code>bessel_i0e(x) = exp(-abs(x)) bessel_i0(x)</code>.</p>
+<p>This function is faster and numerically stabler than <code>bessel_i0(x)</code>.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>x</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>bfloat16</code>, <code>half</code>, <code>float32</code>, <code>float64</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>Tensor</code>. Has the same type as <code>x</code>.</p>
+<p>If <code>x</code> is a <code>SparseTensor</code>, returns
+<code>SparseTensor(x.indices, tf.math.bessel_i0e(x.values, ...), x.dense_shape)</code></p>
+    </body>
+    </html>
+   

@@ -1,0 +1,83 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.metrics.precision_at_thresholds" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1metricsprecision_at_thresholds">tf.compat.v1.metrics.precision_at_thresholds</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/metrics_impl.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Computes precision values for different <code>thresholds</code> on <code>predictions</code>.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">precision_at_thresholds</span><span class="p">(</span>
+    <span class="n">labels</span><span class="p">,</span>
+    <span class="n">predictions</span><span class="p">,</span>
+    <span class="n">thresholds</span><span class="p">,</span>
+    <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">metrics_collections</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">updates_collections</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>The <code>precision_at_thresholds</code> function creates four local variables,
+<code>true_positives</code>, <code>true_negatives</code>, <code>false_positives</code> and <code>false_negatives</code>
+for various values of thresholds. <code>precision[i]</code> is defined as the total
+weight of values in <code>predictions</code> above <code>thresholds[i]</code> whose corresponding
+entry in <code>labels</code> is <code>True</code>, divided by the total weight of values in
+<code>predictions</code> above <code>thresholds[i]</code> (<code>true_positives[i] / (true_positives[i] +
+false_positives[i])</code>).</p>
+<p>For estimation of the metric over a stream of data, the function creates an
+<code>update_op</code> operation that updates these variables and returns the
+<code>precision</code>.</p>
+<p>If <code>weights</code> is <code>None</code>, weights default to 1. Use weights of 0 to mask values.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>labels</code></b>: The ground truth values, a <code>Tensor</code> whose dimensions must match
+  <code>predictions</code>. Will be cast to <code>bool</code>.</li>
+<li><b><code>predictions</code></b>: A floating point <code>Tensor</code> of arbitrary shape and whose values
+  are in the range <code>[0, 1]</code>.</li>
+<li><b><code>thresholds</code></b>: A python list or tuple of float thresholds in <code>[0, 1]</code>.</li>
+<li><b><code>weights</code></b>: Optional <code>Tensor</code> whose rank is either 0, or the same rank as
+  <code>labels</code>, and must be broadcastable to <code>labels</code> (i.e., all dimensions must
+  be either <code>1</code>, or the same as the corresponding <code>labels</code> dimension).</li>
+<li><b><code>metrics_collections</code></b>: An optional list of collections that <code>auc</code> should be
+  added to.</li>
+<li><b><code>updates_collections</code></b>: An optional list of collections that <code>update_op</code> should
+  be added to.</li>
+<li><b><code>name</code></b>: An optional variable_scope name.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<ul>
+<li><b><code>precision</code></b>: A float <code>Tensor</code> of shape <code>[len(thresholds)]</code>.</li>
+<li><b><code>update_op</code></b>: An operation that increments the <code>true_positives</code>,
+  <code>true_negatives</code>, <code>false_positives</code> and <code>false_negatives</code> variables that
+  are used in the computation of <code>precision</code>.</li>
+</ul>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: If <code>predictions</code> and <code>labels</code> have mismatched shapes, or if
+  <code>weights</code> is not <code>None</code> and its shape doesn't match <code>predictions</code>, or if
+  either <code>metrics_collections</code> or <code>updates_collections</code> are not a list or
+  tuple.</li>
+<li><b><code>RuntimeError</code></b>: If eager execution is enabled.</li>
+</ul>
+    </body>
+    </html>
+   

@@ -1,0 +1,64 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.saved_model.loader" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="module-tfcompatv1saved_modelloader">Module: tf.compat.v1.saved_model.loader</h1>
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p>Loader functionality for SavedModel with hermetic, language-neutral exports.</p>
+<p>Load and restore capability for a SavedModel, which may include multiple meta
+graph defs. Each SavedModel is associated with a single checkpoint. Each meta
+graph def is saved with one or more tags, which are used to identify the exact
+meta graph def to load.</p>
+<p>The <code>load</code> operation requires the session in which to restore the graph
+definition and variables, the tags used to identify the meta graph def to
+load and the location of the SavedModel.</p>
+<p>Upon a load, the subset of variables and assets supplied as part of the specific
+meta graph def, will be restored into the supplied session. The values of the
+variables though will correspond to the saved values from the first meta graph
+added to the SavedModel using <code>add_meta_graph_and_variables(...)</code> in
+<code>builder.py</code>.</p>
+<h4 id="typical-usage">Typical usage:</h4>
+<div class="codehilite"><pre><span></span><span class="o">...</span>
+<span class="n">builder</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">saved_model</span><span class="o">.</span><span class="n">builder</span><span class="o">.</span><span class="n">SavedModelBuilder</span><span class="p">(</span><span class="n">export_dir</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">Session</span><span class="p">(</span><span class="n">graph</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">Graph</span><span class="p">())</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
+  <span class="o">...</span>
+  <span class="n">builder</span><span class="o">.</span><span class="n">add_meta_graph_and_variables</span><span class="p">(</span><span class="n">sess</span><span class="p">,</span>
+                                       <span class="p">[</span><span class="s2">&quot;foo-tag&quot;</span><span class="p">],</span>
+                                       <span class="n">signature_def_map</span><span class="o">=</span><span class="n">foo_signatures</span><span class="p">,</span>
+                                       <span class="n">assets_collection</span><span class="o">=</span><span class="n">foo_assets</span><span class="p">)</span>
+<span class="o">...</span>
+
+<span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">Session</span><span class="p">(</span><span class="n">graph</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">Graph</span><span class="p">())</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
+  <span class="o">...</span>
+  <span class="n">builder</span><span class="o">.</span><span class="n">add_meta_graph</span><span class="p">([</span><span class="s2">&quot;bar-tag&quot;</span><span class="p">,</span> <span class="s2">&quot;baz-tag&quot;</span><span class="p">],</span>
+                         <span class="n">assets_collection</span><span class="o">=</span><span class="n">bar_baz_assets</span><span class="p">)</span>
+<span class="o">...</span>
+
+<span class="n">builder</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+<span class="o">...</span>
+<span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">Session</span><span class="p">(</span><span class="n">graph</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">Graph</span><span class="p">())</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
+  <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">saved_model</span><span class="o">.</span><span class="n">loader</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">sess</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;foo-tag&quot;</span><span class="p">],</span> <span class="n">export_dir</span><span class="p">)</span>
+  <span class="o">...</span>
+</pre></div>
+
+
+<h2 id="functions">Functions</h2>
+<p><a href="../../../../tf/compat/v1/saved_model/load.html"><code>load(...)</code></a>: Loads the model from a SavedModel as specified by tags. (deprecated)</p>
+<p><a href="../../../../tf/compat/v1/saved_model/contains_saved_model.html"><code>maybe_saved_model_directory(...)</code></a>: Checks whether the provided export directory could contain a SavedModel.</p>
+    </body>
+    </html>
+   

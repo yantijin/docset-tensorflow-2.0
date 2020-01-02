@@ -1,0 +1,67 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.saved_model.load" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1saved_modelload">tf.compat.v1.saved_model.load</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/saved_model/loader_impl.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Loads the model from a SavedModel as specified by tags. (deprecated)</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.saved_model.loader.load</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">saved_model</span><span class="o">.</span><span class="n">load</span><span class="p">(</span>
+    <span class="n">sess</span><span class="p">,</span>
+    <span class="n">tags</span><span class="p">,</span>
+    <span class="n">export_dir</span><span class="p">,</span>
+    <span class="n">import_scope</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">saver_kwargs</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
+Instructions for updating:
+This function will only be available through the v1 compatibility library as tf.compat.v1.saved_model.loader.load or tf.compat.v1.saved_model.load. There will be a new function for importing SavedModels in Tensorflow 2.0.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>sess</code></b>: The TensorFlow session to restore the variables.</li>
+<li><b><code>tags</code></b>: Set of string tags to identify the required MetaGraphDef. These should
+    correspond to the tags used when saving the variables using the
+    SavedModel <code>save()</code> API.</li>
+<li><b><code>export_dir</code></b>: Directory in which the SavedModel protocol buffer and variables
+    to be loaded are located.</li>
+<li><b><code>import_scope</code></b>: Optional <code>string</code> -- if specified, prepend this string
+    followed by '/' to all loaded tensor names. This scope is applied to
+    tensor instances loaded into the passed session, but it is <em>not</em> written
+    through to the static <code>MetaGraphDef</code> protocol buffer that is returned.</li>
+<li><b><code>**saver_kwargs</code></b>: Optional keyword arguments passed through to Saver.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>The <code>MetaGraphDef</code> protocol buffer loaded in the provided session. This
+can be used to further extract signature-defs, collection-defs, etc.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>RuntimeError</code></b>: MetaGraphDef associated with the tags cannot be found.</li>
+</ul>
+    </body>
+    </html>
+   

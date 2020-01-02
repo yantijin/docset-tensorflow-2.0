@@ -1,0 +1,68 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.io.write_graph" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfiowrite_graph">tf.io.write_graph</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/graph_io.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Writes a graph proto to a file.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.io.write_graph</code></li>
+<li><code>tf.compat.v1.train.write_graph</code></li>
+<li><code>tf.compat.v2.io.write_graph</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">write_graph</span><span class="p">(</span>
+    <span class="n">graph_or_graph_def</span><span class="p">,</span>
+    <span class="n">logdir</span><span class="p">,</span>
+    <span class="n">name</span><span class="p">,</span>
+    <span class="n">as_text</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>The graph is written as a text proto unless <code>as_text</code> is <code>False</code>.</p>
+<div class="codehilite"><pre><span></span><span class="n">v</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;my_variable&#39;</span><span class="p">)</span>
+<span class="n">sess</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">write_graph</span><span class="p">(</span><span class="n">sess</span><span class="o">.</span><span class="n">graph_def</span><span class="p">,</span> <span class="s1">&#39;/tmp/my-model&#39;</span><span class="p">,</span> <span class="s1">&#39;train.pbtxt&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>or</p>
+<div class="codehilite"><pre><span></span><span class="n">v</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;my_variable&#39;</span><span class="p">)</span>
+<span class="n">sess</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">write_graph</span><span class="p">(</span><span class="n">sess</span><span class="o">.</span><span class="n">graph</span><span class="p">,</span> <span class="s1">&#39;/tmp/my-model&#39;</span><span class="p">,</span> <span class="s1">&#39;train.pbtxt&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>graph_or_graph_def</code></b>: A <code>Graph</code> or a <code>GraphDef</code> protocol buffer.</li>
+<li><b><code>logdir</code></b>: Directory where to write the graph. This can refer to remote
+  filesystems, such as Google Cloud Storage (GCS).</li>
+<li><b><code>name</code></b>: Filename for the graph.</li>
+<li><b><code>as_text</code></b>: If <code>True</code>, writes the graph as an ASCII proto.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>The path of the output proto file.</p>
+    </body>
+    </html>
+   

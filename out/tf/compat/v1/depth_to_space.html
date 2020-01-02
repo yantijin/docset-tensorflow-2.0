@@ -1,0 +1,129 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.depth_to_space" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1depth_to_space">tf.compat.v1.depth_to_space</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/array_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>DepthToSpace for tensors of type T.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.nn.depth_to_space</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">depth_to_space</span><span class="p">(</span>
+    <span class="nb">input</span><span class="p">,</span>
+    <span class="n">block_size</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">data_format</span><span class="o">=</span><span class="s1">&#39;NHWC&#39;</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Rearranges data from depth into blocks of spatial data.
+This is the reverse transformation of SpaceToDepth. More specifically,
+this op outputs a copy of the input tensor where values from the <code>depth</code>
+dimension are moved in spatial blocks to the <code>height</code> and <code>width</code> dimensions.
+The attr <code>block_size</code> indicates the input block size and how the data is moved.</p>
+<ul>
+<li>Chunks of data of size <code>block_size * block_size</code> from depth are rearranged
+    into non-overlapping blocks of size <code>block_size x block_size</code></li>
+<li>The width the output tensor is <code>input_depth * block_size</code>, whereas the
+    height is <code>input_height * block_size</code>.</li>
+<li>The Y, X coordinates within each block of the output image are determined
+    by the high order component of the input channel index.</li>
+<li>The depth of the input tensor must be divisible by
+    <code>block_size * block_size</code>.</li>
+</ul>
+<p>The <code>data_format</code> attr specifies the layout of the input and output tensors
+with the following options:
+  "NHWC": <code>[ batch, height, width, channels ]</code>
+  "NCHW": <code>[ batch, channels, height, width ]</code>
+  "NCHW_VECT_C":
+      <code>qint8 [ batch, channels / 4, height, width, 4 ]</code></p>
+<p>It is useful to consider the operation as transforming a 6-D Tensor.
+e.g. for data_format = NHWC,
+     Each element in the input tensor can be specified via 6 coordinates,
+     ordered by decreasing memory layout significance as:
+     n,iY,iX,bY,bX,oC  (where n=batch index, iX, iY means X or Y coordinates
+                        within the input image, bX, bY means coordinates
+                        within the output block, oC means output channels).
+     The output would be the input transposed to the following layout:
+     n,iY,bY,iX,bX,oC</p>
+<p>This operation is useful for resizing the activations between convolutions
+(but keeping all data), e.g. instead of pooling. It is also useful for training
+purely convolutional models.</p>
+<p>For example, given an input of shape <code>[1, 1, 1, 4]</code>, data_format = "NHWC" and
+block_size = 2:</p>
+<div class="codehilite"><pre><span></span><span class="err">x = [[[[1, 2, 3, 4]]]]</span>
+</pre></div>
+
+
+<p>This operation will output a tensor of shape <code>[1, 2, 2, 1]</code>:</p>
+<div class="codehilite"><pre><span></span><span class="err">   [[[[1], [2]],</span>
+<span class="err">     [[3], [4]]]]</span>
+</pre></div>
+
+
+<p>Here, the input has a batch of 1 and each batch element has shape <code>[1, 1, 4]</code>,
+the corresponding output will have 2x2 elements and will have a depth of
+1 channel (1 = <code>4 / (block_size * block_size)</code>).
+The output element shape is <code>[2, 2, 1]</code>.</p>
+<p>For an input tensor with larger depth, here of shape <code>[1, 1, 1, 12]</code>, e.g.</p>
+<div class="codehilite"><pre><span></span><span class="err">x = [[[[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]]]]</span>
+</pre></div>
+
+
+<p>This operation, for block size of 2, will return the following tensor of shape
+<code>[1, 2, 2, 3]</code></p>
+<div class="codehilite"><pre><span></span><span class="err">   [[[[1, 2, 3], [4, 5, 6]],</span>
+<span class="err">     [[7, 8, 9], [10, 11, 12]]]]</span>
+</pre></div>
+
+
+<p>Similarly, for the following input of shape <code>[1 2 2 4]</code>, and a block size of 2:</p>
+<div class="codehilite"><pre><span></span><span class="err">x =  [[[[1, 2, 3, 4],</span>
+<span class="err">       [5, 6, 7, 8]],</span>
+<span class="err">      [[9, 10, 11, 12],</span>
+<span class="err">       [13, 14, 15, 16]]]]</span>
+</pre></div>
+
+
+<p>the operator will return the following tensor of shape <code>[1 4 4 1]</code>:</p>
+<div class="codehilite"><pre><span></span><span class="err">x = [[[ [1],   [2],  [5],  [6]],</span>
+<span class="err">      [ [3],   [4],  [7],  [8]],</span>
+<span class="err">      [ [9],  [10], [13],  [14]],</span>
+<span class="err">      [ [11], [12], [15],  [16]]]]</span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>input</code></b>: A <code>Tensor</code>.</li>
+<li><b><code>block_size</code></b>: An <code>int</code> that is <code>&gt;= 2</code>.
+  The size of the spatial block, same as in Space2Depth.</li>
+<li><b><code>data_format</code></b>: An optional <code>string</code> from: <code>"NHWC", "NCHW", "NCHW_VECT_C"</code>. Defaults to <code>"NHWC"</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>Tensor</code>. Has the same type as <code>input</code>.</p>
+    </body>
+    </html>
+   

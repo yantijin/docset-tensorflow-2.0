@@ -1,0 +1,63 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.config.experimental.set_visible_devices" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfconfigexperimentalset_visible_devices">tf.config.experimental.set_visible_devices</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/config.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Set the list of visible devices.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.config.experimental.set_visible_devices</code></li>
+<li><code>tf.compat.v2.config.experimental.set_visible_devices</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">set_visible_devices</span><span class="p">(</span>
+    <span class="n">devices</span><span class="p">,</span>
+    <span class="n">device_type</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Sets the list of PhysicalDevices to be marked as visible to the runtime. Any
+devices that are not marked as visible means TensorFlow will not allocate
+memory on it and will not be able to place any operations on it as no
+LogicalDevice will be created on it. By default all discovered devices are
+marked as visible.</p>
+<p>The following example demonstrates disabling the first GPU on the machine.</p>
+<div class="codehilite"><pre><span></span><span class="n">physical_devices</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">list_physical_devices</span><span class="p">(</span><span class="s1">&#39;GPU&#39;</span><span class="p">)</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">physical_devices</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;Not enough GPU hardware devices available&quot;</span>
+<span class="c1"># Disable first GPU</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">set_visible_devices</span><span class="p">(</span><span class="n">physical_devices</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="s1">&#39;GPU&#39;</span><span class="p">)</span>
+<span class="n">logical_devices</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">list_logical_devices</span><span class="p">(</span><span class="s1">&#39;GPU&#39;</span><span class="p">)</span>
+<span class="c1"># Logical device was not created for first GPU</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">logical_devices</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">physical_devices</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>devices</code></b>: (optional) List of PhysicalDevice objects to make visible</li>
+<li><b><code>device_type</code></b>: (optional) Device types to limit visibility configuration to.
+  Other device types will be left unaltered.</li>
+</ul>
+    </body>
+    </html>
+   

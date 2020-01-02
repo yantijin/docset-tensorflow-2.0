@@ -1,0 +1,105 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.strings.format" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfstringsformat">tf.strings.format</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/string_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Formats a string template using a list of tensors.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.strings.format</code></li>
+<li><code>tf.compat.v2.strings.format</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">strings</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+    <span class="n">template</span><span class="p">,</span>
+    <span class="n">inputs</span><span class="p">,</span>
+    <span class="n">placeholder</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="n">summarize</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Formats a string template using a list of tensors, abbreviating tensors by
+only printing the first and last <code>summarize</code> elements of each dimension
+(recursively). If formatting only one tensor into a template, the tensor does
+not have to be wrapped in a list.</p>
+<h4 id="example">Example:</h4>
+<p>Formatting a single-tensor template:</p>
+<div class="codehilite"><pre><span></span><span class="n">sess</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+<span class="k">with</span> <span class="n">sess</span><span class="o">.</span><span class="n">as_default</span><span class="p">():</span>
+    <span class="n">tensor</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">formatted</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">strings</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;tensor: </span><span class="si">{}</span><span class="s2">, suffix&quot;</span><span class="p">,</span> <span class="n">tensor</span><span class="p">)</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">formatted</span><span class="p">)</span>
+    <span class="n">expected</span> <span class="o">=</span> <span class="s2">&quot;tensor: [0 1 2 ... 7 8 9], suffix&quot;</span>
+
+    <span class="k">assert</span><span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span> <span class="o">==</span> <span class="n">expected</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Formatting a multi-tensor template:</p>
+<div class="codehilite"><pre><span></span><span class="n">sess</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+<span class="k">with</span> <span class="n">sess</span><span class="o">.</span><span class="n">as_default</span><span class="p">():</span>
+    <span class="n">tensor_one</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">range</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+    <span class="n">tensor_two</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">formatted</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">strings</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;first: </span><span class="si">{}</span><span class="s2">, second: </span><span class="si">{}</span><span class="s2">, suffix&quot;</span><span class="p">,</span>
+      <span class="p">(</span><span class="n">tensor_one</span><span class="p">,</span> <span class="n">tensor_two</span><span class="p">))</span>
+
+    <span class="n">out</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">formatted</span><span class="p">)</span>
+    <span class="n">expected</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;first: [[0 1 2 ... 7 8 9]</span><span class="se">\n</span><span class="s2">&quot;</span>
+          <span class="s2">&quot; [10 11 12 ... 17 18 19]</span><span class="se">\n</span><span class="s2">&quot;</span>
+          <span class="s2">&quot; [20 21 22 ... 27 28 29]</span><span class="se">\n</span><span class="s2">&quot;</span>
+          <span class="s2">&quot; ...</span><span class="se">\n</span><span class="s2">&quot;</span>
+          <span class="s2">&quot; [70 71 72 ... 77 78 79]</span><span class="se">\n</span><span class="s2">&quot;</span>
+          <span class="s2">&quot; [80 81 82 ... 87 88 89]</span><span class="se">\n</span><span class="s2">&quot;</span>
+          <span class="s2">&quot; [90 91 92 ... 97 98 99]], second: [0 1 2 ... 7 8 9], suffix&quot;</span><span class="p">)</span>
+
+    <span class="k">assert</span><span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span> <span class="o">==</span> <span class="n">expected</span><span class="p">)</span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>template</code></b>: A string template to format tensor values into.</li>
+<li><b><code>inputs</code></b>: A list of <code>Tensor</code> objects, or a single Tensor.
+  The list of tensors to format into the template string. If a solitary
+  tensor is passed in, the input tensor will automatically be wrapped as a
+  list.</li>
+<li><b><code>placeholder</code></b>: An optional <code>string</code>. Defaults to <code>{}</code>.
+  At each placeholder occurring in the template, a subsequent tensor
+  will be inserted.</li>
+<li><b><code>summarize</code></b>: An optional <code>int</code>. Defaults to <code>3</code>.
+  When formatting the tensors, show the first and last <code>summarize</code>
+  entries of each tensor dimension (recursively). If set to -1, all
+  elements of the tensor will be shown.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A scalar <code>Tensor</code> of type <code>string</code>.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: if the number of placeholders does not match the number of
+  inputs.</li>
+</ul>
+    </body>
+    </html>
+   

@@ -1,0 +1,57 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.activations.relu" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfkerasactivationsrelu">tf.keras.activations.relu</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/activations.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Rectified Linear Unit.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.keras.activations.relu</code></li>
+<li><code>tf.compat.v2.keras.activations.relu</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">activations</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">max_value</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">threshold</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>With default values, it returns element-wise <code>max(x, 0)</code>.</p>
+<p>Otherwise, it follows:
+<code>f(x) = max_value</code> for <code>x &gt;= max_value</code>,
+<code>f(x) = x</code> for <code>threshold &lt;= x &lt; max_value</code>,
+<code>f(x) = alpha * (x - threshold)</code> otherwise.</p>
+<h4 id="arguments">Arguments:</h4>
+<ul>
+<li><b><code>x</code></b>: A tensor or variable.</li>
+<li><b><code>alpha</code></b>: A scalar, slope of negative section (default=<code>0.</code>).</li>
+<li><b><code>max_value</code></b>: float. Saturation threshold.</li>
+<li><b><code>threshold</code></b>: float. Threshold value for thresholded activation.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A tensor.</p>
+    </body>
+    </html>
+   

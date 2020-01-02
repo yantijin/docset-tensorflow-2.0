@@ -1,0 +1,953 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.layers.Layer" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="activity_regularizer"/>
+<meta itemprop="property" content="dtype"/>
+<meta itemprop="property" content="dynamic"/>
+<meta itemprop="property" content="input"/>
+<meta itemprop="property" content="input_mask"/>
+<meta itemprop="property" content="input_shape"/>
+<meta itemprop="property" content="input_spec"/>
+<meta itemprop="property" content="losses"/>
+<meta itemprop="property" content="metrics"/>
+<meta itemprop="property" content="name"/>
+<meta itemprop="property" content="non_trainable_variables"/>
+<meta itemprop="property" content="non_trainable_weights"/>
+<meta itemprop="property" content="output"/>
+<meta itemprop="property" content="output_mask"/>
+<meta itemprop="property" content="output_shape"/>
+<meta itemprop="property" content="trainable"/>
+<meta itemprop="property" content="trainable_variables"/>
+<meta itemprop="property" content="trainable_weights"/>
+<meta itemprop="property" content="updates"/>
+<meta itemprop="property" content="variables"/>
+<meta itemprop="property" content="weights"/>
+<meta itemprop="property" content="__call__"/>
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="add_loss"/>
+<meta itemprop="property" content="add_metric"/>
+<meta itemprop="property" content="add_update"/>
+<meta itemprop="property" content="add_weight"/>
+<meta itemprop="property" content="build"/>
+<meta itemprop="property" content="call"/>
+<meta itemprop="property" content="compute_mask"/>
+<meta itemprop="property" content="compute_output_shape"/>
+<meta itemprop="property" content="compute_output_signature"/>
+<meta itemprop="property" content="count_params"/>
+<meta itemprop="property" content="from_config"/>
+<meta itemprop="property" content="get_config"/>
+<meta itemprop="property" content="get_input_at"/>
+<meta itemprop="property" content="get_input_mask_at"/>
+<meta itemprop="property" content="get_input_shape_at"/>
+<meta itemprop="property" content="get_losses_for"/>
+<meta itemprop="property" content="get_output_at"/>
+<meta itemprop="property" content="get_output_mask_at"/>
+<meta itemprop="property" content="get_output_shape_at"/>
+<meta itemprop="property" content="get_updates_for"/>
+<meta itemprop="property" content="get_weights"/>
+<meta itemprop="property" content="set_weights"/>
+</div>
+
+<h1 id="tfkeraslayerslayer">tf.keras.layers.Layer</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/engine/base_layer.py">View source</a></p>
+<h2 id="class-layer">Class <code>Layer</code></h2>
+<!-- Start diff -->
+
+<p>Base layer class.</p>
+<p>Inherits From: <a href="../../../tf/Module.html"><code>Module</code></a></p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v1.keras.layers.Layer</code></li>
+<li>Class <code>tf.compat.v2.keras.layers.Layer</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<p>This is the class from which all layers inherit.</p>
+<p>A layer is a class implementing common neural networks operations, such
+as convolution, batch norm, etc. These operations require managing weights,
+losses, updates, and inter-layer connectivity.</p>
+<p>Users will just instantiate a layer and then treat it as a callable.</p>
+<p>We recommend that descendants of <code>Layer</code> implement the following methods:</p>
+<ul>
+<li><code>__init__()</code>: Save configuration in member variables</li>
+<li><code>build()</code>: Called once from <code>__call__</code>, when we know the shapes of inputs
+  and <code>dtype</code>. Should have the calls to <code>add_weight()</code>, and then
+  call the super's <code>build()</code> (which sets <code>self.built = True</code>, which is
+  nice in case the user wants to call <code>build()</code> manually before the
+  first <code>__call__</code>).</li>
+<li><code>call()</code>: Called in <code>__call__</code> after making sure <code>build()</code> has been called
+  once. Should actually perform the logic of applying the layer to the
+  input tensors (which should be passed in as the first argument).</li>
+</ul>
+<h4 id="arguments">Arguments:</h4>
+<ul>
+<li><b><code>trainable</code></b>: Boolean, whether the layer's variables should be trainable.</li>
+<li><b><code>name</code></b>: String name of the layer.</li>
+<li><b><code>dtype</code></b>: The dtype of the layer's computations and weights (default of
+  <code>None</code> means use <a href="../../../tf/keras/backend/floatx.html"><code>tf.keras.backend.floatx</code></a> in TensorFlow 2, or the type
+  of the first input in TensorFlow 1).</li>
+<li><b><code>dynamic</code></b>: Set this to <code>True</code> if your layer should only be run eagerly, and
+  should not be used to generate a static computation graph.
+  This would be the case for a Tree-RNN or a recursive network,
+  for example, or generally for any layer that manipulates tensors
+  using Python control flow. If <code>False</code>, we assume that the layer can
+  safely be used to generate a static computation graph.</li>
+</ul>
+<p>Read-only properties:
+  name: The name of the layer (string).
+  dtype: The dtype of the layer's computations and weights. If mixed
+    precision is used with a <a href="../../../tf/keras/mixed_precision/experimental/Policy.html"><code>tf.keras.mixed_precision.experimental.Policy</code></a>,
+    this is instead just the dtype of the layer's weights, as the computations
+    are done in a different dtype.
+  updates: List of update ops of this layer.
+  losses: List of losses added by this layer.
+  trainable_weights: List of variables to be included in backprop.
+  non_trainable_weights: List of variables that should not be
+    included in backprop.
+  weights: The concatenation of the lists trainable_weights and
+    non_trainable_weights (in this order).</p>
+<h4 id="mutable-properties">Mutable properties:</h4>
+<ul>
+<li><b><code>trainable</code></b>: Whether the layer should be trained (boolean).</li>
+<li><b><code>input_spec</code></b>: Optional (list of) <code>InputSpec</code> object(s) specifying the
+  constraints on inputs that can be accepted by the layer.</li>
+</ul>
+<h3 id="dtypes-and-casting">Dtypes and casting</h3>
+<p>Each layer has a dtype, which is typically the dtype of the layer's
+computations and variables. A layer's dtype can be queried via the
+<a href="../../../tf/keras/layers/Layer.html#dtype"><code>Layer.dtype</code></a> property. The dtype is specified with the <code>dtype</code> constructor
+argument. In TensorFlow 2, the dtype defaults to <a href="../../../tf/keras/backend/floatx.html"><code>tf.keras.backend.floatx()</code></a>
+if no dtype is passed. <code>floatx()</code> itself defaults to "float32". Additionally,
+layers will cast their inputs to the layer's dtype in TensorFlow 2. For
+example:</p>
+<div class="codehilite"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="nf">ones</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float64&#39;</span><span class="p">)</span>
+<span class="n">layer</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="nf">Conv2D</span><span class="p">(</span><span class="n">filters</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">layer</span><span class="p">.</span><span class="n">dtype</span><span class="p">)</span>  <span class="c1"># float32</span>
+
+<span class="c1"># `layer` casts it&#39;s inputs to layer.dtype, which is float32, and does</span>
+<span class="c1"># computations in float32.</span>
+<span class="n">y</span> <span class="o">=</span> <span class="nf">layer</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Currently, only tensors in the first argument to the layer's <code>call</code> method are
+casted. For example:</p>
+<div class="codehilite"><pre><span></span><span class="n">class</span> <span class="nf">MyLayer</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Layer</span><span class="p">):</span>
+  <span class="c1"># Bug! `b` will not be casted.</span>
+  <span class="n">def</span> <span class="k">call</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">1</span><span class="p">.,</span> <span class="n">b</span> <span class="o">+</span> <span class="mi">1</span><span class="p">.</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="nf">constant</span><span class="p">(</span><span class="mi">1</span><span class="p">.,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float32&quot;</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="nf">constant</span><span class="p">(</span><span class="mi">1</span><span class="p">.,</span> <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float32&quot;</span><span class="p">)</span>
+
+<span class="n">layer</span> <span class="o">=</span> <span class="nf">MyLayer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;float64&quot;</span><span class="p">)</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="nf">layer</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">dtype</span><span class="p">)</span>  <span class="c1"># float64</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">y</span><span class="p">.</span><span class="n">dtype</span><span class="p">)</span>  <span class="c1"># float32. Not casted since `b` was not passed to first input</span>
+</pre></div>
+
+
+<p>It is recommended to accept tensors only in the first argument. This way,
+all tensors are casted to the layer's dtype. <code>MyLayer</code> should therefore be
+written as:</p>
+<div class="codehilite"><pre><span></span><span class="k">class</span> <span class="n">MyLayer</span>(<span class="n">tf</span>.<span class="n">keras</span>.<span class="n">layers</span>.<span class="n">Layer</span>):
+  <span class="c1"># Now, all tensor inputs will be casted.</span>
+  <span class="n">def</span> <span class="n">call</span>(<span class="k">self</span>, <span class="n">inputs</span>):
+    <span class="n">a</span>, <span class="n">b</span> = <span class="n">inputs</span>
+    <span class="k">return</span> <span class="n">a</span> + <span class="mi">1</span>., <span class="n">b</span> + <span class="mi">1</span>.
+
+<span class="n">a</span> = <span class="n">tf</span>.<span class="k">constant</span>(<span class="mi">1</span>., <span class="n">dtype</span>=<span class="s">&quot;float32&quot;</span>)
+<span class="n">b</span> = <span class="n">tf</span>.<span class="k">constant</span>(<span class="mi">1</span>., <span class="n">dtype</span>=<span class="s">&quot;float32&quot;</span>)
+
+<span class="n">layer</span> = <span class="n">MyLayer</span>(<span class="n">dtype</span>=<span class="s">&quot;float64&quot;</span>)
+<span class="o">x</span>, <span class="n">y</span> = <span class="n">layer</span>((<span class="n">a</span>, <span class="n">b</span>))
+<span class="nb">print</span>(<span class="o">x</span>.<span class="n">dtype</span>)  <span class="c1"># float64</span>
+<span class="nb">print</span>(<span class="n">y</span>.<span class="n">dtype</span>)  <span class="c1"># float64.</span>
+</pre></div>
+
+
+<p>In a future minor release, tensors in other arguments may be casted as well.</p>
+<p>Currently, other arguments are not automatically casted for
+technical reasons, but this may change in a future minor release.</p>
+<p>A layer subclass can prevent its inputs from being autocasted by passing
+<code>autocast=False</code> to the layer constructor. For example:</p>
+<div class="codehilite"><pre><span></span><span class="k">class</span> <span class="n">MyLayer</span>(<span class="n">tf</span>.<span class="n">keras</span>.<span class="n">layers</span>.<span class="n">Layer</span>):
+
+  <span class="n">def</span> <span class="n">__init__</span>(<span class="k">self</span>, **<span class="n">kwargs</span>):
+    <span class="n">kwargs</span>[<span class="s">&#39;autocast&#39;</span>]=<span class="nb">False</span>
+    <span class="n">super</span>(<span class="n">MyLayer</span>, <span class="k">self</span>).<span class="n">__init__</span>(**<span class="n">kwargs</span>)
+
+  <span class="n">def</span> <span class="n">call</span>(<span class="k">self</span>, <span class="n">inp</span>):
+    <span class="k">return</span> <span class="n">inp</span>
+
+<span class="o">x</span> = <span class="n">tf</span>.<span class="n">ones</span>((<span class="mi">4</span>, <span class="mi">4</span>, <span class="mi">4</span>, <span class="mi">4</span>), <span class="n">dtype</span>=<span class="s">&#39;float64&#39;</span>)
+<span class="n">layer</span> = <span class="n">MyLayer</span>()
+<span class="nb">print</span>(<span class="n">layer</span>.<span class="n">dtype</span>)  <span class="c1"># float32.</span>
+<span class="n">y</span> = <span class="n">layer</span>(<span class="o">x</span>)  <span class="c1"># MyLayer will not cast inputs to it&#39;s dtype of float32</span>
+<span class="nb">print</span>(<span class="n">y</span>.<span class="n">dtype</span>)  <span class="c1"># float64</span>
+</pre></div>
+
+
+<h4 id="running-models-in-float64-in-tensorflow-2">Running models in float64 in TensorFlow 2</h4>
+<p>If you want to run a Model in float64, you can set floatx to be float64 by
+calling <code>tf.keras.backend.set_floatx('float64')</code>. This will cause all layers
+to default to float64 instead of float32:</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">backend</span><span class="p">.</span><span class="n">set_floatx</span><span class="p">(</span><span class="s1">&#39;float64&#39;</span><span class="p">)</span>
+<span class="n">layer1</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">layer2</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">layer2</span><span class="p">(</span><span class="n">layer1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>  <span class="o">#</span> <span class="k">Both</span> <span class="n">layers</span> <span class="n">run</span> <span class="k">in</span> <span class="n">float64</span>
+</pre></div>
+
+
+<p>Alternatively, you can pass <code>dtype='float64'</code> to each individual layer. Note
+that if you have any layers which contain other layers as members, you must
+ensure each sublayer gets <code>dtype='float64'</code> passed to it's constructor as
+well:</p>
+<div class="codehilite"><pre><span></span><span class="n">layer1</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float64&#39;</span><span class="p">)</span>
+<span class="n">layer2</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float64&#39;</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">layer2</span><span class="p">(</span><span class="n">layer1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>  <span class="o">#</span> <span class="k">Both</span> <span class="n">layers</span> <span class="n">run</span> <span class="k">in</span> <span class="n">float64</span>
+
+<span class="k">class</span> <span class="n">NestedLayer</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Layer</span><span class="p">):</span>
+  <span class="n">def</span> <span class="n">__init__</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">super</span><span class="p">(</span><span class="n">NestedLayer</span><span class="p">,</span> <span class="k">self</span><span class="p">).</span><span class="n">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">self</span><span class="p">.</span><span class="n">dense</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">kwargs</span><span class="p">.</span><span class="k">get</span><span class="p">(</span><span class="s1">&#39;dtype&#39;</span><span class="p">))</span>
+
+  <span class="n">def</span> <span class="k">call</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">inp</span><span class="p">):</span>
+    <span class="k">return</span> <span class="k">self</span><span class="p">.</span><span class="n">dense</span><span class="p">(</span><span class="n">inp</span><span class="p">)</span>
+
+<span class="n">layer3</span> <span class="o">=</span> <span class="n">NestedLayer</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float64&#39;</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">layer3</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="o">#</span> <span class="n">layer3</span><span class="s1">&#39;s dense layer runs in float64, since NestedLayer</span>
+<span class="s1">               # correcty passed it&#39;</span><span class="n">s</span> <span class="n">dtype</span> <span class="k">to</span> <span class="n">it</span><span class="err">&#39;</span><span class="n">s</span> <span class="n">dense</span> <span class="n">layer</span>
+</pre></div>
+
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/engine/base_layer.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">trainable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">dynamic</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<h2 id="properties">Properties</h2>
+<h3 id="activity_regularizer"><code>activity_regularizer</code></h3>
+
+<p>Optional regularizer function for the output of this layer.</p>
+<h3 id="dtype"><code>dtype</code></h3>
+
+<h3 id="dynamic"><code>dynamic</code></h3>
+
+<h3 id="input"><code>input</code></h3>
+
+<p>Retrieves the input tensor(s) of a layer.</p>
+<p>Only applicable if the layer has exactly one input,
+i.e. if it is connected to one incoming layer.</p>
+<h4 id="returns">Returns:</h4>
+<p>Input tensor or list of input tensors.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>RuntimeError</code></b>: If called in Eager mode.</li>
+<li><b><code>AttributeError</code></b>: If no inbound nodes are found.</li>
+</ul>
+<h3 id="input_mask"><code>input_mask</code></h3>
+
+<p>Retrieves the input mask tensor(s) of a layer.</p>
+<p>Only applicable if the layer has exactly one inbound node,
+i.e. if it is connected to one incoming layer.</p>
+<h4 id="returns_1">Returns:</h4>
+<p>Input mask tensor (potentially None) or list of input
+mask tensors.</p>
+<h4 id="raises_1">Raises:</h4>
+<ul>
+<li><b><code>AttributeError</code></b>: if the layer is connected to
+more than one incoming layers.</li>
+</ul>
+<h3 id="input_shape"><code>input_shape</code></h3>
+
+<p>Retrieves the input shape(s) of a layer.</p>
+<p>Only applicable if the layer has exactly one input,
+i.e. if it is connected to one incoming layer, or if all inputs
+have the same shape.</p>
+<h4 id="returns_2">Returns:</h4>
+<p>Input shape, as an integer shape tuple
+(or list of shape tuples, one tuple per input tensor).</p>
+<h4 id="raises_2">Raises:</h4>
+<ul>
+<li><b><code>AttributeError</code></b>: if the layer has no defined input_shape.</li>
+<li><b><code>RuntimeError</code></b>: if called in Eager mode.</li>
+</ul>
+<h3 id="input_spec"><code>input_spec</code></h3>
+
+<h3 id="losses"><code>losses</code></h3>
+
+<p>Losses which are associated with this <code>Layer</code>.</p>
+<p>Variable regularization tensors are created when this property is accessed,
+so it is eager safe: accessing <code>losses</code> under a <a href="../../../tf/GradientTape.html"><code>tf.GradientTape</code></a> will
+propagate gradients back to the corresponding variables.</p>
+<h4 id="returns_3">Returns:</h4>
+<p>A list of tensors.</p>
+<h3 id="metrics"><code>metrics</code></h3>
+
+<h3 id="name"><code>name</code></h3>
+
+<p>Returns the name of this module as passed or determined in the ctor.</p>
+<p>NOTE: This is not the same as the <code>self.name_scope.name</code> which includes
+parent module names.</p>
+<h3 id="non_trainable_variables"><code>non_trainable_variables</code></h3>
+
+<h3 id="non_trainable_weights"><code>non_trainable_weights</code></h3>
+
+<h3 id="output"><code>output</code></h3>
+
+<p>Retrieves the output tensor(s) of a layer.</p>
+<p>Only applicable if the layer has exactly one output,
+i.e. if it is connected to one incoming layer.</p>
+<h4 id="returns_4">Returns:</h4>
+<p>Output tensor or list of output tensors.</p>
+<h4 id="raises_3">Raises:</h4>
+<ul>
+<li><b><code>AttributeError</code></b>: if the layer is connected to more than one incoming
+  layers.</li>
+<li><b><code>RuntimeError</code></b>: if called in Eager mode.</li>
+</ul>
+<h3 id="output_mask"><code>output_mask</code></h3>
+
+<p>Retrieves the output mask tensor(s) of a layer.</p>
+<p>Only applicable if the layer has exactly one inbound node,
+i.e. if it is connected to one incoming layer.</p>
+<h4 id="returns_5">Returns:</h4>
+<p>Output mask tensor (potentially None) or list of output
+mask tensors.</p>
+<h4 id="raises_4">Raises:</h4>
+<ul>
+<li><b><code>AttributeError</code></b>: if the layer is connected to
+more than one incoming layers.</li>
+</ul>
+<h3 id="output_shape"><code>output_shape</code></h3>
+
+<p>Retrieves the output shape(s) of a layer.</p>
+<p>Only applicable if the layer has one output,
+or if all outputs have the same shape.</p>
+<h4 id="returns_6">Returns:</h4>
+<p>Output shape, as an integer shape tuple
+(or list of shape tuples, one tuple per output tensor).</p>
+<h4 id="raises_5">Raises:</h4>
+<ul>
+<li><b><code>AttributeError</code></b>: if the layer has no defined output shape.</li>
+<li><b><code>RuntimeError</code></b>: if called in Eager mode.</li>
+</ul>
+<h3 id="trainable"><code>trainable</code></h3>
+
+<h3 id="trainable_variables"><code>trainable_variables</code></h3>
+
+<p>Sequence of variables owned by this module and it's submodules.</p>
+<p>Note: this method uses reflection to find variables on the current instance
+and submodules. For performance reasons you may wish to cache the result
+of calling this method if you don't expect the return value to change.</p>
+<h4 id="returns_7">Returns:</h4>
+<p>A sequence of variables for the current module (sorted by attribute
+name) followed by variables from all submodules recursively (breadth
+first).</p>
+<h3 id="trainable_weights"><code>trainable_weights</code></h3>
+
+<h3 id="updates"><code>updates</code></h3>
+
+<h3 id="variables"><code>variables</code></h3>
+
+<p>Returns the list of all layer variables/weights.</p>
+<p>Alias of <code>self.weights</code>.</p>
+<h4 id="returns_8">Returns:</h4>
+<p>A list of variables.</p>
+<h3 id="weights"><code>weights</code></h3>
+
+<p>Returns the list of all layer variables/weights.</p>
+<h4 id="returns_9">Returns:</h4>
+<p>A list of variables.</p>
+<h2 id="methods">Methods</h2>
+<h3 id="__call__"><code>__call__</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/engine/base_layer.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__call__</span><span class="p">(</span>
+    <span class="n">inputs</span><span class="p">,</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Wraps <code>call</code>, applying pre- and post-processing steps.</p>
+<h4 id="arguments_1">Arguments:</h4>
+<ul>
+<li><b><code>inputs</code></b>: input tensor(s).</li>
+<li><b><code>*args</code></b>: additional positional arguments to be passed to <code>self.call</code>.</li>
+<li><b><code>**kwargs</code></b>: additional keyword arguments to be passed to <code>self.call</code>.</li>
+</ul>
+<h4 id="returns_10">Returns:</h4>
+<p>Output tensor(s).</p>
+<h4 id="note">Note:</h4>
+<ul>
+<li>The following optional keyword arguments are reserved for specific uses:</li>
+<li><code>training</code>: Boolean scalar tensor of Python boolean indicating
+    whether the <code>call</code> is meant for training or inference.</li>
+<li><code>mask</code>: Boolean input mask.</li>
+<li>If the layer's <code>call</code> method takes a <code>mask</code> argument (as some Keras
+  layers do), its default value will be set to the mask generated
+  for <code>inputs</code> by the previous layer (if <code>input</code> did come from
+  a layer that generated a corresponding mask, i.e. if it came from
+  a Keras layer with masking support.</li>
+</ul>
+<h4 id="raises_6">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: if the layer's <code>call</code> method returns None (an invalid value).</li>
+</ul>
+<h3 id="add_loss"><code>add_loss</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/engine/base_layer.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">add_loss</span><span class="p">(</span>
+    <span class="n">losses</span><span class="p">,</span>
+    <span class="n">inputs</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Add loss tensor(s), potentially dependent on layer inputs.</p>
+<p>Some losses (for instance, activity regularization losses) may be dependent
+on the inputs passed when calling a layer. Hence, when reusing the same
+layer on different inputs <code>a</code> and <code>b</code>, some entries in <code>layer.losses</code> may
+be dependent on <code>a</code> and some on <code>b</code>. This method automatically keeps track
+of dependencies.</p>
+<p>This method can be used inside a subclassed layer or model's <code>call</code>
+function, in which case <code>losses</code> should be a Tensor or list of Tensors.</p>
+<h4 id="example">Example:</h4>
+<div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">MyLayer</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Layer</span><span class="p">):</span>
+  <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="bp">self</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">add_loss</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">inputs</span><span class="p">)),</span> <span class="n">inputs</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">inputs</span>
+</pre></div>
+
+
+<p>This method can also be called directly on a Functional Model during
+construction. In this case, any loss Tensors passed to this Model must
+be symbolic and be able to be traced back to the model's <code>Input</code>s. These
+losses become part of the model's topology and are tracked in <code>get_config</code>.</p>
+<h4 id="example_1">Example:</h4>
+<div class="codehilite"><pre><span></span><span class="n">inputs</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,))</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">10</span><span class="p">)(</span><span class="n">inputs</span><span class="p">)</span>
+<span class="n">outputs</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">outputs</span><span class="p">)</span>
+<span class="c1"># Actvity regularization.</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add_loss</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span>
+</pre></div>
+
+
+<p>If this is not the case for your loss (if, for example, your loss references
+a <code>Variable</code> of one of the model's layers), you can wrap your loss in a
+zero-argument lambda. These losses are not tracked as part of the model's
+topology since they can't be serialized.</p>
+<h4 id="example_2">Example:</h4>
+<div class="codehilite"><pre><span></span><span class="n">inputs</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,))</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">10</span><span class="p">)(</span><span class="n">inputs</span><span class="p">)</span>
+<span class="n">outputs</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">outputs</span><span class="p">)</span>
+<span class="c1"># Weight regularization.</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add_loss</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">kernel</span><span class="p">))</span>
+</pre></div>
+
+
+<p>The <code>get_losses_for</code> method allows to retrieve the losses relevant to a
+specific set of inputs.</p>
+<h4 id="arguments_2">Arguments:</h4>
+<ul>
+<li><b><code>losses</code></b>: Loss tensor, or list/tuple of tensors. Rather than tensors, losses
+  may also be zero-argument callables which create a loss tensor.</li>
+<li><b><code>inputs</code></b>: Ignored when executing eagerly. If anything other than None is
+  passed, it signals the losses are conditional on some of the layer's
+  inputs, and thus they should only be run where these inputs are
+  available. This is the case for activity regularization losses, for
+  instance. If <code>None</code> is passed, the losses are assumed
+  to be unconditional, and will apply across all dataflows of the layer
+  (e.g. weight regularization losses).</li>
+</ul>
+<h3 id="add_metric"><code>add_metric</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/engine/base_layer.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">add_metric</span><span class="p">(</span>
+    <span class="n">value</span><span class="p">,</span>
+    <span class="n">aggregation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Adds metric tensor to the layer.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>value</code></b>: Metric tensor.</li>
+<li><b><code>aggregation</code></b>: Sample-wise metric reduction function. If <code>aggregation=None</code>,
+  it indicates that the metric tensor provided has been aggregated
+  already. eg, <code>bin_acc = BinaryAccuracy(name='acc')</code> followed by
+  <code>model.add_metric(bin_acc(y_true, y_pred))</code>. If aggregation='mean', the
+  given metric tensor will be sample-wise reduced using <code>mean</code> function.
+  eg, <code>model.add_metric(tf.reduce_sum(outputs), name='output_mean',
+  aggregation='mean')</code>.</li>
+<li><b><code>name</code></b>: String metric name.</li>
+</ul>
+<h4 id="raises_7">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: If <code>aggregation</code> is anything other than None or <code>mean</code>.</li>
+</ul>
+<h3 id="add_update"><code>add_update</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/engine/base_layer.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">add_update</span><span class="p">(</span>
+    <span class="n">updates</span><span class="p">,</span>
+    <span class="n">inputs</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Add update op(s), potentially dependent on layer inputs. (deprecated arguments)</p>
+<p>Warning: SOME ARGUMENTS ARE DEPRECATED: <code>(inputs)</code>. They will be removed in a future version.
+Instructions for updating:
+<code>inputs</code> is now automatically inferred</p>
+<p>Weight updates (for instance, the updates of the moving mean and variance
+in a BatchNormalization layer) may be dependent on the inputs passed
+when calling a layer. Hence, when reusing the same layer on
+different inputs <code>a</code> and <code>b</code>, some entries in <code>layer.updates</code> may be
+dependent on <code>a</code> and some on <code>b</code>. This method automatically keeps track
+of dependencies.</p>
+<p>The <code>get_updates_for</code> method allows to retrieve the updates relevant to a
+specific set of inputs.</p>
+<p>This call is ignored when eager execution is enabled (in that case, variable
+updates are run on the fly and thus do not need to be tracked for later
+execution).</p>
+<h4 id="arguments_3">Arguments:</h4>
+<ul>
+<li><b><code>updates</code></b>: Update op, or list/tuple of update ops, or zero-arg callable
+  that returns an update op. A zero-arg callable should be passed in
+  order to disable running the updates by setting <code>trainable=False</code>
+  on this Layer, when executing in Eager mode.</li>
+<li><b><code>inputs</code></b>: Deprecated, will be automatically inferred.</li>
+</ul>
+<h3 id="add_weight"><code>add_weight</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/engine/base_layer.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">add_weight</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">initializer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">trainable</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">constraint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">partitioner</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">use_resource</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">synchronization</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">VariableSynchronization</span><span class="o">.</span><span class="n">AUTO</span><span class="p">,</span>
+    <span class="n">aggregation</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">VariableAggregation</span><span class="o">.</span><span class="n">NONE</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Adds a new variable to the layer.</p>
+<h4 id="arguments_4">Arguments:</h4>
+<ul>
+<li><b><code>name</code></b>: Variable name.</li>
+<li><b><code>shape</code></b>: Variable shape. Defaults to scalar if unspecified.</li>
+<li><b><code>dtype</code></b>: The type of the variable. Defaults to <code>self.dtype</code> or <code>float32</code>.</li>
+<li><b><code>initializer</code></b>: Initializer instance (callable).</li>
+<li><b><code>regularizer</code></b>: Regularizer instance (callable).</li>
+<li><b><code>trainable</code></b>: Boolean, whether the variable should be part of the layer's
+  "trainable_variables" (e.g. variables, biases)
+  or "non_trainable_variables" (e.g. BatchNorm mean and variance).
+  Note that <code>trainable</code> cannot be <code>True</code> if <code>synchronization</code>
+  is set to <code>ON_READ</code>.</li>
+<li><b><code>constraint</code></b>: Constraint instance (callable).</li>
+<li><b><code>partitioner</code></b>: Partitioner to be passed to the <code>Trackable</code> API.</li>
+<li><b><code>use_resource</code></b>: Whether to use <code>ResourceVariable</code>.</li>
+<li><b><code>synchronization</code></b>: Indicates when a distributed a variable will be
+  aggregated. Accepted values are constants defined in the class
+  <a href="../../../tf/VariableSynchronization.html"><code>tf.VariableSynchronization</code></a>. By default the synchronization is set to
+  <code>AUTO</code> and the current <code>DistributionStrategy</code> chooses
+  when to synchronize. If <code>synchronization</code> is set to <code>ON_READ</code>,
+  <code>trainable</code> must not be set to <code>True</code>.</li>
+<li><b><code>aggregation</code></b>: Indicates how a distributed variable will be aggregated.
+  Accepted values are constants defined in the class
+  <a href="../../../tf/VariableAggregation.html"><code>tf.VariableAggregation</code></a>.</li>
+<li><b><code>**kwargs</code></b>: Additional keyword arguments. Accepted values are <code>getter</code> and
+  <code>collections</code>.</li>
+</ul>
+<h4 id="returns_11">Returns:</h4>
+<p>The created variable. Usually either a <code>Variable</code> or <code>ResourceVariable</code>
+instance. If <code>partitioner</code> is not <code>None</code>, a <code>PartitionedVariable</code>
+instance is returned.</p>
+<h4 id="raises_8">Raises:</h4>
+<ul>
+<li><b><code>RuntimeError</code></b>: If called with partitioned variable regularization and
+  eager execution is enabled.</li>
+<li><b><code>ValueError</code></b>: When giving unsupported dtype and no initializer or when
+  trainable has been set to True with synchronization set as <code>ON_READ</code>.</li>
+</ul>
+<h3 id="build"><code>build</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/engine/base_layer.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">build</span><span class="p">(</span><span class="n">input_shape</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Creates the variables of the layer (optional, for subclass implementers).</p>
+<p>This is a method that implementers of subclasses of <code>Layer</code> or <code>Model</code>
+can override if they need a state-creation step in-between
+layer instantiation and layer call.</p>
+<p>This is typically used to create the weights of <code>Layer</code> subclasses.</p>
+<h4 id="arguments_5">Arguments:</h4>
+<ul>
+<li><b><code>input_shape</code></b>: Instance of <code>TensorShape</code>, or list of instances of
+  <code>TensorShape</code> if the layer expects a list of inputs
+  (one instance per input).</li>
+</ul>
+<h3 id="call"><code>call</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/engine/base_layer.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">call</span><span class="p">(</span>
+    <span class="n">inputs</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>This is where the layer's logic lives.</p>
+<h4 id="arguments_6">Arguments:</h4>
+<ul>
+<li><b><code>inputs</code></b>: Input tensor, or list/tuple of input tensors.</li>
+<li><b><code>**kwargs</code></b>: Additional keyword arguments.</li>
+</ul>
+<h4 id="returns_12">Returns:</h4>
+<p>A tensor or list/tuple of tensors.</p>
+<h3 id="compute_mask"><code>compute_mask</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/engine/base_layer.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">compute_mask</span><span class="p">(</span>
+    <span class="n">inputs</span><span class="p">,</span>
+    <span class="n">mask</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Computes an output mask tensor.</p>
+<h4 id="arguments_7">Arguments:</h4>
+<ul>
+<li><b><code>inputs</code></b>: Tensor or list of tensors.</li>
+<li><b><code>mask</code></b>: Tensor or list of tensors.</li>
+</ul>
+<h4 id="returns_13">Returns:</h4>
+<p>None or a tensor (or list of tensors,
+    one per output tensor of the layer).</p>
+<h3 id="compute_output_shape"><code>compute_output_shape</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/engine/base_layer.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">compute_output_shape</span><span class="p">(</span><span class="n">input_shape</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Computes the output shape of the layer.</p>
+<p>If the layer has not been built, this method will call <code>build</code> on the
+layer. This assumes that the layer will later be used with inputs that
+match the input shape provided here.</p>
+<h4 id="arguments_8">Arguments:</h4>
+<ul>
+<li><b><code>input_shape</code></b>: Shape tuple (tuple of integers)
+    or list of shape tuples (one per output tensor of the layer).
+    Shape tuples can include None for free dimensions,
+    instead of an integer.</li>
+</ul>
+<h4 id="returns_14">Returns:</h4>
+<p>An input shape tuple.</p>
+<h3 id="compute_output_signature"><code>compute_output_signature</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/engine/base_layer.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">compute_output_signature</span><span class="p">(</span><span class="n">input_signature</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Compute the output tensor signature of the layer based on the inputs.</p>
+<p>Unlike a TensorShape object, a TensorSpec object contains both shape
+and dtype information for a tensor. This method allows layers to provide
+output dtype information if it is different from the input dtype.
+For any layer that doesn't implement this function,
+the framework will fall back to use <code>compute_output_shape</code>, and will
+assume that the output dtype matches the input dtype.</p>
+<h4 id="args_1">Args:</h4>
+<ul>
+<li><b><code>input_signature</code></b>: Single TensorSpec or nested structure of TensorSpec
+  objects, describing a candidate input for the layer.</li>
+</ul>
+<h4 id="returns_15">Returns:</h4>
+<p>Single TensorSpec or nested structure of TensorSpec objects, describing
+  how the layer would transform the provided input.</p>
+<h4 id="raises_9">Raises:</h4>
+<ul>
+<li><b><code>TypeError</code></b>: If input_signature contains a non-TensorSpec object.</li>
+</ul>
+<h3 id="count_params"><code>count_params</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/engine/base_layer.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">count_params</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Count the total number of scalars composing the weights.</p>
+<h4 id="returns_16">Returns:</h4>
+<p>An integer count.</p>
+<h4 id="raises_10">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: if the layer isn't yet built
+  (in which case its weights aren't yet defined).</li>
+</ul>
+<h3 id="from_config"><code>from_config</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/engine/base_layer.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="nd">@classmethod</span>
+<span class="n">from_config</span><span class="p">(</span>
+    <span class="bp">cls</span><span class="p">,</span>
+    <span class="n">config</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Creates a layer from its config.</p>
+<p>This method is the reverse of <code>get_config</code>,
+capable of instantiating the same layer from the config
+dictionary. It does not handle layer connectivity
+(handled by Network), nor weights (handled by <code>set_weights</code>).</p>
+<h4 id="arguments_9">Arguments:</h4>
+<ul>
+<li><b><code>config</code></b>: A Python dictionary, typically the
+    output of get_config.</li>
+</ul>
+<h4 id="returns_17">Returns:</h4>
+<p>A layer instance.</p>
+<h3 id="get_config"><code>get_config</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/engine/base_layer.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_config</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Returns the config of the layer.</p>
+<p>A layer config is a Python dictionary (serializable)
+containing the configuration of a layer.
+The same layer can be reinstantiated later
+(without its trained weights) from this configuration.</p>
+<p>The config of a layer does not include connectivity
+information, nor the layer class name. These are handled
+by <code>Network</code> (one layer of abstraction above).</p>
+<h4 id="returns_18">Returns:</h4>
+<p>Python dictionary.</p>
+<h3 id="get_input_at"><code>get_input_at</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/engine/base_layer.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_input_at</span><span class="p">(</span><span class="n">node_index</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Retrieves the input tensor(s) of a layer at a given node.</p>
+<h4 id="arguments_10">Arguments:</h4>
+<ul>
+<li><b><code>node_index</code></b>: Integer, index of the node
+    from which to retrieve the attribute.
+    E.g. <code>node_index=0</code> will correspond to the
+    first time the layer was called.</li>
+</ul>
+<h4 id="returns_19">Returns:</h4>
+<p>A tensor (or list of tensors if the layer has multiple inputs).</p>
+<h4 id="raises_11">Raises:</h4>
+<ul>
+<li><b><code>RuntimeError</code></b>: If called in Eager mode.</li>
+</ul>
+<h3 id="get_input_mask_at"><code>get_input_mask_at</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/engine/base_layer.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_input_mask_at</span><span class="p">(</span><span class="n">node_index</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Retrieves the input mask tensor(s) of a layer at a given node.</p>
+<h4 id="arguments_11">Arguments:</h4>
+<ul>
+<li><b><code>node_index</code></b>: Integer, index of the node
+    from which to retrieve the attribute.
+    E.g. <code>node_index=0</code> will correspond to the
+    first time the layer was called.</li>
+</ul>
+<h4 id="returns_20">Returns:</h4>
+<p>A mask tensor
+(or list of tensors if the layer has multiple inputs).</p>
+<h3 id="get_input_shape_at"><code>get_input_shape_at</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/engine/base_layer.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_input_shape_at</span><span class="p">(</span><span class="n">node_index</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Retrieves the input shape(s) of a layer at a given node.</p>
+<h4 id="arguments_12">Arguments:</h4>
+<ul>
+<li><b><code>node_index</code></b>: Integer, index of the node
+    from which to retrieve the attribute.
+    E.g. <code>node_index=0</code> will correspond to the
+    first time the layer was called.</li>
+</ul>
+<h4 id="returns_21">Returns:</h4>
+<p>A shape tuple
+(or list of shape tuples if the layer has multiple inputs).</p>
+<h4 id="raises_12">Raises:</h4>
+<ul>
+<li><b><code>RuntimeError</code></b>: If called in Eager mode.</li>
+</ul>
+<h3 id="get_losses_for"><code>get_losses_for</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/engine/base_layer.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_losses_for</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Retrieves losses relevant to a specific set of inputs.</p>
+<h4 id="arguments_13">Arguments:</h4>
+<ul>
+<li><b><code>inputs</code></b>: Input tensor or list/tuple of input tensors.</li>
+</ul>
+<h4 id="returns_22">Returns:</h4>
+<p>List of loss tensors of the layer that depend on <code>inputs</code>.</p>
+<h3 id="get_output_at"><code>get_output_at</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/engine/base_layer.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_output_at</span><span class="p">(</span><span class="n">node_index</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Retrieves the output tensor(s) of a layer at a given node.</p>
+<h4 id="arguments_14">Arguments:</h4>
+<ul>
+<li><b><code>node_index</code></b>: Integer, index of the node
+    from which to retrieve the attribute.
+    E.g. <code>node_index=0</code> will correspond to the
+    first time the layer was called.</li>
+</ul>
+<h4 id="returns_23">Returns:</h4>
+<p>A tensor (or list of tensors if the layer has multiple outputs).</p>
+<h4 id="raises_13">Raises:</h4>
+<ul>
+<li><b><code>RuntimeError</code></b>: If called in Eager mode.</li>
+</ul>
+<h3 id="get_output_mask_at"><code>get_output_mask_at</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/engine/base_layer.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_output_mask_at</span><span class="p">(</span><span class="n">node_index</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Retrieves the output mask tensor(s) of a layer at a given node.</p>
+<h4 id="arguments_15">Arguments:</h4>
+<ul>
+<li><b><code>node_index</code></b>: Integer, index of the node
+    from which to retrieve the attribute.
+    E.g. <code>node_index=0</code> will correspond to the
+    first time the layer was called.</li>
+</ul>
+<h4 id="returns_24">Returns:</h4>
+<p>A mask tensor
+(or list of tensors if the layer has multiple outputs).</p>
+<h3 id="get_output_shape_at"><code>get_output_shape_at</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/engine/base_layer.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_output_shape_at</span><span class="p">(</span><span class="n">node_index</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Retrieves the output shape(s) of a layer at a given node.</p>
+<h4 id="arguments_16">Arguments:</h4>
+<ul>
+<li><b><code>node_index</code></b>: Integer, index of the node
+    from which to retrieve the attribute.
+    E.g. <code>node_index=0</code> will correspond to the
+    first time the layer was called.</li>
+</ul>
+<h4 id="returns_25">Returns:</h4>
+<p>A shape tuple
+(or list of shape tuples if the layer has multiple outputs).</p>
+<h4 id="raises_14">Raises:</h4>
+<ul>
+<li><b><code>RuntimeError</code></b>: If called in Eager mode.</li>
+</ul>
+<h3 id="get_updates_for"><code>get_updates_for</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/engine/base_layer.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_updates_for</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Retrieves updates relevant to a specific set of inputs.</p>
+<h4 id="arguments_17">Arguments:</h4>
+<ul>
+<li><b><code>inputs</code></b>: Input tensor or list/tuple of input tensors.</li>
+</ul>
+<h4 id="returns_26">Returns:</h4>
+<p>List of update ops of the layer that depend on <code>inputs</code>.</p>
+<h3 id="get_weights"><code>get_weights</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/engine/base_layer.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_weights</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Returns the current weights of the layer.</p>
+<h4 id="returns_27">Returns:</h4>
+<p>Weights values as a list of numpy arrays.</p>
+<h3 id="set_weights"><code>set_weights</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/engine/base_layer.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">set_weights</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Sets the weights of the layer, from Numpy arrays.</p>
+<h4 id="arguments_18">Arguments:</h4>
+<ul>
+<li><b><code>weights</code></b>: a list of Numpy arrays. The number
+    of arrays and their shape must match
+    number of the dimensions of the weights
+    of the layer (i.e. it should match the
+    output of <code>get_weights</code>).</li>
+</ul>
+<h4 id="raises_15">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: If the provided weights list does not match the
+    layer's specifications.</li>
+</ul>
+    </body>
+    </html>
+   

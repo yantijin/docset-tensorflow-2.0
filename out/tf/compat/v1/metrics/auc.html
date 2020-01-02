@@ -1,0 +1,117 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.metrics.auc" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1metricsauc">tf.compat.v1.metrics.auc</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/metrics_impl.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Computes the approximate AUC via a Riemann sum.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">auc</span><span class="p">(</span>
+    <span class="n">labels</span><span class="p">,</span>
+    <span class="n">predictions</span><span class="p">,</span>
+    <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">num_thresholds</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+    <span class="n">metrics_collections</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">updates_collections</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">curve</span><span class="o">=</span><span class="s1">&#39;ROC&#39;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">summation_method</span><span class="o">=</span><span class="s1">&#39;trapezoidal&#39;</span><span class="p">,</span>
+    <span class="n">thresholds</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>The <code>auc</code> function creates four local variables, <code>true_positives</code>,
+<code>true_negatives</code>, <code>false_positives</code> and <code>false_negatives</code> that are used to
+compute the AUC. To discretize the AUC curve, a linearly spaced set of
+thresholds is used to compute pairs of recall and precision values. The area
+under the ROC-curve is therefore computed using the height of the recall
+values by the false positive rate, while the area under the PR-curve is the
+computed using the height of the precision values by the recall.</p>
+<p>This value is ultimately returned as <code>auc</code>, an idempotent operation that
+computes the area under a discretized curve of precision versus recall values
+(computed using the aforementioned variables). The <code>num_thresholds</code> variable
+controls the degree of discretization with larger numbers of thresholds more
+closely approximating the true AUC. The quality of the approximation may vary
+dramatically depending on <code>num_thresholds</code>.</p>
+<p>For best results, <code>predictions</code> should be distributed approximately uniformly
+in the range [0, 1] and not peaked around 0 or 1. The quality of the AUC
+approximation may be poor if this is not the case. Setting <code>summation_method</code>
+to 'minoring' or 'majoring' can help quantify the error in the approximation
+by providing lower or upper bound estimate of the AUC. The <code>thresholds</code>
+parameter can be used to manually specify thresholds which split the
+predictions more evenly.</p>
+<p>For estimation of the metric over a stream of data, the function creates an
+<code>update_op</code> operation that updates these variables and returns the <code>auc</code>.</p>
+<p>If <code>weights</code> is <code>None</code>, weights default to 1. Use weights of 0 to mask values.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>labels</code></b>: A <code>Tensor</code> whose shape matches <code>predictions</code>. Will be cast to
+  <code>bool</code>.</li>
+<li><b><code>predictions</code></b>: A floating point <code>Tensor</code> of arbitrary shape and whose values
+  are in the range <code>[0, 1]</code>.</li>
+<li><b><code>weights</code></b>: Optional <code>Tensor</code> whose rank is either 0, or the same rank as
+  <code>labels</code>, and must be broadcastable to <code>labels</code> (i.e., all dimensions must
+  be either <code>1</code>, or the same as the corresponding <code>labels</code> dimension).</li>
+<li><b><code>num_thresholds</code></b>: The number of thresholds to use when discretizing the roc
+  curve.</li>
+<li><b><code>metrics_collections</code></b>: An optional list of collections that <code>auc</code> should be
+  added to.</li>
+<li><b><code>updates_collections</code></b>: An optional list of collections that <code>update_op</code> should
+  be added to.</li>
+<li><b><code>curve</code></b>: Specifies the name of the curve to be computed, 'ROC' [default] or
+  'PR' for the Precision-Recall-curve.</li>
+<li><b><code>name</code></b>: An optional variable_scope name.</li>
+<li><b><code>summation_method</code></b>: Specifies the Riemann summation method used
+  (https://en.wikipedia.org/wiki/Riemann_sum): 'trapezoidal' [default] that
+  applies the trapezoidal rule; 'careful_interpolation', a variant of it
+  differing only by a more correct interpolation scheme for PR-AUC -
+  interpolating (true/false) positives but not the ratio that is precision;
+  'minoring' that applies left summation for increasing intervals and right
+  summation for decreasing intervals; 'majoring' that does the opposite.
+  Note that 'careful_interpolation' is strictly preferred to 'trapezoidal'
+  (to be deprecated soon) as it applies the same method for ROC, and a
+  better one (see Davis &amp; Goadrich 2006 for details) for the PR curve.</li>
+<li><b><code>thresholds</code></b>: An optional list of floating point values to use as the
+  thresholds for discretizing the curve. If set, the <code>num_thresholds</code>
+  parameter is ignored. Values should be in [0, 1]. Endpoint thresholds
+  equal to {-epsilon, 1+epsilon} for a small positive epsilon value will be
+  automatically included with these to correctly handle predictions equal to
+   exactly 0 or 1.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<ul>
+<li><b><code>auc</code></b>: A scalar <code>Tensor</code> representing the current area-under-curve.</li>
+<li><b><code>update_op</code></b>: An operation that increments the <code>true_positives</code>,
+  <code>true_negatives</code>, <code>false_positives</code> and <code>false_negatives</code> variables
+  appropriately and whose value matches <code>auc</code>.</li>
+</ul>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: If <code>predictions</code> and <code>labels</code> have mismatched shapes, or if
+  <code>weights</code> is not <code>None</code> and its shape doesn't match <code>predictions</code>, or if
+  either <code>metrics_collections</code> or <code>updates_collections</code> are not a list or
+  tuple.</li>
+<li><b><code>RuntimeError</code></b>: If eager execution is enabled.</li>
+</ul>
+    </body>
+    </html>
+   

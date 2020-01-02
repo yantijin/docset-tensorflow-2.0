@@ -1,0 +1,58 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.clip_by_average_norm" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1clip_by_average_norm">tf.compat.v1.clip_by_average_norm</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/clip_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Clips tensor values to a maximum average L2-norm. (deprecated)</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">clip_by_average_norm</span><span class="p">(</span>
+    <span class="n">t</span><span class="p">,</span>
+    <span class="n">clip_norm</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
+Instructions for updating:
+clip_by_average_norm is deprecated in TensorFlow 2.0. Please use clip_by_norm(t, clip_norm * tf.cast(tf.size(t), tf.float32), name) instead.</p>
+<p>Given a tensor <code>t</code>, and a maximum clip value <code>clip_norm</code>, this operation
+normalizes <code>t</code> so that its average L2-norm is less than or equal to
+<code>clip_norm</code>. Specifically, if the average L2-norm is already less than or
+equal to <code>clip_norm</code>, then <code>t</code> is not modified. If the average L2-norm is
+greater than <code>clip_norm</code>, then this operation returns a tensor of the same
+type and shape as <code>t</code> with its values set to:</p>
+<p><code>t * clip_norm / l2norm_avg(t)</code></p>
+<p>In this case, the average L2-norm of the output tensor is <code>clip_norm</code>.</p>
+<p>This operation is typically used to clip gradients before applying them with
+an optimizer.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>t</code></b>: A <code>Tensor</code>.</li>
+<li><b><code>clip_norm</code></b>: A 0-D (scalar) <code>Tensor</code> &gt; 0. A maximum clipping value.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A clipped <code>Tensor</code>.</p>
+    </body>
+    </html>
+   

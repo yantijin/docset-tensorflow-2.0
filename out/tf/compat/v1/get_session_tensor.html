@@ -1,0 +1,60 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.get_session_tensor" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1get_session_tensor">tf.compat.v1.get_session_tensor</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/session_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Get the tensor of type <code>dtype</code> by feeding a tensor handle.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">get_session_tensor</span><span class="p">(</span>
+    <span class="n">handle</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>This is EXPERIMENTAL and subject to change.</p>
+<p>Get the value of the tensor from a tensor handle. The tensor
+is produced in a previous run() and stored in the state of the
+session.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>handle</code></b>: The string representation of a persistent tensor handle.</li>
+<li><b><code>dtype</code></b>: The type of the output tensor.</li>
+<li><b><code>name</code></b>: Optional name prefix for the return tensor.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A pair of tensors. The first is a placeholder for feeding a
+tensor handle and the second is the tensor in the session state
+keyed by the tensor handle.</p>
+<h4 id="example">Example:</h4>
+<div class="codehilite"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="n">h</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">get_session_handle</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="n">h</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+
+<span class="n">p</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">get_session_tensor</span><span class="p">(</span><span class="n">h</span><span class="o">.</span><span class="n">handle</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="n">p</span><span class="p">:</span> <span class="n">h</span><span class="o">.</span><span class="n">handle</span><span class="p">})</span>
+</pre></div>
+    </body>
+    </html>
+   

@@ -1,0 +1,80 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.nn.sigmoid_cross_entropy_with_logits" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1nnsigmoid_cross_entropy_with_logits">tf.compat.v1.nn.sigmoid_cross_entropy_with_logits</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/nn_impl.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Computes sigmoid cross entropy given <code>logits</code>.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">sigmoid_cross_entropy_with_logits</span><span class="p">(</span>
+    <span class="n">_sentinel</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">logits</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Measures the probability error in discrete classification tasks in which each
+class is independent and not mutually exclusive.  For instance, one could
+perform multilabel classification where a picture can contain both an elephant
+and a dog at the same time.</p>
+<p>For brevity, let <code>x = logits</code>, <code>z = labels</code>.  The logistic loss is</p>
+<div class="codehilite"><pre><span></span><span class="err">  z * -log(sigmoid(x)) + (1 - z) * -log(1 - sigmoid(x))</span>
+<span class="err">= z * -log(1 / (1 + exp(-x))) + (1 - z) * -log(exp(-x) / (1 + exp(-x)))</span>
+<span class="err">= z * log(1 + exp(-x)) + (1 - z) * (-log(exp(-x)) + log(1 + exp(-x)))</span>
+<span class="err">= z * log(1 + exp(-x)) + (1 - z) * (x + log(1 + exp(-x))</span>
+<span class="err">= (1 - z) * x + log(1 + exp(-x))</span>
+<span class="err">= x - x * z + log(1 + exp(-x))</span>
+</pre></div>
+
+
+<p>For x &lt; 0, to avoid overflow in exp(-x), we reformulate the above</p>
+<div class="codehilite"><pre><span></span><span class="err">  x - x * z + log(1 + exp(-x))</span>
+<span class="err">= log(exp(x)) - x * z + log(1 + exp(-x))</span>
+<span class="err">= - x * z + log(1 + exp(x))</span>
+</pre></div>
+
+
+<p>Hence, to ensure stability and avoid overflow, the implementation uses this
+equivalent formulation</p>
+<div class="codehilite"><pre><span></span><span class="err">max(x, 0) - x * z + log(1 + exp(-abs(x)))</span>
+</pre></div>
+
+
+<p><code>logits</code> and <code>labels</code> must have the same type and shape.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>_sentinel</code></b>: Used to prevent positional parameters. Internal, do not use.</li>
+<li><b><code>labels</code></b>: A <code>Tensor</code> of the same type and shape as <code>logits</code>.</li>
+<li><b><code>logits</code></b>: A <code>Tensor</code> of type <code>float32</code> or <code>float64</code>.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>Tensor</code> of the same shape as <code>logits</code> with the componentwise
+logistic losses.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: If <code>logits</code> and <code>labels</code> do not have the same shape.</li>
+</ul>
+    </body>
+    </html>
+   

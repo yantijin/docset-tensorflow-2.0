@@ -1,0 +1,49 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.flags.tf_decorator.tf_stack.extract_stack_file_and_line" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1flagstf_decoratortf_stackextract_stack_file_and_line">tf.compat.v1.flags.tf_decorator.tf_stack.extract_stack_file_and_line</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/util/tf_stack.py">View source</a></p>
+<!-- Start diff -->
+
+<p>A version of extract_stack that only returns filenames and line numbers.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.app.flags.tf_decorator.tf_stack.extract_stack_file_and_line</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">flags</span><span class="o">.</span><span class="n">tf_decorator</span><span class="o">.</span><span class="n">tf_stack</span><span class="o">.</span><span class="n">extract_stack_file_and_line</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Callers often only require filenames and line numbers, and do not need the
+additional information gathered by extract_stack, as they never call
+convert_stack.</p>
+<p>As a further optimisation, we allow users to specify a limit on the number of
+frames examined.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>max_length</code></b>: The maximum length of stack to extract.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A list of FileAndLine objects corresponding to the call stack of the current
+thread.</p>
+    </body>
+    </html>
+   

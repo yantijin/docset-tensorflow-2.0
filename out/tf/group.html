@@ -1,0 +1,56 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../default.css" rel="stylesheet">
+    <link href="
+   ../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.group" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfgroup">tf.group</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/control_flow_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Create an op that groups multiple operations.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.group</code></li>
+<li><code>tf.compat.v2.group</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">group</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">inputs</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>When this op finishes, all ops in <code>inputs</code> have finished. This op has no
+output.</p>
+<p>See also <a href="../tf/tuple.html"><code>tf.tuple</code></a> and
+<a href="../tf/control_dependencies.html"><code>tf.control_dependencies</code></a>.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>*inputs</code></b>: Zero or more tensors to group.</li>
+<li><b><code>name</code></b>: A name for this operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>An Operation that executes all its inputs.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: If an unknown keyword argument is provided.</li>
+</ul>
+    </body>
+    </html>
+   

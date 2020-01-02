@@ -1,0 +1,63 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.linalg.solve" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tflinalgsolve">tf.linalg.solve</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p>Defined in generated file: <code>python/ops/gen_linalg_ops.py</code></p>
+<!-- Start diff -->
+
+<p>Solves systems of linear equations.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.linalg.solve</code></li>
+<li><code>tf.compat.v1.matrix_solve</code></li>
+<li><code>tf.compat.v2.linalg.solve</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span>
+    <span class="n">matrix</span><span class="p">,</span>
+    <span class="n">rhs</span><span class="p">,</span>
+    <span class="n">adjoint</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p><code>Matrix</code> is a tensor of shape <code>[..., M, M]</code> whose inner-most 2 dimensions
+form square matrices. <code>Rhs</code> is a tensor of shape <code>[..., M, K]</code>. The <code>output</code> is
+a tensor shape <code>[..., M, K]</code>.  If <code>adjoint</code> is <code>False</code> then each output matrix
+satisfies <code>matrix[..., :, :] * output[..., :, :] = rhs[..., :, :]</code>.
+If <code>adjoint</code> is <code>True</code> then each output matrix satisfies
+<code>adjoint(matrix[..., :, :]) * output[..., :, :] = rhs[..., :, :]</code>.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>matrix</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>float64</code>, <code>float32</code>, <code>half</code>, <code>complex64</code>, <code>complex128</code>.
+  Shape is <code>[..., M, M]</code>.</li>
+<li><b><code>rhs</code></b>: A <code>Tensor</code>. Must have the same type as <code>matrix</code>.
+  Shape is <code>[..., M, K]</code>.</li>
+<li><b><code>adjoint</code></b>: An optional <code>bool</code>. Defaults to <code>False</code>.
+  Boolean indicating whether to solve with <code>matrix</code> or its (block-wise)
+  adjoint.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>Tensor</code>. Has the same type as <code>matrix</code>.</p>
+    </body>
+    </html>
+   

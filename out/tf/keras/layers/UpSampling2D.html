@@ -1,0 +1,77 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.layers.UpSampling2D" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__init__"/>
+</div>
+
+<h1 id="tfkeraslayersupsampling2d">tf.keras.layers.UpSampling2D</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/convolutional.py">View source</a></p>
+<h2 id="class-upsampling2d">Class <code>UpSampling2D</code></h2>
+<!-- Start diff -->
+
+<p>Upsampling layer for 2D inputs.</p>
+<p>Inherits From: <a href="../../../tf/keras/layers/Layer.html"><code>Layer</code></a></p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v1.keras.layers.UpSampling2D</code></li>
+<li>Class <code>tf.compat.v2.keras.layers.UpSampling2D</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<p>Repeats the rows and columns of the data
+by <code>size[0]</code> and <code>size[1]</code> respectively.</p>
+<h4 id="arguments">Arguments:</h4>
+<ul>
+<li><b><code>size</code></b>: Int, or tuple of 2 integers.
+  The upsampling factors for rows and columns.</li>
+<li><b><code>data_format</code></b>: A string,
+  one of <code>channels_last</code> (default) or <code>channels_first</code>.
+  The ordering of the dimensions in the inputs.
+  <code>channels_last</code> corresponds to inputs with shape
+  <code>(batch, height, width, channels)</code> while <code>channels_first</code>
+  corresponds to inputs with shape
+  <code>(batch, channels, height, width)</code>.
+  It defaults to the <code>image_data_format</code> value found in your
+  Keras config file at <code>~/.keras/keras.json</code>.
+  If you never set it, then it will be "channels_last".</li>
+<li><b><code>interpolation</code></b>: A string, one of <code>nearest</code> or <code>bilinear</code>.</li>
+</ul>
+<h4 id="input-shape">Input shape:</h4>
+<p>4D tensor with shape:
+- If <code>data_format</code> is <code>"channels_last"</code>:
+    <code>(batch, rows, cols, channels)</code>
+- If <code>data_format</code> is <code>"channels_first"</code>:
+    <code>(batch, channels, rows, cols)</code></p>
+<h4 id="output-shape">Output shape:</h4>
+<p>4D tensor with shape:
+- If <code>data_format</code> is <code>"channels_last"</code>:
+    <code>(batch, upsampled_rows, upsampled_cols, channels)</code>
+- If <code>data_format</code> is <code>"channels_first"</code>:
+    <code>(batch, channels, upsampled_rows, upsampled_cols)</code></p>
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/convolutional.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+    <span class="n">data_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+    </body>
+    </html>
+   

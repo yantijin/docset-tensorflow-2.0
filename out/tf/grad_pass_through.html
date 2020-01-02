@@ -1,0 +1,73 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../default.css" rel="stylesheet">
+    <link href="
+   ../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.grad_pass_through" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfgrad_pass_through">tf.grad_pass_through</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/custom_gradient.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Creates a grad-pass-through op with the forward behavior provided in f.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.grad_pass_through</code></li>
+<li><code>tf.compat.v2.grad_pass_through</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">grad_pass_through</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Use this function to wrap any op, maintaining its behavior in the forward
+pass, but replacing the original op in the backward graph with an identity.
+For example:</p>
+<div class="codehilite"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;z&quot;</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">GradientTape</span><span class="p">()</span> <span class="k">as</span> <span class="n">tape</span><span class="p">:</span>
+  <span class="c1"># y will evaluate to 9.0</span>
+  <span class="n">y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">grad_pass_through</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">assign</span><span class="p">)(</span><span class="n">z</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="c1"># grads will evaluate to 6.0</span>
+<span class="n">grads</span> <span class="o">=</span> <span class="n">tape</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Another example is a 'differentiable' moving average approximation, where
+gradients are allowed to flow into the last value fed to the moving average,
+but the moving average is still used for the forward pass:</p>
+<div class="codehilite"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="o">...</span> <span class="c1"># Some scalar value</span>
+<span class="c1"># A moving average object, we don&#39;t need to know how this is implemented</span>
+<span class="n">moving_average</span> <span class="o">=</span> <span class="n">MovingAverage</span><span class="p">()</span>
+<span class="k">with</span> <span class="n">backprop</span><span class="o">.</span><span class="n">GradientTape</span><span class="p">()</span> <span class="k">as</span> <span class="n">tape</span><span class="p">:</span>
+  <span class="c1"># mavg_x will evaluate to the current running average value</span>
+  <span class="n">mavg_x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">grad_pass_through</span><span class="p">(</span><span class="n">moving_average</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">grads</span> <span class="o">=</span> <span class="n">tape</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">mavg_x</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="c1"># grads will evaluate to 1.0</span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>f</code></b>: function <code>f(*x)</code> that returns a <code>Tensor</code> or nested structure of <code>Tensor</code>
+  outputs.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A function <code>h(x)</code> which returns the same values as <code>f(x)</code> and whose
+gradients are the same as those of an identity function.</p>
+    </body>
+    </html>
+   

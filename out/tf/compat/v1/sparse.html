@@ -1,0 +1,59 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.sparse" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="module-tfcompatv1sparse">Module: tf.compat.v1.sparse</h1>
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p>Sparse Tensor Representation.</p>
+<p>See also <a href="../../../tf/sparse/SparseTensor.html"><code>tf.SparseTensor</code></a>.</p>
+<h2 id="classes">Classes</h2>
+<p><a href="../../../tf/compat/v1/SparseConditionalAccumulator.html"><code>class SparseConditionalAccumulator</code></a>: A conditional accumulator for aggregating sparse gradients.</p>
+<p><a href="../../../tf/sparse/SparseTensor.html"><code>class SparseTensor</code></a>: Represents a sparse tensor.</p>
+<h2 id="functions">Functions</h2>
+<p><a href="../../../tf/compat/v1/sparse_add.html"><code>add(...)</code></a>: Adds two tensors, at least one of each is a <code>SparseTensor</code>. (deprecated arguments)</p>
+<p><a href="../../../tf/compat/v1/sparse_concat.html"><code>concat(...)</code></a>: Concatenates a list of <code>SparseTensor</code> along the specified dimension. (deprecated arguments)</p>
+<p><a href="../../../tf/sparse/cross.html"><code>cross(...)</code></a>: Generates sparse cross from a list of sparse and dense tensors.</p>
+<p><a href="../../../tf/sparse/cross_hashed.html"><code>cross_hashed(...)</code></a>: Generates hashed sparse cross from a list of sparse and dense tensors.</p>
+<p><a href="../../../tf/sparse/expand_dims.html"><code>expand_dims(...)</code></a>: Inserts a dimension of 1 into a tensor's shape.</p>
+<p><a href="../../../tf/sparse/eye.html"><code>eye(...)</code></a>: Creates a two-dimensional sparse tensor with ones along the diagonal.</p>
+<p><a href="../../../tf/sparse/fill_empty_rows.html"><code>fill_empty_rows(...)</code></a>: Fills empty rows in the input 2-D <code>SparseTensor</code> with a default value.</p>
+<p><a href="../../../tf/sparse/from_dense.html"><code>from_dense(...)</code></a>: Converts a dense tensor into a sparse tensor.</p>
+<p><a href="../../../tf/sparse/mask.html"><code>mask(...)</code></a>: Masks elements of <code>IndexedSlices</code>.</p>
+<p><a href="../../../tf/sparse/sparse_dense_matmul.html"><code>matmul(...)</code></a>: Multiply SparseTensor (of rank 2) "A" by dense matrix "B".</p>
+<p><a href="../../../tf/sparse/maximum.html"><code>maximum(...)</code></a>: Returns the element-wise max of two SparseTensors.</p>
+<p><a href="../../../tf/compat/v1/sparse_merge.html"><code>merge(...)</code></a>: Combines a batch of feature ids and values into a single <code>SparseTensor</code>. (deprecated)</p>
+<p><a href="../../../tf/sparse/minimum.html"><code>minimum(...)</code></a>: Returns the element-wise min of two SparseTensors.</p>
+<p><a href="../../../tf/compat/v1/sparse_placeholder.html"><code>placeholder(...)</code></a>: Inserts a placeholder for a sparse tensor that will be always fed.</p>
+<p><a href="../../../tf/compat/v1/sparse_reduce_max.html"><code>reduce_max(...)</code></a>: Computes the max of elements across dimensions of a SparseTensor. (deprecated arguments) (deprecated arguments)</p>
+<p><a href="../../../tf/compat/v1/sparse_reduce_max_sparse.html"><code>reduce_max_sparse(...)</code></a>: Computes the max of elements across dimensions of a SparseTensor. (deprecated arguments)</p>
+<p><a href="../../../tf/compat/v1/sparse_reduce_sum.html"><code>reduce_sum(...)</code></a>: Computes the sum of elements across dimensions of a SparseTensor. (deprecated arguments) (deprecated arguments)</p>
+<p><a href="../../../tf/compat/v1/sparse_reduce_sum_sparse.html"><code>reduce_sum_sparse(...)</code></a>: Computes the sum of elements across dimensions of a SparseTensor. (deprecated arguments)</p>
+<p><a href="../../../tf/sparse/reorder.html"><code>reorder(...)</code></a>: Reorders a <code>SparseTensor</code> into the canonical, row-major ordering.</p>
+<p><a href="../../../tf/sparse/reset_shape.html"><code>reset_shape(...)</code></a>: Resets the shape of a <code>SparseTensor</code> with indices and values unchanged.</p>
+<p><a href="../../../tf/sparse/reshape.html"><code>reshape(...)</code></a>: Reshapes a <code>SparseTensor</code> to represent values in a new dense shape.</p>
+<p><a href="../../../tf/sparse/retain.html"><code>retain(...)</code></a>: Retains specified non-empty values within a <code>SparseTensor</code>.</p>
+<p><a href="../../../tf/compat/v1/sparse_segment_mean.html"><code>segment_mean(...)</code></a>: Computes the mean along sparse segments of a tensor.</p>
+<p><a href="../../../tf/compat/v1/sparse_segment_sqrt_n.html"><code>segment_sqrt_n(...)</code></a>: Computes the sum along sparse segments of a tensor divided by the sqrt(N).</p>
+<p><a href="../../../tf/compat/v1/sparse_segment_sum.html"><code>segment_sum(...)</code></a>: Computes the sum along sparse segments of a tensor.</p>
+<p><a href="../../../tf/sparse/slice.html"><code>slice(...)</code></a>: Slice a <code>SparseTensor</code> based on the <code>start</code> and `size.</p>
+<p><a href="../../../tf/sparse/softmax.html"><code>softmax(...)</code></a>: Applies softmax to a batched N-D <code>SparseTensor</code>.</p>
+<p><a href="../../../tf/sparse/sparse_dense_matmul.html"><code>sparse_dense_matmul(...)</code></a>: Multiply SparseTensor (of rank 2) "A" by dense matrix "B".</p>
+<p><a href="../../../tf/compat/v1/sparse_split.html"><code>split(...)</code></a>: Split a <code>SparseTensor</code> into <code>num_split</code> tensors along <code>axis</code>. (deprecated arguments)</p>
+<p><a href="../../../tf/sparse/to_dense.html"><code>to_dense(...)</code></a>: Converts a <code>SparseTensor</code> into a dense tensor.</p>
+<p><a href="../../../tf/sparse/to_indicator.html"><code>to_indicator(...)</code></a>: Converts a <code>SparseTensor</code> of ids into a dense bool indicator tensor.</p>
+<p><a href="../../../tf/sparse/transpose.html"><code>transpose(...)</code></a>: Transposes a <code>SparseTensor</code></p>
+    </body>
+    </html>
+   

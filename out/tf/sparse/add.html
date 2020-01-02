@@ -1,0 +1,88 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.sparse.add" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfsparseadd">tf.sparse.add</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/sparse_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Adds two tensors, at least one of each is a <code>SparseTensor</code>.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v2.sparse.add</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+    <span class="n">a</span><span class="p">,</span>
+    <span class="n">b</span><span class="p">,</span>
+    <span class="n">threshold</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>If one <code>SparseTensor</code> and one <code>Tensor</code> are passed in, returns a <code>Tensor</code>.  If
+both arguments are <code>SparseTensor</code>s, this returns a <code>SparseTensor</code>.  The order
+of arguments does not matter.  Use vanilla <a href="../../tf/math/add.html"><code>tf.add()</code></a> for adding two dense
+<code>Tensor</code>s.</p>
+<p>The shapes of the two operands must match: broadcasting is not supported.</p>
+<p>The indices of any input <code>SparseTensor</code> are assumed ordered in standard
+lexicographic order.  If this is not the case, before this step run
+<code>SparseReorder</code> to restore index ordering.</p>
+<p>If both arguments are sparse, we perform "clipping" as follows.  By default,
+if two values sum to zero at some index, the output <code>SparseTensor</code> would still
+include that particular location in its index, storing a zero in the
+corresponding value slot.  To override this, callers can specify <code>threshold</code>,
+indicating that if the sum has a magnitude strictly smaller than <code>threshold</code>,
+its corresponding value and index would then not be included.  In particular,
+<code>threshold == 0.0</code> (default) means everything is kept and actual thresholding
+happens only for a positive value.</p>
+<p>For example, suppose the logical sum of two sparse operands is (densified):</p>
+<div class="codehilite"><pre><span></span><span class="k">[       2]</span>
+<span class="k">[.1     0]</span>
+<span class="k">[ 6   -.2]</span>
+</pre></div>
+
+
+<p>Then,</p>
+<ul>
+<li><code>threshold == 0</code> (the default): all 5 index/value pairs will be
+    returned.</li>
+<li><code>threshold == 0.11</code>: only .1 and 0 will vanish, and the remaining three
+    index/value pairs will be returned.</li>
+<li><code>threshold == 0.21</code>: .1, 0, and -.2 will vanish.</li>
+</ul>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>a</code></b>: The first operand; <code>SparseTensor</code> or <code>Tensor</code>.</li>
+<li><b><code>b</code></b>: The second operand; <code>SparseTensor</code> or <code>Tensor</code>. At least one operand
+  must be sparse.</li>
+<li><b><code>threshold</code></b>: A 0-D <code>Tensor</code>. The magnitude threshold that determines if an
+  output value/index pair takes space. Its dtype should match that of the
+  values if they are real; if the latter are complex64/complex128, then the
+  dtype should be float32/float64, correspondingly.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>SparseTensor</code> or a <code>Tensor</code>, representing the sum.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>TypeError</code></b>: If both <code>a</code> and <code>b</code> are <code>Tensor</code>s.  Use <a href="../../tf/math/add.html"><code>tf.add()</code></a> instead.</li>
+</ul>
+    </body>
+    </html>
+   

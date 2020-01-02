@@ -1,0 +1,77 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.feature_column.make_parse_example_spec" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tffeature_columnmake_parse_example_spec">tf.feature_column.make_parse_example_spec</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/feature_column/feature_column_v2.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Creates parsing spec dictionary from input feature_columns.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v2.feature_column.make_parse_example_spec</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">feature_column</span><span class="o">.</span><span class="n">make_parse_example_spec</span><span class="p">(</span><span class="n">feature_columns</span><span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>The returned dictionary can be used as arg 'features' in
+<a href="../../tf/io/parse_example.html"><code>tf.io.parse_example</code></a>.</p>
+<h4 id="typical-usage-example">Typical usage example:</h4>
+<div class="codehilite"><pre><span></span><span class="c1"># Define features and transformations</span>
+<span class="n">feature_a</span> <span class="o">=</span> <span class="n">categorical_column_with_vocabulary_file</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="n">feature_b</span> <span class="o">=</span> <span class="n">numeric_column</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="n">feature_c_bucketized</span> <span class="o">=</span> <span class="n">bucketized_column</span><span class="p">(</span><span class="n">numeric_column</span><span class="p">(</span><span class="s2">&quot;feature_c&quot;</span><span class="p">),</span> <span class="o">...</span><span class="p">)</span>
+<span class="n">feature_a_x_feature_c</span> <span class="o">=</span> <span class="n">crossed_column</span><span class="p">(</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;feature_a&quot;</span><span class="p">,</span> <span class="n">feature_c_bucketized</span><span class="p">],</span> <span class="o">...</span><span class="p">)</span>
+
+<span class="n">feature_columns</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">feature_b</span><span class="p">,</span> <span class="n">feature_c_bucketized</span><span class="p">,</span> <span class="n">feature_a_x_feature_c</span><span class="p">])</span>
+<span class="n">features</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">parse_example</span><span class="p">(</span>
+    <span class="n">serialized</span><span class="o">=</span><span class="n">serialized_examples</span><span class="p">,</span>
+    <span class="n">features</span><span class="o">=</span><span class="n">make_parse_example_spec</span><span class="p">(</span><span class="n">feature_columns</span><span class="p">))</span>
+</pre></div>
+
+
+<p>For the above example, make_parse_example_spec would return the dict:</p>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;feature_a&quot;</span><span class="p">:</span> <span class="n">parsing_ops</span><span class="o">.</span><span class="n">VarLenFeature</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">string</span><span class="p">),</span>
+    <span class="s2">&quot;feature_b&quot;</span><span class="p">:</span> <span class="n">parsing_ops</span><span class="o">.</span><span class="n">FixedLenFeature</span><span class="p">([</span><span class="mi">1</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span>
+    <span class="s2">&quot;feature_c&quot;</span><span class="p">:</span> <span class="n">parsing_ops</span><span class="o">.</span><span class="n">FixedLenFeature</span><span class="p">([</span><span class="mi">1</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>feature_columns</code></b>: An iterable containing all feature columns. All items
+  should be instances of classes derived from <code>FeatureColumn</code>.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A dict mapping each feature key to a <code>FixedLenFeature</code> or <code>VarLenFeature</code>
+value.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: If any of the given <code>feature_columns</code> is not a <code>FeatureColumn</code>
+  instance.</li>
+</ul>
+    </body>
+    </html>
+   

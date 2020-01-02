@@ -1,0 +1,46 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.train.get_global_step" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1trainget_global_step">tf.compat.v1.train.get_global_step</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/training/training_util.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Get the global step tensor.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">get_global_step</span><span class="p">(</span><span class="n">graph</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>The global step tensor must be an integer variable. We first try to find it
+in the collection <code>GLOBAL_STEP</code>, or by name <code>global_step:0</code>.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>graph</code></b>: The graph to find the global step in. If missing, use default graph.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>The global step variable, or <code>None</code> if none was found.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>TypeError</code></b>: If the global step tensor has a non-integer type, or if it is not
+  a <code>Variable</code>.</li>
+</ul>
+    </body>
+    </html>
+   

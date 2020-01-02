@@ -1,0 +1,101 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../default.css" rel="stylesheet">
+    <link href="
+   ../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.constant" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfconstant">tf.constant</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/constant_op.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Creates a constant tensor.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v2.constant</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span>
+    <span class="n">value</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Const&#39;</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>The resulting tensor is populated with values of type <code>dtype</code>, as
+specified by arguments <code>value</code> and (optionally) <code>shape</code> (see examples
+below).</p>
+<p>The argument <code>value</code> can be a constant value, or a list of values of type
+<code>dtype</code>. If <code>value</code> is a list, then the length of the list must be less
+than or equal to the number of elements implied by the <code>shape</code> argument (if
+specified). In the case where the list length is less than the number of
+elements specified by <code>shape</code>, the last element in the list will be used
+to fill the remaining entries.</p>
+<p>The argument <code>shape</code> is optional. If present, it specifies the dimensions of
+the resulting tensor. If not present, the shape of <code>value</code> is used.</p>
+<p>If the argument <code>dtype</code> is not specified, then the type is inferred from
+the type of <code>value</code>.</p>
+<h4 id="for-example">For example:</h4>
+<div class="codehilite"><pre><span></span><span class="c1"># Constant 1-D Tensor populated with value list.</span>
+<span class="n">tensor</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">]</span>
+
+<span class="c1"># Constant 1-D Tensor populated with value list.</span>
+<span class="n">tensor</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+     <span class="o">=&gt;</span> <span class="p">[[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">]]</span>
+
+<span class="c1"># Constant 2-D tensor populated with scalar value -1.</span>
+<span class="n">tensor</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span> <span class="o">=&gt;</span> <span class="p">[[</span><span class="o">-</span><span class="mf">1.</span> <span class="o">-</span><span class="mf">1.</span> <span class="o">-</span><span class="mf">1.</span><span class="p">]</span>
+                                             <span class="p">[</span><span class="o">-</span><span class="mf">1.</span> <span class="o">-</span><span class="mf">1.</span> <span class="o">-</span><span class="mf">1.</span><span class="p">]]</span>
+</pre></div>
+
+
+<p><a href="../tf/constant.html"><code>tf.constant</code></a> differs from <a href="../tf/fill.html"><code>tf.fill</code></a> in a few ways:</p>
+<ul>
+<li><a href="../tf/constant.html"><code>tf.constant</code></a> supports arbitrary constants, not just uniform scalar
+    Tensors like <a href="../tf/fill.html"><code>tf.fill</code></a>.</li>
+<li><a href="../tf/constant.html"><code>tf.constant</code></a> creates a <code>Const</code> node in the computation graph with the
+    exact value at graph construction time. On the other hand, <a href="../tf/fill.html"><code>tf.fill</code></a>
+    creates an Op in the graph that is expanded at runtime.</li>
+<li>Because <a href="../tf/constant.html"><code>tf.constant</code></a> only embeds constant values in the graph, it does
+    not support dynamic shapes based on other runtime Tensors, whereas
+    <a href="../tf/fill.html"><code>tf.fill</code></a> does.</li>
+</ul>
+<h4 id="args">Args:</h4>
+<ul>
+<li>
+<p><b><code>value</code></b>:          A constant value (or list) of output type <code>dtype</code>.</p>
+</li>
+<li>
+<p><b><code>dtype</code></b>:          The type of the elements of the resulting tensor.</p>
+</li>
+<li>
+<p><b><code>shape</code></b>:          Optional dimensions of resulting tensor.</p>
+</li>
+<li>
+<p><b><code>name</code></b>:           Optional name for the tensor.</p>
+</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A Constant Tensor.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>TypeError</code></b>: if shape is incorrectly specified or unsupported.</li>
+</ul>
+    </body>
+    </html>
+   

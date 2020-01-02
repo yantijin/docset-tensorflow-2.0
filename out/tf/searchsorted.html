@@ -1,0 +1,82 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../default.css" rel="stylesheet">
+    <link href="
+   ../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.searchsorted" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfsearchsorted">tf.searchsorted</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/array_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Searches input tensor for values on the innermost dimension.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.searchsorted</code></li>
+<li><code>tf.compat.v2.searchsorted</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">(</span>
+    <span class="n">sorted_sequence</span><span class="p">,</span>
+    <span class="n">values</span><span class="p">,</span>
+    <span class="n">side</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span>
+    <span class="n">out_type</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>A 2-D example:</p>
+<div class="codehilite"><pre><span></span>  <span class="n">sorted_sequence</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span>
+                     <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]]</span>
+  <span class="k">values</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span>
+            <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">]]</span>
+
+  <span class="k">result</span> <span class="o">=</span> <span class="n">searchsorted</span><span class="p">(</span><span class="n">sorted_sequence</span><span class="p">,</span> <span class="k">values</span><span class="p">,</span> <span class="n">side</span><span class="o">=</span><span class="ss">&quot;left&quot;</span><span class="p">)</span>
+
+  <span class="k">result</span> <span class="o">==</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+             <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">]]</span>
+
+  <span class="k">result</span> <span class="o">=</span> <span class="n">searchsorted</span><span class="p">(</span><span class="n">sorted_sequence</span><span class="p">,</span> <span class="k">values</span><span class="p">,</span> <span class="n">side</span><span class="o">=</span><span class="ss">&quot;right&quot;</span><span class="p">)</span>
+
+  <span class="k">result</span> <span class="o">==</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+             <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">]]</span>
+</pre></div>
+
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>sorted_sequence</code></b>: N-D <code>Tensor</code> containing a sorted sequence.</li>
+<li><b><code>values</code></b>: N-D <code>Tensor</code> containing the search values.</li>
+<li><b><code>side</code></b>: 'left' or 'right'; 'left' corresponds to lower_bound and 'right' to
+  upper_bound.</li>
+<li><b><code>out_type</code></b>: The output type (<code>int32</code> or <code>int64</code>).  Default is <a href="../tf.html#int32"><code>tf.int32</code></a>.</li>
+<li><b><code>name</code></b>: Optional name for the operation.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>An N-D <code>Tensor</code> the size of values containing the result of applying either
+lower_bound or upper_bound (depending on side) to each value.  The result
+is not a global index to the entire <code>Tensor</code>, but the index in the last
+dimension.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: If the last dimension of <code>sorted_sequence &gt;= 2^31-1</code> elements.
+            If the total size of values exceeds <code>2^31 - 1</code> elements.
+            If the first <code>N-1</code> dimensions of the two tensors don't match.</li>
+</ul>
+    </body>
+    </html>
+   

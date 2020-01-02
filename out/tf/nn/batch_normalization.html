@@ -1,0 +1,86 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.nn.batch_normalization" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfnnbatch_normalization">tf.nn.batch_normalization</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/nn_impl.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Batch normalization.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.nn.batch_normalization</code></li>
+<li><code>tf.compat.v2.nn.batch_normalization</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">batch_normalization</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">mean</span><span class="p">,</span>
+    <span class="n">variance</span><span class="p">,</span>
+    <span class="n">offset</span><span class="p">,</span>
+    <span class="n">scale</span><span class="p">,</span>
+    <span class="n">variance_epsilon</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Normalizes a tensor by <code>mean</code> and <code>variance</code>, and applies (optionally) a
+<code>scale</code> \(\gamma\) to it, as well as an <code>offset</code> \(\beta\):</p>
+<p>\(\frac{\gamma(x-\mu)}{\sigma}+\beta\)</p>
+<p><code>mean</code>, <code>variance</code>, <code>offset</code> and <code>scale</code> are all expected to be of one of two
+shapes:</p>
+<ul>
+<li>In all generality, they can have the same number of dimensions as the
+    input <code>x</code>, with identical sizes as <code>x</code> for the dimensions that are not
+    normalized over (the 'depth' dimension(s)), and dimension 1 for the
+    others which are being normalized over.
+    <code>mean</code> and <code>variance</code> in this case would typically be the outputs of
+    <a href="../../tf/nn/moments.html"><code>tf.nn.moments(..., keep_dims=True)</code></a> during training, or running averages
+    thereof during inference.</li>
+<li>In the common case where the 'depth' dimension is the last dimension in
+    the input tensor <code>x</code>, they may be one dimensional tensors of the same
+    size as the 'depth' dimension.
+    This is the case for example for the common <code>[batch, depth]</code> layout of
+    fully-connected layers, and <code>[batch, height, width, depth]</code> for
+    convolutions.
+    <code>mean</code> and <code>variance</code> in this case would typically be the outputs of
+    <a href="../../tf/nn/moments.html"><code>tf.nn.moments(..., keep_dims=False)</code></a> during training, or running averages
+    thereof during inference.</li>
+</ul>
+<p>See Source: [Batch Normalization: Accelerating Deep Network Training by
+Reducing Internal Covariate Shift; S. Ioffe, C. Szegedy]
+(http://arxiv.org/abs/1502.03167).</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>x</code></b>: Input <code>Tensor</code> of arbitrary dimensionality.</li>
+<li><b><code>mean</code></b>: A mean <code>Tensor</code>.</li>
+<li><b><code>variance</code></b>: A variance <code>Tensor</code>.</li>
+<li><b><code>offset</code></b>: An offset <code>Tensor</code>, often denoted \(\beta\) in equations, or
+  None. If present, will be added to the normalized tensor.</li>
+<li><b><code>scale</code></b>: A scale <code>Tensor</code>, often denoted \(\gamma\) in equations, or
+  <code>None</code>. If present, the scale is applied to the normalized tensor.</li>
+<li><b><code>variance_epsilon</code></b>: A small float number to avoid dividing by 0.</li>
+<li><b><code>name</code></b>: A name for this operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>the normalized, scaled, offset tensor.</p>
+    </body>
+    </html>
+   

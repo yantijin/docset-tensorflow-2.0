@@ -1,0 +1,52 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.activations.tanh" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfkerasactivationstanh">tf.keras.activations.tanh</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/activations.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Hyperbolic Tangent (tanh) activation function.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.keras.activations.tanh</code></li>
+<li><code>tf.compat.v2.keras.activations.tanh</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">activations</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<h4 id="for-example">For example:</h4>
+<div class="codehilite"><pre><span></span><span class="c1"># Constant 1-D tensor populated with value list.</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="o">-</span><span class="mf">3.0</span><span class="p">,</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">3.0</span><span class="p">],</span> <span class="n">dtype</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">activations</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1">#[-0.9950547,-0.7615942,</span>
+<span class="mf">0.</span><span class="p">,</span><span class="mf">0.7615942</span><span class="p">,</span><span class="mf">0.9950547</span><span class="p">]</span>
+</pre></div>
+
+
+<p>Arguments:
+    x: Input tensor.</p>
+<h4 id="returns">Returns:</h4>
+<p>A tensor of same shape and dtype of input <code>x</code>.
+The tanh activation: <code>tanh(x) = sinh(x)/cosh(x) = ((exp(x) -
+exp(-x))/(exp(x) + exp(-x)))</code>.</p>
+    </body>
+    </html>
+   

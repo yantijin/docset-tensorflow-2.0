@@ -1,0 +1,79 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../default.css" rel="stylesheet">
+    <link href="
+   ../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.init_scope" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfinit_scope">tf.init_scope</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>A context manager that lifts ops out of control-flow scopes and function-building graphs.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.init_scope</code></li>
+<li><code>tf.compat.v2.init_scope</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">init_scope</span><span class="p">()</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>There is often a need to lift variable initialization ops out of control-flow
+scopes, function-building graphs, and gradient tapes. Entering an
+<code>init_scope</code> is a mechanism for satisfying these desiderata. In particular,
+entering an <code>init_scope</code> has three effects:</p>
+<p>(1) All control dependencies are cleared the moment the scope is entered;
+      this is equivalent to entering the context manager returned from
+      <code>control_dependencies(None)</code>, which has the side-effect of exiting
+      control-flow scopes like <a href="../tf/cond.html"><code>tf.cond</code></a> and <a href="../tf/while_loop.html"><code>tf.while_loop</code></a>.</p>
+<p>(2) All operations that are created while the scope is active are lifted
+      into the lowest context on the <code>context_stack</code> that is not building a
+      graph function. Here, a context is defined as either a graph or an eager
+      context. Every context switch, i.e., every installation of a graph as
+      the default graph and every switch into eager mode, is logged in a
+      thread-local stack called <code>context_switches</code>; the log entry for a
+      context switch is popped from the stack when the context is exited.
+      Entering an <code>init_scope</code> is equivalent to crawling up
+      <code>context_switches</code>, finding the first context that is not building a
+      graph function, and entering it. A caveat is that if graph mode is
+      enabled but the default graph stack is empty, then entering an
+      <code>init_scope</code> will simply install a fresh graph as the default one.</p>
+<p>(3) The gradient tape is paused while the scope is active.</p>
+<p>When eager execution is enabled, code inside an init_scope block runs with
+eager execution enabled even when defining graph functions via
+tf.contrib.eager.defun. For example:</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">enable_eager_execution</span><span class="p">()</span>
+
+<span class="nd">@tf</span><span class="o">.</span><span class="n">contrib</span><span class="o">.</span><span class="n">eager</span><span class="o">.</span><span class="n">defun</span>
+<span class="k">def</span> <span class="nf">func</span><span class="p">():</span>
+  <span class="c1"># A defun-decorated function constructs TensorFlow graphs,</span>
+  <span class="c1"># it does not execute eagerly.</span>
+  <span class="k">assert</span> <span class="ow">not</span> <span class="n">tf</span><span class="o">.</span><span class="n">executing_eagerly</span><span class="p">()</span>
+  <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">init_scope</span><span class="p">():</span>
+    <span class="c1"># Initialization runs with eager execution enabled</span>
+    <span class="k">assert</span> <span class="n">tf</span><span class="o">.</span><span class="n">executing_eagerly</span><span class="p">()</span>
+</pre></div>
+
+
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>RuntimeError</code></b>: if graph state is incompatible with this initialization.</li>
+</ul>
+    </body>
+    </html>
+   

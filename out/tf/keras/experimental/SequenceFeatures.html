@@ -1,0 +1,92 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.experimental.SequenceFeatures" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__init__"/>
+</div>
+
+<h1 id="tfkerasexperimentalsequencefeatures">tf.keras.experimental.SequenceFeatures</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/feature_column/sequence_feature_column.py">View source</a></p>
+<h2 id="class-sequencefeatures">Class <code>SequenceFeatures</code></h2>
+<!-- Start diff -->
+
+<p>A layer for sequence input.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v1.keras.experimental.SequenceFeatures</code></li>
+<li>Class <code>tf.compat.v2.keras.experimental.SequenceFeatures</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<p>All <code>feature_columns</code> must be sequence dense columns with the same
+<code>sequence_length</code>. The output of this method can be fed into sequence
+networks, such as RNN.</p>
+<p>The output of this method is a 3D <code>Tensor</code> of shape <code>[batch_size, T, D]</code>.
+<code>T</code> is the maximum sequence length for this batch, which could differ from
+batch to batch.</p>
+<p>If multiple <code>feature_columns</code> are given with <code>Di</code> <code>num_elements</code> each, their
+outputs are concatenated. So, the final <code>Tensor</code> has shape
+<code>[batch_size, T, D0 + D1 + ... + Dn]</code>.</p>
+<h4 id="example">Example:</h4>
+<div class="codehilite"><pre><span></span><span class="n">rating</span> <span class="o">=</span> <span class="n">sequence_numeric_column</span><span class="p">(</span><span class="s1">&#39;rating&#39;</span><span class="p">)</span>
+<span class="n">watches</span> <span class="o">=</span> <span class="n">sequence_categorical_column_with_identity</span><span class="p">(</span>
+    <span class="s1">&#39;watches&#39;</span><span class="p">,</span> <span class="n">num_buckets</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">watches_embedding</span> <span class="o">=</span> <span class="n">embedding_column</span><span class="p">(</span><span class="n">watches</span><span class="p">,</span> <span class="n">dimension</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">rating</span><span class="p">,</span> <span class="n">watches_embedding</span><span class="p">]</span>
+
+<span class="n">sequence_input_layer</span> <span class="o">=</span> <span class="n">SequenceFeatures</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">features</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">parse_example</span><span class="p">(</span><span class="o">...</span><span class="p">,</span>
+                               <span class="n">features</span><span class="o">=</span><span class="n">make_parse_example_spec</span><span class="p">(</span><span class="n">columns</span><span class="p">))</span>
+<span class="n">sequence_input</span><span class="p">,</span> <span class="n">sequence_length</span> <span class="o">=</span> <span class="n">sequence_input_layer</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+<span class="n">sequence_length_mask</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">sequence_mask</span><span class="p">(</span><span class="n">sequence_length</span><span class="p">)</span>
+
+<span class="n">rnn_cell</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">SimpleRNNCell</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">)</span>
+<span class="n">rnn_layer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">RNN</span><span class="p">(</span><span class="n">rnn_cell</span><span class="p">)</span>
+<span class="n">outputs</span><span class="p">,</span> <span class="n">state</span> <span class="o">=</span> <span class="n">rnn_layer</span><span class="p">(</span><span class="n">sequence_input</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">sequence_length_mask</span><span class="p">)</span>
+</pre></div>
+
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/feature_column/sequence_feature_column.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">feature_columns</span><span class="p">,</span>
+    <span class="n">trainable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>"Constructs a SequenceFeatures layer.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>feature_columns</code></b>: An iterable of dense sequence columns. Valid columns are</li>
+<li><code>embedding_column</code> that wraps a <code>sequence_categorical_column_with_*</code></li>
+<li><code>sequence_numeric_column</code>.</li>
+<li><b><code>trainable</code></b>: Boolean, whether the layer's variables will be updated via
+  gradient descent during training.</li>
+<li><b><code>name</code></b>: Name to give to the SequenceFeatures.</li>
+<li><b><code>**kwargs</code></b>: Keyword arguments to construct a layer.</li>
+</ul>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: If any of the <code>feature_columns</code> is not a
+  <code>SequenceDenseColumn</code>.</li>
+</ul>
+    </body>
+    </html>
+   

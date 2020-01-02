@@ -1,0 +1,378 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.callbacks.ReduceLROnPlateau" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="in_cooldown"/>
+<meta itemprop="property" content="on_batch_begin"/>
+<meta itemprop="property" content="on_batch_end"/>
+<meta itemprop="property" content="on_epoch_begin"/>
+<meta itemprop="property" content="on_epoch_end"/>
+<meta itemprop="property" content="on_predict_batch_begin"/>
+<meta itemprop="property" content="on_predict_batch_end"/>
+<meta itemprop="property" content="on_predict_begin"/>
+<meta itemprop="property" content="on_predict_end"/>
+<meta itemprop="property" content="on_test_batch_begin"/>
+<meta itemprop="property" content="on_test_batch_end"/>
+<meta itemprop="property" content="on_test_begin"/>
+<meta itemprop="property" content="on_test_end"/>
+<meta itemprop="property" content="on_train_batch_begin"/>
+<meta itemprop="property" content="on_train_batch_end"/>
+<meta itemprop="property" content="on_train_begin"/>
+<meta itemprop="property" content="on_train_end"/>
+<meta itemprop="property" content="set_model"/>
+<meta itemprop="property" content="set_params"/>
+</div>
+
+<h1 id="tfkerascallbacksreducelronplateau">tf.keras.callbacks.ReduceLROnPlateau</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/callbacks.py">View source</a></p>
+<h2 id="class-reducelronplateau">Class <code>ReduceLROnPlateau</code></h2>
+<!-- Start diff -->
+
+<p>Reduce learning rate when a metric has stopped improving.</p>
+<p>Inherits From: <a href="../../../tf/keras/callbacks/Callback.html"><code>Callback</code></a></p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v1.keras.callbacks.ReduceLROnPlateau</code></li>
+<li>Class <code>tf.compat.v2.keras.callbacks.ReduceLROnPlateau</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<p>Models often benefit from reducing the learning rate by a factor
+of 2-10 once learning stagnates. This callback monitors a
+quantity and if no improvement is seen for a 'patience' number
+of epochs, the learning rate is reduced.</p>
+<h4 id="example">Example:</h4>
+<div class="codehilite"><pre><span></span><span class="n">reduce_lr</span> <span class="o">=</span> <span class="n">ReduceLROnPlateau</span><span class="p">(</span><span class="n">monitor</span><span class="o">=</span><span class="s1">&#39;val_loss&#39;</span><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+                              <span class="n">patience</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">min_lr</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">reduce_lr</span><span class="p">])</span>
+</pre></div>
+
+
+<h4 id="arguments">Arguments:</h4>
+<ul>
+<li><b><code>monitor</code></b>: quantity to be monitored.</li>
+<li><b><code>factor</code></b>: factor by which the learning rate will be reduced. new_lr = lr *
+  factor</li>
+<li><b><code>patience</code></b>: number of epochs with no improvement after which learning rate
+  will be reduced.</li>
+<li><b><code>verbose</code></b>: int. 0: quiet, 1: update messages.</li>
+<li><b><code>mode</code></b>: one of {auto, min, max}. In <code>min</code> mode, lr will be reduced when the
+  quantity monitored has stopped decreasing; in <code>max</code> mode it will be
+  reduced when the quantity monitored has stopped increasing; in <code>auto</code>
+  mode, the direction is automatically inferred from the name of the
+  monitored quantity.</li>
+<li><b><code>min_delta</code></b>: threshold for measuring the new optimum, to only focus on
+  significant changes.</li>
+<li><b><code>cooldown</code></b>: number of epochs to wait before resuming normal operation after
+  lr has been reduced.</li>
+<li><b><code>min_lr</code></b>: lower bound on the learning rate.</li>
+</ul>
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/callbacks.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">monitor</span><span class="o">=</span><span class="s1">&#39;val_loss&#39;</span><span class="p">,</span>
+    <span class="n">factor</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">patience</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span>
+    <span class="n">min_delta</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">,</span>
+    <span class="n">cooldown</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">min_lr</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Initialize self.  See help(type(self)) for accurate signature.</p>
+<h2 id="methods">Methods</h2>
+<h3 id="in_cooldown"><code>in_cooldown</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/callbacks.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">in_cooldown</span><span class="p">()</span>
+</pre></div>
+
+
+<h3 id="on_batch_begin"><code>on_batch_begin</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/callbacks.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">on_batch_begin</span><span class="p">(</span>
+    <span class="n">batch</span><span class="p">,</span>
+    <span class="n">logs</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>A backwards compatibility alias for <code>on_train_batch_begin</code>.</p>
+<h3 id="on_batch_end"><code>on_batch_end</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/callbacks.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">on_batch_end</span><span class="p">(</span>
+    <span class="n">batch</span><span class="p">,</span>
+    <span class="n">logs</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>A backwards compatibility alias for <code>on_train_batch_end</code>.</p>
+<h3 id="on_epoch_begin"><code>on_epoch_begin</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/callbacks.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">on_epoch_begin</span><span class="p">(</span>
+    <span class="n">epoch</span><span class="p">,</span>
+    <span class="n">logs</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Called at the start of an epoch.</p>
+<p>Subclasses should override for any actions to run. This function should only
+be called during TRAIN mode.</p>
+<h4 id="arguments_1">Arguments:</h4>
+<ul>
+<li><b><code>epoch</code></b>: integer, index of epoch.</li>
+<li><b><code>logs</code></b>: dict. Currently no data is passed to this argument for this method
+  but that may change in the future.</li>
+</ul>
+<h3 id="on_epoch_end"><code>on_epoch_end</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/callbacks.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">on_epoch_end</span><span class="p">(</span>
+    <span class="n">epoch</span><span class="p">,</span>
+    <span class="n">logs</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Called at the end of an epoch.</p>
+<p>Subclasses should override for any actions to run. This function should only
+be called during TRAIN mode.</p>
+<h4 id="arguments_2">Arguments:</h4>
+<ul>
+<li><b><code>epoch</code></b>: integer, index of epoch.</li>
+<li><b><code>logs</code></b>: dict, metric results for this training epoch, and for the
+  validation epoch if validation is performed. Validation result keys
+  are prefixed with <code>val_</code>.</li>
+</ul>
+<h3 id="on_predict_batch_begin"><code>on_predict_batch_begin</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/callbacks.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">on_predict_batch_begin</span><span class="p">(</span>
+    <span class="n">batch</span><span class="p">,</span>
+    <span class="n">logs</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Called at the beginning of a batch in <code>predict</code> methods.</p>
+<p>Subclasses should override for any actions to run.</p>
+<h4 id="arguments_3">Arguments:</h4>
+<ul>
+<li><b><code>batch</code></b>: integer, index of batch within the current epoch.</li>
+<li><b><code>logs</code></b>: dict. Has keys <code>batch</code> and <code>size</code> representing the current batch
+  number and the size of the batch.</li>
+</ul>
+<h3 id="on_predict_batch_end"><code>on_predict_batch_end</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/callbacks.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">on_predict_batch_end</span><span class="p">(</span>
+    <span class="n">batch</span><span class="p">,</span>
+    <span class="n">logs</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Called at the end of a batch in <code>predict</code> methods.</p>
+<p>Subclasses should override for any actions to run.</p>
+<h4 id="arguments_4">Arguments:</h4>
+<ul>
+<li><b><code>batch</code></b>: integer, index of batch within the current epoch.</li>
+<li><b><code>logs</code></b>: dict. Metric results for this batch.</li>
+</ul>
+<h3 id="on_predict_begin"><code>on_predict_begin</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/callbacks.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">on_predict_begin</span><span class="p">(</span><span class="n">logs</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Called at the beginning of prediction.</p>
+<p>Subclasses should override for any actions to run.</p>
+<h4 id="arguments_5">Arguments:</h4>
+<ul>
+<li><b><code>logs</code></b>: dict. Currently no data is passed to this argument for this method
+  but that may change in the future.</li>
+</ul>
+<h3 id="on_predict_end"><code>on_predict_end</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/callbacks.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">on_predict_end</span><span class="p">(</span><span class="n">logs</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Called at the end of prediction.</p>
+<p>Subclasses should override for any actions to run.</p>
+<h4 id="arguments_6">Arguments:</h4>
+<ul>
+<li><b><code>logs</code></b>: dict. Currently no data is passed to this argument for this method
+  but that may change in the future.</li>
+</ul>
+<h3 id="on_test_batch_begin"><code>on_test_batch_begin</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/callbacks.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">on_test_batch_begin</span><span class="p">(</span>
+    <span class="n">batch</span><span class="p">,</span>
+    <span class="n">logs</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Called at the beginning of a batch in <code>evaluate</code> methods.</p>
+<p>Also called at the beginning of a validation batch in the <code>fit</code>
+methods, if validation data is provided.</p>
+<p>Subclasses should override for any actions to run.</p>
+<h4 id="arguments_7">Arguments:</h4>
+<ul>
+<li><b><code>batch</code></b>: integer, index of batch within the current epoch.</li>
+<li><b><code>logs</code></b>: dict. Has keys <code>batch</code> and <code>size</code> representing the current batch
+  number and the size of the batch.</li>
+</ul>
+<h3 id="on_test_batch_end"><code>on_test_batch_end</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/callbacks.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">on_test_batch_end</span><span class="p">(</span>
+    <span class="n">batch</span><span class="p">,</span>
+    <span class="n">logs</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Called at the end of a batch in <code>evaluate</code> methods.</p>
+<p>Also called at the end of a validation batch in the <code>fit</code>
+methods, if validation data is provided.</p>
+<p>Subclasses should override for any actions to run.</p>
+<h4 id="arguments_8">Arguments:</h4>
+<ul>
+<li><b><code>batch</code></b>: integer, index of batch within the current epoch.</li>
+<li><b><code>logs</code></b>: dict. Metric results for this batch.</li>
+</ul>
+<h3 id="on_test_begin"><code>on_test_begin</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/callbacks.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">on_test_begin</span><span class="p">(</span><span class="n">logs</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Called at the beginning of evaluation or validation.</p>
+<p>Subclasses should override for any actions to run.</p>
+<h4 id="arguments_9">Arguments:</h4>
+<ul>
+<li><b><code>logs</code></b>: dict. Currently no data is passed to this argument for this method
+  but that may change in the future.</li>
+</ul>
+<h3 id="on_test_end"><code>on_test_end</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/callbacks.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">on_test_end</span><span class="p">(</span><span class="n">logs</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Called at the end of evaluation or validation.</p>
+<p>Subclasses should override for any actions to run.</p>
+<h4 id="arguments_10">Arguments:</h4>
+<ul>
+<li><b><code>logs</code></b>: dict. Currently no data is passed to this argument for this method
+  but that may change in the future.</li>
+</ul>
+<h3 id="on_train_batch_begin"><code>on_train_batch_begin</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/callbacks.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">on_train_batch_begin</span><span class="p">(</span>
+    <span class="n">batch</span><span class="p">,</span>
+    <span class="n">logs</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Called at the beginning of a training batch in <code>fit</code> methods.</p>
+<p>Subclasses should override for any actions to run.</p>
+<h4 id="arguments_11">Arguments:</h4>
+<ul>
+<li><b><code>batch</code></b>: integer, index of batch within the current epoch.</li>
+<li><b><code>logs</code></b>: dict. Has keys <code>batch</code> and <code>size</code> representing the current batch
+  number and the size of the batch.</li>
+</ul>
+<h3 id="on_train_batch_end"><code>on_train_batch_end</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/callbacks.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">on_train_batch_end</span><span class="p">(</span>
+    <span class="n">batch</span><span class="p">,</span>
+    <span class="n">logs</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Called at the end of a training batch in <code>fit</code> methods.</p>
+<p>Subclasses should override for any actions to run.</p>
+<h4 id="arguments_12">Arguments:</h4>
+<ul>
+<li><b><code>batch</code></b>: integer, index of batch within the current epoch.</li>
+<li><b><code>logs</code></b>: dict. Metric results for this batch.</li>
+</ul>
+<h3 id="on_train_begin"><code>on_train_begin</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/callbacks.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">on_train_begin</span><span class="p">(</span><span class="n">logs</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Called at the beginning of training.</p>
+<p>Subclasses should override for any actions to run.</p>
+<h4 id="arguments_13">Arguments:</h4>
+<ul>
+<li><b><code>logs</code></b>: dict. Currently no data is passed to this argument for this method
+  but that may change in the future.</li>
+</ul>
+<h3 id="on_train_end"><code>on_train_end</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/callbacks.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">on_train_end</span><span class="p">(</span><span class="n">logs</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Called at the end of training.</p>
+<p>Subclasses should override for any actions to run.</p>
+<h4 id="arguments_14">Arguments:</h4>
+<ul>
+<li><b><code>logs</code></b>: dict. Currently no data is passed to this argument for this method
+  but that may change in the future.</li>
+</ul>
+<h3 id="set_model"><code>set_model</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/callbacks.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">set_model</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+</pre></div>
+
+
+<h3 id="set_params"><code>set_params</code></h3>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/keras/callbacks.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">set_params</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+</pre></div>
+    </body>
+    </html>
+   

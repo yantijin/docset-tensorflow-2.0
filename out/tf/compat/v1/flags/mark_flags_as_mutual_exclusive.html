@@ -1,0 +1,54 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.flags.mark_flags_as_mutual_exclusive" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1flagsmark_flags_as_mutual_exclusive">tf.compat.v1.flags.mark_flags_as_mutual_exclusive</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<!-- Start diff -->
+
+<p>Ensures that only one flag among flag_names is not None.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.app.flags.mark_flags_as_mutual_exclusive</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">flags</span><span class="o">.</span><span class="n">mark_flags_as_mutual_exclusive</span><span class="p">(</span>
+    <span class="n">flag_names</span><span class="p">,</span>
+    <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">flag_values</span><span class="o">=</span><span class="n">_flagvalues</span><span class="o">.</span><span class="n">FLAGS</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Important note: This validator checks if flag values are None, and it does not
+distinguish between default and explicit values. Therefore, this validator
+does not make sense when applied to flags with default values other than None,
+including other false values (e.g. False, 0, '', []). That includes multi
+flags with a default value of [] instead of None.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>flag_names</code></b>: [str], names of the flags.</li>
+<li><b><code>required</code></b>: bool. If true, exactly one of the flags must have a value other
+    than None. Otherwise, at most one of the flags can have a value other
+    than None, and it is valid for all of the flags to be None.</li>
+<li><b><code>flag_values</code></b>: flags.FlagValues, optional FlagValues instance where the flags
+    are defined.</li>
+</ul>
+    </body>
+    </html>
+   

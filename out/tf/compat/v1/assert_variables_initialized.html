@@ -1,0 +1,48 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.assert_variables_initialized" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1assert_variables_initialized">tf.compat.v1.assert_variables_initialized</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Returns an Op to check if variables are initialized.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">assert_variables_initialized</span><span class="p">(</span><span class="n">var_list</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>NOTE: This function is obsolete and will be removed in 6 months.  Please
+change your implementation to use <code>report_uninitialized_variables()</code>.</p>
+<p>When run, the returned Op will raise the exception <code>FailedPreconditionError</code>
+if any of the variables has not yet been initialized.</p>
+<p>Note: This function is implemented by trying to fetch the values of the
+variables. If one of the variables is not initialized a message may be
+logged by the C++ runtime. This is expected.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>var_list</code></b>: List of <code>Variable</code> objects to check. Defaults to the value of
+  <code>global_variables().</code></li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>An Op, or None if there are no variables.</p>
+<p><strong>NOTE</strong> The output of this function should be used.  If it is not, a warning will be logged.  To mark the output as used, call its .mark_used() method.</p>
+    </body>
+    </html>
+   

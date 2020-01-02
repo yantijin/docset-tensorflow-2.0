@@ -1,0 +1,58 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.lite.TargetSpec" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__init__"/>
+</div>
+
+<h1 id="tflitetargetspec">tf.lite.TargetSpec</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/lite/python/lite.py">View source</a></p>
+<h2 id="class-targetspec">Class <code>TargetSpec</code></h2>
+<!-- Start diff -->
+
+<p>Specification of target device.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v1.lite.TargetSpec</code></li>
+<li>Class <code>tf.compat.v2.lite.TargetSpec</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<p>Details about target device. Converter optimizes the generated model for
+specific device.</p>
+<h4 id="attributes">Attributes:</h4>
+<ul>
+<li><b><code>supported_ops</code></b>: Experimental flag, subject to change. Set of OpsSet options
+  supported by the device. (default set([OpsSet.TFLITE_BUILTINS]))</li>
+<li><b><code>supported_types</code></b>: List of types for constant values on the target device.
+  Supported values are types exported by lite.constants. Frequently, an
+  optimization choice is driven by the most compact (i.e. smallest)
+  type in this list (default [constants.FLOAT])</li>
+</ul>
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="/code/stable/tensorflow/lite/python/lite.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">supported_ops</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">supported_types</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Initialize self.  See help(type(self)) for accurate signature.</p>
+    </body>
+    </html>
+   

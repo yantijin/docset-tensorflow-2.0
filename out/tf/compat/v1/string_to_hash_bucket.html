@@ -1,0 +1,55 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.string_to_hash_bucket" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1string_to_hash_bucket">tf.compat.v1.string_to_hash_bucket</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/ops/string_ops.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Converts each string in the input Tensor to its hash mod by a number of buckets.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.strings.to_hash_bucket</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">string_to_hash_bucket</span><span class="p">(</span>
+    <span class="n">string_tensor</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">num_buckets</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="nb">input</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>The hash function is deterministic on the content of the string within the
+process.</p>
+<p>Note that the hash function may change from time to time.
+This functionality will be deprecated and it's recommended to use
+<code>tf.string_to_hash_bucket_fast()</code> or <code>tf.string_to_hash_bucket_strong()</code>.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>string_tensor</code></b>: A <code>Tensor</code> of type <code>string</code>.</li>
+<li><b><code>num_buckets</code></b>: An <code>int</code> that is <code>&gt;= 1</code>. The number of buckets.</li>
+<li><b><code>name</code></b>: A name for the operation (optional).</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A <code>Tensor</code> of type <code>int64</code>.</p>
+    </body>
+    </html>
+   

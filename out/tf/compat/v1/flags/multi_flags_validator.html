@@ -1,0 +1,61 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.flags.multi_flags_validator" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1flagsmulti_flags_validator">tf.compat.v1.flags.multi_flags_validator</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<!-- Start diff -->
+
+<p>A function decorator for defining a multi-flag validator.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.app.flags.multi_flags_validator</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">flags</span><span class="o">.</span><span class="n">multi_flags_validator</span><span class="p">(</span>
+    <span class="n">flag_names</span><span class="p">,</span>
+    <span class="n">message</span><span class="o">=</span><span class="s1">&#39;Flag validation failed&#39;</span><span class="p">,</span>
+    <span class="n">flag_values</span><span class="o">=</span><span class="n">_flagvalues</span><span class="o">.</span><span class="n">FLAGS</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>Registers the decorated function as a validator for flag_names, e.g.</p>
+<p>@flags.multi_flags_validator(['foo', 'bar'])
+def _CheckFooBar(flags_dict):
+  ...</p>
+<p>See register_multi_flags_validator() for the specification of checker
+function.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>flag_names</code></b>: [str], a list of the flag names to be checked.</li>
+<li><b><code>message</code></b>: str, error text to be shown to the user if checker returns False.
+    If checker raises flags.ValidationError, message from the raised
+    error will be shown.</li>
+<li><b><code>flag_values</code></b>: flags.FlagValues, optional FlagValues instance to validate
+    against.</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>A function decorator that registers its function argument as a validator.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>AttributeError</code></b>: Raised when a flag is not registered as a valid flag name.</li>
+</ul>
+    </body>
+    </html>
+   

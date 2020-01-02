@@ -1,0 +1,50 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.config.experimental.set_synchronous_execution" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfconfigexperimentalset_synchronous_execution">tf.config.experimental.set_synchronous_execution</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/framework/config.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Specifies whether operations are executed synchronously or asynchronously.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li><code>tf.compat.v1.config.experimental.set_synchronous_execution</code></li>
+<li><code>tf.compat.v2.config.experimental.set_synchronous_execution</code></li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">set_synchronous_execution</span><span class="p">(</span><span class="n">enable</span><span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>TensorFlow can execute operations synchronously or asynchronously. If
+asynchronous execution is enabled, operations may return "non-ready" handles.</p>
+<p>When <code>enable</code> is set to None, an appropriate value will be picked
+automatically. The value picked may change between TensorFlow releases.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>enable</code></b>: Whether operations should be dispatched synchronously.
+  Valid values:</li>
+<li>None: sets the system default.</li>
+<li>True: executes each operation synchronously.</li>
+<li>False: executes each operation asynchronously.</li>
+</ul>
+    </body>
+    </html>
+   
