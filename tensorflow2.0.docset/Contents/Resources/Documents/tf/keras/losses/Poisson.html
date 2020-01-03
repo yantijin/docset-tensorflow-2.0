@@ -1,0 +1,123 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href="../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.keras.losses.Poisson" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="__call__"/>
+<meta itemprop="property" content="__init__"/>
+<meta itemprop="property" content="from_config"/>
+<meta itemprop="property" content="get_config"/>
+</div>
+
+<h1 id="tfkeraslossespoisson">tf.keras.losses.Poisson</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/keras/losses.py">View source</a></p>
+<h2 id="class-poisson">Class <code>Poisson</code></h2>
+<!-- Start diff -->
+
+<p>Computes the Poisson loss between <code>y_true</code> and <code>y_pred</code>.</p>
+<h3 id="aliases">Aliases:</h3>
+<ul>
+<li>Class <code>tf.compat.v1.keras.losses.Poisson</code></li>
+<li>Class <code>tf.compat.v2.keras.losses.Poisson</code></li>
+<li>Class <code>tf.compat.v2.losses.Poisson</code></li>
+<li>Class <code>tf.losses.Poisson</code></li>
+</ul>
+<!-- Placeholder for "Used in" -->
+
+<p><code>loss = y_pred - y_true * log(y_pred)</code></p>
+<h4 id="usage">Usage:</h4>
+<div class="codehilite"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">Poisson</span><span class="p">()</span>
+<span class="n">loss</span> <span class="o">=</span> <span class="n">p</span><span class="p">([</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">9.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">],</span> <span class="p">[</span><span class="mf">4.</span><span class="p">,</span> <span class="mf">8.</span><span class="p">,</span> <span class="mf">12.</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Loss: &#39;</span><span class="p">,</span> <span class="n">loss</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>  <span class="c1"># Loss: -0.35702705</span>
+</pre></div>
+
+
+<p>Usage with the <code>compile</code> API:</p>
+<div class="codehilite"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">outputs</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;sgd&#39;</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">Poisson</span><span class="p">())</span>
+</pre></div>
+
+
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/keras/losses.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">reduction</span><span class="o">=</span><span class="n">losses_utils</span><span class="o">.</span><span class="n">ReductionV2</span><span class="o">.</span><span class="n">AUTO</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;poisson&#39;</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Initialize self.  See help(type(self)) for accurate signature.</p>
+<h2 id="methods">Methods</h2>
+<h3 id="__call__"><code>__call__</code></h3>
+
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/keras/losses.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__call__</span><span class="p">(</span>
+    <span class="n">y_true</span><span class="p">,</span>
+    <span class="n">y_pred</span><span class="p">,</span>
+    <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Invokes the <code>Loss</code> instance.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>y_true</code></b>: Ground truth values. shape = <code>[batch_size, d0, .. dN]</code></li>
+<li><b><code>y_pred</code></b>: The predicted values. shape = <code>[batch_size, d0, .. dN]</code></li>
+<li><b><code>sample_weight</code></b>: Optional <code>sample_weight</code> acts as a
+  coefficient for the loss. If a scalar is provided, then the loss is
+  simply scaled by the given value. If <code>sample_weight</code> is a tensor of size
+  <code>[batch_size]</code>, then the total loss for each sample of the batch is
+  rescaled by the corresponding element in the <code>sample_weight</code> vector. If
+  the shape of <code>sample_weight</code> is <code>[batch_size, d0, .. dN-1]</code> (or can be
+  broadcasted to this shape), then each loss element of <code>y_pred</code> is scaled
+  by the corresponding value of <code>sample_weight</code>. (Note on<code>dN-1</code>: all loss
+  functions reduce by 1 dimension, usually axis=-1.)</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>Weighted loss float <code>Tensor</code>. If <code>reduction</code> is <code>NONE</code>, this has
+  shape <code>[batch_size, d0, .. dN-1]</code>; otherwise, it is scalar. (Note <code>dN-1</code>
+  because all loss functions reduce by 1 dimension, usually axis=-1.)</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: If the shape of <code>sample_weight</code> is invalid.</li>
+</ul>
+<h3 id="from_config"><code>from_config</code></h3>
+
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/keras/losses.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">from_config</span><span class="p">(</span>
+    <span class="bp">cls</span><span class="p">,</span>
+    <span class="n">config</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<p>Instantiates a <code>Loss</code> from its config (output of <code>get_config()</code>).</p>
+<h4 id="args_1">Args:</h4>
+<ul>
+<li><b><code>config</code></b>: Output of <code>get_config()</code>.</li>
+</ul>
+<h4 id="returns_1">Returns:</h4>
+<p>A <code>Loss</code> instance.</p>
+<h3 id="get_config"><code>get_config</code></h3>
+
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/keras/losses.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_config</span><span class="p">()</span>
+</pre></div>
+    </body>
+    </html>
+   

@@ -2,7 +2,7 @@
     <html lang="zh-cn">
     <head>
     <meta content="text/html; charset=utf-8" http-equiv="content-type" />
-    <link href=../../../default.css" rel="stylesheet">
+    <link href="../../../default.css" rel="stylesheet">
     <link href="
    ../../../github.css" rel="stylesheet">
     </head>
@@ -33,7 +33,7 @@
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/ops/data_flow_ops.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/ops/data_flow_ops.py">View source</a></p>
 <h2 id="class-priorityqueue">Class <code>PriorityQueue</code></h2>
 <!-- Start diff -->
 
@@ -52,7 +52,7 @@
 this class.</p>
 <h2 id="__init__"><code>__init__</code></h2>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/ops/data_flow_ops.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/ops/data_flow_ops.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
     <span class="n">capacity</span><span class="p">,</span>
     <span class="n">types</span><span class="p">,</span>
@@ -114,7 +114,7 @@ an int64 scalar (for <code>enqueue</code>) or an int64 vector (for <code>enqueue
 <h2 id="methods">Methods</h2>
 <h3 id="close"><code>close</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/ops/data_flow_ops.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/ops/data_flow_ops.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">close</span><span class="p">(</span>
     <span class="n">cancel_pending_enqueues</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
@@ -142,7 +142,7 @@ be canceled.</p>
 <p>The operation that closes the queue.</p>
 <h3 id="dequeue"><code>dequeue</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/ops/data_flow_ops.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/ops/data_flow_ops.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">dequeue</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 </pre></div>
 
@@ -165,7 +165,7 @@ enqueue operations that can fulfill this request,
 <p>The tuple of tensors that was dequeued.</p>
 <h3 id="dequeue_many"><code>dequeue_many</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/ops/data_flow_ops.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/ops/data_flow_ops.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">dequeue_many</span><span class="p">(</span>
     <span class="n">n</span><span class="p">,</span>
     <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
@@ -195,7 +195,7 @@ session is <code>tf.Session.close</code>,
 <p>The list of concatenated tensors that was dequeued.</p>
 <h3 id="dequeue_up_to"><code>dequeue_up_to</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/ops/data_flow_ops.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/ops/data_flow_ops.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">dequeue_up_to</span><span class="p">(</span>
     <span class="n">n</span><span class="p">,</span>
     <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
@@ -226,7 +226,7 @@ Otherwise the behavior is identical to <code>dequeue_many</code>.</p>
 <p>The tuple of concatenated tensors that was dequeued.</p>
 <h3 id="enqueue"><code>enqueue</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/ops/data_flow_ops.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/ops/data_flow_ops.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">enqueue</span><span class="p">(</span>
     <span class="n">vals</span><span class="p">,</span>
     <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
@@ -255,7 +255,7 @@ with <code>cancel_pending_enqueues=True</code>, or (ii) the session is
 <p>The operation that enqueues a new tuple of tensors to the queue.</p>
 <h3 id="enqueue_many"><code>enqueue_many</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/ops/data_flow_ops.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/ops/data_flow_ops.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">enqueue_many</span><span class="p">(</span>
     <span class="n">vals</span><span class="p">,</span>
     <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
@@ -287,7 +287,7 @@ with <code>cancel_pending_enqueues=True</code>, or (ii) the session is
 <p>The operation that enqueues a batch of tuples of tensors to the queue.</p>
 <h3 id="from_list"><code>from_list</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/ops/data_flow_ops.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/ops/data_flow_ops.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">from_list</span><span class="p">(</span>
     <span class="n">index</span><span class="p">,</span>
     <span class="n">queues</span>
@@ -311,7 +311,7 @@ with <code>cancel_pending_enqueues=True</code>, or (ii) the session is
 </ul>
 <h3 id="is_closed"><code>is_closed</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/ops/data_flow_ops.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/ops/data_flow_ops.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">is_closed</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 </pre></div>
 
@@ -327,7 +327,7 @@ is open.</p>
 <p>True if the queue is closed and false if the queue is open.</p>
 <h3 id="size"><code>size</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/ops/data_flow_ops.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/ops/data_flow_ops.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">size</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 </pre></div>
 

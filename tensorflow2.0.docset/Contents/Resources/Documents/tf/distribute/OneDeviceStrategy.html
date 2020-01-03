@@ -2,7 +2,7 @@
     <html lang="zh-cn">
     <head>
     <meta content="text/html; charset=utf-8" http-equiv="content-type" />
-    <link href=../../../default.css" rel="stylesheet">
+    <link href="../../../default.css" rel="stylesheet">
     <link href="
    ../../../github.css" rel="stylesheet">
     </head>
@@ -28,7 +28,7 @@
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/one_device_strategy.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/distribute/one_device_strategy.py">View source</a></p>
 <h2 id="class-onedevicestrategy">Class <code>OneDeviceStrategy</code></h2>
 <!-- Start diff -->
 
@@ -67,7 +67,7 @@ actually distribute to multiple devices/machines.</p>
 
 <h2 id="__init__"><code>__init__</code></h2>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/one_device_strategy.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/distribute/one_device_strategy.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
 </pre></div>
 
@@ -89,7 +89,7 @@ actually distribute to multiple devices/machines.</p>
 <h2 id="methods">Methods</h2>
 <h3 id="experimental_distribute_dataset"><code>experimental_distribute_dataset</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/one_device_strategy.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/distribute/one_device_strategy.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">experimental_distribute_dataset</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
 </pre></div>
 
@@ -116,7 +116,7 @@ distributed dataset.</p>
 <p>A "distributed <code>Dataset</code>" that the caller can iterate over.</p>
 <h3 id="experimental_distribute_datasets_from_function"><code>experimental_distribute_datasets_from_function</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/one_device_strategy.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/distribute/one_device_strategy.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">experimental_distribute_datasets_from_function</span><span class="p">(</span><span class="n">dataset_fn</span><span class="p">)</span>
 </pre></div>
 
@@ -154,7 +154,7 @@ the global batch size.  This may be computed using
 datasets.</p>
 <h3 id="experimental_local_results"><code>experimental_local_results</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/one_device_strategy.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/distribute/one_device_strategy.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">experimental_local_results</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
 </pre></div>
 
@@ -172,7 +172,7 @@ value, so the result is just the value in a tuple.</p>
 value, this returns <code>(value,).</code></p>
 <h3 id="experimental_make_numpy_dataset"><code>experimental_make_numpy_dataset</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/distribute_lib.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/distribute/distribute_lib.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">experimental_make_numpy_dataset</span><span class="p">(</span><span class="n">numpy_input</span><span class="p">)</span>
 </pre></div>
 
@@ -200,7 +200,7 @@ dataset. Note that lists of Numpy arrays are stacked, as that is normal
 <p>A <a href="../../tf/data/Dataset.html"><code>tf.data.Dataset</code></a> representing <code>numpy_input</code>.</p>
 <h3 id="experimental_run_v2"><code>experimental_run_v2</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/one_device_strategy.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/distribute/one_device_strategy.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">experimental_run_v2</span><span class="p">(</span>
     <span class="n">fn</span><span class="p">,</span>
     <span class="n">args</span><span class="o">=</span><span class="p">(),</span>
@@ -222,7 +222,7 @@ given device, with the provided arguments.</p>
 <p>Return value from running <code>fn</code>.</p>
 <h3 id="reduce"><code>reduce</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/one_device_strategy.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/distribute/one_device_strategy.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">reduce</span><span class="p">(</span>
     <span class="n">reduce_op</span><span class="p">,</span>
     <span class="n">value</span><span class="p">,</span>
@@ -261,7 +261,7 @@ such as axis=0, value is reduced along that axis and returned.</p>
 <p>A <code>Tensor</code>.</p>
 <h3 id="scope"><code>scope</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/one_device_strategy.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/distribute/one_device_strategy.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">scope</span><span class="p">()</span>
 </pre></div>
 

@@ -2,7 +2,7 @@
     <html lang="zh-cn">
     <head>
     <meta content="text/html; charset=utf-8" http-equiv="content-type" />
-    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="../../../../../default.css" rel="stylesheet">
     <link href="
    ../../../../../github.css" rel="stylesheet">
     </head>
@@ -55,7 +55,7 @@
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/training/supervisor.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/training/supervisor.py">View source</a></p>
 <h2 id="class-supervisor">Class <code>Supervisor</code></h2>
 <!-- Start diff -->
 
@@ -199,7 +199,7 @@ supervisor.  You can also use the <code>SessionManager</code> directly to create
 session and check if it could be initialized automatically.</p>
 <h2 id="__init__"><code>__init__</code></h2>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/training/supervisor.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/training/supervisor.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
     <span class="n">graph</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">ready_op</span><span class="o">=</span><span class="n">USE_DEFAULT</span><span class="p">,</span>
@@ -377,7 +377,7 @@ during your training.</p>
 <h2 id="methods">Methods</h2>
 <h3 id="Loop"><code>Loop</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/training/supervisor.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/training/supervisor.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">Loop</span><span class="p">(</span>
     <span class="n">timer_interval_secs</span><span class="p">,</span>
     <span class="n">target</span><span class="p">,</span>
@@ -404,7 +404,7 @@ so it does not need to be passed to the <code>stop()</code> method.</p>
 <p>The started thread.</p>
 <h3 id="PrepareSession"><code>PrepareSession</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/training/supervisor.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/training/supervisor.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">PrepareSession</span><span class="p">(</span>
     <span class="n">master</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
     <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -436,7 +436,7 @@ manager to start the standard services.</p>
 <p>A Session object that can be used to drive the model.</p>
 <h3 id="RequestStop"><code>RequestStop</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/training/supervisor.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/training/supervisor.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">RequestStop</span><span class="p">(</span><span class="n">ex</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 </pre></div>
 
@@ -451,7 +451,7 @@ manager to start the standard services.</p>
 </ul>
 <h3 id="ShouldStop"><code>ShouldStop</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/training/supervisor.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/training/supervisor.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">ShouldStop</span><span class="p">()</span>
 </pre></div>
 
@@ -462,7 +462,7 @@ manager to start the standard services.</p>
 <p>True if the coordinator was told to stop, False otherwise.</p>
 <h3 id="StartQueueRunners"><code>StartQueueRunners</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/training/supervisor.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/training/supervisor.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">StartQueueRunners</span><span class="p">(</span>
     <span class="n">sess</span><span class="p">,</span>
     <span class="n">queue_runners</span><span class="o">=</span><span class="kc">None</span>
@@ -493,7 +493,7 @@ you do not need to call this explicitly.</p>
 execution is enabled, use the <a href="../../../../tf/data.html"><code>tf.data</code></a> API.</p>
 <h3 id="StartStandardServices"><code>StartStandardServices</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/training/supervisor.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/training/supervisor.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">StartStandardServices</span><span class="p">(</span><span class="n">sess</span><span class="p">)</span>
 </pre></div>
 
@@ -522,7 +522,7 @@ the Supervisor's Coordinator to join these threads with:
 </ul>
 <h3 id="Stop"><code>Stop</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/training/supervisor.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/training/supervisor.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">Stop</span><span class="p">(</span>
     <span class="n">threads</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">close_summary_writer</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
@@ -549,7 +549,7 @@ the Supervisor's Coordinator to join these threads with:
 </ul>
 <h3 id="StopOnException"><code>StopOnException</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/training/supervisor.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/training/supervisor.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">StopOnException</span><span class="p">()</span>
 </pre></div>
 
@@ -560,7 +560,7 @@ the Supervisor's Coordinator to join these threads with:
 <p>A context handler.</p>
 <h3 id="SummaryComputed"><code>SummaryComputed</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/training/supervisor.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/training/supervisor.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">SummaryComputed</span><span class="p">(</span>
     <span class="n">sess</span><span class="p">,</span>
     <span class="n">summary</span><span class="p">,</span>
@@ -584,7 +584,7 @@ the Supervisor's Coordinator to join these threads with:
 </ul>
 <h3 id="WaitForStop"><code>WaitForStop</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/training/supervisor.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/training/supervisor.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">WaitForStop</span><span class="p">()</span>
 </pre></div>
 
@@ -592,7 +592,7 @@ the Supervisor's Coordinator to join these threads with:
 <p>Block waiting for the coordinator to stop.</p>
 <h3 id="loop"><code>loop</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/training/supervisor.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/training/supervisor.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">loop</span><span class="p">(</span>
     <span class="n">timer_interval_secs</span><span class="p">,</span>
     <span class="n">target</span><span class="p">,</span>
@@ -680,7 +680,7 @@ checkpoint or initialized from scratch if not checkpoint exists.  The
 session is closed when the <code>with</code> block exits.</p>
 <h3 id="prepare_or_wait_for_session"><code>prepare_or_wait_for_session</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/training/supervisor.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/training/supervisor.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">prepare_or_wait_for_session</span><span class="p">(</span>
     <span class="n">master</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
     <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -712,7 +712,7 @@ manager to start the standard services.</p>
 <p>A Session object that can be used to drive the model.</p>
 <h3 id="request_stop"><code>request_stop</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/training/supervisor.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/training/supervisor.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">request_stop</span><span class="p">(</span><span class="n">ex</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 </pre></div>
 
@@ -727,7 +727,7 @@ manager to start the standard services.</p>
 </ul>
 <h3 id="should_stop"><code>should_stop</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/training/supervisor.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/training/supervisor.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">should_stop</span><span class="p">()</span>
 </pre></div>
 
@@ -738,7 +738,7 @@ manager to start the standard services.</p>
 <p>True if the coordinator was told to stop, False otherwise.</p>
 <h3 id="start_queue_runners"><code>start_queue_runners</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/training/supervisor.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/training/supervisor.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">start_queue_runners</span><span class="p">(</span>
     <span class="n">sess</span><span class="p">,</span>
     <span class="n">queue_runners</span><span class="o">=</span><span class="kc">None</span>
@@ -769,7 +769,7 @@ you do not need to call this explicitly.</p>
 execution is enabled, use the <a href="../../../../tf/data.html"><code>tf.data</code></a> API.</p>
 <h3 id="start_standard_services"><code>start_standard_services</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/training/supervisor.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/training/supervisor.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">start_standard_services</span><span class="p">(</span><span class="n">sess</span><span class="p">)</span>
 </pre></div>
 
@@ -798,7 +798,7 @@ the Supervisor's Coordinator to join these threads with:
 </ul>
 <h3 id="stop"><code>stop</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/training/supervisor.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/training/supervisor.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">stop</span><span class="p">(</span>
     <span class="n">threads</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">close_summary_writer</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
@@ -825,7 +825,7 @@ the Supervisor's Coordinator to join these threads with:
 </ul>
 <h3 id="stop_on_exception"><code>stop_on_exception</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/training/supervisor.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/training/supervisor.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">stop_on_exception</span><span class="p">()</span>
 </pre></div>
 
@@ -836,7 +836,7 @@ the Supervisor's Coordinator to join these threads with:
 <p>A context handler.</p>
 <h3 id="summary_computed"><code>summary_computed</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/training/supervisor.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/training/supervisor.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">summary_computed</span><span class="p">(</span>
     <span class="n">sess</span><span class="p">,</span>
     <span class="n">summary</span><span class="p">,</span>
@@ -860,7 +860,7 @@ the Supervisor's Coordinator to join these threads with:
 </ul>
 <h3 id="wait_for_stop"><code>wait_for_stop</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/training/supervisor.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/training/supervisor.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">wait_for_stop</span><span class="p">()</span>
 </pre></div>
 

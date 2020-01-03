@@ -2,7 +2,7 @@
     <html lang="zh-cn">
     <head>
     <meta content="text/html; charset=utf-8" http-equiv="content-type" />
-    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="../../../../../default.css" rel="stylesheet">
     <link href="
    ../../../../../github.css" rel="stylesheet">
     </head>
@@ -39,7 +39,7 @@
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/distribute_lib.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/distribute/distribute_lib.py">View source</a></p>
 <h2 id="class-strategyextended">Class <code>StrategyExtended</code></h2>
 <!-- Start diff -->
 
@@ -193,7 +193,7 @@ the <a href="../../../../tf/distribute/Strategy.html"><code>tf.distribute.Strate
 <a href="../../../../tf/distribute/StrategyExtended.html"><code>tf.distribute.StrategyExtended</code></a> in the <code>__init__</code> method.</p>
 <h2 id="__init__"><code>__init__</code></h2>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/distribute_lib.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/distribute/distribute_lib.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span><span class="n">container_strategy</span><span class="p">)</span>
 </pre></div>
 
@@ -226,7 +226,7 @@ throughout its life cycle.</p>
 <h2 id="methods">Methods</h2>
 <h3 id="batch_reduce_to"><code>batch_reduce_to</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/distribute_lib.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/distribute/distribute_lib.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">batch_reduce_to</span><span class="p">(</span>
     <span class="n">reduce_op</span><span class="p">,</span>
     <span class="n">value_destination_pairs</span>
@@ -245,7 +245,7 @@ throughout its life cycle.</p>
 <p>A list of mirrored values, one per pair in <code>value_destination_pairs</code>.</p>
 <h3 id="broadcast_to"><code>broadcast_to</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/distribute_lib.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/distribute/distribute_lib.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">broadcast_to</span><span class="p">(</span>
     <span class="n">tensor</span><span class="p">,</span>
     <span class="n">destinations</span>
@@ -264,7 +264,7 @@ throughout its life cycle.</p>
 <p>A value mirrored to <code>destinations</code> devices.</p>
 <h3 id="call_for_each_replica"><code>call_for_each_replica</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/distribute_lib.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/distribute/distribute_lib.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">call_for_each_replica</span><span class="p">(</span>
     <span class="n">fn</span><span class="p">,</span>
     <span class="n">args</span><span class="o">=</span><span class="p">(),</span>
@@ -315,7 +315,7 @@ given back to each replica call. After that execution resumes until
 <p>Merged return value of <code>fn</code> across all replicas.</p>
 <h3 id="colocate_vars_with"><code>colocate_vars_with</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/distribute_lib.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/distribute/distribute_lib.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">colocate_vars_with</span><span class="p">(</span><span class="n">colocate_with_variable</span><span class="p">)</span>
 </pre></div>
 
@@ -353,7 +353,7 @@ tf.compat.v1.colocate_with() scope).</p>
 <p>A context manager.</p>
 <h3 id="experimental_make_numpy_dataset"><code>experimental_make_numpy_dataset</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/distribute_lib.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/distribute/distribute_lib.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">experimental_make_numpy_dataset</span><span class="p">(</span>
     <span class="n">numpy_input</span><span class="p">,</span>
     <span class="n">session</span><span class="o">=</span><span class="kc">None</span>
@@ -377,7 +377,7 @@ the input.</p>
 <p>A <a href="../../../../tf/data/Dataset.html"><code>tf.data.Dataset</code></a> representing <code>numpy_input</code>.</p>
 <h3 id="experimental_run_steps_on_iterator"><code>experimental_run_steps_on_iterator</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/distribute_lib.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/distribute/distribute_lib.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">experimental_run_steps_on_iterator</span><span class="p">(</span>
     <span class="n">fn</span><span class="p">,</span>
     <span class="n">iterator</span><span class="p">,</span>
@@ -423,7 +423,7 @@ among other things:
     <code>fn</code> by calling <code>context.set_non_tensor_output</code>.</p>
 <h3 id="non_slot_devices"><code>non_slot_devices</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/distribute_lib.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/distribute/distribute_lib.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">non_slot_devices</span><span class="p">(</span><span class="n">var_list</span><span class="p">)</span>
 </pre></div>
 
@@ -441,7 +441,7 @@ Update those using <code>update_non_slot()</code>.</p>
 <p>A sequence of devices for non-slot variables.</p>
 <h3 id="read_var"><code>read_var</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/distribute_lib.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/distribute/distribute_lib.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">read_var</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
 </pre></div>
 
@@ -458,7 +458,7 @@ Update those using <code>update_non_slot()</code>.</p>
 necessary.</p>
 <h3 id="reduce_to"><code>reduce_to</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/distribute_lib.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/distribute/distribute_lib.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">reduce_to</span><span class="p">(</span>
     <span class="n">reduce_op</span><span class="p">,</span>
     <span class="n">value</span><span class="p">,</span>
@@ -481,7 +481,7 @@ necessary.</p>
 <p>A tensor or value mirrored to <code>destinations</code>.</p>
 <h3 id="update"><code>update</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/distribute_lib.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/distribute/distribute_lib.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">update</span><span class="p">(</span>
     <span class="n">var</span><span class="p">,</span>
     <span class="n">fn</span><span class="p">,</span>
@@ -526,7 +526,7 @@ where each list has an element per replica, and the caller is responsible
 for ensuring all elements are executed.</p>
 <h3 id="update_non_slot"><code>update_non_slot</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/distribute_lib.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/distribute/distribute_lib.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">update_non_slot</span><span class="p">(</span>
     <span class="n">colocate_with</span><span class="p">,</span>
     <span class="n">fn</span><span class="p">,</span>
@@ -551,7 +551,7 @@ for ensuring all elements are executed.</p>
 <p>Return value of <code>fn</code>, possibly merged across devices.</p>
 <h3 id="value_container"><code>value_container</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/distribute_lib.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/distribute/distribute_lib.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">value_container</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
 </pre></div>
 
@@ -570,7 +570,7 @@ container having been destroyed), returns the value itself.
 always be true.</p>
 <h3 id="variable_created_in_scope"><code>variable_created_in_scope</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/distribute/distribute_lib.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/distribute/distribute_lib.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">variable_created_in_scope</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
 </pre></div>
 

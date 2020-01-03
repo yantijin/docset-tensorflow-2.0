@@ -2,7 +2,7 @@
     <html lang="zh-cn">
     <head>
     <meta content="text/html; charset=utf-8" http-equiv="content-type" />
-    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="../../../../../default.css" rel="stylesheet">
     <link href="
    ../../../../../github.css" rel="stylesheet">
     </head>
@@ -30,7 +30,7 @@
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/training/saver.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/training/saver.py">View source</a></p>
 <h2 id="class-saver">Class <code>Saver</code></h2>
 <!-- Start diff -->
 
@@ -104,7 +104,7 @@ to the most recent checkpoint. That protocol buffer is stored in a file named
 protocol buffer file in the call to <code>save()</code>.</p>
 <h2 id="__init__"><code>__init__</code></h2>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/training/saver.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/training/saver.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
     <span class="n">var_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">reshape</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
@@ -223,7 +223,7 @@ saving. These APIs will load checkpoints written by <code>Saver</code>.</p>
 <h2 id="methods">Methods</h2>
 <h3 id="as_saver_def"><code>as_saver_def</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/training/saver.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/training/saver.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">as_saver_def</span><span class="p">()</span>
 </pre></div>
 
@@ -233,14 +233,14 @@ saving. These APIs will load checkpoints written by <code>Saver</code>.</p>
 <p>A <code>SaverDef</code> proto.</p>
 <h3 id="build"><code>build</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/training/saver.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/training/saver.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">build</span><span class="p">()</span>
 </pre></div>
 
 
 <h3 id="export_meta_graph"><code>export_meta_graph</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/training/saver.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/training/saver.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">export_meta_graph</span><span class="p">(</span>
     <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">collection_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -278,7 +278,7 @@ saving. These APIs will load checkpoints written by <code>Saver</code>.</p>
 <p>A <code>MetaGraphDef</code> proto.</p>
 <h3 id="from_proto"><code>from_proto</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/training/saver.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/training/saver.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="nd">@staticmethod</span>
 <span class="n">from_proto</span><span class="p">(</span>
     <span class="n">saver_def</span><span class="p">,</span>
@@ -297,7 +297,7 @@ saving. These APIs will load checkpoints written by <code>Saver</code>.</p>
 <p>A <code>Saver</code> built from saver_def.</p>
 <h3 id="recover_last_checkpoints"><code>recover_last_checkpoints</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/training/saver.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/training/saver.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">recover_last_checkpoints</span><span class="p">(</span><span class="n">checkpoint_paths</span><span class="p">)</span>
 </pre></div>
 
@@ -312,7 +312,7 @@ exist, use their mtime as the checkpoint timestamp.</p>
 </ul>
 <h3 id="restore"><code>restore</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/training/saver.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/training/saver.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">restore</span><span class="p">(</span>
     <span class="n">sess</span><span class="p">,</span>
     <span class="n">save_path</span>
@@ -338,7 +338,7 @@ to initialize variables.</p>
 </ul>
 <h3 id="save"><code>save</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/training/saver.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/training/saver.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">save</span><span class="p">(</span>
     <span class="n">sess</span><span class="p">,</span>
     <span class="n">save_path</span><span class="p">,</span>
@@ -398,7 +398,7 @@ If the saver is empty, returns None.</p>
 </ul>
 <h3 id="set_last_checkpoints"><code>set_last_checkpoints</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/training/saver.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/training/saver.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">set_last_checkpoints</span><span class="p">(</span><span class="n">last_checkpoints</span><span class="p">)</span>
 </pre></div>
 
@@ -415,7 +415,7 @@ If the saver is empty, returns None.</p>
 </ul>
 <h3 id="set_last_checkpoints_with_time"><code>set_last_checkpoints_with_time</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/training/saver.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/training/saver.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">set_last_checkpoints_with_time</span><span class="p">(</span><span class="n">last_checkpoints_with_time</span><span class="p">)</span>
 </pre></div>
 
@@ -432,7 +432,7 @@ If the saver is empty, returns None.</p>
 </ul>
 <h3 id="to_proto"><code>to_proto</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/training/saver.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/training/saver.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">to_proto</span><span class="p">(</span><span class="n">export_scope</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 </pre></div>
 

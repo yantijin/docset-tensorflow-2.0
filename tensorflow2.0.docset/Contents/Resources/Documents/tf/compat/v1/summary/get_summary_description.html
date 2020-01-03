@@ -1,0 +1,48 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href="../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.summary.get_summary_description" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1summaryget_summary_description">tf.compat.v1.summary.get_summary_description</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/summary/summary.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Given a TensorSummary node_def, retrieve its SummaryDescription.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">summary</span><span class="o">.</span><span class="n">get_summary_description</span><span class="p">(</span><span class="n">node_def</span><span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<p>When a Summary op is instantiated, a SummaryDescription of associated
+metadata is stored in its NodeDef. This method retrieves the description.</p>
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>node_def</code></b>: the node_def_pb2.NodeDef of a TensorSummary op</li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>a summary_pb2.SummaryDescription</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>ValueError</code></b>: if the node is not a summary op.</li>
+</ul>
+<h4 id="eager-compatibility">Eager Compatibility</h4>
+<p>Not compatible with eager execution. To write TensorBoard
+summaries under eager execution, use <code>tf.contrib.summary</code> instead.</p>
+    </body>
+    </html>
+   

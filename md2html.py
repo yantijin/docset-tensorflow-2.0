@@ -43,7 +43,7 @@ def md2html(mdstr, k):
     </body>
     </html>
     '''
-    html = html1[:-1]+'../'*k+html2[:-1]+'../'*k+html3[:-1]
+    html = html1+'../'*k+html2[:-1]+'../'*k+html3[:-1]
     print(html)
 
     ret = markdown.markdown(mdstr,extensions=exts)
@@ -62,11 +62,12 @@ if __name__ == '__main__':
     #     print('usage: md2html source_filename target_file')
     #     sys.exit()
     names = getName()
+    print(names)
     for name in names:
         name2 = name[:-2] + 'html'
-        k=0
+        k=-1
         for i in range(len(name)):
-            if name[i] == '\\':
+            if name[i] == '/':
                 k+=1
         infile = open(name, 'r')
         md = infile.read()

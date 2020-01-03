@@ -1,0 +1,124 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href="../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.layers.Conv2D" />
+<meta itemprop="path" content="Stable" />
+<meta itemprop="property" content="graph"/>
+<meta itemprop="property" content="scope_name"/>
+<meta itemprop="property" content="__init__"/>
+</div>
+
+<h1 id="tfcompatv1layersconv2d">tf.compat.v1.layers.Conv2D</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/layers/convolutional.py">View source</a></p>
+<h2 id="class-conv2d">Class <code>Conv2D</code></h2>
+<!-- Start diff -->
+
+<p>2D convolution layer (e.g. spatial convolution over images).</p>
+<p>Inherits From: <a href="../../../../tf/keras/layers/Conv2D.html"><code>Conv2D</code></a>, <a href="../../../../tf/compat/v1/layers/Layer.html"><code>Layer</code></a></p>
+<!-- Placeholder for "Used in" -->
+
+<p>This layer creates a convolution kernel that is convolved
+(actually cross-correlated) with the layer input to produce a tensor of
+outputs. If <code>use_bias</code> is True (and a <code>bias_initializer</code> is provided),
+a bias vector is created and added to the outputs. Finally, if
+<code>activation</code> is not <code>None</code>, it is applied to the outputs as well.</p>
+<h4 id="arguments">Arguments:</h4>
+<ul>
+<li><b><code>filters</code></b>: Integer, the dimensionality of the output space (i.e. the number
+  of filters in the convolution).</li>
+<li><b><code>kernel_size</code></b>: An integer or tuple/list of 2 integers, specifying the
+  height and width of the 2D convolution window.
+  Can be a single integer to specify the same value for
+  all spatial dimensions.</li>
+<li><b><code>strides</code></b>: An integer or tuple/list of 2 integers,
+  specifying the strides of the convolution along the height and width.
+  Can be a single integer to specify the same value for
+  all spatial dimensions.
+  Specifying any stride value != 1 is incompatible with specifying
+  any <code>dilation_rate</code> value != 1.</li>
+<li><b><code>padding</code></b>: One of <code>"valid"</code> or <code>"same"</code> (case-insensitive).</li>
+<li>
+<p><b><code>data_format</code></b>: A string, one of <code>channels_last</code> (default) or <code>channels_first</code>.
+  The ordering of the dimensions in the inputs.
+  <code>channels_last</code> corresponds to inputs with shape
+  <code>(batch, height, width, channels)</code> while <code>channels_first</code> corresponds to
+  inputs with shape <code>(batch, channels, height, width)</code>.</p>
+</li>
+<li>
+<p><b><code>dilation_rate</code></b>: An integer or tuple/list of 2 integers, specifying
+  the dilation rate to use for dilated convolution.
+  Can be a single integer to specify the same value for
+  all spatial dimensions.
+  Currently, specifying any <code>dilation_rate</code> value != 1 is
+  incompatible with specifying any stride value != 1.</p>
+</li>
+<li><b><code>activation</code></b>: Activation function. Set it to None to maintain a
+  linear activation.</li>
+<li><b><code>use_bias</code></b>: Boolean, whether the layer uses a bias.</li>
+<li><b><code>kernel_initializer</code></b>: An initializer for the convolution kernel.</li>
+<li><b><code>bias_initializer</code></b>: An initializer for the bias vector. If None, the default
+  initializer will be used.</li>
+<li><b><code>kernel_regularizer</code></b>: Optional regularizer for the convolution kernel.</li>
+<li><b><code>bias_regularizer</code></b>: Optional regularizer for the bias vector.</li>
+<li><b><code>activity_regularizer</code></b>: Optional regularizer function for the output.</li>
+<li><b><code>kernel_constraint</code></b>: Optional projection function to be applied to the
+    kernel after being updated by an <code>Optimizer</code> (e.g. used to implement
+    norm constraints or value constraints for layer weights). The function
+    must take as input the unprojected variable and must return the
+    projected variable (which must have the same shape). Constraints are
+    not safe to use when doing asynchronous distributed training.</li>
+<li><b><code>bias_constraint</code></b>: Optional projection function to be applied to the
+    bias after being updated by an <code>Optimizer</code>.</li>
+<li><b><code>trainable</code></b>: Boolean, if <code>True</code> also add variables to the graph collection
+  <code>GraphKeys.TRAINABLE_VARIABLES</code> (see <a href="../../../../tf/Variable.html"><code>tf.Variable</code></a>).</li>
+<li><b><code>name</code></b>: A string, the name of the layer.</li>
+</ul>
+<h2 id="__init__"><code>__init__</code></h2>
+
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/layers/convolutional.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">filters</span><span class="p">,</span>
+    <span class="n">kernel_size</span><span class="p">,</span>
+    <span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;valid&#39;</span><span class="p">,</span>
+    <span class="n">data_format</span><span class="o">=</span><span class="s1">&#39;channels_last&#39;</span><span class="p">,</span>
+    <span class="n">dilation_rate</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="n">activation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">use_bias</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">kernel_initializer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">bias_initializer</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">zeros_initializer</span><span class="p">(),</span>
+    <span class="n">kernel_regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">bias_regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">activity_regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">kernel_constraint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">bias_constraint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">trainable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<h2 id="properties">Properties</h2>
+<h3 id="graph"><code>graph</code></h3>
+
+<p>DEPRECATED FUNCTION</p>
+<p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
+Instructions for updating:
+Stop using this property because tf.layers layers no longer track their graph.</p>
+<h3 id="scope_name"><code>scope_name</code></h3>
+    </body>
+    </html>
+   

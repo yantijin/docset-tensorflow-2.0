@@ -2,7 +2,7 @@
     <html lang="zh-cn">
     <head>
     <meta content="text/html; charset=utf-8" http-equiv="content-type" />
-    <link href=../../default.css" rel="stylesheet">
+    <link href="../../default.css" rel="stylesheet">
     <link href="
    ../../github.css" rel="stylesheet">
     </head>
@@ -28,7 +28,7 @@
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/eager/backprop.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/eager/backprop.py">View source</a></p>
 <h2 id="class-gradienttape">Class <code>GradientTape</code></h2>
 <!-- Start diff -->
 
@@ -116,7 +116,7 @@ first iteration not have any gradients:</p>
 <p>Note that only tensors with real or complex dtypes are differentiable.</p>
 <h2 id="__init__"><code>__init__</code></h2>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/eager/backprop.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/eager/backprop.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
     <span class="n">persistent</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="n">watch_accessed_variables</span><span class="o">=</span><span class="kc">True</span>
@@ -140,7 +140,7 @@ first iteration not have any gradients:</p>
 <h2 id="methods">Methods</h2>
 <h3 id="__enter__"><code>__enter__</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/eager/backprop.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/eager/backprop.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="fm">__enter__</span><span class="p">()</span>
 </pre></div>
 
@@ -148,7 +148,7 @@ first iteration not have any gradients:</p>
 <p>Enters a context inside which operations are recorded on this tape.</p>
 <h3 id="__exit__"><code>__exit__</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/eager/backprop.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/eager/backprop.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="fm">__exit__</span><span class="p">(</span>
     <span class="n">typ</span><span class="p">,</span>
     <span class="n">value</span><span class="p">,</span>
@@ -160,7 +160,7 @@ first iteration not have any gradients:</p>
 <p>Exits the recording context, no further operations are traced.</p>
 <h3 id="batch_jacobian"><code>batch_jacobian</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/eager/backprop.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/eager/backprop.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">batch_jacobian</span><span class="p">(</span>
     <span class="n">target</span><span class="p">,</span>
     <span class="n">source</span><span class="p">,</span>
@@ -220,7 +220,7 @@ per-example jacobians.</p>
 </ul>
 <h3 id="gradient"><code>gradient</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/eager/backprop.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/eager/backprop.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">gradient</span><span class="p">(</span>
     <span class="n">target</span><span class="p">,</span>
     <span class="n">sources</span><span class="p">,</span>
@@ -256,7 +256,7 @@ the structure of <code>sources</code>.</p>
 </ul>
 <h3 id="jacobian"><code>jacobian</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/eager/backprop.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/eager/backprop.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">jacobian</span><span class="p">(</span>
     <span class="n">target</span><span class="p">,</span>
     <span class="n">sources</span><span class="p">,</span>
@@ -310,7 +310,7 @@ the future.</p>
 </ul>
 <h3 id="reset"><code>reset</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/eager/backprop.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/eager/backprop.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">reset</span><span class="p">()</span>
 </pre></div>
 
@@ -345,7 +345,7 @@ or can't because the desired reset point is inside a control flow construct:</p>
 
 <h3 id="stop_recording"><code>stop_recording</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/eager/backprop.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/eager/backprop.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">stop_recording</span><span class="p">()</span>
 </pre></div>
 
@@ -371,7 +371,7 @@ all computations.</p>
 </ul>
 <h3 id="watch"><code>watch</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/eager/backprop.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/eager/backprop.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">watch</span><span class="p">(</span><span class="n">tensor</span><span class="p">)</span>
 </pre></div>
 
@@ -387,7 +387,7 @@ all computations.</p>
 </ul>
 <h3 id="watched_variables"><code>watched_variables</code></h3>
 
-<p><a target="_blank" href="/code/stable/tensorflow/python/eager/backprop.py">View source</a></p>
+<p><a target="_blank" href="https://github.com/tensorflow/tensorflow/blob/r2.0/tensorflow/python/eager/backprop.py">View source</a></p>
 <div class="codehilite"><pre><span></span><span class="n">watched_variables</span><span class="p">()</span>
 </pre></div>
 
