@@ -50,3 +50,12 @@ python3
 
 
 
+### Notes
+
+* If you want to change code highlighting styles, please refer to `Pygments`.
+
+* Welcome for star and fork!
+
+* Actually, the generated docset has no types like `function`, `attributes`, `classes`, it only has `sections`. I am looking forward that  someone has some method to deal with this problem.
+
+  ![prob](./figures/prob.png)
