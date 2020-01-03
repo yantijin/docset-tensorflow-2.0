@@ -1,29 +1,28 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.math.logical_xor" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.math.logical_xor</h1>
-
+<h1 id="tfmathlogical_xor">tf.math.logical_xor</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/math_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Logical XOR function.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.RaggedTensor.__xor__</code></li>
 <li><code>tf.compat.v1.RaggedTensor.__xor__</code></li>
@@ -32,43 +31,34 @@
 <li><code>tf.compat.v2.RaggedTensor.__xor__</code></li>
 <li><code>tf.compat.v2.math.logical_xor</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">logical_xor</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;LogicalXor&#39;</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.math.logical_xor(
-    x,
-    y,
-    name='LogicalXor'
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>x ^ y = (x | y) &amp; ~(x &amp; y)</p>
-
 <p>Inputs are tensor and if the tensors contains more than one element, an
 element-wise logical XOR is computed.</p>
+<h4 id="usage">Usage:</h4>
+<div class="codehilite"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">],</span> <span class="n">dtype</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">bool</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">],</span> <span class="n">dtype</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">bool</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">logical_xor</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;LogicalXor&quot;</span><span class="p">)</span>
+<span class="c1">#  here z = [False  True  True False]</span>
+</pre></div>
 
-<h4>Usage:</h4>
 
-<p>```python
-x = tf.constant([False, False, True, True], dtype = tf.bool)
-y = tf.constant([False, True, False, True], dtype = tf.bool)
-z = tf.logical_xor(x, y, name=&ldquo;LogicalXor&rdquo;)</p>
-
-<h1>here z = [False  True  True False]</h1>
-
-<p>```</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>x</code></b>: A <code>Tensor</code> type bool.</li>
 <li><b><code>y</code></b>: A <code>Tensor</code> of type bool.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>Tensor</code> of type bool with the same size as that of x or y.</p>
+    </body>
+    </html>
+   

@@ -1,101 +1,94 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.layers.batch_normalization" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.compat.v1.layers.batch_normalization</h1>
-
+<h1 id="tfcompatv1layersbatch_normalization">tf.compat.v1.layers.batch_normalization</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/layers/normalization.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Functional interface for the batch normalization layer. (deprecated)</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">batch_normalization</span><span class="p">(</span>
+    <span class="n">inputs</span><span class="p">,</span>
+    <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">momentum</span><span class="o">=</span><span class="mf">0.99</span><span class="p">,</span>
+    <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span>
+    <span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">scale</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">beta_initializer</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">zeros_initializer</span><span class="p">(),</span>
+    <span class="n">gamma_initializer</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">ones_initializer</span><span class="p">(),</span>
+    <span class="n">moving_mean_initializer</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">zeros_initializer</span><span class="p">(),</span>
+    <span class="n">moving_variance_initializer</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">ones_initializer</span><span class="p">(),</span>
+    <span class="n">beta_regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">gamma_regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">beta_constraint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">gamma_constraint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">training</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">trainable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">reuse</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">renorm</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">renorm_clipping</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">renorm_momentum</span><span class="o">=</span><span class="mf">0.99</span><span class="p">,</span>
+    <span class="n">fused</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">virtual_batch_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">adjustment</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-tf.compat.v1.layers.batch_normalization(
-    inputs,
-    axis=-1,
-    momentum=0.99,
-    epsilon=0.001,
-    center=True,
-    scale=True,
-    beta_initializer=tf.zeros_initializer(),
-    gamma_initializer=tf.ones_initializer(),
-    moving_mean_initializer=tf.zeros_initializer(),
-    moving_variance_initializer=tf.ones_initializer(),
-    beta_regularizer=None,
-    gamma_regularizer=None,
-    beta_constraint=None,
-    gamma_constraint=None,
-    training=False,
-    trainable=True,
-    name=None,
-    reuse=None,
-    renorm=False,
-    renorm_clipping=None,
-    renorm_momentum=0.99,
-    fused=None,
-    virtual_batch_size=None,
-    adjustment=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
 Instructions for updating:
 Use keras.layers.BatchNormalization instead.  In particular, <a href="../../../../tf/control_dependencies.html"><code>tf.control_dependencies(tf.GraphKeys.UPDATE_OPS)</code></a> should not be used (consult the <code>tf.keras.layers.batch_normalization</code> documentation).</p>
-
 <p>Reference: http://arxiv.org/abs/1502.03167</p>
-
-<p>&ldquo;Batch Normalization: Accelerating Deep Network Training by Reducing
-Internal Covariate Shift&rdquo;</p>
-
+<p>"Batch Normalization: Accelerating Deep Network Training by Reducing
+Internal Covariate Shift"</p>
 <p>Sergey Ioffe, Christian Szegedy</p>
-
 <p>Note: when training, the moving_mean and moving_variance need to be updated.
 By default the update ops are placed in <code>tf.GraphKeys.UPDATE_OPS</code>, so they
 need to be executed alongside the <code>train_op</code>. Also, be sure to add any
 batch_normalization ops before getting the update_ops collection. Otherwise,
 update_ops will be empty, and training/inference will not work properly. For
 example:</p>
+<div class="codehilite"><pre><span></span>  <span class="n">x_norm</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">batch_normalization</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">training</span><span class="o">=</span><span class="n">training</span><span class="p">)</span>
 
-<p>```python
-  x_norm = tf.compat.v1.layers.batch_normalization(x, training=training)</p>
+  <span class="c1"># ...</span>
 
-<p>  # &hellip;</p>
+  <span class="n">update_ops</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">get_collection</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">GraphKeys</span><span class="o">.</span><span class="n">UPDATE_OPS</span><span class="p">)</span>
+  <span class="n">train_op</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">loss</span><span class="p">)</span>
+  <span class="n">train_op</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">group</span><span class="p">([</span><span class="n">train_op</span><span class="p">,</span> <span class="n">update_ops</span><span class="p">])</span>
+</pre></div>
 
-<p>  update_ops = tf.compat.v1.get_collection(tf.GraphKeys.UPDATE_OPS)
-  train_op = optimizer.minimize(loss)
-  train_op = tf.group([train_op, update_ops])
-```</p>
 
-<h4>Arguments:</h4>
-
+<h4 id="arguments">Arguments:</h4>
 <ul>
 <li><b><code>inputs</code></b>: Tensor input.</li>
 <li><b><code>axis</code></b>: An <code>int</code>, the axis that should be normalized (typically the features
-axis). For instance, after a <code>Convolution2D</code> layer with
-<code>data_format="channels_first"</code>, set <code>axis=1</code> in <code>BatchNormalization</code>.</li>
+  axis). For instance, after a <code>Convolution2D</code> layer with
+  <code>data_format="channels_first"</code>, set <code>axis=1</code> in <code>BatchNormalization</code>.</li>
 <li><b><code>momentum</code></b>: Momentum for the moving average.</li>
 <li><b><code>epsilon</code></b>: Small float added to variance to avoid dividing by zero.</li>
 <li><b><code>center</code></b>: If True, add offset of <code>beta</code> to normalized tensor. If False, <code>beta</code>
-is ignored.</li>
+  is ignored.</li>
 <li><b><code>scale</code></b>: If True, multiply by <code>gamma</code>. If False, <code>gamma</code> is
-not used. When the next layer is linear (also e.g. <code>nn.relu</code>), this can be
-disabled since the scaling can be done by the next layer.</li>
+  not used. When the next layer is linear (also e.g. <code>nn.relu</code>), this can be
+  disabled since the scaling can be done by the next layer.</li>
 <li><b><code>beta_initializer</code></b>: Initializer for the beta weight.</li>
 <li><b><code>gamma_initializer</code></b>: Initializer for the gamma weight.</li>
 <li><b><code>moving_mean_initializer</code></b>: Initializer for the moving mean.</li>
@@ -103,67 +96,64 @@ disabled since the scaling can be done by the next layer.</li>
 <li><b><code>beta_regularizer</code></b>: Optional regularizer for the beta weight.</li>
 <li><b><code>gamma_regularizer</code></b>: Optional regularizer for the gamma weight.</li>
 <li><b><code>beta_constraint</code></b>: An optional projection function to be applied to the <code>beta</code>
-  weight after being updated by an <code>Optimizer</code> (e.g. used to implement
-  norm constraints or value constraints for layer weights). The function
-  must take as input the unprojected variable and must return the
-  projected variable (which must have the same shape). Constraints are
-  not safe to use when doing asynchronous distributed training.</li>
+    weight after being updated by an <code>Optimizer</code> (e.g. used to implement
+    norm constraints or value constraints for layer weights). The function
+    must take as input the unprojected variable and must return the
+    projected variable (which must have the same shape). Constraints are
+    not safe to use when doing asynchronous distributed training.</li>
 <li><b><code>gamma_constraint</code></b>: An optional projection function to be applied to the
-  <code>gamma</code> weight after being updated by an <code>Optimizer</code>.</li>
+    <code>gamma</code> weight after being updated by an <code>Optimizer</code>.</li>
 <li><b><code>training</code></b>: Either a Python boolean, or a TensorFlow boolean scalar tensor
-(e.g. a placeholder). Whether to return the output in training mode
-(normalized with statistics of the current batch) or in inference mode
-(normalized with moving statistics). <strong>NOTE</strong>: make sure to set this
-parameter correctly, or else your training/inference will not work
-properly.</li>
+  (e.g. a placeholder). Whether to return the output in training mode
+  (normalized with statistics of the current batch) or in inference mode
+  (normalized with moving statistics). <strong>NOTE</strong>: make sure to set this
+  parameter correctly, or else your training/inference will not work
+  properly.</li>
 <li><b><code>trainable</code></b>: Boolean, if <code>True</code> also add variables to the graph collection
-<code>GraphKeys.TRAINABLE_VARIABLES</code> (see tf.Variable).</li>
+  <code>GraphKeys.TRAINABLE_VARIABLES</code> (see tf.Variable).</li>
 <li><b><code>name</code></b>: String, the name of the layer.</li>
 <li><b><code>reuse</code></b>: Boolean, whether to reuse the weights of a previous layer
-by the same name.</li>
+  by the same name.</li>
 <li><b><code>renorm</code></b>: Whether to use Batch Renormalization
-(https://arxiv.org/abs/1702.03275). This adds extra variables during
-training. The inference is the same for either value of this parameter.</li>
-<li><b><code>renorm_clipping</code></b>: A dictionary that may map keys &lsquo;rmax&rsquo;, &lsquo;rmin&rsquo;, &lsquo;dmax&rsquo; to
-scalar <code>Tensors</code> used to clip the renorm correction. The correction
-<code>(r, d)</code> is used as <code>corrected_value = normalized_value * r + d</code>, with
-<code>r</code> clipped to [rmin, rmax], and <code>d</code> to [-dmax, dmax]. Missing rmax, rmin,
-dmax are set to inf, 0, inf, respectively.</li>
+  (https://arxiv.org/abs/1702.03275). This adds extra variables during
+  training. The inference is the same for either value of this parameter.</li>
+<li><b><code>renorm_clipping</code></b>: A dictionary that may map keys 'rmax', 'rmin', 'dmax' to
+  scalar <code>Tensors</code> used to clip the renorm correction. The correction
+  <code>(r, d)</code> is used as <code>corrected_value = normalized_value * r + d</code>, with
+  <code>r</code> clipped to [rmin, rmax], and <code>d</code> to [-dmax, dmax]. Missing rmax, rmin,
+  dmax are set to inf, 0, inf, respectively.</li>
 <li><b><code>renorm_momentum</code></b>: Momentum used to update the moving means and standard
-deviations with renorm. Unlike <code>momentum</code>, this affects training
-and should be neither too small (which would add noise) nor too large
-(which would give stale estimates). Note that <code>momentum</code> is still applied
-to get the means and variances for inference.</li>
+  deviations with renorm. Unlike <code>momentum</code>, this affects training
+  and should be neither too small (which would add noise) nor too large
+  (which would give stale estimates). Note that <code>momentum</code> is still applied
+  to get the means and variances for inference.</li>
 <li><b><code>fused</code></b>: if <code>None</code> or <code>True</code>, use a faster, fused implementation if possible.
-If <code>False</code>, use the system recommended implementation.</li>
+  If <code>False</code>, use the system recommended implementation.</li>
 <li><b><code>virtual_batch_size</code></b>: An <code>int</code>. By default, <code>virtual_batch_size</code> is <code>None</code>,
-which means batch normalization is performed across the whole batch. When
-<code>virtual_batch_size</code> is not <code>None</code>, instead perform &ldquo;Ghost Batch
-Normalization&rdquo;, which creates virtual sub-batches which are each
-normalized separately (with shared gamma, beta, and moving statistics).
-Must divide the actual batch size during execution.</li>
+  which means batch normalization is performed across the whole batch. When
+  <code>virtual_batch_size</code> is not <code>None</code>, instead perform "Ghost Batch
+  Normalization", which creates virtual sub-batches which are each
+  normalized separately (with shared gamma, beta, and moving statistics).
+  Must divide the actual batch size during execution.</li>
 <li><b><code>adjustment</code></b>: A function taking the <code>Tensor</code> containing the (dynamic) shape of
-the input tensor and returning a pair (scale, bias) to apply to the
-normalized values (before gamma and beta), only during training. For
-example, if axis==-1,
-  <code>adjustment = lambda shape: (
-    tf.random.uniform(shape[-1:], 0.93, 1.07),
-    tf.random.uniform(shape[-1:], -0.1, 0.1))</code>
-will scale the normalized value by up to 7% up or down, then shift the
-result by up to 0.1 (with independent scaling and bias for each feature
-but shared across all examples), and finally apply gamma and/or beta. If
-<code>None</code>, no adjustment is applied. Cannot be specified if
-virtual_batch_size is specified.</li>
+  the input tensor and returning a pair (scale, bias) to apply to the
+  normalized values (before gamma and beta), only during training. For
+  example, if axis==-1,
+    <code>adjustment = lambda shape: (
+      tf.random.uniform(shape[-1:], 0.93, 1.07),
+      tf.random.uniform(shape[-1:], -0.1, 0.1))</code>
+  will scale the normalized value by up to 7% up or down, then shift the
+  result by up to 0.1 (with independent scaling and bias for each feature
+  but shared across all examples), and finally apply gamma and/or beta. If
+  <code>None</code>, no adjustment is applied. Cannot be specified if
+  virtual_batch_size is specified.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>Output tensor.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: if eager execution is enabled.</li>
 </ul>
-
+    </body>
+    </html>
+   

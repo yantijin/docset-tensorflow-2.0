@@ -1,61 +1,54 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.config.experimental.list_physical_devices" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.config.experimental.list_physical_devices</h1>
-
+<h1 id="tfconfigexperimentallist_physical_devices">tf.config.experimental.list_physical_devices</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/framework/config.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Return a list of physical devices visible to the runtime.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.config.experimental.list_physical_devices</code></li>
 <li><code>tf.compat.v2.config.experimental.list_physical_devices</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">list_physical_devices</span><span class="p">(</span><span class="n">device_type</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.config.experimental.list_physical_devices(device_type=None)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>Physical devices are hardware devices locally present on the current machine.
 By default all discovered CPU and GPU devices are considered visible. The
 <code>list_physical_devices</code> allows querying the hardware prior to runtime
 initialization.</p>
-
 <p>The following example ensures the machine can see at least 1 GPU.</p>
+<div class="codehilite"><pre><span></span><span class="n">physical_devices</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">list_physical_devices</span><span class="p">(</span><span class="s1">&#39;GPU&#39;</span><span class="p">)</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">physical_devices</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;No GPUs found.&quot;</span>
+</pre></div>
 
-<p><code>python
-physical_devices = tf.config.experimental.list_physical_devices('GPU')
-assert len(physical_devices) &gt; 0, "No GPUs found."
-</code></p>
 
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
-<li><b><code>device_type</code></b>: (optional) Device type to filter by such as &ldquo;CPU&rdquo; or &ldquo;GPU&rdquo;</li>
+<li><b><code>device_type</code></b>: (optional) Device type to filter by such as "CPU" or "GPU"</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>List of PhysicalDevice objects</p>
+    </body>
+    </html>
+   

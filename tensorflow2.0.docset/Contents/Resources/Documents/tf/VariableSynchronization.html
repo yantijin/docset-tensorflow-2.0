@@ -1,4 +1,13 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../default.css" rel="stylesheet">
+    <link href="
+   ../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.VariableSynchronization" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="AUTO"/>
@@ -7,58 +16,43 @@
 <meta itemprop="property" content="ON_WRITE"/>
 </div>
 
-
-<h1>tf.VariableSynchronization</h1>
-
+<h1 id="tfvariablesynchronization">tf.VariableSynchronization</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
-
-<h2>Class <code>VariableSynchronization</code></h2>
-
+<h2 id="class-variablesynchronization">Class <code>VariableSynchronization</code></h2>
 <!-- Start diff -->
 
-
 <p>Indicates when a distributed variable will be synced.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li>Class <code>tf.compat.v1.VariableSynchronization</code></li>
 <li>Class <code>tf.compat.v2.VariableSynchronization</code></li>
 </ul>
-
-
 <!-- Placeholder for "Used in" -->
-
 
 <ul>
 <li><code>AUTO</code>: Indicates that the synchronization will be determined by the current
-<code>DistributionStrategy</code> (eg. With <code>MirroredStrategy</code> this would be
-<code>ON_WRITE</code>).</li>
+  <code>DistributionStrategy</code> (eg. With <code>MirroredStrategy</code> this would be
+  <code>ON_WRITE</code>).</li>
 <li><code>NONE</code>: Indicates that there will only be one copy of the variable, so
-there is no need to sync.</li>
+  there is no need to sync.</li>
 <li><code>ON_WRITE</code>: Indicates that the variable will be updated across devices
-every time it is written.</li>
+  every time it is written.</li>
 <li><code>ON_READ</code>: Indicates that the variable will be aggregated across devices
-when it is read (eg. when checkpointing or when evaluating an op that uses
-the variable).</li>
+  when it is read (eg. when checkpointing or when evaluating an op that uses
+  the variable).</li>
 </ul>
-
-
-<h2>Class Members</h2>
-
+<h2 id="class-members">Class Members</h2>
 <ul>
 <li><code>AUTO</code> <a id="AUTO"></a></li>
 <li><code>NONE</code> <a id="NONE"></a></li>
 <li><code>ON_READ</code> <a id="ON_READ"></a></li>
 <li><code>ON_WRITE</code> <a id="ON_WRITE"></a></li>
 </ul>
-
+    </body>
+    </html>
+   

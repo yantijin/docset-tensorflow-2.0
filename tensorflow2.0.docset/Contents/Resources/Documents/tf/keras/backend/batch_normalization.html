@@ -1,55 +1,49 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.keras.backend.batch_normalization" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.keras.backend.batch_normalization</h1>
-
+<h1 id="tfkerasbackendbatch_normalization">tf.keras.backend.batch_normalization</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/backend.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Applies batch normalization on x given mean, var, beta and gamma.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.keras.backend.batch_normalization</code></li>
 <li><code>tf.compat.v2.keras.backend.batch_normalization</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">backend</span><span class="o">.</span><span class="n">batch_normalization</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">mean</span><span class="p">,</span>
+    <span class="n">var</span><span class="p">,</span>
+    <span class="n">beta</span><span class="p">,</span>
+    <span class="n">gamma</span><span class="p">,</span>
+    <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.001</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.keras.backend.batch_normalization(
-    x,
-    mean,
-    var,
-    beta,
-    gamma,
-    axis=-1,
-    epsilon=0.001
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>I.e. returns:
 <code>output = (x - mean) / (sqrt(var) + epsilon) * gamma + beta</code></p>
-
-<h4>Arguments:</h4>
-
+<h4 id="arguments">Arguments:</h4>
 <ul>
 <li><b><code>x</code></b>: Input tensor or variable.</li>
 <li><b><code>mean</code></b>: Mean of batch.</li>
@@ -57,11 +51,11 @@ tf.keras.backend.batch_normalization(
 <li><b><code>beta</code></b>: Tensor with which to center the input.</li>
 <li><b><code>gamma</code></b>: Tensor by which to scale the input.</li>
 <li><b><code>axis</code></b>: Integer, the axis that should be normalized.
-  (typically the features axis).</li>
+    (typically the features axis).</li>
 <li><b><code>epsilon</code></b>: Fuzz factor.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A tensor.</p>
+    </body>
+    </html>
+   

@@ -1,93 +1,83 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.train.cosine_decay" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.compat.v1.train.cosine_decay</h1>
-
+<h1 id="tfcompatv1traincosine_decay">tf.compat.v1.train.cosine_decay</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/training/learning_rate_decay.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Applies cosine decay to the learning rate.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">cosine_decay</span><span class="p">(</span>
+    <span class="n">learning_rate</span><span class="p">,</span>
+    <span class="n">global_step</span><span class="p">,</span>
+    <span class="n">decay_steps</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-tf.compat.v1.train.cosine_decay(
-    learning_rate,
-    global_step,
-    decay_steps,
-    alpha=0.0,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>See [Loshchilov &amp; Hutter, ICLR2016], SGDR: Stochastic Gradient Descent
 with Warm Restarts. https://arxiv.org/abs/1608.03983</p>
-
 <p>When training a model, it is often recommended to lower the learning rate as
 the training progresses.  This function applies a cosine decay function
 to a provided initial learning rate.  It requires a <code>global_step</code> value to
 compute the decayed learning rate.  You can just pass a TensorFlow variable
 that you increment at each training step.</p>
+<p>The function returns the decayed learning rate.  It is computed as:</p>
+<div class="codehilite"><pre><span></span><span class="n">global_step</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">global_step</span><span class="p">,</span> <span class="n">decay_steps</span><span class="p">)</span>
+<span class="n">cosine_decay</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">cos</span><span class="p">(</span><span class="n">pi</span> <span class="o">*</span> <span class="n">global_step</span> <span class="o">/</span> <span class="n">decay_steps</span><span class="p">))</span>
+<span class="n">decayed</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="n">cosine_decay</span> <span class="o">+</span> <span class="n">alpha</span>
+<span class="n">decayed_learning_rate</span> <span class="o">=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">decayed</span>
+</pre></div>
 
-<p>The function returns the decayed learning rate.  It is computed as:
-<code>python
-global_step = min(global_step, decay_steps)
-cosine_decay = 0.5 * (1 + cos(pi * global_step / decay_steps))
-decayed = (1 - alpha) * cosine_decay + alpha
-decayed_learning_rate = learning_rate * decayed
-</code></p>
 
-<h4>Example usage:</h4>
+<h4 id="example-usage">Example usage:</h4>
+<div class="codehilite"><pre><span></span><span class="n">decay_steps</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">lr_decayed</span> <span class="o">=</span> <span class="n">cosine_decay</span><span class="p">(</span><span class="n">learning_rate</span><span class="p">,</span> <span class="n">global_step</span><span class="p">,</span> <span class="n">decay_steps</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-decay_steps = 1000
-lr_decayed = cosine_decay(learning_rate, global_step, decay_steps)
-</code></p>
 
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>learning_rate</code></b>: A scalar <code>float32</code> or <code>float64</code> Tensor or a Python number.
-The initial learning rate.</li>
+  The initial learning rate.</li>
 <li><b><code>global_step</code></b>: A scalar <code>int32</code> or <code>int64</code> <code>Tensor</code> or a Python number. Global
-step to use for the decay computation.</li>
+  step to use for the decay computation.</li>
 <li><b><code>decay_steps</code></b>: A scalar <code>int32</code> or <code>int64</code> <code>Tensor</code> or a Python number. Number
-of steps to decay over.</li>
+  of steps to decay over.</li>
 <li><b><code>alpha</code></b>: A scalar <code>float32</code> or <code>float64</code> Tensor or a Python number. Minimum
-learning rate value as a fraction of learning_rate.</li>
-<li><b><code>name</code></b>: String. Optional name of the operation.  Defaults to &lsquo;CosineDecay&rsquo;.</li>
+  learning rate value as a fraction of learning_rate.</li>
+<li><b><code>name</code></b>: String. Optional name of the operation.  Defaults to 'CosineDecay'.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A scalar <code>Tensor</code> of the same type as <code>learning_rate</code>.  The decayed
 learning rate.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: if <code>global_step</code> is not supplied.</li>
 </ul>
-
-
-<h4>Eager Compatibility</h4>
-
+<h4 id="eager-compatibility">Eager Compatibility</h4>
 <p>When eager execution is enabled, this function returns a function which in
 turn returns the decayed learning rate Tensor. This can be useful for changing
 the learning rate value across different invocations of optimizer functions.</p>
+    </body>
+    </html>
+   

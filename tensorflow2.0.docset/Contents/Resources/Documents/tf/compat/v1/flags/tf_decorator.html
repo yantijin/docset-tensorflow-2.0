@@ -1,31 +1,31 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.flags.tf_decorator" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>Module: tf.compat.v1.flags.tf_decorator</h1>
-
+<h1 id="module-tfcompatv1flagstf_decorator">Module: tf.compat.v1.flags.tf_decorator</h1>
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/util/tf_decorator.py">View source</a></p>
-
 <p>Base TFDecorator class and utility functions for working with decorators.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li>Module <code>tf.compat.v1.app.flags.tf_decorator</code></li>
 </ul>
-
-
 <p>There are two ways to create decorators that TensorFlow can introspect into.
 This is important for documentation generation purposes, so that function
-signatures aren&rsquo;t obscured by the (*args, **kwds) signature that decorators
+signatures aren't obscured by the (<em>args, </em>*kwds) signature that decorators
 often provide.</p>
-
 <ol>
 <li>Call <code>tf_decorator.make_decorator</code> on your wrapper function. If your
 decorator is stateless, or can capture all of the variables it needs to work
@@ -34,16 +34,12 @@ function as usual, but instead of returning it, return
 <code>tf_decorator.make_decorator(target, your_wrapper)</code>. This will attach some
 decorator introspection metadata onto your wrapper and return it.</li>
 </ol>
-
-
-<h4>Example:</h4>
-
+<h4 id="example">Example:</h4>
 <p>def print_hello_before_calling(target):
-  def wrapper(<em>args, **kwargs):
-    print(&lsquo;hello&rsquo;)
-    return target(</em>args, **kwargs)
+  def wrapper(*args, <strong>kwargs):
+    print('hello')
+    return target(*args, </strong>kwargs)
   return tf_decorator.make_decorator(target, wrapper)</p>
-
 <ol>
 <li>Derive from TFDecorator. If your decorator needs to be stateful, you can
 implement it in terms of a TFDecorator. Store whatever state you need in your
@@ -52,34 +48,24 @@ calling into your target. You can retrieve the target via
 <code>super(MyDecoratorClass, self).decorated_target</code>, and call it with whatever
 parameters it needs.</li>
 </ol>
-
-
-<h4>Example:</h4>
-
+<h4 id="example_1">Example:</h4>
 <p>class CallCounter(tf_decorator.TFDecorator):
   def <strong>init</strong>(self, target):
-    super(CallCounter, self).<strong>init</strong>(&lsquo;count_calls&rsquo;, target)
+    super(CallCounter, self).<strong>init</strong>('count_calls', target)
     self.call_count = 0</p>
-
-<p>  def <strong>call</strong>(self, <em>args, **kwargs):
+<p>def <strong>call</strong>(self, *args, <strong>kwargs):
     self.call_count += 1
-    return super(CallCounter, self).decorated_target(</em>args, **kwargs)</p>
-
+    return super(CallCounter, self).decorated_target(*args, </strong>kwargs)</p>
 <p>def count_calls(target):
   return CallCounter(target)</p>
-
-<h2>Modules</h2>
-
+<h2 id="modules">Modules</h2>
 <p><a href="../../../../tf/compat/v1/flags/tf_decorator/tf_stack.html"><code>tf_stack</code></a> module: Functions used to extract and analyze stacks.  Faster than Python libs.</p>
-
-<h2>Classes</h2>
-
+<h2 id="classes">Classes</h2>
 <p><a href="../../../../tf/compat/v1/flags/tf_decorator/TFDecorator.html"><code>class TFDecorator</code></a>: Base class for all TensorFlow decorators.</p>
-
-<h2>Functions</h2>
-
+<h2 id="functions">Functions</h2>
 <p><a href="../../../../tf/compat/v1/flags/tf_decorator/make_decorator.html"><code>make_decorator(...)</code></a>: Make a decorator from a wrapper and a target.</p>
-
 <p><a href="../../../../tf/compat/v1/flags/tf_decorator/rewrap.html"><code>rewrap(...)</code></a>: Injects a new target into a function built by make_decorator.</p>
-
 <p><a href="../../../../tf/compat/v1/flags/tf_decorator/unwrap.html"><code>unwrap(...)</code></a>: Unwraps an object into a list of TFDecorators and a final target.</p>
+    </body>
+    </html>
+   

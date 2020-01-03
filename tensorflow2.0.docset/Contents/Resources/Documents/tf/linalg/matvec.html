@@ -1,152 +1,118 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.linalg.matvec" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.linalg.matvec</h1>
-
+<h1 id="tflinalgmatvec">tf.linalg.matvec</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/math_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Multiplies matrix <code>a</code> by vector <code>b</code>, producing <code>a</code> * <code>b</code>.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.linalg.matvec</code></li>
 <li><code>tf.compat.v2.linalg.matvec</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">matvec</span><span class="p">(</span>
+    <span class="n">a</span><span class="p">,</span>
+    <span class="n">b</span><span class="p">,</span>
+    <span class="n">transpose_a</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">adjoint_a</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">a_is_sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">b_is_sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.linalg.matvec(
-    a,
-    b,
-    transpose_a=False,
-    adjoint_a=False,
-    a_is_sparse=False,
-    b_is_sparse=False,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
-<p>The matrix <code>a</code> must, following any transpositions, be a tensor of rank >= 2,
+<p>The matrix <code>a</code> must, following any transpositions, be a tensor of rank &gt;= 2,
 and we must have <code>shape(b) = shape(a)[:-2] + [shape(a)[-1]]</code>.</p>
-
 <p>Both <code>a</code> and <code>b</code> must be of the same type. The supported types are:
 <code>float16</code>, <code>float32</code>, <code>float64</code>, <code>int32</code>, <code>complex64</code>, <code>complex128</code>.</p>
-
 <p>Matrix <code>a</code> can be transposed or adjointed (conjugated and transposed) on
 the fly by setting one of the corresponding flag to <code>True</code>. These are <code>False</code>
 by default.</p>
-
 <p>If one or both of the inputs contain a lot of zeros, a more efficient
 multiplication algorithm can be used by setting the corresponding
 <code>a_is_sparse</code> or <code>b_is_sparse</code> flag to <code>True</code>. These are <code>False</code> by default.
 This optimization is only available for plain matrices/vectors (rank-2/1
 tensors) with datatypes <code>bfloat16</code> or <code>float32</code>.</p>
+<h4 id="for-example">For example:</h4>
+<div class="codehilite"><pre><span></span><span class="c1"># 2-D tensor `a`</span>
+<span class="c1"># [[1, 2, 3],</span>
+<span class="c1">#  [4, 5, 6]]</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 
-<h4>For example:</h4>
+<span class="c1"># 1-D tensor `b`</span>
+<span class="c1"># [7, 9, 11]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">11</span><span class="p">],</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
 
-<p>```python</p>
+<span class="c1"># `a` * `b`</span>
+<span class="c1"># [ 58,  64]</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">matvec</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 
-<h1>2-D tensor <code>a</code></h1>
 
-<h1>[[1, 2, 3],</h1>
+<span class="c1"># 3-D tensor `a`</span>
+<span class="c1"># [[[ 1,  2,  3],</span>
+<span class="c1">#   [ 4,  5,  6]],</span>
+<span class="c1">#  [[ 7,  8,  9],</span>
+<span class="c1">#   [10, 11, 12]]]</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">),</span>
+                <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 
-<h1>[4, 5, 6]]</h1>
+<span class="c1"># 2-D tensor `b`</span>
+<span class="c1"># [[13, 14, 15],</span>
+<span class="c1">#  [16, 17, 18]]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">),</span>
+                <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 
-<p>a = tf.constant([1, 2, 3, 4, 5, 6], shape=[2, 3])</p>
+<span class="c1"># `a` * `b`</span>
+<span class="c1"># [[ 86, 212],</span>
+<span class="c1">#  [410, 563]]</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">matvec</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+</pre></div>
 
-<h1>1-D tensor <code>b</code></h1>
 
-<h1>[7, 9, 11]</h1>
-
-<p>b = tf.constant([7, 9, 11], shape=[3])</p>
-
-<h1><code>a</code> * <code>b</code></h1>
-
-<h1>[ 58,  64]</h1>
-
-<p>c = tf.matvec(a, b)</p>
-
-<h1>3-D tensor <code>a</code></h1>
-
-<h1>[[[ 1,  2,  3],</h1>
-
-<h1>[ 4,  5,  6]],</h1>
-
-<h1>[[ 7,  8,  9],</h1>
-
-<h1>[10, 11, 12]]]</h1>
-
-<p>a = tf.constant(np.arange(1, 13, dtype=np.int32),
-                shape=[2, 2, 3])</p>
-
-<h1>2-D tensor <code>b</code></h1>
-
-<h1>[[13, 14, 15],</h1>
-
-<h1>[16, 17, 18]]</h1>
-
-<p>b = tf.constant(np.arange(13, 19, dtype=np.int32),
-                shape=[2, 3])</p>
-
-<h1><code>a</code> * <code>b</code></h1>
-
-<h1>[[ 86, 212],</h1>
-
-<h1>[410, 563]]</h1>
-
-<p>c = tf.matvec(a, b)
-```</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>a</code></b>: <code>Tensor</code> of type <code>float16</code>, <code>float32</code>, <code>float64</code>, <code>int32</code>, <code>complex64</code>,
-<code>complex128</code> and rank > 1.</li>
+  <code>complex128</code> and rank &gt; 1.</li>
 <li><b><code>b</code></b>: <code>Tensor</code> with same type and rank = <code>rank(a) - 1</code>.</li>
 <li><b><code>transpose_a</code></b>: If <code>True</code>, <code>a</code> is transposed before multiplication.</li>
 <li><b><code>adjoint_a</code></b>: If <code>True</code>, <code>a</code> is conjugated and transposed before
-multiplication.</li>
+  multiplication.</li>
 <li><b><code>a_is_sparse</code></b>: If <code>True</code>, <code>a</code> is treated as a sparse matrix.</li>
 <li><b><code>b_is_sparse</code></b>: If <code>True</code>, <code>b</code> is treated as a sparse matrix.</li>
 <li><b><code>name</code></b>: Name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>Tensor</code> of the same type as <code>a</code> and <code>b</code> where each inner-most vector is
 the product of the corresponding matrices in <code>a</code> and vectors in <code>b</code>, e.g. if
 all transpose or adjoint attributes are <code>False</code>:</p>
-
-<p><code>output</code>[&hellip;, i] = sum_k (<code>a</code>[&hellip;, i, k] * <code>b</code>[&hellip;, k]), for all indices i.</p>
-
+<p><code>output</code>[..., i] = sum_k (<code>a</code>[..., i, k] * <code>b</code>[..., k]), for all indices i.</p>
 <ul>
 <li><b><code>Note</code></b>: This is matrix-vector product, not element-wise product.</li>
 </ul>
-
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: If transpose_a and adjoint_a are both set to True.</li>
 </ul>
-
+    </body>
+    </html>
+   

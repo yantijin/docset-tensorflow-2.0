@@ -1,71 +1,62 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.flags.DuplicateFlagError" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="from_flag"/>
 </div>
 
-
-<h1>tf.compat.v1.flags.DuplicateFlagError</h1>
-
+<h1 id="tfcompatv1flagsduplicateflagerror">tf.compat.v1.flags.DuplicateFlagError</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
-<h2>Class <code>DuplicateFlagError</code></h2>
-
+<h2 id="class-duplicateflagerror">Class <code>DuplicateFlagError</code></h2>
 <!-- Start diff -->
 
-
 <p>Raised if there is a flag naming conflict.</p>
-
 <p>Inherits From: <a href="../../../../tf/compat/v1/flags/Error.html"><code>Error</code></a></p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li>Class <code>tf.compat.v1.app.flags.DuplicateFlagError</code></li>
 </ul>
-
-
 <!-- Placeholder for "Used in" -->
 
-
-<h2>Methods</h2>
-
+<h2 id="methods">Methods</h2>
 <h3 id="from_flag"><code>from_flag</code></h3>
 
+<div class="codehilite"><pre><span></span><span class="nd">@classmethod</span>
+<span class="n">from_flag</span><span class="p">(</span>
+    <span class="bp">cls</span><span class="p">,</span>
+    <span class="n">flagname</span><span class="p">,</span>
+    <span class="n">flag_values</span><span class="p">,</span>
+    <span class="n">other_flag_values</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-@classmethod
-from_flag(
-    cls,
-    flagname,
-    flag_values,
-    other_flag_values=None
-)
-</code></p>
 
 <p>Creates a DuplicateFlagError by providing flag name and values.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>flagname</code></b>: str, the name of the flag being redefined.</li>
 <li><b><code>flag_values</code></b>: FlagValues, the FlagValues instance containing the first
-  definition of flagname.</li>
+    definition of flagname.</li>
 <li><b><code>other_flag_values</code></b>: FlagValues, if it is not None, it should be the
-  FlagValues object where the second definition of flagname occurs.
-  If it is None, we assume that we&rsquo;re being called when attempting
-  to create the flag a second time, and we use the module calling
-  this one as the source of the second definition.</li>
+    FlagValues object where the second definition of flagname occurs.
+    If it is None, we assume that we're being called when attempting
+    to create the flag a second time, and we use the module calling
+    this one as the source of the second definition.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>An instance of DuplicateFlagError.</p>
+    </body>
+    </html>
+   

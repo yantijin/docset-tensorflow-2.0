@@ -1,75 +1,67 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.data.experimental.choose_from_datasets" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.compat.v1.data.experimental.choose_from_datasets</h1>
-
+<h1 id="tfcompatv1dataexperimentalchoose_from_datasets">tf.compat.v1.data.experimental.choose_from_datasets</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/data/experimental/ops/interleave_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Creates a dataset that deterministically chooses elements from <code>datasets</code>.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">choose_from_datasets</span><span class="p">(</span>
+    <span class="n">datasets</span><span class="p">,</span>
+    <span class="n">choice_dataset</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-tf.compat.v1.data.experimental.choose_from_datasets(
-    datasets,
-    choice_dataset
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>For example, given the following datasets:</p>
+<div class="codehilite"><pre><span></span><span class="n">datasets</span> <span class="o">=</span> <span class="p">[</span><span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">from_tensors</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">repeat</span><span class="p">(),</span>
+            <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">from_tensors</span><span class="p">(</span><span class="s2">&quot;bar&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">repeat</span><span class="p">(),</span>
+            <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">from_tensors</span><span class="p">(</span><span class="s2">&quot;baz&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">repeat</span><span class="p">()]</span>
 
-<p>```python
-datasets = [tf.data.Dataset.from_tensors(&ldquo;foo&rdquo;).repeat(),
-            tf.data.Dataset.from_tensors(&ldquo;bar&rdquo;).repeat(),
-            tf.data.Dataset.from_tensors(&ldquo;baz&rdquo;).repeat()]</p>
+<span class="c1"># Define a dataset containing `[0, 1, 2, 0, 1, 2, 0, 1, 2]`.</span>
+<span class="n">choice_dataset</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 
-<h1>Define a dataset containing <code>[0, 1, 2, 0, 1, 2, 0, 1, 2]</code>.</h1>
+<span class="n">result</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">choose_from_datasets</span><span class="p">(</span><span class="n">datasets</span><span class="p">,</span> <span class="n">choice_dataset</span><span class="p">)</span>
+</pre></div>
 
-<p>choice_dataset = tf.data.Dataset.range(3).repeat(3)</p>
-
-<p>result = tf.data.experimental.choose_from_datasets(datasets, choice_dataset)
-```</p>
 
 <p>The elements of <code>result</code> will be:</p>
+<div class="codehilite"><pre><span></span><span class="err">&quot;foo&quot;, &quot;bar&quot;, &quot;baz&quot;, &quot;foo&quot;, &quot;bar&quot;, &quot;baz&quot;, &quot;foo&quot;, &quot;bar&quot;, &quot;baz&quot;</span>
+</pre></div>
 
-<p><code>
-"foo", "bar", "baz", "foo", "bar", "baz", "foo", "bar", "baz"
-</code></p>
 
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>datasets</code></b>: A list of <a href="../../../../../tf/data/Dataset.html"><code>tf.data.Dataset</code></a> objects with compatible structure.</li>
 <li><b><code>choice_dataset</code></b>: A <a href="../../../../../tf/data/Dataset.html"><code>tf.data.Dataset</code></a> of scalar <a href="../../../../../tf.html#int64"><code>tf.int64</code></a> tensors between
-<code>0</code> and <code>len(datasets) - 1</code>.</li>
+  <code>0</code> and <code>len(datasets) - 1</code>.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A dataset that interleaves elements from <code>datasets</code> according to the values
 of <code>choice_dataset</code>.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>TypeError</code></b>: If the <code>datasets</code> or <code>choice_dataset</code> arguments have the wrong
-type.</li>
+  type.</li>
 </ul>
-
+    </body>
+    </html>
+   

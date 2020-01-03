@@ -1,82 +1,71 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.strings.unicode_encode" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.strings.unicode_encode</h1>
-
+<h1 id="tfstringsunicode_encode">tf.strings.unicode_encode</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/ragged/ragged_string_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Encodes each sequence of Unicode code points in <code>input</code> into a string.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.strings.unicode_encode</code></li>
 <li><code>tf.compat.v2.strings.unicode_encode</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">strings</span><span class="o">.</span><span class="n">unicode_encode</span><span class="p">(</span>
+    <span class="nb">input</span><span class="p">,</span>
+    <span class="n">output_encoding</span><span class="p">,</span>
+    <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;replace&#39;</span><span class="p">,</span>
+    <span class="n">replacement_char</span><span class="o">=</span><span class="mi">65533</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.strings.unicode_encode(
-    input,
-    output_encoding,
-    errors='replace',
-    replacement_char=65533,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p><code>result[i1...iN]</code> is the string formed by concatenating the Unicode
 codepoints <code>input[1...iN, :]</code>, encoded using <code>output_encoding</code>.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>input</code></b>: An <code>N+1</code> dimensional potentially ragged integer tensor with shape
-<code>[D1...DN, num_chars]</code>.</li>
+  <code>[D1...DN, num_chars]</code>.</li>
 <li><b><code>output_encoding</code></b>: Unicode encoding that should be used to encode each
-codepoint sequence.  Can be <code>"UTF-8"</code>, <code>"UTF-16-BE"</code>, or <code>"UTF-32-BE"</code>.</li>
+  codepoint sequence.  Can be <code>"UTF-8"</code>, <code>"UTF-16-BE"</code>, or <code>"UTF-32-BE"</code>.</li>
 <li><b><code>errors</code></b>: Specifies the response when an invalid codepoint is encountered
-(optional). One of:
-
-<pre><code>  * `'replace'`: Replace invalid codepoint with the
-    `replacement_char`. (default)
-  * `'ignore'`: Skip invalid codepoints.
-  * `'strict'`: Raise an exception for any invalid codepoint.
-</code></pre></li>
+  (optional). One of:
+        * <code>'replace'</code>: Replace invalid codepoint with the
+          <code>replacement_char</code>. (default)
+        * <code>'ignore'</code>: Skip invalid codepoints.
+        * <code>'strict'</code>: Raise an exception for any invalid codepoint.</li>
 <li><b><code>replacement_char</code></b>: The replacement character codepoint to be used in place of
-any invalid input when <code>errors='replace'</code>. Any valid unicode codepoint may
-be used. The default value is the default unicode replacement character
-which is 0xFFFD (U+65533).</li>
+  any invalid input when <code>errors='replace'</code>. Any valid unicode codepoint may
+  be used. The default value is the default unicode replacement character
+  which is 0xFFFD (U+65533).</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>N</code> dimensional <code>string</code> tensor with shape <code>[D1...DN]</code>.</p>
-
-<h4>Example:</h4>
-
-<p>  <code>python
+<h4 id="example">Example:</h4>
+<p><code>python
     &gt;&gt;&gt; input = [[71, 246, 246, 100, 110, 105, 103, 104, 116], [128522]]
     &gt;&gt;&gt; unicode_encode(input, 'UTF-8')
-    ['G\xc3\xb6\xc3\xb6dnight', '\xf0\x9f\x98\x8a']
- </code></p>
+    ['G\xc3\xb6\xc3\xb6dnight', '\xf0\x9f\x98\x8a']</code></p>
+    </body>
+    </html>
+   

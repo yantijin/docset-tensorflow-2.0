@@ -1,107 +1,99 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.config.experimental.set_virtual_device_configuration" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.config.experimental.set_virtual_device_configuration</h1>
-
+<h1 id="tfconfigexperimentalset_virtual_device_configuration">tf.config.experimental.set_virtual_device_configuration</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/framework/config.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Set the virtual device configuration for a PhysicalDevice.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.config.experimental.set_virtual_device_configuration</code></li>
 <li><code>tf.compat.v2.config.experimental.set_virtual_device_configuration</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">set_virtual_device_configuration</span><span class="p">(</span>
+    <span class="n">device</span><span class="p">,</span>
+    <span class="n">virtual_devices</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.config.experimental.set_virtual_device_configuration(
-    device,
-    virtual_devices
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>A PhysicalDevice marked as visible will by default have a single LogicalDevice
 allocated to it once the runtime is configured. Specifying a list of
 tf.config.experimental.VirtualDeviceConfiguration objects allows multiple
 devices to be configured that utilize the same PhysicalDevice.</p>
-
 <p>The following example splits the CPU into 2 virtual devices:</p>
+<div class="codehilite"><pre><span></span><span class="n">physical_devices</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">list_physical_devices</span><span class="p">(</span><span class="s1">&#39;CPU&#39;</span><span class="p">)</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">physical_devices</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;No CPUs found&quot;</span>
+<span class="c1"># Specify 2 virtual CPUs. Note currently memory limit is not supported.</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">set_virtual_device_configuration</span><span class="p">(</span>
+  <span class="n">physical_devices</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">VirtualDeviceConfiguration</span><span class="p">(),</span>
+   <span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">VirtualDeviceConfiguration</span><span class="p">()])</span>
+<span class="n">logical_devices</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">list_logical_devices</span><span class="p">(</span><span class="s1">&#39;CPU&#39;</span><span class="p">)</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">logical_devices</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
 
-<p>```python
-physical_devices = tf.config.experimental.list_physical_devices(&lsquo;CPU&rsquo;)
-assert len(physical_devices) == 1, &ldquo;No CPUs found&rdquo;</p>
+<span class="k">try</span><span class="p">:</span>
+  <span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">set_virtual_device_configuration</span><span class="p">(</span>
+    <span class="n">physical_devices</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="p">[</span><span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">VirtualDeviceConfiguration</span><span class="p">(),</span>
+     <span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">VirtualDeviceConfiguration</span><span class="p">(),</span>
+     <span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">VirtualDeviceConfiguration</span><span class="p">(),</span>
+     <span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">VirtualDeviceConfiguration</span><span class="p">()])</span>
+<span class="k">except</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Cannot modify the virtual devices once they have been initialized.&#39;</span><span class="p">)</span>
+</pre></div>
 
-<h1>Specify 2 virtual CPUs. Note currently memory limit is not supported.</h1>
-
-<p>tf.config.experimental.set_virtual_device_configuration(
-  physical_devices[0],
-  [tf.config.experimental.VirtualDeviceConfiguration(),
-   tf.config.experimental.VirtualDeviceConfiguration()])
-logical_devices = tf.config.experimental.list_logical_devices(&lsquo;CPU&rsquo;)
-assert len(logical_devices) == 2</p>
-
-<p>try:
-  tf.config.experimental.set_virtual_device_configuration(
-    physical_devices[0],
-    [tf.config.experimental.VirtualDeviceConfiguration(),
-     tf.config.experimental.VirtualDeviceConfiguration(),
-     tf.config.experimental.VirtualDeviceConfiguration(),
-     tf.config.experimental.VirtualDeviceConfiguration()])
-except:
-  print(&lsquo;Cannot modify the virtual devices once they have been initialized.&rsquo;)
-```</p>
 
 <p>The following example splits the GPU into 2 virtual devices with 100 MB each:</p>
+<div class="codehilite"><pre><span></span><span class="n">physical_devices</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">list_physical_devices</span><span class="p">(</span><span class="s1">&#39;GPU&#39;</span><span class="p">)</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">physical_devices</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;No GPUs found&quot;</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">set_virtual_device_configuration</span><span class="p">(</span>
+  <span class="n">physical_devices</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+  <span class="p">[</span><span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">VirtualDeviceConfiguration</span><span class="p">(</span><span class="n">memory_limit</span><span class="o">=</span><span class="mi">100</span><span class="p">),</span>
+   <span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">VirtualDeviceConfiguration</span><span class="p">(</span><span class="n">memory_limit</span><span class="o">=</span><span class="mi">100</span><span class="p">)])</span>
 
-<p>```python
-physical_devices = tf.config.experimental.list_physical_devices(&lsquo;GPU&rsquo;)
-assert len(physical_devices) > 0, &ldquo;No GPUs found&rdquo;
-tf.config.experimental.set_virtual_device_configuration(
-  physical_devices[0],
-  [tf.config.experimental.VirtualDeviceConfiguration(memory_limit=100),
-   tf.config.experimental.VirtualDeviceConfiguration(memory_limit=100)])</p>
+<span class="k">try</span><span class="p">:</span>
+  <span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">set_memory_growth</span><span class="p">(</span><span class="n">physical_devices</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="kc">True</span><span class="p">)</span>
+<span class="k">except</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Cannot set memory growth when virtual devices configured&#39;</span><span class="p">)</span>
 
-<p>try:
-  tf.config.experimental.set_memory_growth(physical_devices[0], True)
-except:
-  print(&lsquo;Cannot set memory growth when virtual devices configured&rsquo;)</p>
+<span class="n">logical_devices</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">list_logical_devices</span><span class="p">(</span><span class="s1">&#39;GPU&#39;</span><span class="p">)</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">logical_devices</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">physical_devices</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
 
-<p>logical_devices = tf.config.experimental.list_logical_devices(&lsquo;GPU&rsquo;)
-assert len(logical_devices) == len(physical_devices) + 1</p>
+<span class="k">try</span><span class="p">:</span>
+  <span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">set_virtual_device_configuration</span><span class="p">(</span>
+    <span class="n">physical_devices</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="p">[</span><span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">VirtualDeviceConfiguration</span><span class="p">(</span><span class="n">memory_limit</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span>
+     <span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">VirtualDeviceConfiguration</span><span class="p">(</span><span class="n">memory_limit</span><span class="o">=</span><span class="mi">10</span><span class="p">)])</span>
+<span class="k">except</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Cannot modify the virtual devices once they have been initialized.&#39;</span><span class="p">)</span>
+</pre></div>
 
-<p>try:
-  tf.config.experimental.set_virtual_device_configuration(
-    physical_devices[0],
-    [tf.config.experimental.VirtualDeviceConfiguration(memory_limit=10),
-     tf.config.experimental.VirtualDeviceConfiguration(memory_limit=10)])
-except:
-  print(&lsquo;Cannot modify the virtual devices once they have been initialized.&rsquo;)
-```</p>
 
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>device</code></b>: (optional) Need to update</li>
 <li><b><code>virtual_devices</code></b>: (optional) Need to update</li>
 </ul>
-
+    </body>
+    </html>
+   

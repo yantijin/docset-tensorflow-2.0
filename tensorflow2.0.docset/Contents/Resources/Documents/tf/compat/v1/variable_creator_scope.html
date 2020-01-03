@@ -1,39 +1,37 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.variable_creator_scope" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.compat.v1.variable_creator_scope</h1>
-
+<h1 id="tfcompatv1variable_creator_scope">tf.compat.v1.variable_creator_scope</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/variable_scope.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Scope which defines a variable creation function to be used by variable().</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">variable_creator_scope</span><span class="p">(</span><span class="n">variable_creator</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-tf.compat.v1.variable_creator_scope(variable_creator)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>variable_creator is expected to be a function with the following signature:</p>
+<div class="codehilite"><pre><span></span><span class="err">  def variable_creator(next_creator, **kwargs)</span>
+</pre></div>
 
-<p><code>
-  def variable_creator(next_creator, **kwargs)
-</code></p>
 
 <p>The creator is supposed to eventually call the next_creator to create a
 variable if it does want to create a variable and not call Variable or
@@ -42,10 +40,8 @@ choose to create multiple variables, return already existing variables, or
 simply register that a variable was created and defer to the next creators in
 line. Creators can also modify the keyword arguments seen by the next
 creators.</p>
-
 <p>Custom getters in the variable scope will eventually resolve down to these
 custom creators when they do create variables.</p>
-
 <p>The valid keyword arguments in kwds are:
     initial_value: A <code>Tensor</code>, or Python object convertible to a <code>Tensor</code>,
       which is the initial value for the Variable. The initial value must have
@@ -64,7 +60,7 @@ custom creators when they do create variables.</p>
       value of unknown shape. If <code>True</code>, the default, the shape of
       <code>initial_value</code> must be known.
     caching_device: Optional device string describing where the Variable
-      should be cached for reading.  Defaults to the Variable&rsquo;s device.
+      should be cached for reading.  Defaults to the Variable's device.
       If not <code>None</code>, caches on another device.  Typical use is to cache
       on the device where the Ops using the Variable reside, to deduplicate
       copying through <code>Switch</code> and other conditional statements.
@@ -84,17 +80,14 @@ custom creators when they do create variables.</p>
     aggregation: Indicates how a distributed variable will be aggregated.
       Accepted values are constants defined in the class
       <a href="../../../tf/VariableAggregation.html"><code>tf.VariableAggregation</code></a>.</p>
-
-<p>This set may grow over time, so it&rsquo;s important the signature of creators is as
+<p>This set may grow over time, so it's important the signature of creators is as
 mentioned above.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>variable_creator</code></b>: the passed creator</li>
 </ul>
-
-
-<h4>Yields:</h4>
-
+<h4 id="yields">Yields:</h4>
 <p>A scope in which the creator is active</p>
+    </body>
+    </html>
+   

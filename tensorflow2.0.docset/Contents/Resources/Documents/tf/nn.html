@@ -1,191 +1,112 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../default.css" rel="stylesheet">
+    <link href="
+   ../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.nn" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="swish"/>
 </div>
 
-
-<h1>Module: tf.nn</h1>
-
+<h1 id="module-tfnn">Module: tf.nn</h1>
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p>Wrappers for primitive Neural Net (NN) Operations.</p>
-
-<h2>Classes</h2>
-
+<h2 id="classes">Classes</h2>
 <p><a href="../tf/nn/RNNCellDeviceWrapper.html"><code>class RNNCellDeviceWrapper</code></a>: Operator that ensures an RNNCell runs on a particular device.</p>
-
 <p><a href="../tf/nn/RNNCellDropoutWrapper.html"><code>class RNNCellDropoutWrapper</code></a>: Operator adding dropout to inputs and outputs of the given cell.</p>
-
 <p><a href="../tf/nn/RNNCellResidualWrapper.html"><code>class RNNCellResidualWrapper</code></a>: RNNCell wrapper that ensures cell inputs are added to the outputs.</p>
-
-<h2>Functions</h2>
-
+<h2 id="functions">Functions</h2>
 <p><a href="../tf/random/all_candidate_sampler.html"><code>all_candidate_sampler(...)</code></a>: Generate the set of all classes.</p>
-
 <p><a href="../tf/nn/atrous_conv2d.html"><code>atrous_conv2d(...)</code></a>: Atrous convolution (a.k.a. convolution with holes or dilated convolution).</p>
-
 <p><a href="../tf/nn/atrous_conv2d_transpose.html"><code>atrous_conv2d_transpose(...)</code></a>: The transpose of <code>atrous_conv2d</code>.</p>
-
 <p><a href="../tf/nn/avg_pool.html"><code>avg_pool(...)</code></a>: Performs the avg pooling on the input.</p>
-
 <p><a href="../tf/nn/avg_pool1d.html"><code>avg_pool1d(...)</code></a>: Performs the average pooling on the input.</p>
-
 <p><a href="../tf/nn/avg_pool2d.html"><code>avg_pool2d(...)</code></a>: Performs the average pooling on the input.</p>
-
 <p><a href="../tf/nn/avg_pool3d.html"><code>avg_pool3d(...)</code></a>: Performs the average pooling on the input.</p>
-
 <p><a href="../tf/nn/batch_norm_with_global_normalization.html"><code>batch_norm_with_global_normalization(...)</code></a>: Batch normalization.</p>
-
 <p><a href="../tf/nn/batch_normalization.html"><code>batch_normalization(...)</code></a>: Batch normalization.</p>
-
 <p><a href="../tf/nn/bias_add.html"><code>bias_add(...)</code></a>: Adds <code>bias</code> to <code>value</code>.</p>
-
 <p><a href="../tf/nn/collapse_repeated.html"><code>collapse_repeated(...)</code></a>: Merge repeated labels into single labels.</p>
-
 <p><a href="../tf/nn/compute_accidental_hits.html"><code>compute_accidental_hits(...)</code></a>: Compute the position ids in <code>sampled_candidates</code> matching <code>true_classes</code>.</p>
-
 <p><a href="../tf/nn/compute_average_loss.html"><code>compute_average_loss(...)</code></a>: Scales per-example losses with sample_weights and computes their average.</p>
-
 <p><a href="../tf/nn/conv1d.html"><code>conv1d(...)</code></a>: Computes a 1-D convolution given 3-D input and filter tensors.</p>
-
 <p><a href="../tf/nn/conv1d_transpose.html"><code>conv1d_transpose(...)</code></a>: The transpose of <code>conv1d</code>.</p>
-
 <p><a href="../tf/nn/conv2d.html"><code>conv2d(...)</code></a>: Computes a 2-D convolution given 4-D <code>input</code> and <code>filters</code> tensors.</p>
-
 <p><a href="../tf/nn/conv2d_transpose.html"><code>conv2d_transpose(...)</code></a>: The transpose of <code>conv2d</code>.</p>
-
 <p><a href="../tf/nn/conv3d.html"><code>conv3d(...)</code></a>: Computes a 3-D convolution given 5-D <code>input</code> and <code>filters</code> tensors.</p>
-
 <p><a href="../tf/nn/conv3d_transpose.html"><code>conv3d_transpose(...)</code></a>: The transpose of <code>conv3d</code>.</p>
-
 <p><a href="../tf/nn/conv_transpose.html"><code>conv_transpose(...)</code></a>: The transpose of <code>convolution</code>.</p>
-
 <p><a href="../tf/nn/convolution.html"><code>convolution(...)</code></a>: Computes sums of N-D convolutions (actually cross-correlation).</p>
-
 <p><a href="../tf/nn/crelu.html"><code>crelu(...)</code></a>: Computes Concatenated ReLU.</p>
-
 <p><a href="../tf/nn/ctc_beam_search_decoder.html"><code>ctc_beam_search_decoder(...)</code></a>: Performs beam search decoding on the logits given in input.</p>
-
 <p><a href="../tf/nn/ctc_greedy_decoder.html"><code>ctc_greedy_decoder(...)</code></a>: Performs greedy decoding on the logits given in input (best path).</p>
-
 <p><a href="../tf/nn/ctc_loss.html"><code>ctc_loss(...)</code></a>: Computes CTC (Connectionist Temporal Classification) loss.</p>
-
 <p><a href="../tf/nn/ctc_unique_labels.html"><code>ctc_unique_labels(...)</code></a>: Get unique labels and indices for batched labels for <a href="../tf/nn/ctc_loss.html"><code>tf.nn.ctc_loss</code></a>.</p>
-
 <p><a href="../tf/nn/depth_to_space.html"><code>depth_to_space(...)</code></a>: DepthToSpace for tensors of type T.</p>
-
 <p><a href="../tf/nn/depthwise_conv2d.html"><code>depthwise_conv2d(...)</code></a>: Depthwise 2-D convolution.</p>
-
 <p><a href="../tf/nn/depthwise_conv2d_backprop_filter.html"><code>depthwise_conv2d_backprop_filter(...)</code></a>: Computes the gradients of depthwise convolution with respect to the filter.</p>
-
 <p><a href="../tf/nn/depthwise_conv2d_backprop_input.html"><code>depthwise_conv2d_backprop_input(...)</code></a>: Computes the gradients of depthwise convolution with respect to the input.</p>
-
 <p><a href="../tf/nn/dilation2d.html"><code>dilation2d(...)</code></a>: Computes the grayscale dilation of 4-D <code>input</code> and 3-D <code>filters</code> tensors.</p>
-
 <p><a href="../tf/nn/dropout.html"><code>dropout(...)</code></a>: Computes dropout.</p>
-
 <p><a href="../tf/nn/elu.html"><code>elu(...)</code></a>: Computes exponential linear: <code>exp(features) - 1</code> if &lt; 0, <code>features</code> otherwise.</p>
-
 <p><a href="../tf/nn/embedding_lookup.html"><code>embedding_lookup(...)</code></a>: Looks up <code>ids</code> in a list of embedding tensors.</p>
-
 <p><a href="../tf/nn/embedding_lookup_sparse.html"><code>embedding_lookup_sparse(...)</code></a>: Computes embeddings for the given ids and weights.</p>
-
 <p><a href="../tf/nn/erosion2d.html"><code>erosion2d(...)</code></a>: Computes the grayscale erosion of 4-D <code>value</code> and 3-D <code>filters</code> tensors.</p>
-
 <p><a href="../tf/random/fixed_unigram_candidate_sampler.html"><code>fixed_unigram_candidate_sampler(...)</code></a>: Samples a set of classes using the provided (fixed) base distribution.</p>
-
 <p><a href="../tf/nn/fractional_avg_pool.html"><code>fractional_avg_pool(...)</code></a>: Performs fractional average pooling on the input.</p>
-
 <p><a href="../tf/nn/fractional_max_pool.html"><code>fractional_max_pool(...)</code></a>: Performs fractional max pooling on the input.</p>
-
 <p><a href="../tf/math/in_top_k.html"><code>in_top_k(...)</code></a>: Says whether the targets are in the top <code>K</code> predictions.</p>
-
 <p><a href="../tf/nn/l2_loss.html"><code>l2_loss(...)</code></a>: L2 Loss.</p>
-
 <p><a href="../tf/math/l2_normalize.html"><code>l2_normalize(...)</code></a>: Normalizes along dimension <code>axis</code> using an L2 norm.</p>
-
 <p><a href="../tf/nn/leaky_relu.html"><code>leaky_relu(...)</code></a>: Compute the Leaky ReLU activation function.</p>
-
 <p><a href="../tf/random/learned_unigram_candidate_sampler.html"><code>learned_unigram_candidate_sampler(...)</code></a>: Samples a set of classes from a distribution learned during training.</p>
-
 <p><a href="../tf/nn/local_response_normalization.html"><code>local_response_normalization(...)</code></a>: Local Response Normalization.</p>
-
 <p><a href="../tf/nn/log_poisson_loss.html"><code>log_poisson_loss(...)</code></a>: Computes log Poisson loss given <code>log_input</code>.</p>
-
 <p><a href="../tf/nn/log_softmax.html"><code>log_softmax(...)</code></a>: Computes log softmax activations.</p>
-
 <p><a href="../tf/nn/local_response_normalization.html"><code>lrn(...)</code></a>: Local Response Normalization.</p>
-
 <p><a href="../tf/nn/max_pool.html"><code>max_pool(...)</code></a>: Performs the max pooling on the input.</p>
-
 <p><a href="../tf/nn/max_pool1d.html"><code>max_pool1d(...)</code></a>: Performs the max pooling on the input.</p>
-
 <p><a href="../tf/nn/max_pool2d.html"><code>max_pool2d(...)</code></a>: Performs the max pooling on the input.</p>
-
 <p><a href="../tf/nn/max_pool3d.html"><code>max_pool3d(...)</code></a>: Performs the max pooling on the input.</p>
-
 <p><a href="../tf/nn/max_pool_with_argmax.html"><code>max_pool_with_argmax(...)</code></a>: Performs max pooling on the input and outputs both max values and indices.</p>
-
 <p><a href="../tf/nn/moments.html"><code>moments(...)</code></a>: Calculates the mean and variance of <code>x</code>.</p>
-
 <p><a href="../tf/nn/nce_loss.html"><code>nce_loss(...)</code></a>: Computes and returns the noise-contrastive estimation training loss.</p>
-
 <p><a href="../tf/nn/normalize_moments.html"><code>normalize_moments(...)</code></a>: Calculate the mean and variance of based on the sufficient statistics.</p>
-
 <p><a href="../tf/nn/pool.html"><code>pool(...)</code></a>: Performs an N-D pooling operation.</p>
-
 <p><a href="../tf/nn/relu.html"><code>relu(...)</code></a>: Computes rectified linear: <code>max(features, 0)</code>.</p>
-
 <p><a href="../tf/nn/relu6.html"><code>relu6(...)</code></a>: Computes Rectified Linear 6: <code>min(max(features, 0), 6)</code>.</p>
-
 <p><a href="../tf/nn/safe_embedding_lookup_sparse.html"><code>safe_embedding_lookup_sparse(...)</code></a>: Lookup embedding results, accounting for invalid IDs and empty features.</p>
-
 <p><a href="../tf/nn/sampled_softmax_loss.html"><code>sampled_softmax_loss(...)</code></a>: Computes and returns the sampled softmax training loss.</p>
-
 <p><a href="../tf/nn/scale_regularization_loss.html"><code>scale_regularization_loss(...)</code></a>: Scales the sum of the given regularization losses by number of replicas.</p>
-
 <p><a href="../tf/nn/selu.html"><code>selu(...)</code></a>: Computes scaled exponential linear: <code>scale * alpha * (exp(features) - 1)</code></p>
-
 <p><a href="../tf/nn/separable_conv2d.html"><code>separable_conv2d(...)</code></a>: 2-D convolution with separable filters.</p>
-
 <p><a href="../tf/math/sigmoid.html"><code>sigmoid(...)</code></a>: Computes sigmoid of <code>x</code> element-wise.</p>
-
 <p><a href="../tf/nn/sigmoid_cross_entropy_with_logits.html"><code>sigmoid_cross_entropy_with_logits(...)</code></a>: Computes sigmoid cross entropy given <code>logits</code>.</p>
-
 <p><a href="../tf/nn/softmax.html"><code>softmax(...)</code></a>: Computes softmax activations.</p>
-
 <p><a href="../tf/nn/softmax_cross_entropy_with_logits.html"><code>softmax_cross_entropy_with_logits(...)</code></a>: Computes softmax cross entropy between <code>logits</code> and <code>labels</code>.</p>
-
 <p><a href="../tf/math/softplus.html"><code>softplus(...)</code></a>: Computes softplus: <code>log(exp(features) + 1)</code>.</p>
-
 <p><a href="../tf/nn/softsign.html"><code>softsign(...)</code></a>: Computes softsign: <code>features / (abs(features) + 1)</code>.</p>
-
 <p><a href="../tf/space_to_batch.html"><code>space_to_batch(...)</code></a>: SpaceToBatch for N-D tensors of type T.</p>
-
 <p><a href="../tf/nn/space_to_depth.html"><code>space_to_depth(...)</code></a>: SpaceToDepth for tensors of type T.</p>
-
 <p><a href="../tf/nn/sparse_softmax_cross_entropy_with_logits.html"><code>sparse_softmax_cross_entropy_with_logits(...)</code></a>: Computes sparse softmax cross entropy between <code>logits</code> and <code>labels</code>.</p>
-
 <p><a href="../tf/nn/sufficient_statistics.html"><code>sufficient_statistics(...)</code></a>: Calculate the sufficient statistics for the mean and variance of <code>x</code>.</p>
-
 <p><a href="../tf/math/tanh.html"><code>tanh(...)</code></a>: Computes hyperbolic tangent of <code>x</code> element-wise.</p>
-
 <p><a href="../tf/math/top_k.html"><code>top_k(...)</code></a>: Finds values and indices of the <code>k</code> largest entries for the last dimension.</p>
-
 <p><a href="../tf/nn/weighted_cross_entropy_with_logits.html"><code>weighted_cross_entropy_with_logits(...)</code></a>: Computes a weighted cross entropy.</p>
-
 <p><a href="../tf/nn/weighted_moments.html"><code>weighted_moments(...)</code></a>: Returns the frequency-weighted mean and variance of <code>x</code>.</p>
-
 <p><a href="../tf/nn/with_space_to_batch.html"><code>with_space_to_batch(...)</code></a>: Performs <code>op</code> on the space-to-batch representation of <code>input</code>.</p>
-
 <p><a href="../tf/math/zero_fraction.html"><code>zero_fraction(...)</code></a>: Returns the fraction of zeros in <code>value</code>.</p>
-
-<h2>Other Members</h2>
-
+<h2 id="other-members">Other Members</h2>
 <ul>
 <li><code>swish</code> <a id="swish"></a></li>
 </ul>
-
+    </body>
+    </html>
+   

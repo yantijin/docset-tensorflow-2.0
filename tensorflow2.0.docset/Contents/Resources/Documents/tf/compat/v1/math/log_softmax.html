@@ -1,75 +1,66 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.math.log_softmax" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.compat.v1.math.log_softmax</h1>
-
+<h1 id="tfcompatv1mathlog_softmax">tf.compat.v1.math.log_softmax</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/nn_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Computes log softmax activations. (deprecated arguments)</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.nn.log_softmax</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">log_softmax</span><span class="p">(</span>
+    <span class="n">logits</span><span class="p">,</span>
+    <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">dim</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.compat.v1.math.log_softmax(
-    logits,
-    axis=None,
-    name=None,
-    dim=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>Warning: SOME ARGUMENTS ARE DEPRECATED: <code>(dim)</code>. They will be removed in a future version.
 Instructions for updating:
 dim is deprecated, use axis instead</p>
-
 <p>For each batch <code>i</code> and class <code>j</code> we have</p>
+<div class="codehilite"><pre><span></span><span class="err">logsoftmax = logits - log(reduce_sum(exp(logits), axis))</span>
+</pre></div>
 
-<pre><code>logsoftmax = logits - log(reduce_sum(exp(logits), axis))
-</code></pre>
 
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>logits</code></b>: A non-empty <code>Tensor</code>. Must be one of the following types: <code>half</code>,
-<code>float32</code>, <code>float64</code>.</li>
+  <code>float32</code>, <code>float64</code>.</li>
 <li><b><code>axis</code></b>: The dimension softmax would be performed on. The default is -1 which
-indicates the last dimension.</li>
+  indicates the last dimension.</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 <li><b><code>dim</code></b>: Deprecated alias for <code>axis</code>.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>Tensor</code>. Has the same type as <code>logits</code>. Same shape as <code>logits</code>.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>InvalidArgumentError</code></b>: if <code>logits</code> is empty or <code>axis</code> is beyond the last
-dimension of <code>logits</code>.</li>
+  dimension of <code>logits</code>.</li>
 </ul>
-
+    </body>
+    </html>
+   

@@ -1,83 +1,75 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.scatter_add" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.compat.v1.scatter_add</h1>
-
+<h1 id="tfcompatv1scatter_add">tf.compat.v1.scatter_add</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/state_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Adds sparse updates to the variable referenced by <code>resource</code>.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">scatter_add</span><span class="p">(</span>
+    <span class="n">ref</span><span class="p">,</span>
+    <span class="n">indices</span><span class="p">,</span>
+    <span class="n">updates</span><span class="p">,</span>
+    <span class="n">use_locking</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-tf.compat.v1.scatter_add(
-    ref,
-    indices,
-    updates,
-    use_locking=False,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>This operation computes</p>
+<div class="codehilite"><pre><span></span>    <span class="c1"># Scalar indices</span>
+    <span class="n">ref</span><span class="p">[</span><span class="n">indices</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">+=</span> <span class="n">updates</span><span class="p">[</span><span class="o">...</span><span class="p">]</span>
 
-<p>```python
-    # Scalar indices
-    ref[indices, &hellip;] += updates[&hellip;]</p>
+    <span class="c1"># Vector indices (for each i)</span>
+    <span class="n">ref</span><span class="p">[</span><span class="n">indices</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="o">...</span><span class="p">]</span> <span class="o">+=</span> <span class="n">updates</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
 
-<pre><code># Vector indices (for each i)
-ref[indices[i], ...] += updates[i, ...]
+    <span class="c1"># High rank indices (for each i, ..., j)</span>
+    <span class="n">ref</span><span class="p">[</span><span class="n">indices</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">j</span><span class="p">],</span> <span class="o">...</span><span class="p">]</span> <span class="o">+=</span> <span class="n">updates</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+</pre></div>
 
-# High rank indices (for each i, ..., j)
-ref[indices[i, ..., j], ...] += updates[i, ..., j, ...]
-</code></pre>
-
-<p>```</p>
 
 <p>This operation outputs <code>ref</code> after the update is done.
 This makes it easier to chain operations that need to use the updated value.
 Duplicate entries are handled correctly: if multiple <code>indices</code> reference
 the same location, their contributions add.</p>
-
 <p>Requires <code>updates.shape = indices.shape + ref.shape[1:]</code>.</p>
-
 <div style="width:70%; margin:auto; margin-bottom:10px; margin-top:20px;">
 <img style="width:100%" src='https://www.tensorflow.org/images/ScatterAdd.png' alt>
 </div>
 
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>ref</code></b>: A <code>Variable</code>.</li>
 <li><b><code>indices</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>int32</code>, <code>int64</code>.
-A tensor of indices into the first dimension of <code>ref</code>.</li>
+  A tensor of indices into the first dimension of <code>ref</code>.</li>
 <li><b><code>updates</code></b>: A <code>Tensor</code>. Must have the same type as <code>ref</code>.
-A tensor of updated values to store in <code>ref</code>.</li>
+  A tensor of updated values to store in <code>ref</code>.</li>
 <li><b><code>use_locking</code></b>: An optional <code>bool</code>. Defaults to <code>False</code>.
-If True, the assignment will be protected by a lock;
-otherwise the behavior is undefined, but may exhibit less contention.</li>
+  If True, the assignment will be protected by a lock;
+  otherwise the behavior is undefined, but may exhibit less contention.</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>Same as <code>ref</code>.  Returned as a convenience for operations that want
 to use the updated values after the update is done.</p>
+    </body>
+    </html>
+   

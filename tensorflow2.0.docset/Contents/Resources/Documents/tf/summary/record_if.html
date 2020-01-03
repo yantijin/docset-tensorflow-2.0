@@ -1,53 +1,47 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.summary.record_if" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.summary.record_if</h1>
-
+<h1 id="tfsummaryrecord_if">tf.summary.record_if</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/summary_ops_v2.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Sets summary recording on or off per the provided boolean value.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v2.summary.record_if</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">summary</span><span class="o">.</span><span class="n">record_if</span><span class="p">(</span><span class="n">condition</span><span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.summary.record_if(condition)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>The provided value can be a python boolean, a scalar boolean Tensor, or
 or a callable providing such a value; if a callable is passed it will be
 invoked on-demand to determine whether summary writing will occur.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>condition</code></b>: can be True, False, a bool Tensor, or a callable providing such.</li>
 </ul>
-
-
-<h4>Yields:</h4>
-
+<h4 id="yields">Yields:</h4>
 <p>Returns a context manager that sets this value on enter and restores the
 previous value on exit.</p>
+    </body>
+    </html>
+   

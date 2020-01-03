@@ -1,15 +1,19 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.estimator.experimental.stop_if_higher_hook" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.estimator.experimental.stop_if_higher_hook</h1>
-
+<h1 id="tfestimatorexperimentalstop_if_higher_hook">tf.estimator.experimental.stop_if_higher_hook</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 
@@ -20,76 +24,62 @@
   </a>
 </td></table>
 
-
-
-
 <!-- Start diff -->
 
-
 <p>Creates hook to stop if the given metric is higher than the threshold.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.estimator.experimental.stop_if_higher_hook</code></li>
 <li><code>tf.compat.v2.estimator.experimental.stop_if_higher_hook</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">stop_if_higher_hook</span><span class="p">(</span>
+    <span class="n">estimator</span><span class="p">,</span>
+    <span class="n">metric_name</span><span class="p">,</span>
+    <span class="n">threshold</span><span class="p">,</span>
+    <span class="n">eval_dir</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">min_steps</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">run_every_secs</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
+    <span class="n">run_every_steps</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.estimator.experimental.stop_if_higher_hook(
-    estimator,
-    metric_name,
-    threshold,
-    eval_dir=None,
-    min_steps=0,
-    run_every_secs=60,
-    run_every_steps=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
+<h4 id="usage-example">Usage example:</h4>
+<div class="codehilite"><pre><span></span><span class="n">estimator</span> <span class="o">=</span> <span class="o">...</span>
+<span class="c1"># Hook to stop training if accuracy becomes higher than 0.9.</span>
+<span class="n">hook</span> <span class="o">=</span> <span class="n">early_stopping</span><span class="o">.</span><span class="n">stop_if_higher_hook</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="s2">&quot;accuracy&quot;</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">)</span>
+<span class="n">train_spec</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">TrainSpec</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">hooks</span><span class="o">=</span><span class="p">[</span><span class="n">hook</span><span class="p">])</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">train_and_evaluate</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="n">train_spec</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+</pre></div>
 
-<h4>Usage example:</h4>
-
-<p>```python
-estimator = &hellip;</p>
-
-<h1>Hook to stop training if accuracy becomes higher than 0.9.</h1>
-
-<p>hook = early_stopping.stop_if_higher_hook(estimator, &ldquo;accuracy&rdquo;, 0.9)
-train_spec = tf.estimator.TrainSpec(&hellip;, hooks=[hook])
-tf.estimator.train_and_evaluate(estimator, train_spec, &hellip;)
-```</p>
 
 <p>Caveat: Current implementation supports early-stopping both training and
 evaluation in local mode. In distributed mode, training can be stopped but
-evaluation (where it&rsquo;s a separate job) will indefinitely wait for new model
+evaluation (where it's a separate job) will indefinitely wait for new model
 checkpoints to evaluate, so you will need other means to detect and stop it.
 Early-stopping evaluation in distributed mode requires changes in
 <code>train_and_evaluate</code> API and will be addressed in a future revision.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>estimator</code></b>: A <a href="../../../tf/estimator/Estimator.html"><code>tf.estimator.Estimator</code></a> instance.</li>
-<li><b><code>metric_name</code></b>: <code>str</code>, metric to track. &ldquo;loss&rdquo;, &ldquo;accuracy&rdquo;, etc.</li>
+<li><b><code>metric_name</code></b>: <code>str</code>, metric to track. "loss", "accuracy", etc.</li>
 <li><b><code>threshold</code></b>: Numeric threshold for the given metric.</li>
 <li><b><code>eval_dir</code></b>: If set, directory containing summary files with eval metrics. By
-default, <code>estimator.eval_dir()</code> will be used.</li>
+  default, <code>estimator.eval_dir()</code> will be used.</li>
 <li><b><code>min_steps</code></b>: <code>int</code>, stop is never requested if global step is less than this
-value. Defaults to 0.</li>
+  value. Defaults to 0.</li>
 <li><b><code>run_every_secs</code></b>: If specified, calls <code>should_stop_fn</code> at an interval of
-<code>run_every_secs</code> seconds. Defaults to 60 seconds. Either this or
-<code>run_every_steps</code> must be set.</li>
+  <code>run_every_secs</code> seconds. Defaults to 60 seconds. Either this or
+  <code>run_every_steps</code> must be set.</li>
 <li><b><code>run_every_steps</code></b>: If specified, calls <code>should_stop_fn</code> every
-<code>run_every_steps</code> steps. Either this or <code>run_every_secs</code> must be set.</li>
+  <code>run_every_steps</code> steps. Either this or <code>run_every_secs</code> must be set.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>An early-stopping hook of type <code>SessionRunHook</code> that periodically checks
 if the given metric is higher than specified threshold and initiates
 early stopping if true.</p>
+    </body>
+    </html>
+   

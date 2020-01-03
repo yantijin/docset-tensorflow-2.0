@@ -1,49 +1,46 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.nn.dropout" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.compat.v1.nn.dropout</h1>
-
+<h1 id="tfcompatv1nndropout">tf.compat.v1.nn.dropout</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/nn_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Computes dropout. (deprecated arguments)</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">keep_prob</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">noise_shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">rate</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-tf.compat.v1.nn.dropout(
-    x,
-    keep_prob=None,
-    noise_shape=None,
-    seed=None,
-    name=None,
-    rate=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>Warning: SOME ARGUMENTS ARE DEPRECATED: <code>(keep_prob)</code>. They will be removed in a future version.
 Instructions for updating:
 Please use <code>rate</code> instead of <code>keep_prob</code>. Rate should be set to <code>rate = 1 - keep_prob</code>.</p>
-
 <p>For each element of <code>x</code>, with probability <code>rate</code>, outputs <code>0</code>, and otherwise
 scales up the input by <code>1 / (1-rate)</code>. The scaling is such that the expected
 sum is unchanged.</p>
-
 <p>By default, each element is kept or dropped independently.  If <code>noise_shape</code>
 is specified, it must be
 <a href="http://docs.scipy.org/doc/numpy/user/basics.broadcasting.html">broadcastable</a>
@@ -51,30 +48,25 @@ to the shape of <code>x</code>, and only dimensions with <code>noise_shape[i] ==
 will make independent decisions.  For example, if <code>shape(x) = [k, l, m, n]</code>
 and <code>noise_shape = [k, 1, 1, n]</code>, each batch and channel component will be
 kept independently and each row and column will be kept or not kept together.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>x</code></b>: A floating point tensor.</li>
 <li><b><code>keep_prob</code></b>: (deprecated) A deprecated alias for <code>(1-rate)</code>.</li>
 <li><b><code>noise_shape</code></b>: A 1-D <code>Tensor</code> of type <code>int32</code>, representing the
-shape for randomly generated keep/drop flags.</li>
+  shape for randomly generated keep/drop flags.</li>
 <li><b><code>seed</code></b>: A Python integer. Used to create random seeds. See
-<a href="../../../../tf/compat/v1/set_random_seed.html"><code>tf.compat.v1.set_random_seed</code></a> for behavior.</li>
+  <a href="../../../../tf/compat/v1/set_random_seed.html"><code>tf.compat.v1.set_random_seed</code></a> for behavior.</li>
 <li><b><code>name</code></b>: A name for this operation (optional).</li>
 <li><b><code>rate</code></b>: A scalar <code>Tensor</code> with the same type as <code>x</code>. The probability that each
-element of <code>x</code> is discarded.</li>
+  element of <code>x</code> is discarded.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A Tensor of the same shape of <code>x</code>.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: If <code>rate</code> is not in <code>[0, 1)</code> or if <code>x</code> is not a floating
-point tensor.</li>
+  point tensor.</li>
 </ul>
-
+    </body>
+    </html>
+   

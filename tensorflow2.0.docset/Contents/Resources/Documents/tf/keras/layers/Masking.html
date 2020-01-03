@@ -1,78 +1,66 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.keras.layers.Masking" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="__init__"/>
 </div>
 
-
-<h1>tf.keras.layers.Masking</h1>
-
+<h1 id="tfkeraslayersmasking">tf.keras.layers.Masking</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/core.py">View source</a></p>
-
-<h2>Class <code>Masking</code></h2>
-
+<h2 id="class-masking">Class <code>Masking</code></h2>
 <!-- Start diff -->
 
-
 <p>Masks a sequence by using a mask value to skip timesteps.</p>
-
 <p>Inherits From: <a href="../../../tf/keras/layers/Layer.html"><code>Layer</code></a></p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li>Class <code>tf.compat.v1.keras.layers.Masking</code></li>
 <li>Class <code>tf.compat.v2.keras.layers.Masking</code></li>
 </ul>
-
-
 <!-- Placeholder for "Used in" -->
-
 
 <p>For each timestep in the input tensor (dimension #1 in the tensor),
 if all values in the input tensor at that timestep
 are equal to <code>mask_value</code>, then the timestep will be masked (skipped)
 in all downstream layers (as long as they support masking).</p>
-
 <p>If any downstream layer does not support masking yet receives such
 an input mask, an exception will be raised.</p>
-
-<h4>Example:</h4>
-
+<h4 id="example">Example:</h4>
 <p>Consider a Numpy data array <code>x</code> of shape <code>(samples, timesteps, features)</code>,
 to be fed to an LSTM layer.
 You want to mask timestep #3 and #5 because you lack data for
 these timesteps. You can:</p>
-
 <ul>
 <li>Set <code>x[:, 3, :] = 0.</code> and <code>x[:, 5, :] = 0.</code></li>
 <li>Insert a <code>Masking</code> layer with <code>mask_value=0.</code> before the LSTM layer:</li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Masking</span><span class="p">(</span><span class="n">mask_value</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="n">timesteps</span><span class="p">,</span> <span class="n">features</span><span class="p">)))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">LSTM</span><span class="p">(</span><span class="mi">32</span><span class="p">))</span>
+</pre></div>
 
-
-<p><code>python
-model = Sequential()
-model.add(Masking(mask_value=0., input_shape=(timesteps, features)))
-model.add(LSTM(32))
-</code></p>
 
 <h2 id="__init__"><code>__init__</code></h2>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/core.py">View source</a></p>
-
-<p><code>python
-__init__(
-    mask_value=0.0,
-    **kwargs
-)
-</code></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">mask_value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+    </body>
+    </html>
+   

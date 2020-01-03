@@ -1,72 +1,64 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.nn.sufficient_statistics" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.nn.sufficient_statistics</h1>
-
+<h1 id="tfnnsufficient_statistics">tf.nn.sufficient_statistics</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/nn_impl.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Calculate the sufficient statistics for the mean and variance of <code>x</code>.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v2.nn.sufficient_statistics</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">sufficient_statistics</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">axes</span><span class="p">,</span>
+    <span class="n">shift</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">keepdims</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.nn.sufficient_statistics(
-    x,
-    axes,
-    shift=None,
-    keepdims=False,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>These sufficient statistics are computed using the one pass algorithm on
-an input that&rsquo;s optionally shifted. See:
+an input that's optionally shifted. See:
 https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance#Computing_shifted_data</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>x</code></b>: A <code>Tensor</code>.</li>
 <li><b><code>axes</code></b>: Array of ints. Axes along which to compute mean and variance.</li>
 <li><b><code>shift</code></b>: A <code>Tensor</code> containing the value by which to shift the data for
-numerical stability, or <code>None</code> if no shift is to be performed. A shift
-close to the true mean provides the most numerically stable results.</li>
+  numerical stability, or <code>None</code> if no shift is to be performed. A shift
+  close to the true mean provides the most numerically stable results.</li>
 <li><b><code>keepdims</code></b>: produce statistics with the same dimensionality as the input.</li>
 <li><b><code>name</code></b>: Name used to scope the operations that compute the sufficient stats.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>Four <code>Tensor</code> objects of the same type as <code>x</code>:</p>
-
 <ul>
 <li>the count (number of elements to average over).</li>
 <li>the (possibly shifted) sum of the elements in the array.</li>
 <li>the (possibly shifted) sum of squares of the elements in the array.</li>
 <li>the shift by which the mean must be corrected or None if <code>shift</code> is None.</li>
 </ul>
-
+    </body>
+    </html>
+   

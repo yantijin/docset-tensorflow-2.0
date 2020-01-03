@@ -1,4 +1,13 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.estimator.Head" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="logits_dimension"/>
@@ -11,13 +20,8 @@
 <meta itemprop="property" content="update_metrics"/>
 </div>
 
-
-<h1>tf.estimator.Head</h1>
-
+<h1 id="tfestimatorhead">tf.estimator.Head</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 
@@ -28,305 +32,238 @@
   </a>
 </td></table>
 
-
-<h2>Class <code>Head</code></h2>
-
+<h2 id="class-head">Class <code>Head</code></h2>
 <!-- Start diff -->
 
-
 <p>Interface for the head/top of a model.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li>Class <code>tf.compat.v1.estimator.Head</code></li>
 <li>Class <code>tf.compat.v2.estimator.Head</code></li>
 </ul>
-
-
 <!-- Placeholder for "Used in" -->
-
 
 <p>Head sits on top of the model network and handles computing the outputs of
 the network. Given logits (or output of a hidden layer), a Head knows how to
 compute predictions, loss, train_op, metrics and export outputs. It is meant
 to:</p>
-
 <ol>
 <li>Simplify writing model_fn and to make model_fn more configurable for
-Estimator.</li>
+   Estimator.</li>
 <li>Simpilfy creating loss and metrics for the train and test loop in Eager
-execution.</li>
+   execution.</li>
 <li>Support wide range of machine learning models. Since most heads can work
-with logits, they can support DNN, RNN, Wide, Wide&amp;Deep,
-Global objectives, Gradient boosted trees and many other types
-of machine learning models.</li>
+   with logits, they can support DNN, RNN, Wide, Wide&amp;Deep,
+   Global objectives, Gradient boosted trees and many other types
+   of machine learning models.</li>
 </ol>
-
-
-<h4>Common usage:</h4>
-
+<h4 id="common-usage">Common usage:</h4>
 <p>Here is simplified model_fn to build a DNN regression model.
   ```python
   def _my_dnn_model_fn(features, labels, mode, params, config=None):
     # Optionally your callers can pass head to model_fn as a param.
-    head = tf.estimator.RegressionHead(&hellip;)</p>
+    head = tf.estimator.RegressionHead(...)</p>
+<div class="codehilite"><pre><span></span><span class="o">#</span> <span class="n">TODO</span><span class="p">(</span><span class="n">b</span><span class="o">/</span><span class="mi">117839674</span><span class="p">):</span> <span class="k">update</span> <span class="n">feature_column</span>
+<span class="n">inputs</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">feature_column</span><span class="p">.</span><span class="n">input_layer</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="p">...)</span>
 
-<pre><code># TODO(b/117839674): update feature_column
-inputs = tf.feature_column.input_layer(features, ...)
+<span class="o">#</span> <span class="n">Compute</span> <span class="n">logits</span> <span class="k">with</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span> <span class="n">API</span>
+<span class="n">hidden_layer0</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Dense</span><span class="p">(</span>
+    <span class="n">units</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="ss">&quot;relu&quot;</span><span class="p">)(</span><span class="n">inputs</span><span class="p">)</span>
+<span class="n">hidden_layer1</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Dense</span><span class="p">(</span>
+    <span class="n">units</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="ss">&quot;relu&quot;</span><span class="p">)(</span><span class="n">hidden_layer0</span><span class="p">)</span>
+<span class="n">logits</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Dense</span><span class="p">(</span>
+    <span class="n">units</span><span class="o">=</span><span class="n">head</span><span class="p">.</span><span class="n">logits_dimension</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="k">None</span><span class="p">)(</span><span class="n">hidden_layer1</span><span class="p">)</span>
 
-# Compute logits with tf.keras.layers API
-hidden_layer0 = tf.keras.layers.Dense(
-    units=1000, activation="relu")(inputs)
-hidden_layer1 = tf.keras.layers.Dense(
-    units=500, activation="relu")(hidden_layer0)
-logits = tf.keras.layers.Dense(
-    units=head.logits_dimension, activation=None)(hidden_layer1)
+<span class="o">#</span> <span class="k">Or</span> <span class="n">use</span> <span class="n">Keras</span> <span class="n">model</span> <span class="k">for</span> <span class="n">logits</span> <span class="n">computation</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">Sequential</span><span class="p">()</span>
+<span class="n">model</span><span class="p">.</span><span class="k">add</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="ss">&quot;relu&quot;</span><span class="p">))</span>
+<span class="n">model</span><span class="p">.</span><span class="k">add</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="ss">&quot;relu&quot;</span><span class="p">))</span>
+<span class="n">model</span><span class="p">.</span><span class="k">add</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="n">Dense</span><span class="p">(</span>
+   <span class="n">units</span><span class="o">=</span><span class="n">head</span><span class="p">.</span><span class="n">logits_dimension</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="k">None</span><span class="p">))</span>
+<span class="n">logits</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
 
-# Or use Keras model for logits computation
-model = tf.keras.Sequential()
-model.add(tf.keras.layers.Dense(units=1000, activation="relu"))
-model.add(tf.keras.layers.Dense(units=500, activation="relu"))
-model.add(tf.keras.layers.Dense(
-   units=head.logits_dimension, activation=None))
-logits = model(inputs)
+<span class="k">return</span> <span class="n">head</span><span class="p">.</span><span class="n">create_estimator_spec</span><span class="p">(</span>
+    <span class="n">features</span><span class="o">=</span><span class="n">features</span><span class="p">,</span>
+    <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span>
+    <span class="k">mode</span><span class="o">=</span><span class="k">mode</span><span class="p">,</span>
+    <span class="n">logits</span><span class="o">=</span><span class="n">logits</span><span class="p">,</span>
+    <span class="n">optimizer</span><span class="o">=</span><span class="n">optimizer</span><span class="p">)</span>
+</pre></div>
 
-return head.create_estimator_spec(
-    features=features,
-    labels=labels,
-    mode=mode,
-    logits=logits,
-    optimizer=optimizer)
-</code></pre>
 
-<p>  ```</p>
-
-<h2>Properties</h2>
-
+<p>```</p>
+<h2 id="properties">Properties</h2>
 <h3 id="logits_dimension"><code>logits_dimension</code></h3>
 
-
 <p>Size of the last dimension of the logits <code>Tensor</code>.</p>
-
 <p>Often is the number of classes, labels, or real values to be predicted.
 Typically, logits is of shape <code>[batch_size, logits_dimension]</code>.</p>
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>The expected size of the <code>logits</code> tensor.</p>
-
 <h3 id="loss_reduction"><code>loss_reduction</code></h3>
 
-
 <p>One of <a href="../../tf/keras/losses/Reduction.html"><code>tf.losses.Reduction</code></a>.</p>
-
 <p>Describes how to reduce training loss over batch, such as mean or sum.</p>
-
-<h4>Returns:</h4>
-
+<h4 id="returns_1">Returns:</h4>
 <p>The type of loss reduction used in the head.</p>
-
 <h3 id="name"><code>name</code></h3>
 
-
 <p>The name of this head.</p>
-
-<h4>Returns:</h4>
-
+<h4 id="returns_2">Returns:</h4>
 <p>A string.</p>
-
-<h2>Methods</h2>
-
+<h2 id="methods">Methods</h2>
 <h3 id="create_estimator_spec"><code>create_estimator_spec</code></h3>
 
-
 <p><a target="_blank" href="https://github.com/tensorflow/estimator/tree/master/tensorflow_estimator/python/estimator/head/base_head.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">create_estimator_spec</span><span class="p">(</span>
+    <span class="n">features</span><span class="p">,</span>
+    <span class="n">mode</span><span class="p">,</span>
+    <span class="n">logits</span><span class="p">,</span>
+    <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">optimizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">trainable_variables</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">train_op_fn</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">update_ops</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">regularization_losses</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-create_estimator_spec(
-    features,
-    mode,
-    logits,
-    labels=None,
-    optimizer=None,
-    trainable_variables=None,
-    train_op_fn=None,
-    update_ops=None,
-    regularization_losses=None
-)
-</code></p>
 
 <p>Returns <code>EstimatorSpec</code> that a model_fn can return.</p>
-
 <p>It is recommended to pass all args via name.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>features</code></b>: Input <code>dict</code> mapping string feature names to <code>Tensor</code> or
-<code>SparseTensor</code> objects containing the values for that feature in a
-minibatch. Often to be used to fetch example-weight tensor.</li>
-<li><b><code>mode</code></b>: Estimator&rsquo;s <code>ModeKeys</code>.</li>
+  <code>SparseTensor</code> objects containing the values for that feature in a
+  minibatch. Often to be used to fetch example-weight tensor.</li>
+<li><b><code>mode</code></b>: Estimator's <code>ModeKeys</code>.</li>
 <li><b><code>logits</code></b>: Logits <code>Tensor</code> to be used by the head.</li>
 <li><b><code>labels</code></b>: Labels <code>Tensor</code>, or <code>dict</code> mapping string label names to <code>Tensor</code>
-objects of the label values.</li>
+  objects of the label values.</li>
 <li><b><code>optimizer</code></b>: An <a href="../../tf/keras/optimizers/Optimizer.html"><code>tf.keras.optimizers.Optimizer</code></a> instance to optimize the
-loss in TRAIN mode. Namely, sets <code>train_op = optimizer.get_updates(loss,
-trainable_variables)</code>, which updates variables to minimize <code>loss</code>.</li>
+  loss in TRAIN mode. Namely, sets <code>train_op = optimizer.get_updates(loss,
+  trainable_variables)</code>, which updates variables to minimize <code>loss</code>.</li>
 <li><b><code>trainable_variables</code></b>: A list or tuple of <code>Variable</code> objects to update to
-minimize <code>loss</code>. In Tensorflow 1.x, by default these are the list of
-variables collected in the graph under the key
-<code>GraphKeys.TRAINABLE_VARIABLES</code>. As Tensorflow 2.x doesn&rsquo;t have
-collections and GraphKeys, trainable_variables need to be passed
-explicitly here.</li>
+  minimize <code>loss</code>. In Tensorflow 1.x, by default these are the list of
+  variables collected in the graph under the key
+  <code>GraphKeys.TRAINABLE_VARIABLES</code>. As Tensorflow 2.x doesn't have
+  collections and GraphKeys, trainable_variables need to be passed
+  explicitly here.</li>
 <li><b><code>train_op_fn</code></b>: Function that takes a scalar loss <code>Tensor</code> and returns an op
-to optimize the model with the loss in TRAIN mode. Used if <code>optimizer</code>
-is <code>None</code>. Exactly one of <code>train_op_fn</code> and <code>optimizer</code> must be set in
-TRAIN mode. By default, it is <code>None</code> in other modes. If you want to
-optimize loss yourself, you can pass <code>lambda _: tf.no_op()</code> and then use
-<a href="../../tf/estimator/EstimatorSpec.html#loss"><code>EstimatorSpec.loss</code></a> to compute and apply gradients.</li>
+  to optimize the model with the loss in TRAIN mode. Used if <code>optimizer</code>
+  is <code>None</code>. Exactly one of <code>train_op_fn</code> and <code>optimizer</code> must be set in
+  TRAIN mode. By default, it is <code>None</code> in other modes. If you want to
+  optimize loss yourself, you can pass <code>lambda _: tf.no_op()</code> and then use
+  <a href="../../tf/estimator/EstimatorSpec.html#loss"><code>EstimatorSpec.loss</code></a> to compute and apply gradients.</li>
 <li><b><code>update_ops</code></b>: A list or tuple of update ops to be run at training time. For
-example, layers such as BatchNormalization create mean and variance
-update ops that need to be run at training time. In Tensorflow 1.x,
-these are thrown into an UPDATE_OPS collection. As Tensorflow 2.x
-doesn&rsquo;t have collections, update_ops need to be passed explicitly here.</li>
+  example, layers such as BatchNormalization create mean and variance
+  update ops that need to be run at training time. In Tensorflow 1.x,
+  these are thrown into an UPDATE_OPS collection. As Tensorflow 2.x
+  doesn't have collections, update_ops need to be passed explicitly here.</li>
 <li><b><code>regularization_losses</code></b>: A list of additional scalar losses to be added to
-the training loss, such as regularization losses.</li>
+  the training loss, such as regularization losses.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_3">Returns:</h4>
 <p><code>EstimatorSpec</code>.</p>
-
 <h3 id="loss"><code>loss</code></h3>
 
-
 <p><a target="_blank" href="https://github.com/tensorflow/estimator/tree/master/tensorflow_estimator/python/estimator/head/base_head.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">loss</span><span class="p">(</span>
+    <span class="n">labels</span><span class="p">,</span>
+    <span class="n">logits</span><span class="p">,</span>
+    <span class="n">features</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">mode</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">regularization_losses</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-loss(
-    labels,
-    logits,
-    features=None,
-    mode=None,
-    regularization_losses=None
-)
-</code></p>
 
 <p>Returns a loss <code>Tensor</code> from provided arguments.</p>
-
 <p>Note that, the args of <code>features</code> and <code>mode</code> are most likely not used, but
 some Head implementations may require them.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_1">Args:</h4>
 <ul>
 <li><b><code>labels</code></b>: Labels <code>Tensor</code>, or <code>dict</code> mapping string label names to <code>Tensor</code>
-objects of the label values.</li>
+  objects of the label values.</li>
 <li><b><code>logits</code></b>: Logits <code>Tensor</code> to be used for loss construction.</li>
 <li><b><code>features</code></b>: Input <code>dict</code> mapping string feature names to <code>Tensor</code> or
-<code>SparseTensor</code> objects containing the values for that feature in a
-minibatch. Often to be used to fetch example-weight tensor.</li>
-<li><b><code>mode</code></b>: Estimator&rsquo;s <code>ModeKeys</code>. To be used in case loss calculation is
-different in Train and Eval mode.</li>
+  <code>SparseTensor</code> objects containing the values for that feature in a
+  minibatch. Often to be used to fetch example-weight tensor.</li>
+<li><b><code>mode</code></b>: Estimator's <code>ModeKeys</code>. To be used in case loss calculation is
+  different in Train and Eval mode.</li>
 <li><b><code>regularization_losses</code></b>: A list of additional scalar losses to be added to
-the training loss, such as regularization losses.</li>
+  the training loss, such as regularization losses.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_4">Returns:</h4>
 <p>A scalar <code>Tensor</code> representing regularized training loss used in train and
 eval.</p>
-
 <h3 id="metrics"><code>metrics</code></h3>
 
-
 <p><a target="_blank" href="https://github.com/tensorflow/estimator/tree/master/tensorflow_estimator/python/estimator/head/base_head.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">metrics</span><span class="p">(</span><span class="n">regularization_losses</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-metrics(regularization_losses=None)
-</code></p>
 
 <p>Returns a <code>dict</code> of metric objects.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_2">Args:</h4>
 <ul>
 <li><b><code>regularization_losses</code></b>: A list of additional scalar losses to be added to
-the training loss, such as regularization losses.</li>
+  the training loss, such as regularization losses.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_5">Returns:</h4>
 <p>A <code>dict</code> of metrics keyed by string name. The value is an instance of
 <code>Metric</code> class.</p>
-
 <h3 id="predictions"><code>predictions</code></h3>
 
-
 <p><a target="_blank" href="https://github.com/tensorflow/estimator/tree/master/tensorflow_estimator/python/estimator/head/base_head.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">predictions</span><span class="p">(</span>
+    <span class="n">logits</span><span class="p">,</span>
+    <span class="n">keys</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-predictions(
-    logits,
-    keys=None
-)
-</code></p>
 
 <p>Returns a <code>dict</code> of predictions from provided logits.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_3">Args:</h4>
 <ul>
 <li><b><code>logits</code></b>: Logits <code>Tensor</code> to be used for prediction construction.</li>
 <li><b><code>keys</code></b>: A list of <code>string</code> for prediction keys. Defaults to <code>None</code>, meaning
-if not specified, predictions will be created for all the pre-defined
-valid keys in the head.</li>
+  if not specified, predictions will be created for all the pre-defined
+  valid keys in the head.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_6">Returns:</h4>
 <p>A <code>dict</code> of predicted <code>Tensor</code> keyed by prediction name.</p>
-
 <h3 id="update_metrics"><code>update_metrics</code></h3>
 
-
 <p><a target="_blank" href="https://github.com/tensorflow/estimator/tree/master/tensorflow_estimator/python/estimator/head/base_head.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">update_metrics</span><span class="p">(</span>
+    <span class="n">eval_metrics</span><span class="p">,</span>
+    <span class="n">features</span><span class="p">,</span>
+    <span class="n">logits</span><span class="p">,</span>
+    <span class="n">labels</span><span class="p">,</span>
+    <span class="n">mode</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">regularization_losses</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-update_metrics(
-    eval_metrics,
-    features,
-    logits,
-    labels,
-    mode=None,
-    regularization_losses=None
-)
-</code></p>
 
 <p>Updates metric objects and returns a <code>dict</code> of the updated metrics.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_4">Args:</h4>
 <ul>
 <li><b><code>eval_metrics</code></b>: A <code>dict</code> of metrics to be updated.</li>
 <li><b><code>features</code></b>: Input <code>dict</code> mapping string feature names to <code>Tensor</code> or
-<code>SparseTensor</code> objects containing the values for that feature in a
-minibatch. Often to be used to fetch example-weight tensor.</li>
+  <code>SparseTensor</code> objects containing the values for that feature in a
+  minibatch. Often to be used to fetch example-weight tensor.</li>
 <li><b><code>logits</code></b>: logits <code>Tensor</code> to be used for metrics update.</li>
 <li><b><code>labels</code></b>: Labels <code>Tensor</code>, or <code>dict</code> mapping string label names to <code>Tensor</code>
-objects of the label values.</li>
-<li><b><code>mode</code></b>: Estimator&rsquo;s <code>ModeKeys</code>.</li>
+  objects of the label values.</li>
+<li><b><code>mode</code></b>: Estimator's <code>ModeKeys</code>.</li>
 <li><b><code>regularization_losses</code></b>: A list of additional scalar losses to be added to
-the training and evaluation loss, such as regularization losses.</li>
+  the training and evaluation loss, such as regularization losses.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_7">Returns:</h4>
 <p>A <code>dict</code> of updated metrics keyed by name. The value is an instance of
 <code>Metric</code> class.</p>
+    </body>
+    </html>
+   

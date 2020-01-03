@@ -1,57 +1,53 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.shape" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.compat.v1.shape</h1>
-
+<h1 id="tfcompatv1shape">tf.compat.v1.shape</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/array_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Returns the shape of a tensor.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span>
+    <span class="nb">input</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">out_type</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">int32</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-tf.compat.v1.shape(
-    input,
-    name=None,
-    out_type=tf.dtypes.int32
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>This operation returns a 1-D integer tensor representing the shape of <code>input</code>.</p>
+<h4 id="for-example">For example:</h4>
+<div class="codehilite"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]],</span> <span class="p">[[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">]]])</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>  <span class="c1"># [2, 2, 3]</span>
+</pre></div>
 
-<h4>For example:</h4>
 
-<p><code>python
-t = tf.constant([[[1, 1, 1], [2, 2, 2]], [[3, 3, 3], [4, 4, 4]]])
-tf.shape(t)  # [2, 2, 3]
-</code></p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>input</code></b>: A <code>Tensor</code> or <code>SparseTensor</code>.</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 <li><b><code>out_type</code></b>: (Optional) The specified output type of the operation (<code>int32</code> or
-<code>int64</code>). Defaults to <a href="../../../tf.html#int32"><code>tf.int32</code></a>.</li>
+  <code>int64</code>). Defaults to <a href="../../../tf.html#int32"><code>tf.int32</code></a>.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>Tensor</code> of type <code>out_type</code>.</p>
+    </body>
+    </html>
+   

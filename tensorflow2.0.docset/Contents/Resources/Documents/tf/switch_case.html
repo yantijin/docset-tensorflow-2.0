@@ -1,125 +1,107 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../default.css" rel="stylesheet">
+    <link href="
+   ../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.switch_case" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.switch_case</h1>
-
+<h1 id="tfswitch_case">tf.switch_case</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/control_flow_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Create a switch/case operation, i.e. an integer-indexed conditional.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.switch_case</code></li>
 <li><code>tf.compat.v2.switch_case</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">switch_case</span><span class="p">(</span>
+    <span class="n">branch_index</span><span class="p">,</span>
+    <span class="n">branch_fns</span><span class="p">,</span>
+    <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;switch_case&#39;</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.switch_case(
-    branch_index,
-    branch_fns,
-    default=None,
-    name='switch_case'
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>See also <a href="../tf/case.html"><code>tf.case</code></a>.</p>
-
 <p>This op can be substantially more efficient than <a href="../tf/case.html"><code>tf.case</code></a> when exactly one
 branch will be selected. <a href="../tf/switch_case.html"><code>tf.switch_case</code></a> is more like a C++ switch/case
 statement than <a href="../tf/case.html"><code>tf.case</code></a>, which is more like an if/elif/elif/else chain.</p>
-
 <p>The <code>branch_fns</code> parameter is either a list
 of (int, callable) pairs, or simply a list of callables (in which case the
 index is implicitly the key). The <code>branch_index</code> <code>Tensor</code> is used to select an
 element in <code>branch_fns</code> with matching <code>int</code> key, falling back to <code>default</code>
 if none match, or <code>max(keys)</code> if no <code>default</code> is provided. The keys must form
 a contiguous set from <code>0</code> to <code>len(branch_fns) - 1</code>.</p>
-
 <p><a href="../tf/switch_case.html"><code>tf.switch_case</code></a> supports nested structures as implemented in <a href="../tf/nest.html"><code>tf.nest</code></a>. All
 callables must return the same (possibly nested) value structure of lists,
 tuples, and/or named tuples.</p>
-
 <p><strong>Example:</strong></p>
+<h4 id="pseudocode">Pseudocode:</h4>
+<div class="codehilite"><pre><span></span><span class="k">switch</span> <span class="p">(</span><span class="n">branch_index</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// c-style switch</span>
+  <span class="k">case</span> <span class="mi">0</span><span class="o">:</span> <span class="k">return</span> <span class="mi">17</span><span class="p">;</span>
+  <span class="k">case</span> <span class="mi">1</span><span class="o">:</span> <span class="k">return</span> <span class="mi">31</span><span class="p">;</span>
+  <span class="k">default</span><span class="o">:</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
 
-<h4>Pseudocode:</h4>
 
-<p><code>c++
-switch (branch_index) {  // c-style switch
-  case 0: return 17;
-  case 1: return 31;
-  default: return -1;
-}
-</code>
-or
-<code>python
-branches = {0: lambda: 17, 1: lambda: 31}
-branches.get(branch_index, lambda: -1)()
-</code></p>
+<p>or</p>
+<div class="codehilite"><pre><span></span><span class="n">branches</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="k">lambda</span><span class="p">:</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="k">lambda</span><span class="p">:</span> <span class="mi">31</span><span class="p">}</span>
+<span class="n">branches</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">branch_index</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">)()</span>
+</pre></div>
 
-<h4>Expressions:</h4>
 
-<p>```python
-def f1(): return tf.constant(17)
-def f2(): return tf.constant(31)
-def f3(): return tf.constant(-1)
-r = tf.switch_case(branch_index, branch_fns={0: f1, 1: f2}, default=f3)</p>
+<h4 id="expressions">Expressions:</h4>
+<div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">f1</span><span class="p">():</span> <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">f2</span><span class="p">():</span> <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="mi">31</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">f3</span><span class="p">():</span> <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">switch_case</span><span class="p">(</span><span class="n">branch_index</span><span class="p">,</span> <span class="n">branch_fns</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="n">f1</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="n">f2</span><span class="p">},</span> <span class="n">default</span><span class="o">=</span><span class="n">f3</span><span class="p">)</span>
+<span class="c1"># Equivalent: tf.switch_case(branch_index, branch_fns={0: f1, 1: f2, 2: f3})</span>
+</pre></div>
 
-<h1>Equivalent: tf.switch_case(branch_index, branch_fns={0: f1, 1: f2, 2: f3})</h1>
 
-<p>```</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>branch_index</code></b>: An int Tensor specifying which of <code>branch_fns</code> should be
-executed.</li>
+  executed.</li>
 <li><b><code>branch_fns</code></b>: A <code>list</code> of (int, callable) pairs, or simply a list of
 callables (in which case the index serves as the key). Each callable must
 return a matching structure of tensors.</li>
 <li><b><code>default</code></b>: Optional callable that returns a structure of tensors.</li>
 <li><b><code>name</code></b>: A name for this operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>The tensors returned by the callable identified by <code>branch_index</code>, or those
 returned by <code>default</code> if no key matches and <code>default</code> was provided, or those
 returned by the max-keyed <code>branch_fn</code> if no <code>default</code> is provided.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>TypeError</code></b>: If <code>branch_fns</code> is not a list/dictionary.</li>
 <li><b><code>TypeError</code></b>: If <code>branch_fns</code> is a list but does not contain 2-tuples or
-         callables.</li>
+           callables.</li>
 <li><b><code>TypeError</code></b>: If <code>fns[i]</code> is not callable for any i, or <code>default</code> is not
-         callable.</li>
+           callable.</li>
 </ul>
-
-
-<h4>V2 Compatibility</h4>
-
+<h4 id="v2-compatibility">V2 Compatibility</h4>
 <p><code>branch_fns</code> could be a dictionary in v1. However, tf.Tensor and
 tf.Variable are no longer hashable in v2, so cannot be used as a key for a
 dictionary.  Please use a list or a tuple instead.</p>
+    </body>
+    </html>
+   

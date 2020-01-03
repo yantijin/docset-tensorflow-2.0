@@ -1,88 +1,79 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.nn.atrous_conv2d_transpose" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.nn.atrous_conv2d_transpose</h1>
-
+<h1 id="tfnnatrous_conv2d_transpose">tf.nn.atrous_conv2d_transpose</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/nn_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>The transpose of <code>atrous_conv2d</code>.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.nn.atrous_conv2d_transpose</code></li>
 <li><code>tf.compat.v2.nn.atrous_conv2d_transpose</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">atrous_conv2d_transpose</span><span class="p">(</span>
+    <span class="n">value</span><span class="p">,</span>
+    <span class="n">filters</span><span class="p">,</span>
+    <span class="n">output_shape</span><span class="p">,</span>
+    <span class="n">rate</span><span class="p">,</span>
+    <span class="n">padding</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.nn.atrous_conv2d_transpose(
-    value,
-    filters,
-    output_shape,
-    rate,
-    padding,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
-<p>This operation is sometimes called &ldquo;deconvolution&rdquo; after <a href="https://www.matthewzeiler.com/mattzeiler/deconvolutionalnetworks.pdf">Deconvolutional
+<p>This operation is sometimes called "deconvolution" after <a href="https://www.matthewzeiler.com/mattzeiler/deconvolutionalnetworks.pdf">Deconvolutional
 Networks</a>,
 but is really the transpose (gradient) of <code>atrous_conv2d</code> rather than an
 actual deconvolution.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>value</code></b>: A 4-D <code>Tensor</code> of type <code>float</code>. It needs to be in the default <code>NHWC</code>
-format. Its shape is <code>[batch, in_height, in_width, in_channels]</code>.</li>
+  format. Its shape is <code>[batch, in_height, in_width, in_channels]</code>.</li>
 <li><b><code>filters</code></b>: A 4-D <code>Tensor</code> with the same type as <code>value</code> and shape
-<code>[filter_height, filter_width, out_channels, in_channels]</code>. <code>filters</code>&lsquo;
-<code>in_channels</code> dimension must match that of <code>value</code>. Atrous convolution is
-equivalent to standard convolution with upsampled filters with effective
-height <code>filter_height + (filter_height - 1) * (rate - 1)</code> and effective
-width <code>filter_width + (filter_width - 1) * (rate - 1)</code>, produced by
-inserting <code>rate - 1</code> zeros along consecutive elements across the
-<code>filters</code>&rsquo; spatial dimensions.</li>
+  <code>[filter_height, filter_width, out_channels, in_channels]</code>. <code>filters</code>'
+  <code>in_channels</code> dimension must match that of <code>value</code>. Atrous convolution is
+  equivalent to standard convolution with upsampled filters with effective
+  height <code>filter_height + (filter_height - 1) * (rate - 1)</code> and effective
+  width <code>filter_width + (filter_width - 1) * (rate - 1)</code>, produced by
+  inserting <code>rate - 1</code> zeros along consecutive elements across the
+  <code>filters</code>' spatial dimensions.</li>
 <li><b><code>output_shape</code></b>: A 1-D <code>Tensor</code> of shape representing the output shape of the
-deconvolution op.</li>
+  deconvolution op.</li>
 <li><b><code>rate</code></b>: A positive int32. The stride with which we sample input values across
-the <code>height</code> and <code>width</code> dimensions. Equivalently, the rate by which we
-upsample the filter values by inserting zeros across the <code>height</code> and
-<code>width</code> dimensions. In the literature, the same parameter is sometimes
-called <code>input stride</code> or <code>dilation</code>.</li>
+  the <code>height</code> and <code>width</code> dimensions. Equivalently, the rate by which we
+  upsample the filter values by inserting zeros across the <code>height</code> and
+  <code>width</code> dimensions. In the literature, the same parameter is sometimes
+  called <code>input stride</code> or <code>dilation</code>.</li>
 <li><b><code>padding</code></b>: A string, either <code>'VALID'</code> or <code>'SAME'</code>. The padding algorithm.</li>
 <li><b><code>name</code></b>: Optional name for the returned tensor.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>Tensor</code> with the same type as <code>value</code>.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
-<li><b><code>ValueError</code></b>: If input/output depth does not match <code>filters</code>&lsquo; shape, or if
-padding is other than <code>'VALID'</code> or <code>'SAME'</code>, or if the <code>rate</code> is less
-than one, or if the output_shape is not a tensor with 4 elements.</li>
+<li><b><code>ValueError</code></b>: If input/output depth does not match <code>filters</code>' shape, or if
+  padding is other than <code>'VALID'</code> or <code>'SAME'</code>, or if the <code>rate</code> is less
+  than one, or if the output_shape is not a tensor with 4 elements.</li>
 </ul>
-
+    </body>
+    </html>
+   

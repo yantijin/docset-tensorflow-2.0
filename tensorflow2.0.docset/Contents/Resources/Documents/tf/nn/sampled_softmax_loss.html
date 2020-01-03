@@ -1,115 +1,104 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.nn.sampled_softmax_loss" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.nn.sampled_softmax_loss</h1>
-
+<h1 id="tfnnsampled_softmax_loss">tf.nn.sampled_softmax_loss</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/nn_impl.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Computes and returns the sampled softmax training loss.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v2.nn.sampled_softmax_loss</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">sampled_softmax_loss</span><span class="p">(</span>
+    <span class="n">weights</span><span class="p">,</span>
+    <span class="n">biases</span><span class="p">,</span>
+    <span class="n">labels</span><span class="p">,</span>
+    <span class="n">inputs</span><span class="p">,</span>
+    <span class="n">num_sampled</span><span class="p">,</span>
+    <span class="n">num_classes</span><span class="p">,</span>
+    <span class="n">num_true</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">sampled_values</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">remove_accidental_hits</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;sampled_softmax_loss&#39;</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.nn.sampled_softmax_loss(
-    weights,
-    biases,
-    labels,
-    inputs,
-    num_sampled,
-    num_classes,
-    num_true=1,
-    sampled_values=None,
-    remove_accidental_hits=True,
-    seed=None,
-    name='sampled_softmax_loss'
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>This is a faster way to train a softmax classifier over a huge number of
 classes.</p>
-
 <p>This operation is for training only.  It is generally an underestimate of
 the full softmax loss.</p>
-
 <p>A common use case is to use this method for training, and calculate the full
 sigmoid loss for evaluation or inference as in the following example:</p>
+<div class="codehilite"><pre><span></span><span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;train&quot;</span><span class="p">:</span>
+  <span class="n">loss</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">sampled_softmax_loss</span><span class="p">(</span>
+      <span class="n">weights</span><span class="o">=</span><span class="n">weights</span><span class="p">,</span>
+      <span class="n">biases</span><span class="o">=</span><span class="n">biases</span><span class="p">,</span>
+      <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span>
+      <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span>
+      <span class="o">...</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;eval&quot;</span><span class="p">:</span>
+  <span class="n">logits</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">weights</span><span class="p">))</span>
+  <span class="n">logits</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">bias_add</span><span class="p">(</span><span class="n">logits</span><span class="p">,</span> <span class="n">biases</span><span class="p">)</span>
+  <span class="n">labels_one_hot</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">one_hot</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">n_classes</span><span class="p">)</span>
+  <span class="n">loss</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">softmax_cross_entropy_with_logits</span><span class="p">(</span>
+      <span class="n">labels</span><span class="o">=</span><span class="n">labels_one_hot</span><span class="p">,</span>
+      <span class="n">logits</span><span class="o">=</span><span class="n">logits</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-if mode == "train":
-  loss = tf.nn.sampled_softmax_loss(
-      weights=weights,
-      biases=biases,
-      labels=labels,
-      inputs=inputs,
-      ...)
-elif mode == "eval":
-  logits = tf.matmul(inputs, tf.transpose(weights))
-  logits = tf.nn.bias_add(logits, biases)
-  labels_one_hot = tf.one_hot(labels, n_classes)
-  loss = tf.nn.softmax_cross_entropy_with_logits(
-      labels=labels_one_hot,
-      logits=logits)
-</code></p>
 
 <p>See our [Candidate Sampling Algorithms Reference]
 (https://www.tensorflow.org/extras/candidate_sampling.pdf)</p>
-
 <p>Also see Section 3 of <a href="http://arxiv.org/abs/1412.2007">Jean et al., 2014</a>
 (<a href="http://arxiv.org/pdf/1412.2007.pdf">pdf</a>) for the math.</p>
-
-<p>Note: when doing embedding lookup on <code>weights</code> and <code>bias</code>, &ldquo;div&rdquo; partition
+<p>Note: when doing embedding lookup on <code>weights</code> and <code>bias</code>, "div" partition
 strategy will be used. Support for other partition strategy will be added
 later.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>weights</code></b>: A <code>Tensor</code> of shape <code>[num_classes, dim]</code>, or a list of <code>Tensor</code>
-objects whose concatenation along dimension 0 has shape [num_classes,
-dim].  The (possibly-sharded) class embeddings.</li>
+  objects whose concatenation along dimension 0 has shape [num_classes,
+  dim].  The (possibly-sharded) class embeddings.</li>
 <li><b><code>biases</code></b>: A <code>Tensor</code> of shape <code>[num_classes]</code>.  The class biases.</li>
 <li><b><code>labels</code></b>: A <code>Tensor</code> of type <code>int64</code> and shape <code>[batch_size, num_true]</code>. The
-target classes.  Note that this format differs from the <code>labels</code> argument
-of <a href="../../tf/nn/softmax_cross_entropy_with_logits.html"><code>nn.softmax_cross_entropy_with_logits</code></a>.</li>
+  target classes.  Note that this format differs from the <code>labels</code> argument
+  of <a href="../../tf/nn/softmax_cross_entropy_with_logits.html"><code>nn.softmax_cross_entropy_with_logits</code></a>.</li>
 <li><b><code>inputs</code></b>: A <code>Tensor</code> of shape <code>[batch_size, dim]</code>.  The forward activations of
-the input network.</li>
+  the input network.</li>
 <li><b><code>num_sampled</code></b>: An <code>int</code>.  The number of classes to randomly sample per batch.</li>
 <li><b><code>num_classes</code></b>: An <code>int</code>. The number of possible classes.</li>
 <li><b><code>num_true</code></b>: An <code>int</code>.  The number of target classes per training example.</li>
 <li><b><code>sampled_values</code></b>: a tuple of (<code>sampled_candidates</code>, <code>true_expected_count</code>,
-<code>sampled_expected_count</code>) returned by a <code>*_candidate_sampler</code> function.
-(if None, we default to <code>log_uniform_candidate_sampler</code>)</li>
-<li><b><code>remove_accidental_hits</code></b>:  A <code>bool</code>.  whether to remove &ldquo;accidental hits&rdquo;
-where a sampled class equals one of the target classes.  Default is True.</li>
-<li><b><code>seed</code></b>: random seed for candidate sampling. Default to None, which doesn&rsquo;t set
-the op-level random seed for candidate sampling.</li>
+  <code>sampled_expected_count</code>) returned by a <code>*_candidate_sampler</code> function.
+  (if None, we default to <code>log_uniform_candidate_sampler</code>)</li>
+<li><b><code>remove_accidental_hits</code></b>:  A <code>bool</code>.  whether to remove "accidental hits"
+  where a sampled class equals one of the target classes.  Default is True.</li>
+<li><b><code>seed</code></b>: random seed for candidate sampling. Default to None, which doesn't set
+  the op-level random seed for candidate sampling.</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>batch_size</code> 1-D tensor of per-example sampled softmax losses.</p>
+    </body>
+    </html>
+   

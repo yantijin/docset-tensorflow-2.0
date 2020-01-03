@@ -1,4 +1,13 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.lite.OpHint" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="OpHintArgumentTracker"/>
@@ -21,208 +30,153 @@
 <meta itemprop="property" content="TFLITE_INPUT_INDICES"/>
 </div>
 
-
-<h1>tf.compat.v1.lite.OpHint</h1>
-
+<h1 id="tfcompatv1liteophint">tf.compat.v1.lite.OpHint</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/lite/python/op_hint.py">View source</a></p>
-
-<h2>Class <code>OpHint</code></h2>
-
+<h2 id="class-ophint">Class <code>OpHint</code></h2>
 <!-- Start diff -->
 
-
 <p>A class that helps build tflite function invocations.</p>
-
 <!-- Placeholder for "Used in" -->
-
 
 <p>It allows you to take a bunch of TensorFlow ops and annotate the construction
 such that toco knows how to convert it to tflite. This embeds a pseudo
 function in a TensorFlow graph. This allows embedding high-level API usage
 information in a lower level TensorFlow implementation so that an alternative
 implementation can be substituted later.</p>
-
-<p>Essentially, any &ldquo;input&rdquo; into this pseudo op is fed into an identity, and
+<p>Essentially, any "input" into this pseudo op is fed into an identity, and
 attributes are added to that input before being used by the constituent ops
 that make up the pseudo op. A similar process is done to any output that
 is to be exported from the current op.</p>
-
 <h2 id="__init__"><code>__init__</code></h2>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/lite/python/op_hint.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">function_name</span><span class="p">,</span>
+    <span class="n">level</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">children_inputs_mappings</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__init__(
-    function_name,
-    level=1,
-    children_inputs_mappings=None,
-    **kwargs
-)
-</code></p>
 
 <p>Create a OpHint.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>function_name</code></b>: Name of the function (the custom op name in tflite)</li>
 <li><b><code>level</code></b>: OpHint level.</li>
 <li><b><code>children_inputs_mappings</code></b>: Children OpHint inputs/outputs mapping.
-children_inputs_mappings should like below:
-&ldquo;parent_first_child_input&rdquo;:
-    [{&ldquo;parent_input_index&rdquo;: num, &ldquo;child_input_index&rdquo;: num}, &hellip;]
-&ldquo;parent_last_child_output&rdquo;:
-    [{&ldquo;parent_output_index&rdquo;: num, &ldquo;child_output_index&rdquo;: num}, &hellip;]
-&ldquo;internal_children_input_output&rdquo;:
-    [{&ldquo;child_input_index&rdquo;: num, &ldquo;child_output_index&rdquo;: num}, &hellip;]</li>
+  children_inputs_mappings should like below:
+  "parent_first_child_input":
+      [{"parent_input_index": num, "child_input_index": num}, ...]
+  "parent_last_child_output":
+      [{"parent_output_index": num, "child_output_index": num}, ...]
+  "internal_children_input_output":
+      [{"child_input_index": num, "child_output_index": num}, ...]</li>
 <li><b><code>**kwargs</code></b>: Keyword arguments of any constant attributes for the function.</li>
 </ul>
-
-
-<h2>Child Classes</h2>
-
+<h2 id="child-classes">Child Classes</h2>
 <p><a href="../../../../tf/compat/v1/lite/OpHint/OpHintArgumentTracker.html"><code>class OpHintArgumentTracker</code></a></p>
-
-<h2>Methods</h2>
-
+<h2 id="methods">Methods</h2>
 <h3 id="add_input"><code>add_input</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/lite/python/op_hint.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">add_input</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-add_input(
-    *args,
-    **kwargs
-)
-</code></p>
 
 <p>Add a wrapped input argument to the hint.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_1">Args:</h4>
 <ul>
 <li><b><code>*args</code></b>: The input tensor.</li>
-<li><b><code>**kwargs</code></b>:   &ldquo;name&rdquo; label
-&ldquo;tag&rdquo; a tag to group multiple arguments that will be aggregated. I.e.
-  a string like &lsquo;cool_input&rsquo;. Basically multiple inputs can be added
-  to the same hint for parallel operations that will eventually be
-  combined. An example would be static_rnn which creates multiple copies
-  of state or inputs.
-&ldquo;aggregate&rdquo; aggregation strategy that is valid only for tag non None.
-  Acceptable values are OpHint.AGGREGATE_FIRST, OpHint.AGGREGATE_LAST,
-  and OpHint.AGGREGATE_STACK.
-&ldquo;index_override&rdquo; The global index to use. This corresponds to the
-  argument order in the final stub that will be generated.</li>
+<li><b><code>**kwargs</code></b>:   "name" label
+  "tag" a tag to group multiple arguments that will be aggregated. I.e.
+    a string like 'cool_input'. Basically multiple inputs can be added
+    to the same hint for parallel operations that will eventually be
+    combined. An example would be static_rnn which creates multiple copies
+    of state or inputs.
+  "aggregate" aggregation strategy that is valid only for tag non None.
+    Acceptable values are OpHint.AGGREGATE_FIRST, OpHint.AGGREGATE_LAST,
+    and OpHint.AGGREGATE_STACK.
+  "index_override" The global index to use. This corresponds to the
+    argument order in the final stub that will be generated.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>The wrapped input tensor.</p>
-
 <h3 id="add_inputs"><code>add_inputs</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/lite/python/op_hint.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">add_inputs</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-add_inputs(
-    *args,
-    **kwargs
-)
-</code></p>
 
 <p>Add a sequence of inputs to the function invocation.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_2">Args:</h4>
 <ul>
 <li><b><code>*args</code></b>: List of inputs to be converted (should be Tf.Tensor).</li>
-<li><b><code>**kwargs</code></b>: This allows &lsquo;names&rsquo; which should be a list of names.</li>
+<li><b><code>**kwargs</code></b>: This allows 'names' which should be a list of names.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_1">Returns:</h4>
 <p>Wrapped inputs (identity standins that have additional metadata). These
-are also are also tf.Tensor&rsquo;s.</p>
-
+are also are also tf.Tensor's.</p>
 <h3 id="add_output"><code>add_output</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/lite/python/op_hint.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">add_output</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-add_output(
-    *args,
-    **kwargs
-)
-</code></p>
 
 <p>Add a wrapped output argument to the hint.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_3">Args:</h4>
 <ul>
 <li><b><code>*args</code></b>: The output tensor.</li>
-<li><b><code>**kwargs</code></b>:   &ldquo;name&rdquo; label
-&ldquo;tag&rdquo; a tag to group multiple arguments that will be aggregated. I.e.
-  a string like &lsquo;cool_input&rsquo;. Basically multiple inputs can be added
-  to the same hint for parallel operations that will eventually be
-  combined. An example would be static_rnn which creates multiple copies
-  of state or inputs.
-&ldquo;aggregate&rdquo; aggregation strategy that is valid only for tag non None.
-  Acceptable values are OpHint.AGGREGATE_FIRST, OpHint.AGGREGATE_LAST,
-  and OpHint.AGGREGATE_STACK.
-&ldquo;index_override&rdquo; The global index to use. This corresponds to the
-  argument order in the final stub that will be generated.</li>
+<li><b><code>**kwargs</code></b>:   "name" label
+  "tag" a tag to group multiple arguments that will be aggregated. I.e.
+    a string like 'cool_input'. Basically multiple inputs can be added
+    to the same hint for parallel operations that will eventually be
+    combined. An example would be static_rnn which creates multiple copies
+    of state or inputs.
+  "aggregate" aggregation strategy that is valid only for tag non None.
+    Acceptable values are OpHint.AGGREGATE_FIRST, OpHint.AGGREGATE_LAST,
+    and OpHint.AGGREGATE_STACK.
+  "index_override" The global index to use. This corresponds to the
+    argument order in the final stub that will be generated.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_2">Returns:</h4>
 <p>The wrapped output tensor.</p>
-
 <h3 id="add_outputs"><code>add_outputs</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/lite/python/op_hint.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">add_outputs</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-add_outputs(
-    *args,
-    **kwargs
-)
-</code></p>
 
 <p>Add a sequence of outputs to the function invocation.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_4">Args:</h4>
 <ul>
 <li><b><code>*args</code></b>: List of outputs to be converted (should be tf.Tensor).</li>
 <li><b><code>**kwargs</code></b>: See</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_3">Returns:</h4>
 <p>Wrapped outputs (identity standins that have additional metadata). These
-are also tf.Tensor&rsquo;s.</p>
-
-<h2>Class Members</h2>
-
+are also tf.Tensor's.</p>
+<h2 id="class-members">Class Members</h2>
 <ul>
 <li><code>AGGREGATE_FIRST = 'first'</code> <a id="AGGREGATE_FIRST"></a></li>
 <li><code>AGGREGATE_LAST = 'last'</code> <a id="AGGREGATE_LAST"></a></li>
@@ -237,4 +191,6 @@ are also tf.Tensor&rsquo;s.</p>
 <li><code>FUNCTION_UUID_ATTR = '_tflite_function_uuid'</code> <a id="FUNCTION_UUID_ATTR"></a></li>
 <li><code>TFLITE_INPUT_INDICES = '_tflite_input_indices'</code> <a id="TFLITE_INPUT_INDICES"></a></li>
 </ul>
-
+    </body>
+    </html>
+   

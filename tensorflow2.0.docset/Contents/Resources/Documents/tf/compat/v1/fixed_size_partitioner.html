@@ -1,46 +1,44 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.fixed_size_partitioner" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.compat.v1.fixed_size_partitioner</h1>
-
+<h1 id="tfcompatv1fixed_size_partitioner">tf.compat.v1.fixed_size_partitioner</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/partitioned_variables.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Partitioner to specify a fixed number of shards along given axis.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">fixed_size_partitioner</span><span class="p">(</span>
+    <span class="n">num_shards</span><span class="p">,</span>
+    <span class="n">axis</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-tf.compat.v1.fixed_size_partitioner(
-    num_shards,
-    axis=0
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>num_shards</code></b>: <code>int</code>, number of shards to partition variable.</li>
 <li><b><code>axis</code></b>: <code>int</code>, axis to partition on.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A partition function usable as the <code>partitioner</code> argument to
 <code>variable_scope</code> and <code>get_variable</code>.</p>
+    </body>
+    </html>
+   

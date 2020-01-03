@@ -1,48 +1,44 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.random.stateless_truncated_normal" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.random.stateless_truncated_normal</h1>
-
+<h1 id="tfrandomstateless_truncated_normal">tf.random.stateless_truncated_normal</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/stateless_random_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Outputs deterministic pseudorandom values, truncated normally distributed.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.random.stateless_truncated_normal</code></li>
 <li><code>tf.compat.v2.random.stateless_truncated_normal</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">stateless_truncated_normal</span><span class="p">(</span>
+    <span class="n">shape</span><span class="p">,</span>
+    <span class="n">seed</span><span class="p">,</span>
+    <span class="n">mean</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">stddev</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.random.stateless_truncated_normal(
-    shape,
-    seed,
-    mean=0.0,
-    stddev=1.0,
-    dtype=tf.dtypes.float32,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>This is a stateless version of <a href="../../tf/random/truncated_normal.html"><code>tf.random.truncated_normal</code></a>: if run twice with
 the
@@ -50,25 +46,22 @@ same seeds, it will produce the same pseudorandom numbers.  The output is
 consistent across multiple runs on the same hardware (and between CPU
 and GPU), but may change between versions of TensorFlow or on non-CPU/GPU
 hardware.</p>
-
 <p>The generated values follow a normal distribution with specified mean and
 standard deviation, except that values whose magnitude is more than 2 standard
 deviations from the mean are dropped and re-picked.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>shape</code></b>: A 1-D integer Tensor or Python array. The shape of the output tensor.</li>
 <li><b><code>seed</code></b>: A shape [2] integer Tensor of seeds to the random number generator.</li>
 <li><b><code>mean</code></b>: A 0-D Tensor or Python value of type <code>dtype</code>. The mean of the
-truncated normal distribution.</li>
+  truncated normal distribution.</li>
 <li><b><code>stddev</code></b>: A 0-D Tensor or Python value of type <code>dtype</code>. The standard deviation
-of the normal distribution, before truncation.</li>
+  of the normal distribution, before truncation.</li>
 <li><b><code>dtype</code></b>: The type of the output.</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A tensor of the specified shape filled with random truncated normal values.</p>
+    </body>
+    </html>
+   

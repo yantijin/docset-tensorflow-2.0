@@ -1,29 +1,28 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../default.css" rel="stylesheet">
+    <link href="
+   ../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.einsum" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.einsum</h1>
-
+<h1 id="tfeinsum">tf.einsum</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/special_math_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>A generalized contraction between tensors of arbitrary dimension.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.einsum</code></li>
 <li><code>tf.compat.v1.linalg.einsum</code></li>
@@ -31,117 +30,115 @@
 <li><code>tf.compat.v2.linalg.einsum</code></li>
 <li><code>tf.linalg.einsum</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span>
+    <span class="n">equation</span><span class="p">,</span>
+    <span class="o">*</span><span class="n">inputs</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.einsum(
-    equation,
-    *inputs,
-    **kwargs
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>This function returns a tensor whose elements are defined by <code>equation</code>,
 which is written in a shorthand form inspired by the Einstein summation
 convention.  As an example, consider multiplying two matrices
 A and B to form a matrix C.  The elements of C are given by:</p>
+<div class="codehilite"><pre><span></span><span class="err">  C[i,k] = sum_j A[i,j] * B[j,k]</span>
+</pre></div>
 
-<p><code>
-  C[i,k] = sum_j A[i,j] * B[j,k]
-</code></p>
 
 <p>The corresponding <code>equation</code> is:</p>
+<div class="codehilite"><pre><span></span><span class="err">  ij,jk-&gt;ik</span>
+</pre></div>
 
-<p><code>
-  ij,jk-&gt;ik
-</code></p>
 
 <p>In general, the <code>equation</code> is obtained from the more familiar element-wise
 equation by
   1. removing variable names, brackets, and commas,
-  2. replacing &ldquo;*&rdquo; with &ldquo;,&rdquo;,
+  2. replacing "*" with ",",
   3. dropping summation signs, and
-  4. moving the output to the right, and replacing &ldquo;=&rdquo; with &ldquo;->&rdquo;.</p>
-
+  4. moving the output to the right, and replacing "=" with "-&gt;".</p>
 <p>Many common operations can be expressed in this way.  For example:</p>
+<div class="codehilite"><pre><span></span><span class="c1"># Matrix multiplication</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">einsum</span><span class="p">(</span><span class="s1">&#39;ij,jk-&gt;ik&#39;</span><span class="p">,</span> <span class="n">m0</span><span class="p">,</span> <span class="n">m1</span><span class="p">)</span>  <span class="c1"># output[i,k] = sum_j m0[i,j] * m1[j, k]</span>
+</pre></div>
 
-<p>```python</p>
 
-<h1>Matrix multiplication</h1>
+<h1 id="dot-product">Dot product</h1>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>einsum('i,i-&gt;', u, v)  # output = sum_i u[i]*v[i]</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h1 id="outer-product">Outer product</h1>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>einsum('i,j-&gt;ij', u, v)  # output[i,j] = u[i]*v[j]</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h1 id="transpose">Transpose</h1>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>einsum('ij-&gt;ji', m)  # output[j,i] = m[i,j]</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h1 id="trace">Trace</h1>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>einsum('ii', m)  # output[j,i] = trace(m) = sum_i m[i, i]</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h1 id="batch-matrix-multiplication">Batch matrix multiplication</h1>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>einsum('aij,ajk-&gt;aik', s, t)  # out[a,i,k] = sum_j s[a,i,j] * t[a, j, k]</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<div class="codehilite"><pre><span></span><span class="k">To</span> <span class="n">enable</span> <span class="k">and</span> <span class="n">control</span> <span class="n">broadcasting</span><span class="p">,</span> <span class="n">use</span> <span class="n">an</span> <span class="n">ellipsis</span><span class="p">.</span>  <span class="k">For</span> <span class="n">example</span><span class="p">,</span> <span class="k">to</span> <span class="k">do</span>
+<span class="n">batch</span> <span class="n">matrix</span> <span class="n">multiplication</span><span class="p">,</span> <span class="n">you</span> <span class="n">could</span> <span class="n">use</span><span class="p">:</span>
 
-<blockquote><blockquote><blockquote><p>einsum(&lsquo;ij,jk->ik&rsquo;, m0, m1)  # output[i,k] = sum_j m0[i,j] * m1[j, k]</p></blockquote></blockquote></blockquote>
+<span class="o">```</span><span class="n">python</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">einsum</span><span class="p">(</span><span class="s1">&#39;...ij,...jk-&gt;...ik&#39;</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+</pre></div>
+
 
 <p>```</p>
-
-<h1>Dot product</h1>
-
-<blockquote><blockquote><blockquote><p>einsum(&lsquo;i,i->&rsquo;, u, v)  # output = sum_i u[i]*v[i]</p></blockquote></blockquote></blockquote>
-
-<h1>Outer product</h1>
-
-<blockquote><blockquote><blockquote><p>einsum(&lsquo;i,j->ij&rsquo;, u, v)  # output[i,j] = u[i]*v[j]</p></blockquote></blockquote></blockquote>
-
-<h1>Transpose</h1>
-
-<blockquote><blockquote><blockquote><p>einsum(&lsquo;ij->ji&rsquo;, m)  # output[j,i] = m[i,j]</p></blockquote></blockquote></blockquote>
-
-<h1>Trace</h1>
-
-<blockquote><blockquote><blockquote><p>einsum(&lsquo;ii&rsquo;, m)  # output[j,i] = trace(m) = sum_i m[i, i]</p></blockquote></blockquote></blockquote>
-
-<h1>Batch matrix multiplication</h1>
-
-<blockquote><blockquote><blockquote><p>einsum(&lsquo;aij,ajk->aik&rsquo;, s, t)  # out[a,i,k] = sum_j s[a,i,j] * t[a, j, k]
-```</p></blockquote></blockquote></blockquote>
-
-<p>To enable and control broadcasting, use an ellipsis.  For example, to do
-batch matrix multiplication, you could use:</p>
-
-<p>```python</p>
-
-<blockquote><blockquote><blockquote><p>einsum(&lsquo;&hellip;ij,&hellip;jk->&hellip;ik&rsquo;, u, v)
-<code>
-</code></p></blockquote></blockquote></blockquote>
-
 <p>This function behaves like <code>numpy.einsum</code>, but does not support:</p>
-
 <ul>
 <li>Subscripts where an axis appears more than once for a single input
-(e.g. <code>ijj,k-&gt;ik</code>) unless it is a trace (e.g. <code>ijji</code>).</li>
+  (e.g. <code>ijj,k-&gt;ik</code>) unless it is a trace (e.g. <code>ijji</code>).</li>
 </ul>
-
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>equation</code></b>: a <code>str</code> describing the contraction, in the same format as
-<code>numpy.einsum</code>.</li>
+  <code>numpy.einsum</code>.</li>
 <li><b><code>*inputs</code></b>: the inputs to contract (each one a <code>Tensor</code>), whose shapes should
-be consistent with <code>equation</code>.</li>
+  be consistent with <code>equation</code>.</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>The contracted <code>Tensor</code>, with shape determined by <code>equation</code>.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
-<li><b><code>ValueError</code></b>: If
-
-<ul>
+<li><b><code>ValueError</code></b>: If</li>
 <li>the format of <code>equation</code> is incorrect,</li>
 <li>the number of inputs implied by <code>equation</code> does not match <code>len(inputs)</code>,</li>
 <li>an axis appears in the output subscripts but not in any of the inputs,</li>
 <li>the number of dimensions of an input differs from the number of
-indices in its subscript, or</li>
+    indices in its subscript, or</li>
 <li>the input shapes are inconsistent along a particular axis.</li>
 </ul>
-</li>
-</ul>
-
+    </body>
+    </html>
+   

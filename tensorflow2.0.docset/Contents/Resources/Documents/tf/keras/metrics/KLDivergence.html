@@ -1,4 +1,13 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.keras.metrics.KLDivergence" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="__init__"/>
@@ -8,155 +17,115 @@
 <meta itemprop="property" content="update_state"/>
 </div>
 
-
-<h1>tf.keras.metrics.KLDivergence</h1>
-
+<h1 id="tfkerasmetricskldivergence">tf.keras.metrics.KLDivergence</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/metrics.py">View source</a></p>
-
-<h2>Class <code>KLDivergence</code></h2>
-
+<h2 id="class-kldivergence">Class <code>KLDivergence</code></h2>
 <!-- Start diff -->
 
-
 <p>Computes Kullback-Leibler divergence metric between <code>y_true</code> and <code>y_pred</code>.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li>Class <code>tf.compat.v1.keras.metrics.KLDivergence</code></li>
 <li>Class <code>tf.compat.v2.keras.metrics.KLDivergence</code></li>
 <li>Class <code>tf.compat.v2.metrics.KLDivergence</code></li>
 <li>Class <code>tf.metrics.KLDivergence</code></li>
 </ul>
-
-
 <!-- Placeholder for "Used in" -->
 
-
 <p><code>metric = y_true * log(y_true / y_pred)</code></p>
+<h4 id="usage">Usage:</h4>
+<div class="codehilite"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">KLDivergence</span><span class="p">()</span>
+<span class="n">m</span><span class="o">.</span><span class="n">update_state</span><span class="p">([</span><span class="o">.</span><span class="mi">4</span><span class="p">,</span> <span class="o">.</span><span class="mi">9</span><span class="p">,</span> <span class="o">.</span><span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="o">.</span><span class="mi">5</span><span class="p">,</span> <span class="o">.</span><span class="mi">8</span><span class="p">,</span> <span class="o">.</span><span class="mi">12</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Final result: &#39;</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">result</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>  <span class="c1"># Final result: -0.043</span>
+</pre></div>
 
-<h4>Usage:</h4>
-
-<p><code>python
-m = tf.keras.metrics.KLDivergence()
-m.update_state([.4, .9, .2], [.5, .8, .12])
-print('Final result: ', m.result().numpy())  # Final result: -0.043
-</code></p>
 
 <p>Usage with tf.keras API:</p>
+<div class="codehilite"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">outputs</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;sgd&#39;</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">KLDivergence</span><span class="p">()])</span>
+</pre></div>
 
-<p><code>python
-model = tf.keras.Model(inputs, outputs)
-model.compile('sgd', metrics=[tf.keras.metrics.KLDivergence()])
-</code></p>
 
 <h2 id="__init__"><code>__init__</code></h2>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/metrics.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;kullback_leibler_divergence&#39;</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__init__(
-    name='kullback_leibler_divergence',
-    dtype=None
-)
-</code></p>
 
 <p>Creates a <code>MeanMetricWrapper</code> instance.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>fn</code></b>: The metric function to wrap, with signature
-<code>fn(y_true, y_pred, **kwargs)</code>.</li>
+  <code>fn(y_true, y_pred, **kwargs)</code>.</li>
 <li><b><code>name</code></b>: (Optional) string name of the metric instance.</li>
 <li><b><code>dtype</code></b>: (Optional) data type of the metric result.</li>
 <li><b><code>**kwargs</code></b>: The keyword arguments that are passed on to <code>fn</code>.</li>
 </ul>
-
-
 <h2 id="__new__"><code>__new__</code></h2>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/metrics.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__new__</span><span class="p">(</span>
+    <span class="bp">cls</span><span class="p">,</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__new__(
-    cls,
-    *args,
-    **kwargs
-)
-</code></p>
 
 <p>Create and return a new object.  See help(type) for accurate signature.</p>
-
-<h2>Methods</h2>
-
+<h2 id="methods">Methods</h2>
 <h3 id="reset_states"><code>reset_states</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/metrics.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">reset_states</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-reset_states()
-</code></p>
 
 <p>Resets all of the metric state variables.</p>
-
 <p>This function is called between epochs/steps,
 when a metric is evaluated during training.</p>
-
 <h3 id="result"><code>result</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/metrics.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">result</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-result()
-</code></p>
 
 <p>Computes and returns the metric value tensor.</p>
-
 <p>Result computation is an idempotent operation that simply calculates the
 metric value using the state variables.</p>
-
 <h3 id="update_state"><code>update_state</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/metrics.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">update_state</span><span class="p">(</span>
+    <span class="n">y_true</span><span class="p">,</span>
+    <span class="n">y_pred</span><span class="p">,</span>
+    <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-update_state(
-    y_true,
-    y_pred,
-    sample_weight=None
-)
-</code></p>
 
 <p>Accumulates metric statistics.</p>
-
 <p><code>y_true</code> and <code>y_pred</code> should have the same shape.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_1">Args:</h4>
 <ul>
 <li><b><code>y_true</code></b>: The ground truth values.</li>
 <li><b><code>y_pred</code></b>: The predicted values.</li>
 <li><b><code>sample_weight</code></b>: Optional weighting of each example. Defaults to 1. Can be
-a <code>Tensor</code> whose rank is either 0, or the same rank as <code>y_true</code>,
-and must be broadcastable to <code>y_true</code>.</li>
+  a <code>Tensor</code> whose rank is either 0, or the same rank as <code>y_true</code>,
+  and must be broadcastable to <code>y_true</code>.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>Update op.</p>
+    </body>
+    </html>
+   

@@ -1,116 +1,98 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.cond" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.compat.v1.cond</h1>
-
+<h1 id="tfcompatv1cond">tf.compat.v1.cond</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/control_flow_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Return <code>true_fn()</code> if the predicate <code>pred</code> is true else <code>false_fn()</code>. (deprecated arguments)</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span>
+    <span class="n">pred</span><span class="p">,</span>
+    <span class="n">true_fn</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">false_fn</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">strict</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">fn1</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">fn2</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-tf.compat.v1.cond(
-    pred,
-    true_fn=None,
-    false_fn=None,
-    strict=False,
-    name=None,
-    fn1=None,
-    fn2=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>Warning: SOME ARGUMENTS ARE DEPRECATED: <code>(fn1, fn2)</code>. They will be removed in a future version.
 Instructions for updating:
 fn1/fn2 are deprecated in favor of the true_fn/false_fn arguments.</p>
-
 <p><code>true_fn</code> and <code>false_fn</code> both return lists of output tensors. <code>true_fn</code> and
 <code>false_fn</code> must have the same non-zero number and type of outputs.</p>
-
 <p><strong>WARNING</strong>: Any Tensors or Operations created outside of <code>true_fn</code> and
 <code>false_fn</code> will be executed regardless of which branch is selected at runtime.</p>
-
 <p>Although this behavior is consistent with the dataflow model of TensorFlow,
 it has frequently surprised users who expected a lazier semantics.
 Consider the following simple program:</p>
+<div class="codehilite"><pre><span></span><span class="n">z</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">z</span><span class="p">),</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+</pre></div>
 
-<p><code>python
-z = tf.multiply(a, b)
-result = tf.cond(x &lt; y, lambda: tf.add(x, z), lambda: tf.square(y))
-</code></p>
 
 <p>If <code>x &lt; y</code>, the <code>tf.add</code> operation will be executed and <code>tf.square</code>
 operation will not be executed. Since <code>z</code> is needed for at least one
 branch of the <code>cond</code>, the <a href="../../../tf/math/multiply.html"><code>tf.multiply</code></a> operation is always executed,
 unconditionally.</p>
-
 <p>Note that <code>cond</code> calls <code>true_fn</code> and <code>false_fn</code> <em>exactly once</em> (inside the
 call to <code>cond</code>, and not at all during <code>Session.run()</code>). <code>cond</code>
 stitches together the graph fragments created during the <code>true_fn</code> and
 <code>false_fn</code> calls with some additional graph nodes to ensure that the right
 branch gets executed depending on the value of <code>pred</code>.</p>
-
 <p><a href="../../../tf/cond.html"><code>tf.cond</code></a> supports nested structures as implemented in
 <code>tensorflow.python.util.nest</code>. Both <code>true_fn</code> and <code>false_fn</code> must return the
 same (possibly nested) value structure of lists, tuples, and/or named tuples.
 Singleton lists and tuples form the only exceptions to this: when returned by
 <code>true_fn</code> and/or <code>false_fn</code>, they are implicitly unpacked to single values.
 This behavior is disabled by passing <code>strict=True</code>.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>pred</code></b>: A scalar determining whether to return the result of <code>true_fn</code> or
-<code>false_fn</code>.</li>
+  <code>false_fn</code>.</li>
 <li><b><code>true_fn</code></b>: The callable to be performed if pred is true.</li>
 <li><b><code>false_fn</code></b>: The callable to be performed if pred is false.</li>
-<li><b><code>strict</code></b>: A boolean that enables/disables &lsquo;strict&rsquo; mode; see above.</li>
+<li><b><code>strict</code></b>: A boolean that enables/disables 'strict' mode; see above.</li>
 <li><b><code>name</code></b>: Optional name prefix for the returned tensors.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>Tensors returned by the call to either <code>true_fn</code> or <code>false_fn</code>. If the
 callables return a singleton list, the element is extracted from the list.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>TypeError</code></b>: if <code>true_fn</code> or <code>false_fn</code> is not callable.</li>
 <li><b><code>ValueError</code></b>: if <code>true_fn</code> and <code>false_fn</code> do not return the same number of
-tensors, or return tensors of different types.</li>
+  tensors, or return tensors of different types.</li>
 </ul>
-
-
-<h4>Example:</h4>
-
-<p>```python
-x = tf.constant(2)
-y = tf.constant(5)
-def f1(): return tf.multiply(x, 17)
-def f2(): return tf.add(y, 23)
-r = tf.cond(tf.less(x, y), f1, f2)</p>
-
-<h1>r is set to f1().</h1>
-
-<h1>Operations in f2 (e.g., tf.add) are not executed.</h1>
-
-<p>```</p>
+<h4 id="example">Example:</h4>
+<div class="codehilite"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">f1</span><span class="p">():</span> <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">17</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">f2</span><span class="p">():</span> <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">23</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">less</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="n">f1</span><span class="p">,</span> <span class="n">f2</span><span class="p">)</span>
+<span class="c1"># r is set to f1().</span>
+<span class="c1"># Operations in f2 (e.g., tf.add) are not executed.</span>
+</pre></div>
+    </body>
+    </html>
+   

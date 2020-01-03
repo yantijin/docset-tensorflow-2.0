@@ -1,56 +1,50 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.io.match_filenames_once" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.io.match_filenames_once</h1>
-
+<h1 id="tfiomatch_filenames_once">tf.io.match_filenames_once</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/training/input.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Save the list of files matching pattern, so it is only computed once.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.io.match_filenames_once</code></li>
 <li><code>tf.compat.v1.train.match_filenames_once</code></li>
 <li><code>tf.compat.v2.io.match_filenames_once</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">match_filenames_once</span><span class="p">(</span>
+    <span class="n">pattern</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.io.match_filenames_once(
-    pattern,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>NOTE: The order of the files returned is deterministic.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>pattern</code></b>: A file pattern (glob), or 1D tensor of file patterns.</li>
 <li><b><code>name</code></b>: A name for the operations (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A variable that is initialized to the list of files matching the pattern(s).</p>
+    </body>
+    </html>
+   

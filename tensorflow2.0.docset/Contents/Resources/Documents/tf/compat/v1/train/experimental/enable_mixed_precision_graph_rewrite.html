@@ -1,48 +1,45 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.train.experimental.enable_mixed_precision_graph_rewrite" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.compat.v1.train.experimental.enable_mixed_precision_graph_rewrite</h1>
-
+<h1 id="tfcompatv1trainexperimentalenable_mixed_precision_graph_rewrite">tf.compat.v1.train.experimental.enable_mixed_precision_graph_rewrite</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/training/experimental/mixed_precision.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Enable mixed precision via a graph rewrite.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">enable_mixed_precision_graph_rewrite</span><span class="p">(</span>
+    <span class="n">opt</span><span class="p">,</span>
+    <span class="n">loss_scale</span><span class="o">=</span><span class="s1">&#39;dynamic&#39;</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-tf.compat.v1.train.experimental.enable_mixed_precision_graph_rewrite(
-    opt,
-    loss_scale='dynamic'
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>Mixed precision is the use of both float16 and float32 when training a model,
 and is used to make the model run faster. This function will use mixed
 precision to speed up the execution time of your model when run on a GPU. It
 does this by changing the dtype of certain operations in the graph from
 float32 to float16.</p>
-
 <p>This function additionally wraps an Optimizer with a LossScaleOptimizer, which
 is required to prevent underflow in the float16 tensors during the backwards
 pass. An optimizer must be passed to this function, which will then be wrapped
 to use loss scaling.</p>
-
 <p>When this function is used, gradients should only be computed and applied with
 the returned optimizer, either by calling <code>opt.minimize()</code> or
 <code>opt.compute_gradients()</code> followed by <code>opt.apply_gradients()</code>. Gradients
@@ -50,22 +47,19 @@ should not be computed with <a href="../../../../../tf/gradients.html"><code>tf.
 because the returned optimizer will apply loss scaling, and
 <a href="../../../../../tf/gradients.html"><code>tf.gradients</code></a>/<a href="../../../../../tf/GradientTape.html"><code>tf.GradientTape</code></a> will not. If you do directly use
 <a href="../../../../../tf/gradients.html"><code>tf.gradients</code></a> or <a href="../../../../../tf/GradientTape.html"><code>tf.GradientTape</code></a>, your model may train to a worse quality.</p>
-
 <p>Currently, mixed precision is only enabled on Volta GPUs and above. TPU
 support is coming soon. CPUs are not supported, as CPUs do not run float16
 operations faster than float32 operations.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>opt</code></b>: An instance of a <a href="../../../../../tf/keras/optimizers/Optimizer.html"><code>tf.keras.optimizers.Optimizer</code></a> or a
-<code>tf.train.Optimizer</code>.</li>
-<li><b><code>loss_scale</code></b>: Either an int/float, the string &ldquo;dynamic&rdquo;, or an instance of a
-<a href="../../../../../tf/train/experimental/LossScale.html"><code>tf.train.experimental.LossScale</code></a>. The loss scale to use. It is
-recommended to keep this as its default value of &ldquo;dynamic&rdquo;.</li>
+  <code>tf.train.Optimizer</code>.</li>
+<li><b><code>loss_scale</code></b>: Either an int/float, the string "dynamic", or an instance of a
+  <a href="../../../../../tf/train/experimental/LossScale.html"><code>tf.train.experimental.LossScale</code></a>. The loss scale to use. It is
+  recommended to keep this as its default value of "dynamic".</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A version of <code>opt</code> that will use loss scaling to prevent underflow.</p>
+    </body>
+    </html>
+   

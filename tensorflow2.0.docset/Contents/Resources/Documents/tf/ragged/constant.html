@@ -1,98 +1,83 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.ragged.constant" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.ragged.constant</h1>
-
+<h1 id="tfraggedconstant">tf.ragged.constant</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/ragged/ragged_factory_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Constructs a constant RaggedTensor from a nested Python list.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.ragged.constant</code></li>
 <li><code>tf.compat.v2.ragged.constant</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">ragged</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span>
+    <span class="n">pylist</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">ragged_rank</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">inner_shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">row_splits_dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">int64</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.ragged.constant(
-    pylist,
-    dtype=None,
-    ragged_rank=None,
-    inner_shape=None,
-    name=None,
-    row_splits_dtype=tf.dtypes.int64
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
+<h4 id="example">Example:</h4>
+<div class="codehilite"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">ragged</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+<span class="n">RaggedTensorValue</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="n">splits</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
+</pre></div>
 
-<h4>Example:</h4>
-
-<p>```python</p>
-
-<blockquote><blockquote><blockquote><p>ragged.constant([[1, 2], [3], [4, 5, 6]]).eval()
-RaggedTensorValue(values=[1, 2, 3, 4, 5, 6], splits=[0, 2, 3, 6])
-```</p></blockquote></blockquote></blockquote>
 
 <p>All scalar values in <code>pylist</code> must have the same nesting depth <code>K</code>, and the
 returned <code>RaggedTensor</code> will have rank <code>K</code>.  If <code>pylist</code> contains no scalar
 values, then <code>K</code> is one greater than the maximum depth of empty lists in
 <code>pylist</code>.  All scalar values in <code>pylist</code> must be compatible with <code>dtype</code>.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>pylist</code></b>: A nested <code>list</code>, <code>tuple</code> or <code>np.ndarray</code>.  Any nested element that
-is not a <code>list</code>, <code>tuple</code> or <code>np.ndarray</code> must be a scalar value
-compatible with <code>dtype</code>.</li>
+  is not a <code>list</code>, <code>tuple</code> or <code>np.ndarray</code> must be a scalar value
+  compatible with <code>dtype</code>.</li>
 <li><b><code>dtype</code></b>: The type of elements for the returned <code>RaggedTensor</code>.  If not
-specified, then a default is chosen based on the scalar values in
-<code>pylist</code>.</li>
+  specified, then a default is chosen based on the scalar values in
+  <code>pylist</code>.</li>
 <li><b><code>ragged_rank</code></b>: An integer specifying the ragged rank of the returned
-<code>RaggedTensor</code>.  Must be nonnegative and less than <code>K</code>. Defaults to
-<code>max(0, K - 1)</code> if <code>inner_shape</code> is not specified.  Defaults to `max(0, K
-
-<ul>
+  <code>RaggedTensor</code>.  Must be nonnegative and less than <code>K</code>. Defaults to
+  <code>max(0, K - 1)</code> if <code>inner_shape</code> is not specified.  Defaults to `max(0, K</li>
 <li>1 - len(inner_shape))<code>if</code>inner_shape` is specified.</li>
-</ul>
-</li>
 <li><b><code>inner_shape</code></b>: A tuple of integers specifying the shape for individual inner
-values in the returned <code>RaggedTensor</code>.  Defaults to <code>()</code> if <code>ragged_rank</code>
-is not specified.  If <code>ragged_rank</code> is specified, then a default is chosen
-based on the contents of <code>pylist</code>.</li>
+  values in the returned <code>RaggedTensor</code>.  Defaults to <code>()</code> if <code>ragged_rank</code>
+  is not specified.  If <code>ragged_rank</code> is specified, then a default is chosen
+  based on the contents of <code>pylist</code>.</li>
 <li><b><code>name</code></b>: A name prefix for the returned tensor (optional).</li>
-<li><b><code>row_splits_dtype</code></b>: data type for the constructed <code>RaggedTensor</code>&rsquo;s row_splits.
-One of <a href="../../tf.html#int32"><code>tf.int32</code></a> or <a href="../../tf.html#int64"><code>tf.int64</code></a>.</li>
+<li><b><code>row_splits_dtype</code></b>: data type for the constructed <code>RaggedTensor</code>'s row_splits.
+  One of <a href="../../tf.html#int32"><code>tf.int32</code></a> or <a href="../../tf.html#int64"><code>tf.int64</code></a>.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A potentially ragged tensor with rank <code>K</code> and the specified <code>ragged_rank</code>,
 containing the values from <code>pylist</code>.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: If the scalar values in <code>pylist</code> have inconsistent nesting
-depth; or if ragged_rank or inner_shape are incompatible with <code>pylist</code>.</li>
+  depth; or if ragged_rank or inner_shape are incompatible with <code>pylist</code>.</li>
 </ul>
-
+    </body>
+    </html>
+   

@@ -1,60 +1,53 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../default.css" rel="stylesheet">
+    <link href="
+   ../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.control_dependencies" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.control_dependencies</h1>
-
+<h1 id="tfcontrol_dependencies">tf.control_dependencies</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/framework/ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Wrapper for <a href="../tf/Graph.html#control_dependencies"><code>Graph.control_dependencies()</code></a> using the default graph.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.control_dependencies</code></li>
 <li><code>tf.compat.v2.control_dependencies</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">control_dependencies</span><span class="p">(</span><span class="n">control_inputs</span><span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.control_dependencies(control_inputs)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>See <a href="../tf/Graph.html#control_dependencies"><code>tf.Graph.control_dependencies</code></a>
 for more details.</p>
-
 <p>When eager execution is enabled, any callable object in the <code>control_inputs</code>
 list will be called.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>control_inputs</code></b>: A list of <code>Operation</code> or <code>Tensor</code> objects which must be
-executed or computed before running the operations defined in the context.
-Can also be <code>None</code> to clear the control dependencies. If eager execution
-is enabled, any callable object in the <code>control_inputs</code> list will be
-called.</li>
+  executed or computed before running the operations defined in the context.
+  Can also be <code>None</code> to clear the control dependencies. If eager execution
+  is enabled, any callable object in the <code>control_inputs</code> list will be
+  called.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A context manager that specifies control dependencies for all
 operations constructed within the context.</p>
+    </body>
+    </html>
+   

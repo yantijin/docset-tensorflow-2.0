@@ -1,101 +1,91 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.feature_column.sequence_categorical_column_with_vocabulary_list" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.feature_column.sequence_categorical_column_with_vocabulary_list</h1>
-
+<h1 id="tffeature_columnsequence_categorical_column_with_vocabulary_list">tf.feature_column.sequence_categorical_column_with_vocabulary_list</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/feature_column/sequence_feature_column.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>A sequence of categorical terms where ids use an in-memory list.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.feature_column.sequence_categorical_column_with_vocabulary_list</code></li>
 <li><code>tf.compat.v2.feature_column.sequence_categorical_column_with_vocabulary_list</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">feature_column</span><span class="o">.</span><span class="n">sequence_categorical_column_with_vocabulary_list</span><span class="p">(</span>
+    <span class="n">key</span><span class="p">,</span>
+    <span class="n">vocabulary_list</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">default_value</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">num_oov_buckets</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.feature_column.sequence_categorical_column_with_vocabulary_list(
-    key,
-    vocabulary_list,
-    dtype=None,
-    default_value=-1,
-    num_oov_buckets=0
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>Pass this to <code>embedding_column</code> or <code>indicator_column</code> to convert sequence
 categorical data into dense representation for input to sequence NN, such as
 RNN.</p>
+<h4 id="example">Example:</h4>
+<div class="codehilite"><pre><span></span><span class="n">colors</span> <span class="o">=</span> <span class="n">sequence_categorical_column_with_vocabulary_list</span><span class="p">(</span>
+    <span class="n">key</span><span class="o">=</span><span class="s1">&#39;colors&#39;</span><span class="p">,</span> <span class="n">vocabulary_list</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;R&#39;</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">),</span>
+    <span class="n">num_oov_buckets</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">colors_embedding</span> <span class="o">=</span> <span class="n">embedding_column</span><span class="p">(</span><span class="n">colors</span><span class="p">,</span> <span class="n">dimension</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">colors_embedding</span><span class="p">]</span>
 
-<h4>Example:</h4>
+<span class="n">features</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">parse_example</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="n">make_parse_example_spec</span><span class="p">(</span><span class="n">columns</span><span class="p">))</span>
+<span class="n">sequence_feature_layer</span> <span class="o">=</span> <span class="n">SequenceFeatures</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">sequence_input</span><span class="p">,</span> <span class="n">sequence_length</span> <span class="o">=</span> <span class="n">sequence_feature_layer</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+<span class="n">sequence_length_mask</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">sequence_mask</span><span class="p">(</span><span class="n">sequence_length</span><span class="p">)</span>
 
-<p>```python
-colors = sequence_categorical_column_with_vocabulary_list(
-    key=&lsquo;colors&rsquo;, vocabulary_list=(&lsquo;R&rsquo;, &lsquo;G&rsquo;, &lsquo;B&rsquo;, &lsquo;Y&rsquo;),
-    num_oov_buckets=2)
-colors_embedding = embedding_column(colors, dimension=3)
-columns = [colors_embedding]</p>
+<span class="n">rnn_cell</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">SimpleRNNCell</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">)</span>
+<span class="n">rnn_layer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">RNN</span><span class="p">(</span><span class="n">rnn_cell</span><span class="p">)</span>
+<span class="n">outputs</span><span class="p">,</span> <span class="n">state</span> <span class="o">=</span> <span class="n">rnn_layer</span><span class="p">(</span><span class="n">sequence_input</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">sequence_length_mask</span><span class="p">)</span>
+</pre></div>
 
-<p>features = tf.io.parse_example(&hellip;, features=make_parse_example_spec(columns))
-sequence_feature_layer = SequenceFeatures(columns)
-sequence_input, sequence_length = sequence_feature_layer(features)
-sequence_length_mask = tf.sequence_mask(sequence_length)</p>
 
-<p>rnn_cell = tf.keras.layers.SimpleRNNCell(hidden_size)
-rnn_layer = tf.keras.layers.RNN(rnn_cell)
-outputs, state = rnn_layer(sequence_input, mask=sequence_length_mask)
-```</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>key</code></b>: A unique string identifying the input feature.</li>
 <li><b><code>vocabulary_list</code></b>: An ordered iterable defining the vocabulary. Each feature
-is mapped to the index of its value (if present) in <code>vocabulary_list</code>.
-Must be castable to <code>dtype</code>.</li>
+  is mapped to the index of its value (if present) in <code>vocabulary_list</code>.
+  Must be castable to <code>dtype</code>.</li>
 <li><b><code>dtype</code></b>: The type of features. Only string and integer types are supported.
-If <code>None</code>, it will be inferred from <code>vocabulary_list</code>.</li>
+  If <code>None</code>, it will be inferred from <code>vocabulary_list</code>.</li>
 <li><b><code>default_value</code></b>: The integer ID value to return for out-of-vocabulary feature
-values, defaults to <code>-1</code>. This can not be specified with a positive
-<code>num_oov_buckets</code>.</li>
+  values, defaults to <code>-1</code>. This can not be specified with a positive
+  <code>num_oov_buckets</code>.</li>
 <li><b><code>num_oov_buckets</code></b>: Non-negative integer, the number of out-of-vocabulary
-buckets. All out-of-vocabulary inputs will be assigned IDs in the range
-<code>[len(vocabulary_list), len(vocabulary_list)+num_oov_buckets)</code> based on a
-hash of the input value. A positive <code>num_oov_buckets</code> can not be specified
-with <code>default_value</code>.</li>
+  buckets. All out-of-vocabulary inputs will be assigned IDs in the range
+  <code>[len(vocabulary_list), len(vocabulary_list)+num_oov_buckets)</code> based on a
+  hash of the input value. A positive <code>num_oov_buckets</code> can not be specified
+  with <code>default_value</code>.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>SequenceCategoricalColumn</code>.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: if <code>vocabulary_list</code> is empty, or contains duplicate keys.</li>
 <li><b><code>ValueError</code></b>: <code>num_oov_buckets</code> is a negative integer.</li>
 <li><b><code>ValueError</code></b>: <code>num_oov_buckets</code> and <code>default_value</code> are both specified.</li>
 <li><b><code>ValueError</code></b>: if <code>dtype</code> is not integer or string.</li>
 </ul>
-
+    </body>
+    </html>
+   

@@ -1,63 +1,60 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.assign" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.compat.v1.assign</h1>
-
+<h1 id="tfcompatv1assign">tf.compat.v1.assign</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/state_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Update <code>ref</code> by assigning <code>value</code> to it.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span>
+    <span class="n">ref</span><span class="p">,</span>
+    <span class="n">value</span><span class="p">,</span>
+    <span class="n">validate_shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">use_locking</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-tf.compat.v1.assign(
-    ref,
-    value,
-    validate_shape=None,
-    use_locking=None,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>This operation outputs a Tensor that holds the new value of <code>ref</code> after
 the value has been assigned. This makes it easier to chain operations that
 need to use the reset value.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>ref</code></b>: A mutable <code>Tensor</code>. Should be from a <code>Variable</code> node. May be
-uninitialized.</li>
+  uninitialized.</li>
 <li><b><code>value</code></b>: A <code>Tensor</code>. Must have the same shape and dtype as <code>ref</code>. The value to
-be assigned to the variable.</li>
+  be assigned to the variable.</li>
 <li><b><code>validate_shape</code></b>: An optional <code>bool</code>. Defaults to <code>True</code>. If true, the
-operation will validate that the shape of &lsquo;value&rsquo; matches the shape of the
-Tensor being assigned to.  If false, &lsquo;ref&rsquo; will take on the shape of
-&lsquo;value&rsquo;.</li>
+  operation will validate that the shape of 'value' matches the shape of the
+  Tensor being assigned to.  If false, 'ref' will take on the shape of
+  'value'.</li>
 <li><b><code>use_locking</code></b>: An optional <code>bool</code>. Defaults to <code>True</code>. If True, the assignment
-will be protected by a lock; otherwise the behavior is undefined, but may
-exhibit less contention.</li>
+  will be protected by a lock; otherwise the behavior is undefined, but may
+  exhibit less contention.</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>Tensor</code> that will hold the new value of <code>ref</code> after
   the assignment has completed.</p>
+    </body>
+    </html>
+   

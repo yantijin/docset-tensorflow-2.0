@@ -1,89 +1,78 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../default.css" rel="stylesheet">
+    <link href="
+   ../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.fingerprint" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.fingerprint</h1>
-
+<h1 id="tffingerprint">tf.fingerprint</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/array_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Generates fingerprint values.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.fingerprint</code></li>
 <li><code>tf.compat.v2.fingerprint</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">fingerprint</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">,</span>
+    <span class="n">method</span><span class="o">=</span><span class="s1">&#39;farmhash64&#39;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.fingerprint(
-    data,
-    method='farmhash64',
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>Generates fingerprint values of <code>data</code>.</p>
-
 <p>Fingerprint op considers the first dimension of <code>data</code> as the batch dimension,
 and <code>output[i]</code> contains the fingerprint value generated from contents in
 <code>data[i, ...]</code> for all <code>i</code>.</p>
-
 <p>Fingerprint op writes fingerprint values as byte arrays. For example, the
 default method <code>farmhash64</code> generates a 64-bit fingerprint value at a time.
 This 8-byte value is written out as an <a href="../tf.html#uint8"><code>tf.uint8</code></a> array of size 8, in
 little-endian order.</p>
-
 <p>For example, suppose that <code>data</code> has data type <a href="../tf.html#int32"><code>tf.int32</code></a> and shape (2, 3, 4),
 and that the fingerprint method is <code>farmhash64</code>. In this case, the output
 shape is (2, 8), where 2 is the batch dimension size of <code>data</code>, and 8 is the
 size of each fingerprint value in bytes. <code>output[0, :]</code> is generated from
 12 integers in <code>data[0, :, :]</code> and similarly <code>output[1, :]</code> is generated from
 other 12 integers in <code>data[1, :, :]</code>.</p>
-
 <p>Note that this op fingerprints the raw underlying buffer, and it does not
-fingerprint Tensor&rsquo;s metadata such as data type and/or shape. For example, the
+fingerprint Tensor's metadata such as data type and/or shape. For example, the
 fingerprint values are invariant under reshapes and bitcasts as long as the
 batch dimension remain the same:</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">fingerprint</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="n">tf</span><span class="o">.</span><span class="n">fingerprint</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="o">...</span><span class="p">))</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">fingerprint</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">==</span> <span class="n">tf</span><span class="o">.</span><span class="n">fingerprint</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">bitcast</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="o">...</span><span class="p">))</span>
+</pre></div>
 
-<p><code>python
-tf.fingerprint(data) == tf.fingerprint(tf.reshape(data, ...))
-tf.fingerprint(data) == tf.fingerprint(tf.bitcast(data, ...))
-</code></p>
 
 <p>For string data, one should expect <code>tf.fingerprint(data) !=
 tf.fingerprint(tf.string.reduce_join(data))</code> in general.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>data</code></b>: A <code>Tensor</code>. Must have rank 1 or higher.</li>
 <li><b><code>method</code></b>: A <code>Tensor</code> of type <a href="../tf.html#string"><code>tf.string</code></a>. Fingerprint method used by this op.
-Currently available method is <code>farmhash64</code>.</li>
+  Currently available method is <code>farmhash64</code>.</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A two-dimensional <code>Tensor</code> of type <a href="../tf.html#uint8"><code>tf.uint8</code></a>. The first dimension equals to
-<code>data</code>&rsquo;s first dimension, and the second dimension size depends on the
+<code>data</code>'s first dimension, and the second dimension size depends on the
 fingerprint algorithm.</p>
+    </body>
+    </html>
+   

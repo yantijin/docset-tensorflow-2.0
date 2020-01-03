@@ -1,4 +1,13 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../default.css" rel="stylesheet">
+    <link href="
+   ../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.Module" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="name"/>
@@ -10,79 +19,57 @@
 <meta itemprop="property" content="with_name_scope"/>
 </div>
 
-
-<h1>tf.Module</h1>
-
+<h1 id="tfmodule">tf.Module</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/module/module.py">View source</a></p>
-
-<h2>Class <code>Module</code></h2>
-
+<h2 id="class-module">Class <code>Module</code></h2>
 <!-- Start diff -->
 
-
 <p>Base neural network module class.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li>Class <code>tf.compat.v1.Module</code></li>
 <li>Class <code>tf.compat.v2.Module</code></li>
 </ul>
-
-
 <!-- Placeholder for "Used in" -->
-
 
 <p>A module is a named container for <a href="../tf/Variable.html"><code>tf.Variable</code></a>s, other <a href="../tf/Module.html"><code>tf.Module</code></a>s and
 functions which apply to user input. For example a dense layer in a neural
 network might be implemented as a <a href="../tf/Module.html"><code>tf.Module</code></a>:</p>
+<div class="codehilite"><pre><span></span> <span class="k">class</span> <span class="nc">Dense</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_features</span><span class="p">,</span> <span class="n">output_features</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+     <span class="nb">super</span><span class="p">(</span><span class="n">Dense</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+     <span class="bp">self</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span>
+         <span class="n">tf</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">([</span><span class="n">input_features</span><span class="p">,</span> <span class="n">output_features</span><span class="p">]),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
+     <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">output_features</span><span class="p">]),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
 
-<p>```python
- class Dense(tf.Module):
-   def <strong>init</strong>(self, in_features, output_features, name=None):
-     super(Dense, self).<strong>init</strong>(name=name)
-     self.w = tf.Variable(
-         tf.random.normal([input_features, output_features]), name=&lsquo;w&rsquo;)
-     self.b = tf.Variable(tf.zeros([output_features]), name=&lsquo;b&rsquo;)</p>
+   <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+     <span class="n">y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span>
+     <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
 
-<p>   def <strong>call</strong>(self, x):
-     y = tf.matmul(x, self.w) + self.b
-     return tf.nn.relu(y)
-```</p>
 
 <p>You can use the Dense layer as you would expect:</p>
+<div class="codehilite"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="n">input_features</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">output_features</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">d</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="mi">100</span><span class="p">,</span> <span class="mi">64</span><span class="p">]))</span>
+<span class="c1">#==&gt; &lt;tf.Tensor: ...&gt;</span>
+</pre></div>
 
-<p>```python
-d = Dense(input_features=64, output_features=10)
-d(tf.ones([100, 64]))</p>
-
-<h1>==> &lt;tf.Tensor: &hellip;></h1>
-
-<p>```</p>
 
 <p>By subclassing <a href="../tf/Module.html"><code>tf.Module</code></a> instead of <code>object</code> any <a href="../tf/Variable.html"><code>tf.Variable</code></a> or
 <a href="../tf/Module.html"><code>tf.Module</code></a> instances assigned to object properties can be collected using
 the <code>variables</code>, <code>trainable_variables</code> or <code>submodules</code> property:</p>
+<div class="codehilite"><pre><span></span><span class="n">d</span><span class="o">.</span><span class="n">variables</span>
+<span class="c1">#==&gt; (&lt;tf.Variable &#39;b:0&#39; ...&gt;, &lt;tf.Variable &#39;w:0&#39; ...&gt;)</span>
+</pre></div>
 
-<p>```python
-d.variables</p>
-
-<h1>==> (&lt;tf.Variable &lsquo;b:0&rsquo; &hellip;>, &lt;tf.Variable &lsquo;w:0&rsquo; &hellip;>)</h1>
-
-<p>```</p>
 
 <p>Subclasses of <a href="../tf/Module.html"><code>tf.Module</code></a> can also take advantage of the <code>_flatten</code> method
 which can be used to implement tracking of any other types.</p>
-
 <p>All <a href="../tf/Module.html"><code>tf.Module</code></a> classes have an associated <a href="../tf/name_scope.html"><code>tf.name_scope</code></a> which can be used
 to group operations in TensorBoard and create hierarchies for variable names
 which can help with debugging. We suggest using the name scope when creating
@@ -90,151 +77,116 @@ nested submodules/parameters or for forward methods whose graph you might want
 to inspect in TensorBoard. You can enter the name scope explicitly using
 <code>with self.name_scope:</code> or you can annotate methods (apart from <code>__init__</code>)
 with <code>@tf.Module.with_name_scope</code>.</p>
+<div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">MLP</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_size</span><span class="p">,</span> <span class="n">sizes</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="nb">super</span><span class="p">(</span><span class="n">MLP</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">layers</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">name_scope</span><span class="p">:</span>
+      <span class="k">for</span> <span class="n">size</span> <span class="ow">in</span> <span class="n">sizes</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="n">input_size</span><span class="o">=</span><span class="n">input_size</span><span class="p">,</span> <span class="n">output_size</span><span class="o">=</span><span class="n">size</span><span class="p">))</span>
+        <span class="n">input_size</span> <span class="o">=</span> <span class="n">size</span>
 
-<p>```python
-class MLP(tf.Module):
-  def <strong>init</strong>(self, input_size, sizes, name=None):
-    super(MLP, self).<strong>init</strong>(name=name)
-    self.layers = []
-    with self.name_scope:
-      for size in sizes:
-        self.layers.append(Dense(input_size=input_size, output_size=size))
-        input_size = size</p>
+  <span class="nd">@tf</span><span class="o">.</span><span class="n">Module</span><span class="o">.</span><span class="n">with_name_scope</span>
+  <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">layers</span><span class="p">:</span>
+      <span class="n">x</span> <span class="o">=</span> <span class="n">layer</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">x</span>
+</pre></div>
 
-<p>  @tf.Module.with_name_scope
-  def <strong>call</strong>(self, x):
-    for layer in self.layers:
-      x = layer(x)
-    return x
-```</p>
 
 <h2 id="__init__"><code>__init__</code></h2>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/module/module.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__init__(name=None)
-</code></p>
 
 <p>Initialize self.  See help(type(self)) for accurate signature.</p>
-
-<h2>Properties</h2>
-
+<h2 id="properties">Properties</h2>
 <h3 id="name"><code>name</code></h3>
 
-
 <p>Returns the name of this module as passed or determined in the ctor.</p>
-
 <p>NOTE: This is not the same as the <code>self.name_scope.name</code> which includes
 parent module names.</p>
-
 <h3 id="name_scope"><code>name_scope</code></h3>
 
-
 <p>Returns a <a href="../tf/name_scope.html"><code>tf.name_scope</code></a> instance for this class.</p>
-
 <h3 id="submodules"><code>submodules</code></h3>
 
-
 <p>Sequence of all sub-modules.</p>
-
 <p>Submodules are modules which are properties of this module, or found as
 properties of modules which are properties of this module (and so on).</p>
+<div class="codehilite"><pre><span></span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="k">Module</span><span class="p">()</span><span class="w"></span>
+<span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="k">Module</span><span class="p">()</span><span class="w"></span>
+<span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf</span><span class="p">.</span><span class="k">Module</span><span class="p">()</span><span class="w"></span>
+<span class="n">a</span><span class="p">.</span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="w"></span>
+<span class="n">b</span><span class="p">.</span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="w"></span>
+<span class="n">assert</span><span class="w"> </span><span class="n">list</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">submodules</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="o">[</span><span class="n">b, c</span><span class="o">]</span><span class="w"></span>
+<span class="n">assert</span><span class="w"> </span><span class="n">list</span><span class="p">(</span><span class="n">b</span><span class="p">.</span><span class="n">submodules</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="o">[</span><span class="n">c</span><span class="o">]</span><span class="w"></span>
+<span class="n">assert</span><span class="w"> </span><span class="n">list</span><span class="p">(</span><span class="n">c</span><span class="p">.</span><span class="n">submodules</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="err">[]</span><span class="w"></span>
+</pre></div>
 
-<p><code>
-a = tf.Module()
-b = tf.Module()
-c = tf.Module()
-a.b = b
-b.c = c
-assert list(a.submodules) == [b, c]
-assert list(b.submodules) == [c]
-assert list(c.submodules) == []
-</code></p>
 
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A sequence of all submodules.</p>
-
 <h3 id="trainable_variables"><code>trainable_variables</code></h3>
 
-
-<p>Sequence of variables owned by this module and it&rsquo;s submodules.</p>
-
+<p>Sequence of variables owned by this module and it's submodules.</p>
 <p>Note: this method uses reflection to find variables on the current instance
 and submodules. For performance reasons you may wish to cache the result
-of calling this method if you don&rsquo;t expect the return value to change.</p>
-
-<h4>Returns:</h4>
-
+of calling this method if you don't expect the return value to change.</p>
+<h4 id="returns_1">Returns:</h4>
 <p>A sequence of variables for the current module (sorted by attribute
 name) followed by variables from all submodules recursively (breadth
 first).</p>
-
 <h3 id="variables"><code>variables</code></h3>
 
-
-<p>Sequence of variables owned by this module and it&rsquo;s submodules.</p>
-
+<p>Sequence of variables owned by this module and it's submodules.</p>
 <p>Note: this method uses reflection to find variables on the current instance
 and submodules. For performance reasons you may wish to cache the result
-of calling this method if you don&rsquo;t expect the return value to change.</p>
-
-<h4>Returns:</h4>
-
+of calling this method if you don't expect the return value to change.</p>
+<h4 id="returns_2">Returns:</h4>
 <p>A sequence of variables for the current module (sorted by attribute
 name) followed by variables from all submodules recursively (breadth
 first).</p>
-
-<h2>Methods</h2>
-
+<h2 id="methods">Methods</h2>
 <h3 id="with_name_scope"><code>with_name_scope</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/module/module.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="nd">@classmethod</span>
+<span class="n">with_name_scope</span><span class="p">(</span>
+    <span class="bp">cls</span><span class="p">,</span>
+    <span class="n">method</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-@classmethod
-with_name_scope(
-    cls,
-    method
-)
-</code></p>
 
 <p>Decorator to automatically enter the module name scope.</p>
+<div class="codehilite"><pre><span></span><span class="err">class MyModule(tf.Module):</span>
+<span class="err">  @tf.Module.with_name_scope</span>
+<span class="err">  def __call__(self, x):</span>
+<span class="err">    if not hasattr(self, &#39;w&#39;):</span>
+<span class="err">      self.w = tf.Variable(tf.random.normal([x.shape[1], 64]))</span>
+<span class="err">    return tf.matmul(x, self.w)</span>
+</pre></div>
 
-<p><code>
-class MyModule(tf.Module):
-  @tf.Module.with_name_scope
-  def __call__(self, x):
-    if not hasattr(self, 'w'):
-      self.w = tf.Variable(tf.random.normal([x.shape[1], 64]))
-    return tf.matmul(x, self.w)
-</code></p>
 
 <p>Using the above module would produce <a href="../tf/Variable.html"><code>tf.Variable</code></a>s and <a href="../tf/Tensor.html"><code>tf.Tensor</code></a>s whose
 names included the module name:</p>
+<div class="codehilite"><pre><span></span><span class="err">mod = MyModule()</span>
+<span class="err">mod(tf.ones([8, 32]))</span>
+<span class="err"># ==&gt; &lt;tf.Tensor: ...&gt;</span>
+<span class="err">mod.w</span>
+<span class="err"># ==&gt; &lt;tf.Variable ...&#39;my_module/w:0&#39;&gt;</span>
+</pre></div>
 
-<p>```
-mod = MyModule()
-mod(tf.ones([8, 32]))</p>
 
-<h1>==> &lt;tf.Tensor: &hellip;></h1>
-
-<p>mod.w</p>
-
-<h1>==> &lt;tf.Variable &hellip;&lsquo;my_module/w:0&rsquo;></h1>
-
-<p>```</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>method</code></b>: The method to wrap.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
-<p>The original method wrapped such that it enters the module&rsquo;s name scope.</p>
+<h4 id="returns_3">Returns:</h4>
+<p>The original method wrapped such that it enters the module's name scope.</p>
+    </body>
+    </html>
+   

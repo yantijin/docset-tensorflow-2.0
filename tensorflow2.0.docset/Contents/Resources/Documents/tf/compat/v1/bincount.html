@@ -1,73 +1,63 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.bincount" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.compat.v1.bincount</h1>
-
+<h1 id="tfcompatv1bincount">tf.compat.v1.bincount</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/math_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Counts the number of occurrences of each value in an integer array.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.math.bincount</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span>
+    <span class="n">arr</span><span class="p">,</span>
+    <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">minlength</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">maxlength</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">int32</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.compat.v1.bincount(
-    arr,
-    weights=None,
-    minlength=None,
-    maxlength=None,
-    dtype=tf.dtypes.int32
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>If <code>minlength</code> and <code>maxlength</code> are not given, returns a vector with length
 <code>tf.reduce_max(arr) + 1</code> if <code>arr</code> is non-empty, and length 0 otherwise.
 If <code>weights</code> are non-None, then index <code>i</code> of the output stores the sum of the
 value in <code>weights</code> at each index where the corresponding value in <code>arr</code> is
 <code>i</code>.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>arr</code></b>: An int32 tensor of non-negative values.</li>
 <li><b><code>weights</code></b>: If non-None, must be the same shape as arr. For each value in
-<code>arr</code>, the bin will be incremented by the corresponding weight instead of
-
-<ol>
-<li></li>
-</ol>
-</li>
+  <code>arr</code>, the bin will be incremented by the corresponding weight instead of
+  1.</li>
 <li><b><code>minlength</code></b>: If given, ensures the output has length at least <code>minlength</code>,
-padding with zeros at the end if necessary.</li>
+  padding with zeros at the end if necessary.</li>
 <li><b><code>maxlength</code></b>: If given, skips values in <code>arr</code> that are equal or greater than
-<code>maxlength</code>, ensuring that the output has length at most <code>maxlength</code>.</li>
+  <code>maxlength</code>, ensuring that the output has length at most <code>maxlength</code>.</li>
 <li><b><code>dtype</code></b>: If <code>weights</code> is None, determines the type of the output bins.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A vector with the same dtype as <code>weights</code> or the given <code>dtype</code>. The bin
 values.</p>
+    </body>
+    </html>
+   

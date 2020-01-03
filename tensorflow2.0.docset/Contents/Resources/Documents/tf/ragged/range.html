@@ -1,96 +1,86 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.ragged.range" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.ragged.range</h1>
-
+<h1 id="tfraggedrange">tf.ragged.range</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/ragged/ragged_math_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Returns a <code>RaggedTensor</code> containing the specified sequences of numbers.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.ragged.range</code></li>
 <li><code>tf.compat.v2.ragged.range</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">ragged</span><span class="o">.</span><span class="n">range</span><span class="p">(</span>
+    <span class="n">starts</span><span class="p">,</span>
+    <span class="n">limits</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">deltas</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">row_splits_dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">int64</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.ragged.range(
-    starts,
-    limits=None,
-    deltas=1,
-    dtype=None,
-    name=None,
-    row_splits_dtype=tf.dtypes.int64
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>Each row of the returned <code>RaggedTensor</code> contains a single sequence:</p>
+<div class="codehilite"><pre><span></span><span class="n">ragged</span><span class="o">.</span><span class="n">range</span><span class="p">(</span><span class="n">starts</span><span class="p">,</span> <span class="n">limits</span><span class="p">,</span> <span class="n">deltas</span><span class="p">)[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">range</span><span class="p">(</span><span class="n">starts</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">limits</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">deltas</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</pre></div>
 
-<p><code>python
-ragged.range(starts, limits, deltas)[i] ==
-    tf.range(starts[i], limits[i], deltas[i])
-</code></p>
 
 <p>If <code>start[i] &lt; limits[i] and deltas[i] &gt; 0</code>, then <code>output[i]</code> will be an
 empty list.  Similarly, if <code>start[i] &gt; limits[i] and deltas[i] &lt; 0</code>, then
 <code>output[i]</code> will be an empty list.  This behavior is consistent with the
 Python <code>range</code> function, but differs from the <a href="../../tf/range.html"><code>tf.range</code></a> op, which returns
 an error for these cases.</p>
+<h4 id="examples">Examples:</h4>
+<div class="codehilite"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">ragged</span><span class="o">.</span><span class="n">range</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">ragged</span><span class="o">.</span><span class="n">range</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">12</span><span class="p">])</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[],</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">]]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">ragged</span><span class="o">.</span><span class="n">range</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">12</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[],</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">]]</span>
+</pre></div>
 
-<h4>Examples:</h4>
-
-<p>```python</p>
-
-<blockquote><blockquote><blockquote><p>ragged.range([3, 5, 2]).eval().tolist()
-[[0, 1, 2], [0, 1, 2, 3, 4], [0, 1]]
-ragged.range([0, 5, 8], [3, 3, 12]).eval().tolist()
-[[0, 1, 2], [], [8, 9, 10, 11]]
-ragged.range([0, 5, 8], [3, 3, 12], 2).eval().tolist()
-[[0, 2], [], [8, 10]]
-```</p></blockquote></blockquote></blockquote>
 
 <p>The input tensors <code>starts</code>, <code>limits</code>, and <code>deltas</code> may be scalars or vectors.
 The vector inputs must all have the same size.  Scalar inputs are broadcast
 to match the size of the vector inputs.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>starts</code></b>: Vector or scalar <code>Tensor</code>.  Specifies the first entry for each range
-if <code>limits</code> is not <code>None</code>; otherwise, specifies the range limits, and the
-first entries default to <code>0</code>.</li>
+  if <code>limits</code> is not <code>None</code>; otherwise, specifies the range limits, and the
+  first entries default to <code>0</code>.</li>
 <li><b><code>limits</code></b>: Vector or scalar <code>Tensor</code>.  Specifies the exclusive upper limits for
-each range.</li>
+  each range.</li>
 <li><b><code>deltas</code></b>: Vector or scalar <code>Tensor</code>.  Specifies the increment for each range.
-Defaults to <code>1</code>.</li>
+  Defaults to <code>1</code>.</li>
 <li><b><code>dtype</code></b>: The type of the elements of the resulting tensor.  If not specified,
-then a value is chosen based on the other args.</li>
+  then a value is chosen based on the other args.</li>
 <li><b><code>name</code></b>: A name for the operation.</li>
-<li><b><code>row_splits_dtype</code></b>: <code>dtype</code> for the returned <code>RaggedTensor</code>&rsquo;s <code>row_splits</code>
-tensor.  One of <a href="../../tf.html#int32"><code>tf.int32</code></a> or <a href="../../tf.html#int64"><code>tf.int64</code></a>.</li>
+<li><b><code>row_splits_dtype</code></b>: <code>dtype</code> for the returned <code>RaggedTensor</code>'s <code>row_splits</code>
+  tensor.  One of <a href="../../tf.html#int32"><code>tf.int32</code></a> or <a href="../../tf.html#int64"><code>tf.int64</code></a>.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>RaggedTensor</code> of type <code>dtype</code> with <code>ragged_rank=1</code>.</p>
+    </body>
+    </html>
+   

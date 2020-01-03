@@ -1,52 +1,47 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.image.sobel_edges" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.image.sobel_edges</h1>
-
+<h1 id="tfimagesobel_edges">tf.image.sobel_edges</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/image_ops_impl.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Returns a tensor holding Sobel edge maps.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.image.sobel_edges</code></li>
 <li><code>tf.compat.v2.image.sobel_edges</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">sobel_edges</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.image.sobel_edges(image)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
-<h4>Arguments:</h4>
-
+<h4 id="arguments">Arguments:</h4>
 <ul>
 <li><b><code>image</code></b>: Image tensor with shape [batch_size, h, w, d] and type float32 or
-float64.  The image(s) must be 2x2 or larger.</li>
+  float64.  The image(s) must be 2x2 or larger.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>Tensor holding edge maps for each channel. Returns a tensor with shape
 [batch_size, h, w, d, 2] where the last two dimensions hold [[dy[0], dx[0]],
-[dy[1], dx[1]], &hellip;, [dy[d-1], dx[d-1]]] calculated using the Sobel filter.</p>
+[dy[1], dx[1]], ..., [dy[d-1], dx[d-1]]] calculated using the Sobel filter.</p>
+    </body>
+    </html>
+   

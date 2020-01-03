@@ -1,77 +1,68 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../default.css" rel="stylesheet">
+    <link href="
+   ../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.required_space_to_batch_paddings" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.required_space_to_batch_paddings</h1>
-
+<h1 id="tfrequired_space_to_batch_paddings">tf.required_space_to_batch_paddings</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/array_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Calculate padding required to make block_shape divide input_shape.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.required_space_to_batch_paddings</code></li>
 <li><code>tf.compat.v2.required_space_to_batch_paddings</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">required_space_to_batch_paddings</span><span class="p">(</span>
+    <span class="n">input_shape</span><span class="p">,</span>
+    <span class="n">block_shape</span><span class="p">,</span>
+    <span class="n">base_paddings</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.required_space_to_batch_paddings(
-    input_shape,
-    block_shape,
-    base_paddings=None,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>This function can be used to calculate a suitable paddings argument for use
 with space_to_batch_nd and batch_to_space_nd.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>input_shape</code></b>: int32 Tensor of shape [N].</li>
 <li><b><code>block_shape</code></b>: int32 Tensor of shape [N].</li>
 <li><b><code>base_paddings</code></b>: Optional int32 Tensor of shape [N, 2].  Specifies the minimum
-amount of padding to use.  All elements must be >= 0.  If not specified,
-defaults to 0.</li>
+  amount of padding to use.  All elements must be &gt;= 0.  If not specified,
+  defaults to 0.</li>
 <li><b><code>name</code></b>: string.  Optional name prefix.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>(paddings, crops), where:</p>
-
 <p><code>paddings</code> and <code>crops</code> are int32 Tensors of rank 2 and shape [N, 2]</p>
-
 <ul>
-<li><p><b><code>satisfying</code></b>:
-  paddings[i, 0] = base_paddings[i, 0].
-  0 &lt;= paddings[i, 1] - base_paddings[i, 1] &lt; block_shape[i]
-  (input_shape[i] + paddings[i, 0] + paddings[i, 1]) % block_shape[i] == 0</p>
-
-<p>  crops[i, 0] = 0
-  crops[i, 1] = paddings[i, 1] - base_paddings[i, 1]</p></li>
+<li>
+<p><b><code>satisfying</code></b>: 
+    paddings[i, 0] = base_paddings[i, 0].
+    0 &lt;= paddings[i, 1] - base_paddings[i, 1] &lt; block_shape[i]
+    (input_shape[i] + paddings[i, 0] + paddings[i, 1]) % block_shape[i] == 0</p>
+<p>crops[i, 0] = 0
+crops[i, 1] = paddings[i, 1] - base_paddings[i, 1]</p>
+</li>
 </ul>
-
-
 <p>Raises: ValueError if called with incompatible shapes.</p>
+    </body>
+    </html>
+   

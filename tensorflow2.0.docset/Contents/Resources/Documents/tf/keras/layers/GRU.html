@@ -1,4 +1,13 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.keras.layers.GRU" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="activation"/>
@@ -28,391 +37,280 @@
 <meta itemprop="property" content="reset_states"/>
 </div>
 
-
-<h1>tf.keras.layers.GRU</h1>
-
+<h1 id="tfkeraslayersgru">tf.keras.layers.GRU</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/recurrent_v2.py">View source</a></p>
-
-<h2>Class <code>GRU</code></h2>
-
+<h2 id="class-gru">Class <code>GRU</code></h2>
 <!-- Start diff -->
 
-
 <p>Gated Recurrent Unit - Cho et al. 2014.</p>
-
 <p>Inherits From: <a href="../../../tf/compat/v1/keras/layers/GRU.html"><code>GRU</code></a></p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li>Class <code>tf.compat.v2.keras.layers.GRU</code></li>
 </ul>
-
-
 <!-- Placeholder for "Used in" -->
-
 
 <p>Based on available runtime hardware and constraints, this layer
 will choose different implementations (cuDNN-based or pure-TensorFlow)
 to maximize the performance. If a GPU is available and all
 the arguments to the layer meet the requirement of the CuDNN kernel
 (see below for details), the layer will use a fast cuDNN implementation.</p>
-
 <p>The requirements to use the cuDNN implementation are:</p>
-
 <ol>
-<li><code>activation</code> == &lsquo;tanh&rsquo;</li>
-<li><code>recurrent_activation</code> == &lsquo;sigmoid&rsquo;</li>
+<li><code>activation</code> == 'tanh'</li>
+<li><code>recurrent_activation</code> == 'sigmoid'</li>
 <li><code>recurrent_dropout</code> == 0</li>
 <li><code>unroll</code> is False</li>
 <li><code>use_bias</code> is True</li>
 <li><code>reset_after</code> is True</li>
 <li>Inputs are not masked or strictly right padded.</li>
 </ol>
-
-
 <p>There are two variants of the GRU implementation. The default one is based on
 <a href="https://arxiv.org/abs/1406.1078v3">v3</a> and has reset gate applied to hidden
 state before matrix multiplication. The other one is based on
 <a href="https://arxiv.org/abs/1406.1078v1">original</a> and has the order reversed.</p>
-
 <p>The second variant is compatible with CuDNNGRU (GPU-only) and allows
 inference on CPU. Thus it has separate biases for <code>kernel</code> and
 <code>recurrent_kernel</code>. To use this variant, set <code>'reset_after'=True</code> and
 <code>recurrent_activation='sigmoid'</code>.</p>
-
-<h4>Arguments:</h4>
-
+<h4 id="arguments">Arguments:</h4>
 <ul>
 <li><b><code>units</code></b>: Positive integer, dimensionality of the output space.</li>
 <li><b><code>activation</code></b>: Activation function to use.
-Default: hyperbolic tangent (<code>tanh</code>).
-If you pass <code>None</code>, no activation is applied
-(ie. &ldquo;linear&rdquo; activation: <code>a(x) = x</code>).</li>
+  Default: hyperbolic tangent (<code>tanh</code>).
+  If you pass <code>None</code>, no activation is applied
+  (ie. "linear" activation: <code>a(x) = x</code>).</li>
 <li><b><code>recurrent_activation</code></b>: Activation function to use
-for the recurrent step.
-Default: sigmoid (<code>sigmoid</code>).
-If you pass <code>None</code>, no activation is applied
-(ie. &ldquo;linear&rdquo; activation: <code>a(x) = x</code>).</li>
+  for the recurrent step.
+  Default: sigmoid (<code>sigmoid</code>).
+  If you pass <code>None</code>, no activation is applied
+  (ie. "linear" activation: <code>a(x) = x</code>).</li>
 <li><b><code>use_bias</code></b>: Boolean, whether the layer uses a bias vector.</li>
 <li><b><code>kernel_initializer</code></b>: Initializer for the <code>kernel</code> weights matrix,
-used for the linear transformation of the inputs.</li>
+  used for the linear transformation of the inputs.</li>
 <li><b><code>recurrent_initializer</code></b>: Initializer for the <code>recurrent_kernel</code>
- weights matrix,
- used for the linear transformation of the recurrent state.</li>
+   weights matrix,
+   used for the linear transformation of the recurrent state.</li>
 <li><b><code>bias_initializer</code></b>: Initializer for the bias vector.</li>
 <li><b><code>kernel_regularizer</code></b>: Regularizer function applied to
-the <code>kernel</code> weights matrix.</li>
+  the <code>kernel</code> weights matrix.</li>
 <li><b><code>recurrent_regularizer</code></b>: Regularizer function applied to
-the <code>recurrent_kernel</code> weights matrix.</li>
+  the <code>recurrent_kernel</code> weights matrix.</li>
 <li><b><code>bias_regularizer</code></b>: Regularizer function applied to the bias vector.</li>
 <li><b><code>activity_regularizer</code></b>: Regularizer function applied to
-the output of the layer (its &ldquo;activation&rdquo;)..</li>
+  the output of the layer (its "activation")..</li>
 <li><b><code>kernel_constraint</code></b>: Constraint function applied to
-the <code>kernel</code> weights matrix.</li>
+  the <code>kernel</code> weights matrix.</li>
 <li><b><code>recurrent_constraint</code></b>: Constraint function applied to
-the <code>recurrent_kernel</code> weights matrix.</li>
+  the <code>recurrent_kernel</code> weights matrix.</li>
 <li><b><code>bias_constraint</code></b>: Constraint function applied to the bias vector.</li>
 <li><b><code>dropout</code></b>: Float between 0 and 1.
-Fraction of the units to drop for the linear transformation of the inputs.</li>
+  Fraction of the units to drop for the linear transformation of the inputs.</li>
 <li><b><code>recurrent_dropout</code></b>: Float between 0 and 1.
-Fraction of the units to drop for
-the linear transformation of the recurrent state.</li>
+  Fraction of the units to drop for
+  the linear transformation of the recurrent state.</li>
 <li><b><code>implementation</code></b>: Implementation mode, either 1 or 2.
-Mode 1 will structure its operations as a larger number of
-smaller dot products and additions, whereas mode 2 will
-batch them into fewer, larger operations. These modes will
-have different performance profiles on different hardware and
-for different applications.</li>
+  Mode 1 will structure its operations as a larger number of
+  smaller dot products and additions, whereas mode 2 will
+  batch them into fewer, larger operations. These modes will
+  have different performance profiles on different hardware and
+  for different applications.</li>
 <li><b><code>return_sequences</code></b>: Boolean. Whether to return the last output
-in the output sequence, or the full sequence.</li>
+  in the output sequence, or the full sequence.</li>
 <li><b><code>return_state</code></b>: Boolean. Whether to return the last state
-in addition to the output.</li>
+  in addition to the output.</li>
 <li><b><code>go_backwards</code></b>: Boolean (default False).
-If True, process the input sequence backwards and return the
-reversed sequence.</li>
+  If True, process the input sequence backwards and return the
+  reversed sequence.</li>
 <li><b><code>stateful</code></b>: Boolean (default False). If True, the last state
-for each sample at index i in a batch will be used as initial
-state for the sample of index i in the following batch.</li>
+  for each sample at index i in a batch will be used as initial
+  state for the sample of index i in the following batch.</li>
 <li><b><code>unroll</code></b>: Boolean (default False).
-If True, the network will be unrolled,
-else a symbolic loop will be used.
-Unrolling can speed-up a RNN,
-although it tends to be more memory-intensive.
-Unrolling is only suitable for short sequences.</li>
+  If True, the network will be unrolled,
+  else a symbolic loop will be used.
+  Unrolling can speed-up a RNN,
+  although it tends to be more memory-intensive.
+  Unrolling is only suitable for short sequences.</li>
 <li><b><code>reset_after</code></b>: GRU convention (whether to apply reset gate after or
-before matrix multiplication). False = &ldquo;before&rdquo;,
-True = &ldquo;after&rdquo; (default and CuDNN compatible).</li>
+  before matrix multiplication). False = "before",
+  True = "after" (default and CuDNN compatible).</li>
 </ul>
-
-
-<h4>Call arguments:</h4>
-
+<h4 id="call-arguments">Call arguments:</h4>
 <ul>
 <li><b><code>inputs</code></b>: A 3D tensor.</li>
 <li><b><code>mask</code></b>: Binary tensor of shape <code>(samples, timesteps)</code> indicating whether
-a given timestep should be masked.</li>
+  a given timestep should be masked.</li>
 <li><b><code>training</code></b>: Python boolean indicating whether the layer should behave in
-training mode or in inference mode. This argument is passed to the cell
-when calling it. This is only relevant if <code>dropout</code> or
-<code>recurrent_dropout</code> is used.</li>
+  training mode or in inference mode. This argument is passed to the cell
+  when calling it. This is only relevant if <code>dropout</code> or
+  <code>recurrent_dropout</code> is used.</li>
 <li><b><code>initial_state</code></b>: List of initial state tensors to be passed to the first
-call of the cell.</li>
+  call of the cell.</li>
 </ul>
-
-
 <h2 id="__init__"><code>__init__</code></h2>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/recurrent_v2.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">units</span><span class="p">,</span>
+    <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;tanh&#39;</span><span class="p">,</span>
+    <span class="n">recurrent_activation</span><span class="o">=</span><span class="s1">&#39;sigmoid&#39;</span><span class="p">,</span>
+    <span class="n">use_bias</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">kernel_initializer</span><span class="o">=</span><span class="s1">&#39;glorot_uniform&#39;</span><span class="p">,</span>
+    <span class="n">recurrent_initializer</span><span class="o">=</span><span class="s1">&#39;orthogonal&#39;</span><span class="p">,</span>
+    <span class="n">bias_initializer</span><span class="o">=</span><span class="s1">&#39;zeros&#39;</span><span class="p">,</span>
+    <span class="n">kernel_regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">recurrent_regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">bias_regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">activity_regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">kernel_constraint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">recurrent_constraint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">bias_constraint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">dropout</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">recurrent_dropout</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">implementation</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">return_sequences</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">return_state</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">go_backwards</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">stateful</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">unroll</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">time_major</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">reset_after</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__init__(
-    units,
-    activation='tanh',
-    recurrent_activation='sigmoid',
-    use_bias=True,
-    kernel_initializer='glorot_uniform',
-    recurrent_initializer='orthogonal',
-    bias_initializer='zeros',
-    kernel_regularizer=None,
-    recurrent_regularizer=None,
-    bias_regularizer=None,
-    activity_regularizer=None,
-    kernel_constraint=None,
-    recurrent_constraint=None,
-    bias_constraint=None,
-    dropout=0.0,
-    recurrent_dropout=0.0,
-    implementation=2,
-    return_sequences=False,
-    return_state=False,
-    go_backwards=False,
-    stateful=False,
-    unroll=False,
-    time_major=False,
-    reset_after=True,
-    **kwargs
-)
-</code></p>
 
-<h2>Properties</h2>
-
+<h2 id="properties">Properties</h2>
 <h3 id="activation"><code>activation</code></h3>
-
-
-
 
 <h3 id="bias_constraint"><code>bias_constraint</code></h3>
 
-
-
-
 <h3 id="bias_initializer"><code>bias_initializer</code></h3>
-
-
-
 
 <h3 id="bias_regularizer"><code>bias_regularizer</code></h3>
 
-
-
-
 <h3 id="dropout"><code>dropout</code></h3>
-
-
-
 
 <h3 id="implementation"><code>implementation</code></h3>
 
-
-
-
 <h3 id="kernel_constraint"><code>kernel_constraint</code></h3>
-
-
-
 
 <h3 id="kernel_initializer"><code>kernel_initializer</code></h3>
 
-
-
-
 <h3 id="kernel_regularizer"><code>kernel_regularizer</code></h3>
-
-
-
 
 <h3 id="recurrent_activation"><code>recurrent_activation</code></h3>
 
-
-
-
 <h3 id="recurrent_constraint"><code>recurrent_constraint</code></h3>
-
-
-
 
 <h3 id="recurrent_dropout"><code>recurrent_dropout</code></h3>
 
-
-
-
 <h3 id="recurrent_initializer"><code>recurrent_initializer</code></h3>
-
-
-
 
 <h3 id="recurrent_regularizer"><code>recurrent_regularizer</code></h3>
 
-
-
-
 <h3 id="reset_after"><code>reset_after</code></h3>
-
-
-
 
 <h3 id="states"><code>states</code></h3>
 
-
-
-
 <h3 id="units"><code>units</code></h3>
-
-
-
 
 <h3 id="use_bias"><code>use_bias</code></h3>
 
-
-<h2>Methods</h2>
-
+<h2 id="methods">Methods</h2>
 <h3 id="get_dropout_mask_for_cell"><code>get_dropout_mask_for_cell</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/recurrent.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_dropout_mask_for_cell</span><span class="p">(</span>
+    <span class="n">inputs</span><span class="p">,</span>
+    <span class="n">training</span><span class="p">,</span>
+    <span class="n">count</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-get_dropout_mask_for_cell(
-    inputs,
-    training,
-    count=1
-)
-</code></p>
 
-<p>Get the dropout mask for RNN cell&rsquo;s input.</p>
-
-<p>It will create mask based on context if there isn&rsquo;t any existing cached
+<p>Get the dropout mask for RNN cell's input.</p>
+<p>It will create mask based on context if there isn't any existing cached
 mask. If a new mask is generated, it will update the cache in the cell.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>inputs</code></b>: the input tensor whose shape will be used to generate dropout
-mask.</li>
+  mask.</li>
 <li><b><code>training</code></b>: boolean tensor, whether its in training mode, dropout will be
-ignored in non-training mode.</li>
+  ignored in non-training mode.</li>
 <li><b><code>count</code></b>: int, how many dropout mask will be generated. It is useful for cell
-that has internal weights fused together.</li>
+  that has internal weights fused together.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>List of mask tensor, generated or cached mask based on context.</p>
-
 <h3 id="get_initial_state"><code>get_initial_state</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/recurrent.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_initial_state</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-get_initial_state(inputs)
-</code></p>
 
 <h3 id="get_recurrent_dropout_mask_for_cell"><code>get_recurrent_dropout_mask_for_cell</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/recurrent.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_recurrent_dropout_mask_for_cell</span><span class="p">(</span>
+    <span class="n">inputs</span><span class="p">,</span>
+    <span class="n">training</span><span class="p">,</span>
+    <span class="n">count</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-get_recurrent_dropout_mask_for_cell(
-    inputs,
-    training,
-    count=1
-)
-</code></p>
 
 <p>Get the recurrent dropout mask for RNN cell.</p>
-
-<p>It will create mask based on context if there isn&rsquo;t any existing cached
+<p>It will create mask based on context if there isn't any existing cached
 mask. If a new mask is generated, it will update the cache in the cell.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_1">Args:</h4>
 <ul>
 <li><b><code>inputs</code></b>: the input tensor whose shape will be used to generate dropout
-mask.</li>
+  mask.</li>
 <li><b><code>training</code></b>: boolean tensor, whether its in training mode, dropout will be
-ignored in non-training mode.</li>
+  ignored in non-training mode.</li>
 <li><b><code>count</code></b>: int, how many dropout mask will be generated. It is useful for cell
-that has internal weights fused together.</li>
+  that has internal weights fused together.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_1">Returns:</h4>
 <p>List of mask tensor, generated or cached mask based on context.</p>
-
 <h3 id="reset_dropout_mask"><code>reset_dropout_mask</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/recurrent.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">reset_dropout_mask</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-reset_dropout_mask()
-</code></p>
 
 <p>Reset the cached dropout masks if any.</p>
-
 <p>This is important for the RNN layer to invoke this in it call() method so
 that the cached mask is cleared before calling the cell.call(). The mask
-should be cached across the timestep within the same batch, but shouldn&rsquo;t
+should be cached across the timestep within the same batch, but shouldn't
 be cached between batches. Otherwise it will introduce unreasonable bias
 against certain index of data within the batch.</p>
-
 <h3 id="reset_recurrent_dropout_mask"><code>reset_recurrent_dropout_mask</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/recurrent.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">reset_recurrent_dropout_mask</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-reset_recurrent_dropout_mask()
-</code></p>
 
 <p>Reset the cached recurrent dropout masks if any.</p>
-
 <p>This is important for the RNN layer to invoke this in it call() method so
 that the cached mask is cleared before calling the cell.call(). The mask
-should be cached across the timestep within the same batch, but shouldn&rsquo;t
+should be cached across the timestep within the same batch, but shouldn't
 be cached between batches. Otherwise it will introduce unreasonable bias
 against certain index of data within the batch.</p>
-
 <h3 id="reset_states"><code>reset_states</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/recurrent.py">View source</a></p>
-
-<p><code>python
-reset_states(states=None)
-</code></p>
+<div class="codehilite"><pre><span></span><span class="n">reset_states</span><span class="p">(</span><span class="n">states</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+    </body>
+    </html>
+   

@@ -1,58 +1,51 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.image.yuv_to_rgb" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.image.yuv_to_rgb</h1>
-
+<h1 id="tfimageyuv_to_rgb">tf.image.yuv_to_rgb</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/image_ops_impl.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Converts one or more images from YUV to RGB.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.image.yuv_to_rgb</code></li>
 <li><code>tf.compat.v2.image.yuv_to_rgb</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">yuv_to_rgb</span><span class="p">(</span><span class="n">images</span><span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.image.yuv_to_rgb(images)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>Outputs a tensor of the same shape as the <code>images</code> tensor, containing the RGB
 value of the pixels.
 The output is only well defined if the Y value in images are in [0,1],
 U and V value are in [-0.5,0.5].</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>images</code></b>: 2-D or higher rank. Image data to convert. Last dimension must be
-size 3.</li>
+  size 3.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <ul>
 <li><b><code>images</code></b>: tensor with the same shape as <code>images</code>.</li>
 </ul>
-
+    </body>
+    </html>
+   

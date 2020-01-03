@@ -1,29 +1,28 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.io.decode_and_crop_jpeg" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.io.decode_and_crop_jpeg</h1>
-
+<h1 id="tfiodecode_and_crop_jpeg">tf.io.decode_and_crop_jpeg</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p>Defined in generated file: <code>python/ops/gen_image_ops.py</code></p>
-
 <!-- Start diff -->
 
-
 <p>Decode and Crop a JPEG-encoded image to a uint8 tensor.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.image.decode_and_crop_jpeg</code></li>
 <li><code>tf.compat.v1.io.decode_and_crop_jpeg</code></li>
@@ -31,75 +30,64 @@
 <li><code>tf.compat.v2.io.decode_and_crop_jpeg</code></li>
 <li><code>tf.image.decode_and_crop_jpeg</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">decode_and_crop_jpeg</span><span class="p">(</span>
+    <span class="n">contents</span><span class="p">,</span>
+    <span class="n">crop_window</span><span class="p">,</span>
+    <span class="n">channels</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">ratio</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">fancy_upscaling</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">try_recover_truncated</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">acceptable_fraction</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">dct_method</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.io.decode_and_crop_jpeg(
-    contents,
-    crop_window,
-    channels=0,
-    ratio=1,
-    fancy_upscaling=True,
-    try_recover_truncated=False,
-    acceptable_fraction=1,
-    dct_method='',
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>The attr <code>channels</code> indicates the desired number of color channels for the
 decoded image.</p>
-
-<h4>Accepted values are:</h4>
-
+<h4 id="accepted-values-are">Accepted values are:</h4>
 <ul>
 <li>0: Use the number of channels in the JPEG-encoded image.</li>
 <li>1: output a grayscale image.</li>
 <li>3: output an RGB image.</li>
 </ul>
-
-
 <p>If needed, the JPEG-encoded image is transformed to match the requested number
 of color channels.</p>
-
 <p>The attr <code>ratio</code> allows downscaling the image by an integer factor during
 decoding.  Allowed values are: 1, 2, 4, and 8.  This is much faster than
 downscaling the image later.</p>
-
 <p>It is equivalent to a combination of decode and crop, but much faster by only
 decoding partial jpeg image.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>contents</code></b>: A <code>Tensor</code> of type <code>string</code>. 0-D.  The JPEG-encoded image.</li>
 <li><b><code>crop_window</code></b>: A <code>Tensor</code> of type <code>int32</code>.
-1-D.  The crop window: [crop_y, crop_x, crop_height, crop_width].</li>
+  1-D.  The crop window: [crop_y, crop_x, crop_height, crop_width].</li>
 <li><b><code>channels</code></b>: An optional <code>int</code>. Defaults to <code>0</code>.
-Number of color channels for the decoded image.</li>
+  Number of color channels for the decoded image.</li>
 <li><b><code>ratio</code></b>: An optional <code>int</code>. Defaults to <code>1</code>. Downscaling ratio.</li>
 <li><b><code>fancy_upscaling</code></b>: An optional <code>bool</code>. Defaults to <code>True</code>.
-If true use a slower but nicer upscaling of the
-chroma planes (yuv420/422 only).</li>
+  If true use a slower but nicer upscaling of the
+  chroma planes (yuv420/422 only).</li>
 <li><b><code>try_recover_truncated</code></b>: An optional <code>bool</code>. Defaults to <code>False</code>.
-If true try to recover an image from truncated input.</li>
+  If true try to recover an image from truncated input.</li>
 <li><b><code>acceptable_fraction</code></b>: An optional <code>float</code>. Defaults to <code>1</code>.
-The minimum required fraction of lines before a truncated
-input is accepted.</li>
+  The minimum required fraction of lines before a truncated
+  input is accepted.</li>
 <li><b><code>dct_method</code></b>: An optional <code>string</code>. Defaults to <code>""</code>.
-string specifying a hint about the algorithm used for
-decompression.  Defaults to &ldquo;&rdquo; which maps to a system-specific
-default.  Currently valid values are [&ldquo;INTEGER_FAST&rdquo;,
-&ldquo;INTEGER_ACCURATE&rdquo;].  The hint may be ignored (e.g., the internal
-jpeg library changes to a version that does not have that specific
-option.)</li>
+  string specifying a hint about the algorithm used for
+  decompression.  Defaults to "" which maps to a system-specific
+  default.  Currently valid values are ["INTEGER_FAST",
+  "INTEGER_ACCURATE"].  The hint may be ignored (e.g., the internal
+  jpeg library changes to a version that does not have that specific
+  option.)</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>Tensor</code> of type <code>uint8</code>.</p>
+    </body>
+    </html>
+   

@@ -1,77 +1,70 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.nn.fused_batch_norm" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.compat.v1.nn.fused_batch_norm</h1>
-
+<h1 id="tfcompatv1nnfused_batch_norm">tf.compat.v1.nn.fused_batch_norm</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/nn_impl.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Batch normalization.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">fused_batch_norm</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">scale</span><span class="p">,</span>
+    <span class="n">offset</span><span class="p">,</span>
+    <span class="n">mean</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">variance</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span>
+    <span class="n">data_format</span><span class="o">=</span><span class="s1">&#39;NHWC&#39;</span><span class="p">,</span>
+    <span class="n">is_training</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-tf.compat.v1.nn.fused_batch_norm(
-    x,
-    scale,
-    offset,
-    mean=None,
-    variance=None,
-    epsilon=0.001,
-    data_format='NHWC',
-    is_training=True,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>See Source: [Batch Normalization: Accelerating Deep Network Training by
 Reducing Internal Covariate Shift; S. Ioffe, C. Szegedy]
 (http://arxiv.org/abs/1502.03167).</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>x</code></b>: Input <code>Tensor</code> of 4 dimensions.</li>
 <li><b><code>scale</code></b>: A <code>Tensor</code> of 1 dimension for scaling.</li>
 <li><b><code>offset</code></b>: A <code>Tensor</code> of 1 dimension for bias.</li>
 <li><b><code>mean</code></b>: A <code>Tensor</code> of 1 dimension for population mean used for inference.</li>
 <li><b><code>variance</code></b>: A <code>Tensor</code> of 1 dimension for population variance
-        used for inference.</li>
+          used for inference.</li>
 <li><b><code>epsilon</code></b>: A small float number added to the variance of x.</li>
-<li><b><code>data_format</code></b>: The data format for x. Either &ldquo;NHWC&rdquo; (default) or &ldquo;NCHW&rdquo;.</li>
+<li><b><code>data_format</code></b>: The data format for x. Either "NHWC" (default) or "NCHW".</li>
 <li><b><code>is_training</code></b>: A bool value to specify if the operation is used for
-           training or inference.</li>
+             training or inference.</li>
 <li><b><code>name</code></b>: A name for this operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <ul>
 <li><b><code>y</code></b>: A 4D Tensor for the normalized, scaled, offsetted x.</li>
 <li><b><code>batch_mean</code></b>: A 1D Tensor for the mean of x.</li>
 <li><b><code>batch_var</code></b>: A 1D Tensor for the variance of x.</li>
 </ul>
-
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: If mean or variance is not None when is_training is True.</li>
 </ul>
-
+    </body>
+    </html>
+   

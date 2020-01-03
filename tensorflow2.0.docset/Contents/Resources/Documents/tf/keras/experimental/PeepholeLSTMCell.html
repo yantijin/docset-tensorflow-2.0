@@ -1,4 +1,13 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.keras.experimental.PeepholeLSTMCell" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="__init__"/>
@@ -9,213 +18,161 @@
 <meta itemprop="property" content="reset_recurrent_dropout_mask"/>
 </div>
 
-
-<h1>tf.keras.experimental.PeepholeLSTMCell</h1>
-
+<h1 id="tfkerasexperimentalpeepholelstmcell">tf.keras.experimental.PeepholeLSTMCell</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/recurrent.py">View source</a></p>
-
-<h2>Class <code>PeepholeLSTMCell</code></h2>
-
+<h2 id="class-peepholelstmcell">Class <code>PeepholeLSTMCell</code></h2>
 <!-- Start diff -->
 
-
 <p>Equivalent to LSTMCell class but adds peephole connections.</p>
-
 <p>Inherits From: <a href="../../../tf/compat/v1/keras/layers/LSTMCell.html"><code>LSTMCell</code></a></p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li>Class <code>tf.compat.v1.keras.experimental.PeepholeLSTMCell</code></li>
 <li>Class <code>tf.compat.v2.keras.experimental.PeepholeLSTMCell</code></li>
 </ul>
-
-
 <!-- Placeholder for "Used in" -->
-
 
 <p>Peephole connections allow the gates to utilize the previous internal state as
 well as the previous hidden state (which is what LSTMCell is limited to).
 This allows PeepholeLSTMCell to better learn precise timings over LSTMCell.</p>
-
 <p>From <a href="http://www.jmlr.org/papers/volume3/gers02a/gers02a.pdf">Gers et al.</a>:</p>
-
-<p>&ldquo;We find that LSTM augmented by &lsquo;peephole connections&rsquo; from its internal
+<p>"We find that LSTM augmented by 'peephole connections' from its internal
 cells to its multiplicative gates can learn the fine distinction between
 sequences of spikes spaced either 50 or 49 time steps apart without the help
-of any short training exemplars.&rdquo;</p>
-
+of any short training exemplars."</p>
 <p>The peephole implementation is based on:</p>
-
 <p><a href="https://research.google.com/pubs/archive/43905.pdf">Long short-term memory recurrent neural network architectures for
  large scale acoustic modeling.
 </a></p>
+<h4 id="example">Example:</h4>
+<div class="codehilite"><pre><span></span><span class="c1"># Create 2 PeepholeLSTMCells</span>
+<span class="n">peephole_lstm_cells</span> <span class="o">=</span> <span class="p">[</span><span class="n">PeepholeLSTMCell</span><span class="p">(</span><span class="n">size</span><span class="p">)</span> <span class="k">for</span> <span class="n">size</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">128</span><span class="p">,</span> <span class="mi">256</span><span class="p">]]</span>
+<span class="c1"># Create a layer composed sequentially of the peephole LSTM cells.</span>
+<span class="n">layer</span> <span class="o">=</span> <span class="n">RNN</span><span class="p">(</span><span class="n">peephole_lstm_cells</span><span class="p">)</span>
+<span class="nb">input</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">Input</span><span class="p">((</span><span class="n">timesteps</span><span class="p">,</span> <span class="n">input_dim</span><span class="p">))</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">layer</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+</pre></div>
 
-<h4>Example:</h4>
-
-<p>```python</p>
-
-<h1>Create 2 PeepholeLSTMCells</h1>
-
-<p>peephole_lstm_cells = [PeepholeLSTMCell(size) for size in [128, 256]]</p>
-
-<h1>Create a layer composed sequentially of the peephole LSTM cells.</h1>
-
-<p>layer = RNN(peephole_lstm_cells)
-input = keras.Input((timesteps, input_dim))
-output = layer(input)
-```</p>
 
 <h2 id="__init__"><code>__init__</code></h2>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/recurrent.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">units</span><span class="p">,</span>
+    <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;tanh&#39;</span><span class="p">,</span>
+    <span class="n">recurrent_activation</span><span class="o">=</span><span class="s1">&#39;hard_sigmoid&#39;</span><span class="p">,</span>
+    <span class="n">use_bias</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">kernel_initializer</span><span class="o">=</span><span class="s1">&#39;glorot_uniform&#39;</span><span class="p">,</span>
+    <span class="n">recurrent_initializer</span><span class="o">=</span><span class="s1">&#39;orthogonal&#39;</span><span class="p">,</span>
+    <span class="n">bias_initializer</span><span class="o">=</span><span class="s1">&#39;zeros&#39;</span><span class="p">,</span>
+    <span class="n">unit_forget_bias</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">kernel_regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">recurrent_regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">bias_regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">kernel_constraint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">recurrent_constraint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">bias_constraint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">dropout</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">recurrent_dropout</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">implementation</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__init__(
-    units,
-    activation='tanh',
-    recurrent_activation='hard_sigmoid',
-    use_bias=True,
-    kernel_initializer='glorot_uniform',
-    recurrent_initializer='orthogonal',
-    bias_initializer='zeros',
-    unit_forget_bias=True,
-    kernel_regularizer=None,
-    recurrent_regularizer=None,
-    bias_regularizer=None,
-    kernel_constraint=None,
-    recurrent_constraint=None,
-    bias_constraint=None,
-    dropout=0.0,
-    recurrent_dropout=0.0,
-    implementation=1,
-    **kwargs
-)
-</code></p>
 
-<h2>Methods</h2>
-
+<h2 id="methods">Methods</h2>
 <h3 id="get_dropout_mask_for_cell"><code>get_dropout_mask_for_cell</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/recurrent.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_dropout_mask_for_cell</span><span class="p">(</span>
+    <span class="n">inputs</span><span class="p">,</span>
+    <span class="n">training</span><span class="p">,</span>
+    <span class="n">count</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-get_dropout_mask_for_cell(
-    inputs,
-    training,
-    count=1
-)
-</code></p>
 
-<p>Get the dropout mask for RNN cell&rsquo;s input.</p>
-
-<p>It will create mask based on context if there isn&rsquo;t any existing cached
+<p>Get the dropout mask for RNN cell's input.</p>
+<p>It will create mask based on context if there isn't any existing cached
 mask. If a new mask is generated, it will update the cache in the cell.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>inputs</code></b>: the input tensor whose shape will be used to generate dropout
-mask.</li>
+  mask.</li>
 <li><b><code>training</code></b>: boolean tensor, whether its in training mode, dropout will be
-ignored in non-training mode.</li>
+  ignored in non-training mode.</li>
 <li><b><code>count</code></b>: int, how many dropout mask will be generated. It is useful for cell
-that has internal weights fused together.</li>
+  that has internal weights fused together.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>List of mask tensor, generated or cached mask based on context.</p>
-
 <h3 id="get_initial_state"><code>get_initial_state</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/recurrent.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_initial_state</span><span class="p">(</span>
+    <span class="n">inputs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-get_initial_state(
-    inputs=None,
-    batch_size=None,
-    dtype=None
-)
-</code></p>
 
 <h3 id="get_recurrent_dropout_mask_for_cell"><code>get_recurrent_dropout_mask_for_cell</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/recurrent.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_recurrent_dropout_mask_for_cell</span><span class="p">(</span>
+    <span class="n">inputs</span><span class="p">,</span>
+    <span class="n">training</span><span class="p">,</span>
+    <span class="n">count</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-get_recurrent_dropout_mask_for_cell(
-    inputs,
-    training,
-    count=1
-)
-</code></p>
 
 <p>Get the recurrent dropout mask for RNN cell.</p>
-
-<p>It will create mask based on context if there isn&rsquo;t any existing cached
+<p>It will create mask based on context if there isn't any existing cached
 mask. If a new mask is generated, it will update the cache in the cell.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_1">Args:</h4>
 <ul>
 <li><b><code>inputs</code></b>: the input tensor whose shape will be used to generate dropout
-mask.</li>
+  mask.</li>
 <li><b><code>training</code></b>: boolean tensor, whether its in training mode, dropout will be
-ignored in non-training mode.</li>
+  ignored in non-training mode.</li>
 <li><b><code>count</code></b>: int, how many dropout mask will be generated. It is useful for cell
-that has internal weights fused together.</li>
+  that has internal weights fused together.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_1">Returns:</h4>
 <p>List of mask tensor, generated or cached mask based on context.</p>
-
 <h3 id="reset_dropout_mask"><code>reset_dropout_mask</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/recurrent.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">reset_dropout_mask</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-reset_dropout_mask()
-</code></p>
 
 <p>Reset the cached dropout masks if any.</p>
-
 <p>This is important for the RNN layer to invoke this in it call() method so
 that the cached mask is cleared before calling the cell.call(). The mask
-should be cached across the timestep within the same batch, but shouldn&rsquo;t
+should be cached across the timestep within the same batch, but shouldn't
 be cached between batches. Otherwise it will introduce unreasonable bias
 against certain index of data within the batch.</p>
-
 <h3 id="reset_recurrent_dropout_mask"><code>reset_recurrent_dropout_mask</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/recurrent.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">reset_recurrent_dropout_mask</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-reset_recurrent_dropout_mask()
-</code></p>
 
 <p>Reset the cached recurrent dropout masks if any.</p>
-
 <p>This is important for the RNN layer to invoke this in it call() method so
 that the cached mask is cleared before calling the cell.call(). The mask
-should be cached across the timestep within the same batch, but shouldn&rsquo;t
+should be cached across the timestep within the same batch, but shouldn't
 be cached between batches. Otherwise it will introduce unreasonable bias
 against certain index of data within the batch.</p>
+    </body>
+    </html>
+   

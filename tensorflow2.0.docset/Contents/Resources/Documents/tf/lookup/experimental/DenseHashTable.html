@@ -1,4 +1,13 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.lookup.experimental.DenseHashTable" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="key_dtype"/>
@@ -15,364 +24,255 @@
 <meta itemprop="property" content="size"/>
 </div>
 
-
-<h1>tf.lookup.experimental.DenseHashTable</h1>
-
+<h1 id="tflookupexperimentaldensehashtable">tf.lookup.experimental.DenseHashTable</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/lookup_ops.py">View source</a></p>
-
-<h2>Class <code>DenseHashTable</code></h2>
-
+<h2 id="class-densehashtable">Class <code>DenseHashTable</code></h2>
 <!-- Start diff -->
 
-
 <p>A generic mutable hash table implementation using tensors as backing store.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li>Class <code>tf.compat.v1.lookup.experimental.DenseHashTable</code></li>
 <li>Class <code>tf.compat.v2.lookup.experimental.DenseHashTable</code></li>
 </ul>
-
-
 <!-- Placeholder for "Used in" -->
-
 
 <p>Data can be inserted by calling the insert method and removed by calling the
 remove method. It does not support initialization via the init method.</p>
-
-<p>It uses &ldquo;open addressing&rdquo; with quadratic reprobing to resolve collisions.
+<p>It uses "open addressing" with quadratic reprobing to resolve collisions.
 Compared to <code>MutableHashTable</code> the insert, remove and lookup operations in a
 <code>DenseHashTable</code> are typically faster, but memory usage can be higher.
 However, <code>DenseHashTable</code> does not require additional memory for
 temporary tensors created during checkpointing and restore operations.</p>
+<h4 id="example-usage">Example usage:</h4>
+<div class="codehilite"><pre><span></span><span class="n">table</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">lookup</span><span class="o">.</span><span class="n">DenseHashTable</span><span class="p">(</span><span class="n">key_dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span>
+                                 <span class="n">value_dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span>
+                                 <span class="n">default_value</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+                                 <span class="n">empty_key</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                                 <span class="n">deleted_key</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 
-<h4>Example usage:</h4>
+<span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="n">values</span><span class="p">))</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">lookup</span><span class="p">(</span><span class="n">query_keys</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">eval</span><span class="p">())</span>
+</pre></div>
 
-<p>```python
-table = tf.lookup.DenseHashTable(key_dtype=tf.int64,
-                                 value_dtype=tf.int64,
-                                 default_value=-1,
-                                 empty_key=0,
-                                 deleted_key=-1)</p>
-
-<p>sess.run(table.insert(keys, values))
-out = table.lookup(query_keys)
-print(out.eval())
-```</p>
 
 <h2 id="__init__"><code>__init__</code></h2>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/lookup_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">key_dtype</span><span class="p">,</span>
+    <span class="n">value_dtype</span><span class="p">,</span>
+    <span class="n">default_value</span><span class="p">,</span>
+    <span class="n">empty_key</span><span class="p">,</span>
+    <span class="n">deleted_key</span><span class="p">,</span>
+    <span class="n">initial_num_buckets</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;MutableDenseHashTable&#39;</span><span class="p">,</span>
+    <span class="n">checkpoint</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__init__(
-    key_dtype,
-    value_dtype,
-    default_value,
-    empty_key,
-    deleted_key,
-    initial_num_buckets=None,
-    name='MutableDenseHashTable',
-    checkpoint=True
-)
-</code></p>
 
 <p>Creates an empty <code>DenseHashTable</code> object.</p>
-
 <p>Creates a table, the type of its keys and values are specified by key_dtype
 and value_dtype, respectively.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>key_dtype</code></b>: the type of the key tensors.</li>
 <li><b><code>value_dtype</code></b>: the type of the value tensors.</li>
 <li><b><code>default_value</code></b>: The value to use if a key is missing in the table.</li>
 <li><b><code>empty_key</code></b>: the key to use to represent empty buckets internally. Must not
-be used in insert, remove or lookup operations.</li>
+  be used in insert, remove or lookup operations.</li>
 <li><b><code>deleted_key</code></b>: the key to use to represent deleted buckets internally. Must
-not be used in insert, remove or lookup operations and be different from
-the empty_key.</li>
+  not be used in insert, remove or lookup operations and be different from
+  the empty_key.</li>
 <li><b><code>initial_num_buckets</code></b>: the initial number of buckets.</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 <li><b><code>checkpoint</code></b>: if True, the contents of the table are saved to and restored
-from checkpoints. If <code>shared_name</code> is empty for a checkpointed table, it
-is shared using the table node name.</li>
+  from checkpoints. If <code>shared_name</code> is empty for a checkpointed table, it
+  is shared using the table node name.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>DenseHashTable</code> object.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: If checkpoint is True and no name was specified.</li>
 </ul>
-
-
-<h2>Properties</h2>
-
+<h2 id="properties">Properties</h2>
 <h3 id="key_dtype"><code>key_dtype</code></h3>
 
-
 <p>The table key dtype.</p>
-
 <h3 id="name"><code>name</code></h3>
 
-
 <p>The name of the table.</p>
-
 <h3 id="resource_handle"><code>resource_handle</code></h3>
 
-
 <p>Returns the resource handle associated with this Resource.</p>
-
 <h3 id="value_dtype"><code>value_dtype</code></h3>
 
-
 <p>The table value dtype.</p>
-
-<h2>Methods</h2>
-
+<h2 id="methods">Methods</h2>
 <h3 id="erase"><code>erase</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/lookup_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">erase</span><span class="p">(</span>
+    <span class="n">keys</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-erase(
-    keys,
-    name=None
-)
-</code></p>
 
 <p>Removes <code>keys</code> and its associated values from the table.</p>
-
 <p>If a key is not present in the table, it is silently ignored.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_1">Args:</h4>
 <ul>
-<li><b><code>keys</code></b>: Keys to remove. Can be a tensor of any shape. Must match the table&rsquo;s
-key type.</li>
+<li><b><code>keys</code></b>: Keys to remove. Can be a tensor of any shape. Must match the table's
+  key type.</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_1">Returns:</h4>
 <p>The created Operation.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises_1">Raises:</h4>
 <ul>
 <li><b><code>TypeError</code></b>: when <code>keys</code> do not match the table data types.</li>
 </ul>
-
-
 <h3 id="export"><code>export</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/lookup_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">export</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-export(name=None)
-</code></p>
 
 <p>Returns tensors of all keys and values in the table.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_2">Args:</h4>
 <ul>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_2">Returns:</h4>
 <p>A pair of tensors with the first tensor containing all keys and the
   second tensors containing all values in the table.</p>
-
 <h3 id="insert"><code>insert</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/lookup_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">insert</span><span class="p">(</span>
+    <span class="n">keys</span><span class="p">,</span>
+    <span class="n">values</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-insert(
-    keys,
-    values,
-    name=None
-)
-</code></p>
 
 <p>Associates <code>keys</code> with <code>values</code>.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_3">Args:</h4>
 <ul>
-<li><b><code>keys</code></b>: Keys to insert. Can be a tensor of any shape. Must match the table&rsquo;s
-key type.</li>
+<li><b><code>keys</code></b>: Keys to insert. Can be a tensor of any shape. Must match the table's
+  key type.</li>
 <li><b><code>values</code></b>: Values to be associated with keys. Must be a tensor of the same
-shape as <code>keys</code> and match the table&rsquo;s value type.</li>
+  shape as <code>keys</code> and match the table's value type.</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_3">Returns:</h4>
 <p>The created Operation.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises_2">Raises:</h4>
 <ul>
-<li><b><code>TypeError</code></b>: when <code>keys</code> or <code>values</code> doesn&rsquo;t match the table data
-types.</li>
+<li><b><code>TypeError</code></b>: when <code>keys</code> or <code>values</code> doesn't match the table data
+  types.</li>
 </ul>
-
-
 <h3 id="insert_or_assign"><code>insert_or_assign</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/lookup_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">insert_or_assign</span><span class="p">(</span>
+    <span class="n">keys</span><span class="p">,</span>
+    <span class="n">values</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-insert_or_assign(
-    keys,
-    values,
-    name=None
-)
-</code></p>
 
 <p>Associates <code>keys</code> with <code>values</code>.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_4">Args:</h4>
 <ul>
-<li><b><code>keys</code></b>: Keys to insert. Can be a tensor of any shape. Must match the table&rsquo;s
-key type.</li>
+<li><b><code>keys</code></b>: Keys to insert. Can be a tensor of any shape. Must match the table's
+  key type.</li>
 <li><b><code>values</code></b>: Values to be associated with keys. Must be a tensor of the same
-shape as <code>keys</code> and match the table&rsquo;s value type.</li>
+  shape as <code>keys</code> and match the table's value type.</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_4">Returns:</h4>
 <p>The created Operation.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises_3">Raises:</h4>
 <ul>
-<li><b><code>TypeError</code></b>: when <code>keys</code> or <code>values</code> doesn&rsquo;t match the table data
-types.</li>
+<li><b><code>TypeError</code></b>: when <code>keys</code> or <code>values</code> doesn't match the table data
+  types.</li>
 </ul>
-
-
 <h3 id="lookup"><code>lookup</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/lookup_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">lookup</span><span class="p">(</span>
+    <span class="n">keys</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-lookup(
-    keys,
-    name=None
-)
-</code></p>
 
 <p>Looks up <code>keys</code> in a table, outputs the corresponding values.</p>
-
 <p>The <code>default_value</code> is used for keys not present in the table.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_5">Args:</h4>
 <ul>
 <li><b><code>keys</code></b>: Keys to look up. Can be a tensor of any shape. Must match the
-table&rsquo;s key_dtype.</li>
+  table's key_dtype.</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_5">Returns:</h4>
 <p>A tensor containing the values in the same shape as <code>keys</code> using the
-  table&rsquo;s value type.</p>
-
-<h4>Raises:</h4>
-
+  table's value type.</p>
+<h4 id="raises_4">Raises:</h4>
 <ul>
 <li><b><code>TypeError</code></b>: when <code>keys</code> do not match the table data types.</li>
 </ul>
-
-
 <h3 id="remove"><code>remove</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/lookup_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">remove</span><span class="p">(</span>
+    <span class="n">keys</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-remove(
-    keys,
-    name=None
-)
-</code></p>
 
 <p>Removes <code>keys</code> and its associated values from the table.</p>
-
 <p>If a key is not present in the table, it is silently ignored.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_6">Args:</h4>
 <ul>
-<li><b><code>keys</code></b>: Keys to remove. Can be a tensor of any shape. Must match the table&rsquo;s
-key type.</li>
+<li><b><code>keys</code></b>: Keys to remove. Can be a tensor of any shape. Must match the table's
+  key type.</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_6">Returns:</h4>
 <p>The created Operation.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises_5">Raises:</h4>
 <ul>
 <li><b><code>TypeError</code></b>: when <code>keys</code> do not match the table data types.</li>
 </ul>
-
-
 <h3 id="size"><code>size</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/lookup_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">size</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-size(name=None)
-</code></p>
 
 <p>Compute the number of elements in this table.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_7">Args:</h4>
 <ul>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_7">Returns:</h4>
 <p>A scalar tensor containing the number of elements in this table.</p>
+    </body>
+    </html>
+   

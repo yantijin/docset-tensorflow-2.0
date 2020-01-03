@@ -1,4 +1,13 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.VariableScope" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="caching_device"/>
@@ -28,299 +37,213 @@
 <meta itemprop="property" content="trainable_variables"/>
 </div>
 
-
-<h1>tf.compat.v1.VariableScope</h1>
-
+<h1 id="tfcompatv1variablescope">tf.compat.v1.VariableScope</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/variable_scope.py">View source</a></p>
-
-<h2>Class <code>VariableScope</code></h2>
-
+<h2 id="class-variablescope">Class <code>VariableScope</code></h2>
 <!-- Start diff -->
 
-
 <p>Variable scope object to carry defaults to provide to <code>get_variable</code>.</p>
-
 <!-- Placeholder for "Used in" -->
-
 
 <p>Many of the arguments we need for <code>get_variable</code> in a variable store are most
 easily handled with a context. This object is used for the defaults.</p>
-
-<h4>Attributes:</h4>
-
+<h4 id="attributes">Attributes:</h4>
 <ul>
 <li><b><code>name</code></b>: name of the current scope, used as prefix in get_variable.</li>
 <li><b><code>initializer</code></b>: default initializer passed to get_variable.</li>
 <li><b><code>regularizer</code></b>: default regularizer passed to get_variable.</li>
 <li><b><code>reuse</code></b>: Boolean, None, or tf.compat.v1.AUTO_REUSE, setting the reuse in
-get_variable. When eager execution is enabled this argument is always
-forced to be False.</li>
+  get_variable. When eager execution is enabled this argument is always
+  forced to be False.</li>
 <li><b><code>caching_device</code></b>: string, callable, or None: the caching device passed to
-get_variable.</li>
+  get_variable.</li>
 <li><b><code>partitioner</code></b>: callable or <code>None</code>: the partitioner passed to <code>get_variable</code>.</li>
 <li><b><code>custom_getter</code></b>: default custom getter passed to get_variable.</li>
 <li><b><code>name_scope</code></b>: The name passed to <a href="../../../tf/name_scope.html"><code>tf.name_scope</code></a>.</li>
 <li><b><code>dtype</code></b>: default type passed to get_variable (defaults to DT_FLOAT).</li>
 <li><b><code>use_resource</code></b>: if False, create a normal Variable; if True create an
-experimental ResourceVariable with well-defined semantics. Defaults to
-False (will later change to True). When eager execution is enabled this
-argument is always forced to be True.</li>
+  experimental ResourceVariable with well-defined semantics. Defaults to
+  False (will later change to True). When eager execution is enabled this
+  argument is always forced to be True.</li>
 <li><b><code>constraint</code></b>: An optional projection function to be applied to the variable
-after being updated by an <code>Optimizer</code> (e.g. used to implement norm
-constraints or value constraints for layer weights). The function must
-take as input the unprojected Tensor representing the value of the
-variable and return the Tensor for the projected value (which must have
-the same shape). Constraints are not safe to use when doing asynchronous
-distributed training.</li>
+  after being updated by an <code>Optimizer</code> (e.g. used to implement norm
+  constraints or value constraints for layer weights). The function must
+  take as input the unprojected Tensor representing the value of the
+  variable and return the Tensor for the projected value (which must have
+  the same shape). Constraints are not safe to use when doing asynchronous
+  distributed training.</li>
 </ul>
-
-
 <h2 id="__init__"><code>__init__</code></h2>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/variable_scope.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">reuse</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">initializer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">caching_device</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">partitioner</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">custom_getter</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name_scope</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
+    <span class="n">use_resource</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">constraint</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__init__(
-    reuse,
-    name='',
-    initializer=None,
-    regularizer=None,
-    caching_device=None,
-    partitioner=None,
-    custom_getter=None,
-    name_scope='',
-    dtype=tf.dtypes.float32,
-    use_resource=None,
-    constraint=None
-)
-</code></p>
 
 <p>Creates a new VariableScope with the given properties.</p>
-
-<h2>Properties</h2>
-
+<h2 id="properties">Properties</h2>
 <h3 id="caching_device"><code>caching_device</code></h3>
-
-
-
 
 <h3 id="constraint"><code>constraint</code></h3>
 
-
-
-
 <h3 id="custom_getter"><code>custom_getter</code></h3>
-
-
-
 
 <h3 id="dtype"><code>dtype</code></h3>
 
-
-
-
 <h3 id="initializer"><code>initializer</code></h3>
-
-
-
 
 <h3 id="name"><code>name</code></h3>
 
-
-
-
 <h3 id="original_name_scope"><code>original_name_scope</code></h3>
-
-
-
 
 <h3 id="partitioner"><code>partitioner</code></h3>
 
-
-
-
 <h3 id="regularizer"><code>regularizer</code></h3>
-
-
-
 
 <h3 id="reuse"><code>reuse</code></h3>
 
-
-
-
 <h3 id="use_resource"><code>use_resource</code></h3>
 
-
-<h2>Methods</h2>
-
+<h2 id="methods">Methods</h2>
 <h3 id="get_collection"><code>get_collection</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/variable_scope.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_collection</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-get_collection(name)
-</code></p>
 
-<p>Get this scope&rsquo;s variables.</p>
-
+<p>Get this scope's variables.</p>
 <h3 id="get_variable"><code>get_variable</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/variable_scope.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_variable</span><span class="p">(</span>
+    <span class="n">var_store</span><span class="p">,</span>
+    <span class="n">name</span><span class="p">,</span>
+    <span class="n">shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">initializer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">reuse</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">trainable</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">collections</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">caching_device</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">partitioner</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">validate_shape</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">use_resource</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">custom_getter</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">constraint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">synchronization</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">VariableSynchronization</span><span class="o">.</span><span class="n">AUTO</span><span class="p">,</span>
+    <span class="n">aggregation</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">VariableAggregation</span><span class="o">.</span><span class="n">NONE</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-get_variable(
-    var_store,
-    name,
-    shape=None,
-    dtype=None,
-    initializer=None,
-    regularizer=None,
-    reuse=None,
-    trainable=None,
-    collections=None,
-    caching_device=None,
-    partitioner=None,
-    validate_shape=True,
-    use_resource=None,
-    custom_getter=None,
-    constraint=None,
-    synchronization=tf.VariableSynchronization.AUTO,
-    aggregation=tf.compat.v1.VariableAggregation.NONE
-)
-</code></p>
 
 <p>Gets an existing variable with this name or create a new one.</p>
-
 <h3 id="global_variables"><code>global_variables</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/variable_scope.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">global_variables</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-global_variables()
-</code></p>
 
-<p>Get this scope&rsquo;s global variables.</p>
-
+<p>Get this scope's global variables.</p>
 <h3 id="local_variables"><code>local_variables</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/variable_scope.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">local_variables</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-local_variables()
-</code></p>
 
-<p>Get this scope&rsquo;s local variables.</p>
-
+<p>Get this scope's local variables.</p>
 <h3 id="reuse_variables"><code>reuse_variables</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/variable_scope.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">reuse_variables</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-reuse_variables()
-</code></p>
 
 <p>Reuse variables in this scope.</p>
-
 <h3 id="set_caching_device"><code>set_caching_device</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/variable_scope.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">set_caching_device</span><span class="p">(</span><span class="n">caching_device</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-set_caching_device(caching_device)
-</code></p>
 
 <p>Set caching_device for this scope.</p>
-
 <h3 id="set_custom_getter"><code>set_custom_getter</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/variable_scope.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">set_custom_getter</span><span class="p">(</span><span class="n">custom_getter</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-set_custom_getter(custom_getter)
-</code></p>
 
 <p>Set custom getter for this scope.</p>
-
 <h3 id="set_dtype"><code>set_dtype</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/variable_scope.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">set_dtype</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-set_dtype(dtype)
-</code></p>
 
 <p>Set data type for this scope.</p>
-
 <h3 id="set_initializer"><code>set_initializer</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/variable_scope.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">set_initializer</span><span class="p">(</span><span class="n">initializer</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-set_initializer(initializer)
-</code></p>
 
 <p>Set initializer for this scope.</p>
-
 <h3 id="set_partitioner"><code>set_partitioner</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/variable_scope.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">set_partitioner</span><span class="p">(</span><span class="n">partitioner</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-set_partitioner(partitioner)
-</code></p>
 
 <p>Set partitioner for this scope.</p>
-
 <h3 id="set_regularizer"><code>set_regularizer</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/variable_scope.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">set_regularizer</span><span class="p">(</span><span class="n">regularizer</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-set_regularizer(regularizer)
-</code></p>
 
 <p>Set regularizer for this scope.</p>
-
 <h3 id="set_use_resource"><code>set_use_resource</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/variable_scope.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">set_use_resource</span><span class="p">(</span><span class="n">use_resource</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-set_use_resource(use_resource)
-</code></p>
 
 <p>Sets whether to use ResourceVariables for this scope.</p>
-
 <h3 id="trainable_variables"><code>trainable_variables</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/variable_scope.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">trainable_variables</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-trainable_variables()
-</code></p>
 
-<p>Get this scope&rsquo;s trainable variables.</p>
+<p>Get this scope's trainable variables.</p>
+    </body>
+    </html>
+   

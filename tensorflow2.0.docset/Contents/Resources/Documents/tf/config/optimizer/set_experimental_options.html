@@ -1,81 +1,73 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.config.optimizer.set_experimental_options" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.config.optimizer.set_experimental_options</h1>
-
+<h1 id="tfconfigoptimizerset_experimental_options">tf.config.optimizer.set_experimental_options</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/framework/config.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Set experimental optimizer options.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.config.optimizer.set_experimental_options</code></li>
 <li><code>tf.compat.v2.config.optimizer.set_experimental_options</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">optimizer</span><span class="o">.</span><span class="n">set_experimental_options</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.config.optimizer.set_experimental_options(options)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>Note that optimizations are only applied in graph mode, (within tf.function).
 In addition, as these are experimental options, the list is subject to change.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>options</code></b>: Dictionary of experimental optimizer options to configure.
-Valid keys:
-
-<ul>
+  Valid keys:</li>
 <li>layout_optimizer: Optimize tensor layouts
-e.g. This will try to use NCHW layout on GPU which is faster.</li>
+    e.g. This will try to use NCHW layout on GPU which is faster.</li>
 <li>constant_folding: Fold constants
-Statically infer the value of tensors when possible, and materialize the
-result using constants.</li>
+    Statically infer the value of tensors when possible, and materialize the
+    result using constants.</li>
 <li>shape_optimization: Simplify computations made on shapes.</li>
 <li>remapping: Remap subgraphs onto more efficient implementations.</li>
 <li>arithmetic_optimization: Simplify arithmetic ops with common
-sub-expression elimination and arithmetic simplification.</li>
+    sub-expression elimination and arithmetic simplification.</li>
 <li>dependency_optimization: Control dependency optimizations. Remove
-redundant control dependencies, which may enable other optimization.
-This optimizer is also essential for pruning Identity and NoOp nodes.</li>
+    redundant control dependencies, which may enable other optimization.
+    This optimizer is also essential for pruning Identity and NoOp nodes.</li>
 <li>loop_optimization: Loop optimizations.</li>
 <li>function_optimization: Function optimizations and inlining.</li>
 <li>debug_stripper: Strips debug-related nodes from the graph.</li>
 <li>disable_model_pruning: Disable removal of unnecessary ops from the graph</li>
 <li>scoped_allocator_optimization: Try to allocate some independent Op
-outputs contiguously in order to merge or eliminate downstream Ops.</li>
+    outputs contiguously in order to merge or eliminate downstream Ops.</li>
 <li>pin_to_host_optimization: Force small ops onto the CPU.</li>
 <li>implementation_selector: Enable the swap of kernel implementations based
-on the device placement.</li>
+    on the device placement.</li>
 <li>auto_mixed_precision: Change certain float32 ops to float16 on Volta
-GPUs and above. Without the use of loss scaling, this can cause
-numerical underflow (see
-<a href="../../../tf/keras/mixed_precision/experimental/LossScaleOptimizer.html"><code>keras.mixed_precision.experimental.LossScaleOptimizer</code></a>).</li>
+    GPUs and above. Without the use of loss scaling, this can cause
+    numerical underflow (see
+    <a href="../../../tf/keras/mixed_precision/experimental/LossScaleOptimizer.html"><code>keras.mixed_precision.experimental.LossScaleOptimizer</code></a>).</li>
 <li>disable_meta_optimizer: Disable the entire meta optimizer.</li>
 <li>min_graph_nodes: The minimum number of nodes in a graph to optimizer.
-For smaller graphs, optimization is skipped.</li>
+    For smaller graphs, optimization is skipped.</li>
 </ul>
-</li>
-</ul>
-
+    </body>
+    </html>
+   

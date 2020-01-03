@@ -1,45 +1,41 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.nn.embedding_lookup" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.nn.embedding_lookup</h1>
-
+<h1 id="tfnnembedding_lookup">tf.nn.embedding_lookup</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/embedding_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Looks up <code>ids</code> in a list of embedding tensors.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v2.nn.embedding_lookup</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">embedding_lookup</span><span class="p">(</span>
+    <span class="n">params</span><span class="p">,</span>
+    <span class="n">ids</span><span class="p">,</span>
+    <span class="n">max_norm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.nn.embedding_lookup(
-    params,
-    ids,
-    max_norm=None,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>This function is used to perform parallel lookups on the list of
 tensors in <code>params</code>.  It is a generalization of
@@ -48,44 +44,36 @@ interpreted as a partitioning of a large embedding tensor.  <code>params</code> 
 a <code>PartitionedVariable</code> as returned by using <a href="../../tf/compat/v1/get_variable.html"><code>tf.compat.v1.get_variable()</code></a>
 with a
 partitioner.</p>
-
 <p>If <code>len(params) &gt; 1</code>, each element <code>id</code> of <code>ids</code> is partitioned between
 the elements of <code>params</code> according to the <code>partition_strategy</code>.
 In all strategies, if the id space does not evenly divide the number of
 partitions, each of the first <code>(max_id + 1) % len(params)</code> partitions will
 be assigned one more id.</p>
-
 <p>The <code>partition_strategy</code> is always <code>"div"</code> currently. This means that we
 assign ids to partitions in a contiguous manner. For instance, 13 ids are
 split across 5 partitions as:
 <code>[[0, 1, 2], [3, 4, 5], [6, 7, 8], [9, 10], [11, 12]]</code></p>
-
 <p>The results of the lookup are concatenated into a dense
 tensor. The returned tensor has shape <code>shape(ids) + shape(params)[1:]</code>.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>params</code></b>: A single tensor representing the complete embedding tensor, or a
-list of P tensors all of same shape except for the first dimension,
-representing sharded embedding tensors.  Alternatively, a
-<code>PartitionedVariable</code>, created by partitioning along dimension 0. Each
-element must be appropriately sized for the &lsquo;div&rsquo; <code>partition_strategy</code>.</li>
+  list of P tensors all of same shape except for the first dimension,
+  representing sharded embedding tensors.  Alternatively, a
+  <code>PartitionedVariable</code>, created by partitioning along dimension 0. Each
+  element must be appropriately sized for the 'div' <code>partition_strategy</code>.</li>
 <li><b><code>ids</code></b>: A <code>Tensor</code> with type <code>int32</code> or <code>int64</code> containing the ids to be looked
-up in <code>params</code>.</li>
+  up in <code>params</code>.</li>
 <li><b><code>max_norm</code></b>: If not <code>None</code>, each embedding is clipped if its l2-norm is larger
-than this value.</li>
+  than this value.</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>Tensor</code> with the same type as the tensors in <code>params</code>.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: If <code>params</code> is empty.</li>
 </ul>
-
+    </body>
+    </html>
+   

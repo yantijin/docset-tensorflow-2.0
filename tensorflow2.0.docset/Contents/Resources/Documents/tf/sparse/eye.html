@@ -1,60 +1,55 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.sparse.eye" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.sparse.eye</h1>
-
+<h1 id="tfsparseeye">tf.sparse.eye</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/sparse_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Creates a two-dimensional sparse tensor with ones along the diagonal.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.sparse.eye</code></li>
 <li><code>tf.compat.v2.sparse.eye</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span>
+    <span class="n">num_rows</span><span class="p">,</span>
+    <span class="n">num_columns</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.sparse.eye(
-    num_rows,
-    num_columns=None,
-    dtype=tf.dtypes.float32,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>num_rows</code></b>: Non-negative integer or <code>int32</code> scalar <code>tensor</code> giving the number
-of rows in the resulting matrix.</li>
+  of rows in the resulting matrix.</li>
 <li><b><code>num_columns</code></b>: Optional non-negative integer or <code>int32</code> scalar <code>tensor</code> giving
-the number of columns in the resulting matrix. Defaults to <code>num_rows</code>.</li>
+  the number of columns in the resulting matrix. Defaults to <code>num_rows</code>.</li>
 <li><b><code>dtype</code></b>: The type of element in the resulting <code>Tensor</code>.</li>
-<li><b><code>name</code></b>: A name for this <code>Op</code>. Defaults to &ldquo;eye&rdquo;.</li>
+<li><b><code>name</code></b>: A name for this <code>Op</code>. Defaults to "eye".</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>SparseTensor</code> of shape [num_rows, num_columns] with ones along the
 diagonal.</p>
+    </body>
+    </html>
+   

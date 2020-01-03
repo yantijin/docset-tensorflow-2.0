@@ -1,49 +1,48 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.train.MonitoredTrainingSession" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.compat.v1.train.MonitoredTrainingSession</h1>
-
+<h1 id="tfcompatv1trainmonitoredtrainingsession">tf.compat.v1.train.MonitoredTrainingSession</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/training/monitored_session.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Creates a <code>MonitoredSession</code> for training.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">MonitoredTrainingSession</span><span class="p">(</span>
+    <span class="n">master</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">is_chief</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">checkpoint_dir</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">scaffold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">hooks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">chief_only_hooks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">save_checkpoint_secs</span><span class="o">=</span><span class="n">USE_DEFAULT</span><span class="p">,</span>
+    <span class="n">save_summaries_steps</span><span class="o">=</span><span class="n">USE_DEFAULT</span><span class="p">,</span>
+    <span class="n">save_summaries_secs</span><span class="o">=</span><span class="n">USE_DEFAULT</span><span class="p">,</span>
+    <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">stop_grace_period_secs</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span>
+    <span class="n">log_step_count_steps</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">max_wait_secs</span><span class="o">=</span><span class="mi">7200</span><span class="p">,</span>
+    <span class="n">save_checkpoint_steps</span><span class="o">=</span><span class="n">USE_DEFAULT</span><span class="p">,</span>
+    <span class="n">summary_dir</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-tf.compat.v1.train.MonitoredTrainingSession(
-    master='',
-    is_chief=True,
-    checkpoint_dir=None,
-    scaffold=None,
-    hooks=None,
-    chief_only_hooks=None,
-    save_checkpoint_secs=USE_DEFAULT,
-    save_summaries_steps=USE_DEFAULT,
-    save_summaries_secs=USE_DEFAULT,
-    config=None,
-    stop_grace_period_secs=120,
-    log_step_count_steps=100,
-    max_wait_secs=7200,
-    save_checkpoint_steps=USE_DEFAULT,
-    summary_dir=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>For a chief, this utility sets proper session initializer/restorer. It also
 creates hooks related to checkpoint and summary saving. For workers, this
@@ -51,55 +50,53 @@ utility sets proper session creator which waits for the chief to
 initialize/restore. Please check <a href="../../../../tf/compat/v1/train/MonitoredSession.html"><code>tf.compat.v1.train.MonitoredSession</code></a> for
 more
 information.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>master</code></b>: <code>String</code> the TensorFlow master to use.</li>
 <li><b><code>is_chief</code></b>: If <code>True</code>, it will take care of initialization and recovery the
-underlying TensorFlow session. If <code>False</code>, it will wait on a chief to
-initialize or recover the TensorFlow session.</li>
+  underlying TensorFlow session. If <code>False</code>, it will wait on a chief to
+  initialize or recover the TensorFlow session.</li>
 <li><b><code>checkpoint_dir</code></b>: A string.  Optional path to a directory where to restore
-variables.</li>
+  variables.</li>
 <li><b><code>scaffold</code></b>: A <code>Scaffold</code> used for gathering or building supportive ops. If not
-specified, a default one is created. It&rsquo;s used to finalize the graph.</li>
+  specified, a default one is created. It's used to finalize the graph.</li>
 <li><b><code>hooks</code></b>: Optional list of <code>SessionRunHook</code> objects.</li>
 <li><b><code>chief_only_hooks</code></b>: list of <code>SessionRunHook</code> objects. Activate these hooks if
-<code>is_chief==True</code>, ignore otherwise.</li>
+  <code>is_chief==True</code>, ignore otherwise.</li>
 <li><b><code>save_checkpoint_secs</code></b>: The frequency, in seconds, that a checkpoint is saved
-using a default checkpoint saver. If both <code>save_checkpoint_steps</code> and
-<code>save_checkpoint_secs</code> are set to <code>None</code>, then the default checkpoint
-saver isn&rsquo;t used. If both are provided, then only <code>save_checkpoint_secs</code>
-is used. Default 600.</li>
+  using a default checkpoint saver. If both <code>save_checkpoint_steps</code> and
+  <code>save_checkpoint_secs</code> are set to <code>None</code>, then the default checkpoint
+  saver isn't used. If both are provided, then only <code>save_checkpoint_secs</code>
+  is used. Default 600.</li>
 <li><b><code>save_summaries_steps</code></b>: The frequency, in number of global steps, that the
-summaries are written to disk using a default summary saver. If both
-<code>save_summaries_steps</code> and <code>save_summaries_secs</code> are set to <code>None</code>, then
-the default summary saver isn&rsquo;t used. Default 100.</li>
+  summaries are written to disk using a default summary saver. If both
+  <code>save_summaries_steps</code> and <code>save_summaries_secs</code> are set to <code>None</code>, then
+  the default summary saver isn't used. Default 100.</li>
 <li><b><code>save_summaries_secs</code></b>: The frequency, in secs, that the summaries are written
-to disk using a default summary saver.  If both <code>save_summaries_steps</code> and
-<code>save_summaries_secs</code> are set to <code>None</code>, then the default summary saver
-isn&rsquo;t used. Default not enabled.</li>
+  to disk using a default summary saver.  If both <code>save_summaries_steps</code> and
+  <code>save_summaries_secs</code> are set to <code>None</code>, then the default summary saver
+  isn't used. Default not enabled.</li>
 <li><b><code>config</code></b>: an instance of <a href="../../../../tf/compat/v1/ConfigProto.html"><code>tf.compat.v1.ConfigProto</code></a> proto used to configure
-the session. It&rsquo;s the <code>config</code> argument of constructor of
-<a href="../../../../tf/compat/v1/Session.html"><code>tf.compat.v1.Session</code></a>.</li>
+  the session. It's the <code>config</code> argument of constructor of
+  <a href="../../../../tf/compat/v1/Session.html"><code>tf.compat.v1.Session</code></a>.</li>
 <li><b><code>stop_grace_period_secs</code></b>: Number of seconds given to threads to stop after
-<code>close()</code> has been called.</li>
+  <code>close()</code> has been called.</li>
 <li><b><code>log_step_count_steps</code></b>: The frequency, in number of global steps, that the
-global step/sec is logged.</li>
+  global step/sec is logged.</li>
 <li><b><code>max_wait_secs</code></b>: Maximum time workers should wait for the session to become
-available. This should be kept relatively short to help detect incorrect
-code, but sometimes may need to be increased if the chief takes a while to
-start up.</li>
+  available. This should be kept relatively short to help detect incorrect
+  code, but sometimes may need to be increased if the chief takes a while to
+  start up.</li>
 <li><b><code>save_checkpoint_steps</code></b>: The frequency, in number of global steps, that a
-checkpoint is saved using a default checkpoint saver. If both
-<code>save_checkpoint_steps</code> and <code>save_checkpoint_secs</code> are set to <code>None</code>, then
-the default checkpoint saver isn&rsquo;t used. If both are provided, then only
-<code>save_checkpoint_secs</code> is used. Default not enabled.</li>
+  checkpoint is saved using a default checkpoint saver. If both
+  <code>save_checkpoint_steps</code> and <code>save_checkpoint_secs</code> are set to <code>None</code>, then
+  the default checkpoint saver isn't used. If both are provided, then only
+  <code>save_checkpoint_secs</code> is used. Default not enabled.</li>
 <li><b><code>summary_dir</code></b>: A string.  Optional path to a directory where to save
-summaries. If None, checkpoint_dir is used instead.</li>
+  summaries. If None, checkpoint_dir is used instead.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>MonitoredSession</code> object.</p>
+    </body>
+    </html>
+   

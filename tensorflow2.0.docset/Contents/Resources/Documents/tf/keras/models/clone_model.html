@@ -1,82 +1,73 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.keras.models.clone_model" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.keras.models.clone_model</h1>
-
+<h1 id="tfkerasmodelsclone_model">tf.keras.models.clone_model</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/models.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Clone any <code>Model</code> instance.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.keras.models.clone_model</code></li>
 <li><code>tf.compat.v2.keras.models.clone_model</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">clone_model</span><span class="p">(</span>
+    <span class="n">model</span><span class="p">,</span>
+    <span class="n">input_tensors</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">clone_function</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.keras.models.clone_model(
-    model,
-    input_tensors=None,
-    clone_function=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>Model cloning is similar to calling a model on new inputs,
 except that it creates new layers (and thus new weights) instead
 of sharing the weights of the existing layers.</p>
-
-<h4>Arguments:</h4>
-
+<h4 id="arguments">Arguments:</h4>
 <ul>
 <li><b><code>model</code></b>: Instance of <code>Model</code>
-  (could be a functional model or a Sequential model).</li>
+    (could be a functional model or a Sequential model).</li>
 <li><b><code>input_tensors</code></b>: optional list of input tensors or InputLayer objects
-  to build the model upon. If not provided,
-  placeholders will be created.</li>
+    to build the model upon. If not provided,
+    placeholders will be created.</li>
 <li><b><code>clone_function</code></b>: Callable to be used to clone each layer in the target
-  model (except <code>InputLayer</code> instances). It takes as argument the layer
-  instance to be cloned, and returns the corresponding layer instance to
-  be used in the model copy. If unspecified, this callable defaults to
-  the following serialization/deserialization function:
-  <code>lambda layer: layer.__class__.from_config(layer.get_config())</code>.
-  By passing a custom callable, you can customize your copy of the
-  model, e.g. by wrapping certain layers of interest (you might want to
-  replace all <code>LSTM</code> instances with equivalent
-  <code>Bidirectional(LSTM(...))</code> instances, for example).</li>
+    model (except <code>InputLayer</code> instances). It takes as argument the layer
+    instance to be cloned, and returns the corresponding layer instance to
+    be used in the model copy. If unspecified, this callable defaults to
+    the following serialization/deserialization function:
+    <code>lambda layer: layer.__class__.from_config(layer.get_config())</code>.
+    By passing a custom callable, you can customize your copy of the
+    model, e.g. by wrapping certain layers of interest (you might want to
+    replace all <code>LSTM</code> instances with equivalent
+    <code>Bidirectional(LSTM(...))</code> instances, for example).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>An instance of <code>Model</code> reproducing the behavior
 of the original model, on top of new inputs tensors,
 using newly instantiated weights. The cloned model might behave
 differently from the original model if a custom clone_function
 modifies the layer.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: in case of invalid <code>model</code> argument value.</li>
 </ul>
-
+    </body>
+    </html>
+   

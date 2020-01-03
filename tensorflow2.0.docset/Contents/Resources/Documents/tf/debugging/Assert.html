@@ -1,29 +1,28 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.debugging.Assert" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.debugging.Assert</h1>
-
+<h1 id="tfdebuggingassert">tf.debugging.Assert</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/control_flow_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Asserts that the given condition is true.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.Assert</code></li>
 <li><code>tf.compat.v1.Assert</code></li>
@@ -31,57 +30,44 @@
 <li><code>tf.compat.v2.Assert</code></li>
 <li><code>tf.compat.v2.debugging.Assert</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">debugging</span><span class="o">.</span><span class="n">Assert</span><span class="p">(</span>
+    <span class="n">condition</span><span class="p">,</span>
+    <span class="n">data</span><span class="p">,</span>
+    <span class="n">summarize</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.debugging.Assert(
-    condition,
-    data,
-    summarize=None,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>If <code>condition</code> evaluates to false, print the list of tensors in <code>data</code>.
 <code>summarize</code> determines how many entries of the tensors to print.</p>
-
 <p>NOTE: In graph mode, to ensure that Assert executes, one usually attaches
 a dependency:</p>
+<div class="codehilite"><pre><span></span><span class="c1"># Ensure maximum element of x is smaller or equal to 1</span>
+<span class="n">assert_op</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Assert</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">less_equal</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">reduce_max</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="mf">1.</span><span class="p">),</span> <span class="p">[</span><span class="n">x</span><span class="p">])</span>
+<span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">control_dependencies</span><span class="p">([</span><span class="n">assert_op</span><span class="p">]):</span>
+  <span class="o">...</span> <span class="n">code</span> <span class="n">using</span> <span class="n">x</span> <span class="o">...</span>
+</pre></div>
 
-<p>```python</p>
 
-<h1>Ensure maximum element of x is smaller or equal to 1</h1>
-
-<p>assert_op = tf.Assert(tf.less_equal(tf.reduce_max(x), 1.), [x])
-with tf.control_dependencies([assert_op]):
-  &hellip; code using x &hellip;
-```</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>condition</code></b>: The condition to evaluate.</li>
 <li><b><code>data</code></b>: The tensors to print out when condition is false.</li>
 <li><b><code>summarize</code></b>: Print this many entries of each tensor.</li>
 <li><b><code>name</code></b>: A name for this operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <ul>
 <li><b><code>assert_op</code></b>: An <code>Operation</code> that, when executed, raises a
 <a href="../../tf/errors/InvalidArgumentError.html"><code>tf.errors.InvalidArgumentError</code></a> if <code>condition</code> is not true.</li>
 </ul>
-
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <p><strong>NOTE</strong> The output of this function should be used.  If it is not, a warning will be logged.  To mark the output as used, call its .mark_used() method.</p>
-
-<h4>Eager Compatibility</h4>
-
+<h4 id="eager-compatibility">Eager Compatibility</h4>
 <p><a href="../../tf/errors/InvalidArgumentError.html"><code>tf.errors.InvalidArgumentError</code></a> if <code>condition</code> is not true</p>
+    </body>
+    </html>
+   

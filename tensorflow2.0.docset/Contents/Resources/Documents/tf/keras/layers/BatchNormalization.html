@@ -1,61 +1,54 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.keras.layers.BatchNormalization" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="__init__"/>
 </div>
 
-
-<h1>tf.keras.layers.BatchNormalization</h1>
-
+<h1 id="tfkeraslayersbatchnormalization">tf.keras.layers.BatchNormalization</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/normalization_v2.py">View source</a></p>
-
-<h2>Class <code>BatchNormalization</code></h2>
-
+<h2 id="class-batchnormalization">Class <code>BatchNormalization</code></h2>
 <!-- Start diff -->
 
-
 <p>Base class of Batch normalization layer (Ioffe and Szegedy, 2014).</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li>Class <code>tf.compat.v2.keras.layers.BatchNormalization</code></li>
 </ul>
-
-
 <!-- Placeholder for "Used in" -->
-
 
 <p>Normalize the activations of the previous layer at each batch,
 i.e. applies a transformation that maintains the mean activation
 close to 0 and the activation standard deviation close to 1.</p>
-
-<h4>Arguments:</h4>
-
+<h4 id="arguments">Arguments:</h4>
 <ul>
 <li><b><code>axis</code></b>: Integer, the axis that should be normalized
-(typically the features axis).
-For instance, after a <code>Conv2D</code> layer with
-<code>data_format="channels_first"</code>,
-set <code>axis=1</code> in <code>BatchNormalization</code>.</li>
+  (typically the features axis).
+  For instance, after a <code>Conv2D</code> layer with
+  <code>data_format="channels_first"</code>,
+  set <code>axis=1</code> in <code>BatchNormalization</code>.</li>
 <li><b><code>momentum</code></b>: Momentum for the moving average.</li>
 <li><b><code>epsilon</code></b>: Small float added to variance to avoid dividing by zero.</li>
 <li><b><code>center</code></b>: If True, add offset of <code>beta</code> to normalized tensor.
-If False, <code>beta</code> is ignored.</li>
+  If False, <code>beta</code> is ignored.</li>
 <li><b><code>scale</code></b>: If True, multiply by <code>gamma</code>.
-If False, <code>gamma</code> is not used.
-When the next layer is linear (also e.g. <a href="../../../tf/nn/relu.html"><code>nn.relu</code></a>),
-this can be disabled since the scaling
-will be done by the next layer.</li>
+  If False, <code>gamma</code> is not used.
+  When the next layer is linear (also e.g. <a href="../../../tf/nn/relu.html"><code>nn.relu</code></a>),
+  this can be disabled since the scaling
+  will be done by the next layer.</li>
 <li><b><code>beta_initializer</code></b>: Initializer for the beta weight.</li>
 <li><b><code>gamma_initializer</code></b>: Initializer for the gamma weight.</li>
 <li><b><code>moving_mean_initializer</code></b>: Initializer for the moving mean.</li>
@@ -65,109 +58,92 @@ will be done by the next layer.</li>
 <li><b><code>beta_constraint</code></b>: Optional constraint for the beta weight.</li>
 <li><b><code>gamma_constraint</code></b>: Optional constraint for the gamma weight.</li>
 <li><b><code>renorm</code></b>: Whether to use Batch Renormalization
-(https://arxiv.org/abs/1702.03275). This adds extra variables during
-training. The inference is the same for either value of this parameter.</li>
-<li><b><code>renorm_clipping</code></b>: A dictionary that may map keys &lsquo;rmax&rsquo;, &lsquo;rmin&rsquo;, &lsquo;dmax&rsquo; to
-scalar <code>Tensors</code> used to clip the renorm correction. The correction
-<code>(r, d)</code> is used as <code>corrected_value = normalized_value * r + d</code>, with
-<code>r</code> clipped to [rmin, rmax], and <code>d</code> to [-dmax, dmax]. Missing rmax, rmin,
-dmax are set to inf, 0, inf, respectively.</li>
+  (https://arxiv.org/abs/1702.03275). This adds extra variables during
+  training. The inference is the same for either value of this parameter.</li>
+<li><b><code>renorm_clipping</code></b>: A dictionary that may map keys 'rmax', 'rmin', 'dmax' to
+  scalar <code>Tensors</code> used to clip the renorm correction. The correction
+  <code>(r, d)</code> is used as <code>corrected_value = normalized_value * r + d</code>, with
+  <code>r</code> clipped to [rmin, rmax], and <code>d</code> to [-dmax, dmax]. Missing rmax, rmin,
+  dmax are set to inf, 0, inf, respectively.</li>
 <li><b><code>renorm_momentum</code></b>: Momentum used to update the moving means and standard
-deviations with renorm. Unlike <code>momentum</code>, this affects training
-and should be neither too small (which would add noise) nor too large
-(which would give stale estimates). Note that <code>momentum</code> is still applied
-to get the means and variances for inference.</li>
+  deviations with renorm. Unlike <code>momentum</code>, this affects training
+  and should be neither too small (which would add noise) nor too large
+  (which would give stale estimates). Note that <code>momentum</code> is still applied
+  to get the means and variances for inference.</li>
 <li><b><code>fused</code></b>: if <code>True</code>, use a faster, fused implementation, or raise a ValueError
-if the fused implementation cannot be used. If <code>None</code>, use the faster
-implementation if possible. If False, do not used the fused
-implementation.</li>
+  if the fused implementation cannot be used. If <code>None</code>, use the faster
+  implementation if possible. If False, do not used the fused
+  implementation.</li>
 <li><b><code>trainable</code></b>: Boolean, if <code>True</code> the variables will be marked as trainable.</li>
 <li><b><code>virtual_batch_size</code></b>: An <code>int</code>. By default, <code>virtual_batch_size</code> is <code>None</code>,
-which means batch normalization is performed across the whole batch. When
-<code>virtual_batch_size</code> is not <code>None</code>, instead perform &ldquo;Ghost Batch
-Normalization&rdquo;, which creates virtual sub-batches which are each
-normalized separately (with shared gamma, beta, and moving statistics).
-Must divide the actual batch size during execution.</li>
+  which means batch normalization is performed across the whole batch. When
+  <code>virtual_batch_size</code> is not <code>None</code>, instead perform "Ghost Batch
+  Normalization", which creates virtual sub-batches which are each
+  normalized separately (with shared gamma, beta, and moving statistics).
+  Must divide the actual batch size during execution.</li>
 <li><b><code>adjustment</code></b>: A function taking the <code>Tensor</code> containing the (dynamic) shape of
-the input tensor and returning a pair (scale, bias) to apply to the
-normalized values (before gamma and beta), only during training. For
-example, if axis==-1,
-  <code>adjustment = lambda shape: (
-    tf.random.uniform(shape[-1:], 0.93, 1.07),
-    tf.random.uniform(shape[-1:], -0.1, 0.1))</code>
-will scale the normalized value by up to 7% up or down, then shift the
-result by up to 0.1 (with independent scaling and bias for each feature
-but shared across all examples), and finally apply gamma and/or beta. If
-<code>None</code>, no adjustment is applied. Cannot be specified if
-virtual_batch_size is specified.</li>
+  the input tensor and returning a pair (scale, bias) to apply to the
+  normalized values (before gamma and beta), only during training. For
+  example, if axis==-1,
+    <code>adjustment = lambda shape: (
+      tf.random.uniform(shape[-1:], 0.93, 1.07),
+      tf.random.uniform(shape[-1:], -0.1, 0.1))</code>
+  will scale the normalized value by up to 7% up or down, then shift the
+  result by up to 0.1 (with independent scaling and bias for each feature
+  but shared across all examples), and finally apply gamma and/or beta. If
+  <code>None</code>, no adjustment is applied. Cannot be specified if
+  virtual_batch_size is specified.</li>
 </ul>
-
-
-<h4>Call arguments:</h4>
-
+<h4 id="call-arguments">Call arguments:</h4>
 <ul>
 <li><b><code>inputs</code></b>: Input tensor (of any rank).</li>
 <li><b><code>training</code></b>: Python boolean indicating whether the layer should behave in
-training mode or in inference mode.
-
-<ul>
+  training mode or in inference mode.</li>
 <li><code>training=True</code>: The layer will normalize its inputs using the
-mean and variance of the current batch of inputs.</li>
+    mean and variance of the current batch of inputs.</li>
 <li><code>training=False</code>: The layer will normalize its inputs using the
-mean and variance of its moving statistics, learned during training.</li>
+    mean and variance of its moving statistics, learned during training.</li>
 </ul>
-</li>
-</ul>
-
-
-<h4>Input shape:</h4>
-
+<h4 id="input-shape">Input shape:</h4>
 <p>Arbitrary. Use the keyword argument <code>input_shape</code>
 (tuple of integers, does not include the samples axis)
 when using this layer as the first layer in a model.</p>
-
-<h4>Output shape:</h4>
-
+<h4 id="output-shape">Output shape:</h4>
 <p>Same shape as input.</p>
-
-<h4>References:</h4>
-
+<h4 id="references">References:</h4>
 <ul>
 <li><a href="https://arxiv.org/abs/1502.03167">Batch Normalization: Accelerating Deep Network Training by Reducing
-Internal Covariate Shift</a></li>
+  Internal Covariate Shift</a></li>
 </ul>
-
-
 <p>{{TRAINABLE_ATTRIBUTE_NOTE}}</p>
-
 <h2 id="__init__"><code>__init__</code></h2>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/normalization.py">View source</a></p>
-
-<p><code>python
-__init__(
-    axis=-1,
-    momentum=0.99,
-    epsilon=0.001,
-    center=True,
-    scale=True,
-    beta_initializer='zeros',
-    gamma_initializer='ones',
-    moving_mean_initializer='zeros',
-    moving_variance_initializer='ones',
-    beta_regularizer=None,
-    gamma_regularizer=None,
-    beta_constraint=None,
-    gamma_constraint=None,
-    renorm=False,
-    renorm_clipping=None,
-    renorm_momentum=0.99,
-    fused=None,
-    trainable=True,
-    virtual_batch_size=None,
-    adjustment=None,
-    name=None,
-    **kwargs
-)
-</code></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">momentum</span><span class="o">=</span><span class="mf">0.99</span><span class="p">,</span>
+    <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span>
+    <span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">scale</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">beta_initializer</span><span class="o">=</span><span class="s1">&#39;zeros&#39;</span><span class="p">,</span>
+    <span class="n">gamma_initializer</span><span class="o">=</span><span class="s1">&#39;ones&#39;</span><span class="p">,</span>
+    <span class="n">moving_mean_initializer</span><span class="o">=</span><span class="s1">&#39;zeros&#39;</span><span class="p">,</span>
+    <span class="n">moving_variance_initializer</span><span class="o">=</span><span class="s1">&#39;ones&#39;</span><span class="p">,</span>
+    <span class="n">beta_regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">gamma_regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">beta_constraint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">gamma_constraint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">renorm</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">renorm_clipping</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">renorm_momentum</span><span class="o">=</span><span class="mf">0.99</span><span class="p">,</span>
+    <span class="n">fused</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">trainable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">virtual_batch_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">adjustment</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+    </body>
+    </html>
+   

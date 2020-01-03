@@ -1,93 +1,84 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.convert_to_tensor" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.compat.v1.convert_to_tensor</h1>
-
+<h1 id="tfcompatv1convert_to_tensor">tf.compat.v1.convert_to_tensor</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/framework/ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Converts the given <code>value</code> to a <code>Tensor</code>.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">convert_to_tensor</span><span class="p">(</span>
+    <span class="n">value</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">preferred_dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">dtype_hint</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-tf.compat.v1.convert_to_tensor(
-    value,
-    dtype=None,
-    name=None,
-    preferred_dtype=None,
-    dtype_hint=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>This function converts Python objects of various types to <code>Tensor</code>
 objects. It accepts <code>Tensor</code> objects, numpy arrays, Python lists,
 and Python scalars. For example:</p>
+<div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<p>```python
-import numpy as np</p>
+<span class="k">def</span> <span class="nf">my_func</span><span class="p">(</span><span class="n">arg</span><span class="p">):</span>
+  <span class="n">arg</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">convert_to_tensor</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span> <span class="o">+</span> <span class="n">arg</span>
 
-<p>def my_func(arg):
-  arg = tf.convert_to_tensor(arg, dtype=tf.float32)
-  return tf.matmul(arg, arg) + arg</p>
+<span class="c1"># The following calls are equivalent.</span>
+<span class="n">value_1</span> <span class="o">=</span> <span class="n">my_func</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">]]))</span>
+<span class="n">value_2</span> <span class="o">=</span> <span class="n">my_func</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">]])</span>
+<span class="n">value_3</span> <span class="o">=</span> <span class="n">my_func</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">))</span>
+</pre></div>
 
-<h1>The following calls are equivalent.</h1>
-
-<p>value_1 = my_func(tf.constant([[1.0, 2.0], [3.0, 4.0]]))
-value_2 = my_func([[1.0, 2.0], [3.0, 4.0]])
-value_3 = my_func(np.array([[1.0, 2.0], [3.0, 4.0]], dtype=np.float32))
-```</p>
 
 <p>This function can be useful when composing a new operation in Python
 (such as <code>my_func</code> in the example above). All standard Python op
 constructors apply this function to each of their Tensor-valued
 inputs, which allows those ops to accept numpy arrays, Python lists,
 and scalars in addition to <code>Tensor</code> objects.</p>
-
 <p>Note: This function diverges from default Numpy behavior for <code>float</code> and
   <code>string</code> types when <code>None</code> is present in a Python list or scalar. Rather
   than silently converting <code>None</code> values, an error will be thrown.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>value</code></b>: An object whose type has a registered <code>Tensor</code> conversion function.</li>
 <li><b><code>dtype</code></b>: Optional element type for the returned tensor. If missing, the type
-is inferred from the type of <code>value</code>.</li>
+  is inferred from the type of <code>value</code>.</li>
 <li><b><code>name</code></b>: Optional name to use if a new <code>Tensor</code> is created.</li>
 <li><b><code>preferred_dtype</code></b>: Optional element type for the returned tensor, used when
-dtype is None. In some cases, a caller may not have a dtype in mind when
-converting to a tensor, so preferred_dtype can be used as a soft
-preference.  If the conversion to <code>preferred_dtype</code> is not possible, this
-argument has no effect.</li>
+  dtype is None. In some cases, a caller may not have a dtype in mind when
+  converting to a tensor, so preferred_dtype can be used as a soft
+  preference.  If the conversion to <code>preferred_dtype</code> is not possible, this
+  argument has no effect.</li>
 <li><b><code>dtype_hint</code></b>: same meaning as preferred_dtype, and overrides it.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>Tensor</code> based on <code>value</code>.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>TypeError</code></b>: If no conversion function is registered for <code>value</code> to <code>dtype</code>.</li>
 <li><b><code>RuntimeError</code></b>: If a registered conversion function returns an invalid value.</li>
 <li><b><code>ValueError</code></b>: If the <code>value</code> is a tensor not of given <code>dtype</code> in graph mode.</li>
 </ul>
-
+    </body>
+    </html>
+   

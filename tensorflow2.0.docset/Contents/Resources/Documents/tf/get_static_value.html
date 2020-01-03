@@ -1,70 +1,60 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../default.css" rel="stylesheet">
+    <link href="
+   ../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.get_static_value" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.get_static_value</h1>
-
+<h1 id="tfget_static_value">tf.get_static_value</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_util.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Returns the constant value of the given tensor, if efficiently calculable.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.get_static_value</code></li>
 <li><code>tf.compat.v2.get_static_value</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">get_static_value</span><span class="p">(</span>
+    <span class="n">tensor</span><span class="p">,</span>
+    <span class="n">partial</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.get_static_value(
-    tensor,
-    partial=False
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>This function attempts to partially evaluate the given tensor, and
 returns its value as a numpy ndarray if this succeeds.</p>
-
 <p>Compatibility(V1): If <code>constant_value(tensor)</code> returns a non-<code>None</code> result, it
 will no longer be possible to feed a different value for <code>tensor</code>. This allows
 the result of this function to influence the graph that is constructed, and
 permits static shape optimizations.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>tensor</code></b>: The Tensor to be evaluated.</li>
 <li><b><code>partial</code></b>: If True, the returned numpy array is allowed to have partially
-evaluated values. Values that can&rsquo;t be evaluated will be None.</li>
+  evaluated values. Values that can't be evaluated will be None.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A numpy ndarray containing the constant value of the given <code>tensor</code>,
 or None if it cannot be calculated.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>TypeError</code></b>: if tensor is not an ops.Tensor.</li>
 </ul>
-
+    </body>
+    </html>
+   

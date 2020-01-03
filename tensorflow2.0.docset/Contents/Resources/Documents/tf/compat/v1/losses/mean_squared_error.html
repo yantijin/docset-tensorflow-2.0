@@ -1,40 +1,39 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.losses.mean_squared_error" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.compat.v1.losses.mean_squared_error</h1>
-
+<h1 id="tfcompatv1lossesmean_squared_error">tf.compat.v1.losses.mean_squared_error</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/losses/losses_impl.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Adds a Sum-of-Squares loss to the training procedure.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">mean_squared_error</span><span class="p">(</span>
+    <span class="n">labels</span><span class="p">,</span>
+    <span class="n">predictions</span><span class="p">,</span>
+    <span class="n">weights</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+    <span class="n">scope</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">loss_collection</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">GraphKeys</span><span class="o">.</span><span class="n">LOSSES</span><span class="p">,</span>
+    <span class="n">reduction</span><span class="o">=</span><span class="n">Reduction</span><span class="o">.</span><span class="n">SUM_BY_NONZERO_WEIGHTS</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-tf.compat.v1.losses.mean_squared_error(
-    labels,
-    predictions,
-    weights=1.0,
-    scope=None,
-    loss_collection=tf.GraphKeys.LOSSES,
-    reduction=Reduction.SUM_BY_NONZERO_WEIGHTS
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p><code>weights</code> acts as a coefficient for the loss. If a scalar is provided, then
 the loss is simply scaled by the given value. If <code>weights</code> is a tensor of size
@@ -43,36 +42,29 @@ by the corresponding element in the <code>weights</code> vector. If the shape of
 <code>weights</code> matches the shape of <code>predictions</code>, then the loss of each
 measurable element of <code>predictions</code> is scaled by the corresponding value of
 <code>weights</code>.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
-<li><b><code>labels</code></b>: The ground truth output tensor, same dimensions as &lsquo;predictions&rsquo;.</li>
+<li><b><code>labels</code></b>: The ground truth output tensor, same dimensions as 'predictions'.</li>
 <li><b><code>predictions</code></b>: The predicted outputs.</li>
 <li><b><code>weights</code></b>: Optional <code>Tensor</code> whose rank is either 0, or the same rank as
-<code>labels</code>, and must be broadcastable to <code>labels</code> (i.e., all dimensions must
-be either <code>1</code>, or the same as the corresponding <code>losses</code> dimension).</li>
+  <code>labels</code>, and must be broadcastable to <code>labels</code> (i.e., all dimensions must
+  be either <code>1</code>, or the same as the corresponding <code>losses</code> dimension).</li>
 <li><b><code>scope</code></b>: The scope for the operations performed in computing the loss.</li>
 <li><b><code>loss_collection</code></b>: collection to which the loss will be added.</li>
 <li><b><code>reduction</code></b>: Type of reduction to apply to loss.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>Weighted loss float <code>Tensor</code>. If <code>reduction</code> is <code>NONE</code>, this has the same
 shape as <code>labels</code>; otherwise, it is scalar.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
-<li><b><code>ValueError</code></b>: If the shape of <code>predictions</code> doesn&rsquo;t match that of <code>labels</code> or
-if the shape of <code>weights</code> is invalid.  Also if <code>labels</code> or <code>predictions</code>
-is None.</li>
+<li><b><code>ValueError</code></b>: If the shape of <code>predictions</code> doesn't match that of <code>labels</code> or
+  if the shape of <code>weights</code> is invalid.  Also if <code>labels</code> or <code>predictions</code>
+  is None.</li>
 </ul>
-
-
-<h4>Eager Compatibility</h4>
-
+<h4 id="eager-compatibility">Eager Compatibility</h4>
 <p>The <code>loss_collection</code> argument is ignored when executing eagerly. Consider
 holding on to the return value or collecting losses via a <a href="../../../../tf/keras/Model.html"><code>tf.keras.Model</code></a>.</p>
+    </body>
+    </html>
+   

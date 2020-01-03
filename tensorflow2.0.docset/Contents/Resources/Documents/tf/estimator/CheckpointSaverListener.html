@@ -1,4 +1,13 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.estimator.CheckpointSaverListener" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="after_save"/>
@@ -7,38 +16,24 @@
 <meta itemprop="property" content="end"/>
 </div>
 
-
-<h1>tf.estimator.CheckpointSaverListener</h1>
-
+<h1 id="tfestimatorcheckpointsaverlistener">tf.estimator.CheckpointSaverListener</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/training/basic_session_run_hooks.py">View source</a></p>
-
-<h2>Class <code>CheckpointSaverListener</code></h2>
-
+<h2 id="class-checkpointsaverlistener">Class <code>CheckpointSaverListener</code></h2>
 <!-- Start diff -->
 
-
 <p>Interface for listeners that take action before or after checkpoint save.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li>Class <code>tf.compat.v1.estimator.CheckpointSaverListener</code></li>
 <li>Class <code>tf.compat.v1.train.CheckpointSaverListener</code></li>
 <li>Class <code>tf.compat.v2.estimator.CheckpointSaverListener</code></li>
 </ul>
-
-
 <!-- Placeholder for "Used in" -->
-
 
 <p><code>CheckpointSaverListener</code> triggers only in steps when <code>CheckpointSaverHook</code> is
 triggered, and provides callbacks at the following points:
@@ -46,36 +41,34 @@ triggered, and provides callbacks at the following points:
  - before each call to <code>Saver.save()</code>
  - after each call to <code>Saver.save()</code>
  - at the end of session</p>
-
 <p>To use a listener, implement a class and pass the listener to a
 <code>CheckpointSaverHook</code>, as in this example:</p>
+<div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">ExampleCheckpointSaverListener</span><span class="p">(</span><span class="n">CheckpointSaverListener</span><span class="p">):</span>
+  <span class="k">def</span> <span class="nf">begin</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="c1"># You can add ops to the graph here.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Starting the session.&#39;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">your_tensor</span> <span class="o">=</span> <span class="o">...</span>
 
-<p>```python
-class ExampleCheckpointSaverListener(CheckpointSaverListener):
-  def begin(self):
-    # You can add ops to the graph here.
-    print(&lsquo;Starting the session.&rsquo;)
-    self.your_tensor = &hellip;</p>
+  <span class="k">def</span> <span class="nf">before_save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">,</span> <span class="n">global_step_value</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;About to write a checkpoint&#39;</span><span class="p">)</span>
 
-<p>  def before_save(self, session, global_step_value):
-    print(&lsquo;About to write a checkpoint&rsquo;)</p>
+  <span class="k">def</span> <span class="nf">after_save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">,</span> <span class="n">global_step_value</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Done writing checkpoint.&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">decided_to_stop_training</span><span class="p">():</span>
+      <span class="k">return</span> <span class="kc">True</span>
 
-<p>  def after_save(self, session, global_step_value):
-    print(&lsquo;Done writing checkpoint.&rsquo;)
-    if decided_to_stop_training():
-      return True</p>
+  <span class="k">def</span> <span class="nf">end</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session</span><span class="p">,</span> <span class="n">global_step_value</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Done with the session.&#39;</span><span class="p">)</span>
 
-<p>  def end(self, session, global_step_value):
-    print(&lsquo;Done with the session.&rsquo;)</p>
+<span class="o">...</span>
+<span class="n">listener</span> <span class="o">=</span> <span class="n">ExampleCheckpointSaverListener</span><span class="p">()</span>
+<span class="n">saver_hook</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">CheckpointSaverHook</span><span class="p">(</span>
+    <span class="n">checkpoint_dir</span><span class="p">,</span> <span class="n">listeners</span><span class="o">=</span><span class="p">[</span><span class="n">listener</span><span class="p">])</span>
+<span class="k">with</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">MonitoredTrainingSession</span><span class="p">(</span><span class="n">chief_only_hooks</span><span class="o">=</span><span class="p">[</span><span class="n">saver_hook</span><span class="p">]):</span>
+  <span class="o">...</span>
+</pre></div>
 
-<p>&hellip;
-listener = ExampleCheckpointSaverListener()
-saver_hook = tf.estimator.CheckpointSaverHook(
-    checkpoint_dir, listeners=[listener])
-with
-tf.compat.v1.train.MonitoredTrainingSession(chief_only_hooks=[saver_hook]):
-  &hellip;
-```</p>
 
 <p>A <code>CheckpointSaverListener</code> may simply take some action after every
 checkpoint save. It is also possible for the listener to use its own schedule
@@ -83,55 +76,46 @@ to act less frequently, e.g. based on global_step_value. In this case,
 implementors should implement the <code>end()</code> method to handle actions related to
 the last checkpoint save. But the listener should not act twice if
 <code>after_save()</code> already handled this last checkpoint save.</p>
-
 <p>A <code>CheckpointSaverListener</code> can request training to be stopped, by returning
 True in <code>after_save</code>. Please note that, in replicated distributed training
 setting, only <code>chief</code> should use this behavior. Otherwise each worker will do
 their own evaluation, which may be wasteful of resources.</p>
-
-<h2>Methods</h2>
-
+<h2 id="methods">Methods</h2>
 <h3 id="after_save"><code>after_save</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/training/basic_session_run_hooks.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">after_save</span><span class="p">(</span>
+    <span class="n">session</span><span class="p">,</span>
+    <span class="n">global_step_value</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-after_save(
-    session,
-    global_step_value
-)
-</code></p>
 
 <h3 id="before_save"><code>before_save</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/training/basic_session_run_hooks.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">before_save</span><span class="p">(</span>
+    <span class="n">session</span><span class="p">,</span>
+    <span class="n">global_step_value</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-before_save(
-    session,
-    global_step_value
-)
-</code></p>
 
 <h3 id="begin"><code>begin</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/training/basic_session_run_hooks.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">begin</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-begin()
-</code></p>
 
 <h3 id="end"><code>end</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/training/basic_session_run_hooks.py">View source</a></p>
-
-<p><code>python
-end(
-    session,
-    global_step_value
-)
-</code></p>
+<div class="codehilite"><pre><span></span><span class="n">end</span><span class="p">(</span>
+    <span class="n">session</span><span class="p">,</span>
+    <span class="n">global_step_value</span>
+<span class="p">)</span>
+</pre></div>
+    </body>
+    </html>
+   

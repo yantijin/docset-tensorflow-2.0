@@ -1,98 +1,86 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.feature_column.numeric_column" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.feature_column.numeric_column</h1>
-
+<h1 id="tffeature_columnnumeric_column">tf.feature_column.numeric_column</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/feature_column/feature_column_v2.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Represents real valued or numerical features.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.feature_column.numeric_column</code></li>
 <li><code>tf.compat.v2.feature_column.numeric_column</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">feature_column</span><span class="o">.</span><span class="n">numeric_column</span><span class="p">(</span>
+    <span class="n">key</span><span class="p">,</span>
+    <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,),</span>
+    <span class="n">default_value</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
+    <span class="n">normalizer_fn</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.feature_column.numeric_column(
-    key,
-    shape=(1,),
-    default_value=None,
-    dtype=tf.dtypes.float32,
-    normalizer_fn=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
+<h4 id="example">Example:</h4>
+<div class="codehilite"><pre><span></span><span class="n">price</span> <span class="o">=</span> <span class="n">numeric_column</span><span class="p">(</span><span class="s1">&#39;price&#39;</span><span class="p">)</span>
+<span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">price</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+<span class="n">features</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">parse_example</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="n">make_parse_example_spec</span><span class="p">(</span><span class="n">columns</span><span class="p">))</span>
+<span class="n">dense_tensor</span> <span class="o">=</span> <span class="n">input_layer</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">columns</span><span class="p">)</span>
 
-<h4>Example:</h4>
+<span class="c1"># or</span>
+<span class="n">bucketized_price</span> <span class="o">=</span> <span class="n">bucketized_column</span><span class="p">(</span><span class="n">price</span><span class="p">,</span> <span class="n">boundaries</span><span class="o">=</span><span class="p">[</span><span class="o">...</span><span class="p">])</span>
+<span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">bucketized_price</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+<span class="n">features</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">parse_example</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="n">make_parse_example_spec</span><span class="p">(</span><span class="n">columns</span><span class="p">))</span>
+<span class="n">linear_prediction</span> <span class="o">=</span> <span class="n">linear_model</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">columns</span><span class="p">)</span>
+</pre></div>
 
-<p>```python
-price = numeric_column(&lsquo;price&rsquo;)
-columns = [price, &hellip;]
-features = tf.io.parse_example(&hellip;, features=make_parse_example_spec(columns))
-dense_tensor = input_layer(features, columns)</p>
 
-<h1>or</h1>
-
-<p>bucketized_price = bucketized_column(price, boundaries=[&hellip;])
-columns = [bucketized_price, &hellip;]
-features = tf.io.parse_example(&hellip;, features=make_parse_example_spec(columns))
-linear_prediction = linear_model(features, columns)
-```</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>key</code></b>: A unique string identifying the input feature. It is used as the
-column name and the dictionary key for feature parsing configs, feature
-<code>Tensor</code> objects, and feature columns.</li>
+  column name and the dictionary key for feature parsing configs, feature
+  <code>Tensor</code> objects, and feature columns.</li>
 <li><b><code>shape</code></b>: An iterable of integers specifies the shape of the <code>Tensor</code>. An
-integer can be given which means a single dimension <code>Tensor</code> with given
-width. The <code>Tensor</code> representing the column will have the shape of
-[batch_size] + <code>shape</code>.</li>
+  integer can be given which means a single dimension <code>Tensor</code> with given
+  width. The <code>Tensor</code> representing the column will have the shape of
+  [batch_size] + <code>shape</code>.</li>
 <li><b><code>default_value</code></b>: A single value compatible with <code>dtype</code> or an iterable of
-values compatible with <code>dtype</code> which the column takes on during
-<code>tf.Example</code> parsing if data is missing. A default value of <code>None</code> will
-cause <a href="../../tf/io/parse_example.html"><code>tf.io.parse_example</code></a> to fail if an example does not contain this
-column. If a single value is provided, the same value will be applied as
-the default value for every item. If an iterable of values is provided,
-the shape of the <code>default_value</code> should be equal to the given <code>shape</code>.</li>
+  values compatible with <code>dtype</code> which the column takes on during
+  <code>tf.Example</code> parsing if data is missing. A default value of <code>None</code> will
+  cause <a href="../../tf/io/parse_example.html"><code>tf.io.parse_example</code></a> to fail if an example does not contain this
+  column. If a single value is provided, the same value will be applied as
+  the default value for every item. If an iterable of values is provided,
+  the shape of the <code>default_value</code> should be equal to the given <code>shape</code>.</li>
 <li><b><code>dtype</code></b>: defines the type of values. Default value is <a href="../../tf.html#float32"><code>tf.float32</code></a>. Must be a
-non-quantized, real integer or floating point type.</li>
+  non-quantized, real integer or floating point type.</li>
 <li><b><code>normalizer_fn</code></b>: If not <code>None</code>, a function that can be used to normalize the
-value of the tensor after <code>default_value</code> is applied for parsing.
-Normalizer function takes the input <code>Tensor</code> as its argument, and returns
-the output <code>Tensor</code>. (e.g. lambda x: (x - 3.0) / 4.2). Please note that
-even though the most common use case of this function is normalization, it
-can be used for any kind of Tensorflow transformations.</li>
+  value of the tensor after <code>default_value</code> is applied for parsing.
+  Normalizer function takes the input <code>Tensor</code> as its argument, and returns
+  the output <code>Tensor</code>. (e.g. lambda x: (x - 3.0) / 4.2). Please note that
+  even though the most common use case of this function is normalization, it
+  can be used for any kind of Tensorflow transformations.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>NumericColumn</code>.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>TypeError</code></b>: if any dimension in shape is not an int</li>
 <li><b><code>ValueError</code></b>: if any dimension in shape is not a positive integer</li>
@@ -100,4 +88,6 @@ can be used for any kind of Tensorflow transformations.</li>
 <li><b><code>TypeError</code></b>: if <code>default_value</code> is not compatible with <code>dtype</code>.</li>
 <li><b><code>ValueError</code></b>: if <code>dtype</code> is not convertible to <a href="../../tf.html#float32"><code>tf.float32</code></a>.</li>
 </ul>
-
+    </body>
+    </html>
+   

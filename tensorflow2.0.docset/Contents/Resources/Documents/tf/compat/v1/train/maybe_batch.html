@@ -1,88 +1,81 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.train.maybe_batch" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.compat.v1.train.maybe_batch</h1>
-
+<h1 id="tfcompatv1trainmaybe_batch">tf.compat.v1.train.maybe_batch</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/training/input.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Conditionally creates batches of tensors based on <code>keep_input</code>. (deprecated)</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">maybe_batch</span><span class="p">(</span>
+    <span class="n">tensors</span><span class="p">,</span>
+    <span class="n">keep_input</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="p">,</span>
+    <span class="n">num_threads</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">capacity</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>
+    <span class="n">enqueue_many</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">shapes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">dynamic_pad</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">allow_smaller_final_batch</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">shared_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-tf.compat.v1.train.maybe_batch(
-    tensors,
-    keep_input,
-    batch_size,
-    num_threads=1,
-    capacity=32,
-    enqueue_many=False,
-    shapes=None,
-    dynamic_pad=False,
-    allow_smaller_final_batch=False,
-    shared_name=None,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
 Instructions for updating:
 Queue-based input pipelines have been replaced by <a href="../../../../tf/data.html"><code>tf.data</code></a>. Use <code>tf.data.Dataset.filter(...).batch(batch_size)</code> (or <code>padded_batch(...)</code> if <code>dynamic_pad=True</code>).</p>
-
 <p>See docstring in <code>batch</code> for more details.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>tensors</code></b>: The list or dictionary of tensors to enqueue.</li>
 <li><b><code>keep_input</code></b>: A <code>bool</code> Tensor.  This tensor controls whether the input is
-added to the queue or not.  If it is a scalar and evaluates <code>True</code>, then
-<code>tensors</code> are all added to the queue. If it is a vector and <code>enqueue_many</code>
-is <code>True</code>, then each example is added to the queue only if the
-corresponding value in <code>keep_input</code> is <code>True</code>. This tensor essentially
-acts as a filtering mechanism.</li>
+  added to the queue or not.  If it is a scalar and evaluates <code>True</code>, then
+  <code>tensors</code> are all added to the queue. If it is a vector and <code>enqueue_many</code>
+  is <code>True</code>, then each example is added to the queue only if the
+  corresponding value in <code>keep_input</code> is <code>True</code>. This tensor essentially
+  acts as a filtering mechanism.</li>
 <li><b><code>batch_size</code></b>: The new batch size pulled from the queue.</li>
 <li><b><code>num_threads</code></b>: The number of threads enqueuing <code>tensors</code>.  The batching will
-be nondeterministic if <code>num_threads &gt; 1</code>.</li>
+  be nondeterministic if <code>num_threads &gt; 1</code>.</li>
 <li><b><code>capacity</code></b>: An integer. The maximum number of elements in the queue.</li>
 <li><b><code>enqueue_many</code></b>: Whether each tensor in <code>tensors</code> is a single example.</li>
 <li><b><code>shapes</code></b>: (Optional) The shapes for each example.  Defaults to the
-inferred shapes for <code>tensors</code>.</li>
+  inferred shapes for <code>tensors</code>.</li>
 <li><b><code>dynamic_pad</code></b>: Boolean.  Allow variable dimensions in input shapes.
-The given dimensions are padded upon dequeue so that tensors within a
-batch have the same shapes.</li>
+  The given dimensions are padded upon dequeue so that tensors within a
+  batch have the same shapes.</li>
 <li><b><code>allow_smaller_final_batch</code></b>: (Optional) Boolean. If <code>True</code>, allow the final
-batch to be smaller if there are insufficient items left in the queue.</li>
+  batch to be smaller if there are insufficient items left in the queue.</li>
 <li><b><code>shared_name</code></b>: (Optional). If set, this queue will be shared under the given
-name across multiple sessions.</li>
+  name across multiple sessions.</li>
 <li><b><code>name</code></b>: (Optional) A name for the operations.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A list or dictionary of tensors with the same types as <code>tensors</code>.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: If the <code>shapes</code> are not specified, and cannot be
-inferred from the elements of <code>tensors</code>.</li>
+  inferred from the elements of <code>tensors</code>.</li>
 </ul>
-
+    </body>
+    </html>
+   

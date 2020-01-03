@@ -1,29 +1,28 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.math.atanh" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.math.atanh</h1>
-
+<h1 id="tfmathatanh">tf.math.atanh</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p>Defined in generated file: <code>python/ops/gen_math_ops.py</code></p>
-
 <!-- Start diff -->
 
-
 <p>Computes inverse hyperbolic tangent of x element-wise.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.atanh</code></li>
 <li><code>tf.compat.v1.atanh</code></li>
@@ -31,37 +30,30 @@
 <li><code>tf.compat.v2.atanh</code></li>
 <li><code>tf.compat.v2.math.atanh</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">atanh</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.math.atanh(
-    x,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
-<p>  Given an input tensor, this function computes inverse hyperbolic tangent
+<p>Given an input tensor, this function computes inverse hyperbolic tangent
   for every element in the tensor. Input range is <code>[-1,1]</code> and output range is
   <code>[-inf, inf]</code>. If input is <code>-1</code>, output will be <code>-inf</code> and if the
   input is <code>1</code>, output will be <code>inf</code>. Values outside the range will have
   <code>nan</code> as output.</p>
-
-<p>  <code>python
+<p><code>python
   x = tf.constant([-float("inf"), -1, -0.5, 1, 0, 0.5, 10, float("inf")])
-  tf.math.atanh(x) ==&gt; [nan -inf -0.54930615 inf  0. 0.54930615 nan nan]
- </code></p>
-
-<h4>Args:</h4>
-
+  tf.math.atanh(x) ==&gt; [nan -inf -0.54930615 inf  0. 0.54930615 nan nan]</code></p>
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>x</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>bfloat16</code>, <code>half</code>, <code>float32</code>, <code>float64</code>, <code>complex64</code>, <code>complex128</code>.</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>Tensor</code>. Has the same type as <code>x</code>.</p>
+    </body>
+    </html>
+   

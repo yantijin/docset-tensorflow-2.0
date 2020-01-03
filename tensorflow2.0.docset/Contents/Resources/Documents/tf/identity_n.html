@@ -1,69 +1,62 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../default.css" rel="stylesheet">
+    <link href="
+   ../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.identity_n" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.identity_n</h1>
-
+<h1 id="tfidentity_n">tf.identity_n</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p>Defined in generated file: <code>python/ops/gen_array_ops.py</code></p>
-
 <!-- Start diff -->
 
-
 <p>Returns a list of tensors with the same shapes and contents as the input</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.identity_n</code></li>
 <li><code>tf.compat.v2.identity_n</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">identity_n</span><span class="p">(</span>
+    <span class="nb">input</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.identity_n(
-    input,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>tensors.</p>
-
 <p>This op can be used to override the gradient for complicated functions. For
 example, suppose y = f(x) and we wish to apply a custom function g for backprop
 such that dx = g(dy). In Python,</p>
+<div class="codehilite"><pre><span></span><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">get_default_graph</span><span class="p">()</span><span class="o">.</span><span class="n">gradient_override_map</span><span class="p">(</span>
+    <span class="p">{</span><span class="s1">&#39;IdentityN&#39;</span><span class="p">:</span> <span class="s1">&#39;OverrideGradientWithG&#39;</span><span class="p">}):</span>
+  <span class="n">y</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">identity_n</span><span class="p">([</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">x</span><span class="p">])</span>
 
-<p>```python
-with tf.get_default_graph().gradient_override_map(
-    {&lsquo;IdentityN&rsquo;: &lsquo;OverrideGradientWithG&rsquo;}):
-  y, _ = identity_n([f(x), x])</p>
+<span class="nd">@tf</span><span class="o">.</span><span class="n">RegisterGradient</span><span class="p">(</span><span class="s1">&#39;OverrideGradientWithG&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">ApplyG</span><span class="p">(</span><span class="n">op</span><span class="p">,</span> <span class="n">dy</span><span class="p">,</span> <span class="n">_</span><span class="p">):</span>
+  <span class="k">return</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="n">g</span><span class="p">(</span><span class="n">dy</span><span class="p">)]</span>  <span class="c1"># Do not backprop to f(x).</span>
+</pre></div>
 
-<p>@tf.RegisterGradient(&lsquo;OverrideGradientWithG&rsquo;)
-def ApplyG(op, dy, _):
-  return [None, g(dy)]  # Do not backprop to f(x).
-```</p>
 
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>input</code></b>: A list of <code>Tensor</code> objects.</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A list of <code>Tensor</code> objects. Has the same type as <code>input</code>.</p>
+    </body>
+    </html>
+   

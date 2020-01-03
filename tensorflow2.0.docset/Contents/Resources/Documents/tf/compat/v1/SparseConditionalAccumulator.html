@@ -1,4 +1,13 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.SparseConditionalAccumulator" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="accumulator_ref"/>
@@ -13,141 +22,98 @@
 <meta itemprop="property" content="take_indexed_slices_grad"/>
 </div>
 
-
-<h1>tf.compat.v1.SparseConditionalAccumulator</h1>
-
+<h1 id="tfcompatv1sparseconditionalaccumulator">tf.compat.v1.SparseConditionalAccumulator</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/data_flow_ops.py">View source</a></p>
-
-<h2>Class <code>SparseConditionalAccumulator</code></h2>
-
+<h2 id="class-sparseconditionalaccumulator">Class <code>SparseConditionalAccumulator</code></h2>
 <!-- Start diff -->
 
-
 <p>A conditional accumulator for aggregating sparse gradients.</p>
-
 <p>Inherits From: <a href="../../../tf/compat/v1/ConditionalAccumulatorBase.html"><code>ConditionalAccumulatorBase</code></a></p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li>Class <code>tf.compat.v1.sparse.SparseConditionalAccumulator</code></li>
 </ul>
-
-
 <!-- Placeholder for "Used in" -->
 
-
 <p>Sparse gradients are represented by <code>IndexedSlices</code>.</p>
-
 <p>Up-to-date gradients (i.e., time step at which gradient was computed is
-equal to the accumulator&rsquo;s time step) are added to the accumulator.</p>
-
+equal to the accumulator's time step) are added to the accumulator.</p>
 <p>Extraction of the average gradient is blocked until the required number of
 gradients has been accumulated.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>dtype</code></b>: Datatype of the accumulated gradients.</li>
 <li><b><code>shape</code></b>: Shape of the accumulated gradients.</li>
 <li><b><code>shared_name</code></b>: Optional. If non-empty, this accumulator will be shared under
-the given name across multiple sessions.</li>
+  the given name across multiple sessions.</li>
 <li><b><code>name</code></b>: Optional name for the accumulator.</li>
 <li><b><code>reduction_type</code></b>: Reduction type to use when taking the gradient.</li>
 </ul>
-
-
 <h2 id="__init__"><code>__init__</code></h2>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/data_flow_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">dtype</span><span class="p">,</span>
+    <span class="n">shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">shared_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;sparse_conditional_accumulator&#39;</span><span class="p">,</span>
+    <span class="n">reduction_type</span><span class="o">=</span><span class="s1">&#39;MEAN&#39;</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__init__(
-    dtype,
-    shape=None,
-    shared_name=None,
-    name='sparse_conditional_accumulator',
-    reduction_type='MEAN'
-)
-</code></p>
 
 <p>Creates a new ConditionalAccumulator.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_1">Args:</h4>
 <ul>
 <li><b><code>dtype</code></b>: Datatype of the accumulated gradients.</li>
 <li><b><code>shape</code></b>: Shape of the accumulated gradients.</li>
 <li><b><code>accumulator_ref</code></b>: A handle to the conditional accumulator, created by sub-
-classes</li>
+  classes</li>
 </ul>
-
-
-<h2>Properties</h2>
-
+<h2 id="properties">Properties</h2>
 <h3 id="accumulator_ref"><code>accumulator_ref</code></h3>
 
-
 <p>The underlying accumulator reference.</p>
-
 <h3 id="dtype"><code>dtype</code></h3>
 
-
 <p>The datatype of the gradients accumulated by this accumulator.</p>
-
 <h3 id="name"><code>name</code></h3>
 
-
 <p>The name of the underlying accumulator.</p>
-
-<h2>Methods</h2>
-
+<h2 id="methods">Methods</h2>
 <h3 id="apply_grad"><code>apply_grad</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/data_flow_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">apply_grad</span><span class="p">(</span>
+    <span class="n">grad_indices</span><span class="p">,</span>
+    <span class="n">grad_values</span><span class="p">,</span>
+    <span class="n">grad_shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">local_step</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-apply_grad(
-    grad_indices,
-    grad_values,
-    grad_shape=None,
-    local_step=0,
-    name=None
-)
-</code></p>
 
 <p>Attempts to apply a sparse gradient to the accumulator.</p>
-
 <p>The attempt is silently dropped if the gradient is stale, i.e., <code>local_step</code>
-is less than the accumulator&rsquo;s global time step.</p>
-
+is less than the accumulator's global time step.</p>
 <p>A sparse gradient is represented by its indices, values and possibly empty
 or None shape. Indices must be a vector representing the locations of
 non-zero entries in the tensor. Values are the non-zero slices of the
 gradient, and must have the same first dimension as indices, i.e., the nnz
 represented by indices and values must be consistent. Shape, if not empty or
-None, must be consistent with the accumulator&rsquo;s shape (if also provided).</p>
-
-<h4>Example:</h4>
-
+None, must be consistent with the accumulator's shape (if also provided).</p>
+<h4 id="example">Example:</h4>
 <p>A tensor [[0, 0], [0, 1], [2, 3]] can be represented
   indices: [1,2]
   values: [[0,1],[2,3]]
   shape: [3, 2]</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_2">Args:</h4>
 <ul>
 <li><b><code>grad_indices</code></b>: Indices of the sparse gradient to be applied.</li>
 <li><b><code>grad_values</code></b>: Values of the sparse gradient to be applied.</li>
@@ -155,186 +121,128 @@ None, must be consistent with the accumulator&rsquo;s shape (if also provided).<
 <li><b><code>local_step</code></b>: Time step at which the gradient was computed.</li>
 <li><b><code>name</code></b>: Optional name for the operation.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>The operation that (conditionally) applies a gradient to the accumulator.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>InvalidArgumentError</code></b>: If grad is of the wrong shape</li>
 </ul>
-
-
 <h3 id="apply_indexed_slices_grad"><code>apply_indexed_slices_grad</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/data_flow_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">apply_indexed_slices_grad</span><span class="p">(</span>
+    <span class="n">grad</span><span class="p">,</span>
+    <span class="n">local_step</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-apply_indexed_slices_grad(
-    grad,
-    local_step=0,
-    name=None
-)
-</code></p>
 
 <p>Attempts to apply a gradient to the accumulator.</p>
-
 <p>The attempt is silently dropped if the gradient is stale, i.e., <code>local_step</code>
-is less than the accumulator&rsquo;s global time step.</p>
-
-<h4>Args:</h4>
-
+is less than the accumulator's global time step.</p>
+<h4 id="args_3">Args:</h4>
 <ul>
 <li><b><code>grad</code></b>: The gradient <code>IndexedSlices</code> to be applied.</li>
 <li><b><code>local_step</code></b>: Time step at which the gradient was computed.</li>
 <li><b><code>name</code></b>: Optional name for the operation.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_1">Returns:</h4>
 <p>The operation that (conditionally) applies a gradient to the accumulator.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises_1">Raises:</h4>
 <ul>
 <li><b><code>InvalidArgumentError</code></b>: If grad is of the wrong shape</li>
 </ul>
-
-
 <h3 id="num_accumulated"><code>num_accumulated</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/data_flow_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">num_accumulated</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-num_accumulated(name=None)
-</code></p>
 
 <p>Number of gradients that have currently been aggregated in accumulator.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_4">Args:</h4>
 <ul>
 <li><b><code>name</code></b>: Optional name for the operation.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_2">Returns:</h4>
 <p>Number of accumulated gradients currently in accumulator.</p>
-
 <h3 id="set_global_step"><code>set_global_step</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/data_flow_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">set_global_step</span><span class="p">(</span>
+    <span class="n">new_global_step</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-set_global_step(
-    new_global_step,
-    name=None
-)
-</code></p>
 
 <p>Sets the global time step of the accumulator.</p>
-
 <p>The operation logs a warning if we attempt to set to a time step that is
-lower than the accumulator&rsquo;s own time step.</p>
-
-<h4>Args:</h4>
-
+lower than the accumulator's own time step.</p>
+<h4 id="args_5">Args:</h4>
 <ul>
 <li><b><code>new_global_step</code></b>: Value of new time step. Can be a variable or a constant</li>
 <li><b><code>name</code></b>: Optional name for the operation.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
-<p>Operation that sets the accumulator&rsquo;s time step.</p>
-
+<h4 id="returns_3">Returns:</h4>
+<p>Operation that sets the accumulator's time step.</p>
 <h3 id="take_grad"><code>take_grad</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/data_flow_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">take_grad</span><span class="p">(</span>
+    <span class="n">num_required</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-take_grad(
-    num_required,
-    name=None
-)
-</code></p>
 
 <p>Attempts to extract the average gradient from the accumulator.</p>
-
 <p>The operation blocks until sufficient number of gradients have been
 successfully applied to the accumulator.</p>
-
 <p>Once successful, the following actions are also triggered:
 - Counter of accumulated gradients is reset to 0.
 - Aggregated gradient is reset to 0 tensor.
-- Accumulator&rsquo;s internal time step is incremented by 1.</p>
-
-<h4>Args:</h4>
-
+- Accumulator's internal time step is incremented by 1.</p>
+<h4 id="args_6">Args:</h4>
 <ul>
 <li><b><code>num_required</code></b>: Number of gradients that needs to have been aggregated</li>
 <li><b><code>name</code></b>: Optional name for the operation</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_4">Returns:</h4>
 <p>A tuple of indices, values, and shape representing the average gradient.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises_2">Raises:</h4>
 <ul>
 <li><b><code>InvalidArgumentError</code></b>: If <code>num_required</code> &lt; 1</li>
 </ul>
-
-
 <h3 id="take_indexed_slices_grad"><code>take_indexed_slices_grad</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/data_flow_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">take_indexed_slices_grad</span><span class="p">(</span>
+    <span class="n">num_required</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-take_indexed_slices_grad(
-    num_required,
-    name=None
-)
-</code></p>
 
 <p>Attempts to extract the average gradient from the accumulator.</p>
-
 <p>The operation blocks until sufficient number of gradients have been
 successfully applied to the accumulator.</p>
-
 <p>Once successful, the following actions are also triggered:
 - Counter of accumulated gradients is reset to 0.
 - Aggregated gradient is reset to 0 tensor.
-- Accumulator&rsquo;s internal time step is incremented by 1.</p>
-
-<h4>Args:</h4>
-
+- Accumulator's internal time step is incremented by 1.</p>
+<h4 id="args_7">Args:</h4>
 <ul>
 <li><b><code>num_required</code></b>: Number of gradients that needs to have been aggregated</li>
 <li><b><code>name</code></b>: Optional name for the operation</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_5">Returns:</h4>
 <p>An <code>IndexedSlices</code> holding the value of the average gradient.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises_3">Raises:</h4>
 <ul>
 <li><b><code>InvalidArgumentError</code></b>: If <code>num_required</code> &lt; 1</li>
 </ul>
-
+    </body>
+    </html>
+   

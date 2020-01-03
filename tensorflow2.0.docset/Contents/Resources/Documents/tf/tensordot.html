@@ -1,29 +1,28 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../default.css" rel="stylesheet">
+    <link href="
+   ../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.tensordot" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.tensordot</h1>
-
+<h1 id="tftensordot">tf.tensordot</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/math_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Tensor contraction of a and b along specified axes.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.linalg.tensordot</code></li>
 <li><code>tf.compat.v1.tensordot</code></li>
@@ -31,19 +30,16 @@
 <li><code>tf.compat.v2.tensordot</code></li>
 <li><code>tf.linalg.tensordot</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">tensordot</span><span class="p">(</span>
+    <span class="n">a</span><span class="p">,</span>
+    <span class="n">b</span><span class="p">,</span>
+    <span class="n">axes</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.tensordot(
-    a,
-    b,
-    axes,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>Tensordot (also known as tensor contraction) sums the product of elements
 from <code>a</code> and <code>b</code> over the indices specified by <code>a_axes</code> and <code>b_axes</code>.
@@ -52,48 +48,37 @@ contract the tensors. The axis <code>a_axes[i]</code> of <code>a</code> must hav
 as axis <code>b_axes[i]</code> of <code>b</code> for all <code>i</code> in <code>range(0, len(a_axes))</code>. The lists
 <code>a_axes</code> and <code>b_axes</code> must have identical length and consist of unique
 integers that specify valid axes for each of the tensors.</p>
-
 <p>This operation corresponds to <code>numpy.tensordot(a, b, axes)</code>.</p>
-
 <p>Example 1: When <code>a</code> and <code>b</code> are matrices (order 2), the case <code>axes = 1</code>
 is equivalent to matrix multiplication.</p>
-
 <p>Example 2: When <code>a</code> and <code>b</code> are matrices (order 2), the case
 <code>axes = [[1], [0]]</code> is equivalent to matrix multiplication.</p>
-
-<p>Example 3: Suppose that \(a<em>{ijk}\) and \(b</em>{lmn}\) represent two
+<p>Example 3: Suppose that \(a_{ijk}\) and \(b_{lmn}\) represent two
 tensors of order 3. Then, <code>contract(a, b, [[0], [2]])</code> is the order 4 tensor
 \(c_{jklm}\) whose entry
 corresponding to the indices \((j,k,l,m)\) is given by:</p>
-
-<p>\( c<em>{jklm} = \sum_i a</em>{ijk} b_{lmi} \).</p>
-
+<p>\( c_{jklm} = \sum_i a_{ijk} b_{lmi} \).</p>
 <p>In general, <code>order(c) = order(a) + order(b) - 2*len(axes[0])</code>.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>a</code></b>: <code>Tensor</code> of type <code>float32</code> or <code>float64</code>.</li>
 <li><b><code>b</code></b>: <code>Tensor</code> with the same type as <code>a</code>.</li>
 <li><b><code>axes</code></b>: Either a scalar <code>N</code>, or a list or an <code>int32</code> <code>Tensor</code> of shape [2, k].
-If axes is a scalar, sum over the last N axes of a and the first N axes of
-b in order. If axes is a list or <code>Tensor</code> the first and second row contain
-the set of unique integers specifying axes along which the contraction is
-computed, for <code>a</code> and <code>b</code>, respectively. The number of axes for <code>a</code> and
-<code>b</code> must be equal.</li>
+  If axes is a scalar, sum over the last N axes of a and the first N axes of
+  b in order. If axes is a list or <code>Tensor</code> the first and second row contain
+  the set of unique integers specifying axes along which the contraction is
+  computed, for <code>a</code> and <code>b</code>, respectively. The number of axes for <code>a</code> and
+  <code>b</code> must be equal.</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>Tensor</code> with the same type as <code>a</code>.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: If the shapes of <code>a</code>, <code>b</code>, and <code>axes</code> are incompatible.</li>
 <li><b><code>IndexError</code></b>: If the values in axes exceed the rank of the corresponding
-tensor.</li>
+  tensor.</li>
 </ul>
-
+    </body>
+    </html>
+   

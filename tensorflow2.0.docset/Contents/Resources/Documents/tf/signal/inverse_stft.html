@@ -1,110 +1,98 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.signal.inverse_stft" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.signal.inverse_stft</h1>
-
+<h1 id="tfsignalinverse_stft">tf.signal.inverse_stft</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/signal/spectral_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Computes the inverse <a href="https://en.wikipedia.org/wiki/Short-time_Fourier_transform">Short-time Fourier Transform</a> of <code>stfts</code>.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.signal.inverse_stft</code></li>
 <li><code>tf.compat.v2.signal.inverse_stft</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">inverse_stft</span><span class="p">(</span>
+    <span class="n">stfts</span><span class="p">,</span>
+    <span class="n">frame_length</span><span class="p">,</span>
+    <span class="n">frame_step</span><span class="p">,</span>
+    <span class="n">fft_length</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">window_fn</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">hann_window</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.signal.inverse_stft(
-    stfts,
-    frame_length,
-    frame_step,
-    fft_length=None,
-    window_fn=tf.signal.hann_window,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>To reconstruct an original waveform, a complimentary window function should
 be used in inverse_stft. Such a window function can be constructed with
 tf.signal.inverse_stft_window_fn.</p>
+<h4 id="example">Example:</h4>
+<div class="codehilite"><pre><span></span><span class="n">frame_length</span> <span class="o">=</span> <span class="mi">400</span>
+<span class="n">frame_step</span> <span class="o">=</span> <span class="mi">160</span>
+<span class="n">waveform</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="mi">1000</span><span class="p">])</span>
+<span class="n">stft</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">stft</span><span class="p">(</span><span class="n">waveform</span><span class="p">,</span> <span class="n">frame_length</span><span class="p">,</span> <span class="n">frame_step</span><span class="p">)</span>
+<span class="n">inverse_stft</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">inverse_stft</span><span class="p">(</span>
+    <span class="n">stft</span><span class="p">,</span> <span class="n">frame_length</span><span class="p">,</span> <span class="n">frame_step</span><span class="p">,</span>
+    <span class="n">window_fn</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">inverse_stft_window_fn</span><span class="p">(</span><span class="n">frame_step</span><span class="p">))</span>
+</pre></div>
 
-<h4>Example:</h4>
-
-<p><code>python
-frame_length = 400
-frame_step = 160
-waveform = tf.compat.v1.placeholder(dtype=tf.float32, shape=[1000])
-stft = tf.signal.stft(waveform, frame_length, frame_step)
-inverse_stft = tf.signal.inverse_stft(
-    stft, frame_length, frame_step,
-    window_fn=tf.signal.inverse_stft_window_fn(frame_step))
-</code></p>
 
 <p>if a custom window_fn is used in stft, it must be passed to
 inverse_stft_window_fn:</p>
+<div class="codehilite"><pre><span></span><span class="n">frame_length</span> <span class="o">=</span> <span class="mi">400</span>
+<span class="n">frame_step</span> <span class="o">=</span> <span class="mi">160</span>
+<span class="n">window_fn</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span><span class="n">window_ops</span><span class="o">.</span><span class="n">hamming_window</span><span class="p">,</span> <span class="n">periodic</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+<span class="n">waveform</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="mi">1000</span><span class="p">])</span>
+<span class="n">stft</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">stft</span><span class="p">(</span>
+    <span class="n">waveform</span><span class="p">,</span> <span class="n">frame_length</span><span class="p">,</span> <span class="n">frame_step</span><span class="p">,</span> <span class="n">window_fn</span><span class="o">=</span><span class="n">window_fn</span><span class="p">)</span>
+<span class="n">inverse_stft</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">inverse_stft</span><span class="p">(</span>
+    <span class="n">stft</span><span class="p">,</span> <span class="n">frame_length</span><span class="p">,</span> <span class="n">frame_step</span><span class="p">,</span>
+    <span class="n">window_fn</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">inverse_stft_window_fn</span><span class="p">(</span>
+       <span class="n">frame_step</span><span class="p">,</span> <span class="n">forward_window_fn</span><span class="o">=</span><span class="n">window_fn</span><span class="p">))</span>
+</pre></div>
 
-<p><code>python
-frame_length = 400
-frame_step = 160
-window_fn = functools.partial(window_ops.hamming_window, periodic=True),
-waveform = tf.compat.v1.placeholder(dtype=tf.float32, shape=[1000])
-stft = tf.signal.stft(
-    waveform, frame_length, frame_step, window_fn=window_fn)
-inverse_stft = tf.signal.inverse_stft(
-    stft, frame_length, frame_step,
-    window_fn=tf.signal.inverse_stft_window_fn(
-       frame_step, forward_window_fn=window_fn))
-</code></p>
 
 <p>Implemented with GPU-compatible ops and supports gradients.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>stfts</code></b>: A <code>complex64</code> <code>[..., frames, fft_unique_bins]</code> <code>Tensor</code> of STFT bins
-representing a batch of <code>fft_length</code>-point STFTs where <code>fft_unique_bins</code>
-is <code>fft_length // 2 + 1</code></li>
+  representing a batch of <code>fft_length</code>-point STFTs where <code>fft_unique_bins</code>
+  is <code>fft_length // 2 + 1</code></li>
 <li><b><code>frame_length</code></b>: An integer scalar <code>Tensor</code>. The window length in samples.</li>
 <li><b><code>frame_step</code></b>: An integer scalar <code>Tensor</code>. The number of samples to step.</li>
 <li><b><code>fft_length</code></b>: An integer scalar <code>Tensor</code>. The size of the FFT that produced
-<code>stfts</code>. If not provided, uses the smallest power of 2 enclosing
-<code>frame_length</code>.</li>
+  <code>stfts</code>. If not provided, uses the smallest power of 2 enclosing
+  <code>frame_length</code>.</li>
 <li><b><code>window_fn</code></b>: A callable that takes a window length and a <code>dtype</code> keyword
-argument and returns a <code>[window_length]</code> <code>Tensor</code> of samples in the
-provided datatype. If set to <code>None</code>, no windowing is used.</li>
+  argument and returns a <code>[window_length]</code> <code>Tensor</code> of samples in the
+  provided datatype. If set to <code>None</code>, no windowing is used.</li>
 <li><b><code>name</code></b>: An optional name for the operation.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>[..., samples]</code> <code>Tensor</code> of <code>float32</code> signals representing the inverse
 STFT for each input STFT in <code>stfts</code>.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: If <code>stfts</code> is not at least rank 2, <code>frame_length</code> is not scalar,
-<code>frame_step</code> is not scalar, or <code>fft_length</code> is not scalar.</li>
+  <code>frame_step</code> is not scalar, or <code>fft_length</code> is not scalar.</li>
 </ul>
-
+    </body>
+    </html>
+   

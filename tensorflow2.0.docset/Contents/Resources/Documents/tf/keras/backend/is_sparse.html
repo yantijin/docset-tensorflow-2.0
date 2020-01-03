@@ -1,61 +1,53 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.keras.backend.is_sparse" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.keras.backend.is_sparse</h1>
-
+<h1 id="tfkerasbackendis_sparse">tf.keras.backend.is_sparse</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/backend.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Returns whether a tensor is a sparse tensor.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.keras.backend.is_sparse</code></li>
 <li><code>tf.compat.v2.keras.backend.is_sparse</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">backend</span><span class="o">.</span><span class="n">is_sparse</span><span class="p">(</span><span class="n">tensor</span><span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.keras.backend.is_sparse(tensor)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
-<h4>Arguments:</h4>
-
+<h4 id="arguments">Arguments:</h4>
 <ul>
 <li><b><code>tensor</code></b>: A tensor instance.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A boolean.</p>
-
-<h4>Example:</h4>
-
-<p><code>python
-    &gt;&gt;&gt; from keras import backend as K
-    &gt;&gt;&gt; a = K.placeholder((2, 2), sparse=False)
-    &gt;&gt;&gt; print(K.is_sparse(a))
-    False
-    &gt;&gt;&gt; b = K.placeholder((2, 2), sparse=True)
-    &gt;&gt;&gt; print(K.is_sparse(b))
-    True
-</code></p>
+<h4 id="example">Example:</h4>
+<div class="codehilite"><pre><span></span>    <span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">keras</span> <span class="kn">import</span> <span class="n">backend</span> <span class="k">as</span> <span class="n">K</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="n">placeholder</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">sparse</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">K</span><span class="o">.</span><span class="n">is_sparse</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+    <span class="kc">False</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="n">b</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="n">placeholder</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">sparse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">K</span><span class="o">.</span><span class="n">is_sparse</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
+    <span class="kc">True</span>
+</pre></div>
+    </body>
+    </html>
+   

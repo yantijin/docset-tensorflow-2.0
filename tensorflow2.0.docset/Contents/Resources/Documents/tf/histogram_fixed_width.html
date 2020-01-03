@@ -1,90 +1,76 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../default.css" rel="stylesheet">
+    <link href="
+   ../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.histogram_fixed_width" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.histogram_fixed_width</h1>
-
+<h1 id="tfhistogram_fixed_width">tf.histogram_fixed_width</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/histogram_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Return histogram of values.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.histogram_fixed_width</code></li>
 <li><code>tf.compat.v2.histogram_fixed_width</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">histogram_fixed_width</span><span class="p">(</span>
+    <span class="n">values</span><span class="p">,</span>
+    <span class="n">value_range</span><span class="p">,</span>
+    <span class="n">nbins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.histogram_fixed_width(
-    values,
-    value_range,
-    nbins=100,
-    dtype=tf.dtypes.int32,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>Given the tensor <code>values</code>, this operation returns a rank 1 histogram counting
 the number of entries in <code>values</code> that fell into every bin.  The bins are
 equal width and determined by the arguments <code>value_range</code> and <code>nbins</code>.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>values</code></b>:  Numeric <code>Tensor</code>.</li>
 <li><b><code>value_range</code></b>:  Shape [2] <code>Tensor</code> of same <code>dtype</code> as <code>values</code>.
-values &lt;= value_range[0] will be mapped to hist[0],
-values >= value_range[1] will be mapped to hist[-1].</li>
+  values &lt;= value_range[0] will be mapped to hist[0],
+  values &gt;= value_range[1] will be mapped to hist[-1].</li>
 <li><b><code>nbins</code></b>:  Scalar <code>int32 Tensor</code>.  Number of histogram bins.</li>
 <li><b><code>dtype</code></b>:  dtype for returned histogram.</li>
-<li><b><code>name</code></b>:  A name for this operation (defaults to &lsquo;histogram_fixed_width&rsquo;).</li>
+<li><b><code>name</code></b>:  A name for this operation (defaults to 'histogram_fixed_width').</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A 1-D <code>Tensor</code> holding histogram of values.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>TypeError</code></b>: If any unsupported dtype is provided.</li>
 <li><b><code>tf.errors.InvalidArgumentError</code></b>: If value_range does not
-  satisfy value_range[0] &lt; value_range[1].</li>
+    satisfy value_range[0] &lt; value_range[1].</li>
 </ul>
+<h4 id="examples">Examples:</h4>
+<div class="codehilite"><pre><span></span><span class="c1"># Bins will be:  (-inf, 1), [1, 2), [2, 3), [3, 4), [4, inf)</span>
+<span class="n">nbins</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">value_range</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">]</span>
+<span class="n">new_values</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mi">15</span><span class="p">]</span>
 
-
-<h4>Examples:</h4>
-
-<p>```python</p>
-
-<h1>Bins will be:  (-inf, 1), [1, 2), [2, 3), [3, 4), [4, inf)</h1>
-
-<p>nbins = 5
-value_range = [0.0, 5.0]
-new_values = [-1.0, 0.0, 1.5, 2.0, 5.0, 15]</p>
-
-<p>with tf.compat.v1.get_default_session() as sess:
-  hist = tf.histogram_fixed_width(new_values, value_range, nbins=5)
-  variables.global_variables_initializer().run()
-  sess.run(hist) => [2, 1, 1, 0, 2]
-```</p>
+<span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">get_default_session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
+  <span class="n">hist</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">histogram_fixed_width</span><span class="p">(</span><span class="n">new_values</span><span class="p">,</span> <span class="n">value_range</span><span class="p">,</span> <span class="n">nbins</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+  <span class="n">variables</span><span class="o">.</span><span class="n">global_variables_initializer</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+  <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">hist</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+</pre></div>
+    </body>
+    </html>
+   

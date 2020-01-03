@@ -1,4 +1,13 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.keras.optimizers.schedules.PiecewiseConstantDecay" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="__call__"/>
@@ -7,159 +16,114 @@
 <meta itemprop="property" content="get_config"/>
 </div>
 
-
-<h1>tf.keras.optimizers.schedules.PiecewiseConstantDecay</h1>
-
+<h1 id="tfkerasoptimizersschedulespiecewiseconstantdecay">tf.keras.optimizers.schedules.PiecewiseConstantDecay</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/learning_rate_schedule.py">View source</a></p>
-
-<h2>Class <code>PiecewiseConstantDecay</code></h2>
-
+<h2 id="class-piecewiseconstantdecay">Class <code>PiecewiseConstantDecay</code></h2>
 <!-- Start diff -->
 
-
 <p>A LearningRateSchedule that uses a piecewise constant decay schedule.</p>
-
 <p>Inherits From: <a href="../../../../tf/keras/optimizers/schedules/LearningRateSchedule.html"><code>LearningRateSchedule</code></a></p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li>Class <code>tf.compat.v1.keras.optimizers.schedules.PiecewiseConstantDecay</code></li>
 <li>Class <code>tf.compat.v2.keras.optimizers.schedules.PiecewiseConstantDecay</code></li>
 <li>Class <code>tf.compat.v2.optimizers.schedules.PiecewiseConstantDecay</code></li>
 <li>Class <code>tf.optimizers.schedules.PiecewiseConstantDecay</code></li>
 </ul>
-
-
 <!-- Placeholder for "Used in" -->
-
-
-
 
 <h2 id="__init__"><code>__init__</code></h2>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/learning_rate_schedule.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">boundaries</span><span class="p">,</span>
+    <span class="n">values</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__init__(
-    boundaries,
-    values,
-    name=None
-)
-</code></p>
 
 <p>Piecewise constant from boundaries and interval values.</p>
-
 <p>The function returns a 1-arg callable to compute the piecewise constant
 when passed the current optimizer step. This can be useful for changing the
 learning rate value across different invocations of optimizer functions.</p>
-
-<p>Example: use a learning rate that&rsquo;s 1.0 for the first 100001 steps, 0.5
+<p>Example: use a learning rate that's 1.0 for the first 100001 steps, 0.5
   for the next 10000 steps, and 0.1 for any additional steps.</p>
+<div class="codehilite"><pre><span></span><span class="n">step</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">trainable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">boundaries</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100000</span><span class="p">,</span> <span class="mi">110000</span><span class="p">]</span>
+<span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]</span>
+<span class="n">learning_rate_fn</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">schedules</span><span class="o">.</span><span class="n">PiecewiseConstantDecay</span><span class="p">(</span>
+    <span class="n">boundaries</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
 
-<p>```python
-step = tf.Variable(0, trainable=False)
-boundaries = [100000, 110000]
-values = [1.0, 0.5, 0.1]
-learning_rate_fn = keras.optimizers.schedules.PiecewiseConstantDecay(
-    boundaries, values)</p>
+<span class="c1"># Later, whenever we perform an optimization step, we pass in the step.</span>
+<span class="n">learning_rate</span> <span class="o">=</span> <span class="n">learning_rate_fn</span><span class="p">(</span><span class="n">step</span><span class="p">)</span>
+</pre></div>
 
-<h1>Later, whenever we perform an optimization step, we pass in the step.</h1>
-
-<p>learning_rate = learning_rate_fn(step)
-```</p>
 
 <p>You can pass this schedule directly into a <a href="../../../../tf/keras/optimizers/Optimizer.html"><code>tf.keras.optimizers.Optimizer</code></a>
 as the learning rate. The learning rate schedule is also serializable and
 deserializable using <a href="../../../../tf/keras/optimizers/schedules/serialize.html"><code>tf.keras.optimizers.schedules.serialize</code></a> and
 <a href="../../../../tf/keras/optimizers/schedules/deserialize.html"><code>tf.keras.optimizers.schedules.deserialize</code></a>.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>boundaries</code></b>: A list of <code>Tensor</code>s or <code>int</code>s or <code>float</code>s with strictly
-increasing entries, and with all elements having the same type as the
-optimizer step.</li>
+  increasing entries, and with all elements having the same type as the
+  optimizer step.</li>
 <li><b><code>values</code></b>: A list of <code>Tensor</code>s or <code>float</code>s or <code>int</code>s that specifies the
-values for the intervals defined by <code>boundaries</code>. It should have one
-more element than <code>boundaries</code>, and all elements should have the same
-type.</li>
+  values for the intervals defined by <code>boundaries</code>. It should have one
+  more element than <code>boundaries</code>, and all elements should have the same
+  type.</li>
 <li><b><code>name</code></b>: A string. Optional name of the operation. Defaults to
-&lsquo;PiecewiseConstant&rsquo;.</li>
+  'PiecewiseConstant'.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A 1-arg callable learning rate schedule that takes the current optimizer
 step and outputs the decayed learning rate, a scalar <code>Tensor</code> of the same
 type as the boundary tensors.</p>
-
 <p>The output of the 1-arg function that takes the <code>step</code>
 is <code>values[0]</code> when <code>step &lt;= boundaries[0]</code>,
-<code>values[1]</code> when <code>step &gt; boundaries[0]</code> and <code>step &lt;= boundaries[1]</code>, &hellip;,
+<code>values[1]</code> when <code>step &gt; boundaries[0]</code> and <code>step &lt;= boundaries[1]</code>, ...,
 and values[-1] when <code>step &gt; boundaries[-1]</code>.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: if the number of elements in the lists do not match.</li>
 </ul>
-
-
-<h2>Methods</h2>
-
+<h2 id="methods">Methods</h2>
 <h3 id="__call__"><code>__call__</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/learning_rate_schedule.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__call__</span><span class="p">(</span><span class="n">step</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__call__(step)
-</code></p>
 
 <p>Call self as a function.</p>
-
 <h3 id="from_config"><code>from_config</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/learning_rate_schedule.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">from_config</span><span class="p">(</span>
+    <span class="bp">cls</span><span class="p">,</span>
+    <span class="n">config</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-from_config(
-    cls,
-    config
-)
-</code></p>
 
 <p>Instantiates a <code>LearningRateSchedule</code> from its config.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_1">Args:</h4>
 <ul>
 <li><b><code>config</code></b>: Output of <code>get_config()</code>.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_1">Returns:</h4>
 <p>A <code>LearningRateSchedule</code> instance.</p>
-
 <h3 id="get_config"><code>get_config</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/learning_rate_schedule.py">View source</a></p>
-
-<p><code>python
-get_config()
-</code></p>
+<div class="codehilite"><pre><span></span><span class="n">get_config</span><span class="p">()</span>
+</pre></div>
+    </body>
+    </html>
+   

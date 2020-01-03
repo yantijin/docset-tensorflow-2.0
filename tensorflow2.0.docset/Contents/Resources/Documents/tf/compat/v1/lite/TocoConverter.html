@@ -1,4 +1,13 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.lite.TocoConverter" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="from_frozen_graph"/>
@@ -7,119 +16,94 @@
 <meta itemprop="property" content="from_session"/>
 </div>
 
-
-<h1>tf.compat.v1.lite.TocoConverter</h1>
-
+<h1 id="tfcompatv1litetococonverter">tf.compat.v1.lite.TocoConverter</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/lite/python/lite.py">View source</a></p>
-
-<h2>Class <code>TocoConverter</code></h2>
-
+<h2 id="class-tococonverter">Class <code>TocoConverter</code></h2>
 <!-- Start diff -->
 
-
 <p>Convert a TensorFlow model into <code>output_format</code> using TOCO.</p>
-
 <!-- Placeholder for "Used in" -->
 
-
 <p>This class has been deprecated. Please use <code>lite.TFLiteConverter</code> instead.</p>
-
-<h2>Methods</h2>
-
+<h2 id="methods">Methods</h2>
 <h3 id="from_frozen_graph"><code>from_frozen_graph</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/lite/python/lite.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="nd">@classmethod</span>
+<span class="n">from_frozen_graph</span><span class="p">(</span>
+    <span class="bp">cls</span><span class="p">,</span>
+    <span class="n">graph_def_file</span><span class="p">,</span>
+    <span class="n">input_arrays</span><span class="p">,</span>
+    <span class="n">output_arrays</span><span class="p">,</span>
+    <span class="n">input_shapes</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-@classmethod
-from_frozen_graph(
-    cls,
-    graph_def_file,
-    input_arrays,
-    output_arrays,
-    input_shapes=None
-)
-</code></p>
 
 <p>Creates a TocoConverter class from a file containing a frozen graph. (deprecated)</p>
-
 <p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
 Instructions for updating:
 Use <code>lite.TFLiteConverter.from_frozen_graph</code> instead.</p>
-
 <h3 id="from_keras_model_file"><code>from_keras_model_file</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/lite/python/lite.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="nd">@classmethod</span>
+<span class="n">from_keras_model_file</span><span class="p">(</span>
+    <span class="bp">cls</span><span class="p">,</span>
+    <span class="n">model_file</span><span class="p">,</span>
+    <span class="n">input_arrays</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">input_shapes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">output_arrays</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-@classmethod
-from_keras_model_file(
-    cls,
-    model_file,
-    input_arrays=None,
-    input_shapes=None,
-    output_arrays=None
-)
-</code></p>
 
 <p>Creates a TocoConverter class from a tf.keras model file. (deprecated)</p>
-
 <p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
 Instructions for updating:
 Use <code>lite.TFLiteConverter.from_keras_model_file</code> instead.</p>
-
 <h3 id="from_saved_model"><code>from_saved_model</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/lite/python/lite.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="nd">@classmethod</span>
+<span class="n">from_saved_model</span><span class="p">(</span>
+    <span class="bp">cls</span><span class="p">,</span>
+    <span class="n">saved_model_dir</span><span class="p">,</span>
+    <span class="n">input_arrays</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">input_shapes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">output_arrays</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">tag_set</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">signature_key</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-@classmethod
-from_saved_model(
-    cls,
-    saved_model_dir,
-    input_arrays=None,
-    input_shapes=None,
-    output_arrays=None,
-    tag_set=None,
-    signature_key=None
-)
-</code></p>
 
 <p>Creates a TocoConverter class from a SavedModel. (deprecated)</p>
-
 <p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
 Instructions for updating:
 Use <code>lite.TFLiteConverter.from_saved_model</code> instead.</p>
-
 <h3 id="from_session"><code>from_session</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/lite/python/lite.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="nd">@classmethod</span>
+<span class="n">from_session</span><span class="p">(</span>
+    <span class="bp">cls</span><span class="p">,</span>
+    <span class="n">sess</span><span class="p">,</span>
+    <span class="n">input_tensors</span><span class="p">,</span>
+    <span class="n">output_tensors</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-@classmethod
-from_session(
-    cls,
-    sess,
-    input_tensors,
-    output_tensors
-)
-</code></p>
 
 <p>Creates a TocoConverter class from a TensorFlow Session. (deprecated)</p>
-
 <p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
 Instructions for updating:
 Use <code>lite.TFLiteConverter.from_session</code> instead.</p>
+    </body>
+    </html>
+   

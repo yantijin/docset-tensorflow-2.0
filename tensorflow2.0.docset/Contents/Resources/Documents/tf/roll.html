@@ -1,93 +1,80 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../default.css" rel="stylesheet">
+    <link href="
+   ../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.roll" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.roll</h1>
-
+<h1 id="tfroll">tf.roll</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/manip_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Rolls the elements of a tensor along an axis.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.manip.roll</code></li>
 <li><code>tf.compat.v1.roll</code></li>
 <li><code>tf.compat.v2.roll</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span>
+    <span class="nb">input</span><span class="p">,</span>
+    <span class="n">shift</span><span class="p">,</span>
+    <span class="n">axis</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.roll(
-    input,
-    shift,
-    axis,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>The elements are shifted positively (towards larger indices) by the offset of
 <code>shift</code> along the dimension of <code>axis</code>. Negative <code>shift</code> values will shift
 elements in the opposite direction. Elements that roll passed the last position
 will wrap around to the first and vice versa. Multiple shifts along multiple
 axes may be specified.</p>
+<h4 id="for-example">For example:</h4>
+<div class="codehilite"><pre><span></span><span class="o">#</span> <span class="s1">&#39;t&#39;</span> <span class="k">is</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">roll</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">==&gt;</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
 
-<h4>For example:</h4>
+<span class="o">#</span> <span class="n">shifting</span> <span class="n">along</span> <span class="n">multiple</span> <span class="n">dimensions</span>
+<span class="o">#</span> <span class="s1">&#39;t&#39;</span> <span class="k">is</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]]</span>
+<span class="n">roll</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span> <span class="o">==&gt;</span> <span class="p">[[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
 
-<p>```</p>
+<span class="o">#</span> <span class="n">shifting</span> <span class="n">along</span> <span class="n">the</span> <span class="n">same</span> <span class="n">axis</span> <span class="n">multiple</span> <span class="n">times</span>
+<span class="o">#</span> <span class="s1">&#39;t&#39;</span> <span class="k">is</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]]</span>
+<span class="n">roll</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span> <span class="o">==&gt;</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">]]</span>
+</pre></div>
 
-<h1>&rsquo;t' is [0, 1, 2, 3, 4]</h1>
 
-<p>roll(t, shift=2, axis=0) ==> [3, 4, 0, 1, 2]</p>
-
-<h1>shifting along multiple dimensions</h1>
-
-<h1>&rsquo;t' is [[0, 1, 2, 3, 4], [5, 6, 7, 8, 9]]</h1>
-
-<p>roll(t, shift=[1, -2], axis=[0, 1]) ==> [[7, 8, 9, 5, 6], [2, 3, 4, 0, 1]]</p>
-
-<h1>shifting along the same axis multiple times</h1>
-
-<h1>&rsquo;t' is [[0, 1, 2, 3, 4], [5, 6, 7, 8, 9]]</h1>
-
-<p>roll(t, shift=[2, -3], axis=[1, 1]) ==> [[1, 2, 3, 4, 0], [6, 7, 8, 9, 5]]
-```</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>input</code></b>: A <code>Tensor</code>.</li>
 <li><b><code>shift</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>int32</code>, <code>int64</code>.
-Dimension must be 0-D or 1-D. <code>shift[i]</code> specifies the number of places by which
-elements are shifted positively (towards larger indices) along the dimension
-specified by <code>axis[i]</code>. Negative shifts will roll the elements in the opposite
-direction.</li>
+  Dimension must be 0-D or 1-D. <code>shift[i]</code> specifies the number of places by which
+  elements are shifted positively (towards larger indices) along the dimension
+  specified by <code>axis[i]</code>. Negative shifts will roll the elements in the opposite
+  direction.</li>
 <li><b><code>axis</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>int32</code>, <code>int64</code>.
-Dimension must be 0-D or 1-D. <code>axis[i]</code> specifies the dimension that the shift
-<code>shift[i]</code> should occur. If the same axis is referenced more than once, the
-total shift for that axis will be the sum of all the shifts that belong to that
-axis.</li>
+  Dimension must be 0-D or 1-D. <code>axis[i]</code> specifies the dimension that the shift
+  <code>shift[i]</code> should occur. If the same axis is referenced more than once, the
+  total shift for that axis will be the sum of all the shifts that belong to that
+  axis.</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>Tensor</code>. Has the same type as <code>input</code>.</p>
+    </body>
+    </html>
+   

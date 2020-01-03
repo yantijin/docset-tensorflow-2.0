@@ -1,69 +1,60 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.linalg.inv" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.linalg.inv</h1>
-
+<h1 id="tflinalginv">tf.linalg.inv</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p>Defined in generated file: <code>python/ops/gen_linalg_ops.py</code></p>
-
 <!-- Start diff -->
 
-
 <p>Computes the inverse of one or more square invertible matrices or their</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.linalg.inv</code></li>
 <li><code>tf.compat.v1.matrix_inverse</code></li>
 <li><code>tf.compat.v2.linalg.inv</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span>
+    <span class="nb">input</span><span class="p">,</span>
+    <span class="n">adjoint</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.linalg.inv(
-    input,
-    adjoint=False,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>adjoints (conjugate transposes).</p>
-
 <p>The input is a tensor of shape <code>[..., M, M]</code> whose inner-most 2 dimensions
 form square matrices. The output is a tensor of the same shape as the input
 containing the inverse for all input submatrices <code>[..., :, :]</code>.</p>
-
 <p>The op uses LU decomposition with partial pivoting to compute the inverses.</p>
-
 <p>If a matrix is not invertible there is no guarantee what the op does. It
 may detect the condition and raise an exception or it may simply return a
 garbage result.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>input</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>float64</code>, <code>float32</code>, <code>half</code>, <code>complex64</code>, <code>complex128</code>.
-Shape is <code>[..., M, M]</code>.</li>
+  Shape is <code>[..., M, M]</code>.</li>
 <li><b><code>adjoint</code></b>: An optional <code>bool</code>. Defaults to <code>False</code>.</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>Tensor</code>. Has the same type as <code>input</code>.</p>
+    </body>
+    </html>
+   

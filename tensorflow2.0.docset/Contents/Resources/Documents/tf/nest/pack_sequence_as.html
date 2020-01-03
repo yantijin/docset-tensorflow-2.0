@@ -1,49 +1,44 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.nest.pack_sequence_as" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.nest.pack_sequence_as</h1>
-
+<h1 id="tfnestpack_sequence_as">tf.nest.pack_sequence_as</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/util/nest.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Returns a given flattened sequence packed into a given structure.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.nest.pack_sequence_as</code></li>
 <li><code>tf.compat.v2.nest.pack_sequence_as</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">nest</span><span class="o">.</span><span class="n">pack_sequence_as</span><span class="p">(</span>
+    <span class="n">structure</span><span class="p">,</span>
+    <span class="n">flat_sequence</span><span class="p">,</span>
+    <span class="n">expand_composites</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.nest.pack_sequence_as(
-    structure,
-    flat_sequence,
-    expand_composites=False
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>If <code>structure</code> is a scalar, <code>flat_sequence</code> must be a single-element list;
 in this case the return value is <code>flat_sequence[0]</code>.</p>
-
 <p>If <code>structure</code> is or contains a dict instance, the keys will be sorted to
 pack the flat sequence in deterministic order. This is true also for
 <code>OrderedDict</code> instances: their sequence order is ignored, the sorting order of
@@ -52,32 +47,26 @@ This correctly repacks dicts and <code>OrderedDict</code>s after they have been
 flattened, and also allows flattening an <code>OrderedDict</code> and then repacking it
 back using a corresponding plain dict, or vice-versa.
 Dictionaries with non-sortable keys cannot be flattened.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>structure</code></b>: Nested structure, whose structure is given by nested lists,
-  tuples, and dicts. Note: numpy arrays and strings are considered
-  scalars.</li>
+    tuples, and dicts. Note: numpy arrays and strings are considered
+    scalars.</li>
 <li><b><code>flat_sequence</code></b>: flat sequence to pack.</li>
 <li><b><code>expand_composites</code></b>: If true, then composite tensors such as <a href="../../tf/sparse/SparseTensor.html"><code>tf.SparseTensor</code></a>
-  and <a href="../../tf/RaggedTensor.html"><code>tf.RaggedTensor</code></a> are expanded into their component tensors.</li>
+    and <a href="../../tf/RaggedTensor.html"><code>tf.RaggedTensor</code></a> are expanded into their component tensors.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <ul>
 <li><b><code>packed</code></b>: <code>flat_sequence</code> converted to have the same recursive structure as
-<code>structure</code>.</li>
+  <code>structure</code>.</li>
 </ul>
-
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: If <code>flat_sequence</code> and <code>structure</code> have different
-element counts.</li>
+  element counts.</li>
 <li><b><code>TypeError</code></b>: <code>structure</code> is or contains a dict with non-sortable keys.</li>
 </ul>
-
+    </body>
+    </html>
+   

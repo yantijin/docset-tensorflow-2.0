@@ -1,71 +1,64 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.saved_model.save" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.saved_model.save</h1>
-
+<h1 id="tfsaved_modelsave">tf.saved_model.save</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/saved_model/save.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Exports the Trackable object <code>obj</code> to <a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/python/saved_model/README.html">SavedModel format</a>.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.saved_model.experimental.save</code></li>
 <li><code>tf.compat.v1.saved_model.save</code></li>
 <li><code>tf.compat.v2.saved_model.save</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">saved_model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span>
+    <span class="n">obj</span><span class="p">,</span>
+    <span class="n">export_dir</span><span class="p">,</span>
+    <span class="n">signatures</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">options</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.saved_model.save(
-    obj,
-    export_dir,
-    signatures=None,
-    options=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
+<h4 id="example-usage">Example usage:</h4>
+<div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Adder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
 
-<h4>Example usage:</h4>
+  <span class="nd">@tf</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="n">input_signature</span><span class="o">=</span><span class="p">[</span><span class="n">tf</span><span class="o">.</span><span class="n">TensorSpec</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)])</span>
+  <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">x</span> <span class="o">+</span> <span class="mf">1.</span>
 
-<p>```python
-class Adder(tf.Module):</p>
+<span class="n">to_export</span> <span class="o">=</span> <span class="n">Adder</span><span class="p">()</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">saved_model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">to_export</span><span class="p">,</span> <span class="s1">&#39;/tmp/adder&#39;</span><span class="p">)</span>
+</pre></div>
 
-<p>  @tf.function(input_signature=[tf.TensorSpec(shape=None, dtype=tf.float32)])
-  def add(self, x):
-    return x + x + 1.</p>
 
-<p>to_export = Adder()
-tf.saved_model.save(to_export, &lsquo;/tmp/adder&rsquo;)
-```</p>
-
-<p>The resulting SavedModel is then servable with an input named &ldquo;x&rdquo;, its value
+<p>The resulting SavedModel is then servable with an input named "x", its value
 having any shape and dtype float32.</p>
-
 <p>The optional <code>signatures</code> argument controls which methods in <code>obj</code> will be
 available to programs which consume <code>SavedModel</code>s, for example serving
 APIs. Python functions may be decorated with
 <code>@tf.function(input_signature=...)</code> and passed as signatures directly, or
 lazily with a call to <code>get_concrete_function</code> on the method decorated with
 <code>@tf.function</code>.</p>
-
 <p>If the <code>signatures</code> argument is omitted, <code>obj</code> will be searched for
 <code>@tf.function</code>-decorated methods. If exactly one <code>@tf.function</code> is found, that
 method will be used as the default signature for the SavedModel. This behavior
@@ -73,91 +66,79 @@ is expected to change in the future, when a corresponding
 <a href="../../tf/saved_model/load.html"><code>tf.saved_model.load</code></a> symbol is added. At that point signatures will be
 completely optional, and any <code>@tf.function</code> attached to <code>obj</code> or its
 dependencies will be exported for use with <code>load</code>.</p>
-
 <p>When invoking a signature in an exported SavedModel, <code>Tensor</code> arguments are
-identified by name. These names will come from the Python function&rsquo;s argument
+identified by name. These names will come from the Python function's argument
 names by default. They may be overridden by specifying a <code>name=...</code> argument
 in the corresponding <a href="../../tf/TensorSpec.html"><code>tf.TensorSpec</code></a> object. Explicit naming is required if
 multiple <code>Tensor</code>s are passed through a single argument to the Python
 function.</p>
-
 <p>The outputs of functions used as <code>signatures</code> must either be flat lists, in
 which case outputs will be numbered, or a dictionary mapping string keys to
 <code>Tensor</code>, in which case the keys will be used to name outputs.</p>
-
 <p>Signatures are available in objects returned by <a href="../../tf/saved_model/load.html"><code>tf.saved_model.load</code></a> as a
 <code>.signatures</code> attribute. This is a reserved attribute: <a href="../../tf/saved_model/save.html"><code>tf.saved_model.save</code></a>
 on an object with a custom <code>.signatures</code> attribute will raise an exception.</p>
-
 <p>Since <a href="../../tf/keras/Model.html"><code>tf.keras.Model</code></a> objects are also Trackable, this function can be
 used to export Keras models. For example, exporting with a signature
 specified:</p>
+<div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Model</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
 
-<p>```python
-class Model(tf.keras.Model):</p>
+  <span class="nd">@tf</span><span class="o">.</span><span class="n">function</span><span class="p">(</span><span class="n">input_signature</span><span class="o">=</span><span class="p">[</span><span class="n">tf</span><span class="o">.</span><span class="n">TensorSpec</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="kc">None</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">string</span><span class="p">)])</span>
+  <span class="k">def</span> <span class="nf">serve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">serialized</span><span class="p">):</span>
+    <span class="o">...</span>
 
-<p>  @tf.function(input_signature=[tf.TensorSpec(shape=[None], dtype=tf.string)])
-  def serve(self, serialized):
-    &hellip;</p>
+<span class="n">m</span> <span class="o">=</span> <span class="n">Model</span><span class="p">()</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">saved_model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="s1">&#39;/tmp/saved_model/&#39;</span><span class="p">)</span>
+</pre></div>
 
-<p>m = Model()
-tf.saved_model.save(m, &lsquo;/tmp/saved_model/&rsquo;)
-```</p>
 
 <p>Exporting from a function without a fixed signature:</p>
+<div class="codehilite"><pre><span></span><span class="k">class</span> <span class="nc">Model</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
 
-<p>```python
-class Model(tf.keras.Model):</p>
+  <span class="nd">@tf</span><span class="o">.</span><span class="n">function</span>
+  <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="o">...</span>
 
-<p>  @tf.function
-  def call(self, x):
-    &hellip;</p>
+<span class="n">m</span> <span class="o">=</span> <span class="n">Model</span><span class="p">()</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">saved_model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span>
+    <span class="n">m</span><span class="p">,</span> <span class="s1">&#39;/tmp/saved_model/&#39;</span><span class="p">,</span>
+    <span class="n">signatures</span><span class="o">=</span><span class="n">m</span><span class="o">.</span><span class="n">call</span><span class="o">.</span><span class="n">get_concrete_function</span><span class="p">(</span>
+        <span class="n">tf</span><span class="o">.</span><span class="n">TensorSpec</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;inp&quot;</span><span class="p">)))</span>
+</pre></div>
 
-<p>m = Model()
-tf.saved_model.save(
-    m, &lsquo;/tmp/saved_model/&rsquo;,
-    signatures=m.call.get_concrete_function(
-        tf.TensorSpec(shape=[None, 3], dtype=tf.float32, name=&ldquo;inp&rdquo;)))
-```</p>
 
 <p><a href="../../tf/keras/Model.html"><code>tf.keras.Model</code></a> instances constructed from inputs and outputs already have a
 signature and so do not require a <code>@tf.function</code> decorator or a <code>signatures</code>
-argument. If neither are specified, the model&rsquo;s forward pass is exported.</p>
+argument. If neither are specified, the model's forward pass is exported.</p>
+<div class="codehilite"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">input_layer</span><span class="o">.</span><span class="n">Input</span><span class="p">((</span><span class="mi">4</span><span class="p">,),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;out&quot;</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">training</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">saved_model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s1">&#39;/tmp/saved_model/&#39;</span><span class="p">)</span>
+<span class="c1"># The exported SavedModel takes &quot;x&quot; with shape [None, 4] and returns &quot;out&quot;</span>
+<span class="c1"># with shape [None, 5]</span>
+</pre></div>
 
-<p>```python
-x = input_layer.Input((4,), name=&ldquo;x&rdquo;)
-y = core.Dense(5, name=&ldquo;out&rdquo;)(x)
-model = training.Model(x, y)
-tf.saved_model.save(model, &lsquo;/tmp/saved_model/&rsquo;)</p>
-
-<h1>The exported SavedModel takes &ldquo;x&rdquo; with shape [None, 4] and returns &ldquo;out&rdquo;</h1>
-
-<h1>with shape [None, 5]</h1>
-
-<p>```</p>
 
 <p>Variables must be tracked by assigning them to an attribute of a tracked
 object or to an attribute of <code>obj</code> directly. TensorFlow objects (e.g. layers
 from <a href="../../tf/keras/layers.html"><code>tf.keras.layers</code></a>, optimizers from <a href="../../tf/train.html"><code>tf.train</code></a>) track their variables
 automatically. This is the same tracking scheme that <a href="../../tf/train/Checkpoint.html"><code>tf.train.Checkpoint</code></a>
 uses, and an exported <code>Checkpoint</code> object may be restored as a training
-checkpoint by pointing <a href="../../tf/train/Checkpoint.html#restore"><code>tf.train.Checkpoint.restore</code></a> to the SavedModel&rsquo;s
-&ldquo;variables/&rdquo; subdirectory. Currently variables are the only stateful objects
+checkpoint by pointing <a href="../../tf/train/Checkpoint.html#restore"><code>tf.train.Checkpoint.restore</code></a> to the SavedModel's
+"variables/" subdirectory. Currently variables are the only stateful objects
 supported by <a href="../../tf/saved_model/save.html"><code>tf.saved_model.save</code></a>, but others (e.g. tables) will be supported
 in the future.</p>
-
 <p><a href="../../tf/function.html"><code>tf.function</code></a> does not hard-code device annotations from outside the function
-body, instead using the calling context&rsquo;s device. This means for example that
+body, instead using the calling context's device. This means for example that
 exporting a model which runs on a GPU and serving it on a CPU will generally
 work, with some exceptions. <a href="../../tf/device.html"><code>tf.device</code></a> annotations inside the body of the
 function will be hard-coded in the exported model; this type of annotation is
-discouraged. Device-specific operations, e.g. with &ldquo;cuDNN&rdquo; in the name or with
+discouraged. Device-specific operations, e.g. with "cuDNN" in the name or with
 device-specific layouts, may cause issues. Currently a <code>DistributionStrategy</code>
 is another exception: active distribution strategies will cause device
 placements to be hard-coded in a function. Exporting a single-device
 computation and importing under a <code>DistributionStrategy</code> is not currently
 supported, but may be in the future.</p>
-
 <p>SavedModels exported with <a href="../../tf/saved_model/save.html"><code>tf.saved_model.save</code></a> <a href="https://github.com/tensorflow/tensorflow/blob/master/tensorflow/python/saved_model/README.html#stripping-default-valued-attributes">strip default-valued
 attributes</a>
 automatically, which removes one source of incompatibilities when the consumer
@@ -165,38 +146,32 @@ of a SavedModel is running an older TensorFlow version than the
 producer. There are however other sources of incompatibilities which are not
 handled automatically, such as when the exported model contains operations
 which the consumer does not have definitions for.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>obj</code></b>: A trackable object to export.</li>
 <li><b><code>export_dir</code></b>: A directory in which to write the SavedModel.</li>
 <li><b><code>signatures</code></b>: Optional, either a <a href="../../tf/function.html"><code>tf.function</code></a> with an input signature
-specified or the result of <code>f.get_concrete_function</code> on a
-<code>@tf.function</code>-decorated function <code>f</code>, in which case <code>f</code> will be used to
-generate a signature for the SavedModel under the default serving
-signature key. <code>signatures</code> may also be a dictionary, in which case it
-maps from signature keys to either <a href="../../tf/function.html"><code>tf.function</code></a> instances with input
-signatures or concrete functions. The keys of such a dictionary may be
-arbitrary strings, but will typically be from the
-<code>tf.saved_model.signature_constants</code> module.</li>
+  specified or the result of <code>f.get_concrete_function</code> on a
+  <code>@tf.function</code>-decorated function <code>f</code>, in which case <code>f</code> will be used to
+  generate a signature for the SavedModel under the default serving
+  signature key. <code>signatures</code> may also be a dictionary, in which case it
+  maps from signature keys to either <a href="../../tf/function.html"><code>tf.function</code></a> instances with input
+  signatures or concrete functions. The keys of such a dictionary may be
+  arbitrary strings, but will typically be from the
+  <code>tf.saved_model.signature_constants</code> module.</li>
 <li><b><code>options</code></b>: Optional, <a href="../../tf/saved_model/SaveOptions.html"><code>tf.saved_model.SaveOptions</code></a> object that specifies
-options for saving.</li>
+  options for saving.</li>
 </ul>
-
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: If <code>obj</code> is not trackable.</li>
 </ul>
-
-
-<h4>Eager Compatibility</h4>
-
+<h4 id="eager-compatibility">Eager Compatibility</h4>
 <p>Not well supported when graph building. From TensorFlow 1.x,
 <a href="../../tf/compat/v1/enable_eager_execution.html"><code>tf.compat.v1.enable_eager_execution()</code></a> should run first. Calling
 tf.saved_model.save in a loop when graph building from TensorFlow 1.x will
 add new save operations to the default graph each iteration.</p>
-
 <p>May not be called from within a function body.</p>
+    </body>
+    </html>
+   

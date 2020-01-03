@@ -1,4 +1,13 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.estimator.RunConfig" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="cluster_spec"/>
@@ -30,13 +39,8 @@
 <meta itemprop="property" content="replace"/>
 </div>
 
-
-<h1>tf.estimator.RunConfig</h1>
-
+<h1 id="tfestimatorrunconfig">tf.estimator.RunConfig</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 
@@ -47,147 +51,127 @@
   </a>
 </td></table>
 
-
-<h2>Class <code>RunConfig</code></h2>
-
+<h2 id="class-runconfig">Class <code>RunConfig</code></h2>
 <!-- Start diff -->
 
-
 <p>This class specifies the configurations for an <code>Estimator</code> run.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li>Class <code>tf.compat.v1.estimator.RunConfig</code></li>
 <li>Class <code>tf.compat.v2.estimator.RunConfig</code></li>
 </ul>
-
-
 <!-- Placeholder for "Used in" -->
-
-
-
 
 <h2 id="__init__"><code>__init__</code></h2>
 
-
 <p><a target="_blank" href="https://github.com/tensorflow/estimator/tree/master/tensorflow_estimator/python/estimator/run_config.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">model_dir</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">tf_random_seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">save_summary_steps</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">save_checkpoints_steps</span><span class="o">=</span><span class="n">_USE_DEFAULT</span><span class="p">,</span>
+    <span class="n">save_checkpoints_secs</span><span class="o">=</span><span class="n">_USE_DEFAULT</span><span class="p">,</span>
+    <span class="n">session_config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">keep_checkpoint_max</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">keep_checkpoint_every_n_hours</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span>
+    <span class="n">log_step_count_steps</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">train_distribute</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">device_fn</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">protocol</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">eval_distribute</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">experimental_distribute</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">experimental_max_worker_delay_secs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">session_creation_timeout_secs</span><span class="o">=</span><span class="mi">7200</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__init__(
-    model_dir=None,
-    tf_random_seed=None,
-    save_summary_steps=100,
-    save_checkpoints_steps=_USE_DEFAULT,
-    save_checkpoints_secs=_USE_DEFAULT,
-    session_config=None,
-    keep_checkpoint_max=5,
-    keep_checkpoint_every_n_hours=10000,
-    log_step_count_steps=100,
-    train_distribute=None,
-    device_fn=None,
-    protocol=None,
-    eval_distribute=None,
-    experimental_distribute=None,
-    experimental_max_worker_delay_secs=None,
-    session_creation_timeout_secs=7200
-)
-</code></p>
 
 <p>Constructs a RunConfig.</p>
-
 <p>All distributed training related properties <code>cluster_spec</code>, <code>is_chief</code>,
 <code>master</code> , <code>num_worker_replicas</code>, <code>num_ps_replicas</code>, <code>task_id</code>, and
 <code>task_type</code> are set based on the <code>TF_CONFIG</code> environment variable, if the
 pertinent information is present. The <code>TF_CONFIG</code> environment variable is a
 JSON object with attributes: <code>cluster</code> and <code>task</code>.</p>
-
-<p><code>cluster</code> is a JSON serialized version of <code>ClusterSpec</code>&rsquo;s Python dict from
+<p><code>cluster</code> is a JSON serialized version of <code>ClusterSpec</code>'s Python dict from
 <code>server_lib.py</code>, mapping task types (usually one of the <code>TaskType</code> enums) to
 a list of task addresses.</p>
-
 <p><code>task</code> has two attributes: <code>type</code> and <code>index</code>, where <code>type</code> can be any of
 the task types in <code>cluster</code>. When <code>TF_CONFIG</code> contains said information,
 the following properties are set on this class:</p>
-
 <ul>
 <li><code>cluster_spec</code> is parsed from <code>TF_CONFIG['cluster']</code>. Defaults to {}. If
-present, must have one and only one node in the <code>chief</code> attribute of
-<code>cluster_spec</code>.</li>
+  present, must have one and only one node in the <code>chief</code> attribute of
+  <code>cluster_spec</code>.</li>
 <li><code>task_type</code> is set to <code>TF_CONFIG['task']['type']</code>. Must set if
-<code>cluster_spec</code> is present; must be <code>worker</code> (the default value) if
-<code>cluster_spec</code> is not set.</li>
+  <code>cluster_spec</code> is present; must be <code>worker</code> (the default value) if
+  <code>cluster_spec</code> is not set.</li>
 <li><code>task_id</code> is set to <code>TF_CONFIG['task']['index']</code>. Must set if
-<code>cluster_spec</code> is present; must be 0 (the default value) if
-<code>cluster_spec</code> is not set.</li>
+  <code>cluster_spec</code> is present; must be 0 (the default value) if
+  <code>cluster_spec</code> is not set.</li>
 <li><code>master</code> is determined by looking up <code>task_type</code> and <code>task_id</code> in the
-<code>cluster_spec</code>. Defaults to &lsquo;&rsquo;.</li>
+  <code>cluster_spec</code>. Defaults to ''.</li>
 <li><code>num_ps_replicas</code> is set by counting the number of nodes listed
-in the <code>ps</code> attribute of <code>cluster_spec</code>. Defaults to 0.</li>
+  in the <code>ps</code> attribute of <code>cluster_spec</code>. Defaults to 0.</li>
 <li><code>num_worker_replicas</code> is set by counting the number of nodes listed
-in the <code>worker</code> and <code>chief</code> attributes of <code>cluster_spec</code>. Defaults to 1.</li>
+  in the <code>worker</code> and <code>chief</code> attributes of <code>cluster_spec</code>. Defaults to 1.</li>
 <li><code>is_chief</code> is determined based on <code>task_type</code> and <code>cluster</code>.</li>
 </ul>
-
-
 <p>There is a special node with <code>task_type</code> as <code>evaluator</code>, which is not part
 of the (training) <code>cluster_spec</code>. It handles the distributed evaluation job.</p>
+<p>Example of non-chief node:</p>
+<div class="codehilite"><pre><span></span><span class="err">  cluster = {&#39;chief&#39;: [&#39;host0:2222&#39;],</span>
+<span class="err">             &#39;ps&#39;: [&#39;host1:2222&#39;, &#39;host2:2222&#39;],</span>
+<span class="err">             &#39;worker&#39;: [&#39;host3:2222&#39;, &#39;host4:2222&#39;, &#39;host5:2222&#39;]}</span>
+<span class="err">  os.environ[&#39;TF_CONFIG&#39;] = json.dumps(</span>
+<span class="err">      {&#39;cluster&#39;: cluster,</span>
+<span class="err">       &#39;task&#39;: {&#39;type&#39;: &#39;worker&#39;, &#39;index&#39;: 1}})</span>
+<span class="err">  config = RunConfig()</span>
+<span class="err">  assert config.master == &#39;host4:2222&#39;</span>
+<span class="err">  assert config.task_id == 1</span>
+<span class="err">  assert config.num_ps_replicas == 2</span>
+<span class="err">  assert config.num_worker_replicas == 4</span>
+<span class="err">  assert config.cluster_spec == server_lib.ClusterSpec(cluster)</span>
+<span class="err">  assert config.task_type == &#39;worker&#39;</span>
+<span class="err">  assert not config.is_chief</span>
+</pre></div>
 
-<p>Example of non-chief node:
-<code>
-  cluster = {'chief': ['host0:2222'],
-             'ps': ['host1:2222', 'host2:2222'],
-             'worker': ['host3:2222', 'host4:2222', 'host5:2222']}
-  os.environ['TF_CONFIG'] = json.dumps(
-      {'cluster': cluster,
-       'task': {'type': 'worker', 'index': 1}})
-  config = RunConfig()
-  assert config.master == 'host4:2222'
-  assert config.task_id == 1
-  assert config.num_ps_replicas == 2
-  assert config.num_worker_replicas == 4
-  assert config.cluster_spec == server_lib.ClusterSpec(cluster)
-  assert config.task_type == 'worker'
-  assert not config.is_chief
-</code></p>
 
-<h4>Example of chief node:</h4>
+<h4 id="example-of-chief-node">Example of chief node:</h4>
+<div class="codehilite"><pre><span></span><span class="err">  cluster = {&#39;chief&#39;: [&#39;host0:2222&#39;],</span>
+<span class="err">             &#39;ps&#39;: [&#39;host1:2222&#39;, &#39;host2:2222&#39;],</span>
+<span class="err">             &#39;worker&#39;: [&#39;host3:2222&#39;, &#39;host4:2222&#39;, &#39;host5:2222&#39;]}</span>
+<span class="err">  os.environ[&#39;TF_CONFIG&#39;] = json.dumps(</span>
+<span class="err">      {&#39;cluster&#39;: cluster,</span>
+<span class="err">       &#39;task&#39;: {&#39;type&#39;: &#39;chief&#39;, &#39;index&#39;: 0}})</span>
+<span class="err">  config = RunConfig()</span>
+<span class="err">  assert config.master == &#39;host0:2222&#39;</span>
+<span class="err">  assert config.task_id == 0</span>
+<span class="err">  assert config.num_ps_replicas == 2</span>
+<span class="err">  assert config.num_worker_replicas == 4</span>
+<span class="err">  assert config.cluster_spec == server_lib.ClusterSpec(cluster)</span>
+<span class="err">  assert config.task_type == &#39;chief&#39;</span>
+<span class="err">  assert config.is_chief</span>
+</pre></div>
 
-<p><code>
-  cluster = {'chief': ['host0:2222'],
-             'ps': ['host1:2222', 'host2:2222'],
-             'worker': ['host3:2222', 'host4:2222', 'host5:2222']}
-  os.environ['TF_CONFIG'] = json.dumps(
-      {'cluster': cluster,
-       'task': {'type': 'chief', 'index': 0}})
-  config = RunConfig()
-  assert config.master == 'host0:2222'
-  assert config.task_id == 0
-  assert config.num_ps_replicas == 2
-  assert config.num_worker_replicas == 4
-  assert config.cluster_spec == server_lib.ClusterSpec(cluster)
-  assert config.task_type == 'chief'
-  assert config.is_chief
-</code></p>
 
-<p>Example of evaluator node (evaluator is not part of training cluster):
-<code>
-  cluster = {'chief': ['host0:2222'],
-             'ps': ['host1:2222', 'host2:2222'],
-             'worker': ['host3:2222', 'host4:2222', 'host5:2222']}
-  os.environ['TF_CONFIG'] = json.dumps(
-      {'cluster': cluster,
-       'task': {'type': 'evaluator', 'index': 0}})
-  config = RunConfig()
-  assert config.master == ''
-  assert config.evaluator_master == ''
-  assert config.task_id == 0
-  assert config.num_ps_replicas == 0
-  assert config.num_worker_replicas == 0
-  assert config.cluster_spec == {}
-  assert config.task_type == 'evaluator'
-  assert not config.is_chief
-</code></p>
+<p>Example of evaluator node (evaluator is not part of training cluster):</p>
+<div class="codehilite"><pre><span></span><span class="err">  cluster = {&#39;chief&#39;: [&#39;host0:2222&#39;],</span>
+<span class="err">             &#39;ps&#39;: [&#39;host1:2222&#39;, &#39;host2:2222&#39;],</span>
+<span class="err">             &#39;worker&#39;: [&#39;host3:2222&#39;, &#39;host4:2222&#39;, &#39;host5:2222&#39;]}</span>
+<span class="err">  os.environ[&#39;TF_CONFIG&#39;] = json.dumps(</span>
+<span class="err">      {&#39;cluster&#39;: cluster,</span>
+<span class="err">       &#39;task&#39;: {&#39;type&#39;: &#39;evaluator&#39;, &#39;index&#39;: 0}})</span>
+<span class="err">  config = RunConfig()</span>
+<span class="err">  assert config.master == &#39;&#39;</span>
+<span class="err">  assert config.evaluator_master == &#39;&#39;</span>
+<span class="err">  assert config.task_id == 0</span>
+<span class="err">  assert config.num_ps_replicas == 0</span>
+<span class="err">  assert config.num_worker_replicas == 0</span>
+<span class="err">  assert config.cluster_spec == {}</span>
+<span class="err">  assert config.task_type == &#39;evaluator&#39;</span>
+<span class="err">  assert not config.is_chief</span>
+</pre></div>
+
 
 <p>N.B.: If <code>save_checkpoints_steps</code> or <code>save_checkpoints_secs</code> is set,
 <code>keep_checkpoint_max</code> might need to be adjusted accordingly, especially in
@@ -196,260 +180,171 @@ without adjusting <code>keep_checkpoint_max</code> (defaults to 5) leads to situ
 that checkpoint would be garbage collected after 5 minutes. In distributed
 training, the evaluation job starts asynchronously and might fail to load or
 find the checkpoint due to race condition.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>model_dir</code></b>: directory where model parameters, graph, etc are saved. If
-<code>PathLike</code> object, the path will be resolved. If <code>None</code>, will use a
-default value set by the Estimator.</li>
+  <code>PathLike</code> object, the path will be resolved. If <code>None</code>, will use a
+  default value set by the Estimator.</li>
 <li><b><code>tf_random_seed</code></b>: Random seed for TensorFlow initializers.
-Setting this value allows consistency between reruns.</li>
+  Setting this value allows consistency between reruns.</li>
 <li><b><code>save_summary_steps</code></b>: Save summaries every this many steps.</li>
 <li><b><code>save_checkpoints_steps</code></b>: Save checkpoints every this many steps. Can not be
-  specified with <code>save_checkpoints_secs</code>.</li>
+    specified with <code>save_checkpoints_secs</code>.</li>
 <li><b><code>save_checkpoints_secs</code></b>: Save checkpoints every this many seconds. Can not
-  be specified with <code>save_checkpoints_steps</code>. Defaults to 600 seconds if
-  both <code>save_checkpoints_steps</code> and <code>save_checkpoints_secs</code> are not set
-  in constructor.  If both <code>save_checkpoints_steps</code> and
-  <code>save_checkpoints_secs</code> are <code>None</code>, then checkpoints are disabled.</li>
+    be specified with <code>save_checkpoints_steps</code>. Defaults to 600 seconds if
+    both <code>save_checkpoints_steps</code> and <code>save_checkpoints_secs</code> are not set
+    in constructor.  If both <code>save_checkpoints_steps</code> and
+    <code>save_checkpoints_secs</code> are <code>None</code>, then checkpoints are disabled.</li>
 <li><b><code>session_config</code></b>: a ConfigProto used to set session parameters, or <code>None</code>.</li>
 <li><b><code>keep_checkpoint_max</code></b>: The maximum number of recent checkpoint files to
-keep. As new files are created, older files are deleted. If <code>None</code> or 0,
-all checkpoint files are kept. Defaults to 5 (that is, the 5 most recent
-checkpoint files are kept.)</li>
+  keep. As new files are created, older files are deleted. If <code>None</code> or 0,
+  all checkpoint files are kept. Defaults to 5 (that is, the 5 most recent
+  checkpoint files are kept.)</li>
 <li><b><code>keep_checkpoint_every_n_hours</code></b>: Number of hours between each checkpoint
-to be saved. The default value of 10,000 hours effectively disables
-the feature.</li>
+  to be saved. The default value of 10,000 hours effectively disables
+  the feature.</li>
 <li><b><code>log_step_count_steps</code></b>: The frequency, in number of global steps, that the
-global step and the loss will be logged during training.  Also controls
-the frequency that the global steps / s will be logged (and written to
-summary) during training.</li>
+  global step and the loss will be logged during training.  Also controls
+  the frequency that the global steps / s will be logged (and written to
+  summary) during training.</li>
 <li><b><code>train_distribute</code></b>: An optional instance of <a href="../../tf/distribute/Strategy.html"><code>tf.distribute.Strategy</code></a>.
-If specified, then Estimator will distribute the user&rsquo;s model during
-training, according to the policy specified by that strategy. Setting
-<code>experimental_distribute.train_distribute</code> is preferred.</li>
+  If specified, then Estimator will distribute the user's model during
+  training, according to the policy specified by that strategy. Setting
+  <code>experimental_distribute.train_distribute</code> is preferred.</li>
 <li><b><code>device_fn</code></b>: A callable invoked for every <code>Operation</code> that takes the
-<code>Operation</code> and returns the device string. If <code>None</code>, defaults to
-the device function returned by <code>tf.train.replica_device_setter</code>
-with round-robin strategy.</li>
+  <code>Operation</code> and returns the device string. If <code>None</code>, defaults to
+  the device function returned by <code>tf.train.replica_device_setter</code>
+  with round-robin strategy.</li>
 <li><b><code>protocol</code></b>: An optional argument which specifies the protocol used when
-starting server. <code>None</code> means default to grpc.</li>
+  starting server. <code>None</code> means default to grpc.</li>
 <li><b><code>eval_distribute</code></b>: An optional instance of <a href="../../tf/distribute/Strategy.html"><code>tf.distribute.Strategy</code></a>.
-If specified, then Estimator will distribute the user&rsquo;s model during
-evaluation, according to the policy specified by that strategy.
-Setting <code>experimental_distribute.eval_distribute</code> is preferred.</li>
+  If specified, then Estimator will distribute the user's model during
+  evaluation, according to the policy specified by that strategy.
+  Setting <code>experimental_distribute.eval_distribute</code> is preferred.</li>
 <li><b><code>experimental_distribute</code></b>: An optional
-<code>tf.contrib.distribute.DistributeConfig</code> object specifying
-DistributionStrategy-related configuration. The <code>train_distribute</code> and
-<code>eval_distribute</code> can be passed as parameters to <code>RunConfig</code> or set in
-<code>experimental_distribute</code> but not both.</li>
+  <code>tf.contrib.distribute.DistributeConfig</code> object specifying
+  DistributionStrategy-related configuration. The <code>train_distribute</code> and
+  <code>eval_distribute</code> can be passed as parameters to <code>RunConfig</code> or set in
+  <code>experimental_distribute</code> but not both.</li>
 <li><b><code>experimental_max_worker_delay_secs</code></b>: An optional integer
-specifying the maximum time a worker should wait before starting.
-By default, workers are started at staggered times, with each worker
-being delayed by up to 60 seconds. This is intended to reduce the risk
-of divergence, which can occur when many workers simultaneously update
-the weights of a randomly initialized model. Users who warm-start their
-models and train them for short durations (a few minutes or less) should
-consider reducing this default to improve training times.</li>
+  specifying the maximum time a worker should wait before starting.
+  By default, workers are started at staggered times, with each worker
+  being delayed by up to 60 seconds. This is intended to reduce the risk
+  of divergence, which can occur when many workers simultaneously update
+  the weights of a randomly initialized model. Users who warm-start their
+  models and train them for short durations (a few minutes or less) should
+  consider reducing this default to improve training times.</li>
 <li><b><code>session_creation_timeout_secs</code></b>: Max time workers should wait for a session
-to become available (on initialization or when recovering a session)
-with MonitoredTrainingSession. Defaults to 7200 seconds, but users may
-want to set a lower value to detect problems with variable / session
-(re)-initialization more quickly.</li>
+  to become available (on initialization or when recovering a session)
+  with MonitoredTrainingSession. Defaults to 7200 seconds, but users may
+  want to set a lower value to detect problems with variable / session
+  (re)-initialization more quickly.</li>
 </ul>
-
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: If both <code>save_checkpoints_steps</code> and <code>save_checkpoints_secs</code>
 are set.</li>
 </ul>
-
-
-<h2>Properties</h2>
-
+<h2 id="properties">Properties</h2>
 <h3 id="cluster_spec"><code>cluster_spec</code></h3>
-
-
-
 
 <h3 id="device_fn"><code>device_fn</code></h3>
 
-
 <p>Returns the device_fn.</p>
-
 <p>If device_fn is not <code>None</code>, it overrides the default
 device function used in <code>Estimator</code>.
 Otherwise the default one is used.</p>
-
 <h3 id="eval_distribute"><code>eval_distribute</code></h3>
 
-
 <p>Optional <a href="../../tf/distribute/Strategy.html"><code>tf.distribute.Strategy</code></a> for evaluation.</p>
-
 <h3 id="evaluation_master"><code>evaluation_master</code></h3>
-
-
-
 
 <h3 id="experimental_max_worker_delay_secs"><code>experimental_max_worker_delay_secs</code></h3>
 
-
-
-
 <h3 id="global_id_in_cluster"><code>global_id_in_cluster</code></h3>
 
-
 <p>The global id in the training cluster.</p>
-
 <p>All global ids in the training cluster are assigned from an increasing
 sequence of consecutive integers. The first id is 0.</p>
-
 <p>Note: Task id (the property field <code>task_id</code>) is tracking the index of the
 node among all nodes with the SAME task type. For example, given the cluster
 definition as follows:</p>
+<div class="codehilite"><pre><span></span><span class="err">  cluster = {&#39;chief&#39;: [&#39;host0:2222&#39;],</span>
+<span class="err">             &#39;ps&#39;: [&#39;host1:2222&#39;, &#39;host2:2222&#39;],</span>
+<span class="err">             &#39;worker&#39;: [&#39;host3:2222&#39;, &#39;host4:2222&#39;, &#39;host5:2222&#39;]}</span>
+</pre></div>
 
-<p><code>
-  cluster = {'chief': ['host0:2222'],
-             'ps': ['host1:2222', 'host2:2222'],
-             'worker': ['host3:2222', 'host4:2222', 'host5:2222']}
-</code></p>
 
 <p>Nodes with task type <code>worker</code> can have id 0, 1, 2.  Nodes with task type
 <code>ps</code> can have id, 0, 1. So, <code>task_id</code> is not unique, but the pair
 (<code>task_type</code>, <code>task_id</code>) can uniquely determine a node in the cluster.</p>
-
 <p>Global id, i.e., this field, is tracking the index of the node among ALL
 nodes in the cluster. It is uniquely assigned.  For example, for the cluster
-spec given above, the global ids are assigned as:
-```</p>
+spec given above, the global ids are assigned as:</p>
+<div class="codehilite"><pre><span></span><span class="err">  task_type  | task_id  |  global_id</span>
+<span class="err">  --------------------------------</span>
+<span class="err">  chief      | 0        |  0</span>
+<span class="err">  worker     | 0        |  1</span>
+<span class="err">  worker     | 1        |  2</span>
+<span class="err">  worker     | 2        |  3</span>
+<span class="err">  ps         | 0        |  4</span>
+<span class="err">  ps         | 1        |  5</span>
+</pre></div>
 
-<h2>  task_type  | task_id  |  global_id</h2>
 
-<p>  chief      | 0        |  0
-  worker     | 0        |  1
-  worker     | 1        |  2
-  worker     | 2        |  3
-  ps         | 0        |  4
-  ps         | 1        |  5
-```</p>
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>An integer id.</p>
-
 <h3 id="is_chief"><code>is_chief</code></h3>
-
-
-
 
 <h3 id="keep_checkpoint_every_n_hours"><code>keep_checkpoint_every_n_hours</code></h3>
 
-
-
-
 <h3 id="keep_checkpoint_max"><code>keep_checkpoint_max</code></h3>
-
-
-
 
 <h3 id="log_step_count_steps"><code>log_step_count_steps</code></h3>
 
-
-
-
 <h3 id="master"><code>master</code></h3>
-
-
-
 
 <h3 id="model_dir"><code>model_dir</code></h3>
 
-
-
-
 <h3 id="num_ps_replicas"><code>num_ps_replicas</code></h3>
-
-
-
 
 <h3 id="num_worker_replicas"><code>num_worker_replicas</code></h3>
 
-
-
-
 <h3 id="protocol"><code>protocol</code></h3>
 
-
 <p>Returns the optional protocol value.</p>
-
 <h3 id="save_checkpoints_secs"><code>save_checkpoints_secs</code></h3>
-
-
-
 
 <h3 id="save_checkpoints_steps"><code>save_checkpoints_steps</code></h3>
 
-
-
-
 <h3 id="save_summary_steps"><code>save_summary_steps</code></h3>
-
-
-
 
 <h3 id="service"><code>service</code></h3>
 
-
 <p>Returns the platform defined (in TF_CONFIG) service dict.</p>
-
 <h3 id="session_config"><code>session_config</code></h3>
-
-
-
 
 <h3 id="session_creation_timeout_secs"><code>session_creation_timeout_secs</code></h3>
 
-
-
-
 <h3 id="task_id"><code>task_id</code></h3>
-
-
-
 
 <h3 id="task_type"><code>task_type</code></h3>
 
-
-
-
 <h3 id="tf_random_seed"><code>tf_random_seed</code></h3>
-
-
-
 
 <h3 id="train_distribute"><code>train_distribute</code></h3>
 
-
 <p>Optional <a href="../../tf/distribute/Strategy.html"><code>tf.distribute.Strategy</code></a> for training.</p>
-
-<h2>Methods</h2>
-
+<h2 id="methods">Methods</h2>
 <h3 id="replace"><code>replace</code></h3>
 
-
 <p><a target="_blank" href="https://github.com/tensorflow/estimator/tree/master/tensorflow_estimator/python/estimator/run_config.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">replace</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-replace(**kwargs)
-</code></p>
 
 <p>Returns a new instance of <code>RunConfig</code> replacing specified properties.</p>
-
 <p>Only the properties in the following list are allowed to be replaced:</p>
-
 <ul>
 <li><code>model_dir</code>,</li>
 <li><code>tf_random_seed</code>,</li>
@@ -467,27 +362,20 @@ replace(**kwargs)
 <li><code>experimental_distribute</code>,</li>
 <li><code>experimental_max_worker_delay_secs</code>,</li>
 </ul>
-
-
 <p>In addition, either <code>save_checkpoints_steps</code> or <code>save_checkpoints_secs</code>
 can be set (should not be both).</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_1">Args:</h4>
 <ul>
 <li><b><code>**kwargs</code></b>: keyword named properties with new values.</li>
 </ul>
-
-
-<h4>Raises:</h4>
-
+<h4 id="raises_1">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: If any property name in <code>kwargs</code> does not exist or is not
-allowed to be replaced, or both <code>save_checkpoints_steps</code> and
-<code>save_checkpoints_secs</code> are set.</li>
+  allowed to be replaced, or both <code>save_checkpoints_steps</code> and
+  <code>save_checkpoints_secs</code> are set.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_1">Returns:</h4>
 <p>a new instance of <code>RunConfig</code>.</p>
+    </body>
+    </html>
+   

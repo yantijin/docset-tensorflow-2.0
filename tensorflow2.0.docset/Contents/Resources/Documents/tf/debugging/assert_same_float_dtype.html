@@ -1,69 +1,60 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.debugging.assert_same_float_dtype" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.debugging.assert_same_float_dtype</h1>
-
+<h1 id="tfdebuggingassert_same_float_dtype">tf.debugging.assert_same_float_dtype</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/check_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Validate and return float type based on <code>tensors</code> and <code>dtype</code>.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.assert_same_float_dtype</code></li>
 <li><code>tf.compat.v1.debugging.assert_same_float_dtype</code></li>
 <li><code>tf.compat.v2.debugging.assert_same_float_dtype</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">debugging</span><span class="o">.</span><span class="n">assert_same_float_dtype</span><span class="p">(</span>
+    <span class="n">tensors</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.debugging.assert_same_float_dtype(
-    tensors=None,
-    dtype=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>For ops such as matrix multiplication, inputs and weights must be of the
 same float type. This function validates that all <code>tensors</code> are the same type,
 validates that type is <code>dtype</code> (if supplied), and returns the type. Type must
 be a floating point type. If neither <code>tensors</code> nor <code>dtype</code> is supplied,
 the function will return <a href="../../tf/dtypes.html#float32"><code>dtypes.float32</code></a>.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>tensors</code></b>: Tensors of input values. Can include <code>None</code> elements, which will be
-  ignored.</li>
+    ignored.</li>
 <li><b><code>dtype</code></b>: Expected type.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>Validated type.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: if neither <code>tensors</code> nor <code>dtype</code> is supplied, or result is not
-  float, or the common type of the inputs is not a floating point type.</li>
+    float, or the common type of the inputs is not a floating point type.</li>
 </ul>
-
+    </body>
+    </html>
+   

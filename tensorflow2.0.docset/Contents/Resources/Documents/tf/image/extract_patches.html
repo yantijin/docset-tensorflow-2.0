@@ -1,165 +1,149 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.image.extract_patches" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.image.extract_patches</h1>
-
+<h1 id="tfimageextract_patches">tf.image.extract_patches</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/array_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Extract <code>patches</code> from <code>images</code>.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.image.extract_patches</code></li>
 <li><code>tf.compat.v2.image.extract_patches</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">extract_patches</span><span class="p">(</span>
+    <span class="n">images</span><span class="p">,</span>
+    <span class="n">sizes</span><span class="p">,</span>
+    <span class="n">strides</span><span class="p">,</span>
+    <span class="n">rates</span><span class="p">,</span>
+    <span class="n">padding</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.image.extract_patches(
-    images,
-    sizes,
-    strides,
-    rates,
-    padding,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>This op collects patches from the input image, as if applying a
 convolution. All extracted patches are stacked in the depth (last) dimension
 of the output.</p>
-
 <p>Specifically, the op extracts patches of shape <code>sizes</code> which are <code>strides</code>
 apart in the input image. The output is subsampled using the <code>rates</code> argument,
-in the same manner as &ldquo;atrous&rdquo; or &ldquo;dilated&rdquo; convolutions.</p>
-
+in the same manner as "atrous" or "dilated" convolutions.</p>
 <p>The result is a 4D tensor which is indexed by batch, row, and column.
 <code>output[i, x, y]</code> contains a flattened patch of size <code>sizes[1], sizes[2]</code>
 which is taken from the input starting at
 <code>images[i, x*strides[1], y*strides[2]]</code>.</p>
-
 <p>Each output patch can be reshaped to <code>sizes[1], sizes[2], depth</code>, where
 <code>depth</code> is <code>images.shape[3]</code>.</p>
-
 <p>The output elements are taken from the input at intervals given by the <code>rate</code>
 argument, as in dilated convolutions.</p>
-
 <p>The <code>padding</code> argument has no effect on the size of each patch, it determines
 how many patches are extracted. If <code>VALID</code>, only patches which are fully
 contained in the input image are included. If <code>SAME</code>, all patches whose
 starting point is inside the input are included, and areas outside the input
 default to zero.</p>
+<h4 id="example">Example:</h4>
+<div class="codehilite"><pre><span></span>  <span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>
+  <span class="o">#</span> <span class="n">images</span> <span class="k">is</span> <span class="n">a</span> <span class="mi">1</span> <span class="n">x</span> <span class="mi">10</span> <span class="n">x</span> <span class="mi">10</span> <span class="n">x</span> <span class="mi">1</span> <span class="nb">array</span> <span class="n">that</span> <span class="k">contains</span> <span class="n">the</span> <span class="n">numbers</span> <span class="mi">1</span> <span class="n">through</span> <span class="mi">100</span>
+  <span class="n">images</span> <span class="o">=</span> <span class="p">[[[[</span><span class="n">x</span> <span class="o">*</span> <span class="n">n</span> <span class="o">+</span> <span class="n">y</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">y</span> <span class="k">in</span> <span class="n">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span> <span class="k">for</span> <span class="n">x</span> <span class="k">in</span> <span class="n">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]]</span>
 
-<h4>Example:</h4>
+  <span class="o">#</span> <span class="n">We</span> <span class="n">generate</span> <span class="n">two</span> <span class="n">outputs</span> <span class="k">as</span> <span class="n">follows</span><span class="p">:</span>
+  <span class="o">#</span> <span class="mi">1</span><span class="p">.</span> <span class="mi">3</span><span class="n">x3</span> <span class="n">patches</span> <span class="k">with</span> <span class="n">stride</span> <span class="k">length</span> <span class="mi">5</span>
+  <span class="o">#</span> <span class="mi">2</span><span class="p">.</span> <span class="n">Same</span> <span class="k">as</span> <span class="n">above</span><span class="p">,</span> <span class="n">but</span> <span class="n">the</span> <span class="n">rate</span> <span class="k">is</span> <span class="n">increased</span> <span class="k">to</span> <span class="mi">2</span>
+  <span class="n">tf</span><span class="p">.</span><span class="n">extract_image_patches</span><span class="p">(</span><span class="n">images</span><span class="o">=</span><span class="n">images</span><span class="p">,</span>
+                           <span class="n">ksizes</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                           <span class="n">strides</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                           <span class="n">rates</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                           <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;VALID&#39;</span><span class="p">)</span>
 
-<p>```
-  n = 10
-  # images is a 1 x 10 x 10 x 1 array that contains the numbers 1 through 100
-  images = [[[[x * n + y + 1] for y in range(n)] for x in range(n)]]</p>
+  <span class="o">#</span> <span class="n">Yields</span><span class="p">:</span>
+  <span class="p">[[[[</span> <span class="mi">1</span>  <span class="mi">2</span>  <span class="mi">3</span> <span class="mi">11</span> <span class="mi">12</span> <span class="mi">13</span> <span class="mi">21</span> <span class="mi">22</span> <span class="mi">23</span><span class="p">]</span>
+     <span class="p">[</span> <span class="mi">6</span>  <span class="mi">7</span>  <span class="mi">8</span> <span class="mi">16</span> <span class="mi">17</span> <span class="mi">18</span> <span class="mi">26</span> <span class="mi">27</span> <span class="mi">28</span><span class="p">]]</span>
+    <span class="p">[[</span><span class="mi">51</span> <span class="mi">52</span> <span class="mi">53</span> <span class="mi">61</span> <span class="mi">62</span> <span class="mi">63</span> <span class="mi">71</span> <span class="mi">72</span> <span class="mi">73</span><span class="p">]</span>
+     <span class="p">[</span><span class="mi">56</span> <span class="mi">57</span> <span class="mi">58</span> <span class="mi">66</span> <span class="mi">67</span> <span class="mi">68</span> <span class="mi">76</span> <span class="mi">77</span> <span class="mi">78</span><span class="p">]]]]</span>
+</pre></div>
 
-<p>  # We generate two outputs as follows:
-  # 1. 3x3 patches with stride length 5
-  # 2. Same as above, but the rate is increased to 2
-  tf.extract_image_patches(images=images,
-                           ksizes=[1, 3, 3, 1],
-                           strides=[1, 5, 5, 1],
-                           rates=[1, 1, 1, 1],
-                           padding=&lsquo;VALID&rsquo;)</p>
-
-<p>  # Yields:
-  [[[[ 1  2  3 11 12 13 21 22 23]
-     [ 6  7  8 16 17 18 26 27 28]]
-    [[51 52 53 61 62 63 71 72 73]
-     [56 57 58 66 67 68 76 77 78]]]]
-```</p>
 
 <p>If we mark the pixels in the input image which are taken for the output with
 <code>*</code>, we see the pattern:</p>
+<div class="codehilite"><pre><span></span><span class="err">   *  *  *  4  5  *  *  *  9 10</span>
+<span class="err">   *  *  * 14 15  *  *  * 19 20</span>
+<span class="err">   *  *  * 24 25  *  *  * 29 30</span>
+<span class="err">  31 32 33 34 35 36 37 38 39 40</span>
+<span class="err">  41 42 43 44 45 46 47 48 49 50</span>
+<span class="err">   *  *  * 54 55  *  *  * 59 60</span>
+<span class="err">   *  *  * 64 65  *  *  * 69 70</span>
+<span class="err">   *  *  * 74 75  *  *  * 79 80</span>
+<span class="err">  81 82 83 84 85 86 87 88 89 90</span>
+<span class="err">  91 92 93 94 95 96 97 98 99 100</span>
+</pre></div>
 
-<p><code>
-   *  *  *  4  5  *  *  *  9 10
-   *  *  * 14 15  *  *  * 19 20
-   *  *  * 24 25  *  *  * 29 30
-  31 32 33 34 35 36 37 38 39 40
-  41 42 43 44 45 46 47 48 49 50
-   *  *  * 54 55  *  *  * 59 60
-   *  *  * 64 65  *  *  * 69 70
-   *  *  * 74 75  *  *  * 79 80
-  81 82 83 84 85 86 87 88 89 90
-  91 92 93 94 95 96 97 98 99 100
-</code></p>
 
-<p>```
-  tf.extract_image_patches(images=images,
-                           sizes=[1, 3, 3, 1],
-                           strides=[1, 5, 5, 1],
-                           rates=[1, 2, 2, 1],
-                           padding=&lsquo;VALID&rsquo;)</p>
+<div class="codehilite"><pre><span></span>  <span class="n">tf</span><span class="p">.</span><span class="n">extract_image_patches</span><span class="p">(</span><span class="n">images</span><span class="o">=</span><span class="n">images</span><span class="p">,</span>
+                           <span class="n">sizes</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                           <span class="n">strides</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                           <span class="n">rates</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                           <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;VALID&#39;</span><span class="p">)</span>
 
-<p>  # Yields:
-  [[[[  1   3   5  21  23  25  41  43  45]
-     [  6   8  10  26  28  30  46  48  50]]</p>
+  <span class="o">#</span> <span class="n">Yields</span><span class="p">:</span>
+  <span class="p">[[[[</span>  <span class="mi">1</span>   <span class="mi">3</span>   <span class="mi">5</span>  <span class="mi">21</span>  <span class="mi">23</span>  <span class="mi">25</span>  <span class="mi">41</span>  <span class="mi">43</span>  <span class="mi">45</span><span class="p">]</span>
+     <span class="p">[</span>  <span class="mi">6</span>   <span class="mi">8</span>  <span class="mi">10</span>  <span class="mi">26</span>  <span class="mi">28</span>  <span class="mi">30</span>  <span class="mi">46</span>  <span class="mi">48</span>  <span class="mi">50</span><span class="p">]]</span>
 
-<pre><code>[[ 51  53  55  71  73  75  91  93  95]
- [ 56  58  60  76  78  80  96  98 100]]]]
-</code></pre>
+    <span class="p">[[</span> <span class="mi">51</span>  <span class="mi">53</span>  <span class="mi">55</span>  <span class="mi">71</span>  <span class="mi">73</span>  <span class="mi">75</span>  <span class="mi">91</span>  <span class="mi">93</span>  <span class="mi">95</span><span class="p">]</span>
+     <span class="p">[</span> <span class="mi">56</span>  <span class="mi">58</span>  <span class="mi">60</span>  <span class="mi">76</span>  <span class="mi">78</span>  <span class="mi">80</span>  <span class="mi">96</span>  <span class="mi">98</span> <span class="mi">100</span><span class="p">]]]]</span>
+</pre></div>
 
-<p>```</p>
 
 <p>We can again draw the effect, this time using the symbols <code>*</code>, <code>x</code>, <code>+</code> and
 <code>o</code> to distinguish the patches:</p>
+<div class="codehilite"><pre><span></span><span class="err">   *  2  *  4  *  x  7  x  9  x</span>
+<span class="err">  11 12 13 14 15 16 17 18 19 20</span>
+<span class="err">   * 22  * 24  *  x 27  x 29  x</span>
+<span class="err">  31 32 33 34 35 36 37 38 39 40</span>
+<span class="err">   * 42  * 44  *  x 47  x 49  x</span>
+<span class="err">   + 52  + 54  +  o 57  o 59  o</span>
+<span class="err">  61 62 63 64 65 66 67 68 69 70</span>
+<span class="err">   + 72  + 74  +  o 77  o 79  o</span>
+<span class="err">  81 82 83 84 85 86 87 88 89 90</span>
+<span class="err">   + 92  + 94  +  o 97  o 99  o</span>
+</pre></div>
 
-<p><code>
-   *  2  *  4  *  x  7  x  9  x
-  11 12 13 14 15 16 17 18 19 20
-   * 22  * 24  *  x 27  x 29  x
-  31 32 33 34 35 36 37 38 39 40
-   * 42  * 44  *  x 47  x 49  x
-   + 52  + 54  +  o 57  o 59  o
-  61 62 63 64 65 66 67 68 69 70
-   + 72  + 74  +  o 77  o 79  o
-  81 82 83 84 85 86 87 88 89 90
-   + 92  + 94  +  o 97  o 99  o
-</code></p>
 
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>images</code></b>: A 4-D Tensor with shape `[batch, in_rows, in_cols, depth]</li>
 <li><b><code>sizes</code></b>: The size of the extracted patches. Must
-be [1, size_rows, size_cols, 1].</li>
+  be [1, size_rows, size_cols, 1].</li>
 <li><b><code>strides</code></b>: A 1-D Tensor of length 4. How far the centers of two consecutive
-patches are in the images. Must be: <code>[1, stride_rows, stride_cols, 1]</code>.</li>
+  patches are in the images. Must be: <code>[1, stride_rows, stride_cols, 1]</code>.</li>
 <li><b><code>rates</code></b>: A 1-D Tensor of length 4. Must be: <code>[1, rate_rows, rate_cols, 1]</code>.
-This is the input stride, specifying how far two consecutive patch samples
-are in the input. Equivalent to extracting patches with <code>patch_sizes_eff =
-patch_sizes + (patch_sizes - 1) * (rates - 1)</code>, followed by subsampling
-them spatially by a factor of <code>rates</code>. This is equivalent to <code>rate</code> in
-dilated (a.k.a. Atrous) convolutions.</li>
+  This is the input stride, specifying how far two consecutive patch samples
+  are in the input. Equivalent to extracting patches with <code>patch_sizes_eff =
+  patch_sizes + (patch_sizes - 1) * (rates - 1)</code>, followed by subsampling
+  them spatially by a factor of <code>rates</code>. This is equivalent to <code>rate</code> in
+  dilated (a.k.a. Atrous) convolutions.</li>
 <li><b><code>padding</code></b>: The type of padding algorithm to use.</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A 4-D Tensor of the same type as the input.</p>
+    </body>
+    </html>
+   

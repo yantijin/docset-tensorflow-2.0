@@ -1,4 +1,13 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../default.css" rel="stylesheet">
+    <link href="
+   ../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.constant_initializer" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="__call__"/>
@@ -7,31 +16,19 @@
 <meta itemprop="property" content="get_config"/>
 </div>
 
-
-<h1>tf.constant_initializer</h1>
-
+<h1 id="tfconstant_initializer">tf.constant_initializer</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/init_ops_v2.py">View source</a></p>
-
-<h2>Class <code>constant_initializer</code></h2>
-
+<h2 id="class-constant_initializer">Class <code>constant_initializer</code></h2>
 <!-- Start diff -->
 
-
 <p>Initializer that generates tensors with constant values.</p>
-
 <p>Inherits From: <a href="../tf/keras/initializers/Initializer.html"><code>Initializer</code></a></p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li>Class <code>tf.compat.v2.constant_initializer</code></li>
 <li>Class <code>tf.compat.v2.initializers.Constant</code></li>
@@ -43,15 +40,11 @@
 <li>Class <code>tf.keras.initializers.Constant</code></li>
 <li>Class <code>tf.keras.initializers.constant</code></li>
 </ul>
-
-
 <!-- Placeholder for "Used in" -->
-
 
 <p>The resulting tensor is populated with values of type <code>dtype</code>, as
 specified by arguments <code>value</code> following the desired <code>shape</code> of the
 new tensor (see examples below).</p>
-
 <p>The argument <code>value</code> can be a constant value, or a list of values of type
 <code>dtype</code>. If <code>value</code> is a list, then the length of the list must be less
 than or equal to the number of elements implied by the desired shape of the
@@ -60,171 +53,131 @@ than the number of elements required by the tensor shape, the last element
 in <code>value</code> will be used to fill the remaining entries. If the total number of
 elements in <code>value</code> is greater than the number of elements required by the
 tensor shape, the initializer will raise a <code>ValueError</code>.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>value</code></b>: A Python scalar, list or tuple of values, or a N-dimensional numpy
-array. All elements of the initialized variable will be set to the
-corresponding value in the <code>value</code> argument.</li>
+  array. All elements of the initialized variable will be set to the
+  corresponding value in the <code>value</code> argument.</li>
 </ul>
-
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>TypeError</code></b>: If the input <code>value</code> is not one of the expected types.</li>
 </ul>
-
-
-<h4>Examples:</h4>
-
+<h4 id="examples">Examples:</h4>
 <p>The following example can be rewritten using a numpy.ndarray instead
 of the <code>value</code> list, even reshaped, as shown in the two commented lines
 below the <code>value</code> list initialization.</p>
+<div class="codehilite"><pre><span></span>  <span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+  <span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
 
-<p>```python</p>
+  <span class="err">```</span>
+  <span class="o">&gt;&gt;&gt;</span> <span class="n">value</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+  <span class="o">&gt;&gt;&gt;</span> <span class="c1"># value = np.array(value)</span>
+  <span class="o">&gt;&gt;&gt;</span> <span class="c1"># value = value.reshape([2, 4])</span>
+  <span class="o">&gt;&gt;&gt;</span> <span class="n">init</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">constant_initializer</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+  <span class="err">```</span>
 
-<blockquote><blockquote><blockquote><p>import numpy as np
-import tensorflow as tf</p></blockquote></blockquote></blockquote>
+  <span class="err">```</span>
+  <span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;fitting shape:&#39;</span><span class="p">)</span>
+  <span class="o">&gt;&gt;&gt;</span> <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">Session</span><span class="p">():</span>
+  <span class="o">&gt;&gt;&gt;</span>   <span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">initializer</span><span class="o">=</span><span class="n">init</span><span class="p">)</span>
+  <span class="o">&gt;&gt;&gt;</span>   <span class="n">x</span><span class="o">.</span><span class="n">initializer</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+  <span class="o">&gt;&gt;&gt;</span>   <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">eval</span><span class="p">())</span>
+  <span class="err">```</span>
 
-<p>  ```</p>
+  <span class="n">fitting</span> <span class="n">shape</span><span class="p">:</span>
+  <span class="p">[[</span> <span class="mf">0.</span>  <span class="mf">1.</span>  <span class="mf">2.</span>  <span class="mf">3.</span><span class="p">]</span>
+   <span class="p">[</span> <span class="mf">4.</span>  <span class="mf">5.</span>  <span class="mf">6.</span>  <span class="mf">7.</span><span class="p">]]</span>
 
-<blockquote><blockquote><blockquote><p>value = [0, 1, 2, 3, 4, 5, 6, 7]</p>
+  <span class="err">```</span>
+  <span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;larger shape:&#39;</span><span class="p">)</span>
+  <span class="o">&gt;&gt;&gt;</span> <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">Session</span><span class="p">():</span>
+  <span class="o">&gt;&gt;&gt;</span>   <span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">initializer</span><span class="o">=</span><span class="n">init</span><span class="p">)</span>
+  <span class="o">&gt;&gt;&gt;</span>   <span class="n">x</span><span class="o">.</span><span class="n">initializer</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+  <span class="o">&gt;&gt;&gt;</span>   <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">eval</span><span class="p">())</span>
+  <span class="err">```</span>
 
-<h1>value = np.array(value)</h1>
+  <span class="n">larger</span> <span class="n">shape</span><span class="p">:</span>
+  <span class="p">[[</span> <span class="mf">0.</span>  <span class="mf">1.</span>  <span class="mf">2.</span>  <span class="mf">3.</span><span class="p">]</span>
+   <span class="p">[</span> <span class="mf">4.</span>  <span class="mf">5.</span>  <span class="mf">6.</span>  <span class="mf">7.</span><span class="p">]</span>
+   <span class="p">[</span> <span class="mf">7.</span>  <span class="mf">7.</span>  <span class="mf">7.</span>  <span class="mf">7.</span><span class="p">]]</span>
 
-<h1>value = value.reshape([2, 4])</h1>
+  <span class="err">```</span>
+  <span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;smaller shape:&#39;</span><span class="p">)</span>
+  <span class="o">&gt;&gt;&gt;</span> <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">Session</span><span class="p">():</span>
+  <span class="o">&gt;&gt;&gt;</span>   <span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">get_variable</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">initializer</span><span class="o">=</span><span class="n">init</span><span class="p">)</span>
+  <span class="err">```</span>
 
-<p>init = tf.compat.v1.constant_initializer(value)
-  ```</p></blockquote></blockquote></blockquote>
+  <span class="ne">ValueError</span><span class="p">:</span> <span class="n">Too</span> <span class="n">many</span> <span class="n">elements</span> <span class="n">provided</span><span class="o">.</span> <span class="n">Needed</span> <span class="n">at</span> <span class="n">most</span> <span class="mi">6</span><span class="p">,</span> <span class="n">but</span> <span class="n">received</span> <span class="mi">8</span>
+</pre></div>
 
-<p>  ```</p>
-
-<blockquote><blockquote><blockquote><p>print(&lsquo;fitting shape:&rsquo;)
-with tf.compat.v1.Session():
-  x = tf.compat.v1.get_variable(&lsquo;x&rsquo;, shape=[2, 4], initializer=init)
-  x.initializer.run()
-  print(x.eval())
-  ```</p></blockquote></blockquote></blockquote>
-
-<p>  fitting shape:
-  [[ 0.  1.  2.  3.]
-   [ 4.  5.  6.  7.]]</p>
-
-<p>  ```</p>
-
-<blockquote><blockquote><blockquote><p>print(&lsquo;larger shape:&rsquo;)
-with tf.compat.v1.Session():
-  x = tf.compat.v1.get_variable(&lsquo;x&rsquo;, shape=[3, 4], initializer=init)
-  x.initializer.run()
-  print(x.eval())
-  ```</p></blockquote></blockquote></blockquote>
-
-<p>  larger shape:
-  [[ 0.  1.  2.  3.]
-   [ 4.  5.  6.  7.]
-   [ 7.  7.  7.  7.]]</p>
-
-<p>  ```</p>
-
-<blockquote><blockquote><blockquote><p>print(&lsquo;smaller shape:&rsquo;)
-with tf.compat.v1.Session():
-  x = tf.compat.v1.get_variable(&lsquo;x&rsquo;, shape=[2, 3], initializer=init)
-  ```</p></blockquote></blockquote></blockquote>
-
-<p>  ValueError: Too many elements provided. Needed at most 6, but received 8
-```</p>
 
 <h2 id="__init__"><code>__init__</code></h2>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/init_ops_v2.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__init__(value=0)
-</code></p>
 
 <p>Initialize self.  See help(type(self)) for accurate signature.</p>
-
-<h2>Methods</h2>
-
+<h2 id="methods">Methods</h2>
 <h3 id="__call__"><code>__call__</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/init_ops_v2.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__call__</span><span class="p">(</span>
+    <span class="n">shape</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__call__(
-    shape,
-    dtype=None
-)
-</code></p>
 
 <p>Returns a tensor object initialized as specified by the initializer.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_1">Args:</h4>
 <ul>
 <li><b><code>shape</code></b>: Shape of the tensor.</li>
 <li><b><code>dtype</code></b>: Optional dtype of the tensor. If not provided the dtype of the
-tensor created will be the type of the inital value.</li>
+ tensor created will be the type of the inital value.</li>
 </ul>
-
-
-<h4>Raises:</h4>
-
+<h4 id="raises_1">Raises:</h4>
 <ul>
 <li><b><code>TypeError</code></b>: If the initializer cannot create a tensor of the requested
-dtype.</li>
+ dtype.</li>
 </ul>
-
-
 <h3 id="from_config"><code>from_config</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/init_ops_v2.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">from_config</span><span class="p">(</span>
+    <span class="bp">cls</span><span class="p">,</span>
+    <span class="n">config</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-from_config(
-    cls,
-    config
-)
-</code></p>
 
 <p>Instantiates an initializer from a configuration dictionary.</p>
+<h4 id="example">Example:</h4>
+<div class="codehilite"><pre><span></span><span class="n">initializer</span> <span class="o">=</span> <span class="n">RandomUniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">initializer</span><span class="o">.</span><span class="n">get_config</span><span class="p">()</span>
+<span class="n">initializer</span> <span class="o">=</span> <span class="n">RandomUniform</span><span class="o">.</span><span class="n">from_config</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+</pre></div>
 
-<h4>Example:</h4>
 
-<p><code>python
-initializer = RandomUniform(-1, 1)
-config = initializer.get_config()
-initializer = RandomUniform.from_config(config)
-</code></p>
-
-<h4>Args:</h4>
-
+<h4 id="args_2">Args:</h4>
 <ul>
 <li><b><code>config</code></b>: A Python dictionary.
-It will typically be the output of <code>get_config</code>.</li>
+  It will typically be the output of <code>get_config</code>.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>An Initializer instance.</p>
-
 <h3 id="get_config"><code>get_config</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/init_ops_v2.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_config</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-get_config()
-</code></p>
 
 <p>Returns the configuration of the initializer as a JSON-serializable dict.</p>
-
-<h4>Returns:</h4>
-
+<h4 id="returns_1">Returns:</h4>
 <p>A JSON-serializable Python dict.</p>
+    </body>
+    </html>
+   

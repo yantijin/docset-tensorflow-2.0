@@ -1,4 +1,13 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../default.css" rel="stylesheet">
+    <link href="
+   ../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.VariableAggregation" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="MEAN"/>
@@ -7,60 +16,44 @@
 <meta itemprop="property" content="SUM"/>
 </div>
 
-
-<h1>tf.VariableAggregation</h1>
-
+<h1 id="tfvariableaggregation">tf.VariableAggregation</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/variables.py">View source</a></p>
-
-<h2>Class <code>VariableAggregation</code></h2>
-
+<h2 id="class-variableaggregation">Class <code>VariableAggregation</code></h2>
 <!-- Start diff -->
 
-
 <p>Indicates how a distributed variable will be aggregated.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li>Class <code>tf.compat.v2.VariableAggregation</code></li>
 </ul>
-
-
 <!-- Placeholder for "Used in" -->
 
-
 <p><a href="../tf/distribute/Strategy.html"><code>tf.distribute.Strategy</code></a> distributes a model by making multiple copies
-(called &ldquo;replicas&rdquo;) acting data-parallel on different elements of the input
+(called "replicas") acting data-parallel on different elements of the input
 batch. When performing some variable-update operation, say
 <code>var.assign_add(x)</code>, in a model, we need to resolve how to combine the
 different values for <code>x</code> computed in the different replicas.</p>
-
 <ul>
 <li><code>NONE</code>: This is the default, giving an error if you use a
-variable-update operation with multiple replicas.</li>
+  variable-update operation with multiple replicas.</li>
 <li><code>SUM</code>: Add the updates across replicas.</li>
-<li><code>MEAN</code>: Take the arithmetic mean (&ldquo;average&rdquo;) of the updates across replicas.</li>
+<li><code>MEAN</code>: Take the arithmetic mean ("average") of the updates across replicas.</li>
 <li><code>ONLY_FIRST_REPLICA</code>: This is for when every replica is performing the same
-update, but we only want to perform the update once. Used, e.g., for the
-global step counter.</li>
+  update, but we only want to perform the update once. Used, e.g., for the
+  global step counter.</li>
 </ul>
-
-
-<h2>Class Members</h2>
-
+<h2 id="class-members">Class Members</h2>
 <ul>
 <li><code>MEAN</code> <a id="MEAN"></a></li>
 <li><code>NONE</code> <a id="NONE"></a></li>
 <li><code>ONLY_FIRST_REPLICA</code> <a id="ONLY_FIRST_REPLICA"></a></li>
 <li><code>SUM</code> <a id="SUM"></a></li>
 </ul>
-
+    </body>
+    </html>
+   

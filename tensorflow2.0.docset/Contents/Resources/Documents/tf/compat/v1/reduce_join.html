@@ -1,48 +1,44 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.reduce_join" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.compat.v1.reduce_join</h1>
-
+<h1 id="tfcompatv1reduce_join">tf.compat.v1.reduce_join</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/string_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Joins a string Tensor across the given dimensions.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.strings.reduce_join</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">reduce_join</span><span class="p">(</span>
+    <span class="n">inputs</span><span class="p">,</span>
+    <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">keep_dims</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">separator</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">reduction_indices</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">keepdims</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.compat.v1.reduce_join(
-    inputs,
-    axis=None,
-    keep_dims=None,
-    separator='',
-    name=None,
-    reduction_indices=None,
-    keepdims=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>Computes the string join across dimensions in the given string Tensor of shape
 <code>[\\(d_0, d_1, ..., d_{n-1}\\)]</code>.  Returns a new Tensor created by joining the input
@@ -50,43 +46,38 @@ strings with the given separator (default: empty string).  Negative indices are
 counted backwards from the end, with <code>-1</code> being equivalent to <code>n - 1</code>.  If
 indices are not specified, joins across all dimensions beginning from <code>n - 1</code>
 through <code>0</code>.</p>
+<h4 id="for-example">For example:</h4>
+<div class="codehilite"><pre><span></span><span class="c1"># tensor `a` is [[&quot;a&quot;, &quot;b&quot;], [&quot;c&quot;, &quot;d&quot;]]</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">strings</span><span class="o">.</span><span class="n">reduce_join</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">==&gt;</span> <span class="p">[</span><span class="s2">&quot;ac&quot;</span><span class="p">,</span> <span class="s2">&quot;bd&quot;</span><span class="p">]</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">strings</span><span class="o">.</span><span class="n">reduce_join</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">==&gt;</span> <span class="p">[</span><span class="s2">&quot;ab&quot;</span><span class="p">,</span> <span class="s2">&quot;cd&quot;</span><span class="p">]</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">strings</span><span class="o">.</span><span class="n">reduce_join</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">strings</span><span class="o">.</span><span class="n">reduce_join</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">==&gt;</span> <span class="p">[</span><span class="s2">&quot;ac&quot;</span><span class="p">,</span> <span class="s2">&quot;bd&quot;</span><span class="p">]</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">strings</span><span class="o">.</span><span class="n">reduce_join</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">strings</span><span class="o">.</span><span class="n">reduce_join</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">==&gt;</span> <span class="p">[</span><span class="s2">&quot;ab&quot;</span><span class="p">,</span> <span class="s2">&quot;cd&quot;</span><span class="p">]</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">strings</span><span class="o">.</span><span class="n">reduce_join</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">keep_dims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">==&gt;</span> <span class="p">[[</span><span class="s2">&quot;ac&quot;</span><span class="p">,</span> <span class="s2">&quot;bd&quot;</span><span class="p">]]</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">strings</span><span class="o">.</span><span class="n">reduce_join</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">keep_dims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">==&gt;</span> <span class="p">[[</span><span class="s2">&quot;ab&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;cd&quot;</span><span class="p">]]</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">strings</span><span class="o">.</span><span class="n">reduce_join</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">separator</span><span class="o">=</span><span class="s2">&quot;.&quot;</span><span class="p">)</span> <span class="o">==&gt;</span> <span class="p">[</span><span class="s2">&quot;a.c&quot;</span><span class="p">,</span> <span class="s2">&quot;b.d&quot;</span><span class="p">]</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">strings</span><span class="o">.</span><span class="n">reduce_join</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span> <span class="o">==&gt;</span> <span class="s2">&quot;acbd&quot;</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">strings</span><span class="o">.</span><span class="n">reduce_join</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span> <span class="o">==&gt;</span> <span class="s2">&quot;abcd&quot;</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">strings</span><span class="o">.</span><span class="n">reduce_join</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="p">[])</span> <span class="o">==&gt;</span> <span class="p">[[</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">]]</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">strings</span><span class="o">.</span><span class="n">reduce_join</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">strings</span><span class="o">.</span><span class="n">reduce_join</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span> <span class="o">==&gt;</span> <span class="s2">&quot;abcd&quot;</span>
+</pre></div>
 
-<h4>For example:</h4>
 
-<p>```python</p>
-
-<h1>tensor <code>a</code> is [[&ldquo;a&rdquo;, &ldquo;b&rdquo;], [&ldquo;c&rdquo;, &ldquo;d&rdquo;]]</h1>
-
-<p>tf.strings.reduce_join(a, 0) ==> [&ldquo;ac&rdquo;, &ldquo;bd&rdquo;]
-tf.strings.reduce_join(a, 1) ==> [&ldquo;ab&rdquo;, &ldquo;cd&rdquo;]
-tf.strings.reduce_join(a, -2) = tf.strings.reduce_join(a, 0) ==> [&ldquo;ac&rdquo;, &ldquo;bd&rdquo;]
-tf.strings.reduce_join(a, -1) = tf.strings.reduce_join(a, 1) ==> [&ldquo;ab&rdquo;, &ldquo;cd&rdquo;]
-tf.strings.reduce_join(a, 0, keep_dims=True) ==> [[&ldquo;ac&rdquo;, &ldquo;bd&rdquo;]]
-tf.strings.reduce_join(a, 1, keep_dims=True) ==> [[&ldquo;ab&rdquo;], [&ldquo;cd&rdquo;]]
-tf.strings.reduce_join(a, 0, separator=&ldquo;.&rdquo;) ==> [&ldquo;a.c&rdquo;, &ldquo;b.d&rdquo;]
-tf.strings.reduce_join(a, [0, 1]) ==> &ldquo;acbd&rdquo;
-tf.strings.reduce_join(a, [1, 0]) ==> &ldquo;abcd&rdquo;
-tf.strings.reduce_join(a, []) ==> [[&ldquo;a&rdquo;, &ldquo;b&rdquo;], [&ldquo;c&rdquo;, &ldquo;d&rdquo;]]
-tf.strings.reduce_join(a) = tf.strings.reduce_join(a, [1, 0]) ==> &ldquo;abcd&rdquo;
-```</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>inputs</code></b>: A <code>Tensor</code> of type <code>string</code>.
-The input to be joined.  All reduced indices must have non-zero size.</li>
+  The input to be joined.  All reduced indices must have non-zero size.</li>
 <li><b><code>axis</code></b>: A <code>Tensor</code> of type <code>int32</code>.
-The dimensions to reduce over.  Dimensions are reduced in the
-order specified.  Omitting <code>axis</code> is equivalent to passing
-<code>[n-1, n-2, ..., 0]</code>.  Negative indices from <code>-n</code> to <code>-1</code> are supported.</li>
+  The dimensions to reduce over.  Dimensions are reduced in the
+  order specified.  Omitting <code>axis</code> is equivalent to passing
+  <code>[n-1, n-2, ..., 0]</code>.  Negative indices from <code>-n</code> to <code>-1</code> are supported.</li>
 <li><b><code>keep_dims</code></b>: An optional <code>bool</code>. Defaults to <code>False</code>.
-If <code>True</code>, retain reduced dimensions with length <code>1</code>.</li>
+  If <code>True</code>, retain reduced dimensions with length <code>1</code>.</li>
 <li><b><code>separator</code></b>: An optional <code>string</code>. Defaults to <code>""</code>.
-The separator to use when joining.</li>
+  The separator to use when joining.</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>Tensor</code> of type <code>string</code>.</p>
+    </body>
+    </html>
+   

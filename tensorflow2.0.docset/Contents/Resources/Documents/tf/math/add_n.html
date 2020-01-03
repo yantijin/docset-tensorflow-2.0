@@ -1,29 +1,28 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.math.add_n" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.math.add_n</h1>
-
+<h1 id="tfmathadd_n">tf.math.add_n</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/math_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Adds all input tensors element-wise.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.add_n</code></li>
 <li><code>tf.compat.v1.add_n</code></li>
@@ -31,55 +30,44 @@
 <li><code>tf.compat.v2.add_n</code></li>
 <li><code>tf.compat.v2.math.add_n</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">add_n</span><span class="p">(</span>
+    <span class="n">inputs</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.math.add_n(
-    inputs,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>Converts <code>IndexedSlices</code> objects into dense tensors prior to adding.</p>
-
 <p><a href="../../tf/math/add_n.html"><code>tf.math.add_n</code></a> performs the same operation as <a href="../../tf/math/accumulate_n.html"><code>tf.math.accumulate_n</code></a>, but it
 waits for all of its inputs to be ready before beginning to sum.
 This buffering can result in higher memory consumption when inputs are ready
 at different times, since the minimum temporary storage required is
 proportional to the input size rather than the output size.</p>
-
 <p>This op does not <a href="https://docs.scipy.org/doc/numpy-1.13.0/user/basics.broadcasting.html">broadcast</a>
 its inputs. If you need broadcasting, use <a href="../../tf/math/add.html"><code>tf.math.add</code></a> (or the <code>+</code> operator)
 instead.</p>
+<h4 id="for-example">For example:</h4>
+<div class="codehilite"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">]])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">]])</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">add_n</span><span class="p">([</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">])</span>  <span class="c1"># [[7, 16], [10, 25]]</span>
+</pre></div>
 
-<h4>For example:</h4>
 
-<p><code>python
-a = tf.constant([[3, 5], [4, 8]])
-b = tf.constant([[1, 6], [2, 9]])
-tf.math.add_n([a, b, a])  # [[7, 16], [10, 25]]
-</code></p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>inputs</code></b>: A list of <a href="../../tf/Tensor.html"><code>tf.Tensor</code></a> or <a href="../../tf/IndexedSlices.html"><code>tf.IndexedSlices</code></a> objects, each with same
-shape and type.</li>
+  shape and type.</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>Tensor</code> of same shape and type as the elements of <code>inputs</code>.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
-<li><b><code>ValueError</code></b>: If <code>inputs</code> don&rsquo;t all have same shape and dtype or the shape
+<li><b><code>ValueError</code></b>: If <code>inputs</code> don't all have same shape and dtype or the shape
 cannot be inferred.</li>
 </ul>
-
+    </body>
+    </html>
+   

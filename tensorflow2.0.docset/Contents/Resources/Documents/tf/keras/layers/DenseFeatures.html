@@ -1,103 +1,88 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.keras.layers.DenseFeatures" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="__init__"/>
 </div>
 
-
-<h1>tf.keras.layers.DenseFeatures</h1>
-
+<h1 id="tfkeraslayersdensefeatures">tf.keras.layers.DenseFeatures</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/feature_column/dense_features_v2.py">View source</a></p>
-
-<h2>Class <code>DenseFeatures</code></h2>
-
+<h2 id="class-densefeatures">Class <code>DenseFeatures</code></h2>
 <!-- Start diff -->
 
-
 <p>A layer that produces a dense <code>Tensor</code> based on given <code>feature_columns</code>.</p>
-
 <p>Inherits From: <a href="../../../tf/compat/v1/keras/layers/DenseFeatures.html"><code>DenseFeatures</code></a></p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li>Class <code>tf.compat.v2.keras.layers.DenseFeatures</code></li>
 </ul>
-
-
 <!-- Placeholder for "Used in" -->
-
 
 <p>Generally a single example in training data is described with FeatureColumns.
 At the first layer of the model, this column oriented data should be converted
 to a single <code>Tensor</code>.</p>
-
 <p>This layer can be called multiple times with different features.</p>
-
 <p>This is the V2 version of this layer that uses name_scopes to create
 variables instead of variable_scopes. But this approach currently lacks
 support for partitioned variables. In that case, use the V1 version instead.</p>
+<h4 id="example">Example:</h4>
+<div class="codehilite"><pre><span></span><span class="n">price</span> <span class="o">=</span> <span class="n">numeric_column</span><span class="p">(</span><span class="s1">&#39;price&#39;</span><span class="p">)</span>
+<span class="n">keywords_embedded</span> <span class="o">=</span> <span class="n">embedding_column</span><span class="p">(</span>
+    <span class="n">categorical_column_with_hash_bucket</span><span class="p">(</span><span class="s2">&quot;keywords&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="n">K</span><span class="p">),</span> <span class="n">dimensions</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">price</span><span class="p">,</span> <span class="n">keywords_embedded</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+<span class="n">feature_layer</span> <span class="o">=</span> <span class="n">DenseFeatures</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span>
 
-<h4>Example:</h4>
+<span class="n">features</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">parse_example</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="n">make_parse_example_spec</span><span class="p">(</span><span class="n">columns</span><span class="p">))</span>
+<span class="n">dense_tensor</span> <span class="o">=</span> <span class="n">feature_layer</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">units</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">128</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">32</span><span class="p">]:</span>
+  <span class="n">dense_tensor</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="n">units</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">)(</span><span class="n">dense_tensor</span><span class="p">)</span>
+<span class="n">prediction</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">)(</span><span class="n">dense_tensor</span><span class="p">)</span>
+</pre></div>
 
-<p>```python
-price = numeric_column(&lsquo;price&rsquo;)
-keywords_embedded = embedding_column(
-    categorical_column_with_hash_bucket(&ldquo;keywords&rdquo;, 10K), dimensions=16)
-columns = [price, keywords_embedded, &hellip;]
-feature_layer = DenseFeatures(columns)</p>
-
-<p>features = tf.io.parse_example(&hellip;, features=make_parse_example_spec(columns))
-dense_tensor = feature_layer(features)
-for units in [128, 64, 32]:
-  dense_tensor = tf.keras.layers.Dense(units, activation=&lsquo;relu&rsquo;)(dense_tensor)
-prediction = tf.keras.layers.Dense(1)(dense_tensor)
-```</p>
 
 <h2 id="__init__"><code>__init__</code></h2>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/feature_column/dense_features_v2.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">feature_columns</span><span class="p">,</span>
+    <span class="n">trainable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__init__(
-    feature_columns,
-    trainable=True,
-    name=None,
-    **kwargs
-)
-</code></p>
 
 <p>Creates a DenseFeatures object.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>feature_columns</code></b>: An iterable containing the FeatureColumns to use as
-inputs to your model. All items should be instances of classes derived
-from <code>DenseColumn</code> such as <code>numeric_column</code>, <code>embedding_column</code>,
-<code>bucketized_column</code>, <code>indicator_column</code>. If you have categorical
-features, you can wrap them with an <code>embedding_column</code> or
-<code>indicator_column</code>.</li>
-<li><b><code>trainable</code></b>:  Boolean, whether the layer&rsquo;s variables will be updated via
-gradient descent during training.</li>
+  inputs to your model. All items should be instances of classes derived
+  from <code>DenseColumn</code> such as <code>numeric_column</code>, <code>embedding_column</code>,
+  <code>bucketized_column</code>, <code>indicator_column</code>. If you have categorical
+  features, you can wrap them with an <code>embedding_column</code> or
+  <code>indicator_column</code>.</li>
+<li><b><code>trainable</code></b>:  Boolean, whether the layer's variables will be updated via
+  gradient descent during training.</li>
 <li><b><code>name</code></b>: Name to give to the DenseFeatures.</li>
 <li><b><code>**kwargs</code></b>: Keyword arguments to construct a layer.</li>
 </ul>
-
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: if an item in <code>feature_columns</code> is not a <code>DenseColumn</code>.</li>
 </ul>
-
+    </body>
+    </html>
+   

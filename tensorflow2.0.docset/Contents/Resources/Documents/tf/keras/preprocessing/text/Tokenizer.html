@@ -1,4 +1,13 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.keras.preprocessing.text.Tokenizer" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="__init__"/>
@@ -14,304 +23,258 @@
 <meta itemprop="property" content="to_json"/>
 </div>
 
-
-<h1>tf.keras.preprocessing.text.Tokenizer</h1>
-
+<h1 id="tfkeraspreprocessingtexttokenizer">tf.keras.preprocessing.text.Tokenizer</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
-<h2>Class <code>Tokenizer</code></h2>
-
+<h2 id="class-tokenizer">Class <code>Tokenizer</code></h2>
 <!-- Start diff -->
 
-
 <p>Text tokenization utility class.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li>Class <code>tf.compat.v1.keras.preprocessing.text.Tokenizer</code></li>
 <li>Class <code>tf.compat.v2.keras.preprocessing.text.Tokenizer</code></li>
 </ul>
-
-
 <!-- Placeholder for "Used in" -->
-
 
 <p>This class allows to vectorize a text corpus, by turning each
 text into either a sequence of integers (each integer being the index
 of a token in a dictionary) or into a vector where the coefficient
-for each token could be binary, based on word count, based on tf-idf&hellip;</p>
+for each token could be binary, based on word count, based on tf-idf...</p>
+<h1 id="arguments">Arguments</h1>
+<div class="codehilite"><pre><span></span><span class="n">num_words</span><span class="o">:</span> <span class="n">the</span> <span class="n">maximum</span> <span class="n">number</span> <span class="n">of</span> <span class="n">words</span> <span class="n">to</span> <span class="n">keep</span><span class="o">,</span> <span class="n">based</span>
+    <span class="n">on</span> <span class="n">word</span> <span class="n">frequency</span><span class="o">.</span> <span class="n">Only</span> <span class="n">the</span> <span class="n">most</span> <span class="n">common</span> <span class="err">`</span><span class="n">num_words</span><span class="o">-</span><span class="mi">1</span><span class="err">`</span> <span class="n">words</span> <span class="n">will</span>
+    <span class="n">be</span> <span class="n">kept</span><span class="o">.</span>
+<span class="n">filters</span><span class="o">:</span> <span class="n">a</span> <span class="n">string</span> <span class="n">where</span> <span class="k">each</span> <span class="n">element</span> <span class="k">is</span> <span class="n">a</span> <span class="n">character</span> <span class="n">that</span> <span class="n">will</span> <span class="n">be</span>
+    <span class="n">filtered</span> <span class="n">from</span> <span class="n">the</span> <span class="n">texts</span><span class="o">.</span> <span class="n">The</span> <span class="k">default</span> <span class="k">is</span> <span class="n">all</span> <span class="n">punctuation</span><span class="o">,</span> <span class="n">plus</span>
+    <span class="n">tabs</span> <span class="n">and</span> <span class="n">line</span> <span class="n">breaks</span><span class="o">,</span> <span class="n">minus</span> <span class="n">the</span> <span class="err">`&#39;`</span> <span class="n">character</span><span class="o">.</span>
+<span class="n">lower</span><span class="o">:</span> <span class="n">boolean</span><span class="o">.</span> <span class="n">Whether</span> <span class="n">to</span> <span class="n">convert</span> <span class="n">the</span> <span class="n">texts</span> <span class="n">to</span> <span class="n">lowercase</span><span class="o">.</span>
+<span class="n">split</span><span class="o">:</span> <span class="n">str</span><span class="o">.</span> <span class="n">Separator</span> <span class="k">for</span> <span class="n">word</span> <span class="n">splitting</span><span class="o">.</span>
+<span class="n">char_level</span><span class="o">:</span> <span class="k">if</span> <span class="n">True</span><span class="o">,</span> <span class="n">every</span> <span class="n">character</span> <span class="n">will</span> <span class="n">be</span> <span class="n">treated</span> <span class="k">as</span> <span class="n">a</span> <span class="n">token</span><span class="o">.</span>
+<span class="n">oov_token</span><span class="o">:</span> <span class="k">if</span> <span class="n">given</span><span class="o">,</span> <span class="n">it</span> <span class="n">will</span> <span class="n">be</span> <span class="n">added</span> <span class="n">to</span> <span class="n">word_index</span> <span class="n">and</span> <span class="n">used</span> <span class="n">to</span>
+    <span class="n">replace</span> <span class="n">out</span><span class="o">-</span><span class="n">of</span><span class="o">-</span><span class="n">vocabulary</span> <span class="n">words</span> <span class="n">during</span> <span class="n">text_to_sequence</span> <span class="n">calls</span>
+</pre></div>
 
-<h1>Arguments</h1>
-
-<pre><code>num_words: the maximum number of words to keep, based
-    on word frequency. Only the most common `num_words-1` words will
-    be kept.
-filters: a string where each element is a character that will be
-    filtered from the texts. The default is all punctuation, plus
-    tabs and line breaks, minus the `'` character.
-lower: boolean. Whether to convert the texts to lowercase.
-split: str. Separator for word splitting.
-char_level: if True, every character will be treated as a token.
-oov_token: if given, it will be added to word_index and used to
-    replace out-of-vocabulary words during text_to_sequence calls
-</code></pre>
 
 <p>By default, all punctuation is removed, turning the texts into
 space-separated sequences of words
 (words maybe include the <code>'</code> character). These sequences are then
 split into lists of tokens. They will then be indexed or vectorized.</p>
-
-<p><code>0</code> is a reserved index that won&rsquo;t be assigned to any word.</p>
-
+<p><code>0</code> is a reserved index that won't be assigned to any word.</p>
 <h2 id="__init__"><code>__init__</code></h2>
 
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">num_words</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">filters</span><span class="o">=</span><span class="s1">&#39;!&quot;#$%&amp;()*+,-./:;&lt;=&gt;?@[</span><span class="se">\\</span><span class="s1">]^_`{|}~</span><span class="se">\t\n</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="n">lower</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">split</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">,</span>
+    <span class="n">char_level</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">oov_token</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">document_count</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__init__(
-    num_words=None,
-    filters='!"#$%&amp;()*+,-./:;&lt;=&gt;?@[\\]^_`{|}~\t\n',
-    lower=True,
-    split=' ',
-    char_level=False,
-    oov_token=None,
-    document_count=0,
-    **kwargs
-)
-</code></p>
 
 <p>Initialize self.  See help(type(self)) for accurate signature.</p>
-
-<h2>Methods</h2>
-
+<h2 id="methods">Methods</h2>
 <h3 id="fit_on_sequences"><code>fit_on_sequences</code></h3>
 
+<div class="codehilite"><pre><span></span><span class="n">fit_on_sequences</span><span class="p">(</span><span class="n">sequences</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-fit_on_sequences(sequences)
-</code></p>
 
 <p>Updates internal vocabulary based on a list of sequences.</p>
-
 <p>Required before using <code>sequences_to_matrix</code>
 (if <code>fit_on_texts</code> was never called).</p>
+<h1 id="arguments_1">Arguments</h1>
+<div class="codehilite"><pre><span></span><span class="n">sequences</span><span class="o">:</span> <span class="n">A</span> <span class="n">list</span> <span class="n">of</span> <span class="n">sequence</span><span class="o">.</span>
+    <span class="n">A</span> <span class="s2">&quot;sequence&quot;</span> <span class="k">is</span> <span class="n">a</span> <span class="n">list</span> <span class="n">of</span> <span class="n">integer</span> <span class="n">word</span> <span class="n">indices</span><span class="o">.</span>
+</pre></div>
 
-<h1>Arguments</h1>
-
-<pre><code>sequences: A list of sequence.
-    A "sequence" is a list of integer word indices.
-</code></pre>
 
 <h3 id="fit_on_texts"><code>fit_on_texts</code></h3>
 
+<div class="codehilite"><pre><span></span><span class="n">fit_on_texts</span><span class="p">(</span><span class="n">texts</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-fit_on_texts(texts)
-</code></p>
 
 <p>Updates internal vocabulary based on a list of texts.</p>
-
 <p>In the case where texts contains lists,
 we assume each entry of the lists to be a token.</p>
-
 <p>Required before using <code>texts_to_sequences</code> or <code>texts_to_matrix</code>.</p>
+<h1 id="arguments_2">Arguments</h1>
+<div class="codehilite"><pre><span></span><span class="n">texts</span><span class="o">:</span> <span class="n">can</span> <span class="n">be</span> <span class="n">a</span> <span class="n">list</span> <span class="n">of</span> <span class="n">strings</span><span class="o">,</span>
+    <span class="n">a</span> <span class="n">generator</span> <span class="n">of</span> <span class="n">strings</span> <span class="o">(</span><span class="k">for</span> <span class="n">memory</span><span class="o">-</span><span class="n">efficiency</span><span class="o">),</span>
+    <span class="n">or</span> <span class="n">a</span> <span class="n">list</span> <span class="n">of</span> <span class="n">list</span> <span class="n">of</span> <span class="n">strings</span><span class="o">.</span>
+</pre></div>
 
-<h1>Arguments</h1>
-
-<pre><code>texts: can be a list of strings,
-    a generator of strings (for memory-efficiency),
-    or a list of list of strings.
-</code></pre>
 
 <h3 id="get_config"><code>get_config</code></h3>
 
+<div class="codehilite"><pre><span></span><span class="n">get_config</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-get_config()
-</code></p>
 
 <p>Returns the tokenizer configuration as Python dictionary.
 The word count dictionaries used by the tokenizer get serialized
 into plain JSON, so that the configuration can be read by other
 projects.</p>
+<h1 id="returns">Returns</h1>
+<div class="codehilite"><pre><span></span><span class="err">A Python dictionary with the tokenizer configuration.</span>
+</pre></div>
 
-<h1>Returns</h1>
-
-<pre><code>A Python dictionary with the tokenizer configuration.
-</code></pre>
 
 <h3 id="sequences_to_matrix"><code>sequences_to_matrix</code></h3>
 
+<div class="codehilite"><pre><span></span><span class="n">sequences_to_matrix</span><span class="p">(</span>
+    <span class="n">sequences</span><span class="p">,</span>
+    <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;binary&#39;</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-sequences_to_matrix(
-    sequences,
-    mode='binary'
-)
-</code></p>
 
 <p>Converts a list of sequences into a Numpy matrix.</p>
+<h1 id="arguments_3">Arguments</h1>
+<div class="codehilite"><pre><span></span><span class="n">sequences</span><span class="o">:</span> <span class="n">list</span> <span class="n">of</span> <span class="n">sequences</span>
+    <span class="o">(</span><span class="n">a</span> <span class="n">sequence</span> <span class="k">is</span> <span class="n">a</span> <span class="n">list</span> <span class="n">of</span> <span class="n">integer</span> <span class="n">word</span> <span class="n">indices</span><span class="o">).</span>
+<span class="n">mode</span><span class="o">:</span> <span class="n">one</span> <span class="n">of</span> <span class="s2">&quot;binary&quot;</span><span class="o">,</span> <span class="s2">&quot;count&quot;</span><span class="o">,</span> <span class="s2">&quot;tfidf&quot;</span><span class="o">,</span> <span class="s2">&quot;freq&quot;</span>
+</pre></div>
 
-<h1>Arguments</h1>
 
-<pre><code>sequences: list of sequences
-    (a sequence is a list of integer word indices).
-mode: one of "binary", "count", "tfidf", "freq"
-</code></pre>
+<h1 id="returns_1">Returns</h1>
+<div class="codehilite"><pre><span></span><span class="err">A Numpy matrix.</span>
+</pre></div>
 
-<h1>Returns</h1>
 
-<pre><code>A Numpy matrix.
-</code></pre>
+<h1 id="raises">Raises</h1>
+<div class="codehilite"><pre><span></span><span class="n">ValueError</span><span class="p">:</span> <span class="k">In</span> <span class="k">case</span> <span class="n">of</span> <span class="n">invalid</span> <span class="ss">`mode`</span> <span class="n">argument</span><span class="p">,</span>
+    <span class="k">or</span> <span class="k">if</span> <span class="n">the</span> <span class="n">Tokenizer</span> <span class="n">requires</span> <span class="k">to</span> <span class="n">be</span> <span class="n">fit</span> <span class="k">to</span> <span class="n">sample</span> <span class="n">data</span><span class="p">.</span>
+</pre></div>
 
-<h1>Raises</h1>
-
-<pre><code>ValueError: In case of invalid `mode` argument,
-    or if the Tokenizer requires to be fit to sample data.
-</code></pre>
 
 <h3 id="sequences_to_texts"><code>sequences_to_texts</code></h3>
 
+<div class="codehilite"><pre><span></span><span class="n">sequences_to_texts</span><span class="p">(</span><span class="n">sequences</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-sequences_to_texts(sequences)
-</code></p>
 
 <p>Transforms each sequence into a list of text.</p>
-
 <p>Only top <code>num_words-1</code> most frequent words will be taken into account.
 Only words known by the tokenizer will be taken into account.</p>
+<h1 id="arguments_4">Arguments</h1>
+<div class="codehilite"><pre><span></span><span class="n">sequences</span><span class="o">:</span> <span class="n">A</span> <span class="n">list</span> <span class="n">of</span> <span class="n">sequences</span> <span class="o">(</span><span class="n">list</span> <span class="n">of</span> <span class="n">integers</span><span class="o">).</span>
+</pre></div>
 
-<h1>Arguments</h1>
 
-<pre><code>sequences: A list of sequences (list of integers).
-</code></pre>
+<h1 id="returns_2">Returns</h1>
+<div class="codehilite"><pre><span></span><span class="err">A list of texts (strings)</span>
+</pre></div>
 
-<h1>Returns</h1>
-
-<pre><code>A list of texts (strings)
-</code></pre>
 
 <h3 id="sequences_to_texts_generator"><code>sequences_to_texts_generator</code></h3>
 
+<div class="codehilite"><pre><span></span><span class="n">sequences_to_texts_generator</span><span class="p">(</span><span class="n">sequences</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-sequences_to_texts_generator(sequences)
-</code></p>
 
 <p>Transforms each sequence in <code>sequences</code> to a list of texts(strings).</p>
-
 <p>Each sequence has to a list of integers.
 In other words, sequences should be a list of sequences</p>
-
 <p>Only top <code>num_words-1</code> most frequent words will be taken into account.
 Only words known by the tokenizer will be taken into account.</p>
+<h1 id="arguments_5">Arguments</h1>
+<div class="codehilite"><pre><span></span><span class="n">sequences</span><span class="o">:</span> <span class="n">A</span> <span class="n">list</span> <span class="n">of</span> <span class="n">sequences</span><span class="o">.</span>
+</pre></div>
 
-<h1>Arguments</h1>
 
-<pre><code>sequences: A list of sequences.
-</code></pre>
+<h1 id="yields">Yields</h1>
+<div class="codehilite"><pre><span></span><span class="err">Yields individual texts.</span>
+</pre></div>
 
-<h1>Yields</h1>
-
-<pre><code>Yields individual texts.
-</code></pre>
 
 <h3 id="texts_to_matrix"><code>texts_to_matrix</code></h3>
 
+<div class="codehilite"><pre><span></span><span class="n">texts_to_matrix</span><span class="p">(</span>
+    <span class="n">texts</span><span class="p">,</span>
+    <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;binary&#39;</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-texts_to_matrix(
-    texts,
-    mode='binary'
-)
-</code></p>
 
 <p>Convert a list of texts to a Numpy matrix.</p>
+<h1 id="arguments_6">Arguments</h1>
+<div class="codehilite"><pre><span></span><span class="n">texts</span><span class="o">:</span> <span class="n">list</span> <span class="n">of</span> <span class="n">strings</span><span class="o">.</span>
+<span class="n">mode</span><span class="o">:</span> <span class="n">one</span> <span class="n">of</span> <span class="s2">&quot;binary&quot;</span><span class="o">,</span> <span class="s2">&quot;count&quot;</span><span class="o">,</span> <span class="s2">&quot;tfidf&quot;</span><span class="o">,</span> <span class="s2">&quot;freq&quot;</span><span class="o">.</span>
+</pre></div>
 
-<h1>Arguments</h1>
 
-<pre><code>texts: list of strings.
-mode: one of "binary", "count", "tfidf", "freq".
-</code></pre>
+<h1 id="returns_3">Returns</h1>
+<div class="codehilite"><pre><span></span><span class="err">A Numpy matrix.</span>
+</pre></div>
 
-<h1>Returns</h1>
-
-<pre><code>A Numpy matrix.
-</code></pre>
 
 <h3 id="texts_to_sequences"><code>texts_to_sequences</code></h3>
 
+<div class="codehilite"><pre><span></span><span class="n">texts_to_sequences</span><span class="p">(</span><span class="n">texts</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-texts_to_sequences(texts)
-</code></p>
 
 <p>Transforms each text in texts to a sequence of integers.</p>
-
 <p>Only top <code>num_words-1</code> most frequent words will be taken into account.
 Only words known by the tokenizer will be taken into account.</p>
+<h1 id="arguments_7">Arguments</h1>
+<div class="codehilite"><pre><span></span><span class="n">texts</span><span class="o">:</span> <span class="n">A</span> <span class="n">list</span> <span class="n">of</span> <span class="n">texts</span> <span class="o">(</span><span class="n">strings</span><span class="o">).</span>
+</pre></div>
 
-<h1>Arguments</h1>
 
-<pre><code>texts: A list of texts (strings).
-</code></pre>
+<h1 id="returns_4">Returns</h1>
+<div class="codehilite"><pre><span></span><span class="err">A list of sequences.</span>
+</pre></div>
 
-<h1>Returns</h1>
-
-<pre><code>A list of sequences.
-</code></pre>
 
 <h3 id="texts_to_sequences_generator"><code>texts_to_sequences_generator</code></h3>
 
+<div class="codehilite"><pre><span></span><span class="n">texts_to_sequences_generator</span><span class="p">(</span><span class="n">texts</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-texts_to_sequences_generator(texts)
-</code></p>
 
 <p>Transforms each text in <code>texts</code> to a sequence of integers.</p>
-
 <p>Each item in texts can also be a list,
 in which case we assume each item of that list to be a token.</p>
-
 <p>Only top <code>num_words-1</code> most frequent words will be taken into account.
 Only words known by the tokenizer will be taken into account.</p>
+<h1 id="arguments_8">Arguments</h1>
+<div class="codehilite"><pre><span></span><span class="n">texts</span><span class="o">:</span> <span class="n">A</span> <span class="n">list</span> <span class="n">of</span> <span class="n">texts</span> <span class="o">(</span><span class="n">strings</span><span class="o">).</span>
+</pre></div>
 
-<h1>Arguments</h1>
 
-<pre><code>texts: A list of texts (strings).
-</code></pre>
+<h1 id="yields_1">Yields</h1>
+<div class="codehilite"><pre><span></span><span class="err">Yields individual sequences.</span>
+</pre></div>
 
-<h1>Yields</h1>
-
-<pre><code>Yields individual sequences.
-</code></pre>
 
 <h3 id="to_json"><code>to_json</code></h3>
 
+<div class="codehilite"><pre><span></span><span class="n">to_json</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-to_json(**kwargs)
-</code></p>
 
 <p>Returns a JSON string containing the tokenizer configuration.
 To load a tokenizer from a JSON string, use
 <code>keras.preprocessing.text.tokenizer_from_json(json_string)</code>.</p>
+<h1 id="arguments_9">Arguments</h1>
+<div class="codehilite"><pre><span></span><span class="err">**kwargs: Additional keyword arguments</span>
+<span class="err">    to be passed to `json.dumps()`.</span>
+</pre></div>
 
-<h1>Arguments</h1>
 
-<pre><code>**kwargs: Additional keyword arguments
-    to be passed to `json.dumps()`.
-</code></pre>
-
-<h1>Returns</h1>
-
-<pre><code>A JSON string containing the tokenizer configuration.
-</code></pre>
+<h1 id="returns_5">Returns</h1>
+<div class="codehilite"><pre><span></span><span class="err">A JSON string containing the tokenizer configuration.</span>
+</pre></div>
+    </body>
+    </html>
+   

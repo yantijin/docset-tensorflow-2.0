@@ -1,41 +1,37 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.keras.utils.custom_object_scope" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.keras.utils.custom_object_scope</h1>
-
+<h1 id="tfkerasutilscustom_object_scope">tf.keras.utils.custom_object_scope</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/utils/generic_utils.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Provides a scope that changes to <code>_GLOBAL_CUSTOM_OBJECTS</code> cannot escape.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.keras.utils.custom_object_scope</code></li>
 <li><code>tf.compat.v2.keras.utils.custom_object_scope</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">custom_object_scope</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.keras.utils.custom_object_scope(*args)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>Convenience wrapper for <code>CustomObjectScope</code>.
 Code within a <code>with</code> statement will be able to access custom objects
@@ -43,25 +39,21 @@ by name. Changes to global custom objects persist
 within the enclosing <code>with</code> statement. At end of the <code>with</code> statement,
 global custom objects are reverted to state
 at beginning of the <code>with</code> statement.</p>
-
-<h4>Example:</h4>
-
+<h4 id="example">Example:</h4>
 <p>Consider a custom object <code>MyObject</code></p>
+<div class="codehilite"><pre><span></span>    <span class="k">with</span> <span class="n">custom_object_scope</span><span class="p">({</span><span class="s1">&#39;MyObject&#39;</span><span class="p">:</span><span class="n">MyObject</span><span class="p">}):</span>
+        <span class="n">layer</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">kernel_regularizer</span><span class="o">=</span><span class="s1">&#39;MyObject&#39;</span><span class="p">)</span>
+        <span class="c1"># save, load, etc. will recognize custom object by name</span>
+</pre></div>
 
-<p><code>python
-    with custom_object_scope({'MyObject':MyObject}):
-        layer = Dense(..., kernel_regularizer='MyObject')
-        # save, load, etc. will recognize custom object by name
-</code></p>
 
-<h4>Arguments:</h4>
-
+<h4 id="arguments">Arguments:</h4>
 <ul>
 <li><b><code>*args</code></b>: Variable length list of dictionaries of name,
-  class pairs to add to custom objects.</li>
+    class pairs to add to custom objects.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>Object of type <code>CustomObjectScope</code>.</p>
+    </body>
+    </html>
+   

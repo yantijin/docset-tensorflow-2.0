@@ -1,15 +1,19 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.estimator.experimental.dnn_logit_fn_builder" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.compat.v1.estimator.experimental.dnn_logit_fn_builder</h1>
-
+<h1 id="tfcompatv1estimatorexperimentaldnn_logit_fn_builder">tf.compat.v1.estimator.experimental.dnn_logit_fn_builder</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 
@@ -20,52 +24,42 @@
   </a>
 </td></table>
 
-
-
-
 <!-- Start diff -->
 
-
 <p>Function builder for a dnn logit_fn.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">dnn_logit_fn_builder</span><span class="p">(</span>
+    <span class="n">units</span><span class="p">,</span>
+    <span class="n">hidden_units</span><span class="p">,</span>
+    <span class="n">feature_columns</span><span class="p">,</span>
+    <span class="n">activation_fn</span><span class="p">,</span>
+    <span class="n">dropout</span><span class="p">,</span>
+    <span class="n">input_layer_partitioner</span><span class="p">,</span>
+    <span class="n">batch_norm</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-tf.compat.v1.estimator.experimental.dnn_logit_fn_builder(
-    units,
-    hidden_units,
-    feature_columns,
-    activation_fn,
-    dropout,
-    input_layer_partitioner,
-    batch_norm
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>units</code></b>: An int indicating the dimension of the logit layer.  In the
-MultiHead case, this should be the sum of all component Heads' logit
-dimensions.</li>
+  MultiHead case, this should be the sum of all component Heads' logit
+  dimensions.</li>
 <li><b><code>hidden_units</code></b>: Iterable of integer number of hidden units per layer.</li>
 <li><b><code>feature_columns</code></b>: Iterable of <code>feature_column._FeatureColumn</code> model inputs.</li>
 <li><b><code>activation_fn</code></b>: Activation function applied to each layer.</li>
 <li><b><code>dropout</code></b>: When not <code>None</code>, the probability we will drop out a given
-coordinate.</li>
+  coordinate.</li>
 <li><b><code>input_layer_partitioner</code></b>: Partitioner for input layer.</li>
 <li><b><code>batch_norm</code></b>: Whether to use batch normalization after each hidden layer.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A logit_fn (see below).</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: If units is not an int.</li>
 </ul>
-
+    </body>
+    </html>
+   

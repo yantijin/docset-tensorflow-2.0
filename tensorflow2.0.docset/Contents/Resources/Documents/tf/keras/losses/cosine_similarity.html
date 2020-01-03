@@ -1,29 +1,28 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.keras.losses.cosine_similarity" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.keras.losses.cosine_similarity</h1>
-
+<h1 id="tfkeraslossescosine_similarity">tf.keras.losses.cosine_similarity</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/losses.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Computes the cosine similarity between labels and predictions.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.keras.losses.cosine</code></li>
 <li><code>tf.compat.v1.keras.losses.cosine_proximity</code></li>
@@ -34,35 +33,29 @@
 <li><code>tf.compat.v2.losses.cosine_similarity</code></li>
 <li><code>tf.losses.cosine_similarity</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">cosine_similarity</span><span class="p">(</span>
+    <span class="n">y_true</span><span class="p">,</span>
+    <span class="n">y_pred</span><span class="p">,</span>
+    <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.keras.losses.cosine_similarity(
-    y_true,
-    y_pred,
-    axis=-1
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>Note that it is a negative quantity between -1 and 0, where 0 indicates
 orthogonality and values closer to -1 indicate greater similarity. This makes
 it usable as a loss function in a setting where you try to maximize the
 proximity between predictions and targets.</p>
-
 <p><code>loss = -sum(y_true * y_pred)</code></p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>y_true</code></b>: Tensor of true targets.</li>
 <li><b><code>y_pred</code></b>: Tensor of predicted targets.</li>
 <li><b><code>axis</code></b>: Axis along which to determine similarity.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>Cosine similarity tensor.</p>
+    </body>
+    </html>
+   

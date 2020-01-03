@@ -1,48 +1,44 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.linalg.lstsq" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.linalg.lstsq</h1>
-
+<h1 id="tflinalglstsq">tf.linalg.lstsq</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/linalg_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Solves one or more linear least-squares problems.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.linalg.lstsq</code></li>
 <li><code>tf.compat.v1.matrix_solve_ls</code></li>
 <li><code>tf.compat.v2.linalg.lstsq</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">lstsq</span><span class="p">(</span>
+    <span class="n">matrix</span><span class="p">,</span>
+    <span class="n">rhs</span><span class="p">,</span>
+    <span class="n">l2_regularizer</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">fast</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.linalg.lstsq(
-    matrix,
-    rhs,
-    l2_regularizer=0.0,
-    fast=True,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p><code>matrix</code> is a tensor of shape <code>[..., M, N]</code> whose inner-most 2 dimensions
 form <code>M</code>-by-<code>N</code> matrices. Rhs is a tensor of shape <code>[..., M, K]</code> whose
@@ -51,36 +47,30 @@ inner-most 2 dimensions form <code>M</code>-by-<code>K</code> matrices.  The com
 matrices that solve the equations
 <code>matrix[..., :, :] * output[..., :, :] = rhs[..., :, :]</code> in the least squares
 sense.</p>
-
 <p>Below we will use the following notation for each pair of matrix and
 right-hand sides in the batch:</p>
-
 <p><code>matrix</code>=\(A \in \Re^{m \times n}\),
 <code>rhs</code>=\(B  \in \Re^{m \times k}\),
 <code>output</code>=\(X  \in \Re^{n \times k}\),
 <code>l2_regularizer</code>=\(\lambda\).</p>
-
 <p>If <code>fast</code> is <code>True</code>, then the solution is computed by solving the normal
 equations using Cholesky decomposition. Specifically, if \(m \ge n\) then
-\(X = (A<sup>T</sup> A + \lambda I)^{-1} A<sup>T</sup> B\), which solves the least-squares
-problem \(X = \mathrm{argmin}<em>{Z \in \Re^{n \times k}} ||A Z - B||</em>F<sup>2</sup> +
-\lambda ||Z||<em>F<sup>2</sup>\). If \(m \lt n\) then <code>output</code> is computed as
-\(X = A<sup>T</sup> (A A<sup>T</sup> + \lambda I)^{-1} B\), which (for \(\lambda = 0\)) is
+\(X = (A^T A + \lambda I)^{-1} A^T B\), which solves the least-squares
+problem \(X = \mathrm{argmin}<em Z="Z" _Re_n="\Re^{n" _in="\in" _times="\times" k="k">{Z \in \Re^{n \times k}} ||A Z - B||_F^2 +
+\lambda ||Z||_F^2\). If \(m \lt n\) then <code>output</code> is computed as
+\(X = A^T (A A^T + \lambda I)^{-1} B\), which (for \(\lambda = 0\)) is
 the minimum-norm solution to the under-determined linear system, i.e.
-\(X = \mathrm{argmin}</em>{Z \in \Re^{n \times k}} ||Z||<em>F<sup>2</sup> \), subject to
+\(X = \mathrm{argmin}</em>} ||Z||<em mach="mach">F^2 \), subject to
 \(A Z = B\). Notice that the fast path is only numerically stable when
 \(A\) is numerically full rank and has a condition number
-\(\mathrm{cond}(A) \lt \frac{1}{\sqrt{\epsilon</em>{mach}}}\) or\(\lambda\)
+\(\mathrm{cond}(A) \lt \frac{1}{\sqrt{\epsilon</em>}}\) or\(\lambda\)
 is sufficiently large.</p>
-
 <p>If <code>fast</code> is <code>False</code> an algorithm based on the numerically robust complete
 orthogonal decomposition is used. This computes the minimum-norm
 least-squares solution, even when \(A\) is rank deficient. This path is
 typically 6-7 times slower than the fast path. If <code>fast</code> is <code>False</code> then
 <code>l2_regularizer</code> is ignored.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>matrix</code></b>: <code>Tensor</code> of shape <code>[..., M, N]</code>.</li>
 <li><b><code>rhs</code></b>: <code>Tensor</code> of shape <code>[..., M, K]</code>.</li>
@@ -88,22 +78,18 @@ typically 6-7 times slower than the fast path. If <code>fast</code> is <code>Fal
 <li><b><code>fast</code></b>: bool. Defaults to <code>True</code>.</li>
 <li><b><code>name</code></b>: string, optional name of the operation.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <ul>
 <li><b><code>output</code></b>: <code>Tensor</code> of shape <code>[..., N, K]</code> whose inner-most 2 dimensions form
-<code>M</code>-by-<code>K</code> matrices that solve the equations
-<code>matrix[..., :, :] * output[..., :, :] = rhs[..., :, :]</code> in the least
-squares sense.</li>
+  <code>M</code>-by-<code>K</code> matrices that solve the equations
+  <code>matrix[..., :, :] * output[..., :, :] = rhs[..., :, :]</code> in the least
+  squares sense.</li>
 </ul>
-
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>NotImplementedError</code></b>: linalg.lstsq is currently disabled for complex128
 and l2_regularizer != 0 due to poor accuracy.</li>
 </ul>
-
+    </body>
+    </html>
+   

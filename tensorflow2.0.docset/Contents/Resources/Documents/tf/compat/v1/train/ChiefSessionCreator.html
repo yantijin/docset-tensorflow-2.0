@@ -1,75 +1,63 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.train.ChiefSessionCreator" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="__init__"/>
 <meta itemprop="property" content="create_session"/>
 </div>
 
-
-<h1>tf.compat.v1.train.ChiefSessionCreator</h1>
-
+<h1 id="tfcompatv1trainchiefsessioncreator">tf.compat.v1.train.ChiefSessionCreator</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/training/monitored_session.py">View source</a></p>
-
-<h2>Class <code>ChiefSessionCreator</code></h2>
-
+<h2 id="class-chiefsessioncreator">Class <code>ChiefSessionCreator</code></h2>
 <!-- Start diff -->
 
-
 <p>Creates a tf.compat.v1.Session for a chief.</p>
-
 <p>Inherits From: <a href="../../../../tf/compat/v1/train/SessionCreator.html"><code>SessionCreator</code></a></p>
-
 <!-- Placeholder for "Used in" -->
-
-
-
 
 <h2 id="__init__"><code>__init__</code></h2>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/training/monitored_session.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">scaffold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">master</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">checkpoint_dir</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">checkpoint_filename_with_path</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__init__(
-    scaffold=None,
-    master='',
-    config=None,
-    checkpoint_dir=None,
-    checkpoint_filename_with_path=None
-)
-</code></p>
 
 <p>Initializes a chief session creator.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>scaffold</code></b>: A <code>Scaffold</code> used for gathering or building supportive ops. If
-not specified a default one is created. It&rsquo;s used to finalize the graph.</li>
+  not specified a default one is created. It's used to finalize the graph.</li>
 <li><b><code>master</code></b>: <code>String</code> representation of the TensorFlow master to use.</li>
 <li><b><code>config</code></b>: <code>ConfigProto</code> proto used to configure the session.</li>
 <li><b><code>checkpoint_dir</code></b>: A string.  Optional path to a directory where to restore
-variables.</li>
+  variables.</li>
 <li><b><code>checkpoint_filename_with_path</code></b>: Full file name path to the checkpoint file.</li>
 </ul>
-
-
-<h2>Methods</h2>
-
+<h2 id="methods">Methods</h2>
 <h3 id="create_session"><code>create_session</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/training/monitored_session.py">View source</a></p>
-
-<p><code>python
-create_session()
-</code></p>
+<div class="codehilite"><pre><span></span><span class="n">create_session</span><span class="p">()</span>
+</pre></div>
+    </body>
+    </html>
+   

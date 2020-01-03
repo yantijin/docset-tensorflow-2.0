@@ -1,125 +1,114 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.feature_column.embedding_column" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.feature_column.embedding_column</h1>
-
+<h1 id="tffeature_columnembedding_column">tf.feature_column.embedding_column</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/feature_column/feature_column_v2.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p><code>DenseColumn</code> that converts from sparse, categorical input.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.feature_column.embedding_column</code></li>
 <li><code>tf.compat.v2.feature_column.embedding_column</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">feature_column</span><span class="o">.</span><span class="n">embedding_column</span><span class="p">(</span>
+    <span class="n">categorical_column</span><span class="p">,</span>
+    <span class="n">dimension</span><span class="p">,</span>
+    <span class="n">combiner</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span>
+    <span class="n">initializer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">ckpt_to_load_from</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">tensor_name_in_ckpt</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">max_norm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">trainable</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.feature_column.embedding_column(
-    categorical_column,
-    dimension,
-    combiner='mean',
-    initializer=None,
-    ckpt_to_load_from=None,
-    tensor_name_in_ckpt=None,
-    max_norm=None,
-    trainable=True
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>Use this when your inputs are sparse, but you want to convert them to a dense
 representation (e.g., to feed to a DNN).</p>
-
 <p>Inputs must be a <code>CategoricalColumn</code> created by any of the
 <code>categorical_column_*</code> function. Here is an example of using
 <code>embedding_column</code> with <code>DNNClassifier</code>:</p>
+<div class="codehilite"><pre><span></span><span class="n">video_id</span> <span class="o">=</span> <span class="n">categorical_column_with_identity</span><span class="p">(</span>
+    <span class="n">key</span><span class="o">=</span><span class="s1">&#39;video_id&#39;</span><span class="p">,</span> <span class="n">num_buckets</span><span class="o">=</span><span class="mi">1000000</span><span class="p">,</span> <span class="n">default_value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">embedding_column</span><span class="p">(</span><span class="n">video_id</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span><span class="o">...</span><span class="p">]</span>
 
-<p>```python
-video_id = categorical_column_with_identity(
-    key=&lsquo;video_id&rsquo;, num_buckets=1000000, default_value=0)
-columns = [embedding_column(video_id, 9),&hellip;]</p>
+<span class="n">estimator</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">DNNClassifier</span><span class="p">(</span><span class="n">feature_columns</span><span class="o">=</span><span class="n">columns</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
 
-<p>estimator = tf.estimator.DNNClassifier(feature_columns=columns, &hellip;)</p>
+<span class="n">label_column</span> <span class="o">=</span> <span class="o">...</span>
+<span class="k">def</span> <span class="nf">input_fn</span><span class="p">():</span>
+  <span class="n">features</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">parse_example</span><span class="p">(</span>
+      <span class="o">...</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="n">make_parse_example_spec</span><span class="p">(</span><span class="n">columns</span> <span class="o">+</span> <span class="p">[</span><span class="n">label_column</span><span class="p">]))</span>
+  <span class="n">labels</span> <span class="o">=</span> <span class="n">features</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">label_column</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">features</span><span class="p">,</span> <span class="n">labels</span>
 
-<p>label_column = &hellip;
-def input_fn():
-  features = tf.io.parse_example(
-      &hellip;, features=make_parse_example_spec(columns + [label_column]))
-  labels = features.pop(label_column.name)
-  return features, labels</p>
+<span class="n">estimator</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">input_fn</span><span class="o">=</span><span class="n">input_fn</span><span class="p">,</span> <span class="n">steps</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
 
-<p>estimator.train(input_fn=input_fn, steps=100)
-```</p>
 
 <p>Here is an example using <code>embedding_column</code> with model_fn:</p>
+<div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">model_fn</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="o">...</span><span class="p">):</span>
+  <span class="n">video_id</span> <span class="o">=</span> <span class="n">categorical_column_with_identity</span><span class="p">(</span>
+      <span class="n">key</span><span class="o">=</span><span class="s1">&#39;video_id&#39;</span><span class="p">,</span> <span class="n">num_buckets</span><span class="o">=</span><span class="mi">1000000</span><span class="p">,</span> <span class="n">default_value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+  <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">embedding_column</span><span class="p">(</span><span class="n">video_id</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span><span class="o">...</span><span class="p">]</span>
+  <span class="n">dense_tensor</span> <span class="o">=</span> <span class="n">input_layer</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">columns</span><span class="p">)</span>
+  <span class="c1"># Form DNN layers, calculate loss, and return EstimatorSpec.</span>
+  <span class="o">...</span>
+</pre></div>
 
-<p><code>python
-def model_fn(features, ...):
-  video_id = categorical_column_with_identity(
-      key='video_id', num_buckets=1000000, default_value=0)
-  columns = [embedding_column(video_id, 9),...]
-  dense_tensor = input_layer(features, columns)
-  # Form DNN layers, calculate loss, and return EstimatorSpec.
-  ...
-</code></p>
 
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>categorical_column</code></b>: A <code>CategoricalColumn</code> created by a
-<code>categorical_column_with_*</code> function. This column produces the sparse IDs
-that are inputs to the embedding lookup.</li>
-<li><b><code>dimension</code></b>: An integer specifying dimension of the embedding, must be > 0.</li>
+  <code>categorical_column_with_*</code> function. This column produces the sparse IDs
+  that are inputs to the embedding lookup.</li>
+<li><b><code>dimension</code></b>: An integer specifying dimension of the embedding, must be &gt; 0.</li>
 <li><b><code>combiner</code></b>: A string specifying how to reduce if there are multiple entries in
-a single row. Currently &lsquo;mean&rsquo;, &lsquo;sqrtn&rsquo; and &lsquo;sum&rsquo; are supported, with
-&lsquo;mean&rsquo; the default. &lsquo;sqrtn&rsquo; often achieves good accuracy, in particular
-with bag-of-words columns. Each of this can be thought as example level
-normalizations on the column. For more information, see
-<code>tf.embedding_lookup_sparse</code>.</li>
+  a single row. Currently 'mean', 'sqrtn' and 'sum' are supported, with
+  'mean' the default. 'sqrtn' often achieves good accuracy, in particular
+  with bag-of-words columns. Each of this can be thought as example level
+  normalizations on the column. For more information, see
+  <code>tf.embedding_lookup_sparse</code>.</li>
 <li><b><code>initializer</code></b>: A variable initializer function to be used in embedding
-variable initialization. If not specified, defaults to
-<code>truncated_normal_initializer</code> with mean <code>0.0</code> and
-standard deviation <code>1/sqrt(dimension)</code>.</li>
+  variable initialization. If not specified, defaults to
+  <code>truncated_normal_initializer</code> with mean <code>0.0</code> and
+  standard deviation <code>1/sqrt(dimension)</code>.</li>
 <li><b><code>ckpt_to_load_from</code></b>: String representing checkpoint name/pattern from which to
-restore column weights. Required if <code>tensor_name_in_ckpt</code> is not <code>None</code>.</li>
+  restore column weights. Required if <code>tensor_name_in_ckpt</code> is not <code>None</code>.</li>
 <li><b><code>tensor_name_in_ckpt</code></b>: Name of the <code>Tensor</code> in <code>ckpt_to_load_from</code> from which
-to restore the column weights. Required if <code>ckpt_to_load_from</code> is not
-<code>None</code>.</li>
+  to restore the column weights. Required if <code>ckpt_to_load_from</code> is not
+  <code>None</code>.</li>
 <li><b><code>max_norm</code></b>: If not <code>None</code>, embedding values are l2-normalized to this value.</li>
 <li><b><code>trainable</code></b>: Whether or not the embedding is trainable. Default is True.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p><code>DenseColumn</code> that converts from sparse input.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
-<li><b><code>ValueError</code></b>: if <code>dimension</code> not > 0.</li>
+<li><b><code>ValueError</code></b>: if <code>dimension</code> not &gt; 0.</li>
 <li><b><code>ValueError</code></b>: if exactly one of <code>ckpt_to_load_from</code> and <code>tensor_name_in_ckpt</code>
-is specified.</li>
+  is specified.</li>
 <li><b><code>ValueError</code></b>: if <code>initializer</code> is specified and is not callable.</li>
 <li><b><code>RuntimeError</code></b>: If eager execution is enabled.</li>
 </ul>
-
+    </body>
+    </html>
+   

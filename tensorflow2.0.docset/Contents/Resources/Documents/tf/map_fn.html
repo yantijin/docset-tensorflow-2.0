@@ -1,173 +1,143 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../default.css" rel="stylesheet">
+    <link href="
+   ../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.map_fn" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.map_fn</h1>
-
+<h1 id="tfmap_fn">tf.map_fn</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/map_fn.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>map on the list of tensors unpacked from <code>elems</code> on dimension 0.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.map_fn</code></li>
 <li><code>tf.compat.v2.map_fn</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">map_fn</span><span class="p">(</span>
+    <span class="n">fn</span><span class="p">,</span>
+    <span class="n">elems</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">parallel_iterations</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">back_prop</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">swap_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">infer_shape</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.map_fn(
-    fn,
-    elems,
-    dtype=None,
-    parallel_iterations=None,
-    back_prop=True,
-    swap_memory=False,
-    infer_shape=True,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>The simplest version of <code>map_fn</code> repeatedly applies the callable <code>fn</code> to a
 sequence of elements from first to last. The elements are made of the
 tensors unpacked from <code>elems</code>. <code>dtype</code> is the data type of the return
 value of <code>fn</code>. Users must provide <code>dtype</code> if it is different from
 the data type of <code>elems</code>.</p>
-
 <p>Suppose that <code>elems</code> is unpacked into <code>values</code>, a list of tensors. The shape
 of the result tensor is <code>[values.shape[0]] + fn(values[0]).shape</code>.</p>
-
 <p>This method also allows multi-arity <code>elems</code> and output of <code>fn</code>.  If <code>elems</code>
 is a (possibly nested) list or tuple of tensors, then each of these tensors
 must have a matching first (unpack) dimension.  The signature of <code>fn</code> may
 match the structure of <code>elems</code>.  That is, if <code>elems</code> is
 <code>(t1, [t2, t3, [t4, t5]])</code>, then an appropriate signature for <code>fn</code> is:
 <code>fn = lambda (t1, [t2, t3, [t4, t5]]):</code>.</p>
-
 <p>Furthermore, <code>fn</code> may emit a different structure than its input.  For example,
 <code>fn</code> may look like: <code>fn = lambda t1: return (t1 + 1, t1 - 1)</code>.  In this case,
 the <code>dtype</code> parameter is not optional: <code>dtype</code> must be a type or (possibly
 nested) tuple of types matching the output of <code>fn</code>.</p>
-
 <p>To apply a functional operation to the nonzero elements of a SparseTensor
 one of the following methods is recommended. First, if the function is
 expressible as TensorFlow ops, use</p>
+<div class="codehilite"><pre><span></span>  <span class="n">result</span> <span class="o">=</span> <span class="n">SparseTensor</span><span class="p">(</span><span class="nb">input</span><span class="o">.</span><span class="n">indices</span><span class="p">,</span> <span class="n">fn</span><span class="p">(</span><span class="nb">input</span><span class="o">.</span><span class="n">values</span><span class="p">),</span> <span class="nb">input</span><span class="o">.</span><span class="n">dense_shape</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-  result = SparseTensor(input.indices, fn(input.values), input.dense_shape)
-</code></p>
 
 <p>If, however, the function is not expressible as a TensorFlow op, then use</p>
+<div class="codehilite"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">SparseTensor</span><span class="p">(</span>
+  <span class="nb">input</span><span class="o">.</span><span class="n">indices</span><span class="p">,</span> <span class="n">map_fn</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="nb">input</span><span class="o">.</span><span class="n">values</span><span class="p">),</span> <span class="nb">input</span><span class="o">.</span><span class="n">dense_shape</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-result = SparseTensor(
-  input.indices, map_fn(fn, input.values), input.dense_shape)
-</code></p>
 
 <p>instead.</p>
-
 <p>When executing eagerly, map_fn does not execute in parallel even if
-<code>parallel_iterations</code> is set to a value > 1. You can still get the
+<code>parallel_iterations</code> is set to a value &gt; 1. You can still get the
 performance benefits of running a function in parallel by using the
 <code>tf.contrib.eager.defun</code> decorator,</p>
+<div class="codehilite"><pre><span></span><span class="c1"># Assume the function being used in map_fn is fn.</span>
+<span class="c1"># To ensure map_fn calls fn in parallel, use the defun decorator.</span>
+<span class="nd">@tf</span><span class="o">.</span><span class="n">contrib</span><span class="o">.</span><span class="n">eager</span><span class="o">.</span><span class="n">defun</span>
+<span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">tensor</span><span class="p">):</span>
+  <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">map_fn</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">tensor</span><span class="p">)</span>
+</pre></div>
 
-<p>```python</p>
-
-<h1>Assume the function being used in map_fn is fn.</h1>
-
-<h1>To ensure map_fn calls fn in parallel, use the defun decorator.</h1>
-
-<p>@tf.contrib.eager.defun
-def func(tensor):
-  return tf.map_fn(fn, tensor)
-```</p>
 
 <p>Note that if you use the defun decorator, any non-TensorFlow Python code
-that you may have written in your function won&rsquo;t get executed. See
+that you may have written in your function won't get executed. See
 <code>tf.contrib.eager.defun</code> for more details. The recommendation would be to
 debug without defun but switch to defun to get performance benefits of
 running map_fn in parallel.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>fn</code></b>: The callable to be performed.  It accepts one argument, which will
-have the same (possibly nested) structure as <code>elems</code>.  Its output
-must have the same structure as <code>dtype</code> if one is provided, otherwise
-it must have the same structure as <code>elems</code>.</li>
+  have the same (possibly nested) structure as <code>elems</code>.  Its output
+  must have the same structure as <code>dtype</code> if one is provided, otherwise
+  it must have the same structure as <code>elems</code>.</li>
 <li><b><code>elems</code></b>: A tensor or (possibly nested) sequence of tensors, each of which
-will be unpacked along their first dimension.  The nested sequence
-of the resulting slices will be applied to <code>fn</code>.</li>
+  will be unpacked along their first dimension.  The nested sequence
+  of the resulting slices will be applied to <code>fn</code>.</li>
 <li><b><code>dtype</code></b>: (optional) The output type(s) of <code>fn</code>.  If <code>fn</code> returns a structure
-of Tensors differing from the structure of <code>elems</code>, then <code>dtype</code> is not
-optional and must have the same structure as the output of <code>fn</code>.</li>
+  of Tensors differing from the structure of <code>elems</code>, then <code>dtype</code> is not
+  optional and must have the same structure as the output of <code>fn</code>.</li>
 <li><b><code>parallel_iterations</code></b>: (optional) The number of iterations allowed to run
-in parallel. When graph building, the default value is 10. While executing
-eagerly, the default value is set to 1.</li>
+  in parallel. When graph building, the default value is 10. While executing
+  eagerly, the default value is set to 1.</li>
 <li><b><code>back_prop</code></b>: (optional) True enables support for back propagation.</li>
 <li><b><code>swap_memory</code></b>: (optional) True enables GPU-CPU memory swapping.</li>
 <li><b><code>infer_shape</code></b>: (optional) False disables tests for consistent output shapes.</li>
 <li><b><code>name</code></b>: (optional) Name prefix for the returned tensors.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A tensor or (possibly nested) sequence of tensors.  Each tensor packs the
 results of applying <code>fn</code> to tensors unpacked from <code>elems</code> along the first
 dimension, from first to last.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>TypeError</code></b>: if <code>fn</code> is not callable or the structure of the output of
-<code>fn</code> and <code>dtype</code> do not match, or if elems is a SparseTensor.</li>
+  <code>fn</code> and <code>dtype</code> do not match, or if elems is a SparseTensor.</li>
 <li><b><code>ValueError</code></b>: if the lengths of the output of <code>fn</code> and <code>dtype</code> do not match.</li>
 </ul>
+<h4 id="examples">Examples:</h4>
+<div class="codehilite"><pre><span></span><span class="n">elems</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
+<span class="n">squares</span> <span class="o">=</span> <span class="n">map_fn</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span><span class="p">,</span> <span class="n">elems</span><span class="p">)</span>
+<span class="c1"># squares == [1, 4, 9, 16, 25, 36]</span>
+</pre></div>
 
 
-<h4>Examples:</h4>
+<div class="codehilite"><pre><span></span><span class="n">elems</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+<span class="n">alternate</span> <span class="o">=</span> <span class="n">map_fn</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">elems</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
+<span class="c1"># alternate == [-1, 2, -3]</span>
+</pre></div>
 
-<p>```python
-elems = np.array([1, 2, 3, 4, 5, 6])
-squares = map_fn(lambda x: x * x, elems)</p>
 
-<h1>squares == [1, 4, 9, 16, 25, 36]</h1>
-
-<p>```</p>
-
-<p>```python
-elems = (np.array([1, 2, 3]), np.array([-1, 1, -1]))
-alternate = map_fn(lambda x: x[0] * x[1], elems, dtype=tf.int64)</p>
-
-<h1>alternate == [-1, 2, -3]</h1>
-
-<p>```</p>
-
-<p>```python
-elems = np.array([1, 2, 3])
-alternates = map_fn(lambda x: (x, -x), elems, dtype=(tf.int64, tf.int64))</p>
-
-<h1>alternates[0] == [1, 2, 3]</h1>
-
-<h1>alternates[1] == [-1, -2, -3]</h1>
-
-<p>```</p>
+<div class="codehilite"><pre><span></span><span class="n">elems</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">alternates</span> <span class="o">=</span> <span class="n">map_fn</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="n">x</span><span class="p">),</span> <span class="n">elems</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">int64</span><span class="p">))</span>
+<span class="c1"># alternates[0] == [1, 2, 3]</span>
+<span class="c1"># alternates[1] == [-1, -2, -3]</span>
+</pre></div>
+    </body>
+    </html>
+   

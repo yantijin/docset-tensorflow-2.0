@@ -1,89 +1,78 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.losses.mean_pairwise_squared_error" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.compat.v1.losses.mean_pairwise_squared_error</h1>
-
+<h1 id="tfcompatv1lossesmean_pairwise_squared_error">tf.compat.v1.losses.mean_pairwise_squared_error</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/losses/losses_impl.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Adds a pairwise-errors-squared loss to the training procedure.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">mean_pairwise_squared_error</span><span class="p">(</span>
+    <span class="n">labels</span><span class="p">,</span>
+    <span class="n">predictions</span><span class="p">,</span>
+    <span class="n">weights</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+    <span class="n">scope</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">loss_collection</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">GraphKeys</span><span class="o">.</span><span class="n">LOSSES</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-tf.compat.v1.losses.mean_pairwise_squared_error(
-    labels,
-    predictions,
-    weights=1.0,
-    scope=None,
-    loss_collection=tf.GraphKeys.LOSSES
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>Unlike <code>mean_squared_error</code>, which is a measure of the differences between
 corresponding elements of <code>predictions</code> and <code>labels</code>,
 <code>mean_pairwise_squared_error</code> is a measure of the differences between pairs of
 corresponding elements of <code>predictions</code> and <code>labels</code>.</p>
-
 <p>For example, if <code>labels</code>=[a, b, c] and <code>predictions</code>=[x, y, z], there are
 three pairs of differences are summed to compute the loss:
   loss = [ ((a-b) - (x-y)).^2 + ((a-c) - (x-z)).^2 + ((b-c) - (y-z)).^2 ] / 3</p>
-
 <p>Note that since the inputs are of shape <code>[batch_size, d0, ... dN]</code>, the
 corresponding pairs are computed within each batch sample but not across
 samples within a batch. For example, if <code>predictions</code> represents a batch of
 16 grayscale images of dimension [batch_size, 100, 200], then the set of pairs
 is drawn from each image, but not across images.</p>
-
 <p><code>weights</code> acts as a coefficient for the loss. If a scalar is provided, then
 the loss is simply scaled by the given value. If <code>weights</code> is a tensor of size
 <code>[batch_size]</code>, then the total loss for each sample of the batch is rescaled
 by the corresponding element in the <code>weights</code> vector.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>labels</code></b>: The ground truth output tensor, whose shape must match the shape of
-<code>predictions</code>.</li>
+  <code>predictions</code>.</li>
 <li><b><code>predictions</code></b>: The predicted outputs, a tensor of size
-<code>[batch_size, d0, .. dN]</code> where N+1 is the total number of dimensions in
-<code>predictions</code>.</li>
+  <code>[batch_size, d0, .. dN]</code> where N+1 is the total number of dimensions in
+  <code>predictions</code>.</li>
 <li><b><code>weights</code></b>: Coefficients for the loss a scalar, a tensor of shape
-<code>[batch_size]</code> or a tensor whose shape matches <code>predictions</code>.</li>
+  <code>[batch_size]</code> or a tensor whose shape matches <code>predictions</code>.</li>
 <li><b><code>scope</code></b>: The scope for the operations performed in computing the loss.</li>
 <li><b><code>loss_collection</code></b>: collection to which the loss will be added.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A scalar <code>Tensor</code> that returns the weighted loss.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
-<li><b><code>ValueError</code></b>: If the shape of <code>predictions</code> doesn&rsquo;t match that of <code>labels</code> or
-if the shape of <code>weights</code> is invalid.  Also if <code>labels</code> or <code>predictions</code>
-is None.</li>
+<li><b><code>ValueError</code></b>: If the shape of <code>predictions</code> doesn't match that of <code>labels</code> or
+  if the shape of <code>weights</code> is invalid.  Also if <code>labels</code> or <code>predictions</code>
+  is None.</li>
 </ul>
-
-
-<h4>Eager Compatibility</h4>
-
+<h4 id="eager-compatibility">Eager Compatibility</h4>
 <p>The <code>loss_collection</code> argument is ignored when executing eagerly. Consider
 holding on to the return value or collecting losses via a <a href="../../../../tf/keras/Model.html"><code>tf.keras.Model</code></a>.</p>
+    </body>
+    </html>
+   

@@ -1,79 +1,70 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.signal.stft" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.signal.stft</h1>
-
+<h1 id="tfsignalstft">tf.signal.stft</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/signal/spectral_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Computes the <a href="https://en.wikipedia.org/wiki/Short-time_Fourier_transform">Short-time Fourier Transform</a> of <code>signals</code>.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.signal.stft</code></li>
 <li><code>tf.compat.v2.signal.stft</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">stft</span><span class="p">(</span>
+    <span class="n">signals</span><span class="p">,</span>
+    <span class="n">frame_length</span><span class="p">,</span>
+    <span class="n">frame_step</span><span class="p">,</span>
+    <span class="n">fft_length</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">window_fn</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">hann_window</span><span class="p">,</span>
+    <span class="n">pad_end</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.signal.stft(
-    signals,
-    frame_length,
-    frame_step,
-    fft_length=None,
-    window_fn=tf.signal.hann_window,
-    pad_end=False,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>Implemented with GPU-compatible ops and supports gradients.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>signals</code></b>: A <code>[..., samples]</code> <code>float32</code> <code>Tensor</code> of real-valued signals.</li>
 <li><b><code>frame_length</code></b>: An integer scalar <code>Tensor</code>. The window length in samples.</li>
 <li><b><code>frame_step</code></b>: An integer scalar <code>Tensor</code>. The number of samples to step.</li>
 <li><b><code>fft_length</code></b>: An integer scalar <code>Tensor</code>. The size of the FFT to apply.
-If not provided, uses the smallest power of 2 enclosing <code>frame_length</code>.</li>
+  If not provided, uses the smallest power of 2 enclosing <code>frame_length</code>.</li>
 <li><b><code>window_fn</code></b>: A callable that takes a window length and a <code>dtype</code> keyword
-argument and returns a <code>[window_length]</code> <code>Tensor</code> of samples in the
-provided datatype. If set to <code>None</code>, no windowing is used.</li>
+  argument and returns a <code>[window_length]</code> <code>Tensor</code> of samples in the
+  provided datatype. If set to <code>None</code>, no windowing is used.</li>
 <li><b><code>pad_end</code></b>: Whether to pad the end of <code>signals</code> with zeros when the provided
-frame length and step produces a frame that lies partially past its end.</li>
+  frame length and step produces a frame that lies partially past its end.</li>
 <li><b><code>name</code></b>: An optional name for the operation.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>[..., frames, fft_unique_bins]</code> <code>Tensor</code> of <code>complex64</code> STFT values where
 <code>fft_unique_bins</code> is <code>fft_length // 2 + 1</code> (the unique components of the
 FFT).</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: If <code>signals</code> is not at least rank 1, <code>frame_length</code> is
-not scalar, or <code>frame_step</code> is not scalar.</li>
+  not scalar, or <code>frame_step</code> is not scalar.</li>
 </ul>
-
+    </body>
+    </html>
+   

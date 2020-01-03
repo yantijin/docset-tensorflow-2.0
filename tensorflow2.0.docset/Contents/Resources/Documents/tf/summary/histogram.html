@@ -1,15 +1,19 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.summary.histogram" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.summary.histogram</h1>
-
+<h1 id="tfsummaryhistogram">tf.summary.histogram</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 
@@ -20,62 +24,49 @@
   </a>
 </td></table>
 
-
-
-
 <!-- Start diff -->
 
-
 <p>Write a histogram summary.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v2.summary.histogram</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">summary</span><span class="o">.</span><span class="n">histogram</span><span class="p">(</span>
+    <span class="n">name</span><span class="p">,</span>
+    <span class="n">data</span><span class="p">,</span>
+    <span class="n">step</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">buckets</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.summary.histogram(
-    name,
-    data,
-    step=None,
-    buckets=None,
-    description=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
-<h4>Arguments:</h4>
-
+<h4 id="arguments">Arguments:</h4>
 <ul>
 <li><b><code>name</code></b>: A name for this summary. The summary tag used for TensorBoard will
-be this name prefixed by any active name scopes.</li>
+  be this name prefixed by any active name scopes.</li>
 <li><b><code>data</code></b>: A <code>Tensor</code> of any shape. Must be castable to <code>float64</code>.</li>
 <li><b><code>step</code></b>: Explicit <code>int64</code>-castable monotonic step value for this summary. If
-omitted, this defaults to <a href="../../tf/summary/experimental/get_step.html"><code>tf.summary.experimental.get_step()</code></a>, which must
-not be None.</li>
+  omitted, this defaults to <a href="../../tf/summary/experimental/get_step.html"><code>tf.summary.experimental.get_step()</code></a>, which must
+  not be None.</li>
 <li><b><code>buckets</code></b>: Optional positive <code>int</code>. The output will have this
-many buckets, except in two edge cases. If there is no data, then
-there are no buckets. If there is data but all points have the
-same value, then there is one bucket whose left and right
-endpoints are the same.</li>
+  many buckets, except in two edge cases. If there is no data, then
+  there are no buckets. If there is data but all points have the
+  same value, then there is one bucket whose left and right
+  endpoints are the same.</li>
 <li><b><code>description</code></b>: Optional long-form description for this summary, as a
-constant <code>str</code>. Markdown is supported. Defaults to empty.</li>
+  constant <code>str</code>. Markdown is supported. Defaults to empty.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>True on success, or false if no summary was emitted because no default
 summary writer was available.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: if a default writer exists, but no step was provided and
-<a href="../../tf/summary/experimental/get_step.html"><code>tf.summary.experimental.get_step()</code></a> is None.</li>
+  <a href="../../tf/summary/experimental/get_step.html"><code>tf.summary.experimental.get_step()</code></a> is None.</li>
 </ul>
-
+    </body>
+    </html>
+   

@@ -1,72 +1,62 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.ragged.row_splits_to_segment_ids" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.ragged.row_splits_to_segment_ids</h1>
-
+<h1 id="tfraggedrow_splits_to_segment_ids">tf.ragged.row_splits_to_segment_ids</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/ragged/segment_id_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Generates the segmentation corresponding to a RaggedTensor <code>row_splits</code>.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.ragged.row_splits_to_segment_ids</code></li>
 <li><code>tf.compat.v2.ragged.row_splits_to_segment_ids</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">ragged</span><span class="o">.</span><span class="n">row_splits_to_segment_ids</span><span class="p">(</span>
+    <span class="n">splits</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">out_type</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.ragged.row_splits_to_segment_ids(
-    splits,
-    name=None,
-    out_type=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>Returns an integer vector <code>segment_ids</code>, where <code>segment_ids[i] == j</code> if
 <code>splits[j] &lt;= i &lt; splits[j+1]</code>.  Example:</p>
+<div class="codehilite"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">ragged</span><span class="o">.</span><span class="n">row_splits_to_segment_ids</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">])</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+<span class="p">[</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">4</span> <span class="mi">4</span> <span class="p">]</span>
+</pre></div>
 
-<p>```python</p>
 
-<blockquote><blockquote><blockquote><p>ragged.row_splits_to_segment_ids([0, 3, 3, 5, 6, 9]).eval()
-[ 0 0 0 2 2 3 4 4 4 ]
-```</p></blockquote></blockquote></blockquote>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>splits</code></b>: A sorted 1-D integer Tensor.  <code>splits[0]</code> must be zero.</li>
 <li><b><code>name</code></b>: A name prefix for the returned tensor (optional).</li>
 <li><b><code>out_type</code></b>: The dtype for the return value.  Defaults to <code>splits.dtype</code>,
-or <a href="../../tf.html#int64"><code>tf.int64</code></a> if <code>splits</code> does not have a dtype.</li>
+  or <a href="../../tf.html#int64"><code>tf.int64</code></a> if <code>splits</code> does not have a dtype.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A sorted 1-D integer Tensor, with <code>shape=[splits[-1]]</code></p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: If <code>splits</code> is invalid.</li>
 </ul>
-
+    </body>
+    </html>
+   

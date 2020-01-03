@@ -1,49 +1,45 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.image.non_max_suppression_with_scores" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.image.non_max_suppression_with_scores</h1>
-
+<h1 id="tfimagenon_max_suppression_with_scores">tf.image.non_max_suppression_with_scores</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/image_ops_impl.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Greedily selects a subset of bounding boxes in descending order of score.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.image.non_max_suppression_with_scores</code></li>
 <li><code>tf.compat.v2.image.non_max_suppression_with_scores</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">non_max_suppression_with_scores</span><span class="p">(</span>
+    <span class="n">boxes</span><span class="p">,</span>
+    <span class="n">scores</span><span class="p">,</span>
+    <span class="n">max_output_size</span><span class="p">,</span>
+    <span class="n">iou_threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">score_threshold</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="s1">&#39;-inf&#39;</span><span class="p">),</span>
+    <span class="n">soft_nms_sigma</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.image.non_max_suppression_with_scores(
-    boxes,
-    scores,
-    max_output_size,
-    iou_threshold=0.5,
-    score_threshold=float('-inf'),
-    soft_nms_sigma=0.0,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>Prunes away boxes that have high intersection-over-union (IOU) overlap
 with previously selected boxes.  Bounding boxes are supplied as
@@ -62,9 +58,7 @@ using the <a href="../../tf/gather.html"><code>tf.gather</code></a> operation.  
   selected_indices, selected_scores = tf.image.non_max_suppression_v2(
       boxes, scores, max_output_size, iou_threshold=1.0, score_threshold=0.1,
       soft_nms_sigma=0.5)
-  selected_boxes = tf.gather(boxes, selected_indices)
- </code></p>
-
+  selected_boxes = tf.gather(boxes, selected_indices)</code></p>
 <p>This function generalizes the <a href="../../tf/image/non_max_suppression.html"><code>tf.image.non_max_suppression</code></a> op by also
 supporting a Soft-NMS (with Gaussian weighting) mode (c.f.
 Bodla et al, https://arxiv.org/abs/1704.04503) where boxes reduce the score
@@ -72,41 +66,37 @@ of other overlapping boxes instead of directly causing them to be pruned.
 Consequently, in contrast to <a href="../../tf/image/non_max_suppression.html"><code>tf.image.non_max_suppression</code></a>,
 <code>tf.image.non_max_suppression_v2</code> returns the new scores of each input box in
 the second output, <code>selected_scores</code>.</p>
-
 <p>To enable this Soft-NMS mode, set the <code>soft_nms_sigma</code> parameter to be
 larger than 0.  When <code>soft_nms_sigma</code> equals 0, the behavior of
 <code>tf.image.non_max_suppression_v2</code> is identical to that of
 <a href="../../tf/image/non_max_suppression.html"><code>tf.image.non_max_suppression</code></a> (except for the extra output) both in function
 and in running time.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>boxes</code></b>: A 2-D float <code>Tensor</code> of shape <code>[num_boxes, 4]</code>.</li>
 <li><b><code>scores</code></b>: A 1-D float <code>Tensor</code> of shape <code>[num_boxes]</code> representing a single
-score corresponding to each box (each row of boxes).</li>
+  score corresponding to each box (each row of boxes).</li>
 <li><b><code>max_output_size</code></b>: A scalar integer <code>Tensor</code> representing the maximum number
-of boxes to be selected by non max suppression.</li>
+  of boxes to be selected by non max suppression.</li>
 <li><b><code>iou_threshold</code></b>: A float representing the threshold for deciding whether boxes
-overlap too much with respect to IOU.</li>
+  overlap too much with respect to IOU.</li>
 <li><b><code>score_threshold</code></b>: A float representing the threshold for deciding when to
-remove boxes based on score.</li>
+  remove boxes based on score.</li>
 <li><b><code>soft_nms_sigma</code></b>: A scalar float representing the Soft NMS sigma parameter;
-See Bodla et al, https://arxiv.org/abs/1704.04503).  When
-  <code>soft_nms_sigma=0.0</code> (which is default), we fall back to standard (hard)
-  NMS.</li>
+  See Bodla et al, https://arxiv.org/abs/1704.04503).  When
+    <code>soft_nms_sigma=0.0</code> (which is default), we fall back to standard (hard)
+    NMS.</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <ul>
 <li><b><code>selected_indices</code></b>: A 1-D integer <code>Tensor</code> of shape <code>[M]</code> representing the
-selected indices from the boxes tensor, where <code>M &lt;= max_output_size</code>.</li>
+  selected indices from the boxes tensor, where <code>M &lt;= max_output_size</code>.</li>
 <li><b><code>selected_scores</code></b>: A 1-D float tensor of shape <code>[M]</code> representing the
-corresponding scores for each selected box, where <code>M &lt;= max_output_size</code>.
-Scores only differ from corresponding input scores when using Soft NMS
-(i.e. when <code>soft_nms_sigma&gt;0</code>)</li>
+  corresponding scores for each selected box, where <code>M &lt;= max_output_size</code>.
+  Scores only differ from corresponding input scores when using Soft NMS
+  (i.e. when <code>soft_nms_sigma&gt;0</code>)</li>
 </ul>
-
+    </body>
+    </html>
+   

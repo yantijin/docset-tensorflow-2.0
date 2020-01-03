@@ -1,80 +1,71 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.data.experimental.get_single_element" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.data.experimental.get_single_element</h1>
-
+<h1 id="tfdataexperimentalget_single_element">tf.data.experimental.get_single_element</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/data/experimental/ops/get_single_element.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Returns the single element in <code>dataset</code> as a nested structure of tensors.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.data.experimental.get_single_element</code></li>
 <li><code>tf.compat.v2.data.experimental.get_single_element</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">get_single_element</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.data.experimental.get_single_element(dataset)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>This function enables you to use a <a href="../../../tf/data/Dataset.html"><code>tf.data.Dataset</code></a> in a stateless
-&ldquo;tensor-in tensor-out&rdquo; expression, without creating a
+"tensor-in tensor-out" expression, without creating a
 <a href="../../../tf/compat/v1/data/Iterator.html"><code>tf.compat.v1.data.Iterator</code></a>.
 This can be useful when your preprocessing transformations are expressed
 as a <code>Dataset</code>, and you want to use the transformation at serving time.
 For example:</p>
+<div class="codehilite"><pre><span></span><span class="n">input_batch</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">string</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">[</span><span class="n">BATCH_SIZE</span><span class="p">])</span>
 
-<p>```python
-input_batch = tf.compat.v1.placeholder(tf.string, shape=[BATCH_SIZE])</p>
+<span class="k">def</span> <span class="nf">preprocessing_fn</span><span class="p">(</span><span class="n">input_str</span><span class="p">):</span>
+  <span class="c1"># ...</span>
+  <span class="k">return</span> <span class="n">image</span><span class="p">,</span> <span class="n">label</span>
 
-<p>def preprocessing_fn(input_str):
-  # &hellip;
-  return image, label</p>
+<span class="n">dataset</span> <span class="o">=</span> <span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">from_tensor_slices</span><span class="p">(</span><span class="n">input_batch</span><span class="p">)</span>
+           <span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">preprocessing_fn</span><span class="p">,</span> <span class="n">num_parallel_calls</span><span class="o">=</span><span class="n">BATCH_SIZE</span><span class="p">)</span>
+           <span class="o">.</span><span class="n">batch</span><span class="p">(</span><span class="n">BATCH_SIZE</span><span class="p">))</span>
 
-<p>dataset = (tf.data.Dataset.from_tensor_slices(input_batch)
-           .map(preprocessing_fn, num_parallel_calls=BATCH_SIZE)
-           .batch(BATCH_SIZE))</p>
+<span class="n">image_batch</span><span class="p">,</span> <span class="n">label_batch</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">get_single_element</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+</pre></div>
 
-<p>image_batch, label_batch = tf.data.experimental.get_single_element(dataset)
-```</p>
 
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>dataset</code></b>: A <a href="../../../tf/data/Dataset.html"><code>tf.data.Dataset</code></a> object containing a single element.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A nested structure of <a href="../../../tf/Tensor.html"><code>tf.Tensor</code></a> objects, corresponding to the single
 element of <code>dataset</code>.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>TypeError</code></b>: if <code>dataset</code> is not a <a href="../../../tf/data/Dataset.html"><code>tf.data.Dataset</code></a> object.
 InvalidArgumentError (at runtime): if <code>dataset</code> does not contain exactly
-one element.</li>
+  one element.</li>
 </ul>
-
+    </body>
+    </html>
+   

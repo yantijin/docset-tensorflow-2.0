@@ -1,59 +1,54 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.losses.softmax_cross_entropy" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.compat.v1.losses.softmax_cross_entropy</h1>
-
+<h1 id="tfcompatv1lossessoftmax_cross_entropy">tf.compat.v1.losses.softmax_cross_entropy</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/losses/losses_impl.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Creates a cross-entropy loss using tf.nn.softmax_cross_entropy_with_logits_v2.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">softmax_cross_entropy</span><span class="p">(</span>
+    <span class="n">onehot_labels</span><span class="p">,</span>
+    <span class="n">logits</span><span class="p">,</span>
+    <span class="n">weights</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+    <span class="n">label_smoothing</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">scope</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">loss_collection</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">GraphKeys</span><span class="o">.</span><span class="n">LOSSES</span><span class="p">,</span>
+    <span class="n">reduction</span><span class="o">=</span><span class="n">Reduction</span><span class="o">.</span><span class="n">SUM_BY_NONZERO_WEIGHTS</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-tf.compat.v1.losses.softmax_cross_entropy(
-    onehot_labels,
-    logits,
-    weights=1.0,
-    label_smoothing=0,
-    scope=None,
-    loss_collection=tf.GraphKeys.LOSSES,
-    reduction=Reduction.SUM_BY_NONZERO_WEIGHTS
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p><code>weights</code> acts as a coefficient for the loss. If a scalar is provided,
 then the loss is simply scaled by the given value. If <code>weights</code> is a
 tensor of shape <code>[batch_size]</code>, then the loss weights apply to each
 corresponding sample.</p>
-
 <p>If <code>label_smoothing</code> is nonzero, smooth the labels towards 1/num_classes:
     new_onehot_labels = onehot_labels * (1 - label_smoothing)
                         + label_smoothing / num_classes</p>
-
 <p>Note that <code>onehot_labels</code> and <code>logits</code> must have the same shape,
 e.g. <code>[batch_size, num_classes]</code>. The shape of <code>weights</code> must be
 broadcastable to loss, whose shape is decided by the shape of <code>logits</code>.
 In case the shape of <code>logits</code> is <code>[batch_size, num_classes]</code>, loss is
 a <code>Tensor</code> of shape <code>[batch_size]</code>.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>onehot_labels</code></b>: One-hot-encoded labels.</li>
 <li><b><code>logits</code></b>: Logits outputs of the network.</li>
@@ -63,23 +58,18 @@ a <code>Tensor</code> of shape <code>[batch_size]</code>.</p>
 <li><b><code>loss_collection</code></b>: collection to which the loss will be added.</li>
 <li><b><code>reduction</code></b>: Type of reduction to apply to loss.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>Weighted loss <code>Tensor</code> of the same type as <code>logits</code>. If <code>reduction</code> is
 <code>NONE</code>, this has shape <code>[batch_size]</code>; otherwise, it is scalar.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
-<li><b><code>ValueError</code></b>: If the shape of <code>logits</code> doesn&rsquo;t match that of <code>onehot_labels</code>
-or if the shape of <code>weights</code> is invalid or if <code>weights</code> is None.  Also if
-<code>onehot_labels</code> or <code>logits</code> is None.</li>
+<li><b><code>ValueError</code></b>: If the shape of <code>logits</code> doesn't match that of <code>onehot_labels</code>
+  or if the shape of <code>weights</code> is invalid or if <code>weights</code> is None.  Also if
+  <code>onehot_labels</code> or <code>logits</code> is None.</li>
 </ul>
-
-
-<h4>Eager Compatibility</h4>
-
+<h4 id="eager-compatibility">Eager Compatibility</h4>
 <p>The <code>loss_collection</code> argument is ignored when executing eagerly. Consider
 holding on to the return value or collecting losses via a <a href="../../../../tf/keras/Model.html"><code>tf.keras.Model</code></a>.</p>
+    </body>
+    </html>
+   

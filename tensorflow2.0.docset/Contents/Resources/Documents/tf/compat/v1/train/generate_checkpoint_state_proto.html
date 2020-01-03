@@ -1,68 +1,63 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.train.generate_checkpoint_state_proto" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.compat.v1.train.generate_checkpoint_state_proto</h1>
-
+<h1 id="tfcompatv1traingenerate_checkpoint_state_proto">tf.compat.v1.train.generate_checkpoint_state_proto</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/training/checkpoint_management.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Generates a checkpoint state proto.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">generate_checkpoint_state_proto</span><span class="p">(</span>
+    <span class="n">save_dir</span><span class="p">,</span>
+    <span class="n">model_checkpoint_path</span><span class="p">,</span>
+    <span class="n">all_model_checkpoint_paths</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">all_model_checkpoint_timestamps</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">last_preserved_timestamp</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-tf.compat.v1.train.generate_checkpoint_state_proto(
-    save_dir,
-    model_checkpoint_path,
-    all_model_checkpoint_paths=None,
-    all_model_checkpoint_timestamps=None,
-    last_preserved_timestamp=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>save_dir</code></b>: Directory where the model was saved.</li>
 <li><b><code>model_checkpoint_path</code></b>: The checkpoint file.</li>
 <li><b><code>all_model_checkpoint_paths</code></b>: List of strings.  Paths to all not-yet-deleted
-checkpoints, sorted from oldest to newest.  If this is a non-empty list,
-the last element must be equal to model_checkpoint_path.  These paths
-are also saved in the CheckpointState proto.</li>
+  checkpoints, sorted from oldest to newest.  If this is a non-empty list,
+  the last element must be equal to model_checkpoint_path.  These paths
+  are also saved in the CheckpointState proto.</li>
 <li><b><code>all_model_checkpoint_timestamps</code></b>: A list of floats, indicating the number of
-seconds since the Epoch when each checkpoint was generated.</li>
+  seconds since the Epoch when each checkpoint was generated.</li>
 <li><b><code>last_preserved_timestamp</code></b>: A float, indicating the number of seconds since
-the Epoch when the last preserved checkpoint was written, e.g. due to a
-<code>keep_checkpoint_every_n_hours</code> parameter (see
-<code>tf.contrib.checkpoint.CheckpointManager</code> for an implementation).</li>
+  the Epoch when the last preserved checkpoint was written, e.g. due to a
+  <code>keep_checkpoint_every_n_hours</code> parameter (see
+  <code>tf.contrib.checkpoint.CheckpointManager</code> for an implementation).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>CheckpointState proto with model_checkpoint_path and
 all_model_checkpoint_paths updated to either absolute paths or
 relative paths to the current save_dir.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: If <code>all_model_checkpoint_timestamps</code> was provided but its length
-does not match <code>all_model_checkpoint_paths</code>.</li>
+  does not match <code>all_model_checkpoint_paths</code>.</li>
 </ul>
-
+    </body>
+    </html>
+   

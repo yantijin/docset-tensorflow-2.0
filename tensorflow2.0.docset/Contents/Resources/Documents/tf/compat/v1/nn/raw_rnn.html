@@ -1,179 +1,166 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.nn.raw_rnn" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.compat.v1.nn.raw_rnn</h1>
-
+<h1 id="tfcompatv1nnraw_rnn">tf.compat.v1.nn.raw_rnn</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/rnn.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Creates an <code>RNN</code> specified by RNNCell <code>cell</code> and loop function <code>loop_fn</code>.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">raw_rnn</span><span class="p">(</span>
+    <span class="n">cell</span><span class="p">,</span>
+    <span class="n">loop_fn</span><span class="p">,</span>
+    <span class="n">parallel_iterations</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">swap_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">scope</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-tf.compat.v1.nn.raw_rnn(
-    cell,
-    loop_fn,
-    parallel_iterations=None,
-    swap_memory=False,
-    scope=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p><strong>NOTE: This method is still in testing, and the API may change.</strong></p>
-
 <p>This function is a more primitive version of <code>dynamic_rnn</code> that provides
 more direct access to the inputs each iteration.  It also provides more
 control over when to start and finish reading the sequence, and
 what to emit for the output.</p>
-
 <p>For example, it can be used to implement the dynamic decoder of a seq2seq
 model.</p>
-
 <p>Instead of working with <code>Tensor</code> objects, most operations work with
 <code>TensorArray</code> objects directly.</p>
-
 <p>The operation of <code>raw_rnn</code>, in pseudo-code, is basically the following:</p>
+<div class="codehilite"><pre><span></span><span class="n">time</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+<span class="p">(</span><span class="n">finished</span><span class="p">,</span> <span class="n">next_input</span><span class="p">,</span> <span class="n">initial_state</span><span class="p">,</span> <span class="n">emit_structure</span><span class="p">,</span> <span class="n">loop_state</span><span class="p">)</span> <span class="o">=</span> <span class="n">loop_fn</span><span class="p">(</span>
+    <span class="n">time</span><span class="o">=</span><span class="n">time</span><span class="p">,</span> <span class="n">cell_output</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cell_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">loop_state</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">emit_ta</span> <span class="o">=</span> <span class="n">TensorArray</span><span class="p">(</span><span class="n">dynamic_size</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">initial_state</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+<span class="n">state</span> <span class="o">=</span> <span class="n">initial_state</span>
+<span class="k">while</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="n">finished</span><span class="p">):</span>
+  <span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">cell_state</span><span class="p">)</span> <span class="o">=</span> <span class="n">cell</span><span class="p">(</span><span class="n">next_input</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span>
+  <span class="p">(</span><span class="n">next_finished</span><span class="p">,</span> <span class="n">next_input</span><span class="p">,</span> <span class="n">next_state</span><span class="p">,</span> <span class="n">emit</span><span class="p">,</span> <span class="n">loop_state</span><span class="p">)</span> <span class="o">=</span> <span class="n">loop_fn</span><span class="p">(</span>
+      <span class="n">time</span><span class="o">=</span><span class="n">time</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">cell_output</span><span class="o">=</span><span class="n">output</span><span class="p">,</span> <span class="n">cell_state</span><span class="o">=</span><span class="n">cell_state</span><span class="p">,</span>
+      <span class="n">loop_state</span><span class="o">=</span><span class="n">loop_state</span><span class="p">)</span>
+  <span class="c1"># Emit zeros and copy forward state for minibatch entries that are finished.</span>
+  <span class="n">state</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">finished</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">next_state</span><span class="p">)</span>
+  <span class="n">emit</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">finished</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">emit_structure</span><span class="p">),</span> <span class="n">emit</span><span class="p">)</span>
+  <span class="n">emit_ta</span> <span class="o">=</span> <span class="n">emit_ta</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">emit</span><span class="p">)</span>
+  <span class="c1"># If any new minibatch entries are marked as finished, mark these.</span>
+  <span class="n">finished</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">logical_or</span><span class="p">(</span><span class="n">finished</span><span class="p">,</span> <span class="n">next_finished</span><span class="p">)</span>
+  <span class="n">time</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="k">return</span> <span class="p">(</span><span class="n">emit_ta</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">loop_state</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-time = tf.constant(0, dtype=tf.int32)
-(finished, next_input, initial_state, emit_structure, loop_state) = loop_fn(
-    time=time, cell_output=None, cell_state=None, loop_state=None)
-emit_ta = TensorArray(dynamic_size=True, dtype=initial_state.dtype)
-state = initial_state
-while not all(finished):
-  (output, cell_state) = cell(next_input, state)
-  (next_finished, next_input, next_state, emit, loop_state) = loop_fn(
-      time=time + 1, cell_output=output, cell_state=cell_state,
-      loop_state=loop_state)
-  # Emit zeros and copy forward state for minibatch entries that are finished.
-  state = tf.where(finished, state, next_state)
-  emit = tf.where(finished, tf.zeros_like(emit_structure), emit)
-  emit_ta = emit_ta.write(time, emit)
-  # If any new minibatch entries are marked as finished, mark these.
-  finished = tf.logical_or(finished, next_finished)
-  time += 1
-return (emit_ta, state, loop_state)
-</code></p>
 
 <p>with the additional properties that output and state may be (possibly nested)
 tuples, as determined by <code>cell.output_size</code> and <code>cell.state_size</code>, and
 as a result the final <code>state</code> and <code>emit_ta</code> may themselves be tuples.</p>
-
 <p>A simple implementation of <code>dynamic_rnn</code> via <code>raw_rnn</code> looks like this:</p>
+<div class="codehilite"><pre><span></span><span class="n">inputs</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">max_time</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">input_depth</span><span class="p">),</span>
+                        <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">sequence_length</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,),</span>
+<span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+<span class="n">inputs_ta</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">TensorArray</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">max_time</span><span class="p">)</span>
+<span class="n">inputs_ta</span> <span class="o">=</span> <span class="n">inputs_ta</span><span class="o">.</span><span class="n">unstack</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
 
-<p>```python
-inputs = tf.compat.v1.placeholder(shape=(max_time, batch_size, input_depth),
-                        dtype=tf.float32)
-sequence_length = tf.compat.v1.placeholder(shape=(batch_size,),
-dtype=tf.int32)
-inputs_ta = tf.TensorArray(dtype=tf.float32, size=max_time)
-inputs_ta = inputs_ta.unstack(inputs)</p>
+<span class="n">cell</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">rnn_cell</span><span class="o">.</span><span class="n">LSTMCell</span><span class="p">(</span><span class="n">num_units</span><span class="p">)</span>
 
-<p>cell = tf.compat.v1.nn.rnn_cell.LSTMCell(num_units)</p>
+<span class="k">def</span> <span class="nf">loop_fn</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">cell_output</span><span class="p">,</span> <span class="n">cell_state</span><span class="p">,</span> <span class="n">loop_state</span><span class="p">):</span>
+  <span class="n">emit_output</span> <span class="o">=</span> <span class="n">cell_output</span>  <span class="c1"># == None for time == 0</span>
+  <span class="k">if</span> <span class="n">cell_output</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># time == 0</span>
+    <span class="n">next_cell_state</span> <span class="o">=</span> <span class="n">cell</span><span class="o">.</span><span class="n">zero_state</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="n">next_cell_state</span> <span class="o">=</span> <span class="n">cell_state</span>
+  <span class="n">elements_finished</span> <span class="o">=</span> <span class="p">(</span><span class="n">time</span> <span class="o">&gt;=</span> <span class="n">sequence_length</span><span class="p">)</span>
+  <span class="n">finished</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_all</span><span class="p">(</span><span class="n">elements_finished</span><span class="p">)</span>
+  <span class="n">next_input</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span>
+      <span class="n">finished</span><span class="p">,</span>
+      <span class="k">lambda</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">input_depth</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span>
+      <span class="k">lambda</span><span class="p">:</span> <span class="n">inputs_ta</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">time</span><span class="p">))</span>
+  <span class="n">next_loop_state</span> <span class="o">=</span> <span class="kc">None</span>
+  <span class="k">return</span> <span class="p">(</span><span class="n">elements_finished</span><span class="p">,</span> <span class="n">next_input</span><span class="p">,</span> <span class="n">next_cell_state</span><span class="p">,</span>
+          <span class="n">emit_output</span><span class="p">,</span> <span class="n">next_loop_state</span><span class="p">)</span>
 
-<p>def loop_fn(time, cell_output, cell_state, loop_state):
-  emit_output = cell_output  # == None for time == 0
-  if cell_output is None:  # time == 0
-    next_cell_state = cell.zero_state(batch_size, tf.float32)
-  else:
-    next_cell_state = cell_state
-  elements_finished = (time >= sequence_length)
-  finished = tf.reduce_all(elements_finished)
-  next_input = tf.cond(
-      finished,
-      lambda: tf.zeros([batch_size, input_depth], dtype=tf.float32),
-      lambda: inputs_ta.read(time))
-  next_loop_state = None
-  return (elements_finished, next_input, next_cell_state,
-          emit_output, next_loop_state)</p>
+<span class="n">outputs_ta</span><span class="p">,</span> <span class="n">final_state</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">raw_rnn</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="n">loop_fn</span><span class="p">)</span>
+<span class="n">outputs</span> <span class="o">=</span> <span class="n">outputs_ta</span><span class="o">.</span><span class="n">stack</span><span class="p">()</span>
+</pre></div>
 
-<p>outputs_ta, final_state, _ = raw_rnn(cell, loop_fn)
-outputs = outputs_ta.stack()
-```</p>
 
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>cell</code></b>: An instance of RNNCell.</li>
 <li><b><code>loop_fn</code></b>: A callable that takes inputs <code>(time, cell_output, cell_state,
-loop_state)</code> and returns the tuple <code>(finished, next_input,
-next_cell_state, emit_output, next_loop_state)</code>. Here <code>time</code> is an int32
-scalar <code>Tensor</code>, <code>cell_output</code> is a <code>Tensor</code> or (possibly nested) tuple of
-tensors as determined by <code>cell.output_size</code>, and <code>cell_state</code> is a
-<code>Tensor</code> or (possibly nested) tuple of tensors, as determined by the
-<code>loop_fn</code> on its first call (and should match <code>cell.state_size</code>).
-The outputs are: <code>finished</code>, a boolean <code>Tensor</code> of
-shape <code>[batch_size]</code>, <code>next_input</code>: the next input to feed to <code>cell</code>,
-<code>next_cell_state</code>: the next state to feed to <code>cell</code>,
-and <code>emit_output</code>: the output to store for this iteration.  Note that
-  <code>emit_output</code> should be a <code>Tensor</code> or (possibly nested) tuple of tensors
-  which is aggregated in the <code>emit_ta</code> inside the <code>while_loop</code>. For the
-  first call to <code>loop_fn</code>, the <code>emit_output</code> corresponds to the
-  <code>emit_structure</code> which is then used to determine the size of the
-  <code>zero_tensor</code> for the <code>emit_ta</code> (defaults to <code>cell.output_size</code>). For
-  the subsequent calls to the <code>loop_fn</code>, the <code>emit_output</code> corresponds to
-  the actual output tensor that is to be aggregated in the <code>emit_ta</code>. The
-  parameter <code>cell_state</code> and output <code>next_cell_state</code> may be either a
-  single or (possibly nested) tuple of tensors.  The parameter
-  <code>loop_state</code> and output <code>next_loop_state</code> may be either a single or
-  (possibly nested) tuple of <code>Tensor</code> and <code>TensorArray</code> objects.  This
-  last parameter may be ignored by <code>loop_fn</code> and the return value may be
-  <code>None</code>.  If it is not <code>None</code>, then the <code>loop_state</code> will be propagated
-  through the RNN loop, for use purely by <code>loop_fn</code> to keep track of its
-  own state. The <code>next_loop_state</code> parameter returned may be <code>None</code>.  The
-  first call to <code>loop_fn</code> will be <code>time = 0</code>, <code>cell_output = None</code>,
-<code>cell_state = None</code>, and <code>loop_state = None</code>.  For this call: The
-  <code>next_cell_state</code> value should be the value with which to initialize the
-  cell&rsquo;s state.  It may be a final state from a previous RNN or it may be
-  the output of <code>cell.zero_state()</code>.  It should be a (possibly nested)
-  tuple structure of tensors. If <code>cell.state_size</code> is an integer, this
-  must be a <code>Tensor</code> of appropriate type and shape <code>[batch_size,
-  cell.state_size]</code>. If <code>cell.state_size</code> is a <code>TensorShape</code>, this must be
-  a <code>Tensor</code> of appropriate type and shape <code>[batch_size] +
-  cell.state_size</code>. If <code>cell.state_size</code> is a (possibly nested) tuple of
-  ints or <code>TensorShape</code>, this will be a tuple having the corresponding
-  shapes. The <code>emit_output</code> value may be either <code>None</code> or a (possibly
-  nested) tuple structure of tensors, e.g., <code>(tf.zeros(shape_0,
-  dtype=dtype_0), tf.zeros(shape_1, dtype=dtype_1))</code>. If this first
-  <code>emit_output</code> return value is <code>None</code>, then the <code>emit_ta</code> result of
-  <code>raw_rnn</code> will have the same structure and dtypes as <code>cell.output_size</code>.
-  Otherwise <code>emit_ta</code> will have the same structure, shapes (prepended with
-  a <code>batch_size</code> dimension), and dtypes as <code>emit_output</code>.  The actual
-  values returned for <code>emit_output</code> at this initializing call are ignored.
-  Note, this emit structure must be consistent across all time steps.</li>
+  loop_state)</code> and returns the tuple <code>(finished, next_input,
+  next_cell_state, emit_output, next_loop_state)</code>. Here <code>time</code> is an int32
+  scalar <code>Tensor</code>, <code>cell_output</code> is a <code>Tensor</code> or (possibly nested) tuple of
+  tensors as determined by <code>cell.output_size</code>, and <code>cell_state</code> is a
+  <code>Tensor</code> or (possibly nested) tuple of tensors, as determined by the
+  <code>loop_fn</code> on its first call (and should match <code>cell.state_size</code>).
+  The outputs are: <code>finished</code>, a boolean <code>Tensor</code> of
+  shape <code>[batch_size]</code>, <code>next_input</code>: the next input to feed to <code>cell</code>,
+  <code>next_cell_state</code>: the next state to feed to <code>cell</code>,
+  and <code>emit_output</code>: the output to store for this iteration.  Note that
+    <code>emit_output</code> should be a <code>Tensor</code> or (possibly nested) tuple of tensors
+    which is aggregated in the <code>emit_ta</code> inside the <code>while_loop</code>. For the
+    first call to <code>loop_fn</code>, the <code>emit_output</code> corresponds to the
+    <code>emit_structure</code> which is then used to determine the size of the
+    <code>zero_tensor</code> for the <code>emit_ta</code> (defaults to <code>cell.output_size</code>). For
+    the subsequent calls to the <code>loop_fn</code>, the <code>emit_output</code> corresponds to
+    the actual output tensor that is to be aggregated in the <code>emit_ta</code>. The
+    parameter <code>cell_state</code> and output <code>next_cell_state</code> may be either a
+    single or (possibly nested) tuple of tensors.  The parameter
+    <code>loop_state</code> and output <code>next_loop_state</code> may be either a single or
+    (possibly nested) tuple of <code>Tensor</code> and <code>TensorArray</code> objects.  This
+    last parameter may be ignored by <code>loop_fn</code> and the return value may be
+    <code>None</code>.  If it is not <code>None</code>, then the <code>loop_state</code> will be propagated
+    through the RNN loop, for use purely by <code>loop_fn</code> to keep track of its
+    own state. The <code>next_loop_state</code> parameter returned may be <code>None</code>.  The
+    first call to <code>loop_fn</code> will be <code>time = 0</code>, <code>cell_output = None</code>,
+  <code>cell_state = None</code>, and <code>loop_state = None</code>.  For this call: The
+    <code>next_cell_state</code> value should be the value with which to initialize the
+    cell's state.  It may be a final state from a previous RNN or it may be
+    the output of <code>cell.zero_state()</code>.  It should be a (possibly nested)
+    tuple structure of tensors. If <code>cell.state_size</code> is an integer, this
+    must be a <code>Tensor</code> of appropriate type and shape <code>[batch_size,
+    cell.state_size]</code>. If <code>cell.state_size</code> is a <code>TensorShape</code>, this must be
+    a <code>Tensor</code> of appropriate type and shape <code>[batch_size] +
+    cell.state_size</code>. If <code>cell.state_size</code> is a (possibly nested) tuple of
+    ints or <code>TensorShape</code>, this will be a tuple having the corresponding
+    shapes. The <code>emit_output</code> value may be either <code>None</code> or a (possibly
+    nested) tuple structure of tensors, e.g., <code>(tf.zeros(shape_0,
+    dtype=dtype_0), tf.zeros(shape_1, dtype=dtype_1))</code>. If this first
+    <code>emit_output</code> return value is <code>None</code>, then the <code>emit_ta</code> result of
+    <code>raw_rnn</code> will have the same structure and dtypes as <code>cell.output_size</code>.
+    Otherwise <code>emit_ta</code> will have the same structure, shapes (prepended with
+    a <code>batch_size</code> dimension), and dtypes as <code>emit_output</code>.  The actual
+    values returned for <code>emit_output</code> at this initializing call are ignored.
+    Note, this emit structure must be consistent across all time steps.</li>
 <li><b><code>parallel_iterations</code></b>: (Default: 32).  The number of iterations to run in
-parallel.  Those operations which do not have any temporal dependency and
-can be run in parallel, will be.  This parameter trades off time for
-space.  Values >> 1 use more memory but take less time, while smaller
-values use less memory but computations take longer.</li>
+  parallel.  Those operations which do not have any temporal dependency and
+  can be run in parallel, will be.  This parameter trades off time for
+  space.  Values &gt;&gt; 1 use more memory but take less time, while smaller
+  values use less memory but computations take longer.</li>
 <li><b><code>swap_memory</code></b>: Transparently swap the tensors produced in forward inference
-but needed for back prop from GPU to CPU.  This allows training RNNs which
-would typically not fit on a single GPU, with very minimal (or no)
-performance penalty.</li>
-<li><b><code>scope</code></b>: VariableScope for the created subgraph; defaults to &ldquo;rnn&rdquo;.</li>
+  but needed for back prop from GPU to CPU.  This allows training RNNs which
+  would typically not fit on a single GPU, with very minimal (or no)
+  performance penalty.</li>
+<li><b><code>scope</code></b>: VariableScope for the created subgraph; defaults to "rnn".</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A tuple <code>(emit_ta, final_state, final_loop_state)</code> where:</p>
-
 <p><code>emit_ta</code>: The RNN output <code>TensorArray</code>.
    If <code>loop_fn</code> returns a (possibly nested) set of Tensors for
    <code>emit_output</code> during initialization, (inputs <code>time = 0</code>,
@@ -185,19 +172,17 @@ performance penalty.</li>
    or <code>TensorShape</code> objects, then <code>emit_ta</code> will be a tuple having the
    same structure as <code>cell.output_size</code>, containing TensorArrays whose
    elements' shapes correspond to the shape data in <code>cell.output_size</code>.</p>
-
 <p><code>final_state</code>: The final cell state.  If <code>cell.state_size</code> is an int, this
   will be shaped <code>[batch_size, cell.state_size]</code>.  If it is a
   <code>TensorShape</code>, this will be shaped <code>[batch_size] + cell.state_size</code>.
   If it is a (possibly nested) tuple of ints or <code>TensorShape</code>, this will
   be a tuple having the corresponding shapes.</p>
-
 <p><code>final_loop_state</code>: The final loop state as returned by <code>loop_fn</code>.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>TypeError</code></b>: If <code>cell</code> is not an instance of RNNCell, or <code>loop_fn</code> is not
-a <code>callable</code>.</li>
+  a <code>callable</code>.</li>
 </ul>
-
+    </body>
+    </html>
+   

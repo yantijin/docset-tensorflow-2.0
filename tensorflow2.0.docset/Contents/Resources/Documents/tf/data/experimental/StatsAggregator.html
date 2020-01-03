@@ -1,76 +1,68 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.data.experimental.StatsAggregator" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="__init__"/>
 </div>
 
-
-<h1>tf.data.experimental.StatsAggregator</h1>
-
+<h1 id="tfdataexperimentalstatsaggregator">tf.data.experimental.StatsAggregator</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/data/experimental/ops/stats_aggregator.py">View source</a></p>
-
-<h2>Class <code>StatsAggregator</code></h2>
-
+<h2 id="class-statsaggregator">Class <code>StatsAggregator</code></h2>
 <!-- Start diff -->
 
-
 <p>A stateful resource that aggregates statistics from one or more iterators.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li>Class <code>tf.compat.v2.data.experimental.StatsAggregator</code></li>
 </ul>
-
-
 <!-- Placeholder for "Used in" -->
-
 
 <p>To record statistics, use one of the custom transformation functions defined
 in this module when defining your <a href="../../../tf/data/Dataset.html"><code>tf.data.Dataset</code></a>. All statistics will be
 aggregated by the <code>StatsAggregator</code> that is associated with a particular
 iterator (see below). For example, to record the latency of producing each
 element by iterating over a dataset:</p>
+<div class="codehilite"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="o">...</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">latency_stats</span><span class="p">(</span><span class="s2">&quot;total_bytes&quot;</span><span class="p">))</span>
+</pre></div>
 
-<p><code>python
-dataset = ...
-dataset = dataset.apply(tf.data.experimental.latency_stats("total_bytes"))
-</code></p>
 
 <p>To associate a <code>StatsAggregator</code> with a <a href="../../../tf/data/Dataset.html"><code>tf.data.Dataset</code></a> object, use
 the following pattern:</p>
+<div class="codehilite"><pre><span></span><span class="n">aggregator</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">StatsAggregator</span><span class="p">()</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="o">...</span>
 
-<p>```python
-aggregator = tf.data.experimental.StatsAggregator()
-dataset = &hellip;</p>
+<span class="c1"># Apply `StatsOptions` to associate `dataset` with `aggregator`.</span>
+<span class="n">options</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Options</span><span class="p">()</span>
+<span class="n">options</span><span class="o">.</span><span class="n">experimental_stats</span><span class="o">.</span><span class="n">aggregator</span> <span class="o">=</span> <span class="n">aggregator</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">with_options</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
+</pre></div>
 
-<h1>Apply <code>StatsOptions</code> to associate <code>dataset</code> with <code>aggregator</code>.</h1>
-
-<p>options = tf.data.Options()
-options.experimental_stats.aggregator = aggregator
-dataset = dataset.with_options(options)
-```</p>
 
 <p>Note: This interface is experimental and expected to change. In particular,
 we expect to add other implementations of <code>StatsAggregator</code> that provide
 different ways of exporting statistics, and add more types of statistics.</p>
-
 <h2 id="__init__"><code>__init__</code></h2>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/data/experimental/ops/stats_aggregator.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-__init__()
-</code></p>
 
 <p>Initialize self.  See help(type(self)) for accurate signature.</p>
+    </body>
+    </html>
+   

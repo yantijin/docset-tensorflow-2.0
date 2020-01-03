@@ -1,81 +1,69 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.debugging.assert_less_equal" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.debugging.assert_less_equal</h1>
-
+<h1 id="tfdebuggingassert_less_equal">tf.debugging.assert_less_equal</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/check_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Assert the condition <code>x &lt;= y</code> holds element-wise.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v2.debugging.assert_less_equal</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">debugging</span><span class="o">.</span><span class="n">assert_less_equal</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">,</span>
+    <span class="n">message</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">summarize</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.debugging.assert_less_equal(
-    x,
-    y,
-    message=None,
-    summarize=None,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>This Op checks that <code>x[i] &lt;= y[i]</code> holds for every pair of (possibly
 broadcast) elements of <code>x</code> and <code>y</code>. If both <code>x</code> and <code>y</code> are empty, this is
 trivially satisfied.</p>
-
 <p>If <code>x</code> is not less or equal than <code>y</code> element-wise, <code>message</code>, as well as the
 first <code>summarize</code> entries of <code>x</code> and <code>y</code> are printed, and
 <code>InvalidArgumentError</code> is raised.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>x</code></b>:  Numeric <code>Tensor</code>.</li>
 <li><b><code>y</code></b>:  Numeric <code>Tensor</code>, same dtype as and broadcastable to <code>x</code>.</li>
 <li><b><code>message</code></b>: A string to prefix to the default message.</li>
 <li><b><code>summarize</code></b>: Print this many entries of each tensor.</li>
-<li><b><code>name</code></b>: A name for this operation (optional). Defaults to &ldquo;assert_less_equal&rdquo;.</li>
+<li><b><code>name</code></b>: A name for this operation (optional). Defaults to "assert_less_equal".</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>Op that raises <code>InvalidArgumentError</code> if <code>x &lt;= y</code> is False. This can be
   used with <a href="../../tf/control_dependencies.html"><code>tf.control_dependencies</code></a> inside of <a href="../../tf/function.html"><code>tf.function</code></a>s to block
   followup computation until the check has executed.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>InvalidArgumentError</code></b>: if the check can be performed immediately and
-<code>x &lt;= y</code> is False. The check can be performed immediately during eager
-execution or if <code>x</code> and <code>y</code> are statically known.</li>
+  <code>x &lt;= y</code> is False. The check can be performed immediately during eager
+  execution or if <code>x</code> and <code>y</code> are statically known.</li>
 </ul>
-
-
-<h4>Eager Compatibility</h4>
-
+<h4 id="eager-compatibility">Eager Compatibility</h4>
 <p>returns None</p>
+    </body>
+    </html>
+   

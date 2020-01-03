@@ -1,199 +1,176 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.gather_nd" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.compat.v1.gather_nd</h1>
-
+<h1 id="tfcompatv1gather_nd">tf.compat.v1.gather_nd</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/array_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Gather slices from <code>params</code> into a Tensor with shape specified by <code>indices</code>.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.manip.gather_nd</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">gather_nd</span><span class="p">(</span>
+    <span class="n">params</span><span class="p">,</span>
+    <span class="n">indices</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">batch_dims</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.compat.v1.gather_nd(
-    params,
-    indices,
-    name=None,
-    batch_dims=0
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p><code>indices</code> is an K-dimensional integer tensor, best thought of as a
 (K-1)-dimensional tensor of indices into <code>params</code>, where each element defines
 a slice of <code>params</code>:</p>
+<div class="codehilite"><pre><span></span><span class="err">output[\\(i_0, ..., i_{K-2}\\)] = params[indices[\\(i_0, ..., i_{K-2}\\)]]</span>
+</pre></div>
 
-<pre><code>output[\\(i_0, ..., i_{K-2}\\)] = params[indices[\\(i_0, ..., i_{K-2}\\)]]
-</code></pre>
 
 <p>Whereas in <a href="../../../tf/gather.html"><code>tf.gather</code></a> <code>indices</code> defines slices into the first
 dimension of <code>params</code>, in <a href="../../../tf/gather_nd.html"><code>tf.gather_nd</code></a>, <code>indices</code> defines slices into the
 first <code>N</code> dimensions of <code>params</code>, where <code>N = indices.shape[-1]</code>.</p>
-
 <p>The last dimension of <code>indices</code> can be at most the rank of
 <code>params</code>:</p>
+<div class="codehilite"><pre><span></span><span class="err">indices.shape[-1] &lt;= params.rank</span>
+</pre></div>
 
-<pre><code>indices.shape[-1] &lt;= params.rank
-</code></pre>
 
 <p>The last dimension of <code>indices</code> corresponds to elements
 (if <code>indices.shape[-1] == params.rank</code>) or slices
 (if <code>indices.shape[-1] &lt; params.rank</code>) along dimension <code>indices.shape[-1]</code>
 of <code>params</code>.  The output tensor has shape</p>
+<div class="codehilite"><pre><span></span><span class="s s-Atom">indices</span><span class="p">.</span><span class="s s-Atom">shape</span><span class="p">[:-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="s s-Atom">params</span><span class="p">.</span><span class="s s-Atom">shape</span><span class="p">[</span><span class="s s-Atom">indices</span><span class="p">.</span><span class="s s-Atom">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="s s-Atom">:</span><span class="p">]</span>
+</pre></div>
 
-<pre><code>indices.shape[:-1] + params.shape[indices.shape[-1]:]
-</code></pre>
 
-<p>Additionally both &lsquo;params&rsquo; and &lsquo;indices&rsquo; can have M leading batch
-dimensions that exactly match. In this case &lsquo;batch_dims&rsquo; must be M.</p>
-
+<p>Additionally both 'params' and 'indices' can have M leading batch
+dimensions that exactly match. In this case 'batch_dims' must be M.</p>
 <p>Note that on CPU, if an out of bound index is found, an error is returned.
 On GPU, if an out of bound index is found, a 0 is stored in the
 corresponding output value.</p>
-
 <p>Some examples below.</p>
-
 <p>Simple indexing into a matrix:</p>
+<div class="codehilite"><pre><span></span>    <span class="n">indices</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">]]</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">]</span>
+</pre></div>
 
-<p><code>python
-    indices = [[0, 0], [1, 1]]
-    params = [['a', 'b'], ['c', 'd']]
-    output = ['a', 'd']
-</code></p>
 
 <p>Slice indexing into a matrix:</p>
+<div class="codehilite"><pre><span></span>    <span class="n">indices</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">]]</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">]]</span>
+</pre></div>
 
-<p><code>python
-    indices = [[1], [0]]
-    params = [['a', 'b'], ['c', 'd']]
-    output = [['c', 'd'], ['a', 'b']]
-</code></p>
 
 <p>Indexing into a 3-tensor:</p>
-
-<p>```python
-    indices = [[1]]
-    params = [[[&lsquo;a0&rsquo;, &lsquo;b0&rsquo;], [&lsquo;c0&rsquo;, &lsquo;d0&rsquo;]],
-              [[&lsquo;a1&rsquo;, &lsquo;b1&rsquo;], [&lsquo;c1&rsquo;, &lsquo;d1&rsquo;]]]
-    output = [[[&lsquo;a1&rsquo;, &lsquo;b1&rsquo;], [&lsquo;c1&rsquo;, &lsquo;d1&rsquo;]]]</p>
-
-<pre><code>indices = [[0, 1], [1, 0]]
-params = [[['a0', 'b0'], ['c0', 'd0']],
-          [['a1', 'b1'], ['c1', 'd1']]]
-output = [['c0', 'd0'], ['a1', 'b1']]
+<div class="codehilite"><pre><span></span>    <span class="n">indices</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">]]</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">[[[</span><span class="s1">&#39;a0&#39;</span><span class="p">,</span> <span class="s1">&#39;b0&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;c0&#39;</span><span class="p">,</span> <span class="s1">&#39;d0&#39;</span><span class="p">]],</span>
+              <span class="p">[[</span><span class="s1">&#39;a1&#39;</span><span class="p">,</span> <span class="s1">&#39;b1&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;c1&#39;</span><span class="p">,</span> <span class="s1">&#39;d1&#39;</span><span class="p">]]]</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="p">[[[</span><span class="s1">&#39;a1&#39;</span><span class="p">,</span> <span class="s1">&#39;b1&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;c1&#39;</span><span class="p">,</span> <span class="s1">&#39;d1&#39;</span><span class="p">]]]</span>
 
 
-indices = [[0, 0, 1], [1, 0, 1]]
-params = [[['a0', 'b0'], ['c0', 'd0']],
-          [['a1', 'b1'], ['c1', 'd1']]]
-output = ['b0', 'b1']
-</code></pre>
+    <span class="n">indices</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">[[[</span><span class="s1">&#39;a0&#39;</span><span class="p">,</span> <span class="s1">&#39;b0&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;c0&#39;</span><span class="p">,</span> <span class="s1">&#39;d0&#39;</span><span class="p">]],</span>
+              <span class="p">[[</span><span class="s1">&#39;a1&#39;</span><span class="p">,</span> <span class="s1">&#39;b1&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;c1&#39;</span><span class="p">,</span> <span class="s1">&#39;d1&#39;</span><span class="p">]]]</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;c0&#39;</span><span class="p">,</span> <span class="s1">&#39;d0&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;a1&#39;</span><span class="p">,</span> <span class="s1">&#39;b1&#39;</span><span class="p">]]</span>
 
-<p>```</p>
+
+    <span class="n">indices</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">[[[</span><span class="s1">&#39;a0&#39;</span><span class="p">,</span> <span class="s1">&#39;b0&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;c0&#39;</span><span class="p">,</span> <span class="s1">&#39;d0&#39;</span><span class="p">]],</span>
+              <span class="p">[[</span><span class="s1">&#39;a1&#39;</span><span class="p">,</span> <span class="s1">&#39;b1&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;c1&#39;</span><span class="p">,</span> <span class="s1">&#39;d1&#39;</span><span class="p">]]]</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;b0&#39;</span><span class="p">,</span> <span class="s1">&#39;b1&#39;</span><span class="p">]</span>
+</pre></div>
+
 
 <p>The examples below are for the case when only indices have leading extra
-dimensions. If both &lsquo;params&rsquo; and &lsquo;indices&rsquo; have leading batch dimensions, use
-the &lsquo;batch_dims&rsquo; parameter to run gather_nd in batch mode.</p>
-
+dimensions. If both 'params' and 'indices' have leading batch dimensions, use
+the 'batch_dims' parameter to run gather_nd in batch mode.</p>
 <p>Batched indexing into a matrix:</p>
+<div class="codehilite"><pre><span></span>    <span class="n">indices</span> <span class="o">=</span> <span class="p">[[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]],</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]]</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">]]</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;a&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">]]</span>
+</pre></div>
 
-<p><code>python
-    indices = [[[0, 0]], [[0, 1]]]
-    params = [['a', 'b'], ['c', 'd']]
-    output = [['a'], ['b']]
-</code></p>
 
 <p>Batched slice indexing into a matrix:</p>
+<div class="codehilite"><pre><span></span>    <span class="n">indices</span> <span class="o">=</span> <span class="p">[[[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[[</span><span class="mi">0</span><span class="p">]]]</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">]]</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="p">[[[</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">]],</span> <span class="p">[[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">]]]</span>
+</pre></div>
 
-<p><code>python
-    indices = [[[1]], [[0]]]
-    params = [['a', 'b'], ['c', 'd']]
-    output = [[['c', 'd']], [['a', 'b']]]
-</code></p>
 
 <p>Batched indexing into a 3-tensor:</p>
+<div class="codehilite"><pre><span></span>    <span class="n">indices</span> <span class="o">=</span> <span class="p">[[[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[[</span><span class="mi">0</span><span class="p">]]]</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">[[[</span><span class="s1">&#39;a0&#39;</span><span class="p">,</span> <span class="s1">&#39;b0&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;c0&#39;</span><span class="p">,</span> <span class="s1">&#39;d0&#39;</span><span class="p">]],</span>
+              <span class="p">[[</span><span class="s1">&#39;a1&#39;</span><span class="p">,</span> <span class="s1">&#39;b1&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;c1&#39;</span><span class="p">,</span> <span class="s1">&#39;d1&#39;</span><span class="p">]]]</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="p">[[[[</span><span class="s1">&#39;a1&#39;</span><span class="p">,</span> <span class="s1">&#39;b1&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;c1&#39;</span><span class="p">,</span> <span class="s1">&#39;d1&#39;</span><span class="p">]]],</span>
+              <span class="p">[[[</span><span class="s1">&#39;a0&#39;</span><span class="p">,</span> <span class="s1">&#39;b0&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;c0&#39;</span><span class="p">,</span> <span class="s1">&#39;d0&#39;</span><span class="p">]]]]</span>
 
-<p>```python
-    indices = [[[1]], [[0]]]
-    params = [[[&lsquo;a0&rsquo;, &lsquo;b0&rsquo;], [&lsquo;c0&rsquo;, &lsquo;d0&rsquo;]],
-              [[&lsquo;a1&rsquo;, &lsquo;b1&rsquo;], [&lsquo;c1&rsquo;, &lsquo;d1&rsquo;]]]
-    output = [[[[&lsquo;a1&rsquo;, &lsquo;b1&rsquo;], [&lsquo;c1&rsquo;, &lsquo;d1&rsquo;]]],
-              [[[&lsquo;a0&rsquo;, &lsquo;b0&rsquo;], [&lsquo;c0&rsquo;, &lsquo;d0&rsquo;]]]]</p>
-
-<pre><code>indices = [[[0, 1], [1, 0]], [[0, 0], [1, 1]]]
-params = [[['a0', 'b0'], ['c0', 'd0']],
-          [['a1', 'b1'], ['c1', 'd1']]]
-output = [[['c0', 'd0'], ['a1', 'b1']],
-          [['a0', 'b0'], ['c1', 'd1']]]
+    <span class="n">indices</span> <span class="o">=</span> <span class="p">[[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]],</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]]</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">[[[</span><span class="s1">&#39;a0&#39;</span><span class="p">,</span> <span class="s1">&#39;b0&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;c0&#39;</span><span class="p">,</span> <span class="s1">&#39;d0&#39;</span><span class="p">]],</span>
+              <span class="p">[[</span><span class="s1">&#39;a1&#39;</span><span class="p">,</span> <span class="s1">&#39;b1&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;c1&#39;</span><span class="p">,</span> <span class="s1">&#39;d1&#39;</span><span class="p">]]]</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="p">[[[</span><span class="s1">&#39;c0&#39;</span><span class="p">,</span> <span class="s1">&#39;d0&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;a1&#39;</span><span class="p">,</span> <span class="s1">&#39;b1&#39;</span><span class="p">]],</span>
+              <span class="p">[[</span><span class="s1">&#39;a0&#39;</span><span class="p">,</span> <span class="s1">&#39;b0&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;c1&#39;</span><span class="p">,</span> <span class="s1">&#39;d1&#39;</span><span class="p">]]]</span>
 
 
-indices = [[[0, 0, 1], [1, 0, 1]], [[0, 1, 1], [1, 1, 0]]]
-params = [[['a0', 'b0'], ['c0', 'd0']],
-          [['a1', 'b1'], ['c1', 'd1']]]
-output = [['b0', 'b1'], ['d0', 'c1']]
-</code></pre>
+    <span class="n">indices</span> <span class="o">=</span> <span class="p">[[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]],</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]]</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">[[[</span><span class="s1">&#39;a0&#39;</span><span class="p">,</span> <span class="s1">&#39;b0&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;c0&#39;</span><span class="p">,</span> <span class="s1">&#39;d0&#39;</span><span class="p">]],</span>
+              <span class="p">[[</span><span class="s1">&#39;a1&#39;</span><span class="p">,</span> <span class="s1">&#39;b1&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;c1&#39;</span><span class="p">,</span> <span class="s1">&#39;d1&#39;</span><span class="p">]]]</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;b0&#39;</span><span class="p">,</span> <span class="s1">&#39;b1&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;d0&#39;</span><span class="p">,</span> <span class="s1">&#39;c1&#39;</span><span class="p">]]</span>
+</pre></div>
 
-<p>```</p>
 
-<p>Examples with batched &lsquo;params&rsquo; and &lsquo;indices&rsquo;:</p>
+<p>Examples with batched 'params' and 'indices':</p>
+<div class="codehilite"><pre><span></span>    <span class="n">batch_dims</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">indices</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">[[[</span><span class="s1">&#39;a0&#39;</span><span class="p">,</span> <span class="s1">&#39;b0&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;c0&#39;</span><span class="p">,</span> <span class="s1">&#39;d0&#39;</span><span class="p">]],</span>
+              <span class="p">[[</span><span class="s1">&#39;a1&#39;</span><span class="p">,</span> <span class="s1">&#39;b1&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;c1&#39;</span><span class="p">,</span> <span class="s1">&#39;d1&#39;</span><span class="p">]]]</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;c0&#39;</span><span class="p">,</span> <span class="s1">&#39;d0&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;a1&#39;</span><span class="p">,</span> <span class="s1">&#39;b1&#39;</span><span class="p">]]</span>
 
-<p>```python
-    batch_dims = 1
-    indices = [[1], [0]]
-    params = [[[&lsquo;a0&rsquo;, &lsquo;b0&rsquo;], [&lsquo;c0&rsquo;, &lsquo;d0&rsquo;]],
-              [[&lsquo;a1&rsquo;, &lsquo;b1&rsquo;], [&lsquo;c1&rsquo;, &lsquo;d1&rsquo;]]]
-    output = [[&lsquo;c0&rsquo;, &lsquo;d0&rsquo;], [&lsquo;a1&rsquo;, &lsquo;b1&rsquo;]]</p>
+    <span class="n">batch_dims</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">indices</span> <span class="o">=</span> <span class="p">[[[</span><span class="mi">1</span><span class="p">]],</span> <span class="p">[[</span><span class="mi">0</span><span class="p">]]]</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">[[[</span><span class="s1">&#39;a0&#39;</span><span class="p">,</span> <span class="s1">&#39;b0&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;c0&#39;</span><span class="p">,</span> <span class="s1">&#39;d0&#39;</span><span class="p">]],</span>
+              <span class="p">[[</span><span class="s1">&#39;a1&#39;</span><span class="p">,</span> <span class="s1">&#39;b1&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;c1&#39;</span><span class="p">,</span> <span class="s1">&#39;d1&#39;</span><span class="p">]]]</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="p">[[[</span><span class="s1">&#39;c0&#39;</span><span class="p">,</span> <span class="s1">&#39;d0&#39;</span><span class="p">]],</span> <span class="p">[[</span><span class="s1">&#39;a1&#39;</span><span class="p">,</span> <span class="s1">&#39;b1&#39;</span><span class="p">]]]</span>
 
-<pre><code>batch_dims = 1
-indices = [[[1]], [[0]]]
-params = [[['a0', 'b0'], ['c0', 'd0']],
-          [['a1', 'b1'], ['c1', 'd1']]]
-output = [[['c0', 'd0']], [['a1', 'b1']]]
+    <span class="n">batch_dims</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">indices</span> <span class="o">=</span> <span class="p">[[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]],</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]]</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">[[[</span><span class="s1">&#39;a0&#39;</span><span class="p">,</span> <span class="s1">&#39;b0&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;c0&#39;</span><span class="p">,</span> <span class="s1">&#39;d0&#39;</span><span class="p">]],</span>
+              <span class="p">[[</span><span class="s1">&#39;a1&#39;</span><span class="p">,</span> <span class="s1">&#39;b1&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;c1&#39;</span><span class="p">,</span> <span class="s1">&#39;d1&#39;</span><span class="p">]]]</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;c0&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;b1&#39;</span><span class="p">]]</span>
+</pre></div>
 
-batch_dims = 1
-indices = [[[1, 0]], [[0, 1]]]
-params = [[['a0', 'b0'], ['c0', 'd0']],
-          [['a1', 'b1'], ['c1', 'd1']]]
-output = [['c0'], ['b1']]
-</code></pre>
-
-<p>```</p>
 
 <p>See also <a href="../../../tf/gather.html"><code>tf.gather</code></a>.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>params</code></b>: A <code>Tensor</code>. The tensor from which to gather values.</li>
 <li><b><code>indices</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>int32</code>, <code>int64</code>.
-Index tensor.</li>
+  Index tensor.</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
-<li><b><code>batch_dims</code></b>: An integer or a scalar &lsquo;Tensor&rsquo;. The number of batch dimensions.</li>
+<li><b><code>batch_dims</code></b>: An integer or a scalar 'Tensor'. The number of batch dimensions.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>Tensor</code>. Has the same type as <code>params</code>.</p>
+    </body>
+    </html>
+   

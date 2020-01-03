@@ -1,60 +1,55 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.io.gfile.walk" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.io.gfile.walk</h1>
-
+<h1 id="tfiogfilewalk">tf.io.gfile.walk</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/lib/io/file_io.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Recursive directory tree generator for directories.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.io.gfile.walk</code></li>
 <li><code>tf.compat.v2.io.gfile.walk</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">gfile</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span>
+    <span class="n">top</span><span class="p">,</span>
+    <span class="n">topdown</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">onerror</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.io.gfile.walk(
-    top,
-    topdown=True,
-    onerror=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>top</code></b>: string, a Directory name</li>
 <li><b><code>topdown</code></b>: bool, Traverse pre order if True, post order if False.</li>
 <li><b><code>onerror</code></b>: optional handler for errors. Should be a function, it will be
-called with the error as argument. Rethrowing the error aborts the walk.
-Errors that happen while listing directories are ignored.</li>
+  called with the error as argument. Rethrowing the error aborts the walk.
+  Errors that happen while listing directories are ignored.</li>
 </ul>
-
-
-<h4>Yields:</h4>
-
+<h4 id="yields">Yields:</h4>
 <p>Each yield is a 3-tuple:  the pathname of a directory, followed by lists of
 all its subdirectories and leaf files.
-(dirname, [subdirname, subdirname, &hellip;], [filename, filename, &hellip;])
+(dirname, [subdirname, subdirname, ...], [filename, filename, ...])
 as strings</p>
+    </body>
+    </html>
+   

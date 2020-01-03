@@ -1,72 +1,61 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.math.invert_permutation" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.math.invert_permutation</h1>
-
+<h1 id="tfmathinvert_permutation">tf.math.invert_permutation</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p>Defined in generated file: <code>python/ops/gen_array_ops.py</code></p>
-
 <!-- Start diff -->
 
-
 <p>Computes the inverse permutation of a tensor.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.invert_permutation</code></li>
 <li><code>tf.compat.v1.math.invert_permutation</code></li>
 <li><code>tf.compat.v2.math.invert_permutation</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">invert_permutation</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.math.invert_permutation(
-    x,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>This operation computes the inverse of an index permutation. It takes a 1-D
 integer tensor <code>x</code>, which represents the indices of a zero-based array, and
 swaps each value with its index position. In other words, for an output tensor
 <code>y</code> and an input tensor <code>x</code>, this operation computes the following:</p>
-
 <p><code>y[x[i]] = i for i in [0, 1, ..., len(x) - 1]</code></p>
-
 <p>The values must include 0. There can be no duplicate values or negative values.</p>
+<h4 id="for-example">For example:</h4>
+<div class="codehilite"><pre><span></span><span class="c1"># tensor `x` is [3, 4, 0, 2, 1]</span>
+<span class="nf">invert_permutation</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==&gt;</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+</pre></div>
 
-<h4>For example:</h4>
 
-<p>```</p>
-
-<h1>tensor <code>x</code> is [3, 4, 0, 2, 1]</h1>
-
-<p>invert_permutation(x) ==> [2, 4, 3, 0, 1]
-```</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>x</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>int32</code>, <code>int64</code>. 1-D.</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>Tensor</code>. Has the same type as <code>x</code>.</p>
+    </body>
+    </html>
+   

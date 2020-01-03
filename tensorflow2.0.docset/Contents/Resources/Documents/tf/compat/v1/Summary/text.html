@@ -1,37 +1,36 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.summary.text" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.compat.v1.summary.text</h1>
-
+<h1 id="tfcompatv1summarytext">tf.compat.v1.summary.text</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/summary/summary.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Summarizes textual data.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">summary</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
+    <span class="n">name</span><span class="p">,</span>
+    <span class="n">tensor</span><span class="p">,</span>
+    <span class="n">collections</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-tf.compat.v1.summary.text(
-    name,
-    tensor,
-    collections=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>Text data summarized via this plugin will be visible in the Text Dashboard
 in TensorBoard. The standard TensorBoard Text Dashboard will render markdown
@@ -40,27 +39,22 @@ If a tensor with more than 2 dimensions is provided, a 2d subarray will be
 displayed along with a warning message. (Note that this behavior is not
 intrinsic to the text summary api, but rather to the default TensorBoard text
 plugin.)</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>name</code></b>: A name for the generated node. Will also serve as a series name in
-TensorBoard.</li>
+  TensorBoard.</li>
 <li><b><code>tensor</code></b>: a string-type Tensor to summarize.</li>
 <li><b><code>collections</code></b>: Optional list of ops.GraphKeys.  The collections to add the
-summary to.  Defaults to [_ops.GraphKeys.SUMMARIES]</li>
+  summary to.  Defaults to [_ops.GraphKeys.SUMMARIES]</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A TensorSummary op that is configured so that TensorBoard will recognize
 that it contains textual data. The TensorSummary is a scalar <code>Tensor</code> of
 type <code>string</code> which contains <code>Summary</code> protobufs.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: If tensor has the wrong type.</li>
 </ul>
-
+    </body>
+    </html>
+   

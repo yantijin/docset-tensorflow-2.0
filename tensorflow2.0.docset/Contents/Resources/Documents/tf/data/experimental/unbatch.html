@@ -1,64 +1,57 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.data.experimental.unbatch" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.data.experimental.unbatch</h1>
-
+<h1 id="tfdataexperimentalunbatch">tf.data.experimental.unbatch</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/data/experimental/ops/batching.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Splits elements of a dataset into multiple elements on the batch dimension. (deprecated)</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.data.experimental.unbatch</code></li>
 <li><code>tf.compat.v2.data.experimental.unbatch</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">unbatch</span><span class="p">()</span>
+</pre></div>
 
-
-<p><code>python
-tf.data.experimental.unbatch()
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
 Instructions for updating:
 Use <a href="../../../tf/data/Dataset.html#unbatch"><code>tf.data.Dataset.unbatch()</code></a>.</p>
-
 <p>For example, if elements of the dataset are shaped <code>[B, a0, a1, ...]</code>,
 where <code>B</code> may vary for each input element, then for each element in the
 dataset, the unbatched dataset will contain <code>B</code> consecutive elements
 of shape <code>[a0, a1, ...]</code>.</p>
+<div class="codehilite"><pre><span></span><span class="c1"># NOTE: The following example uses `{ ... }` to represent the contents</span>
+<span class="c1"># of a dataset.</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">{</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">]</span> <span class="p">}</span>
 
-<p>```python</p>
+<span class="n">a</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">unbatch</span><span class="p">())</span> <span class="o">==</span> <span class="p">{</span>
+    <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">}</span>
+</pre></div>
 
-<h1>NOTE: The following example uses <code>{ ... }</code> to represent the contents</h1>
 
-<h1>of a dataset.</h1>
-
-<p>a = { [&lsquo;a&rsquo;, &lsquo;b&rsquo;, &lsquo;c&rsquo;], [&lsquo;a&rsquo;, &lsquo;b&rsquo;], [&lsquo;a&rsquo;, &lsquo;b&rsquo;, &lsquo;c&rsquo;, &rsquo;d'] }</p>
-
-<p>a.apply(tf.data.experimental.unbatch()) == {
-    &lsquo;a&rsquo;, &lsquo;b&rsquo;, &lsquo;c&rsquo;, &lsquo;a&rsquo;, &lsquo;b&rsquo;, &lsquo;a&rsquo;, &lsquo;b&rsquo;, &lsquo;c&rsquo;, &rsquo;d'}
-```</p>
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>Dataset</code> transformation function, which can be passed to
 <a href="../../../tf/data/Dataset.html#apply"><code>tf.data.Dataset.apply</code></a>.</p>
+    </body>
+    </html>
+   

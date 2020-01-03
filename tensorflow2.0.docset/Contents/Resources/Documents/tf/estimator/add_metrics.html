@@ -1,15 +1,19 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.estimator.add_metrics" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.estimator.add_metrics</h1>
-
+<h1 id="tfestimatoradd_metrics">tf.estimator.add_metrics</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 
@@ -20,91 +24,74 @@
   </a>
 </td></table>
 
-
-
-
 <!-- Start diff -->
 
-
 <p>Creates a new <a href="../../tf/estimator/Estimator.html"><code>tf.estimator.Estimator</code></a> which has given metrics.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.estimator.add_metrics</code></li>
 <li><code>tf.compat.v2.estimator.add_metrics</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">add_metrics</span><span class="p">(</span>
+    <span class="n">estimator</span><span class="p">,</span>
+    <span class="n">metric_fn</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.estimator.add_metrics(
-    estimator,
-    metric_fn
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
+<h4 id="example">Example:</h4>
+<div class="codehilite"><pre><span></span>  <span class="k">def</span> <span class="nf">my_auc</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">predictions</span><span class="p">):</span>
+    <span class="n">auc_metric</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">AUC</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_auc&quot;</span><span class="p">)</span>
+    <span class="n">auc_metric</span><span class="o">.</span><span class="n">update_state</span><span class="p">(</span><span class="n">y_true</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">y_pred</span><span class="o">=</span><span class="n">predictions</span><span class="p">[</span><span class="s1">&#39;logistic&#39;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;auc&#39;</span><span class="p">:</span> <span class="n">auc_metric</span><span class="p">}</span>
 
-<h4>Example:</h4>
+  <span class="n">estimator</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">DNNClassifier</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+  <span class="n">estimator</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">add_metrics</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="n">my_auc</span><span class="p">)</span>
+  <span class="n">estimator</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+  <span class="n">estimator</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</pre></div>
 
-<p>```python
-  def my_auc(labels, predictions):
-    auc_metric = tf.keras.metrics.AUC(name=&ldquo;my_auc&rdquo;)
-    auc_metric.update_state(y_true=labels, y_pred=predictions[&lsquo;logistic&rsquo;])
-    return {&lsquo;auc&rsquo;: auc_metric}</p>
 
-<p>  estimator = tf.estimator.DNNClassifier(&hellip;)
-  estimator = tf.estimator.add_metrics(estimator, my_auc)
-  estimator.train(&hellip;)
-  estimator.evaluate(&hellip;)
-```
-Example usage of custom metric which uses features:</p>
+<p>Example usage of custom metric which uses features:</p>
+<div class="codehilite"><pre><span></span>  <span class="k">def</span> <span class="nf">my_auc</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">predictions</span><span class="p">,</span> <span class="n">features</span><span class="p">):</span>
+    <span class="n">auc_metric</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">AUC</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;my_auc&quot;</span><span class="p">)</span>
+    <span class="n">auc_metric</span><span class="o">.</span><span class="n">update_state</span><span class="p">(</span><span class="n">y_true</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">y_pred</span><span class="o">=</span><span class="n">predictions</span><span class="p">[</span><span class="s1">&#39;logistic&#39;</span><span class="p">],</span>
+                            <span class="n">sample_weight</span><span class="o">=</span><span class="n">features</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;auc&#39;</span><span class="p">:</span> <span class="n">auc_metric</span><span class="p">}</span>
 
-<p>```python
-  def my_auc(labels, predictions, features):
-    auc_metric = tf.keras.metrics.AUC(name=&ldquo;my_auc&rdquo;)
-    auc_metric.update_state(y_true=labels, y_pred=predictions[&lsquo;logistic&rsquo;],
-                            sample_weight=features[&lsquo;weight&rsquo;])
-    return {&lsquo;auc&rsquo;: auc_metric}</p>
+  <span class="n">estimator</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">DNNClassifier</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+  <span class="n">estimator</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">add_metrics</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="n">my_auc</span><span class="p">)</span>
+  <span class="n">estimator</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+  <span class="n">estimator</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</pre></div>
 
-<p>  estimator = tf.estimator.DNNClassifier(&hellip;)
-  estimator = tf.estimator.add_metrics(estimator, my_auc)
-  estimator.train(&hellip;)
-  estimator.evaluate(&hellip;)
-```</p>
 
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>estimator</code></b>: A <a href="../../tf/estimator/Estimator.html"><code>tf.estimator.Estimator</code></a> object.</li>
-<li><b><code>metric_fn</code></b>: A function which should obey the following signature:
-
-<ul>
-<li>Args: can only have following four arguments in any order:
-
-<ul>
+<li><b><code>metric_fn</code></b>: A function which should obey the following signature:</li>
+<li>Args: can only have following four arguments in any order:<ul>
 <li>predictions: Predictions <code>Tensor</code> or dict of <code>Tensor</code> created by given
-<code>estimator</code>.</li>
+  <code>estimator</code>.</li>
 <li>features: Input <code>dict</code> of <code>Tensor</code> objects created by <code>input_fn</code> which
-is given to <code>estimator.evaluate</code> as an argument.</li>
+  is given to <code>estimator.evaluate</code> as an argument.</li>
 <li>labels:  Labels <code>Tensor</code> or dict of <code>Tensor</code> created by <code>input_fn</code>
-which is given to <code>estimator.evaluate</code> as an argument.</li>
+  which is given to <code>estimator.evaluate</code> as an argument.</li>
 <li>config: config attribute of the <code>estimator</code>.</li>
 </ul>
 </li>
 <li>Returns:
-Dict of metric results keyed by name. Final metrics are a union of this
-and <code>estimator's</code> existing metrics. If there is a name conflict between
-this and <code>estimator</code>s existing metrics, this will override the existing
-one. The values of the dict are the results of calling a metric
-function, namely a <code>(metric_tensor, update_op)</code> tuple.</li>
+     Dict of metric results keyed by name. Final metrics are a union of this
+     and <code>estimator's</code> existing metrics. If there is a name conflict between
+     this and <code>estimator</code>s existing metrics, this will override the existing
+     one. The values of the dict are the results of calling a metric
+     function, namely a <code>(metric_tensor, update_op)</code> tuple.</li>
 </ul>
-</li>
-</ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A new <a href="../../tf/estimator/Estimator.html"><code>tf.estimator.Estimator</code></a> which has a union of original metrics with
   given ones.</p>
+    </body>
+    </html>
+   

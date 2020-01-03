@@ -1,61 +1,56 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.config.experimental.set_memory_growth" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.config.experimental.set_memory_growth</h1>
-
+<h1 id="tfconfigexperimentalset_memory_growth">tf.config.experimental.set_memory_growth</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/framework/config.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Set if memory growth should be enabled for a PhysicalDevice.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.config.experimental.set_memory_growth</code></li>
 <li><code>tf.compat.v2.config.experimental.set_memory_growth</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">set_memory_growth</span><span class="p">(</span>
+    <span class="n">device</span><span class="p">,</span>
+    <span class="n">enable</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.config.experimental.set_memory_growth(
-    device,
-    enable
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>A PhysicalDevice with memory growth set will not allocate all memory on the
 device upfront. Memory growth cannot be configured on a PhysicalDevice with
 virtual devices configured.</p>
+<h4 id="for-example">For example:</h4>
+<div class="codehilite"><pre><span></span><span class="n">physical_devices</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">list_physical_devices</span><span class="p">(</span><span class="s1">&#39;GPU&#39;</span><span class="p">)</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">physical_devices</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;Not enough GPU hardware devices available&quot;</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">set_memory_growth</span><span class="p">(</span><span class="n">physical_devices</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
 
-<h4>For example:</h4>
 
-<p><code>python
-physical_devices = tf.config.experimental.list_physical_devices('GPU')
-assert len(physical_devices) &gt; 0, "Not enough GPU hardware devices available"
-tf.config.experimental.set_memory_growth(physical_devices[0], True)
-</code></p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>device</code></b>: PhysicalDevice to configure</li>
 <li><b><code>enable</code></b>: Whether to enable or disable memory growth</li>
 </ul>
-
+    </body>
+    </html>
+   

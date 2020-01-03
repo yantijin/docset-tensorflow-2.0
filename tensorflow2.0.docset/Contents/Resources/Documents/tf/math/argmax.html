@@ -1,59 +1,53 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.math.argmax" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.math.argmax</h1>
-
+<h1 id="tfmathargmax">tf.math.argmax</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/math_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Returns the index with the largest value across axes of a tensor.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.argmax</code></li>
 <li><code>tf.compat.v2.argmax</code></li>
 <li><code>tf.compat.v2.math.argmax</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span>
+    <span class="nb">input</span><span class="p">,</span>
+    <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">output_type</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.math.argmax(
-    input,
-    axis=None,
-    output_type=tf.dtypes.int64,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>Note that in case of ties the identity of the return value is not guaranteed.</p>
+<h4 id="for-example">For example:</h4>
+<div class="codehilite"><pre><span></span><span class="n">A</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">])</span> <span class="c1"># Constant 1-D Tensor</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="c1"># output 2 as index 2 (A[2]) is maximum in tensor A</span>
+<span class="n">B</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">8</span><span class="p">],[</span><span class="mi">14</span><span class="p">,</span><span class="mi">45</span><span class="p">,</span><span class="mi">23</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">27</span><span class="p">]])</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># [2, 2, 0, 2, 2]</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># [2, 2, 1]</span>
+</pre></div>
 
-<h4>For example:</h4>
-
-<p><code>python
-A=tf.constant([2,20,30,3,6]) # Constant 1-D Tensor
-tf.math.argmax(A) # output 2 as index 2 (A[2]) is maximum in tensor A
-B=tf.constant([[2,20,30,3,6],[3,11,16,1,8],[14,45,23,5,27]])
-tf.math.argmax(B,0) # [2, 2, 0, 2, 2]
-tf.math.argmax(B,1) # [2, 2, 1]
-</code></p>
 
 <p>Args:
   input: A <code>Tensor</code>. Must be one of the following types: <code>float32</code>, <code>float64</code>,
@@ -67,21 +61,16 @@ tf.math.argmax(B,1) # [2, 2, 1]
   output_type: An optional <a href="../../tf/dtypes/DType.html"><code>tf.DType</code></a> from: <code>tf.int32, tf.int64</code>. Defaults to
     <a href="../../tf.html#int64"><code>tf.int64</code></a>.
   name: A name for the operation (optional).</p>
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>Tensor</code> of type <code>output_type</code>.</p>
-
-<h4>Usage:</h4>
-
-<p>```python
-import tensorflow as tf
-a = [1, 10, 26.9, 2.8, 166.32, 62.3]
-b = tf.math.argmax(input = a)
-c = tf.keras.backend.eval(b)</p>
-
-<h1>c = 4</h1>
-
-<h1>here a[4] = 166.32 which is the largest element of a across axis 0</h1>
-
-<p>```</p>
+<h4 id="usage">Usage:</h4>
+<div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mf">26.9</span><span class="p">,</span> <span class="mf">2.8</span><span class="p">,</span> <span class="mf">166.32</span><span class="p">,</span> <span class="mf">62.3</span><span class="p">]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="nb">input</span> <span class="o">=</span> <span class="n">a</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">backend</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="c1"># c = 4</span>
+<span class="c1"># here a[4] = 166.32 which is the largest element of a across axis 0</span>
+</pre></div>
+    </body>
+    </html>
+   

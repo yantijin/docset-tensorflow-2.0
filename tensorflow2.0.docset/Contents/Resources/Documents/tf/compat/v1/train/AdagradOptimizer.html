@@ -1,4 +1,13 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.train.AdagradOptimizer" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="__init__"/>
@@ -14,305 +23,223 @@
 <meta itemprop="property" content="GATE_OP"/>
 </div>
 
-
-<h1>tf.compat.v1.train.AdagradOptimizer</h1>
-
+<h1 id="tfcompatv1trainadagradoptimizer">tf.compat.v1.train.AdagradOptimizer</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/training/adagrad.py">View source</a></p>
-
-<h2>Class <code>AdagradOptimizer</code></h2>
-
+<h2 id="class-adagradoptimizer">Class <code>AdagradOptimizer</code></h2>
 <!-- Start diff -->
 
-
 <p>Optimizer that implements the Adagrad algorithm.</p>
-
 <p>Inherits From: <a href="../../../../tf/compat/v1/train/Optimizer.html"><code>Optimizer</code></a></p>
-
 <!-- Placeholder for "Used in" -->
-
 
 <p>See this <a href="http://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf">paper</a>
 or this
 <a href="https://ppasupat.github.io/a9online/uploads/proximal_notes.pdf">intro</a>.</p>
-
 <h2 id="__init__"><code>__init__</code></h2>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/training/adagrad.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">learning_rate</span><span class="p">,</span>
+    <span class="n">initial_accumulator_value</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">use_locking</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Adagrad&#39;</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__init__(
-    learning_rate,
-    initial_accumulator_value=0.1,
-    use_locking=False,
-    name='Adagrad'
-)
-</code></p>
 
 <p>Construct a new Adagrad optimizer.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>learning_rate</code></b>: A <code>Tensor</code> or a floating point value.  The learning rate.</li>
 <li><b><code>initial_accumulator_value</code></b>: A floating point value.
-Starting value for the accumulators, must be positive.</li>
+  Starting value for the accumulators, must be positive.</li>
 <li><b><code>use_locking</code></b>: If <code>True</code> use locks for update operations.</li>
 <li><b><code>name</code></b>: Optional name prefix for the operations created when applying
-gradients.  Defaults to &ldquo;Adagrad&rdquo;.</li>
+  gradients.  Defaults to "Adagrad".</li>
 </ul>
-
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: If the <code>initial_accumulator_value</code> is invalid.</li>
 </ul>
-
-
-<h4>Eager Compatibility</h4>
-
+<h4 id="eager-compatibility">Eager Compatibility</h4>
 <p>When eager execution is enabled, <code>learning_rate</code> can be a callable that
 takes no arguments and returns the actual value to use. This can be useful
 for changing these values across different invocations of optimizer
 functions.</p>
-
-<h2>Methods</h2>
-
+<h2 id="methods">Methods</h2>
 <h3 id="apply_gradients"><code>apply_gradients</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/training/optimizer.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">apply_gradients</span><span class="p">(</span>
+    <span class="n">grads_and_vars</span><span class="p">,</span>
+    <span class="n">global_step</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-apply_gradients(
-    grads_and_vars,
-    global_step=None,
-    name=None
-)
-</code></p>
 
 <p>Apply gradients to variables.</p>
-
 <p>This is the second part of <code>minimize()</code>. It returns an <code>Operation</code> that
 applies gradients.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_1">Args:</h4>
 <ul>
 <li><b><code>grads_and_vars</code></b>: List of (gradient, variable) pairs as returned by
-<code>compute_gradients()</code>.</li>
+  <code>compute_gradients()</code>.</li>
 <li><b><code>global_step</code></b>: Optional <code>Variable</code> to increment by one after the
-variables have been updated.</li>
+  variables have been updated.</li>
 <li><b><code>name</code></b>: Optional name for the returned operation.  Default to the
-name passed to the <code>Optimizer</code> constructor.</li>
+  name passed to the <code>Optimizer</code> constructor.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>An <code>Operation</code> that applies the specified gradients. If <code>global_step</code>
 was not None, that operation also increments <code>global_step</code>.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises_1">Raises:</h4>
 <ul>
 <li><b><code>TypeError</code></b>: If <code>grads_and_vars</code> is malformed.</li>
 <li><b><code>ValueError</code></b>: If none of the variables have gradients.</li>
 <li><b><code>RuntimeError</code></b>: If you should use <code>_distributed_apply()</code> instead.</li>
 </ul>
-
-
 <h3 id="compute_gradients"><code>compute_gradients</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/training/optimizer.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">compute_gradients</span><span class="p">(</span>
+    <span class="n">loss</span><span class="p">,</span>
+    <span class="n">var_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">gate_gradients</span><span class="o">=</span><span class="n">GATE_OP</span><span class="p">,</span>
+    <span class="n">aggregation_method</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">colocate_gradients_with_ops</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">grad_loss</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-compute_gradients(
-    loss,
-    var_list=None,
-    gate_gradients=GATE_OP,
-    aggregation_method=None,
-    colocate_gradients_with_ops=False,
-    grad_loss=None
-)
-</code></p>
 
 <p>Compute gradients of <code>loss</code> for the variables in <code>var_list</code>.</p>
-
 <p>This is the first part of <code>minimize()</code>.  It returns a list
-of (gradient, variable) pairs where &ldquo;gradient&rdquo; is the gradient
-for &ldquo;variable&rdquo;.  Note that &ldquo;gradient&rdquo; can be a <code>Tensor</code>, an
+of (gradient, variable) pairs where "gradient" is the gradient
+for "variable".  Note that "gradient" can be a <code>Tensor</code>, an
 <code>IndexedSlices</code>, or <code>None</code> if there is no gradient for the
 given variable.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_2">Args:</h4>
 <ul>
 <li><b><code>loss</code></b>: A Tensor containing the value to minimize or a callable taking
-no arguments which returns the value to minimize. When eager execution
-is enabled it must be a callable.</li>
+  no arguments which returns the value to minimize. When eager execution
+  is enabled it must be a callable.</li>
 <li><b><code>var_list</code></b>: Optional list or tuple of <a href="../../../../tf/Variable.html"><code>tf.Variable</code></a> to update to minimize
-<code>loss</code>.  Defaults to the list of variables collected in the graph
-under the key <code>GraphKeys.TRAINABLE_VARIABLES</code>.</li>
+  <code>loss</code>.  Defaults to the list of variables collected in the graph
+  under the key <code>GraphKeys.TRAINABLE_VARIABLES</code>.</li>
 <li><b><code>gate_gradients</code></b>: How to gate the computation of gradients.  Can be
-<code>GATE_NONE</code>, <code>GATE_OP</code>, or <code>GATE_GRAPH</code>.</li>
+  <code>GATE_NONE</code>, <code>GATE_OP</code>, or <code>GATE_GRAPH</code>.</li>
 <li><b><code>aggregation_method</code></b>: Specifies the method used to combine gradient terms.
-Valid values are defined in the class <code>AggregationMethod</code>.</li>
+  Valid values are defined in the class <code>AggregationMethod</code>.</li>
 <li><b><code>colocate_gradients_with_ops</code></b>: If True, try colocating gradients with
-the corresponding op.</li>
+  the corresponding op.</li>
 <li><b><code>grad_loss</code></b>: Optional. A <code>Tensor</code> holding the gradient computed for <code>loss</code>.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_1">Returns:</h4>
 <p>A list of (gradient, variable) pairs. Variable is always present, but
 gradient can be <code>None</code>.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises_2">Raises:</h4>
 <ul>
 <li><b><code>TypeError</code></b>: If <code>var_list</code> contains anything else than <code>Variable</code> objects.</li>
 <li><b><code>ValueError</code></b>: If some arguments are invalid.</li>
 <li><b><code>RuntimeError</code></b>: If called with eager execution enabled and <code>loss</code> is
-not callable.</li>
+  not callable.</li>
 </ul>
-
-
-<h4>Eager Compatibility</h4>
-
+<h4 id="eager-compatibility_1">Eager Compatibility</h4>
 <p>When eager execution is enabled, <code>gate_gradients</code>, <code>aggregation_method</code>,
 and <code>colocate_gradients_with_ops</code> are ignored.</p>
-
 <h3 id="get_name"><code>get_name</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/training/optimizer.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_name</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-get_name()
-</code></p>
 
 <h3 id="get_slot"><code>get_slot</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/training/optimizer.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_slot</span><span class="p">(</span>
+    <span class="n">var</span><span class="p">,</span>
+    <span class="n">name</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-get_slot(
-    var,
-    name
-)
-</code></p>
 
 <p>Return a slot named <code>name</code> created for <code>var</code> by the Optimizer.</p>
-
 <p>Some <code>Optimizer</code> subclasses use additional variables.  For example
 <code>Momentum</code> and <code>Adagrad</code> use variables to accumulate updates.  This method
 gives access to these <code>Variable</code> objects if for some reason you need them.</p>
-
 <p>Use <code>get_slot_names()</code> to get the list of slot names created by the
 <code>Optimizer</code>.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_3">Args:</h4>
 <ul>
 <li><b><code>var</code></b>: A variable passed to <code>minimize()</code> or <code>apply_gradients()</code>.</li>
 <li><b><code>name</code></b>: A string.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_2">Returns:</h4>
 <p>The <code>Variable</code> for the slot if it was created, <code>None</code> otherwise.</p>
-
 <h3 id="get_slot_names"><code>get_slot_names</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/training/optimizer.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_slot_names</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-get_slot_names()
-</code></p>
 
 <p>Return a list of the names of slots created by the <code>Optimizer</code>.</p>
-
 <p>See <code>get_slot()</code>.</p>
-
-<h4>Returns:</h4>
-
+<h4 id="returns_3">Returns:</h4>
 <p>A list of strings.</p>
-
 <h3 id="minimize"><code>minimize</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/training/optimizer.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">minimize</span><span class="p">(</span>
+    <span class="n">loss</span><span class="p">,</span>
+    <span class="n">global_step</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">var_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">gate_gradients</span><span class="o">=</span><span class="n">GATE_OP</span><span class="p">,</span>
+    <span class="n">aggregation_method</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">colocate_gradients_with_ops</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">grad_loss</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-minimize(
-    loss,
-    global_step=None,
-    var_list=None,
-    gate_gradients=GATE_OP,
-    aggregation_method=None,
-    colocate_gradients_with_ops=False,
-    name=None,
-    grad_loss=None
-)
-</code></p>
 
 <p>Add operations to minimize <code>loss</code> by updating <code>var_list</code>.</p>
-
 <p>This method simply combines calls <code>compute_gradients()</code> and
 <code>apply_gradients()</code>. If you want to process the gradient before applying
 them call <code>compute_gradients()</code> and <code>apply_gradients()</code> explicitly instead
 of using this function.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_4">Args:</h4>
 <ul>
 <li><b><code>loss</code></b>: A <code>Tensor</code> containing the value to minimize.</li>
 <li><b><code>global_step</code></b>: Optional <code>Variable</code> to increment by one after the
-variables have been updated.</li>
+  variables have been updated.</li>
 <li><b><code>var_list</code></b>: Optional list or tuple of <code>Variable</code> objects to update to
-minimize <code>loss</code>.  Defaults to the list of variables collected in
-the graph under the key <code>GraphKeys.TRAINABLE_VARIABLES</code>.</li>
+  minimize <code>loss</code>.  Defaults to the list of variables collected in
+  the graph under the key <code>GraphKeys.TRAINABLE_VARIABLES</code>.</li>
 <li><b><code>gate_gradients</code></b>: How to gate the computation of gradients.  Can be
-<code>GATE_NONE</code>, <code>GATE_OP</code>, or  <code>GATE_GRAPH</code>.</li>
+  <code>GATE_NONE</code>, <code>GATE_OP</code>, or  <code>GATE_GRAPH</code>.</li>
 <li><b><code>aggregation_method</code></b>: Specifies the method used to combine gradient terms.
-Valid values are defined in the class <code>AggregationMethod</code>.</li>
+  Valid values are defined in the class <code>AggregationMethod</code>.</li>
 <li><b><code>colocate_gradients_with_ops</code></b>: If True, try colocating gradients with
-the corresponding op.</li>
+  the corresponding op.</li>
 <li><b><code>name</code></b>: Optional name for the returned operation.</li>
 <li><b><code>grad_loss</code></b>: Optional. A <code>Tensor</code> holding the gradient computed for <code>loss</code>.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_4">Returns:</h4>
 <p>An Operation that updates the variables in <code>var_list</code>.  If <code>global_step</code>
 was not <code>None</code>, that operation also increments <code>global_step</code>.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises_3">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: If some of the variables are not <code>Variable</code> objects.</li>
 </ul>
-
-
-<h4>Eager Compatibility</h4>
-
+<h4 id="eager-compatibility_2">Eager Compatibility</h4>
 <p>When eager execution is enabled, <code>loss</code> should be a Python function that
 takes no arguments and computes the value to be minimized. Minimization (and
 gradient computation) is done with respect to the elements of <code>var_list</code> if
@@ -320,30 +247,24 @@ not None, else with respect to any trainable variables created during the
 execution of the <code>loss</code> function. <code>gate_gradients</code>, <code>aggregation_method</code>,
 <code>colocate_gradients_with_ops</code> and <code>grad_loss</code> are ignored when eager
 execution is enabled.</p>
-
 <h3 id="variables"><code>variables</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/training/optimizer.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">variables</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-variables()
-</code></p>
 
 <p>A list of variables which encode the current state of <code>Optimizer</code>.</p>
-
 <p>Includes slot variables and additional global variables created by the
 optimizer in the current default graph.</p>
-
-<h4>Returns:</h4>
-
+<h4 id="returns_5">Returns:</h4>
 <p>A list of variables.</p>
-
-<h2>Class Members</h2>
-
+<h2 id="class-members">Class Members</h2>
 <ul>
 <li><code>GATE_GRAPH = 2</code> <a id="GATE_GRAPH"></a></li>
 <li><code>GATE_NONE = 0</code> <a id="GATE_NONE"></a></li>
 <li><code>GATE_OP = 1</code> <a id="GATE_OP"></a></li>
 </ul>
-
+    </body>
+    </html>
+   

@@ -1,33 +1,32 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.enable_control_flow_v2" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.compat.v1.enable_control_flow_v2</h1>
-
+<h1 id="tfcompatv1enable_control_flow_v2">tf.compat.v1.enable_control_flow_v2</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/control_flow_v2_toggles.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Use control flow v2.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">enable_control_flow_v2</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-tf.compat.v1.enable_control_flow_v2()
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>control flow v2 (cfv2) is an improved version of control flow in TensorFlow
 with support for higher order derivatives. Enabling cfv2 will change the
@@ -35,9 +34,10 @@ graph/function representation of control flow, e.g., <a href="../../../tf/while_
 <a href="../../../tf/cond.html"><code>tf.cond</code></a> will generate functional <code>While</code> and <code>If</code> ops instead of low-level
 <code>Switch</code>, <code>Merge</code> etc. ops. Note: Importing and running graphs exported
 with old control flow will still be supported.</p>
-
 <p>Calling tf.enable_control_flow_v2() lets you opt-in to this TensorFlow 2.0
 feature.</p>
-
 <p>Note: v2 control flow is always enabled inside of tf.function. Calling this
 function is not required.</p>
+    </body>
+    </html>
+   

@@ -1,69 +1,63 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.nn.avg_pool" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.compat.v1.nn.avg_pool</h1>
-
+<h1 id="tfcompatv1nnavg_pool">tf.compat.v1.nn.avg_pool</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/nn_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Performs the average pooling on the input.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.nn.avg_pool2d</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">avg_pool</span><span class="p">(</span>
+    <span class="n">value</span><span class="p">,</span>
+    <span class="n">ksize</span><span class="p">,</span>
+    <span class="n">strides</span><span class="p">,</span>
+    <span class="n">padding</span><span class="p">,</span>
+    <span class="n">data_format</span><span class="o">=</span><span class="s1">&#39;NHWC&#39;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="nb">input</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.compat.v1.nn.avg_pool(
-    value,
-    ksize,
-    strides,
-    padding,
-    data_format='NHWC',
-    name=None,
-    input=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>Each entry in <code>output</code> is the mean of the corresponding size <code>ksize</code>
 window in <code>value</code>.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>value</code></b>: A 4-D <code>Tensor</code> of shape <code>[batch, height, width, channels]</code> and type
-<code>float32</code>, <code>float64</code>, <code>qint8</code>, <code>quint8</code>, or <code>qint32</code>.</li>
+  <code>float32</code>, <code>float64</code>, <code>qint8</code>, <code>quint8</code>, or <code>qint32</code>.</li>
 <li><b><code>ksize</code></b>: An int or list of <code>ints</code> that has length <code>1</code>, <code>2</code> or <code>4</code>. The size of
-the window for each dimension of the input tensor.</li>
+  the window for each dimension of the input tensor.</li>
 <li><b><code>strides</code></b>: An int or list of <code>ints</code> that has length <code>1</code>, <code>2</code> or <code>4</code>. The
-stride of the sliding window for each dimension of the input tensor.</li>
+  stride of the sliding window for each dimension of the input tensor.</li>
 <li><b><code>padding</code></b>: A string, either <code>'VALID'</code> or <code>'SAME'</code>. The padding algorithm.
-See the &ldquo;returns&rdquo; section of <a href="../../../../tf/nn/convolution.html"><code>tf.nn.convolution</code></a> for details.</li>
-<li><b><code>data_format</code></b>: A string. &lsquo;NHWC&rsquo; and &lsquo;NCHW&rsquo; are supported.</li>
+  See the "returns" section of <a href="../../../../tf/nn/convolution.html"><code>tf.nn.convolution</code></a> for details.</li>
+<li><b><code>data_format</code></b>: A string. 'NHWC' and 'NCHW' are supported.</li>
 <li><b><code>name</code></b>: Optional name for the operation.</li>
 <li><b><code>input</code></b>: Alias for value.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>Tensor</code> with the same type as <code>value</code>.  The average pooled output tensor.</p>
+    </body>
+    </html>
+   

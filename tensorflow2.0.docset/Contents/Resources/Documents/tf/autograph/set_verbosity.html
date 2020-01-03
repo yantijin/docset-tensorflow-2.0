@@ -1,92 +1,81 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.autograph.set_verbosity" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.autograph.set_verbosity</h1>
-
+<h1 id="tfautographset_verbosity">tf.autograph.set_verbosity</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/autograph/utils/ag_logging.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Sets the AutoGraph verbosity level.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.autograph.set_verbosity</code></li>
 <li><code>tf.compat.v2.autograph.set_verbosity</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">autograph</span><span class="o">.</span><span class="n">set_verbosity</span><span class="p">(</span>
+    <span class="n">level</span><span class="p">,</span>
+    <span class="n">alsologtostdout</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.autograph.set_verbosity(
-    level,
-    alsologtostdout=False
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p><em>Debug logging in AutoGraph</em></p>
-
 <p>More verbose logging is useful to enable when filing bug reports or doing
 more in-depth debugging.</p>
-
 <p>There are two means to control the logging verbosity:</p>
-
 <ul>
-<li><p>The <code>set_verbosity</code> function</p></li>
-<li><p>The <code>AUTOGRAPH_VERBOSITY</code> environment variable</p></li>
+<li>
+<p>The <code>set_verbosity</code> function</p>
+</li>
+<li>
+<p>The <code>AUTOGRAPH_VERBOSITY</code> environment variable</p>
+</li>
 </ul>
-
-
 <p><code>set_verbosity</code> takes precedence over the environment variable.</p>
+<h4 id="for-example">For example:</h4>
+<div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
 
-<h4>For example:</h4>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;AUTOGRAPH_VERBOSITY&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="c1"># Verbosity is now 5</span>
 
-<p>```python
-import os
-import tensorflow as tf</p>
+<span class="n">tf</span><span class="o">.</span><span class="n">autograph</span><span class="o">.</span><span class="n">set_verbosity</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1"># Verbosity is now 0</span>
 
-<p>os.environ[&lsquo;AUTOGRAPH_VERBOSITY&rsquo;] = 5</p>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;AUTOGRAPH_VERBOSITY&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="c1"># No effect, because set_verbosity was already called.</span>
+</pre></div>
 
-<h1>Verbosity is now 5</h1>
 
-<p>tf.autograph.set_verbosity(0)</p>
-
-<h1>Verbosity is now 0</h1>
-
-<p>os.environ[&lsquo;AUTOGRAPH_VERBOSITY&rsquo;] = 1</p>
-
-<h1>No effect, because set_verbosity was already called.</h1>
-
-<p>```</p>
-
-<p>Logs entries are output to <a href="https://abseil.io">absl</a>&rsquo;s
+<p>Logs entries are output to <a href="https://abseil.io">absl</a>'s 
 <a href="https://abseil.io/docs/python/guides/logging">default output</a>,
 with <code>INFO</code> level.
 Logs can be mirrored to stdout by using the <code>alsologtostdout</code> argument.
 Mirroring is enabled by default when Python runs in interactive mode.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>level</code></b>: int, the verbosity level; larger values specify increased verbosity;
-0 means no logging. When reporting bugs, it is recommended to set this
-value to a larger number, like 10.</li>
+  0 means no logging. When reporting bugs, it is recommended to set this
+  value to a larger number, like 10.</li>
 <li><b><code>alsologtostdout</code></b>: bool, whether to also output log messages to <code>sys.stdout</code>.</li>
 </ul>
-
+    </body>
+    </html>
+   

@@ -1,70 +1,67 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.keras.preprocessing.image.random_shift" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.keras.preprocessing.image.random_shift</h1>
-
+<h1 id="tfkeraspreprocessingimagerandom_shift">tf.keras.preprocessing.image.random_shift</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
-
-
 <!-- Start diff -->
 
-
 <p>Performs a random spatial shift of a Numpy image tensor.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.keras.preprocessing.image.random_shift</code></li>
 <li><code>tf.compat.v2.keras.preprocessing.image.random_shift</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">preprocessing</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">random_shift</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">wrg</span><span class="p">,</span>
+    <span class="n">hrg</span><span class="p">,</span>
+    <span class="n">row_axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">col_axis</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">channel_axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">fill_mode</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">,</span>
+    <span class="n">cval</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">interpolation_order</span><span class="o">=</span><span class="mi">1</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.keras.preprocessing.image.random_shift(
-    x,
-    wrg,
-    hrg,
-    row_axis=1,
-    col_axis=2,
-    channel_axis=0,
-    fill_mode='nearest',
-    cval=0.0,
-    interpolation_order=1
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
+<h1 id="arguments">Arguments</h1>
+<div class="codehilite"><pre><span></span><span class="n">x</span><span class="o">:</span> <span class="n">Input</span> <span class="n">tensor</span><span class="o">.</span> <span class="n">Must</span> <span class="n">be</span> <span class="mi">3</span><span class="n">D</span><span class="o">.</span>
+<span class="n">wrg</span><span class="o">:</span> <span class="n">Width</span> <span class="n">shift</span> <span class="n">range</span><span class="o">,</span> <span class="k">as</span> <span class="n">a</span> <span class="n">float</span> <span class="n">fraction</span> <span class="n">of</span> <span class="n">the</span> <span class="n">width</span><span class="o">.</span>
+<span class="n">hrg</span><span class="o">:</span> <span class="n">Height</span> <span class="n">shift</span> <span class="n">range</span><span class="o">,</span> <span class="k">as</span> <span class="n">a</span> <span class="n">float</span> <span class="n">fraction</span> <span class="n">of</span> <span class="n">the</span> <span class="n">height</span><span class="o">.</span>
+<span class="n">row_axis</span><span class="o">:</span> <span class="n">Index</span> <span class="n">of</span> <span class="n">axis</span> <span class="k">for</span> <span class="n">rows</span> <span class="k">in</span> <span class="n">the</span> <span class="n">input</span> <span class="n">tensor</span><span class="o">.</span>
+<span class="n">col_axis</span><span class="o">:</span> <span class="n">Index</span> <span class="n">of</span> <span class="n">axis</span> <span class="k">for</span> <span class="n">columns</span> <span class="k">in</span> <span class="n">the</span> <span class="n">input</span> <span class="n">tensor</span><span class="o">.</span>
+<span class="n">channel_axis</span><span class="o">:</span> <span class="n">Index</span> <span class="n">of</span> <span class="n">axis</span> <span class="k">for</span> <span class="n">channels</span> <span class="k">in</span> <span class="n">the</span> <span class="n">input</span> <span class="n">tensor</span><span class="o">.</span>
+<span class="n">fill_mode</span><span class="o">:</span> <span class="n">Points</span> <span class="n">outside</span> <span class="n">the</span> <span class="n">boundaries</span> <span class="n">of</span> <span class="n">the</span> <span class="n">input</span>
+    <span class="n">are</span> <span class="n">filled</span> <span class="n">according</span> <span class="n">to</span> <span class="n">the</span> <span class="n">given</span> <span class="n">mode</span>
+    <span class="o">(</span><span class="n">one</span> <span class="n">of</span> <span class="err">`</span><span class="o">{</span><span class="s1">&#39;constant&#39;</span><span class="o">,</span> <span class="s1">&#39;nearest&#39;</span><span class="o">,</span> <span class="s1">&#39;reflect&#39;</span><span class="o">,</span> <span class="s1">&#39;wrap&#39;</span><span class="o">}</span><span class="err">`</span><span class="o">).</span>
+<span class="n">cval</span><span class="o">:</span> <span class="n">Value</span> <span class="n">used</span> <span class="k">for</span> <span class="n">points</span> <span class="n">outside</span> <span class="n">the</span> <span class="n">boundaries</span>
+    <span class="n">of</span> <span class="n">the</span> <span class="n">input</span> <span class="k">if</span> <span class="err">`</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;constant&#39;</span><span class="err">`</span><span class="o">.</span>
+<span class="n">interpolation_order</span><span class="o">:</span> <span class="n">int</span><span class="o">,</span> <span class="n">order</span> <span class="n">of</span> <span class="n">spline</span> <span class="n">interpolation</span><span class="o">.</span>
+    <span class="n">see</span> <span class="err">`</span><span class="n">ndimage</span><span class="o">.</span><span class="na">interpolation</span><span class="o">.</span><span class="na">affine_transform</span><span class="err">`</span>
+</pre></div>
 
-<h1>Arguments</h1>
 
-<pre><code>x: Input tensor. Must be 3D.
-wrg: Width shift range, as a float fraction of the width.
-hrg: Height shift range, as a float fraction of the height.
-row_axis: Index of axis for rows in the input tensor.
-col_axis: Index of axis for columns in the input tensor.
-channel_axis: Index of axis for channels in the input tensor.
-fill_mode: Points outside the boundaries of the input
-    are filled according to the given mode
-    (one of `{'constant', 'nearest', 'reflect', 'wrap'}`).
-cval: Value used for points outside the boundaries
-    of the input if `mode='constant'`.
-interpolation_order: int, order of spline interpolation.
-    see `ndimage.interpolation.affine_transform`
-</code></pre>
-
-<h1>Returns</h1>
-
-<pre><code>Shifted Numpy image tensor.
-</code></pre>
+<h1 id="returns">Returns</h1>
+<div class="codehilite"><pre><span></span><span class="err">Shifted Numpy image tensor.</span>
+</pre></div>
+    </body>
+    </html>
+   

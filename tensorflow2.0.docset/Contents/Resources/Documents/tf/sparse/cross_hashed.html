@@ -1,85 +1,80 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.sparse.cross_hashed" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.sparse.cross_hashed</h1>
-
+<h1 id="tfsparsecross_hashed">tf.sparse.cross_hashed</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/sparse_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Generates hashed sparse cross from a list of sparse and dense tensors.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.sparse.cross_hashed</code></li>
 <li><code>tf.compat.v2.sparse.cross_hashed</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">sparse</span><span class="o">.</span><span class="n">cross_hashed</span><span class="p">(</span>
+    <span class="n">inputs</span><span class="p">,</span>
+    <span class="n">num_buckets</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">hash_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.sparse.cross_hashed(
-    inputs,
-    num_buckets=0,
-    hash_key=None,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>For example, if the inputs are</p>
+<div class="codehilite"><pre><span></span><span class="err">* inputs[0]: SparseTensor with shape = [2, 2]</span>
+<span class="err">  [0, 0]: &quot;a&quot;</span>
+<span class="err">  [1, 0]: &quot;b&quot;</span>
+<span class="err">  [1, 1]: &quot;c&quot;</span>
+<span class="err">* inputs[1]: SparseTensor with shape = [2, 1]</span>
+<span class="err">  [0, 0]: &quot;d&quot;</span>
+<span class="err">  [1, 0]: &quot;e&quot;</span>
+<span class="err">* inputs[2]: Tensor [[&quot;f&quot;], [&quot;g&quot;]]</span>
+</pre></div>
 
-<pre><code>* inputs[0]: SparseTensor with shape = [2, 2]
-  [0, 0]: "a"
-  [1, 0]: "b"
-  [1, 1]: "c"
-* inputs[1]: SparseTensor with shape = [2, 1]
-  [0, 0]: "d"
-  [1, 0]: "e"
-* inputs[2]: Tensor [["f"], ["g"]]
-</code></pre>
 
 <p>then the output will be:</p>
+<div class="codehilite"><pre><span></span><span class="err">shape = [2, 2]</span>
+<span class="err">[0, 0]: FingerprintCat64(</span>
+<span class="err">            Fingerprint64(&quot;f&quot;), FingerprintCat64(</span>
+<span class="err">                Fingerprint64(&quot;d&quot;), Fingerprint64(&quot;a&quot;)))</span>
+<span class="err">[1, 0]: FingerprintCat64(</span>
+<span class="err">            Fingerprint64(&quot;g&quot;), FingerprintCat64(</span>
+<span class="err">                Fingerprint64(&quot;e&quot;), Fingerprint64(&quot;b&quot;)))</span>
+<span class="err">[1, 1]: FingerprintCat64(</span>
+<span class="err">            Fingerprint64(&quot;g&quot;), FingerprintCat64(</span>
+<span class="err">                Fingerprint64(&quot;e&quot;), Fingerprint64(&quot;c&quot;)))</span>
+</pre></div>
 
-<pre><code>shape = [2, 2]
-[0, 0]: FingerprintCat64(
-            Fingerprint64("f"), FingerprintCat64(
-                Fingerprint64("d"), Fingerprint64("a")))
-[1, 0]: FingerprintCat64(
-            Fingerprint64("g"), FingerprintCat64(
-                Fingerprint64("e"), Fingerprint64("b")))
-[1, 1]: FingerprintCat64(
-            Fingerprint64("g"), FingerprintCat64(
-                Fingerprint64("e"), Fingerprint64("c")))
-</code></pre>
 
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>inputs</code></b>: An iterable of <code>Tensor</code> or <code>SparseTensor</code>.</li>
 <li><b><code>num_buckets</code></b>: An <code>int</code> that is <code>&gt;= 0</code>.
-output = hashed_value%num_buckets if num_buckets > 0 else hashed_value.</li>
+  output = hashed_value%num_buckets if num_buckets &gt; 0 else hashed_value.</li>
 <li><b><code>hash_key</code></b>: Integer hash_key that will be used by the <code>FingerprintCat64</code>
-function. If not given, will use a default key.</li>
+  function. If not given, will use a default key.</li>
 <li><b><code>name</code></b>: Optional name for the op.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>SparseTensor</code> of type <code>int64</code>.</p>
+    </body>
+    </html>
+   

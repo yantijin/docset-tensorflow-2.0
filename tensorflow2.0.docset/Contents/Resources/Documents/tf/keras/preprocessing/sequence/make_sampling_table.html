@@ -1,72 +1,65 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.keras.preprocessing.sequence.make_sampling_table" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.keras.preprocessing.sequence.make_sampling_table</h1>
-
+<h1 id="tfkeraspreprocessingsequencemake_sampling_table">tf.keras.preprocessing.sequence.make_sampling_table</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
-
-
 <!-- Start diff -->
 
-
 <p>Generates a word rank-based probabilistic sampling table.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.keras.preprocessing.sequence.make_sampling_table</code></li>
 <li><code>tf.compat.v2.keras.preprocessing.sequence.make_sampling_table</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">preprocessing</span><span class="o">.</span><span class="n">sequence</span><span class="o">.</span><span class="n">make_sampling_table</span><span class="p">(</span>
+    <span class="n">size</span><span class="p">,</span>
+    <span class="n">sampling_factor</span><span class="o">=</span><span class="mf">1e-05</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.keras.preprocessing.sequence.make_sampling_table(
-    size,
-    sampling_factor=1e-05
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>Used for generating the <code>sampling_table</code> argument for <code>skipgrams</code>.
 <code>sampling_table[i]</code> is the probability of sampling
 the word i-th most common word in a dataset
 (more common words should be sampled less frequently, for balance).</p>
-
 <p>The sampling probabilities are generated according
 to the sampling distribution used in word2vec:</p>
+<div class="codehilite"><pre><span></span><span class="err">p(word) = (min(1, sqrt(word_frequency / sampling_factor) /</span>
+<span class="err">    (word_frequency / sampling_factor)))</span>
+</pre></div>
 
-<p><code>
-p(word) = (min(1, sqrt(word_frequency / sampling_factor) /
-    (word_frequency / sampling_factor)))
-</code></p>
 
-<p>We assume that the word frequencies follow Zipf&rsquo;s law (s=1) to derive
+<p>We assume that the word frequencies follow Zipf's law (s=1) to derive
 a numerical approximation of frequency(rank):</p>
-
 <p><code>frequency(rank) ~ 1/(rank * (log(rank) + gamma) + 1/2 - 1/(12*rank))</code>
 where <code>gamma</code> is the Euler-Mascheroni constant.</p>
+<h1 id="arguments">Arguments</h1>
+<div class="codehilite"><pre><span></span><span class="n">size</span><span class="o">:</span> <span class="n">Int</span><span class="o">,</span> <span class="n">number</span> <span class="n">of</span> <span class="n">possible</span> <span class="n">words</span> <span class="n">to</span> <span class="n">sample</span><span class="o">.</span>
+<span class="n">sampling_factor</span><span class="o">:</span> <span class="n">The</span> <span class="n">sampling</span> <span class="n">factor</span> <span class="k">in</span> <span class="n">the</span> <span class="n">word2vec</span> <span class="n">formula</span><span class="o">.</span>
+</pre></div>
 
-<h1>Arguments</h1>
 
-<pre><code>size: Int, number of possible words to sample.
-sampling_factor: The sampling factor in the word2vec formula.
-</code></pre>
-
-<h1>Returns</h1>
-
-<pre><code>A 1D Numpy array of length `size` where the ith entry
-is the probability that a word of rank i should be sampled.
-</code></pre>
+<h1 id="returns">Returns</h1>
+<div class="codehilite"><pre><span></span><span class="n">A</span> <span class="mi">1</span><span class="n">D</span> <span class="n">Numpy</span> <span class="n">array</span> <span class="n">of</span> <span class="n">length</span> <span class="ss">`size`</span> <span class="k">where</span> <span class="n">the</span> <span class="n">ith</span> <span class="n">entry</span>
+<span class="k">is</span> <span class="n">the</span> <span class="n">probability</span> <span class="n">that</span> <span class="n">a</span> <span class="n">word</span> <span class="n">of</span> <span class="n">rank</span> <span class="n">i</span> <span class="n">should</span> <span class="n">be</span> <span class="n">sampled</span><span class="p">.</span>
+</pre></div>
+    </body>
+    </html>
+   

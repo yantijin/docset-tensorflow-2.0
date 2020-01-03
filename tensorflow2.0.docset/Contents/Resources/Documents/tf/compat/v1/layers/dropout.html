@@ -1,79 +1,72 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.layers.dropout" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.compat.v1.layers.dropout</h1>
-
+<h1 id="tfcompatv1layersdropout">tf.compat.v1.layers.dropout</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/layers/core.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Applies Dropout to the input. (deprecated)</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span>
+    <span class="n">inputs</span><span class="p">,</span>
+    <span class="n">rate</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">noise_shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">training</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-tf.compat.v1.layers.dropout(
-    inputs,
-    rate=0.5,
-    noise_shape=None,
-    seed=None,
-    training=False,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
 Instructions for updating:
 Use keras.layers.dropout instead.</p>
-
 <p>Dropout consists in randomly setting a fraction <code>rate</code> of input units to 0
 at each update during training time, which helps prevent overfitting.
 The units that are kept are scaled by <code>1 / (1 - rate)</code>, so that their
 sum is unchanged at training time and inference time.</p>
-
-<h4>Arguments:</h4>
-
+<h4 id="arguments">Arguments:</h4>
 <ul>
 <li><b><code>inputs</code></b>: Tensor input.</li>
-<li><b><code>rate</code></b>: The dropout rate, between 0 and 1. E.g. &ldquo;rate=0.1&rdquo; would drop out
-10% of input units.</li>
+<li><b><code>rate</code></b>: The dropout rate, between 0 and 1. E.g. "rate=0.1" would drop out
+  10% of input units.</li>
 <li><b><code>noise_shape</code></b>: 1D tensor of type <code>int32</code> representing the shape of the
-binary dropout mask that will be multiplied with the input.
-For instance, if your inputs have shape
-<code>(batch_size, timesteps, features)</code>, and you want the dropout mask
-to be the same for all timesteps, you can use
-<code>noise_shape=[batch_size, 1, features]</code>.</li>
+  binary dropout mask that will be multiplied with the input.
+  For instance, if your inputs have shape
+  <code>(batch_size, timesteps, features)</code>, and you want the dropout mask
+  to be the same for all timesteps, you can use
+  <code>noise_shape=[batch_size, 1, features]</code>.</li>
 <li><b><code>seed</code></b>: A Python integer. Used to create random seeds. See
-<a href="../../../../tf/compat/v1/set_random_seed.html"><code>tf.compat.v1.set_random_seed</code></a>
-for behavior.</li>
+  <a href="../../../../tf/compat/v1/set_random_seed.html"><code>tf.compat.v1.set_random_seed</code></a>
+  for behavior.</li>
 <li><b><code>training</code></b>: Either a Python boolean, or a TensorFlow boolean scalar tensor
-(e.g. a placeholder). Whether to return the output in training mode
-(apply dropout) or in inference mode (return the input untouched).</li>
+  (e.g. a placeholder). Whether to return the output in training mode
+  (apply dropout) or in inference mode (return the input untouched).</li>
 <li><b><code>name</code></b>: The name of the layer (string).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>Output tensor.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: if eager execution is enabled.</li>
 </ul>
-
+    </body>
+    </html>
+   

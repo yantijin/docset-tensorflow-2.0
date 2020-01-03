@@ -1,42 +1,36 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.keras.layers.Dense" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="__init__"/>
 </div>
 
-
-<h1>tf.keras.layers.Dense</h1>
-
+<h1 id="tfkeraslayersdense">tf.keras.layers.Dense</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/core.py">View source</a></p>
-
-<h2>Class <code>Dense</code></h2>
-
+<h2 id="class-dense">Class <code>Dense</code></h2>
 <!-- Start diff -->
 
-
 <p>Just your regular densely-connected NN layer.</p>
-
 <p>Inherits From: <a href="../../../tf/keras/layers/Layer.html"><code>Layer</code></a></p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li>Class <code>tf.compat.v1.keras.layers.Dense</code></li>
 <li>Class <code>tf.compat.v2.keras.layers.Dense</code></li>
 </ul>
-
-
 <!-- Placeholder for "Used in" -->
-
 
 <p><code>Dense</code> implements the operation:
 <code>output = activation(dot(input, kernel) + bias)</code>
@@ -44,80 +38,64 @@ where <code>activation</code> is the element-wise activation function
 passed as the <code>activation</code> argument, <code>kernel</code> is a weights matrix
 created by the layer, and <code>bias</code> is a bias vector created by the layer
 (only applicable if <code>use_bias</code> is <code>True</code>).</p>
-
 <p>Note: If the input to the layer has a rank greater than 2, then
 it is flattened prior to the initial dot product with <code>kernel</code>.</p>
+<h4 id="example">Example:</h4>
+<div class="codehilite"><pre><span></span><span class="c1"># as first layer in a sequential model:</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,)))</span>
+<span class="c1"># now the model will take as input arrays of shape (*, 16)</span>
+<span class="c1"># and output arrays of shape (*, 32)</span>
 
-<h4>Example:</h4>
+<span class="c1"># after the first layer, you don&#39;t need to specify</span>
+<span class="c1"># the size of the input anymore:</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">32</span><span class="p">))</span>
+</pre></div>
 
-<p>```python</p>
 
-<h1>as first layer in a sequential model:</h1>
-
-<p>model = Sequential()
-model.add(Dense(32, input_shape=(16,)))</p>
-
-<h1>now the model will take as input arrays of shape (*, 16)</h1>
-
-<h1>and output arrays of shape (*, 32)</h1>
-
-<h1>after the first layer, you don&rsquo;t need to specify</h1>
-
-<h1>the size of the input anymore:</h1>
-
-<p>model.add(Dense(32))
-```</p>
-
-<h4>Arguments:</h4>
-
+<h4 id="arguments">Arguments:</h4>
 <ul>
 <li><b><code>units</code></b>: Positive integer, dimensionality of the output space.</li>
 <li><b><code>activation</code></b>: Activation function to use.
-If you don&rsquo;t specify anything, no activation is applied
-(ie. &ldquo;linear&rdquo; activation: <code>a(x) = x</code>).</li>
+  If you don't specify anything, no activation is applied
+  (ie. "linear" activation: <code>a(x) = x</code>).</li>
 <li><b><code>use_bias</code></b>: Boolean, whether the layer uses a bias vector.</li>
 <li><b><code>kernel_initializer</code></b>: Initializer for the <code>kernel</code> weights matrix.</li>
 <li><b><code>bias_initializer</code></b>: Initializer for the bias vector.</li>
 <li><b><code>kernel_regularizer</code></b>: Regularizer function applied to
-the <code>kernel</code> weights matrix.</li>
+  the <code>kernel</code> weights matrix.</li>
 <li><b><code>bias_regularizer</code></b>: Regularizer function applied to the bias vector.</li>
 <li><b><code>activity_regularizer</code></b>: Regularizer function applied to
-the output of the layer (its &ldquo;activation&rdquo;)..</li>
+  the output of the layer (its "activation")..</li>
 <li><b><code>kernel_constraint</code></b>: Constraint function applied to
-the <code>kernel</code> weights matrix.</li>
+  the <code>kernel</code> weights matrix.</li>
 <li><b><code>bias_constraint</code></b>: Constraint function applied to the bias vector.</li>
 </ul>
-
-
-<h4>Input shape:</h4>
-
+<h4 id="input-shape">Input shape:</h4>
 <p>N-D tensor with shape: <code>(batch_size, ..., input_dim)</code>.
 The most common situation would be
 a 2D input with shape <code>(batch_size, input_dim)</code>.</p>
-
-<h4>Output shape:</h4>
-
+<h4 id="output-shape">Output shape:</h4>
 <p>N-D tensor with shape: <code>(batch_size, ..., units)</code>.
 For instance, for a 2D input with shape <code>(batch_size, input_dim)</code>,
 the output would have shape <code>(batch_size, units)</code>.</p>
-
 <h2 id="__init__"><code>__init__</code></h2>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/core.py">View source</a></p>
-
-<p><code>python
-__init__(
-    units,
-    activation=None,
-    use_bias=True,
-    kernel_initializer='glorot_uniform',
-    bias_initializer='zeros',
-    kernel_regularizer=None,
-    bias_regularizer=None,
-    activity_regularizer=None,
-    kernel_constraint=None,
-    bias_constraint=None,
-    **kwargs
-)
-</code></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">units</span><span class="p">,</span>
+    <span class="n">activation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">use_bias</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">kernel_initializer</span><span class="o">=</span><span class="s1">&#39;glorot_uniform&#39;</span><span class="p">,</span>
+    <span class="n">bias_initializer</span><span class="o">=</span><span class="s1">&#39;zeros&#39;</span><span class="p">,</span>
+    <span class="n">kernel_regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">bias_regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">activity_regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">kernel_constraint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">bias_constraint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+    </body>
+    </html>
+   

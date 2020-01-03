@@ -1,77 +1,67 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.keras.models.load_model" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.keras.models.load_model</h1>
-
+<h1 id="tfkerasmodelsload_model">tf.keras.models.load_model</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/saving/save.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Loads a model saved via <code>save_model</code>.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.keras.models.load_model</code></li>
 <li><code>tf.compat.v2.keras.models.load_model</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span>
+    <span class="n">filepath</span><span class="p">,</span>
+    <span class="n">custom_objects</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="nb">compile</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.keras.models.load_model(
-    filepath,
-    custom_objects=None,
-    compile=True
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
-<h4>Arguments:</h4>
-
+<h4 id="arguments">Arguments:</h4>
 <ul>
-<li><b><code>filepath</code></b>: One of the following:
-
-<ul>
+<li><b><code>filepath</code></b>: One of the following:<ul>
 <li>String, path to the saved model</li>
 <li><code>h5py.File</code> object from which to load the model</li>
 </ul>
 </li>
 <li><b><code>custom_objects</code></b>: Optional dictionary mapping names
-  (strings) to custom classes or functions to be
-  considered during deserialization.</li>
+    (strings) to custom classes or functions to be
+    considered during deserialization.</li>
 <li><b><code>compile</code></b>: Boolean, whether to compile the model
-  after loading.</li>
+    after loading.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A Keras model instance. If an optimizer was found
 as part of the saved model, the model is already
 compiled. Otherwise, the model is uncompiled and
 a warning will be displayed. When <code>compile</code> is set
 to False, the compilation is omitted without any
 warning.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ImportError</code></b>: if loading from an hdf5 file and h5py is not available.</li>
 <li><b><code>IOError</code></b>: In case of an invalid savefile.</li>
 </ul>
-
+    </body>
+    </html>
+   

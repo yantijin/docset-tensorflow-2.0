@@ -1,32 +1,30 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.keras.layers.MaxPool2D" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="__init__"/>
 </div>
 
-
-<h1>tf.keras.layers.MaxPool2D</h1>
-
+<h1 id="tfkeraslayersmaxpool2d">tf.keras.layers.MaxPool2D</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/pooling.py">View source</a></p>
-
-<h2>Class <code>MaxPool2D</code></h2>
-
+<h2 id="class-maxpool2d">Class <code>MaxPool2D</code></h2>
 <!-- Start diff -->
 
-
 <p>Max pooling operation for spatial data.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li>Class <code>tf.compat.v1.keras.layers.MaxPool2D</code></li>
 <li>Class <code>tf.compat.v1.keras.layers.MaxPooling2D</code></li>
@@ -34,67 +32,55 @@
 <li>Class <code>tf.compat.v2.keras.layers.MaxPooling2D</code></li>
 <li>Class <code>tf.keras.layers.MaxPooling2D</code></li>
 </ul>
-
-
 <!-- Placeholder for "Used in" -->
 
-
-<h4>Arguments:</h4>
-
+<h4 id="arguments">Arguments:</h4>
 <ul>
 <li><b><code>pool_size</code></b>: integer or tuple of 2 integers,
-factors by which to downscale (vertical, horizontal).
-<code>(2, 2)</code> will halve the input in both spatial dimension.
-If only one integer is specified, the same window length
-will be used for both dimensions.</li>
+  factors by which to downscale (vertical, horizontal).
+  <code>(2, 2)</code> will halve the input in both spatial dimension.
+  If only one integer is specified, the same window length
+  will be used for both dimensions.</li>
 <li><b><code>strides</code></b>: Integer, tuple of 2 integers, or None.
-Strides values.
-If None, it will default to <code>pool_size</code>.</li>
+  Strides values.
+  If None, it will default to <code>pool_size</code>.</li>
 <li><b><code>padding</code></b>: One of <code>"valid"</code> or <code>"same"</code> (case-insensitive).</li>
 <li><b><code>data_format</code></b>: A string,
-one of <code>channels_last</code> (default) or <code>channels_first</code>.
-The ordering of the dimensions in the inputs.
-<code>channels_last</code> corresponds to inputs with shape
-<code>(batch, height, width, channels)</code> while <code>channels_first</code>
-corresponds to inputs with shape
-<code>(batch, channels, height, width)</code>.
-It defaults to the <code>image_data_format</code> value found in your
-Keras config file at <code>~/.keras/keras.json</code>.
-If you never set it, then it will be &ldquo;channels_last&rdquo;.</li>
+  one of <code>channels_last</code> (default) or <code>channels_first</code>.
+  The ordering of the dimensions in the inputs.
+  <code>channels_last</code> corresponds to inputs with shape
+  <code>(batch, height, width, channels)</code> while <code>channels_first</code>
+  corresponds to inputs with shape
+  <code>(batch, channels, height, width)</code>.
+  It defaults to the <code>image_data_format</code> value found in your
+  Keras config file at <code>~/.keras/keras.json</code>.
+  If you never set it, then it will be "channels_last".</li>
 </ul>
-
-
-<h4>Input shape:</h4>
-
+<h4 id="input-shape">Input shape:</h4>
 <ul>
 <li>If <code>data_format='channels_last'</code>:
-4D tensor with shape <code>(batch_size, rows, cols, channels)</code>.</li>
+  4D tensor with shape <code>(batch_size, rows, cols, channels)</code>.</li>
 <li>If <code>data_format='channels_first'</code>:
-4D tensor with shape <code>(batch_size, channels, rows, cols)</code>.</li>
+  4D tensor with shape <code>(batch_size, channels, rows, cols)</code>.</li>
 </ul>
-
-
-<h4>Output shape:</h4>
-
+<h4 id="output-shape">Output shape:</h4>
 <ul>
 <li>If <code>data_format='channels_last'</code>:
-4D tensor with shape <code>(batch_size, pooled_rows, pooled_cols, channels)</code>.</li>
+  4D tensor with shape <code>(batch_size, pooled_rows, pooled_cols, channels)</code>.</li>
 <li>If <code>data_format='channels_first'</code>:
-4D tensor with shape <code>(batch_size, channels, pooled_rows, pooled_cols)</code>.</li>
+  4D tensor with shape <code>(batch_size, channels, pooled_rows, pooled_cols)</code>.</li>
 </ul>
-
-
 <h2 id="__init__"><code>__init__</code></h2>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/pooling.py">View source</a></p>
-
-<p><code>python
-__init__(
-    pool_size=(2, 2),
-    strides=None,
-    padding='valid',
-    data_format=None,
-    **kwargs
-)
-</code></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">pool_size</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+    <span class="n">strides</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;valid&#39;</span><span class="p">,</span>
+    <span class="n">data_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+    </body>
+    </html>
+   

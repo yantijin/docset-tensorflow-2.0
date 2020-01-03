@@ -1,116 +1,99 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.linalg.svd" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.linalg.svd</h1>
-
+<h1 id="tflinalgsvd">tf.linalg.svd</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/linalg_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Computes the singular value decompositions of one or more matrices.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.linalg.svd</code></li>
 <li><code>tf.compat.v1.svd</code></li>
 <li><code>tf.compat.v2.linalg.svd</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span>
+    <span class="n">tensor</span><span class="p">,</span>
+    <span class="n">full_matrices</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">compute_uv</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.linalg.svd(
-    tensor,
-    full_matrices=False,
-    compute_uv=True,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>Computes the SVD of each inner matrix in <code>tensor</code> such that
 <code>tensor[..., :, :] = u[..., :, :] * diag(s[..., :, :]) *
  transpose(conj(v[..., :, :]))</code></p>
+<div class="codehilite"><pre><span></span><span class="c1"># a is a tensor.</span>
+<span class="c1"># s is a tensor of singular values.</span>
+<span class="c1"># u is a tensor of left singular vectors.</span>
+<span class="c1"># v is a tensor of right singular vectors.</span>
+<span class="n">s</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">svd</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">svd</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">compute_uv</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
 
-<p>```python</p>
 
-<h1>a is a tensor.</h1>
-
-<h1>s is a tensor of singular values.</h1>
-
-<h1>u is a tensor of left singular vectors.</h1>
-
-<h1>v is a tensor of right singular vectors.</h1>
-
-<p>s, u, v = svd(a)
-s = svd(a, compute_uv=False)
-```</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>tensor</code></b>: <code>Tensor</code> of shape <code>[..., M, N]</code>. Let <code>P</code> be the minimum of <code>M</code> and
-<code>N</code>.</li>
+  <code>N</code>.</li>
 <li><b><code>full_matrices</code></b>: If true, compute full-sized <code>u</code> and <code>v</code>. If false
-(the default), compute only the leading <code>P</code> singular vectors.
-Ignored if <code>compute_uv</code> is <code>False</code>.</li>
+  (the default), compute only the leading <code>P</code> singular vectors.
+  Ignored if <code>compute_uv</code> is <code>False</code>.</li>
 <li><b><code>compute_uv</code></b>: If <code>True</code> then left and right singular vectors will be
-computed and returned in <code>u</code> and <code>v</code>, respectively. Otherwise, only the
-singular values will be computed, which can be significantly faster.</li>
+  computed and returned in <code>u</code> and <code>v</code>, respectively. Otherwise, only the
+  singular values will be computed, which can be significantly faster.</li>
 <li><b><code>name</code></b>: string, optional name of the operation.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <ul>
 <li><b><code>s</code></b>: Singular values. Shape is <code>[..., P]</code>. The values are sorted in reverse
-order of magnitude, so s[&hellip;, 0] is the largest value, s[&hellip;, 1] is the
-second largest, etc.</li>
+  order of magnitude, so s[..., 0] is the largest value, s[..., 1] is the
+  second largest, etc.</li>
 <li><b><code>u</code></b>: Left singular vectors. If <code>full_matrices</code> is <code>False</code> (default) then
-shape is <code>[..., M, P]</code>; if <code>full_matrices</code> is <code>True</code> then shape is
-<code>[..., M, M]</code>. Not returned if <code>compute_uv</code> is <code>False</code>.</li>
+  shape is <code>[..., M, P]</code>; if <code>full_matrices</code> is <code>True</code> then shape is
+  <code>[..., M, M]</code>. Not returned if <code>compute_uv</code> is <code>False</code>.</li>
 <li><b><code>v</code></b>: Right singular vectors. If <code>full_matrices</code> is <code>False</code> (default) then
-shape is <code>[..., N, P]</code>. If <code>full_matrices</code> is <code>True</code> then shape is
-<code>[..., N, N]</code>. Not returned if <code>compute_uv</code> is <code>False</code>.</li>
+  shape is <code>[..., N, P]</code>. If <code>full_matrices</code> is <code>True</code> then shape is
+  <code>[..., N, N]</code>. Not returned if <code>compute_uv</code> is <code>False</code>.</li>
 </ul>
-
-
-<h4>Numpy Compatibility</h4>
-
+<h4 id="numpy-compatibility">Numpy Compatibility</h4>
 <p>Mostly equivalent to numpy.linalg.svd, except that
   * The order of output  arguments here is <code>s</code>, <code>u</code>, <code>v</code> when <code>compute_uv</code> is
     <code>True</code>, as opposed to <code>u</code>, <code>s</code>, <code>v</code> for numpy.linalg.svd.
   * full_matrices is <code>False</code> by default as opposed to <code>True</code> for
      numpy.linalg.svd.
   * tf.linalg.svd uses the standard definition of the SVD
-    \(A = U \Sigma V<sup>H</sup>\), such that the left singular vectors of <code>a</code> are
+    \(A = U \Sigma V^H\), such that the left singular vectors of <code>a</code> are
     the columns of <code>u</code>, while the right singular vectors of <code>a</code> are the
     columns of <code>v</code>. On the other hand, numpy.linalg.svd returns the adjoint
-    \(V<sup>H</sup>\) as the third output argument.
-```python
-import tensorflow as tf
-import numpy as np
-s, u, v = tf.linalg.svd(a)
-tf_a_approx = tf.matmul(u, tf.matmul(tf.linalg.diag(s), v, adjoint_b=True))
-u, s, v_adj = np.linalg.svd(a, full_matrices=False)
-np_a_approx = np.dot(u, np.dot(np.diag(s), v_adj))</p>
-
-<h1>tf_a_approx and np_a_approx should be numerically close.</h1>
-
-<p>```</p>
+    \(V^H\) as the third output argument.</p>
+<div class="codehilite"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">s</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">tf_a_approx</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="n">v</span><span class="p">,</span> <span class="n">adjoint_b</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="n">u</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">v_adj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">full_matrices</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">np_a_approx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="n">v_adj</span><span class="p">))</span>
+<span class="c1"># tf_a_approx and np_a_approx should be numerically close.</span>
+</pre></div>
+    </body>
+    </html>
+   

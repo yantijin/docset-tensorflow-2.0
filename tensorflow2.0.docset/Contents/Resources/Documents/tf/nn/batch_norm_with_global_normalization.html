@@ -1,74 +1,68 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.nn.batch_norm_with_global_normalization" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.nn.batch_norm_with_global_normalization</h1>
-
+<h1 id="tfnnbatch_norm_with_global_normalization">tf.nn.batch_norm_with_global_normalization</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/nn_impl.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Batch normalization.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v2.nn.batch_norm_with_global_normalization</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">batch_norm_with_global_normalization</span><span class="p">(</span>
+    <span class="nb">input</span><span class="p">,</span>
+    <span class="n">mean</span><span class="p">,</span>
+    <span class="n">variance</span><span class="p">,</span>
+    <span class="n">beta</span><span class="p">,</span>
+    <span class="n">gamma</span><span class="p">,</span>
+    <span class="n">variance_epsilon</span><span class="p">,</span>
+    <span class="n">scale_after_normalization</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.nn.batch_norm_with_global_normalization(
-    input,
-    mean,
-    variance,
-    beta,
-    gamma,
-    variance_epsilon,
-    scale_after_normalization,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>This op is deprecated. See <a href="../../tf/nn/batch_normalization.html"><code>tf.nn.batch_normalization</code></a>.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>input</code></b>: A 4D input Tensor.</li>
 <li><b><code>mean</code></b>: A 1D mean Tensor with size matching the last dimension of t.
-This is the first output from tf.nn.moments,
-or a saved moving average thereof.</li>
+  This is the first output from tf.nn.moments,
+  or a saved moving average thereof.</li>
 <li><b><code>variance</code></b>: A 1D variance Tensor with size matching the last dimension of t.
-This is the second output from tf.nn.moments,
-or a saved moving average thereof.</li>
+  This is the second output from tf.nn.moments,
+  or a saved moving average thereof.</li>
 <li><b><code>beta</code></b>: A 1D beta Tensor with size matching the last dimension of t.
-An offset to be added to the normalized tensor.</li>
+  An offset to be added to the normalized tensor.</li>
 <li><b><code>gamma</code></b>: A 1D gamma Tensor with size matching the last dimension of t.
-If &ldquo;scale_after_normalization&rdquo; is true, this tensor will be multiplied
-with the normalized tensor.</li>
+  If "scale_after_normalization" is true, this tensor will be multiplied
+  with the normalized tensor.</li>
 <li><b><code>variance_epsilon</code></b>: A small float number to avoid dividing by 0.</li>
 <li><b><code>scale_after_normalization</code></b>: A bool indicating whether the resulted tensor
-needs to be multiplied with gamma.</li>
+  needs to be multiplied with gamma.</li>
 <li><b><code>name</code></b>: A name for this operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A batch-normalized <code>t</code>.</p>
+    </body>
+    </html>
+   

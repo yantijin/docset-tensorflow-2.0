@@ -1,63 +1,57 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.data.experimental.scan" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.data.experimental.scan</h1>
-
+<h1 id="tfdataexperimentalscan">tf.data.experimental.scan</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/data/experimental/ops/scan_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>A transformation that scans a function across an input dataset.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.data.experimental.scan</code></li>
 <li><code>tf.compat.v2.data.experimental.scan</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">scan</span><span class="p">(</span>
+    <span class="n">initial_state</span><span class="p">,</span>
+    <span class="n">scan_func</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.data.experimental.scan(
-    initial_state,
-    scan_func
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>This transformation is a stateful relative of <a href="../../../tf/data/Dataset.html#map"><code>tf.data.Dataset.map</code></a>.
 In addition to mapping <code>scan_func</code> across the elements of the input dataset,
 <code>scan()</code> accumulates one or more state tensors, whose initial values are
 <code>initial_state</code>.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>initial_state</code></b>: A nested structure of tensors, representing the initial state
-of the accumulator.</li>
+  of the accumulator.</li>
 <li><b><code>scan_func</code></b>: A function that maps <code>(old_state, input_element)</code> to
-<code>(new_state, output_element). It must take two arguments and return a
-pair of nested structures of tensors. The</code>new_state<code>must match the
-structure of</code>initial_state`.</li>
+  <code>(new_state, output_element). It must take two arguments and return a
+  pair of nested structures of tensors. The</code>new_state<code>must match the
+  structure of</code>initial_state`.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>Dataset</code> transformation function, which can be passed to
 <a href="../../../tf/data/Dataset.html#apply"><code>tf.data.Dataset.apply</code></a>.</p>
+    </body>
+    </html>
+   

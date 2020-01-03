@@ -1,56 +1,52 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.random.experimental.set_global_generator" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.random.experimental.set_global_generator</h1>
-
+<h1 id="tfrandomexperimentalset_global_generator">tf.random.experimental.set_global_generator</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/stateful_random_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Replaces the global generator with another <code>Generator</code> object.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.random.experimental.set_global_generator</code></li>
 <li><code>tf.compat.v2.random.experimental.set_global_generator</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">set_global_generator</span><span class="p">(</span><span class="n">generator</span><span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.random.experimental.set_global_generator(generator)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>This function creates a new Generator object (and the Variable object within),
 which does not work well with tf.function because (1) tf.function puts
-restrictions on Variable creation thus reset_global_generator can&rsquo;t be freely
+restrictions on Variable creation thus reset_global_generator can't be freely
 used inside tf.function; (2) redirecting a global variable to
 a new object is problematic with tf.function because the old object may be
-captured by a &lsquo;tf.function'ed function and still be used by it.
+captured by a 'tf.function'ed function and still be used by it.
 A 'tf.function'ed function only keeps weak references to variables,
 so deleting a variable and then calling that function again may raise an
 error, as demonstrated by
 random_test.py/RandomTest.testResetGlobalGeneratorBadWithDefun .</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>generator</code></b>: the new <code>Generator</code> object.</li>
 </ul>
-
+    </body>
+    </html>
+   

@@ -1,60 +1,52 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../default.css" rel="stylesheet">
+    <link href="
+   ../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.guarantee_const" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.guarantee_const</h1>
-
+<h1 id="tfguarantee_const">tf.guarantee_const</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p>Defined in generated file: <code>python/ops/gen_array_ops.py</code></p>
-
 <!-- Start diff -->
 
-
 <p>Gives a guarantee to the TF runtime that the input tensor is a constant.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.guarantee_const</code></li>
 <li><code>tf.compat.v2.guarantee_const</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">guarantee_const</span><span class="p">(</span>
+    <span class="nb">input</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.guarantee_const(
-    input,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>The runtime is then free to make optimizations based on this.</p>
-
 <p>Only accepts value typed tensors as inputs and rejects resource variable handles
 as input.</p>
-
 <p>Returns the input tensor without modification.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>input</code></b>: A <code>Tensor</code>.</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>Tensor</code>. Has the same type as <code>input</code>.</p>
+    </body>
+    </html>
+   

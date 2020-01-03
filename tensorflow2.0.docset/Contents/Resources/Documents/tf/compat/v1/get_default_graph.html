@@ -1,43 +1,42 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.get_default_graph" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.compat.v1.get_default_graph</h1>
-
+<h1 id="tfcompatv1get_default_graph">tf.compat.v1.get_default_graph</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/framework/ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Returns the default graph for the current thread.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">get_default_graph</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-tf.compat.v1.get_default_graph()
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>The returned graph will be the innermost graph on which a
 <code>Graph.as_default()</code> context has been entered, or a global default
 graph if none has been explicitly created.</p>
-
 <p>NOTE: The default graph is a property of the current thread. If you
 create a new thread, and wish to use the default graph in that
 thread, you must explicitly add a <code>with g.as_default():</code> in that
-thread&rsquo;s function.</p>
-
-<h4>Returns:</h4>
-
+thread's function.</p>
+<h4 id="returns">Returns:</h4>
 <p>The default <code>Graph</code> being used in the current thread.</p>
+    </body>
+    </html>
+   

@@ -1,109 +1,90 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.linalg.matrix_transpose" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.linalg.matrix_transpose</h1>
-
+<h1 id="tflinalgmatrix_transpose">tf.linalg.matrix_transpose</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/array_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Transposes last two dimensions of tensor <code>a</code>.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.linalg.matrix_transpose</code></li>
 <li><code>tf.compat.v1.linalg.transpose</code></li>
 <li><code>tf.compat.v1.matrix_transpose</code></li>
 <li><code>tf.compat.v2.linalg.matrix_transpose</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">matrix_transpose</span><span class="p">(</span>
+    <span class="n">a</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;matrix_transpose&#39;</span><span class="p">,</span>
+    <span class="n">conjugate</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.linalg.matrix_transpose(
-    a,
-    name='matrix_transpose',
-    conjugate=False
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
+<h4 id="for-example">For example:</h4>
+<div class="codehilite"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">matrix_transpose</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># [[1, 4],</span>
+                               <span class="c1">#  [2, 5],</span>
+                               <span class="c1">#  [3, 6]]</span>
 
-<h4>For example:</h4>
+<span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span><span class="p">,</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="n">j</span><span class="p">,</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">3</span><span class="n">j</span><span class="p">],</span>
+                 <span class="p">[</span><span class="mi">4</span> <span class="o">+</span> <span class="mi">4</span><span class="n">j</span><span class="p">,</span> <span class="mi">5</span> <span class="o">+</span> <span class="mi">5</span><span class="n">j</span><span class="p">,</span> <span class="mi">6</span> <span class="o">+</span> <span class="mi">6</span><span class="n">j</span><span class="p">]])</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">matrix_transpose</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">conjugate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># [[1 - 1j, 4 - 4j],</span>
+                                               <span class="c1">#  [2 - 2j, 5 - 5j],</span>
+                                               <span class="c1">#  [3 - 3j, 6 - 6j]]</span>
 
-<p>```python
-x = tf.constant([[1, 2, 3], [4, 5, 6]])
-tf.linalg.matrix_transpose(x)  # [[1, 4],
-                               #  [2, 5],
-                               #  [3, 6]]</p>
+<span class="c1"># Matrix with two batch dimensions.</span>
+<span class="c1"># x.shape is [1, 2, 3, 4]</span>
+<span class="c1"># tf.linalg.matrix_transpose(x) is shape [1, 2, 4, 3]</span>
+</pre></div>
 
-<p>x = tf.constant([[1 + 1j, 2 + 2j, 3 + 3j],
-                 [4 + 4j, 5 + 5j, 6 + 6j]])
-tf.linalg.matrix_transpose(x, conjugate=True)  # [[1 - 1j, 4 - 4j],
-                                               #  [2 - 2j, 5 - 5j],
-                                               #  [3 - 3j, 6 - 6j]]</p>
-
-<h1>Matrix with two batch dimensions.</h1>
-
-<h1>x.shape is [1, 2, 3, 4]</h1>
-
-<h1>tf.linalg.matrix_transpose(x) is shape [1, 2, 4, 3]</h1>
-
-<p>```</p>
 
 <p>Note that <a href="../../tf/linalg/matmul.html"><code>tf.matmul</code></a> provides kwargs allowing for transpose of arguments.
 This is done with minimal cost, and is preferable to using this function. E.g.</p>
+<div class="codehilite"><pre><span></span><span class="c1"># Good!  Transpose is taken at minimal additional cost.</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">transpose_b</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<p>```python</p>
+<span class="c1"># Inefficient!</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">matrix_transpose</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
+</pre></div>
 
-<h1>Good!  Transpose is taken at minimal additional cost.</h1>
 
-<p>tf.matmul(matrix, b, transpose_b=True)</p>
-
-<h1>Inefficient!</h1>
-
-<p>tf.matmul(matrix, tf.linalg.matrix_transpose(b))
-```</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>a</code></b>: A <code>Tensor</code> with <code>rank &gt;= 2</code>.</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 <li><b><code>conjugate</code></b>: Optional bool. Setting it to <code>True</code> is mathematically equivalent
-to tf.math.conj(tf.linalg.matrix_transpose(input)).</li>
+  to tf.math.conj(tf.linalg.matrix_transpose(input)).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A transposed batch matrix <code>Tensor</code>.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>:  If <code>a</code> is determined statically to have <code>rank &lt; 2</code>.</li>
 </ul>
-
-
-<h4>Numpy Compatibility</h4>
-
+<h4 id="numpy-compatibility">Numpy Compatibility</h4>
 <p>In <code>numpy</code> transposes are memory-efficient constant time operations as they
 simply return a new view of the same data with adjusted <code>strides</code>.</p>
-
 <p>TensorFlow does not support strides, <a href="../../tf/linalg/matrix_transpose.html"><code>linalg.matrix_transpose</code></a> returns a new
 tensor with the items permuted.</p>
+    </body>
+    </html>
+   

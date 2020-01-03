@@ -1,49 +1,45 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../default.css" rel="stylesheet">
+    <link href="
+   ../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.foldr" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.foldr</h1>
-
+<h1 id="tffoldr">tf.foldr</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/functional_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>foldr on the list of tensors unpacked from <code>elems</code> on dimension 0.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.foldr</code></li>
 <li><code>tf.compat.v2.foldr</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">foldr</span><span class="p">(</span>
+    <span class="n">fn</span><span class="p">,</span>
+    <span class="n">elems</span><span class="p">,</span>
+    <span class="n">initializer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">parallel_iterations</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">back_prop</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">swap_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.foldr(
-    fn,
-    elems,
-    initializer=None,
-    parallel_iterations=10,
-    back_prop=True,
-    swap_memory=False,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>This foldr operator repeatedly applies the callable <code>fn</code> to a sequence
 of elements from last to first. The elements are made of the tensors
@@ -52,53 +48,41 @@ The first argument is the accumulated value computed from the preceding
 invocation of fn, and the second is the value at the current position of
 <code>elems</code>. If <code>initializer</code> is None, <code>elems</code> must contain at least one element,
 and its first element is used as the initializer.</p>
-
 <p>Suppose that <code>elems</code> is unpacked into <code>values</code>, a list of tensors. The shape
 of the result tensor is <code>fn(initializer, values[0]).shape</code>.</p>
-
 <p>This method also allows multi-arity <code>elems</code> and output of <code>fn</code>.  If <code>elems</code>
 is a (possibly nested) list or tuple of tensors, then each of these tensors
 must have a matching first (unpack) dimension.  The signature of <code>fn</code> may
 match the structure of <code>elems</code>.  That is, if <code>elems</code> is
 <code>(t1, [t2, t3, [t4, t5]])</code>, then an appropriate signature for <code>fn</code> is:
 <code>fn = lambda (t1, [t2, t3, [t4, t5]]):</code>.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>fn</code></b>: The callable to be performed.</li>
 <li><b><code>elems</code></b>: A tensor or (possibly nested) sequence of tensors, each of which will
-be unpacked along their first dimension.  The nested sequence of the
-resulting slices will be the first argument to <code>fn</code>.</li>
+  be unpacked along their first dimension.  The nested sequence of the
+  resulting slices will be the first argument to <code>fn</code>.</li>
 <li><b><code>initializer</code></b>: (optional) A tensor or (possibly nested) sequence of tensors,
-as the initial value for the accumulator.</li>
+  as the initial value for the accumulator.</li>
 <li><b><code>parallel_iterations</code></b>: (optional) The number of iterations allowed to run in
-parallel.</li>
+  parallel.</li>
 <li><b><code>back_prop</code></b>: (optional) True enables support for back propagation.</li>
 <li><b><code>swap_memory</code></b>: (optional) True enables GPU-CPU memory swapping.</li>
 <li><b><code>name</code></b>: (optional) Name prefix for the returned tensors.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A tensor or (possibly nested) sequence of tensors, resulting from applying
 <code>fn</code> consecutively to the list of tensors unpacked from <code>elems</code>, from last
 to first.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>TypeError</code></b>: if <code>fn</code> is not callable.</li>
 </ul>
-
-
-<h4>Example:</h4>
-
-<p>```python
-elems = [1, 2, 3, 4, 5, 6]
-sum = foldr(lambda a, x: a + x, elems)</p>
-
-<h1>sum == 21</h1>
-
-<p>```</p>
+<h4 id="example">Example:</h4>
+<div class="codehilite"><pre><span></span><span class="n">elems</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<span class="nb">sum</span> <span class="o">=</span> <span class="n">foldr</span><span class="p">(</span><span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">a</span> <span class="o">+</span> <span class="n">x</span><span class="p">,</span> <span class="n">elems</span><span class="p">)</span>
+<span class="c1"># sum == 21</span>
+</pre></div>
+    </body>
+    </html>
+   

@@ -1,111 +1,94 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.lite.OpHint.OpHintArgumentTracker" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="__init__"/>
 <meta itemprop="property" content="add"/>
 </div>
 
-
-<h1>tf.compat.v1.lite.OpHint.OpHintArgumentTracker</h1>
-
+<h1 id="tfcompatv1liteophintophintargumenttracker">tf.compat.v1.lite.OpHint.OpHintArgumentTracker</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/lite/python/op_hint.py">View source</a></p>
-
-<h2>Class <code>OpHintArgumentTracker</code></h2>
-
+<h2 id="class-ophintargumenttracker">Class <code>OpHintArgumentTracker</code></h2>
 <!-- Start diff -->
 
-
-<p>Conceptually tracks indices of arguments of &ldquo;OpHint functions&rdquo;.</p>
-
+<p>Conceptually tracks indices of arguments of "OpHint functions".</p>
 <!-- Placeholder for "Used in" -->
-
 
 <p>The inputs and arguments of these functions both use an instance
 of the class so they can have independent numbering.</p>
-
 <h2 id="__init__"><code>__init__</code></h2>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/lite/python/op_hint.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">function_name</span><span class="p">,</span>
+    <span class="n">unique_function_id</span><span class="p">,</span>
+    <span class="n">node_name_prefix</span><span class="p">,</span>
+    <span class="n">attr_name</span><span class="p">,</span>
+    <span class="n">level</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">children_inputs_mappings</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__init__(
-    function_name,
-    unique_function_id,
-    node_name_prefix,
-    attr_name,
-    level=1,
-    children_inputs_mappings=None
-)
-</code></p>
 
 <p>Initialize ophint argument.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>function_name</code></b>: Name of the function that this tracks arguments for.</li>
 <li><b><code>unique_function_id</code></b>: UUID of function that this tracks arguments for.</li>
 <li><b><code>node_name_prefix</code></b>: How identities that are created are named.</li>
 <li><b><code>attr_name</code></b>: Name of attribute to use to store the index for this hint.
-i.e. FUNCTION_INPUT_INDEX or FUNCTION_OUTPUT_INDEX</li>
+  i.e. FUNCTION_INPUT_INDEX or FUNCTION_OUTPUT_INDEX</li>
 <li><b><code>level</code></b>: Hierarchical level of the Ophint node, a number.</li>
 <li><b><code>children_inputs_mappings</code></b>: Inputs/Outputs mapping for children hints.</li>
 </ul>
-
-
-<h2>Methods</h2>
-
+<h2 id="methods">Methods</h2>
 <h3 id="add"><code>add</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/lite/python/op_hint.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">add</span><span class="p">(</span>
+    <span class="n">arg</span><span class="p">,</span>
+    <span class="n">tag</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">aggregate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">index_override</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-add(
-    arg,
-    tag=None,
-    name=None,
-    aggregate=None,
-    index_override=None
-)
-</code></p>
 
 <p>Return a wrapped tensor of an input tensor as an argument.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_1">Args:</h4>
 <ul>
 <li><b><code>arg</code></b>: A TensorFlow tensor that should be considered an argument.</li>
 <li><b><code>tag</code></b>: String tag to identify arguments that should be packed.</li>
 <li><b><code>name</code></b>: Name of argument. This is included in the Identity hint op names.</li>
 <li><b><code>aggregate</code></b>: Strategy to aggregate.
 Acceptable values are OpHint.AGGREGATE_FIRST, OpHint.AGGREGATE_LAST,
-and OpHint.AGGREGATE_STACK.
-Note, aggregate is only valid if tag is specified.</li>
+  and OpHint.AGGREGATE_STACK.
+  Note, aggregate is only valid if tag is specified.</li>
 <li><b><code>index_override</code></b>: Specify what input/output index should this be in the
-final stub. i.e. add(arg0, index=1); add(arg1, index=0) will make the
-final stub be as stub_func(inputs[arg1, arg0], outputs=[]) rather than
-the default call order based ordering.</li>
+  final stub. i.e. add(arg0, index=1); add(arg1, index=0) will make the
+  final stub be as stub_func(inputs[arg1, arg0], outputs=[]) rather than
+  the default call order based ordering.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A tensor representing the wrapped argument.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: When indices are not consistent.</li>
 </ul>
-
+    </body>
+    </html>
+   

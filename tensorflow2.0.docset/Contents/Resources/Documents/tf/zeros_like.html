@@ -1,76 +1,69 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../default.css" rel="stylesheet">
+    <link href="
+   ../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.zeros_like" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.zeros_like</h1>
-
+<h1 id="tfzeros_like">tf.zeros_like</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/array_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Creates a tensor with all elements set to zero.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v2.zeros_like</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span>
+    <span class="nb">input</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.zeros_like(
-    input,
-    dtype=None,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>Given a single tensor (<code>tensor</code>), this operation returns a tensor of the
 same type and shape as <code>tensor</code> with all elements set to zero. Optionally,
 you can use <code>dtype</code> to specify a new type for the returned tensor.</p>
+<h4 id="for-example">For example:</h4>
+<div class="codehilite"><pre><span></span><span class="n">tensor</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">tensor</span><span class="p">)</span>  <span class="c1"># [[0, 0, 0], [0, 0, 0]] with dtype=int32</span>
 
-<h4>For example:</h4>
+<span class="n">If</span> <span class="n">dtype</span> <span class="n">of</span> <span class="nb">input</span> <span class="err">`</span><span class="n">tensor</span><span class="err">`</span> <span class="ow">is</span> <span class="err">`</span><span class="n">float32</span><span class="err">`</span><span class="p">,</span> <span class="n">then</span> <span class="n">the</span> <span class="n">output</span> <span class="ow">is</span> <span class="n">also</span> <span class="n">of</span> <span class="err">`</span><span class="n">float32</span><span class="err">`</span>
+<span class="n">tensor</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">tensor</span><span class="p">)</span>  <span class="c1"># [[0., 0., 0.], [0., 0., 0.]] with dtype=floa32</span>
 
-<p>```python
-tensor = tf.constant([[1, 2, 3], [4, 5, 6]])
-tf.zeros_like(tensor)  # [[0, 0, 0], [0, 0, 0]] with dtype=int32</p>
+<span class="n">If</span> <span class="n">you</span> <span class="n">want</span> <span class="n">to</span> <span class="n">specify</span> <span class="n">desired</span> <span class="n">dtype</span> <span class="n">of</span> <span class="n">output</span> <span class="err">`</span><span class="n">tensor</span><span class="err">`</span><span class="p">,</span> <span class="n">then</span> <span class="n">specify</span> <span class="n">it</span> <span class="ow">in</span>
+<span class="n">the</span> <span class="n">op</span> <span class="n">tensor</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>  <span class="c1"># [[0, 0, 0], [0, 0, 0]] with</span>
+<span class="n">dtype</span><span class="o">=</span><span class="n">int32</span>
+</pre></div>
 
-<p>If dtype of input <code>tensor</code> is <code>float32</code>, then the output is also of <code>float32</code>
-tensor = tf.constant([[1.0, 2.0, 3.0], [4, 5, 6]])
-tf.zeros_like(tensor)  # [[0., 0., 0.], [0., 0., 0.]] with dtype=floa32</p>
 
-<p>If you want to specify desired dtype of output <code>tensor</code>, then specify it in
-the op tensor = tf.constant([[1.0, 2.0, 3.0], [4, 5, 6]])
-tf.zeros_like(tensor,dtype=tf.int32)  # [[0, 0, 0], [0, 0, 0]] with
-dtype=int32
-```</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>input</code></b>: A <code>Tensor</code>.</li>
 <li><b><code>dtype</code></b>: A type for the returned <code>Tensor</code>. Must be <code>float16</code>, <code>float32</code>,
-<code>float64</code>, <code>int8</code>, <code>uint8</code>, <code>int16</code>, <code>uint16</code>, <code>int32</code>, <code>int64</code>,
-<code>complex64</code>, <code>complex128</code>, <code>bool</code> or <code>string</code>.</li>
+  <code>float64</code>, <code>int8</code>, <code>uint8</code>, <code>int16</code>, <code>uint16</code>, <code>int32</code>, <code>int64</code>,
+  <code>complex64</code>, <code>complex128</code>, <code>bool</code> or <code>string</code>.</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>Tensor</code> with all elements set to zero.</p>
+    </body>
+    </html>
+   

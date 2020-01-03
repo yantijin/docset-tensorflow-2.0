@@ -1,71 +1,62 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.signal.fftshift" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.signal.fftshift</h1>
-
+<h1 id="tfsignalfftshift">tf.signal.fftshift</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/signal/fft_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Shift the zero-frequency component to the center of the spectrum.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.signal.fftshift</code></li>
 <li><code>tf.compat.v2.signal.fftshift</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">fftshift</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">axes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.signal.fftshift(
-    x,
-    axes=None,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>This function swaps half-spaces for all axes listed (defaults to all).
 Note that <code>y[0]</code> is the Nyquist component only if <code>len(x)</code> is even.</p>
+<h4 id="for-example">For example:</h4>
+<div class="codehilite"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">fftshift</span><span class="p">([</span> <span class="mf">0.</span><span class="p">,</span>  <span class="mf">1.</span><span class="p">,</span>  <span class="mf">2.</span><span class="p">,</span>  <span class="mf">3.</span><span class="p">,</span>  <span class="mf">4.</span><span class="p">,</span> <span class="o">-</span><span class="mf">5.</span><span class="p">,</span> <span class="o">-</span><span class="mf">4.</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.</span><span class="p">])</span>
+<span class="n">x</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span> <span class="c1"># array([-5., -4., -3., -2., -1.,  0.,  1.,  2.,  3.,  4.])</span>
+</pre></div>
 
-<h4>For example:</h4>
 
-<p><code>python
-x = tf.signal.fftshift([ 0.,  1.,  2.,  3.,  4., -5., -4., -3., -2., -1.])
-x.numpy() # array([-5., -4., -3., -2., -1.,  0.,  1.,  2.,  3.,  4.])
-</code></p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>x</code></b>: <code>Tensor</code>, input tensor.</li>
 <li><b><code>axes</code></b>: <code>int</code> or shape <code>tuple</code>, optional Axes over which to shift.  Default is
-None, which shifts all axes.</li>
+  None, which shifts all axes.</li>
 <li><b><code>name</code></b>: An optional name for the operation.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>Tensor</code>, The shifted tensor.</p>
-
-<h4>Numpy Compatibility</h4>
-
+<h4 id="numpy-compatibility">Numpy Compatibility</h4>
 <p>Equivalent to numpy.fft.fftshift.
 https://docs.scipy.org/doc/numpy/reference/generated/numpy.fft.fftshift.html</p>
+    </body>
+    </html>
+   

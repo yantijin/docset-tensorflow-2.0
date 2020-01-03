@@ -1,93 +1,84 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.strings.unsorted_segment_join" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.strings.unsorted_segment_join</h1>
-
+<h1 id="tfstringsunsorted_segment_join">tf.strings.unsorted_segment_join</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p>Defined in generated file: <code>python/ops/gen_string_ops.py</code></p>
-
 <!-- Start diff -->
 
-
 <p>Joins the elements of <code>inputs</code> based on <code>segment_ids</code>.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.strings.unsorted_segment_join</code></li>
 <li><code>tf.compat.v2.strings.unsorted_segment_join</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">strings</span><span class="o">.</span><span class="n">unsorted_segment_join</span><span class="p">(</span>
+    <span class="n">inputs</span><span class="p">,</span>
+    <span class="n">segment_ids</span><span class="p">,</span>
+    <span class="n">num_segments</span><span class="p">,</span>
+    <span class="n">separator</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.strings.unsorted_segment_join(
-    inputs,
-    segment_ids,
-    num_segments,
-    separator='',
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>Computes the string join along segments of a tensor.
 Given <code>segment_ids</code> with rank <code>N</code> and <code>data</code> with rank <code>N+M</code>:</p>
+<div class="codehilite"><pre><span></span><span class="err">`output[i, k1...kM] = strings.join([data[j1...jN, k1...kM])`</span>
+</pre></div>
 
-<pre><code>`output[i, k1...kM] = strings.join([data[j1...jN, k1...kM])`
-</code></pre>
 
-<p>where the join is over all [j1&hellip;jN] such that segment_ids[j1&hellip;jN] = i.
+<p>where the join is over all [j1...jN] such that segment_ids[j1...jN] = i.
 Strings are joined in row-major order.</p>
+<h4 id="for-example">For example:</h4>
+<div class="codehilite"><pre><span></span><span class="n">inputs</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="s1">&#39;q&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="s1">&#39;6&#39;</span><span class="p">,</span> <span class="s1">&#39;6&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">]]</span>
+<span class="n">output_array</span> <span class="o">=</span> <span class="n">string_ops</span><span class="o">.</span><span class="n">unsorted_segment_join</span><span class="p">(</span><span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span>
+                                                <span class="n">segment_ids</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                                                <span class="n">num_segments</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                                                <span class="n">separator</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">))</span>
+<span class="c1"># output_array ==&gt; [[&#39;Y&#39;, &#39;6&#39;, &#39;6&#39;], [&#39;Y:p&#39;, &#39;q:G&#39;, &#39;c:a&#39;]]</span>
 
-<h4>For example:</h4>
 
-<p>```python
-inputs = [[&lsquo;Y&rsquo;, &lsquo;q&rsquo;, &lsquo;c&rsquo;], [&lsquo;Y&rsquo;, &lsquo;6&rsquo;, &lsquo;6&rsquo;], [&lsquo;p&rsquo;, &lsquo;G&rsquo;, &lsquo;a&rsquo;]]
-output_array = string_ops.unsorted_segment_join(inputs=inputs,
-                                                segment_ids=[1, 0, 1],
-                                                num_segments=2,
-                                                separator=&lsquo;:&rsquo;))</p>
+<span class="n">inputs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;this&#39;</span><span class="p">,</span> <span class="s1">&#39;is&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">]</span>
+<span class="n">output_array</span> <span class="o">=</span> <span class="n">string_ops</span><span class="o">.</span><span class="n">unsorted_segment_join</span><span class="p">(</span><span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span>
+                                                <span class="n">segment_ids</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                                                <span class="n">num_segments</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                                                <span class="n">separator</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">))</span>
+<span class="c1"># output_array ==&gt; [&#39;this:is:a:test&#39;]</span>
+</pre></div>
 
-<h1>output_array ==> [[&lsquo;Y&rsquo;, &lsquo;6&rsquo;, &lsquo;6&rsquo;], [&lsquo;Y:p&rsquo;, &lsquo;q:G&rsquo;, &lsquo;c:a&rsquo;]]</h1>
 
-<p>inputs = [&lsquo;this&rsquo;, &lsquo;is&rsquo;, &lsquo;a&rsquo;, &lsquo;test&rsquo;]
-output_array = string_ops.unsorted_segment_join(inputs=inputs,
-                                                segment_ids=[0, 0, 0, 0],
-                                                num_segments=1,
-                                                separator=&lsquo;:&rsquo;))</p>
-
-<h1>output_array ==> [&lsquo;this:is:a:test&rsquo;]</h1>
-
-<p>```</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>inputs</code></b>: A <code>Tensor</code> of type <code>string</code>. The input to be joined.</li>
 <li><b><code>segment_ids</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>int32</code>, <code>int64</code>.
-A tensor whose shape is a prefix of data.shape.  Negative segment ids are not
-supported.</li>
+  A tensor whose shape is a prefix of data.shape.  Negative segment ids are not
+  supported.</li>
 <li><b><code>num_segments</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>int32</code>, <code>int64</code>.
-A scalar.</li>
+  A scalar.</li>
 <li><b><code>separator</code></b>: An optional <code>string</code>. Defaults to <code>""</code>.
-The separator to use when joining.</li>
+  The separator to use when joining.</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>Tensor</code> of type <code>string</code>.</p>
+    </body>
+    </html>
+   

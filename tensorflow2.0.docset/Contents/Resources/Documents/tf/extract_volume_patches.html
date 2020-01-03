@@ -1,71 +1,63 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../default.css" rel="stylesheet">
+    <link href="
+   ../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.extract_volume_patches" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.extract_volume_patches</h1>
-
+<h1 id="tfextract_volume_patches">tf.extract_volume_patches</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p>Defined in generated file: <code>python/ops/gen_array_ops.py</code></p>
-
 <!-- Start diff -->
 
-
-<p>Extract <code>patches</code> from <code>input</code> and put them in the &ldquo;depth&rdquo; output dimension. 3D extension of <code>extract_image_patches</code>.</p>
-
-<h3>Aliases:</h3>
-
+<p>Extract <code>patches</code> from <code>input</code> and put them in the "depth" output dimension. 3D extension of <code>extract_image_patches</code>.</p>
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.extract_volume_patches</code></li>
 <li><code>tf.compat.v2.extract_volume_patches</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">extract_volume_patches</span><span class="p">(</span>
+    <span class="nb">input</span><span class="p">,</span>
+    <span class="n">ksizes</span><span class="p">,</span>
+    <span class="n">strides</span><span class="p">,</span>
+    <span class="n">padding</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.extract_volume_patches(
-    input,
-    ksizes,
-    strides,
-    padding,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>input</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>float32</code>, <code>float64</code>, <code>int32</code>, <code>uint8</code>, <code>int16</code>, <code>int8</code>, <code>int64</code>, <code>bfloat16</code>, <code>uint16</code>, <code>half</code>, <code>uint32</code>, <code>uint64</code>.
-5-D Tensor with shape <code>[batch, in_planes, in_rows, in_cols, depth]</code>.</li>
+  5-D Tensor with shape <code>[batch, in_planes, in_rows, in_cols, depth]</code>.</li>
 <li><b><code>ksizes</code></b>: A list of <code>ints</code> that has length <code>&gt;= 5</code>.
-The size of the sliding window for each dimension of <code>input</code>.</li>
+  The size of the sliding window for each dimension of <code>input</code>.</li>
 <li><b><code>strides</code></b>: A list of <code>ints</code> that has length <code>&gt;= 5</code>.
-1-D of length 5. How far the centers of two consecutive patches are in
-<code>input</code>. Must be: <code>[1, stride_planes, stride_rows, stride_cols, 1]</code>.</li>
-<li><p><b><code>padding</code></b>: A <code>string</code> from: <code>"SAME", "VALID"</code>.
-The type of padding algorithm to use.</p>
-
-<p>We specify the size-related attributes as:</p>
-
-<p><code>python
-      ksizes = [1, ksize_planes, ksize_rows, ksize_cols, 1]
-      strides = [1, stride_planes, strides_rows, strides_cols, 1]
-</code></p></li>
-<li><b><code>name</code></b>: A name for the operation (optional).</li>
+  1-D of length 5. How far the centers of two consecutive patches are in
+  <code>input</code>. Must be: <code>[1, stride_planes, stride_rows, stride_cols, 1]</code>.</li>
+<li><b><code>padding</code></b>: A <code>string</code> from: <code>"SAME", "VALID"</code>.
+  The type of padding algorithm to use.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<p>We specify the size-related attributes as:</p>
+<p><code>python
+        ksizes = [1, ksize_planes, ksize_rows, ksize_cols, 1]
+        strides = [1, stride_planes, strides_rows, strides_cols, 1]</code>
+* <b><code>name</code></b>: A name for the operation (optional).</p>
+<h4 id="returns">Returns:</h4>
 <p>A <code>Tensor</code>. Has the same type as <code>input</code>.</p>
+    </body>
+    </html>
+   

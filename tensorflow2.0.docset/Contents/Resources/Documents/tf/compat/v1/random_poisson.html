@@ -1,88 +1,75 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.random_poisson" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.compat.v1.random_poisson</h1>
-
+<h1 id="tfcompatv1random_poisson">tf.compat.v1.random_poisson</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/random_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Draws <code>shape</code> samples from each of the given Poisson distribution(s).</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.random.poisson</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">random_poisson</span><span class="p">(</span>
+    <span class="n">lam</span><span class="p">,</span>
+    <span class="n">shape</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
+    <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.compat.v1.random_poisson(
-    lam,
-    shape,
-    dtype=tf.dtypes.float32,
-    seed=None,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p><code>lam</code> is the rate parameter describing the distribution(s).</p>
+<h4 id="example">Example:</h4>
+<div class="codehilite"><pre><span></span><span class="n">samples</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">],</span> <span class="p">[</span><span class="mi">10</span><span class="p">])</span>
+<span class="c1"># samples has shape [10, 2], where each slice [:, 0] and [:, 1] represents</span>
+<span class="c1"># the samples drawn from each distribution</span>
 
-<h4>Example:</h4>
+<span class="n">samples</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">([</span><span class="mf">12.2</span><span class="p">,</span> <span class="mf">3.3</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="c1"># samples has shape [7, 5, 2], where each slice [:, :, 0] and [:, :, 1]</span>
+<span class="c1"># represents the 7x5 samples drawn from each of the two distributions</span>
+</pre></div>
 
-<p>```python
-samples = tf.random.poisson([0.5, 1.5], [10])</p>
 
-<h1>samples has shape [10, 2], where each slice [:, 0] and [:, 1] represents</h1>
-
-<h1>the samples drawn from each distribution</h1>
-
-<p>samples = tf.random.poisson([12.2, 3.3], [7, 5])</p>
-
-<h1>samples has shape [7, 5, 2], where each slice [:, :, 0] and [:, :, 1]</h1>
-
-<h1>represents the 7x5 samples drawn from each of the two distributions</h1>
-
-<p>```</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>lam</code></b>: A Tensor or Python value or N-D array of type <code>dtype</code>.
-<code>lam</code> provides the rate parameter(s) describing the poisson
-distribution(s) to sample.</li>
+  <code>lam</code> provides the rate parameter(s) describing the poisson
+  distribution(s) to sample.</li>
 <li><b><code>shape</code></b>: A 1-D integer Tensor or Python array. The shape of the output samples
-to be drawn per &ldquo;rate&rdquo;-parameterized distribution.</li>
+  to be drawn per "rate"-parameterized distribution.</li>
 <li><b><code>dtype</code></b>: The type of the output: <code>float16</code>, <code>float32</code>, <code>float64</code>, <code>int32</code> or
-<code>int64</code>.</li>
+  <code>int64</code>.</li>
 <li><b><code>seed</code></b>: A Python integer. Used to create a random seed for the distributions.
-See
-<a href="../../../tf/compat/v1/set_random_seed.html"><code>tf.compat.v1.set_random_seed</code></a>
-for behavior.</li>
+  See
+  <a href="../../../tf/compat/v1/set_random_seed.html"><code>tf.compat.v1.set_random_seed</code></a>
+  for behavior.</li>
 <li><b><code>name</code></b>: Optional name for the operation.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <ul>
 <li><b><code>samples</code></b>: a <code>Tensor</code> of shape <code>tf.concat([shape, tf.shape(lam)], axis=0)</code>
-with values of type <code>dtype</code>.</li>
+  with values of type <code>dtype</code>.</li>
 </ul>
-
+    </body>
+    </html>
+   

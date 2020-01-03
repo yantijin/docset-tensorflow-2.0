@@ -1,4 +1,13 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.train.SessionManager" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="__init__"/>
@@ -7,304 +16,235 @@
 <meta itemprop="property" content="wait_for_session"/>
 </div>
 
-
-<h1>tf.compat.v1.train.SessionManager</h1>
-
+<h1 id="tfcompatv1trainsessionmanager">tf.compat.v1.train.SessionManager</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/training/session_manager.py">View source</a></p>
-
-<h2>Class <code>SessionManager</code></h2>
-
+<h2 id="class-sessionmanager">Class <code>SessionManager</code></h2>
 <!-- Start diff -->
 
-
 <p>Training helper that restores from checkpoint and creates session.</p>
-
 <!-- Placeholder for "Used in" -->
-
 
 <p>This class is a small wrapper that takes care of session creation and
 checkpoint recovery. It also provides functions that to facilitate
 coordination among multiple training threads or processes.</p>
-
 <ul>
 <li>Checkpointing trained variables as the training progresses.</li>
 <li>Initializing variables on startup, restoring them from the most recent
-checkpoint after a crash, or wait for checkpoints to become available.</li>
+  checkpoint after a crash, or wait for checkpoints to become available.</li>
 </ul>
+<h3 id="usage">Usage:</h3>
+<div class="codehilite"><pre><span></span><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span><span class="o">.</span><span class="n">as_default</span><span class="p">():</span>
+   <span class="o">...</span><span class="n">add</span> <span class="n">operations</span> <span class="n">to</span> <span class="n">the</span> <span class="n">graph</span><span class="o">...</span>
+  <span class="c1"># Create a SessionManager that will checkpoint the model in &#39;/tmp/mydir&#39;.</span>
+  <span class="n">sm</span> <span class="o">=</span> <span class="n">SessionManager</span><span class="p">()</span>
+  <span class="n">sess</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">prepare_session</span><span class="p">(</span><span class="n">master</span><span class="p">,</span> <span class="n">init_op</span><span class="p">,</span> <span class="n">saver</span><span class="p">,</span> <span class="n">checkpoint_dir</span><span class="p">)</span>
+  <span class="c1"># Use the session to train the graph.</span>
+  <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="o">&lt;</span><span class="n">my_train_op</span><span class="o">&gt;</span><span class="p">)</span>
+</pre></div>
 
-
-<h3>Usage:</h3>
-
-<p><code>python
-with tf.Graph().as_default():
-   ...add operations to the graph...
-  # Create a SessionManager that will checkpoint the model in '/tmp/mydir'.
-  sm = SessionManager()
-  sess = sm.prepare_session(master, init_op, saver, checkpoint_dir)
-  # Use the session to train the graph.
-  while True:
-    sess.run(&lt;my_train_op&gt;)
-</code></p>
 
 <p><code>prepare_session()</code> initializes or restores a model. It requires <code>init_op</code>
 and <code>saver</code> as an argument.</p>
-
 <p>A second process could wait for the model to be ready by doing the following:</p>
+<div class="codehilite"><pre><span></span><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span><span class="o">.</span><span class="n">as_default</span><span class="p">():</span>
+   <span class="o">...</span><span class="n">add</span> <span class="n">operations</span> <span class="n">to</span> <span class="n">the</span> <span class="n">graph</span><span class="o">...</span>
+  <span class="c1"># Create a SessionManager that will wait for the model to become ready.</span>
+  <span class="n">sm</span> <span class="o">=</span> <span class="n">SessionManager</span><span class="p">()</span>
+  <span class="n">sess</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">wait_for_session</span><span class="p">(</span><span class="n">master</span><span class="p">)</span>
+  <span class="c1"># Use the session to train the graph.</span>
+  <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="o">&lt;</span><span class="n">my_train_op</span><span class="o">&gt;</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-with tf.Graph().as_default():
-   ...add operations to the graph...
-  # Create a SessionManager that will wait for the model to become ready.
-  sm = SessionManager()
-  sess = sm.wait_for_session(master)
-  # Use the session to train the graph.
-  while True:
-    sess.run(&lt;my_train_op&gt;)
-</code></p>
 
 <p><code>wait_for_session()</code> waits for a model to be initialized by other processes.</p>
-
 <h2 id="__init__"><code>__init__</code></h2>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/training/session_manager.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">local_init_op</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">ready_op</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">ready_for_local_init_op</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">graph</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">recovery_wait_secs</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+    <span class="n">local_init_run_options</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__init__(
-    local_init_op=None,
-    ready_op=None,
-    ready_for_local_init_op=None,
-    graph=None,
-    recovery_wait_secs=30,
-    local_init_run_options=None
-)
-</code></p>
 
 <p>Creates a SessionManager.</p>
-
 <p>The <code>local_init_op</code> is an <code>Operation</code> that is run always after a new session
 was created. If <code>None</code>, this step is skipped.</p>
-
 <p>The <code>ready_op</code> is an <code>Operation</code> used to check if the model is ready.  The
 model is considered ready if that operation returns an empty 1D string
 tensor. If the operation returns a non empty 1D string tensor, the elements
 are concatenated and used to indicate to the user why the model is not
 ready.</p>
-
 <p>The <code>ready_for_local_init_op</code> is an <code>Operation</code> used to check if the model
 is ready to run local_init_op.  The model is considered ready if that
 operation returns an empty 1D string tensor. If the operation returns a non
 empty 1D string tensor, the elements are concatenated and used to indicate
 to the user why the model is not ready.</p>
-
 <p>If <code>ready_op</code> is <code>None</code>, the model is not checked for readiness.</p>
-
 <p><code>recovery_wait_secs</code> is the number of seconds between checks that
 the model is ready.  It is used by processes to wait for a model to
 be initialized or restored.  Defaults to 30 seconds.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>local_init_op</code></b>: An <code>Operation</code> run immediately after session creation.
- Usually used to initialize tables and local variables.</li>
+   Usually used to initialize tables and local variables.</li>
 <li><b><code>ready_op</code></b>: An <code>Operation</code> to check if the model is initialized.</li>
 <li><b><code>ready_for_local_init_op</code></b>: An <code>Operation</code> to check if the model is ready
- to run local_init_op.</li>
+   to run local_init_op.</li>
 <li><b><code>graph</code></b>: The <code>Graph</code> that the model will use.</li>
 <li><b><code>recovery_wait_secs</code></b>: Seconds between checks for the model to be ready.</li>
 <li><b><code>local_init_run_options</code></b>: RunOptions to be passed to session.run when
-executing the local_init_op.</li>
+  executing the local_init_op.</li>
 </ul>
-
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: If ready_for_local_init_op is not None but local_init_op is
-None</li>
+  None</li>
 </ul>
-
-
-<h2>Methods</h2>
-
+<h2 id="methods">Methods</h2>
 <h3 id="prepare_session"><code>prepare_session</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/training/session_manager.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">prepare_session</span><span class="p">(</span>
+    <span class="n">master</span><span class="p">,</span>
+    <span class="n">init_op</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">saver</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">checkpoint_dir</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">checkpoint_filename_with_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">wait_for_checkpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">max_wait_secs</span><span class="o">=</span><span class="mi">7200</span><span class="p">,</span>
+    <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">init_feed_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">init_fn</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-prepare_session(
-    master,
-    init_op=None,
-    saver=None,
-    checkpoint_dir=None,
-    checkpoint_filename_with_path=None,
-    wait_for_checkpoint=False,
-    max_wait_secs=7200,
-    config=None,
-    init_feed_dict=None,
-    init_fn=None
-)
-</code></p>
 
 <p>Creates a <code>Session</code>. Makes sure the model is ready to be used.</p>
-
-<p>Creates a <code>Session</code> on &lsquo;master&rsquo;. If a <code>saver</code> object is passed in, and
+<p>Creates a <code>Session</code> on 'master'. If a <code>saver</code> object is passed in, and
 <code>checkpoint_dir</code> points to a directory containing valid checkpoint
 files, then it will try to recover the model from checkpoint. If
 no checkpoint files are available, and <code>wait_for_checkpoint</code> is
 <code>True</code>, then the process would check every <code>recovery_wait_secs</code>,
 up to <code>max_wait_secs</code>, for recovery to succeed.</p>
-
 <p>If the model cannot be recovered successfully then it is initialized by
 running the <code>init_op</code> and calling <code>init_fn</code> if they are provided.
 The <code>local_init_op</code> is also run after init_op and init_fn, regardless of
 whether the model was recovered successfully, but only if
 <code>ready_for_local_init_op</code> passes.</p>
-
 <p>If the model is recovered from a checkpoint it is assumed that all
 global variables have been initialized, in particular neither <code>init_op</code>
 nor <code>init_fn</code> will be executed.</p>
-
 <p>It is an error if the model cannot be recovered and no <code>init_op</code>
 or <code>init_fn</code> or <code>local_init_op</code> are passed.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_1">Args:</h4>
 <ul>
 <li><b><code>master</code></b>: <code>String</code> representation of the TensorFlow master to use.</li>
 <li><b><code>init_op</code></b>: Optional <code>Operation</code> used to initialize the model.</li>
 <li><b><code>saver</code></b>: A <code>Saver</code> object used to restore a model.</li>
 <li><b><code>checkpoint_dir</code></b>: Path to the checkpoint files. The latest checkpoint in the
-dir will be used to restore.</li>
+  dir will be used to restore.</li>
 <li><b><code>checkpoint_filename_with_path</code></b>: Full file name path to the checkpoint file.</li>
 <li><b><code>wait_for_checkpoint</code></b>: Whether to wait for checkpoint to become available.</li>
 <li><b><code>max_wait_secs</code></b>: Maximum time to wait for checkpoints to become available.</li>
 <li><b><code>config</code></b>: Optional <code>ConfigProto</code> proto used to configure the session.</li>
 <li><b><code>init_feed_dict</code></b>: Optional dictionary that maps <code>Tensor</code> objects to feed
-values.  This feed dictionary is passed to the session <code>run()</code> call when
-running the init op.</li>
+  values.  This feed dictionary is passed to the session <code>run()</code> call when
+  running the init op.</li>
 <li><b><code>init_fn</code></b>: Optional callable used to initialize the model. Called after the
-optional <code>init_op</code> is called.  The callable must accept one argument,
-the session being initialized.</li>
+  optional <code>init_op</code> is called.  The callable must accept one argument,
+  the session being initialized.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>Session</code> object that can be used to drive the model.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises_1">Raises:</h4>
 <ul>
 <li><b><code>RuntimeError</code></b>: If the model cannot be initialized or recovered.</li>
 <li><b><code>ValueError</code></b>: If both checkpoint_dir and checkpoint_filename_with_path are
-set.</li>
+  set.</li>
 </ul>
-
-
 <h3 id="recover_session"><code>recover_session</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/training/session_manager.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">recover_session</span><span class="p">(</span>
+    <span class="n">master</span><span class="p">,</span>
+    <span class="n">saver</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">checkpoint_dir</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">checkpoint_filename_with_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">wait_for_checkpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">max_wait_secs</span><span class="o">=</span><span class="mi">7200</span><span class="p">,</span>
+    <span class="n">config</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-recover_session(
-    master,
-    saver=None,
-    checkpoint_dir=None,
-    checkpoint_filename_with_path=None,
-    wait_for_checkpoint=False,
-    max_wait_secs=7200,
-    config=None
-)
-</code></p>
 
 <p>Creates a <code>Session</code>, recovering if possible.</p>
-
-<p>Creates a new session on &lsquo;master&rsquo;.  If the session is not initialized
+<p>Creates a new session on 'master'.  If the session is not initialized
 and can be recovered from a checkpoint, recover it.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_2">Args:</h4>
 <ul>
 <li><b><code>master</code></b>: <code>String</code> representation of the TensorFlow master to use.</li>
 <li><b><code>saver</code></b>: A <code>Saver</code> object used to restore a model.</li>
 <li><b><code>checkpoint_dir</code></b>: Path to the checkpoint files. The latest checkpoint in the
-dir will be used to restore.</li>
+  dir will be used to restore.</li>
 <li><b><code>checkpoint_filename_with_path</code></b>: Full file name path to the checkpoint file.</li>
 <li><b><code>wait_for_checkpoint</code></b>: Whether to wait for checkpoint to become available.</li>
 <li><b><code>max_wait_secs</code></b>: Maximum time to wait for checkpoints to become available.</li>
 <li><b><code>config</code></b>: Optional <code>ConfigProto</code> proto used to configure the session.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
-<p>A pair (sess, initialized) where &lsquo;initialized&rsquo; is <code>True</code> if
+<h4 id="returns_1">Returns:</h4>
+<p>A pair (sess, initialized) where 'initialized' is <code>True</code> if
 the session could be recovered and initialized, <code>False</code> otherwise.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises_2">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: If both checkpoint_dir and checkpoint_filename_with_path are
-set.</li>
+  set.</li>
 </ul>
-
-
 <h3 id="wait_for_session"><code>wait_for_session</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/training/session_manager.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">wait_for_session</span><span class="p">(</span>
+    <span class="n">master</span><span class="p">,</span>
+    <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">max_wait_secs</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="s1">&#39;Inf&#39;</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-wait_for_session(
-    master,
-    config=None,
-    max_wait_secs=float('Inf')
-)
-</code></p>
 
 <p>Creates a new <code>Session</code> and waits for model to be ready.</p>
-
-<p>Creates a new <code>Session</code> on &lsquo;master&rsquo;.  Waits for the model to be
-initialized or recovered from a checkpoint.  It&rsquo;s expected that
+<p>Creates a new <code>Session</code> on 'master'.  Waits for the model to be
+initialized or recovered from a checkpoint.  It's expected that
 another thread or process will make the model ready, and that this
 is intended to be used by threads/processes that participate in a
 distributed training configuration where a different thread/process
 is responsible for initializing or recovering the model being trained.</p>
-
 <p>NB: The amount of time this method waits for the session is bounded
 by max_wait_secs. By default, this function will wait indefinitely.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_3">Args:</h4>
 <ul>
 <li><b><code>master</code></b>: <code>String</code> representation of the TensorFlow master to use.</li>
 <li><b><code>config</code></b>: Optional ConfigProto proto used to configure the session.</li>
 <li><b><code>max_wait_secs</code></b>: Maximum time to wait for the session to become available.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_2">Returns:</h4>
 <p>A <code>Session</code>. May be None if the operation exceeds the timeout
 specified by config.operation_timeout_in_ms.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises_3">Raises:</h4>
 <ul>
 <li><b><code>tf.DeadlineExceededError</code></b>: if the session is not available after
-max_wait_secs.</li>
+  max_wait_secs.</li>
 </ul>
-
+    </body>
+    </html>
+   

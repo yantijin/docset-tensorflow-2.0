@@ -1,4 +1,13 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.distribute.cluster_resolver.TPUClusterResolver" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="environment"/>
@@ -10,251 +19,188 @@
 <meta itemprop="property" content="num_accelerators"/>
 </div>
 
-
-<h1>tf.distribute.cluster_resolver.TPUClusterResolver</h1>
-
+<h1 id="tfdistributecluster_resolvertpuclusterresolver">tf.distribute.cluster_resolver.TPUClusterResolver</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/distribute/cluster_resolver/tpu_cluster_resolver.py">View source</a></p>
-
-<h2>Class <code>TPUClusterResolver</code></h2>
-
+<h2 id="class-tpuclusterresolver">Class <code>TPUClusterResolver</code></h2>
 <!-- Start diff -->
 
-
 <p>Cluster Resolver for Google Cloud TPUs.</p>
-
 <p>Inherits From: <a href="../../../tf/distribute/cluster_resolver/ClusterResolver.html"><code>ClusterResolver</code></a></p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li>Class <code>tf.compat.v1.distribute.cluster_resolver.TPUClusterResolver</code></li>
 <li>Class <code>tf.compat.v2.distribute.cluster_resolver.TPUClusterResolver</code></li>
 </ul>
-
-
 <!-- Placeholder for "Used in" -->
-
 
 <p>This is an implementation of cluster resolvers for the Google Cloud TPU
 service. As Cloud TPUs are in alpha, you will need to specify a API definition
 file for this to consume, in addition to a list of Cloud TPUs in your Google
 Cloud Platform project.</p>
-
 <p>TPUClusterResolver supports the following distinct environments:
 Google Compute Engine
 Google Kubernetes Engine
 Google internal</p>
-
 <h2 id="__init__"><code>__init__</code></h2>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/distribute/cluster_resolver/tpu_cluster_resolver.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">tpu</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">zone</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">project</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">job_name</span><span class="o">=</span><span class="s1">&#39;worker&#39;</span><span class="p">,</span>
+    <span class="n">coordinator_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">coordinator_address</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">credentials</span><span class="o">=</span><span class="s1">&#39;default&#39;</span><span class="p">,</span>
+    <span class="n">service</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">discovery_url</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__init__(
-    tpu=None,
-    zone=None,
-    project=None,
-    job_name='worker',
-    coordinator_name=None,
-    coordinator_address=None,
-    credentials='default',
-    service=None,
-    discovery_url=None
-)
-</code></p>
 
 <p>Creates a new TPUClusterResolver object.</p>
-
 <p>The ClusterResolver will then use the parameters to query the Cloud TPU APIs
 for the IP addresses and ports of each Cloud TPU listed.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>tpu</code></b>: A string corresponding to the TPU to use. If the string is an empty
-string, the string &lsquo;local&rsquo;, or a string that begins with &lsquo;grpc://&rsquo; or
-  &lsquo;/bns&rsquo;, then it is assumed to not correspond with a Cloud TPU and will
-  instead be passed as the session master and no ClusterSpec propagation
-  will be done. In the future, this may also support a list of strings
-  when multiple Cloud TPUs are used.</li>
+  string, the string 'local', or a string that begins with 'grpc://' or
+    '/bns', then it is assumed to not correspond with a Cloud TPU and will
+    instead be passed as the session master and no ClusterSpec propagation
+    will be done. In the future, this may also support a list of strings
+    when multiple Cloud TPUs are used.</li>
 <li><b><code>zone</code></b>: Zone where the TPUs are located. If omitted or empty, we will assume
-that the zone of the TPU is the same as the zone of the GCE VM, which we
-will try to discover from the GCE metadata service.</li>
+  that the zone of the TPU is the same as the zone of the GCE VM, which we
+  will try to discover from the GCE metadata service.</li>
 <li><b><code>project</code></b>: Name of the GCP project containing Cloud TPUs. If omitted or
-empty, we will try to discover the project name of the GCE VM from the
-GCE metadata service.</li>
+  empty, we will try to discover the project name of the GCE VM from the
+  GCE metadata service.</li>
 <li><b><code>job_name</code></b>: Name of the TensorFlow job the TPUs belong to.</li>
 <li><b><code>coordinator_name</code></b>: The name to use for the coordinator. Set to None if the
-coordinator should not be included in the computed ClusterSpec.</li>
+  coordinator should not be included in the computed ClusterSpec.</li>
 <li><b><code>coordinator_address</code></b>: The address of the coordinator (typically an ip:port
-pair). If set to None, a TF server will be started. If coordinator_name
-is None, a TF server will not be started even if coordinator_address is
-None.</li>
+  pair). If set to None, a TF server will be started. If coordinator_name
+  is None, a TF server will not be started even if coordinator_address is
+  None.</li>
 <li><b><code>credentials</code></b>: GCE Credentials. If None, then we use default credentials
-from the oauth2client</li>
+  from the oauth2client</li>
 <li><b><code>service</code></b>: The GCE API object returned by the googleapiclient.discovery
-function. If you specify a custom service object, then the credentials
-parameter will be ignored.</li>
+  function. If you specify a custom service object, then the credentials
+  parameter will be ignored.</li>
 <li><b><code>discovery_url</code></b>: A URL template that points to the location of the discovery
-service. It should have two parameters {api} and {apiVersion} that when
-filled in produce an absolute URL to the discovery document for that
-service. The environment variable &lsquo;TPU_API_DISCOVERY_URL&rsquo; will override
-this.</li>
+  service. It should have two parameters {api} and {apiVersion} that when
+  filled in produce an absolute URL to the discovery document for that
+  service. The environment variable 'TPU_API_DISCOVERY_URL' will override
+  this.</li>
 </ul>
-
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ImportError</code></b>: If the googleapiclient is not installed.</li>
 <li><b><code>ValueError</code></b>: If no TPUs are specified.</li>
 <li><b><code>RuntimeError</code></b>: If an empty TPU name is specified and this is running in a
-Google Cloud environment.</li>
+  Google Cloud environment.</li>
 </ul>
-
-
-<h2>Properties</h2>
-
+<h2 id="properties">Properties</h2>
 <h3 id="environment"><code>environment</code></h3>
 
-
 <p>Returns the current environment which TensorFlow is running in.</p>
-
-<h2>Methods</h2>
-
+<h2 id="methods">Methods</h2>
 <h3 id="cluster_spec"><code>cluster_spec</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/distribute/cluster_resolver/tpu_cluster_resolver.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">cluster_spec</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-cluster_spec()
-</code></p>
 
 <p>Returns a ClusterSpec object based on the latest TPU information.</p>
-
 <p>We retrieve the information from the GCE APIs every time this method is
 called.</p>
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A ClusterSpec containing host information returned from Cloud TPUs,
 or None.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises_1">Raises:</h4>
 <ul>
 <li><b><code>RuntimeError</code></b>: If the provided TPU is not healthy.</li>
 </ul>
-
-
 <h3 id="get_job_name"><code>get_job_name</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/distribute/cluster_resolver/tpu_cluster_resolver.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_job_name</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-get_job_name()
-</code></p>
 
 <h3 id="get_master"><code>get_master</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/distribute/cluster_resolver/tpu_cluster_resolver.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_master</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-get_master()
-</code></p>
 
 <h3 id="master"><code>master</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/distribute/cluster_resolver/tpu_cluster_resolver.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">master</span><span class="p">(</span>
+    <span class="n">task_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">task_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">rpc_layer</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-master(
-    task_type=None,
-    task_id=None,
-    rpc_layer=None
-)
-</code></p>
 
 <p>Get the Master string to be used for the session.</p>
-
 <p>In the normal case, this returns the grpc path (grpc://1.2.3.4:8470) of
 first instance in the ClusterSpec returned by the cluster_spec function.</p>
-
 <p>If a non-TPU name is used when constructing a TPUClusterResolver, that will
-be returned instead (e.g. If the tpus argument&rsquo;s value when constructing
-this TPUClusterResolver was &lsquo;grpc://10.240.1.2:8470&rsquo;,
-&lsquo;grpc://10.240.1.2:8470&rsquo; will be returned).</p>
-
-<h4>Args:</h4>
-
+be returned instead (e.g. If the tpus argument's value when constructing
+this TPUClusterResolver was 'grpc://10.240.1.2:8470',
+'grpc://10.240.1.2:8470' will be returned).</p>
+<h4 id="args_1">Args:</h4>
 <ul>
 <li><b><code>task_type</code></b>: (Optional, string) The type of the TensorFlow task of the
-master.</li>
+  master.</li>
 <li><b><code>task_id</code></b>: (Optional, integer) The index of the TensorFlow task of the
-master.</li>
+  master.</li>
 <li><b><code>rpc_layer</code></b>: (Optional, string) The RPC protocol TensorFlow should use to
-communicate with TPUs.</li>
+  communicate with TPUs.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_1">Returns:</h4>
 <p>string, the connection string to use when creating a session.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises_2">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: If none of the TPUs specified exists.</li>
 </ul>
-
-
 <h3 id="num_accelerators"><code>num_accelerators</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/distribute/cluster_resolver/tpu_cluster_resolver.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">num_accelerators</span><span class="p">(</span>
+    <span class="n">task_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">task_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">config_proto</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-num_accelerators(
-    task_type=None,
-    task_id=None,
-    config_proto=None
-)
-</code></p>
 
 <p>Returns the number of TPU cores per worker.</p>
-
 <p>Connects to the master and list all the devices present in the master,
 and counts them up. Also verifies that the device counts per host in the
 cluster is the same before returning the number of TPU cores per host.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_2">Args:</h4>
 <ul>
 <li><b><code>task_type</code></b>: Unused.</li>
 <li><b><code>task_id</code></b>: Unused.</li>
 <li><b><code>config_proto</code></b>: Used to create a connection to a TPU master in order to
-retrieve the system metadata.</li>
+  retrieve the system metadata.</li>
 </ul>
-
-
-<h4>Raises:</h4>
-
+<h4 id="raises_3">Raises:</h4>
 <ul>
 <li><b><code>RuntimeError</code></b>: If we cannot talk to a TPU worker after retrying or if the
-number of TPU devices per host is different.</li>
+  number of TPU devices per host is different.</li>
 </ul>
-
+    </body>
+    </html>
+   

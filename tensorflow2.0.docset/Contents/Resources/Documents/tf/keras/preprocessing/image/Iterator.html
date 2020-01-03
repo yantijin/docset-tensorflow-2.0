@@ -1,4 +1,13 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.keras.preprocessing.image.Iterator" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="__getitem__"/>
@@ -11,142 +20,106 @@
 <meta itemprop="property" content="white_list_formats"/>
 </div>
 
-
-<h1>tf.keras.preprocessing.image.Iterator</h1>
-
+<h1 id="tfkeraspreprocessingimageiterator">tf.keras.preprocessing.image.Iterator</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/preprocessing/image.py">View source</a></p>
-
-<h2>Class <code>Iterator</code></h2>
-
+<h2 id="class-iterator">Class <code>Iterator</code></h2>
 <!-- Start diff -->
 
-
 <p>Base class for image data iterators.</p>
-
 <p>Inherits From: <a href="../../../../tf/keras/utils/Sequence.html"><code>Sequence</code></a></p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li>Class <code>tf.compat.v1.keras.preprocessing.image.Iterator</code></li>
 <li>Class <code>tf.compat.v2.keras.preprocessing.image.Iterator</code></li>
 </ul>
-
-
 <!-- Placeholder for "Used in" -->
-
 
 <p>Every <code>Iterator</code> must implement the <code>_get_batches_of_transformed_samples</code>
 method.</p>
+<h1 id="arguments">Arguments</h1>
+<div class="codehilite"><pre><span></span><span class="n">n</span><span class="o">:</span> <span class="n">Integer</span><span class="o">,</span> <span class="n">total</span> <span class="n">number</span> <span class="n">of</span> <span class="n">samples</span> <span class="k">in</span> <span class="n">the</span> <span class="n">dataset</span> <span class="n">to</span> <span class="n">loop</span> <span class="n">over</span><span class="o">.</span>
+<span class="n">batch_size</span><span class="o">:</span> <span class="n">Integer</span><span class="o">,</span> <span class="n">size</span> <span class="n">of</span> <span class="n">a</span> <span class="n">batch</span><span class="o">.</span>
+<span class="n">shuffle</span><span class="o">:</span> <span class="n">Boolean</span><span class="o">,</span> <span class="n">whether</span> <span class="n">to</span> <span class="n">shuffle</span> <span class="n">the</span> <span class="n">data</span> <span class="n">between</span> <span class="n">epochs</span><span class="o">.</span>
+<span class="n">seed</span><span class="o">:</span> <span class="n">Random</span> <span class="n">seeding</span> <span class="k">for</span> <span class="n">data</span> <span class="n">shuffling</span><span class="o">.</span>
+</pre></div>
 
-<h1>Arguments</h1>
-
-<pre><code>n: Integer, total number of samples in the dataset to loop over.
-batch_size: Integer, size of a batch.
-shuffle: Boolean, whether to shuffle the data between epochs.
-seed: Random seeding for data shuffling.
-</code></pre>
 
 <h2 id="__init__"><code>__init__</code></h2>
 
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">n</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="p">,</span>
+    <span class="n">shuffle</span><span class="p">,</span>
+    <span class="n">seed</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__init__(
-    n,
-    batch_size,
-    shuffle,
-    seed
-)
-</code></p>
 
 <p>Initialize self.  See help(type(self)) for accurate signature.</p>
-
-<h2>Methods</h2>
-
+<h2 id="methods">Methods</h2>
 <h3 id="__getitem__"><code>__getitem__</code></h3>
 
+<div class="codehilite"><pre><span></span><span class="fm">__getitem__</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__getitem__(idx)
-</code></p>
 
 <p>Gets batch at position <code>index</code>.</p>
-
-<h4>Arguments:</h4>
-
+<h4 id="arguments_1">Arguments:</h4>
 <ul>
 <li><b><code>index</code></b>: position of the batch in the Sequence.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A batch</p>
-
 <h3 id="__iter__"><code>__iter__</code></h3>
 
+<div class="codehilite"><pre><span></span><span class="fm">__iter__</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-__iter__()
-</code></p>
 
 <p>Create a generator that iterate over the Sequence.</p>
-
 <h3 id="__len__"><code>__len__</code></h3>
 
+<div class="codehilite"><pre><span></span><span class="fm">__len__</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-__len__()
-</code></p>
 
 <p>Number of batch in the Sequence.</p>
-
-<h4>Returns:</h4>
-
+<h4 id="returns_1">Returns:</h4>
 <p>The number of batches in the Sequence.</p>
-
 <h3 id="next"><code>next</code></h3>
 
+<div class="codehilite"><pre><span></span><span class="nb">next</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-next()
-</code></p>
 
 <p>For python 2.x.</p>
+<h1 id="returns_2">Returns</h1>
+<div class="codehilite"><pre><span></span><span class="err">The next batch.</span>
+</pre></div>
 
-<h1>Returns</h1>
-
-<pre><code>The next batch.
-</code></pre>
 
 <h3 id="on_epoch_end"><code>on_epoch_end</code></h3>
 
+<div class="codehilite"><pre><span></span><span class="n">on_epoch_end</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-on_epoch_end()
-</code></p>
 
 <p>Method called at the end of every epoch.</p>
-
 <h3 id="reset"><code>reset</code></h3>
 
+<div class="codehilite"><pre><span></span><span class="n">reset</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-reset()
-</code></p>
 
-<h2>Class Members</h2>
-
+<h2 id="class-members">Class Members</h2>
 <ul>
 <li><code>white_list_formats</code> <a id="white_list_formats"></a></li>
 </ul>
-
+    </body>
+    </html>
+   

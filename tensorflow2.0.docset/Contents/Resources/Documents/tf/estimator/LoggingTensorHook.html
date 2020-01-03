@@ -1,4 +1,13 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.estimator.LoggingTensorHook" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="__init__"/>
@@ -9,231 +18,167 @@
 <meta itemprop="property" content="end"/>
 </div>
 
-
-<h1>tf.estimator.LoggingTensorHook</h1>
-
+<h1 id="tfestimatorloggingtensorhook">tf.estimator.LoggingTensorHook</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/training/basic_session_run_hooks.py">View source</a></p>
-
-<h2>Class <code>LoggingTensorHook</code></h2>
-
+<h2 id="class-loggingtensorhook">Class <code>LoggingTensorHook</code></h2>
 <!-- Start diff -->
 
-
 <p>Prints the given tensors every N local steps, every N seconds, or at end.</p>
-
 <p>Inherits From: <a href="../../tf/estimator/SessionRunHook.html"><code>SessionRunHook</code></a></p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li>Class <code>tf.compat.v1.estimator.LoggingTensorHook</code></li>
 <li>Class <code>tf.compat.v1.train.LoggingTensorHook</code></li>
 <li>Class <code>tf.compat.v2.estimator.LoggingTensorHook</code></li>
 </ul>
-
-
 <!-- Placeholder for "Used in" -->
-
 
 <p>The tensors will be printed to the log, with <code>INFO</code> severity. If you are not
 seeing the logs, you might want to add the following line after your imports:</p>
+<div class="codehilite"><pre><span></span>  <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">set_verbosity</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-  tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.INFO)
-</code></p>
 
 <p>Note that if <code>at_end</code> is True, <code>tensors</code> should not include any tensor
 whose evaluation produces a side effect such as consuming additional inputs.</p>
-
 <h2 id="__init__"><code>__init__</code></h2>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/training/basic_session_run_hooks.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">tensors</span><span class="p">,</span>
+    <span class="n">every_n_iter</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">every_n_secs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">at_end</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">formatter</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__init__(
-    tensors,
-    every_n_iter=None,
-    every_n_secs=None,
-    at_end=False,
-    formatter=None
-)
-</code></p>
 
 <p>Initializes a <code>LoggingTensorHook</code>.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>tensors</code></b>: <code>dict</code> that maps string-valued tags to tensors/tensor names, or
-<code>iterable</code> of tensors/tensor names.</li>
+  <code>iterable</code> of tensors/tensor names.</li>
 <li><b><code>every_n_iter</code></b>: <code>int</code>, print the values of <code>tensors</code> once every N local
-steps taken on the current worker.</li>
+  steps taken on the current worker.</li>
 <li><b><code>every_n_secs</code></b>: <code>int</code> or <code>float</code>, print the values of <code>tensors</code> once every N
-seconds. Exactly one of <code>every_n_iter</code> and <code>every_n_secs</code> should be
-provided.</li>
+  seconds. Exactly one of <code>every_n_iter</code> and <code>every_n_secs</code> should be
+  provided.</li>
 <li><b><code>at_end</code></b>: <code>bool</code> specifying whether to print the values of <code>tensors</code> at the
-end of the run.</li>
-<li><b><code>formatter</code></b>: function, takes dict of <code>tag</code>-><code>Tensor</code> and returns a string.
-If <code>None</code> uses default printing all tensors.</li>
+  end of the run.</li>
+<li><b><code>formatter</code></b>: function, takes dict of <code>tag</code>-&gt;<code>Tensor</code> and returns a string.
+  If <code>None</code> uses default printing all tensors.</li>
 </ul>
-
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: if <code>every_n_iter</code> is non-positive.</li>
 </ul>
-
-
-<h2>Methods</h2>
-
+<h2 id="methods">Methods</h2>
 <h3 id="after_create_session"><code>after_create_session</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/training/session_run_hook.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">after_create_session</span><span class="p">(</span>
+    <span class="n">session</span><span class="p">,</span>
+    <span class="n">coord</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-after_create_session(
-    session,
-    coord
-)
-</code></p>
 
 <p>Called when new TensorFlow session is created.</p>
-
 <p>This is called to signal the hooks that a new session has been created. This
 has two essential differences with the situation in which <code>begin</code> is called:</p>
-
 <ul>
 <li>When this is called, the graph is finalized and ops can no longer be added
-  to the graph.</li>
+    to the graph.</li>
 <li>This method will also be called as a result of recovering a wrapped
-  session, not only at the beginning of the overall session.</li>
+    session, not only at the beginning of the overall session.</li>
 </ul>
-
-
-<h4>Args:</h4>
-
+<h4 id="args_1">Args:</h4>
 <ul>
 <li><b><code>session</code></b>: A TensorFlow Session that has been created.</li>
 <li><b><code>coord</code></b>: A Coordinator object which keeps track of all threads.</li>
 </ul>
-
-
 <h3 id="after_run"><code>after_run</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/training/basic_session_run_hooks.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">after_run</span><span class="p">(</span>
+    <span class="n">run_context</span><span class="p">,</span>
+    <span class="n">run_values</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-after_run(
-    run_context,
-    run_values
-)
-</code></p>
 
 <p>Called after each call to run().</p>
-
 <p>The <code>run_values</code> argument contains results of requested ops/tensors by
 <code>before_run()</code>.</p>
-
 <p>The <code>run_context</code> argument is the same one send to <code>before_run</code> call.
 <code>run_context.request_stop()</code> can be called to stop the iteration.</p>
-
 <p>If <code>session.run()</code> raises any exceptions then <code>after_run()</code> is not called.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_2">Args:</h4>
 <ul>
 <li><b><code>run_context</code></b>: A <code>SessionRunContext</code> object.</li>
 <li><b><code>run_values</code></b>: A SessionRunValues object.</li>
 </ul>
-
-
 <h3 id="before_run"><code>before_run</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/training/basic_session_run_hooks.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">before_run</span><span class="p">(</span><span class="n">run_context</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-before_run(run_context)
-</code></p>
 
 <p>Called before each call to run().</p>
-
 <p>You can return from this call a <code>SessionRunArgs</code> object indicating ops or
 tensors to add to the upcoming <code>run()</code> call.  These ops/tensors will be run
 together with the ops/tensors originally passed to the original run() call.
 The run args you return can also contain feeds to be added to the run()
 call.</p>
-
 <p>The <code>run_context</code> argument is a <code>SessionRunContext</code> that provides
 information about the upcoming <code>run()</code> call: the originally requested
 op/tensors, the TensorFlow Session.</p>
-
 <p>At this point graph is finalized and you can not add ops.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_3">Args:</h4>
 <ul>
 <li><b><code>run_context</code></b>: A <code>SessionRunContext</code> object.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>None or a <code>SessionRunArgs</code> object.</p>
-
 <h3 id="begin"><code>begin</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/training/basic_session_run_hooks.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">begin</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-begin()
-</code></p>
 
 <p>Called once before using the session.</p>
-
 <p>When called, the default graph is the one that will be launched in the
 session.  The hook can modify the graph by adding new operations to it.
 After the <code>begin()</code> call the graph will be finalized and the other callbacks
 can not modify the graph anymore. Second call of <code>begin()</code> on the same
 graph, should not change the graph.</p>
-
 <h3 id="end"><code>end</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/training/basic_session_run_hooks.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">end</span><span class="p">(</span><span class="n">session</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-end(session)
-</code></p>
 
 <p>Called at the end of session.</p>
-
 <p>The <code>session</code> argument can be used in case the hook wants to run final ops,
 such as saving a last checkpoint.</p>
-
 <p>If <code>session.run()</code> raises exception other than OutOfRangeError or
 StopIteration then <code>end()</code> is not called.
 Note the difference between <code>end()</code> and <code>after_run()</code> behavior when
 <code>session.run()</code> raises OutOfRangeError or StopIteration. In that case
 <code>end()</code> is called but <code>after_run()</code> is not called.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_4">Args:</h4>
 <ul>
 <li><b><code>session</code></b>: A TensorFlow Session that will be soon closed.</li>
 </ul>
-
+    </body>
+    </html>
+   

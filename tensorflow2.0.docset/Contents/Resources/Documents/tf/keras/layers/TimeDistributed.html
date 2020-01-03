@@ -1,122 +1,94 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.keras.layers.TimeDistributed" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="__init__"/>
 </div>
 
-
-<h1>tf.keras.layers.TimeDistributed</h1>
-
+<h1 id="tfkeraslayerstimedistributed">tf.keras.layers.TimeDistributed</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/wrappers.py">View source</a></p>
-
-<h2>Class <code>TimeDistributed</code></h2>
-
+<h2 id="class-timedistributed">Class <code>TimeDistributed</code></h2>
 <!-- Start diff -->
 
-
 <p>This wrapper allows to apply a layer to every temporal slice of an input.</p>
-
 <p>Inherits From: <a href="../../../tf/keras/layers/Wrapper.html"><code>Wrapper</code></a></p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li>Class <code>tf.compat.v1.keras.layers.TimeDistributed</code></li>
 <li>Class <code>tf.compat.v2.keras.layers.TimeDistributed</code></li>
 </ul>
-
-
 <!-- Placeholder for "Used in" -->
-
 
 <p>The input should be at least 3D, and the dimension of index one
 will be considered to be the temporal dimension.</p>
-
 <p>Consider a batch of 32 samples,
 where each sample is a sequence of 10 vectors of 16 dimensions.
 The batch input shape of the layer is then <code>(32, 10, 16)</code>,
 and the <code>input_shape</code>, not including the samples dimension, is <code>(10, 16)</code>.</p>
-
 <p>You can then use <code>TimeDistributed</code> to apply a <code>Dense</code> layer
 to each of the 10 timesteps, independently:</p>
+<div class="codehilite"><pre><span></span><span class="c1"># as the first layer in a model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">TimeDistributed</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">16</span><span class="p">)))</span>
+<span class="c1"># now model.output_shape == (None, 10, 8)</span>
+</pre></div>
 
-<p>```python</p>
-
-<h1>as the first layer in a model</h1>
-
-<p>model = Sequential()
-model.add(TimeDistributed(Dense(8), input_shape=(10, 16)))</p>
-
-<h1>now model.output_shape == (None, 10, 8)</h1>
-
-<p>```</p>
 
 <p>The output will then have shape <code>(32, 10, 8)</code>.</p>
-
 <p>In subsequent layers, there is no need for the <code>input_shape</code>:</p>
+<div class="codehilite"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">TimeDistributed</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">32</span><span class="p">)))</span>
+<span class="c1"># now model.output_shape == (None, 10, 32)</span>
+</pre></div>
 
-<p>```python
-model.add(TimeDistributed(Dense(32)))</p>
-
-<h1>now model.output_shape == (None, 10, 32)</h1>
-
-<p>```</p>
 
 <p>The output will then have shape <code>(32, 10, 32)</code>.</p>
-
 <p><code>TimeDistributed</code> can be used with arbitrary layers, not just <code>Dense</code>,
 for instance with a <code>Conv2D</code> layer:</p>
+<div class="codehilite"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">TimeDistributed</span><span class="p">(</span><span class="n">Conv2D</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)),</span>
+                          <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">299</span><span class="p">,</span> <span class="mi">299</span><span class="p">,</span> <span class="mi">3</span><span class="p">)))</span>
+</pre></div>
 
-<p><code>python
-model = Sequential()
-model.add(TimeDistributed(Conv2D(64, (3, 3)),
-                          input_shape=(10, 299, 299, 3)))
-</code></p>
 
-<h4>Arguments:</h4>
-
+<h4 id="arguments">Arguments:</h4>
 <ul>
 <li><b><code>layer</code></b>: a layer instance.</li>
 </ul>
-
-
-<h4>Call arguments:</h4>
-
+<h4 id="call-arguments">Call arguments:</h4>
 <ul>
 <li><b><code>inputs</code></b>: Input tensor.</li>
 <li><b><code>training</code></b>: Python boolean indicating whether the layer should behave in
-training mode or in inference mode. This argument is passed to the
-wrapped layer (only if the layer supports this argument).</li>
+  training mode or in inference mode. This argument is passed to the
+  wrapped layer (only if the layer supports this argument).</li>
 <li><b><code>mask</code></b>: Binary tensor of shape <code>(samples, timesteps)</code> indicating whether
-a given timestep should be masked. This argument is passed to the
-wrapped layer (only if the layer supports this argument).</li>
+  a given timestep should be masked. This argument is passed to the
+  wrapped layer (only if the layer supports this argument).</li>
 </ul>
-
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: If not initialized with a <code>Layer</code> instance.</li>
 </ul>
-
-
 <h2 id="__init__"><code>__init__</code></h2>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/wrappers.py">View source</a></p>
-
-<p><code>python
-__init__(
-    layer,
-    **kwargs
-)
-</code></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">layer</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+    </body>
+    </html>
+   

@@ -1,49 +1,45 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.strings.unicode_transcode" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.strings.unicode_transcode</h1>
-
+<h1 id="tfstringsunicode_transcode">tf.strings.unicode_transcode</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p>Defined in generated file: <code>python/ops/gen_string_ops.py</code></p>
-
 <!-- Start diff -->
 
-
 <p>Transcode the input text from a source encoding to a destination encoding.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.strings.unicode_transcode</code></li>
 <li><code>tf.compat.v2.strings.unicode_transcode</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">strings</span><span class="o">.</span><span class="n">unicode_transcode</span><span class="p">(</span>
+    <span class="nb">input</span><span class="p">,</span>
+    <span class="n">input_encoding</span><span class="p">,</span>
+    <span class="n">output_encoding</span><span class="p">,</span>
+    <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;replace&#39;</span><span class="p">,</span>
+    <span class="n">replacement_char</span><span class="o">=</span><span class="mi">65533</span><span class="p">,</span>
+    <span class="n">replace_control_characters</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.strings.unicode_transcode(
-    input,
-    input_encoding,
-    output_encoding,
-    errors='replace',
-    replacement_char=65533,
-    replace_control_characters=False,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>The input is a string tensor of any shape. The output is a string tensor of
 the same shape containing the transcoded strings. Output strings are always
@@ -54,58 +50,52 @@ output by the <code>replacement_char</code>. If the errors policy is to <code>ig
 invalid encoding positions in the input are skipped and not included in the
 output. If it set to <code>strict</code> then any invalid formatting will result in an
 InvalidArgument error.</p>
-
 <p>This operation can be used with <code>output_encoding = input_encoding</code> to enforce
 correct formatting for inputs even if they are already in the desired encoding.</p>
-
 <p>If the input is prefixed by a Byte Order Mark needed to determine encoding
 (e.g. if the encoding is UTF-16 and the BOM indicates big-endian), then that
 BOM will be consumed and not emitted into the output. If the input encoding
 is marked with an explicit endianness (e.g. UTF-16-BE), then the BOM is
 interpreted as a non-breaking-space and is preserved in the output (including
 always for UTF-8).</p>
-
 <p>The end result is that if the input is marked as an explicit endianness the
 transcoding is faithful to all codepoints in the source. If it is not marked
 with an explicit endianness, the BOM is not considered part of the string itself
 but as metadata, and so is not preserved in the output.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>input</code></b>: A <code>Tensor</code> of type <code>string</code>.
-The text to be processed. Can have any shape.</li>
+  The text to be processed. Can have any shape.</li>
 <li><b><code>input_encoding</code></b>: A <code>string</code>.
-Text encoding of the input strings. This is any of the encodings supported
-by ICU ucnv algorithmic converters. Examples: <code>"UTF-16", "US ASCII", "UTF-8"</code>.</li>
+  Text encoding of the input strings. This is any of the encodings supported
+  by ICU ucnv algorithmic converters. Examples: <code>"UTF-16", "US ASCII", "UTF-8"</code>.</li>
 <li><b><code>output_encoding</code></b>: A <code>string</code> from: <code>"UTF-8", "UTF-16-BE", "UTF-32-BE"</code>.
-The unicode encoding to use in the output. Must be one of
-<code>"UTF-8", "UTF-16-BE", "UTF-32-BE"</code>. Multi-byte encodings will be big-endian.</li>
+  The unicode encoding to use in the output. Must be one of
+  <code>"UTF-8", "UTF-16-BE", "UTF-32-BE"</code>. Multi-byte encodings will be big-endian.</li>
 <li><b><code>errors</code></b>: An optional <code>string</code> from: <code>"strict", "replace", "ignore"</code>. Defaults to <code>"replace"</code>.
-Error handling policy when there is invalid formatting found in the input.
-The value of &lsquo;strict&rsquo; will cause the operation to produce a InvalidArgument
-error on any invalid input formatting. A value of &lsquo;replace&rsquo; (the default) will
-cause the operation to replace any invalid formatting in the input with the
-<code>replacement_char</code> codepoint. A value of &lsquo;ignore&rsquo; will cause the operation to
-skip any invalid formatting in the input and produce no corresponding output
-character.</li>
-<li><p><b><code>replacement_char</code></b>: An optional <code>int</code>. Defaults to <code>65533</code>.
-The replacement character codepoint to be used in place of any invalid
-formatting in the input when <code>errors='replace'</code>. Any valid unicode codepoint may
-be used. The default value is the default unicode replacement character is
-0xFFFD or U+65533.)</p>
-
-<p>Note that for UTF-8, passing a replacement character expressible in 1 byte, such
-as &lsquo; &rsquo;, will preserve string alignment to the source since invalid bytes will be
-replaced with a 1-byte replacement. For UTF-16-BE and UTF-16-LE, any 1 or 2 byte
-replacement character will preserve byte alignment to the source.</p></li>
-<li><b><code>replace_control_characters</code></b>: An optional <code>bool</code>. Defaults to <code>False</code>.
-Whether to replace the C0 control characters (00-1F) with the
-<code>replacement_char</code>. Default is false.</li>
-<li><b><code>name</code></b>: A name for the operation (optional).</li>
+  Error handling policy when there is invalid formatting found in the input.
+  The value of 'strict' will cause the operation to produce a InvalidArgument
+  error on any invalid input formatting. A value of 'replace' (the default) will
+  cause the operation to replace any invalid formatting in the input with the
+  <code>replacement_char</code> codepoint. A value of 'ignore' will cause the operation to
+  skip any invalid formatting in the input and produce no corresponding output
+  character.</li>
+<li><b><code>replacement_char</code></b>: An optional <code>int</code>. Defaults to <code>65533</code>.
+  The replacement character codepoint to be used in place of any invalid
+  formatting in the input when <code>errors='replace'</code>. Any valid unicode codepoint may
+  be used. The default value is the default unicode replacement character is
+  0xFFFD or U+65533.)</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<p>Note that for UTF-8, passing a replacement character expressible in 1 byte, such
+  as ' ', will preserve string alignment to the source since invalid bytes will be
+  replaced with a 1-byte replacement. For UTF-16-BE and UTF-16-LE, any 1 or 2 byte
+  replacement character will preserve byte alignment to the source.
+* <b><code>replace_control_characters</code></b>: An optional <code>bool</code>. Defaults to <code>False</code>.
+  Whether to replace the C0 control characters (00-1F) with the
+  <code>replacement_char</code>. Default is false.
+* <b><code>name</code></b>: A name for the operation (optional).</p>
+<h4 id="returns">Returns:</h4>
 <p>A <code>Tensor</code> of type <code>string</code>.</p>
+    </body>
+    </html>
+   

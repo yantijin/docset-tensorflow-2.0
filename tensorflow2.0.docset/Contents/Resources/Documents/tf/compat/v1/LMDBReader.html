@@ -1,4 +1,13 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.LMDBReader" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="reader_ref"/>
@@ -13,276 +22,187 @@
 <meta itemprop="property" content="serialize_state"/>
 </div>
 
-
-<h1>tf.compat.v1.LMDBReader</h1>
-
+<h1 id="tfcompatv1.htmlbreader">tf.compat.v1.LMDBReader</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/io_ops.py">View source</a></p>
-
-<h2>Class <code>LMDBReader</code></h2>
-
+<h2 id="class-.htmlbreader">Class <code>LMDBReader</code></h2>
 <!-- Start diff -->
 
-
 <p>A Reader that outputs the records from a LMDB file.</p>
-
 <p>Inherits From: <a href="../../../tf/compat/v1/ReaderBase.html"><code>ReaderBase</code></a></p>
-
 <!-- Placeholder for "Used in" -->
 
-
 <p>See ReaderBase for supported methods.</p>
-
-<h4>Eager Compatibility</h4>
-
+<h4 id="eager-compatibility">Eager Compatibility</h4>
 <p>Readers are not compatible with eager execution. Instead, please
 use <a href="../../../tf/data.html"><code>tf.data</code></a> to get data into your model.</p>
-
 <h2 id="__init__"><code>__init__</code></h2>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/io_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">options</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__init__(
-    name=None,
-    options=None
-)
-</code></p>
 
 <p>Create a LMDBReader. (deprecated)</p>
-
 <p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
 Instructions for updating:
 Queue-based input pipelines have been replaced by <a href="../../../tf/data.html"><code>tf.data</code></a>. Use <code>tf.contrib.data.LMDBDataset</code>.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 <li><b><code>options</code></b>: A LMDBRecordOptions object (optional).</li>
 </ul>
-
-
-<h2>Properties</h2>
-
+<h2 id="properties">Properties</h2>
 <h3 id="reader_ref"><code>reader_ref</code></h3>
 
-
 <p>Op that implements the reader.</p>
-
 <h3 id="supports_serialize"><code>supports_serialize</code></h3>
 
-
 <p>Whether the Reader implementation can serialize its state.</p>
-
-<h2>Methods</h2>
-
+<h2 id="methods">Methods</h2>
 <h3 id="num_records_produced"><code>num_records_produced</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/io_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">num_records_produced</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-num_records_produced(name=None)
-</code></p>
 
 <p>Returns the number of records this reader has produced.</p>
-
 <p>This is the same as the number of Read executions that have
 succeeded.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_1">Args:</h4>
 <ul>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>An int64 Tensor.</p>
-
 <h3 id="num_work_units_completed"><code>num_work_units_completed</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/io_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">num_work_units_completed</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-num_work_units_completed(name=None)
-</code></p>
 
 <p>Returns the number of work units this reader has finished processing.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_2">Args:</h4>
 <ul>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_1">Returns:</h4>
 <p>An int64 Tensor.</p>
-
 <h3 id="read"><code>read</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/io_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">read</span><span class="p">(</span>
+    <span class="n">queue</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-read(
-    queue,
-    name=None
-)
-</code></p>
 
 <p>Returns the next record (key, value) pair produced by a reader.</p>
-
 <p>Will dequeue a work unit from queue if necessary (e.g. when the
 Reader needs to start reading from a new file since it has
 finished with the previous file).</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_3">Args:</h4>
 <ul>
 <li><b><code>queue</code></b>: A Queue or a mutable string Tensor representing a handle
-to a Queue, with string work items.</li>
+  to a Queue, with string work items.</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_2">Returns:</h4>
 <p>A tuple of Tensors (key, value).</p>
-
 <ul>
 <li><b><code>key</code></b>: A string scalar Tensor.</li>
 <li><b><code>value</code></b>: A string scalar Tensor.</li>
 </ul>
-
-
 <h3 id="read_up_to"><code>read_up_to</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/io_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">read_up_to</span><span class="p">(</span>
+    <span class="n">queue</span><span class="p">,</span>
+    <span class="n">num_records</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-read_up_to(
-    queue,
-    num_records,
-    name=None
-)
-</code></p>
 
 <p>Returns up to num_records (key, value) pairs produced by a reader.</p>
-
 <p>Will dequeue a work unit from queue if necessary (e.g., when the
 Reader needs to start reading from a new file since it has
 finished with the previous file).
 It may return less than num_records even before the last batch.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_4">Args:</h4>
 <ul>
 <li><b><code>queue</code></b>: A Queue or a mutable string Tensor representing a handle
-to a Queue, with string work items.</li>
+  to a Queue, with string work items.</li>
 <li><b><code>num_records</code></b>: Number of records to read.</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_3">Returns:</h4>
 <p>A tuple of Tensors (keys, values).</p>
-
 <ul>
 <li><b><code>keys</code></b>: A 1-D string Tensor.</li>
 <li><b><code>values</code></b>: A 1-D string Tensor.</li>
 </ul>
-
-
 <h3 id="reset"><code>reset</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/io_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">reset</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-reset(name=None)
-</code></p>
 
 <p>Restore a reader to its initial clean state.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_5">Args:</h4>
 <ul>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_4">Returns:</h4>
 <p>The created Operation.</p>
-
 <h3 id="restore_state"><code>restore_state</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/io_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">restore_state</span><span class="p">(</span>
+    <span class="n">state</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-restore_state(
-    state,
-    name=None
-)
-</code></p>
 
 <p>Restore a reader to a previously saved state.</p>
-
 <p>Not all Readers support being restored, so this can produce an
 Unimplemented error.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_6">Args:</h4>
 <ul>
 <li><b><code>state</code></b>: A string Tensor.
-Result of a SerializeState of a Reader with matching type.</li>
+  Result of a SerializeState of a Reader with matching type.</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_5">Returns:</h4>
 <p>The created Operation.</p>
-
 <h3 id="serialize_state"><code>serialize_state</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/io_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">serialize_state</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-serialize_state(name=None)
-</code></p>
 
 <p>Produce a string tensor that encodes the state of a reader.</p>
-
 <p>Not all Readers support being serialized, so this can produce an
 Unimplemented error.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_7">Args:</h4>
 <ul>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_6">Returns:</h4>
 <p>A string Tensor.</p>
+    </body>
+    </html>
+   

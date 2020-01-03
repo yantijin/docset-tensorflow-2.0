@@ -1,91 +1,86 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.nn.fractional_avg_pool" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.compat.v1.nn.fractional_avg_pool</h1>
-
+<h1 id="tfcompatv1nnfractional_avg_pool">tf.compat.v1.nn.fractional_avg_pool</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/nn_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Performs fractional average pooling on the input. (deprecated)</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">fractional_avg_pool</span><span class="p">(</span>
+    <span class="n">value</span><span class="p">,</span>
+    <span class="n">pooling_ratio</span><span class="p">,</span>
+    <span class="n">pseudo_random</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">overlapping</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">deterministic</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">seed2</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-tf.compat.v1.nn.fractional_avg_pool(
-    value,
-    pooling_ratio,
-    pseudo_random=False,
-    overlapping=False,
-    deterministic=False,
-    seed=0,
-    seed2=0,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
 Instructions for updating:
 <code>seed2</code> and <code>deterministic</code> args are deprecated.  Use fractional_avg_pool_v2.</p>
-
 <p>This is a deprecated version of <code>fractional_avg_pool</code>.</p>
-
 <p>Fractional average pooling is similar to Fractional max pooling in the pooling
 region generation step. The only difference is that after pooling regions are
 generated, a mean operation is performed instead of a max operation in each
 pooling region.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>value</code></b>: A <code>Tensor</code>. 4-D with shape <code>[batch, height, width, channels]</code>.</li>
-<li><b><code>pooling_ratio</code></b>: A list of <code>floats</code> that has length >= 4.  Pooling ratio for
-each dimension of <code>value</code>, currently only supports row and col dimension
-and should be >= 1.0. For example, a valid pooling ratio looks like [1.0,
-1.44, 1.73, 1.0]. The first and last elements must be 1.0 because we don&rsquo;t
-allow pooling on batch and channels dimensions.  1.44 and 1.73 are pooling
-ratio on height and width dimensions respectively.</li>
+<li><b><code>pooling_ratio</code></b>: A list of <code>floats</code> that has length &gt;= 4.  Pooling ratio for
+  each dimension of <code>value</code>, currently only supports row and col dimension
+  and should be &gt;= 1.0. For example, a valid pooling ratio looks like [1.0,
+  1.44, 1.73, 1.0]. The first and last elements must be 1.0 because we don't
+  allow pooling on batch and channels dimensions.  1.44 and 1.73 are pooling
+  ratio on height and width dimensions respectively.</li>
 <li><b><code>pseudo_random</code></b>: An optional <code>bool</code>.  Defaults to <code>False</code>. When set to <code>True</code>,
-generates the pooling sequence in a pseudorandom fashion, otherwise, in a
-random fashion. Check paper <a href="http://arxiv.org/abs/1412.6071">Benjamin Graham, Fractional
-Max-Pooling</a> for difference between
-pseudorandom and random.</li>
+  generates the pooling sequence in a pseudorandom fashion, otherwise, in a
+  random fashion. Check paper <a href="http://arxiv.org/abs/1412.6071">Benjamin Graham, Fractional
+  Max-Pooling</a> for difference between
+  pseudorandom and random.</li>
 <li><b><code>overlapping</code></b>: An optional <code>bool</code>.  Defaults to <code>False</code>.  When set to <code>True</code>,
-it means when pooling, the values at the boundary of adjacent pooling
-cells are used by both cells. For example:
-<code>index  0  1  2  3  4</code>
-<code>value  20 5  16 3  7</code>
-If the pooling sequence is [0, 2, 4], then 16, at index 2 will be used
-twice.  The result would be [20, 16] for fractional avg pooling.</li>
+  it means when pooling, the values at the boundary of adjacent pooling
+  cells are used by both cells. For example:
+  <code>index  0  1  2  3  4</code>
+  <code>value  20 5  16 3  7</code>
+  If the pooling sequence is [0, 2, 4], then 16, at index 2 will be used
+  twice.  The result would be [20, 16] for fractional avg pooling.</li>
 <li><b><code>deterministic</code></b>: An optional <code>bool</code>.  Deprecated; use <code>fractional_avg_pool_v2</code>
-instead.</li>
+  instead.</li>
 <li><b><code>seed</code></b>: An optional <code>int</code>.  Defaults to <code>0</code>.  If set to be non-zero, the
-random number generator is seeded by the given seed.  Otherwise it is
-seeded by a random seed.</li>
+  random number generator is seeded by the given seed.  Otherwise it is
+  seeded by a random seed.</li>
 <li><b><code>seed2</code></b>: An optional <code>int</code>.  Deprecated; use <code>fractional_avg_pool_v2</code> instead.</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A tuple of <code>Tensor</code> objects (<code>output</code>, <code>row_pooling_sequence</code>,
 <code>col_pooling_sequence</code>).
   output: Output <code>Tensor</code> after fractional avg pooling.  Has the same type as
     <code>value</code>.
   row_pooling_sequence: A <code>Tensor</code> of type <code>int64</code>.
   col_pooling_sequence: A <code>Tensor</code> of type <code>int64</code>.</p>
+    </body>
+    </html>
+   

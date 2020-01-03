@@ -1,4 +1,13 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.lookup.StaticVocabularyTable" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="initializer"/>
@@ -11,44 +20,28 @@
 <meta itemprop="property" content="size"/>
 </div>
 
-
-<h1>tf.compat.v1.lookup.StaticVocabularyTable</h1>
-
+<h1 id="tfcompatv1lookupstaticvocabularytable">tf.compat.v1.lookup.StaticVocabularyTable</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/lookup_ops.py">View source</a></p>
-
-<h2>Class <code>StaticVocabularyTable</code></h2>
-
+<h2 id="class-staticvocabularytable">Class <code>StaticVocabularyTable</code></h2>
 <!-- Start diff -->
 
-
 <p>String to Id table wrapper that assigns out-of-vocabulary keys to buckets.</p>
-
 <p>Inherits From: <a href="../../../../tf/lookup/StaticVocabularyTable.html"><code>StaticVocabularyTable</code></a></p>
-
 <!-- Placeholder for "Used in" -->
-
 
 <p>For example, if an instance of <code>StaticVocabularyTable</code> is initialized with a
 string-to-id initializer that maps:</p>
-
 <ul>
 <li><code>emerson -&gt; 0</code></li>
 <li><code>lake -&gt; 1</code></li>
 <li><code>palmer -&gt; 2</code></li>
 </ul>
-
-
 <p>The <code>Vocabulary</code> object will performs the following mapping:</p>
-
 <ul>
 <li><code>emerson -&gt; 0</code></li>
 <li><code>lake -&gt; 1</code></li>
@@ -57,139 +50,100 @@ string-to-id initializer that maps:</p>
 <code>3 + num_oov_buckets - 1</code>, calculated by:
 <code>hash(&lt;term&gt;) % num_oov_buckets + vocab_size</code></li>
 </ul>
-
-
 <p>If input_tensor is <code>["emerson", "lake", "palmer", "king", "crimson"]</code>,
 the lookup result is <code>[0, 1, 2, 4, 7]</code>.</p>
-
 <p>If <code>initializer</code> is None, only out-of-vocabulary buckets are used.</p>
+<h4 id="example-usage">Example usage:</h4>
+<div class="codehilite"><pre><span></span><span class="n">num_oov_buckets</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">input_tensor</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="s2">&quot;emerson&quot;</span><span class="p">,</span> <span class="s2">&quot;lake&quot;</span><span class="p">,</span> <span class="s2">&quot;palmer&quot;</span><span class="p">,</span> <span class="s2">&quot;king&quot;</span><span class="p">,</span> <span class="s2">&quot;crimnson&quot;</span><span class="p">])</span>
+<span class="n">table</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">lookup</span><span class="o">.</span><span class="n">StaticVocabularyTable</span><span class="p">(</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">TextFileIdTableInitializer</span><span class="p">(</span><span class="n">filename</span><span class="p">),</span> <span class="n">num_oov_buckets</span><span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">lookup</span><span class="p">(</span><span class="n">input_tensor</span><span class="p">)</span><span class="o">.</span>
+<span class="n">table</span><span class="o">.</span><span class="n">init</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">eval</span><span class="p">())</span>
+</pre></div>
 
-<h4>Example usage:</h4>
-
-<p><code>python
-num_oov_buckets = 3
-input_tensor = tf.constant(["emerson", "lake", "palmer", "king", "crimnson"])
-table = tf.lookup.StaticVocabularyTable(
-    tf.TextFileIdTableInitializer(filename), num_oov_buckets)
-out = table.lookup(input_tensor).
-table.init.run()
-print(out.eval())
-</code></p>
 
 <p>The hash function used for generating out-of-vocabulary buckets ID is
 Fingerprint64.</p>
-
 <h2 id="__init__"><code>__init__</code></h2>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/lookup_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">initializer</span><span class="p">,</span>
+    <span class="n">num_oov_buckets</span><span class="p">,</span>
+    <span class="n">lookup_key_dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__init__(
-    initializer,
-    num_oov_buckets,
-    lookup_key_dtype=None,
-    name=None
-)
-</code></p>
 
 <p>Construct a <code>StaticVocabularyTable</code> object.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>initializer</code></b>: A TableInitializerBase object that contains the data used to
-initialize the table. If None, then we only use out-of-vocab buckets.</li>
+  initialize the table. If None, then we only use out-of-vocab buckets.</li>
 <li><b><code>num_oov_buckets</code></b>: Number of buckets to use for out-of-vocabulary keys. Must
-be greater than zero.</li>
+  be greater than zero.</li>
 <li><b><code>lookup_key_dtype</code></b>: Data type of keys passed to <code>lookup</code>. Defaults to
-<code>initializer.key_dtype</code> if <code>initializer</code> is specified, otherwise
-<a href="../../../../tf.html#string"><code>tf.string</code></a>. Must be string or integer, and must be castable to
-<code>initializer.key_dtype</code>.</li>
+  <code>initializer.key_dtype</code> if <code>initializer</code> is specified, otherwise
+  <a href="../../../../tf.html#string"><code>tf.string</code></a>. Must be string or integer, and must be castable to
+  <code>initializer.key_dtype</code>.</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: when <code>num_oov_buckets</code> is not positive.</li>
 <li><b><code>TypeError</code></b>: when lookup_key_dtype or initializer.key_dtype are not
-integer or string. Also when initializer.value_dtype != int64.</li>
+  integer or string. Also when initializer.value_dtype != int64.</li>
 </ul>
-
-
-<h2>Properties</h2>
-
+<h2 id="properties">Properties</h2>
 <h3 id="initializer"><code>initializer</code></h3>
-
-
-
 
 <h3 id="key_dtype"><code>key_dtype</code></h3>
 
-
 <p>The table key dtype.</p>
-
 <h3 id="name"><code>name</code></h3>
 
-
 <p>The name of the table.</p>
-
 <h3 id="resource_handle"><code>resource_handle</code></h3>
 
-
 <p>Returns the resource handle associated with this Resource.</p>
-
 <h3 id="value_dtype"><code>value_dtype</code></h3>
 
-
 <p>The table value dtype.</p>
-
-<h2>Methods</h2>
-
+<h2 id="methods">Methods</h2>
 <h3 id="lookup"><code>lookup</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/lookup_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">lookup</span><span class="p">(</span>
+    <span class="n">keys</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-lookup(
-    keys,
-    name=None
-)
-</code></p>
 
 <p>Looks up <code>keys</code> in the table, outputs the corresponding values.</p>
-
 <p>It assigns out-of-vocabulary keys to buckets based in their hashes.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_1">Args:</h4>
 <ul>
 <li><b><code>keys</code></b>: Keys to look up. May be either a <code>SparseTensor</code> or dense <code>Tensor</code>.</li>
 <li><b><code>name</code></b>: Optional name for the op.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>SparseTensor</code> if keys are sparse, otherwise a dense <code>Tensor</code>.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises_1">Raises:</h4>
 <ul>
-<li><b><code>TypeError</code></b>: when <code>keys</code> doesn&rsquo;t match the table key data type.</li>
+<li><b><code>TypeError</code></b>: when <code>keys</code> doesn't match the table key data type.</li>
 </ul>
-
-
 <h3 id="size"><code>size</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/lookup_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">size</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-size(name=None)
-</code></p>
 
 <p>Compute the number of elements in this table.</p>
+    </body>
+    </html>
+   

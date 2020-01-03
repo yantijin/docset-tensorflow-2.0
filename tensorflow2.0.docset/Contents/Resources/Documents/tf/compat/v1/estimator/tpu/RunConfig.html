@@ -1,4 +1,13 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.estimator.tpu.RunConfig" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="cluster"/>
@@ -32,13 +41,8 @@
 <meta itemprop="property" content="replace"/>
 </div>
 
-
-<h1>tf.compat.v1.estimator.tpu.RunConfig</h1>
-
+<h1 id="tfcompatv1estimatortpurunconfig">tf.compat.v1.estimator.tpu.RunConfig</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 
@@ -49,250 +53,145 @@
   </a>
 </td></table>
 
-
-<h2>Class <code>RunConfig</code></h2>
-
+<h2 id="class-runconfig">Class <code>RunConfig</code></h2>
 <!-- Start diff -->
 
-
 <p>RunConfig with TPU support.</p>
-
 <p>Inherits From: <a href="../../../../../tf/estimator/RunConfig.html"><code>RunConfig</code></a></p>
-
 <!-- Placeholder for "Used in" -->
-
-
-
 
 <h2 id="__init__"><code>__init__</code></h2>
 
-
 <p><a target="_blank" href="https://github.com/tensorflow/estimator/tree/master/tensorflow_estimator/python/estimator/tpu/tpu_config.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">tpu_config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">evaluation_master</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">master</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">cluster</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__init__(
-    tpu_config=None,
-    evaluation_master=None,
-    master=None,
-    cluster=None,
-    **kwargs
-)
-</code></p>
 
 <p>Constructs a RunConfig.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>tpu_config</code></b>: the TPUConfig that specifies TPU-specific configuration.</li>
 <li><b><code>evaluation_master</code></b>: a string. The address of the master to use for eval.
-Defaults to master if not set.</li>
+  Defaults to master if not set.</li>
 <li><b><code>master</code></b>: a string. The address of the master to use for training.</li>
 <li><b><code>cluster</code></b>: a ClusterResolver</li>
 <li><b><code>**kwargs</code></b>: keyword config parameters.</li>
 </ul>
-
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: if cluster is not None and the provided session_config has a
-cluster_def already.</li>
+  cluster_def already.</li>
 </ul>
-
-
-<h2>Properties</h2>
-
+<h2 id="properties">Properties</h2>
 <h3 id="cluster"><code>cluster</code></h3>
-
-
-
 
 <h3 id="cluster_spec"><code>cluster_spec</code></h3>
 
-
-
-
 <h3 id="device_fn"><code>device_fn</code></h3>
 
-
 <p>Returns the device_fn.</p>
-
 <p>If device_fn is not <code>None</code>, it overrides the default
 device function used in <code>Estimator</code>.
 Otherwise the default one is used.</p>
-
 <h3 id="eval_distribute"><code>eval_distribute</code></h3>
 
-
 <p>Optional <a href="../../../../../tf/distribute/Strategy.html"><code>tf.distribute.Strategy</code></a> for evaluation.</p>
-
 <h3 id="evaluation_master"><code>evaluation_master</code></h3>
-
-
-
 
 <h3 id="experimental_max_worker_delay_secs"><code>experimental_max_worker_delay_secs</code></h3>
 
-
-
-
 <h3 id="global_id_in_cluster"><code>global_id_in_cluster</code></h3>
 
-
 <p>The global id in the training cluster.</p>
-
 <p>All global ids in the training cluster are assigned from an increasing
 sequence of consecutive integers. The first id is 0.</p>
-
 <p>Note: Task id (the property field <code>task_id</code>) is tracking the index of the
 node among all nodes with the SAME task type. For example, given the cluster
 definition as follows:</p>
+<div class="codehilite"><pre><span></span><span class="err">  cluster = {&#39;chief&#39;: [&#39;host0:2222&#39;],</span>
+<span class="err">             &#39;ps&#39;: [&#39;host1:2222&#39;, &#39;host2:2222&#39;],</span>
+<span class="err">             &#39;worker&#39;: [&#39;host3:2222&#39;, &#39;host4:2222&#39;, &#39;host5:2222&#39;]}</span>
+</pre></div>
 
-<p><code>
-  cluster = {'chief': ['host0:2222'],
-             'ps': ['host1:2222', 'host2:2222'],
-             'worker': ['host3:2222', 'host4:2222', 'host5:2222']}
-</code></p>
 
 <p>Nodes with task type <code>worker</code> can have id 0, 1, 2.  Nodes with task type
 <code>ps</code> can have id, 0, 1. So, <code>task_id</code> is not unique, but the pair
 (<code>task_type</code>, <code>task_id</code>) can uniquely determine a node in the cluster.</p>
-
 <p>Global id, i.e., this field, is tracking the index of the node among ALL
 nodes in the cluster. It is uniquely assigned.  For example, for the cluster
-spec given above, the global ids are assigned as:
-```</p>
+spec given above, the global ids are assigned as:</p>
+<div class="codehilite"><pre><span></span><span class="err">  task_type  | task_id  |  global_id</span>
+<span class="err">  --------------------------------</span>
+<span class="err">  chief      | 0        |  0</span>
+<span class="err">  worker     | 0        |  1</span>
+<span class="err">  worker     | 1        |  2</span>
+<span class="err">  worker     | 2        |  3</span>
+<span class="err">  ps         | 0        |  4</span>
+<span class="err">  ps         | 1        |  5</span>
+</pre></div>
 
-<h2>  task_type  | task_id  |  global_id</h2>
 
-<p>  chief      | 0        |  0
-  worker     | 0        |  1
-  worker     | 1        |  2
-  worker     | 2        |  3
-  ps         | 0        |  4
-  ps         | 1        |  5
-```</p>
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>An integer id.</p>
-
 <h3 id="is_chief"><code>is_chief</code></h3>
-
-
-
 
 <h3 id="keep_checkpoint_every_n_hours"><code>keep_checkpoint_every_n_hours</code></h3>
 
-
-
-
 <h3 id="keep_checkpoint_max"><code>keep_checkpoint_max</code></h3>
-
-
-
 
 <h3 id="log_step_count_steps"><code>log_step_count_steps</code></h3>
 
-
-
-
 <h3 id="master"><code>master</code></h3>
-
-
-
 
 <h3 id="model_dir"><code>model_dir</code></h3>
 
-
-
-
 <h3 id="num_ps_replicas"><code>num_ps_replicas</code></h3>
-
-
-
 
 <h3 id="num_worker_replicas"><code>num_worker_replicas</code></h3>
 
-
-
-
 <h3 id="protocol"><code>protocol</code></h3>
 
-
 <p>Returns the optional protocol value.</p>
-
 <h3 id="save_checkpoints_secs"><code>save_checkpoints_secs</code></h3>
-
-
-
 
 <h3 id="save_checkpoints_steps"><code>save_checkpoints_steps</code></h3>
 
-
-
-
 <h3 id="save_summary_steps"><code>save_summary_steps</code></h3>
-
-
-
 
 <h3 id="service"><code>service</code></h3>
 
-
 <p>Returns the platform defined (in TF_CONFIG) service dict.</p>
-
 <h3 id="session_config"><code>session_config</code></h3>
-
-
-
 
 <h3 id="session_creation_timeout_secs"><code>session_creation_timeout_secs</code></h3>
 
-
-
-
 <h3 id="task_id"><code>task_id</code></h3>
-
-
-
 
 <h3 id="task_type"><code>task_type</code></h3>
 
-
-
-
 <h3 id="tf_random_seed"><code>tf_random_seed</code></h3>
-
-
-
 
 <h3 id="tpu_config"><code>tpu_config</code></h3>
 
-
-
-
 <h3 id="train_distribute"><code>train_distribute</code></h3>
 
-
 <p>Optional <a href="../../../../../tf/distribute/Strategy.html"><code>tf.distribute.Strategy</code></a> for training.</p>
-
-<h2>Methods</h2>
-
+<h2 id="methods">Methods</h2>
 <h3 id="replace"><code>replace</code></h3>
 
-
 <p><a target="_blank" href="https://github.com/tensorflow/estimator/tree/master/tensorflow_estimator/python/estimator/tpu/tpu_config.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">replace</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-replace(**kwargs)
-</code></p>
 
 <p>Returns a new instance of <code>RunConfig</code> replacing specified properties.</p>
-
 <p>Only the properties in the following list are allowed to be replaced:</p>
-
 <ul>
 <li><code>model_dir</code>,</li>
 <li><code>tf_random_seed</code>,</li>
@@ -310,27 +209,20 @@ replace(**kwargs)
 <li><code>experimental_distribute</code>,</li>
 <li><code>experimental_max_worker_delay_secs</code>,</li>
 </ul>
-
-
 <p>In addition, either <code>save_checkpoints_steps</code> or <code>save_checkpoints_secs</code>
 can be set (should not be both).</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_1">Args:</h4>
 <ul>
 <li><b><code>**kwargs</code></b>: keyword named properties with new values.</li>
 </ul>
-
-
-<h4>Raises:</h4>
-
+<h4 id="raises_1">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: If any property name in <code>kwargs</code> does not exist or is not
-allowed to be replaced, or both <code>save_checkpoints_steps</code> and
-<code>save_checkpoints_secs</code> are set.</li>
+  allowed to be replaced, or both <code>save_checkpoints_steps</code> and
+  <code>save_checkpoints_secs</code> are set.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_1">Returns:</h4>
 <p>a new instance of <code>RunConfig</code>.</p>
+    </body>
+    </html>
+   

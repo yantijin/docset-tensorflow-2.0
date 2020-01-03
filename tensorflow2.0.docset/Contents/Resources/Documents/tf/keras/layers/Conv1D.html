@@ -1,32 +1,30 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.keras.layers.Conv1D" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="__init__"/>
 </div>
 
-
-<h1>tf.keras.layers.Conv1D</h1>
-
+<h1 id="tfkeraslayersconv1d">tf.keras.layers.Conv1D</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/convolutional.py">View source</a></p>
-
-<h2>Class <code>Conv1D</code></h2>
-
+<h2 id="class-conv1d">Class <code>Conv1D</code></h2>
 <!-- Start diff -->
 
-
 <p>1D convolution layer (e.g. temporal convolution).</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li>Class <code>tf.compat.v1.keras.layers.Conv1D</code></li>
 <li>Class <code>tf.compat.v1.keras.layers.Convolution1D</code></li>
@@ -34,10 +32,7 @@
 <li>Class <code>tf.compat.v2.keras.layers.Convolution1D</code></li>
 <li>Class <code>tf.keras.layers.Convolution1D</code></li>
 </ul>
-
-
 <!-- Placeholder for "Used in" -->
-
 
 <p>This layer creates a convolution kernel that is convolved
 with the layer input over a single spatial (or temporal) dimension
@@ -45,100 +40,87 @@ to produce a tensor of outputs.
 If <code>use_bias</code> is True, a bias vector is created and added to the outputs.
 Finally, if <code>activation</code> is not <code>None</code>,
 it is applied to the outputs as well.</p>
-
 <p>When using this layer as the first layer in a model,
 provide an <code>input_shape</code> argument
 (tuple of integers or <code>None</code>, e.g.
 <code>(10, 128)</code> for sequences of 10 vectors of 128-dimensional vectors,
 or <code>(None, 128)</code> for variable-length sequences of 128-dimensional vectors.</p>
-
-<h4>Arguments:</h4>
-
+<h4 id="arguments">Arguments:</h4>
 <ul>
 <li><b><code>filters</code></b>: Integer, the dimensionality of the output space
-(i.e. the number of output filters in the convolution).</li>
+  (i.e. the number of output filters in the convolution).</li>
 <li><b><code>kernel_size</code></b>: An integer or tuple/list of a single integer,
-specifying the length of the 1D convolution window.</li>
+  specifying the length of the 1D convolution window.</li>
 <li><b><code>strides</code></b>: An integer or tuple/list of a single integer,
-specifying the stride length of the convolution.
-Specifying any stride value != 1 is incompatible with specifying
-any <code>dilation_rate</code> value != 1.</li>
+  specifying the stride length of the convolution.
+  Specifying any stride value != 1 is incompatible with specifying
+  any <code>dilation_rate</code> value != 1.</li>
 <li><b><code>padding</code></b>: One of <code>"valid"</code>, <code>"causal"</code> or <code>"same"</code> (case-insensitive).
-<code>"causal"</code> results in causal (dilated) convolutions, e.g. output[t]
-does not depend on input[t+1:]. Useful when modeling temporal data
-where the model should not violate the temporal order.
-See <a href="https://arxiv.org/abs/1609.03499">WaveNet: A Generative Model for Raw Audio, section
-  2.1</a>.</li>
+  <code>"causal"</code> results in causal (dilated) convolutions, e.g. output[t]
+  does not depend on input[t+1:]. Useful when modeling temporal data
+  where the model should not violate the temporal order.
+  See <a href="https://arxiv.org/abs/1609.03499">WaveNet: A Generative Model for Raw Audio, section
+    2.1</a>.</li>
 <li><b><code>data_format</code></b>: A string,
-one of <code>channels_last</code> (default) or <code>channels_first</code>.</li>
+  one of <code>channels_last</code> (default) or <code>channels_first</code>.</li>
 <li><b><code>dilation_rate</code></b>: an integer or tuple/list of a single integer, specifying
-the dilation rate to use for dilated convolution.
-Currently, specifying any <code>dilation_rate</code> value != 1 is
-incompatible with specifying any <code>strides</code> value != 1.</li>
+  the dilation rate to use for dilated convolution.
+  Currently, specifying any <code>dilation_rate</code> value != 1 is
+  incompatible with specifying any <code>strides</code> value != 1.</li>
 <li><b><code>activation</code></b>: Activation function to use.
-If you don&rsquo;t specify anything, no activation is applied
-(ie. &ldquo;linear&rdquo; activation: <code>a(x) = x</code>).</li>
+  If you don't specify anything, no activation is applied
+  (ie. "linear" activation: <code>a(x) = x</code>).</li>
 <li><b><code>use_bias</code></b>: Boolean, whether the layer uses a bias vector.</li>
 <li><b><code>kernel_initializer</code></b>: Initializer for the <code>kernel</code> weights matrix.</li>
 <li><b><code>bias_initializer</code></b>: Initializer for the bias vector.</li>
 <li><b><code>kernel_regularizer</code></b>: Regularizer function applied to
-the <code>kernel</code> weights matrix.</li>
+  the <code>kernel</code> weights matrix.</li>
 <li><b><code>bias_regularizer</code></b>: Regularizer function applied to the bias vector.</li>
 <li><b><code>activity_regularizer</code></b>: Regularizer function applied to
-the output of the layer (its &ldquo;activation&rdquo;)..</li>
+  the output of the layer (its "activation")..</li>
 <li><b><code>kernel_constraint</code></b>: Constraint function applied to the kernel matrix.</li>
 <li><b><code>bias_constraint</code></b>: Constraint function applied to the bias vector.</li>
 </ul>
+<h4 id="examples">Examples:</h4>
+<div class="codehilite"><pre><span></span><span class="c1"># Small convolutional model for 128-length vectors with 6 timesteps</span>
+<span class="c1"># model.input_shape == (None, 6, 128)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Conv1D</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> 
+          <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> 
+          <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">128</span><span class="p">)))</span>
+
+<span class="c1"># now: model.output_shape == (None, 4, 32)</span>
+</pre></div>
 
 
-<h4>Examples:</h4>
-
-<p>```python</p>
-
-<h1>Small convolutional model for 128-length vectors with 6 timesteps</h1>
-
-<h1>model.input_shape == (None, 6, 128)</h1>
-
-<p>model = Sequential()
-model.add(Conv1D(32, 3,
-          activation=&lsquo;relu&rsquo;,
-          input_shape=(6, 128)))</p>
-
-<h1>now: model.output_shape == (None, 4, 32)</h1>
-
-<p>```</p>
-
-<h4>Input shape:</h4>
-
+<h4 id="input-shape">Input shape:</h4>
 <p>3D tensor with shape: <code>(batch_size, steps, input_dim)</code></p>
-
-<h4>Output shape:</h4>
-
+<h4 id="output-shape">Output shape:</h4>
 <p>3D tensor with shape: <code>(batch_size, new_steps, filters)</code>
   <code>steps</code> value might have changed due to padding or strides.</p>
-
 <h2 id="__init__"><code>__init__</code></h2>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/convolutional.py">View source</a></p>
-
-<p><code>python
-__init__(
-    filters,
-    kernel_size,
-    strides=1,
-    padding='valid',
-    data_format='channels_last',
-    dilation_rate=1,
-    activation=None,
-    use_bias=True,
-    kernel_initializer='glorot_uniform',
-    bias_initializer='zeros',
-    kernel_regularizer=None,
-    bias_regularizer=None,
-    activity_regularizer=None,
-    kernel_constraint=None,
-    bias_constraint=None,
-    **kwargs
-)
-</code></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">filters</span><span class="p">,</span>
+    <span class="n">kernel_size</span><span class="p">,</span>
+    <span class="n">strides</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;valid&#39;</span><span class="p">,</span>
+    <span class="n">data_format</span><span class="o">=</span><span class="s1">&#39;channels_last&#39;</span><span class="p">,</span>
+    <span class="n">dilation_rate</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">activation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">use_bias</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">kernel_initializer</span><span class="o">=</span><span class="s1">&#39;glorot_uniform&#39;</span><span class="p">,</span>
+    <span class="n">bias_initializer</span><span class="o">=</span><span class="s1">&#39;zeros&#39;</span><span class="p">,</span>
+    <span class="n">kernel_regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">bias_regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">activity_regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">kernel_constraint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">bias_constraint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+    </body>
+    </html>
+   

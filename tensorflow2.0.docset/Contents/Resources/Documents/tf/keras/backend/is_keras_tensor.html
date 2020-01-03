@@ -1,90 +1,78 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.keras.backend.is_keras_tensor" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.keras.backend.is_keras_tensor</h1>
-
+<h1 id="tfkerasbackendis_keras_tensor">tf.keras.backend.is_keras_tensor</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/backend.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Returns whether <code>x</code> is a Keras tensor.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.keras.backend.is_keras_tensor</code></li>
 <li><code>tf.compat.v2.keras.backend.is_keras_tensor</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">backend</span><span class="o">.</span><span class="n">is_keras_tensor</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.keras.backend.is_keras_tensor(x)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
-<p>A &ldquo;Keras tensor&rdquo; is a tensor that was returned by a Keras layer,
+<p>A "Keras tensor" is a tensor that was returned by a Keras layer,
 (<code>Layer</code> class) or by <code>Input</code>.</p>
-
-<h4>Arguments:</h4>
-
+<h4 id="arguments">Arguments:</h4>
 <ul>
 <li><b><code>x</code></b>: A candidate tensor.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A boolean: Whether the argument is a Keras tensor.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: In case <code>x</code> is not a symbolic tensor.</li>
 </ul>
-
-
-<h4>Examples:</h4>
-
-<p><code>python
-    &gt;&gt;&gt; import tensorflow as tf
-    &gt;&gt;&gt; import numpy
-    &gt;&gt;&gt; from keras import backend as K
-    &gt;&gt;&gt; from keras.layers import Input, Dense
-    &gt;&gt;&gt; np_var = numpy.array([1, 2])
-    &gt;&gt;&gt; K.is_keras_tensor(np_var) # A numpy array is not a symbolic tensor.
-    ValueError
-    &gt;&gt;&gt; k_var = tf.compat.v1.placeholder('float32', shape=(1,1))
-    &gt;&gt;&gt; K.is_keras_tensor(k_var) # A variable indirectly created outside of
-    keras is not a Keras tensor.
-    False
-    &gt;&gt;&gt; keras_var = K.variable(np_var)
-    &gt;&gt;&gt; K.is_keras_tensor(keras_var)  # A variable created with the keras
-    backend is not a Keras tensor.
-    False
-    &gt;&gt;&gt; keras_placeholder = K.placeholder(shape=(2, 4, 5))
-    &gt;&gt;&gt; K.is_keras_tensor(keras_placeholder)  # A placeholder is not a Keras
-    tensor.
-    False
-    &gt;&gt;&gt; keras_input = Input([10])
-    &gt;&gt;&gt; K.is_keras_tensor(keras_input) # An Input is a Keras tensor.
-    True
-    &gt;&gt;&gt; keras_layer_output = Dense(10)(keras_input)
-    &gt;&gt;&gt; K.is_keras_tensor(keras_layer_output) # Any Keras layer output is a
-    Keras tensor.
-    True
-</code></p>
+<h4 id="examples">Examples:</h4>
+<div class="codehilite"><pre><span></span>    <span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">numpy</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">keras</span> <span class="kn">import</span> <span class="n">backend</span> <span class="k">as</span> <span class="n">K</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Dense</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="n">np_var</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="n">K</span><span class="o">.</span><span class="n">is_keras_tensor</span><span class="p">(</span><span class="n">np_var</span><span class="p">)</span> <span class="c1"># A numpy array is not a symbolic tensor.</span>
+    <span class="ne">ValueError</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="n">k_var</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="n">K</span><span class="o">.</span><span class="n">is_keras_tensor</span><span class="p">(</span><span class="n">k_var</span><span class="p">)</span> <span class="c1"># A variable indirectly created outside of</span>
+    <span class="n">keras</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">a</span> <span class="n">Keras</span> <span class="n">tensor</span><span class="o">.</span>
+    <span class="kc">False</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="n">keras_var</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="n">variable</span><span class="p">(</span><span class="n">np_var</span><span class="p">)</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="n">K</span><span class="o">.</span><span class="n">is_keras_tensor</span><span class="p">(</span><span class="n">keras_var</span><span class="p">)</span>  <span class="c1"># A variable created with the keras</span>
+    <span class="n">backend</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">a</span> <span class="n">Keras</span> <span class="n">tensor</span><span class="o">.</span>
+    <span class="kc">False</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="n">keras_placeholder</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="n">K</span><span class="o">.</span><span class="n">is_keras_tensor</span><span class="p">(</span><span class="n">keras_placeholder</span><span class="p">)</span>  <span class="c1"># A placeholder is not a Keras</span>
+    <span class="n">tensor</span><span class="o">.</span>
+    <span class="kc">False</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="n">keras_input</span> <span class="o">=</span> <span class="n">Input</span><span class="p">([</span><span class="mi">10</span><span class="p">])</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="n">K</span><span class="o">.</span><span class="n">is_keras_tensor</span><span class="p">(</span><span class="n">keras_input</span><span class="p">)</span> <span class="c1"># An Input is a Keras tensor.</span>
+    <span class="kc">True</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="n">keras_layer_output</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="mi">10</span><span class="p">)(</span><span class="n">keras_input</span><span class="p">)</span>
+    <span class="o">&gt;&gt;&gt;</span> <span class="n">K</span><span class="o">.</span><span class="n">is_keras_tensor</span><span class="p">(</span><span class="n">keras_layer_output</span><span class="p">)</span> <span class="c1"># Any Keras layer output is a</span>
+    <span class="n">Keras</span> <span class="n">tensor</span><span class="o">.</span>
+    <span class="kc">True</span>
+</pre></div>
+    </body>
+    </html>
+   

@@ -1,118 +1,106 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../default.css" rel="stylesheet">
+    <link href="
+   ../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.gather" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.gather</h1>
-
+<h1 id="tfgather">tf.gather</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/array_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Gather slices from params axis axis according to indices.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v2.gather</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span>
+    <span class="n">params</span><span class="p">,</span>
+    <span class="n">indices</span><span class="p">,</span>
+    <span class="n">validate_indices</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">batch_dims</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.gather(
-    params,
-    indices,
-    validate_indices=None,
-    axis=None,
-    batch_dims=0,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>Gather slices from params axis <code>axis</code> according to <code>indices</code>.  <code>indices</code> must
 be an integer tensor of any dimension (usually 0-D or 1-D).</p>
-
 <p>For 0-D (scalar) <code>indices</code>:</p>
-
-<blockquote><p><code>output</code>$$[p_0,          &hellip;, p<em>{axis-1},        \hspace{5.1em}
-           p</em>{axis + 1}, &hellip;, p<em>{N-1}]$$ =\
-<code>params</code>$$[p_0,          &hellip;, p</em>{axis-1},        \hspace{1em}
+<blockquote>
+<p><code>output</code>$$[p_0,          ..., p_{axis-1},        \hspace{5.1em}
+           p_{axis + 1}, ..., p_{N-1}]$$ =\
+<code>params</code>$$[p_0,          ..., p_{axis-1},        \hspace{1em}
            indices,                              \hspace{1em}
-           p<em>{axis + 1}, &hellip;, p</em>{N-1}]$$.</p></blockquote>
-
+           p_{axis + 1}, ..., p_{N-1}]$$.</p>
+</blockquote>
 <p>For 1-D (vector) <code>indices</code> with <code>batch_dims=0</code>:</p>
-
-<blockquote><p><code>output</code>$$[p_0,          &hellip;, p<em>{axis-1},        \hspace{2.6em}
+<blockquote>
+<p><code>output</code>$$[p_0,          ..., p_{axis-1},        \hspace{2.6em}
            i,                                    \hspace{2.6em}
-           p</em>{axis + 1}, &hellip;, p<em>{N-1}]$$ =\
-<code>params</code>$$[p_0,          &hellip;, p</em>{axis-1},        \hspace{1em}
+           p_{axis + 1}, ..., p_{N-1}]$$ =\
+<code>params</code>$$[p_0,          ..., p_{axis-1},        \hspace{1em}
            indices[i],                           \hspace{1em}
-           p<em>{axis + 1}, &hellip;, p</em>{N-1}]$$.</p></blockquote>
-
+           p_{axis + 1}, ..., p_{N-1}]$$.</p>
+</blockquote>
 <p>In the general case, produces an output tensor where:</p>
-
 <p>$$\begin{align<em>}
-output[p_0,             &amp;&hellip;, p<em>{axis-1},                       &amp;
-     &amp;i</em>{B},           &hellip;, i<em>{M-1},                          &amp;
-     p</em>{axis + 1},    &amp;&hellip;, p<em>{N-1}]                          = \
-params[p_0,             &amp;&hellip;, p</em>{axis-1},                       &amp;
-     indices[p_0, &hellip;, p<em>{B-1}, &amp;i</em>{B}, &hellip;, i<em>{M-1}],        &amp;
-     p</em>{axis + 1},    &amp;&hellip;, p_{N-1}]
+output[p_0,             &amp;..., p_{axis-1},                       &amp;
+     &amp;i_{B},           ..., i_{M-1},                          &amp;
+     p_{axis + 1},    &amp;..., p_{N-1}]                          = \
+params[p_0,             &amp;..., p_{axis-1},                       &amp;
+     indices[p_0, ..., p_{B-1}, &amp;i_{B}, ..., i_{M-1}],        &amp;
+     p_{axis + 1},    &amp;..., p_{N-1}]
 \end{align</em>}$$</p>
-
 <p>Where $$N$$=<code>ndims(params)</code>, $$M$$=<code>ndims(indices)</code>, and $$B$$=<code>batch_dims</code>.
 Note that params.shape[:batch_dims] must be identical to
 indices.shape[:batch_dims].</p>
-
 <p>The shape of the output tensor is:</p>
-
-<blockquote><p><code>output.shape = params.shape[:axis] + indices.shape[batch_dims:] +
-params.shape[axis + 1:]</code>.</p></blockquote>
-
+<blockquote>
+<p><code>output.shape = params.shape[:axis] + indices.shape[batch_dims:] +
+params.shape[axis + 1:]</code>.</p>
+</blockquote>
 <p>Note that on CPU, if an out of bound index is found, an error is returned.
 On GPU, if an out of bound index is found, a 0 is stored in the corresponding
 output value.</p>
-
 <p>See also <a href="../tf/gather_nd.html"><code>tf.gather_nd</code></a>.</p>
-
 <div style="width:70%; margin:auto; margin-bottom:10px; margin-top:20px;">
 <img style="width:100%" src="https://www.tensorflow.org/images/Gather.png"
 alt>
 </div>
 
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>params</code></b>: The <code>Tensor</code> from which to gather values. Must be at least rank
-<code>axis + 1</code>.</li>
+  <code>axis + 1</code>.</li>
 <li><b><code>indices</code></b>: The index <code>Tensor</code>.  Must be one of the following types: <code>int32</code>,
-<code>int64</code>. Must be in range <code>[0, params.shape[axis])</code>.</li>
+  <code>int64</code>. Must be in range <code>[0, params.shape[axis])</code>.</li>
 <li><b><code>validate_indices</code></b>: Deprecated, does nothing.</li>
 <li><b><code>axis</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>int32</code>, <code>int64</code>. The
-<code>axis</code> in <code>params</code> to gather <code>indices</code> from. Must be greater than or equal
-to <code>batch_dims</code>.  Defaults to the first non-batch dimension. Supports
-negative indexes.</li>
+  <code>axis</code> in <code>params</code> to gather <code>indices</code> from. Must be greater than or equal
+  to <code>batch_dims</code>.  Defaults to the first non-batch dimension. Supports
+  negative indexes.</li>
 <li><b><code>batch_dims</code></b>: An <code>integer</code>.  The number of batch dimensions.  Must be less
-than <code>rank(indices)</code>.</li>
+  than <code>rank(indices)</code>.</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>Tensor</code>. Has the same type as <code>params</code>.</p>
+    </body>
+    </html>
+   

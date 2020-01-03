@@ -1,70 +1,65 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.nn.max_pool" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.nn.max_pool</h1>
-
+<h1 id="tfnnmax_pool">tf.nn.max_pool</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/nn_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Performs the max pooling on the input.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.nn.max_pool_v2</code></li>
 <li><code>tf.compat.v2.nn.max_pool</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">max_pool</span><span class="p">(</span>
+    <span class="nb">input</span><span class="p">,</span>
+    <span class="n">ksize</span><span class="p">,</span>
+    <span class="n">strides</span><span class="p">,</span>
+    <span class="n">padding</span><span class="p">,</span>
+    <span class="n">data_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.nn.max_pool(
-    input,
-    ksize,
-    strides,
-    padding,
-    data_format=None,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>input</code></b>:  Tensor of rank N+2, of shape <code>[batch_size] + input_spatial_shape +
-[num_channels]</code> if <code>data_format</code> does not start with &ldquo;NC&rdquo; (default), or
-<code>[batch_size, num_channels] + input_spatial_shape</code> if data_format starts
-with &ldquo;NC&rdquo;. Pooling happens over the spatial dimensions only.</li>
+  [num_channels]</code> if <code>data_format</code> does not start with "NC" (default), or
+  <code>[batch_size, num_channels] + input_spatial_shape</code> if data_format starts
+  with "NC". Pooling happens over the spatial dimensions only.</li>
 <li><b><code>ksize</code></b>: An int or list of <code>ints</code> that has length <code>1</code>, <code>N</code> or <code>N+2</code>. The size
-of the window for each dimension of the input tensor.</li>
+  of the window for each dimension of the input tensor.</li>
 <li><b><code>strides</code></b>: An int or list of <code>ints</code> that has length <code>1</code>, <code>N</code> or <code>N+2</code>. The
-stride of the sliding window for each dimension of the input tensor.</li>
+  stride of the sliding window for each dimension of the input tensor.</li>
 <li><b><code>padding</code></b>: A string, either <code>'VALID'</code> or <code>'SAME'</code>. The padding algorithm. See
-the &ldquo;returns&rdquo; section of <a href="../../tf/nn/convolution.html"><code>tf.nn.convolution</code></a> for details.</li>
+  the "returns" section of <a href="../../tf/nn/convolution.html"><code>tf.nn.convolution</code></a> for details.</li>
 <li><b><code>data_format</code></b>: A string. Specifies the channel dimension. For N=1 it can be
-either &ldquo;NWC&rdquo; (default) or &ldquo;NCW&rdquo;, for N=2 it can be either &ldquo;NHWC&rdquo; (default)
-or &ldquo;NCHW&rdquo; and for N=3 either &ldquo;NDHWC&rdquo; (default) or &ldquo;NCDHW&rdquo;.</li>
+  either "NWC" (default) or "NCW", for N=2 it can be either "NHWC" (default)
+  or "NCHW" and for N=3 either "NDHWC" (default) or "NCDHW".</li>
 <li><b><code>name</code></b>: Optional name for the operation.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>Tensor</code> of format specified by <code>data_format</code>.
 The max pooled output tensor.</p>
+    </body>
+    </html>
+   

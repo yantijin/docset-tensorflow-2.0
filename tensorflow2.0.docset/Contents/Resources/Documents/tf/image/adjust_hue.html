@@ -1,75 +1,63 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.image.adjust_hue" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.image.adjust_hue</h1>
-
+<h1 id="tfimageadjust_hue">tf.image.adjust_hue</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/image_ops_impl.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Adjust hue of RGB images.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.image.adjust_hue</code></li>
 <li><code>tf.compat.v2.image.adjust_hue</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">adjust_hue</span><span class="p">(</span>
+    <span class="n">image</span><span class="p">,</span>
+    <span class="n">delta</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.image.adjust_hue(
-    image,
-    delta,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>This is a convenience method that converts an RGB image to float
 representation, converts it to HSV, add an offset to the hue channel, converts
 back to RGB and then back to the original data type. If several adjustments
 are chained it is advisable to minimize the number of redundant conversions.</p>
-
 <p><code>image</code> is an RGB image.  The image hue is adjusted by converting the
 image(s) to HSV and rotating the hue channel (H) by
 <code>delta</code>.  The image is then converted back to RGB.</p>
-
 <p><code>delta</code> must be in the interval <code>[-1, 1]</code>.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>image</code></b>: RGB image or images. Size of the last dimension must be 3.</li>
 <li><b><code>delta</code></b>: float.  How much to add to the hue channel.</li>
 <li><b><code>name</code></b>: A name for this operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>Adjusted image(s), same shape and DType as <code>image</code>.</p>
-
-<h4>Usage Example:</h4>
-
-<p>```python</p>
-
-<blockquote><blockquote><p>import tensorflow as tf
-x = tf.random.normal(shape=(256, 256, 3))
-tf.image.adjust_hue(x, 0.2)
-```</p></blockquote></blockquote>
+<h4 id="usage-example">Usage Example:</h4>
+<div class="codehilite"><pre><span></span><span class="o">&gt;&gt;</span> <span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="o">&gt;&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="o">&gt;&gt;</span> <span class="n">tf</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">adjust_hue</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
+</pre></div>
+    </body>
+    </html>
+   

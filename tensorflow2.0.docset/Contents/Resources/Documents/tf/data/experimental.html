@@ -1,4 +1,13 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.data.experimental" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="AUTOTUNE"/>
@@ -6,120 +15,69 @@
 <meta itemprop="property" content="UNKNOWN_CARDINALITY"/>
 </div>
 
-
-<h1>Module: tf.data.experimental</h1>
-
+<h1 id="module-tfdataexperimental">Module: tf.data.experimental</h1>
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p>Experimental API for building input pipelines.</p>
-
 <p>This module contains experimental <code>Dataset</code> sources and transformations that can
 be used in conjunction with the <a href="../../tf/data/Dataset.html"><code>tf.data.Dataset</code></a> API. Note that the
 <a href="../../tf/data/experimental.html"><code>tf.data.experimental</code></a> API is not subject to the same backwards compatibility
 guarantees as <a href="../../tf/data.html"><code>tf.data</code></a>, but we will provide deprecation advice in advance of
 removing existing functionality.</p>
-
 <p>See <a href="https://tensorflow.org/guide/datasets">Importing Data</a> for an overview.</p>
-
-<h2>Classes</h2>
-
+<h2 id="classes">Classes</h2>
 <p><a href="../../tf/data/experimental/CheckpointInputPipelineHook.html"><code>class CheckpointInputPipelineHook</code></a>: Checkpoints input pipeline state every N steps or seconds.</p>
-
 <p><a href="../../tf/data/experimental/CsvDataset.html"><code>class CsvDataset</code></a>: A Dataset comprising lines from one or more CSV files.</p>
-
 <p><a href="../../tf/data/experimental/DistributeOptions.html"><code>class DistributeOptions</code></a>: Represents options for distributed data processing.</p>
-
 <p><a href="../../tf/data/experimental/MapVectorizationOptions.html"><code>class MapVectorizationOptions</code></a>: Represents options for the MapVectorization optimization.</p>
-
 <p><a href="../../tf/data/experimental/OptimizationOptions.html"><code>class OptimizationOptions</code></a>: Represents options for dataset optimizations.</p>
-
 <p><a href="../../tf/data/experimental/Optional.html"><code>class Optional</code></a>: Wraps a value that may/may not be present at runtime.</p>
-
 <p><a href="../../tf/data/experimental/RandomDataset.html"><code>class RandomDataset</code></a>: A <code>Dataset</code> of pseudorandom values.</p>
-
 <p><a href="../../tf/data/experimental/Reducer.html"><code>class Reducer</code></a>: A reducer is used for reducing a set of elements.</p>
-
 <p><a href="../../tf/data/experimental/SqlDataset.html"><code>class SqlDataset</code></a>: A <code>Dataset</code> consisting of the results from a SQL query.</p>
-
 <p><a href="../../tf/data/experimental/StatsAggregator.html"><code>class StatsAggregator</code></a>: A stateful resource that aggregates statistics from one or more iterators.</p>
-
 <p><a href="../../tf/data/experimental/StatsOptions.html"><code>class StatsOptions</code></a>: Represents options for collecting dataset stats using <code>StatsAggregator</code>.</p>
-
 <p><a href="../../tf/data/experimental/TFRecordWriter.html"><code>class TFRecordWriter</code></a>: Writes data to a TFRecord file.</p>
-
 <p><a href="../../tf/data/experimental/ThreadingOptions.html"><code>class ThreadingOptions</code></a>: Represents options for dataset threading.</p>
-
-<h2>Functions</h2>
-
+<h2 id="functions">Functions</h2>
 <p><a href="../../tf/data/experimental/Counter.html"><code>Counter(...)</code></a>: Creates a <code>Dataset</code> that counts from <code>start</code> in steps of size <code>step</code>.</p>
-
 <p><a href="../../tf/data/experimental/bucket_by_sequence_length.html"><code>bucket_by_sequence_length(...)</code></a>: A transformation that buckets elements in a <code>Dataset</code> by length.</p>
-
 <p><a href="../../tf/data/experimental/bytes_produced_stats.html"><code>bytes_produced_stats(...)</code></a>: Records the number of bytes produced by each element of the input dataset.</p>
-
 <p><a href="../../tf/data/experimental/cardinality.html"><code>cardinality(...)</code></a>: Returns the cardinality of <code>dataset</code>, if known.</p>
-
 <p><a href="../../tf/data/experimental/choose_from_datasets.html"><code>choose_from_datasets(...)</code></a>: Creates a dataset that deterministically chooses elements from <code>datasets</code>.</p>
-
 <p><a href="../../tf/data/experimental/copy_to_device.html"><code>copy_to_device(...)</code></a>: A transformation that copies dataset elements to the given <code>target_device</code>.</p>
-
 <p><a href="../../tf/data/experimental/dense_to_sparse_batch.html"><code>dense_to_sparse_batch(...)</code></a>: A transformation that batches ragged elements into <a href="../../tf/sparse/SparseTensor.html"><code>tf.SparseTensor</code></a>s.</p>
-
 <p><a href="../../tf/data/experimental/enumerate_dataset.html"><code>enumerate_dataset(...)</code></a>: A transformation that enumerates the elements of a dataset. (deprecated)</p>
-
 <p><a href="../../tf/data/experimental/from_variant.html"><code>from_variant(...)</code></a>: Constructs a dataset from the given variant and structure.</p>
-
 <p><a href="../../tf/data/experimental/get_next_as_optional.html"><code>get_next_as_optional(...)</code></a>: Returns an <code>Optional</code> that contains the next value from the iterator.</p>
-
 <p><a href="../../tf/data/experimental/get_single_element.html"><code>get_single_element(...)</code></a>: Returns the single element in <code>dataset</code> as a nested structure of tensors.</p>
-
 <p><a href="../../tf/data/experimental/get_structure.html"><code>get_structure(...)</code></a>: Returns the type specification of an element of a <code>Dataset</code> or <code>Iterator</code>.</p>
-
 <p><a href="../../tf/data/experimental/group_by_reducer.html"><code>group_by_reducer(...)</code></a>: A transformation that groups elements and performs a reduction.</p>
-
 <p><a href="../../tf/data/experimental/group_by_window.html"><code>group_by_window(...)</code></a>: A transformation that groups windows of elements by key and reduces them.</p>
-
 <p><a href="../../tf/data/experimental/ignore_errors.html"><code>ignore_errors(...)</code></a>: Creates a <code>Dataset</code> from another <code>Dataset</code> and silently ignores any errors.</p>
-
 <p><a href="../../tf/data/experimental/latency_stats.html"><code>latency_stats(...)</code></a>: Records the latency of producing each element of the input dataset.</p>
-
 <p><a href="../../tf/data/experimental/make_batched_features_dataset.html"><code>make_batched_features_dataset(...)</code></a></p>
-
 <p><a href="../../tf/data/experimental/make_csv_dataset.html"><code>make_csv_dataset(...)</code></a>: Reads CSV files into a dataset.</p>
-
 <p><a href="../../tf/data/experimental/make_saveable_from_iterator.html"><code>make_saveable_from_iterator(...)</code></a>: Returns a SaveableObject for saving/restoring iterator state using Saver.</p>
-
 <p><a href="../../tf/data/experimental/map_and_batch.html"><code>map_and_batch(...)</code></a>: Fused implementation of <code>map</code> and <code>batch</code>. (deprecated)</p>
-
 <p><a href="../../tf/data/experimental/parallel_interleave.html"><code>parallel_interleave(...)</code></a>: A parallel version of the <a href="../../tf/data/Dataset.html#interleave"><code>Dataset.interleave()</code></a> transformation. (deprecated)</p>
-
 <p><a href="../../tf/data/experimental/parse_example_dataset.html"><code>parse_example_dataset(...)</code></a>: A transformation that parses <code>Example</code> protos into a <code>dict</code> of tensors.</p>
-
 <p><a href="../../tf/data/experimental/prefetch_to_device.html"><code>prefetch_to_device(...)</code></a>: A transformation that prefetches dataset values to the given <code>device</code>.</p>
-
 <p><a href="../../tf/data/experimental/rejection_resample.html"><code>rejection_resample(...)</code></a>: A transformation that resamples a dataset to achieve a target distribution.</p>
-
 <p><a href="../../tf/data/experimental/sample_from_datasets.html"><code>sample_from_datasets(...)</code></a>: Samples elements at random from the datasets in <code>datasets</code>.</p>
-
 <p><a href="../../tf/data/experimental/scan.html"><code>scan(...)</code></a>: A transformation that scans a function across an input dataset.</p>
-
 <p><a href="../../tf/data/experimental/shuffle_and_repeat.html"><code>shuffle_and_repeat(...)</code></a>: Shuffles and repeats a Dataset returning a new permutation for each epoch. (deprecated)</p>
-
 <p><a href="../../tf/data/experimental/take_while.html"><code>take_while(...)</code></a>: A transformation that stops dataset iteration based on a <code>predicate</code>.</p>
-
 <p><a href="../../tf/data/experimental/to_variant.html"><code>to_variant(...)</code></a>: Returns a variant representing the given dataset.</p>
-
 <p><a href="../../tf/data/experimental/unbatch.html"><code>unbatch(...)</code></a>: Splits elements of a dataset into multiple elements on the batch dimension. (deprecated)</p>
-
 <p><a href="../../tf/data/experimental/unique.html"><code>unique(...)</code></a>: Creates a <code>Dataset</code> from another <code>Dataset</code>, discarding duplicates.</p>
-
-<h2>Other Members</h2>
-
+<h2 id="other-members">Other Members</h2>
 <ul>
 <li><code>AUTOTUNE = -1</code> <a id="AUTOTUNE"></a></li>
 <li><code>INFINITE_CARDINALITY = -1</code> <a id="INFINITE_CARDINALITY"></a></li>
 <li><code>UNKNOWN_CARDINALITY = -2</code> <a id="UNKNOWN_CARDINALITY"></a></li>
 </ul>
-
+    </body>
+    </html>
+   

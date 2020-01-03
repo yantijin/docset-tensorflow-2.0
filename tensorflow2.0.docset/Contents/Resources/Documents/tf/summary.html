@@ -1,11 +1,18 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../default.css" rel="stylesheet">
+    <link href="
+   ../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.summary" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>Module: tf.summary</h1>
-
+<h1 id="module-tfsummary">Module: tf.summary</h1>
 <table class="tfo-notebook-buttons tfo-api" align="left">
 
 <td>
@@ -15,100 +22,77 @@
   </a>
 </td></table>
 
-
 <p>Operations for writing summary data, for use in analysis and visualization.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li>Module <code>tf.compat.v2.summary</code></li>
 </ul>
-
-
 <p>The <a href="../tf/summary.html"><code>tf.summary</code></a> module provides APIs for writing summary data. This data can be
 visualized in TensorBoard, the visualization toolkit that comes with TensorFlow.
 See the <a href="https://www.tensorflow.org/tensorboard">TensorBoard website</a> for more
 detailed tutorials about how to use these APIs, or some quick examples below.</p>
-
 <p>Example usage with eager execution, the default in TF 2.0:</p>
+<div class="codehilite"><pre><span></span><span class="n">writer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">summary</span><span class="o">.</span><span class="n">create_file_writer</span><span class="p">(</span><span class="s2">&quot;/tmp/mylogs&quot;</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">writer</span><span class="o">.</span><span class="n">as_default</span><span class="p">():</span>
+  <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+    <span class="c1"># other model code would go here</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">summary</span><span class="o">.</span><span class="n">scalar</span><span class="p">(</span><span class="s2">&quot;my_metric&quot;</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">step</span><span class="p">)</span>
+    <span class="n">writer</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-writer = tf.summary.create_file_writer("/tmp/mylogs")
-with writer.as_default():
-  for step in range(100):
-    # other model code would go here
-    tf.summary.scalar("my_metric", 0.5, step=step)
-    writer.flush()
-</code></p>
 
 <p>Example usage with <a href="../tf/function.html"><code>tf.function</code></a> graph execution:</p>
+<div class="codehilite"><pre><span></span><span class="n">writer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">summary</span><span class="o">.</span><span class="n">create_file_writer</span><span class="p">(</span><span class="s2">&quot;/tmp/mylogs&quot;</span><span class="p">)</span>
 
-<p>```python
-writer = tf.summary.create_file_writer(&ldquo;/tmp/mylogs&rdquo;)</p>
+<span class="nd">@tf</span><span class="o">.</span><span class="n">function</span>
+<span class="k">def</span> <span class="nf">my_func</span><span class="p">(</span><span class="n">step</span><span class="p">):</span>
+  <span class="c1"># other model code would go here</span>
+  <span class="k">with</span> <span class="n">writer</span><span class="o">.</span><span class="n">as_default</span><span class="p">():</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">summary</span><span class="o">.</span><span class="n">scalar</span><span class="p">(</span><span class="s2">&quot;my_metric&quot;</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">step</span><span class="p">)</span>
 
-<p>@tf.function
-def my_func(step):
-  # other model code would go here
-  with writer.as_default():
-    tf.summary.scalar(&ldquo;my_metric&rdquo;, 0.5, step=step)</p>
+<span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+  <span class="n">my_func</span><span class="p">(</span><span class="n">step</span><span class="p">)</span>
+  <span class="n">writer</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+</pre></div>
 
-<p>for step in range(100):
-  my_func(step)
-  writer.flush()
-```</p>
 
 <p>Example usage with legacy TF 1.x graph execution:</p>
+<div class="codehilite"><pre><span></span><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span><span class="o">.</span><span class="n">as_default</span><span class="p">():</span>
+  <span class="n">step</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
+  <span class="n">step_update</span> <span class="o">=</span> <span class="n">step</span><span class="o">.</span><span class="n">assign_add</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+  <span class="n">writer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">summary</span><span class="o">.</span><span class="n">create_file_writer</span><span class="p">(</span><span class="s2">&quot;/tmp/mylogs&quot;</span><span class="p">)</span>
+  <span class="k">with</span> <span class="n">writer</span><span class="o">.</span><span class="n">as_default</span><span class="p">():</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">summary</span><span class="o">.</span><span class="n">scalar</span><span class="p">(</span><span class="s2">&quot;my_metric&quot;</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">step</span><span class="p">)</span>
+  <span class="n">all_summary_ops</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">summary</span><span class="o">.</span><span class="n">all_v2_summary_ops</span><span class="p">()</span>
+  <span class="n">writer_flush</span> <span class="o">=</span> <span class="n">writer</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
 
-<p>```python
-with tf.compat.v1.Graph().as_default():
-  step = tf.Variable(0, dtype=tf.int64)
-  step_update = step.assign_add(1)
-  writer = tf.summary.create_file_writer(&ldquo;/tmp/mylogs&rdquo;)
-  with writer.as_default():
-    tf.summary.scalar(&ldquo;my_metric&rdquo;, 0.5, step=step)
-  all_summary_ops = tf.compat.v1.summary.all_v2_summary_ops()
-  writer_flush = writer.flush()</p>
+  <span class="n">sess</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+  <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">writer</span><span class="o">.</span><span class="n">init</span><span class="p">(),</span> <span class="n">step</span><span class="o">.</span><span class="n">initializer</span><span class="p">])</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+    <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">all_summary_ops</span><span class="p">)</span>
+    <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">step_update</span><span class="p">)</span>
+    <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">writer_flush</span><span class="p">)</span>
+</pre></div>
 
-<p>  sess = tf.compat.v1.Session()
-  sess.run([writer.init(), step.initializer])
-  for i in range(100):
-    sess.run(all_summary_ops)
-    sess.run(step_update)
-    sess.run(writer_flush)
-```</p>
 
-<h2>Modules</h2>
-
+<h2 id="modules">Modules</h2>
 <p><a href="../tf/summary/experimental.html"><code>experimental</code></a> module: Public API for tf.summary.experimental namespace.</p>
-
-<h2>Classes</h2>
-
+<h2 id="classes">Classes</h2>
 <p><a href="../tf/summary/SummaryWriter.html"><code>class SummaryWriter</code></a>: Interface representing a stateful summary writer object.</p>
-
-<h2>Functions</h2>
-
+<h2 id="functions">Functions</h2>
 <p><a href="../tf/summary/audio.html"><code>audio(...)</code></a>: Write an audio summary.</p>
-
 <p><a href="../tf/summary/create_file_writer.html"><code>create_file_writer(...)</code></a>: Creates a summary file writer for the given log directory.</p>
-
 <p><a href="../tf/summary/create_noop_writer.html"><code>create_noop_writer(...)</code></a>: Returns a summary writer that does nothing.</p>
-
 <p><a href="../tf/summary/flush.html"><code>flush(...)</code></a>: Forces summary writer to send any buffered data to storage.</p>
-
 <p><a href="../tf/summary/histogram.html"><code>histogram(...)</code></a>: Write a histogram summary.</p>
-
 <p><a href="../tf/summary/image.html"><code>image(...)</code></a>: Write an image summary.</p>
-
 <p><a href="../tf/summary/record_if.html"><code>record_if(...)</code></a>: Sets summary recording on or off per the provided boolean value.</p>
-
 <p><a href="../tf/summary/scalar.html"><code>scalar(...)</code></a>: Write a scalar summary.</p>
-
 <p><a href="../tf/summary/text.html"><code>text(...)</code></a>: Write a text summary.</p>
-
 <p><a href="../tf/summary/trace_export.html"><code>trace_export(...)</code></a>: Stops and exports the active trace as a Summary and/or profile file.</p>
-
 <p><a href="../tf/summary/trace_off.html"><code>trace_off(...)</code></a>: Stops the current trace and discards any collected information.</p>
-
 <p><a href="../tf/summary/trace_on.html"><code>trace_on(...)</code></a>: Starts a trace to record computation graphs and profiling information.</p>
-
 <p><a href="../tf/summary/write.html"><code>write(...)</code></a>: Writes a generic summary to the default SummaryWriter if one exists.</p>
+    </body>
+    </html>
+   

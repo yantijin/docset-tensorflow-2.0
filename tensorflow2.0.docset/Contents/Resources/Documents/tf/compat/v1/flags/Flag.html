@@ -1,4 +1,13 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.flags.Flag" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="value"/>
@@ -14,44 +23,31 @@
 <meta itemprop="property" content="unparse"/>
 </div>
 
-
-<h1>tf.compat.v1.flags.Flag</h1>
-
+<h1 id="tfcompatv1flagsflag">tf.compat.v1.flags.Flag</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
-<h2>Class <code>Flag</code></h2>
-
+<h2 id="class-flag">Class <code>Flag</code></h2>
 <!-- Start diff -->
 
-
 <p>Information about a command-line flag.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li>Class <code>tf.compat.v1.app.flags.Flag</code></li>
 </ul>
-
-
 <!-- Placeholder for "Used in" -->
 
-
-<p>&lsquo;Flag&rsquo; objects define the following fields:
+<p>'Flag' objects define the following fields:
   .name - the name for this flag;
   .default - the default value for this flag;
   .default_unparsed - the unparsed default value for this flag.
-  .default_as_str - default value as repr&rsquo;d string, e.g., &ldquo;&lsquo;true&rsquo;&rdquo; (or None);
+  .default_as_str - default value as repr'd string, e.g., "'true'" (or None);
   .value - the most recent parsed value of this flag; set by parse();
   .help - a help string or None if no help is available;
   .short_name - the single letter alias for this flag (or None);
-  .boolean - if &lsquo;true&rsquo;, this flag does not accept arguments;
+  .boolean - if 'true', this flag does not accept arguments;
   .present - true if this flag was parsed from command line flags;
   .parser - an ArgumentParser object;
   .serializer - an ArgumentSerializer object;
@@ -66,13 +62,11 @@
                      an error, the last set value will be used;
   .allow_using_method_names - whether this flag can be defined even if it has
                               a name that conflicts with a FlagValues method.</p>
-
-<p>The only public method of a &lsquo;Flag&rsquo; object is parse(), but it is
-typically only called by a &lsquo;FlagValues&rsquo; object.  The parse() method is
-a thin wrapper around the &lsquo;ArgumentParser&rsquo; parse() method.  The parsed
+<p>The only public method of a 'Flag' object is parse(), but it is
+typically only called by a 'FlagValues' object.  The parse() method is
+a thin wrapper around the 'ArgumentParser' parse() method.  The parsed
 value is saved in .value, and the .present attribute is updated.  If
 this flag was already present, an Error is raised.</p>
-
 <p>parse() is also called during <strong>init</strong> to parse the default value and
 initialize the .value attribute.  This enables other python modules to
 safely use flags even if the <strong>main</strong> module neglects to parse the
@@ -80,134 +74,108 @@ command line arguments.  The .present attribute is cleared after
 <strong>init</strong> parsing.  If the default value is set to None, then the
 <strong>init</strong> parsing step is skipped and the .value attribute is
 initialized to None.</p>
-
 <p>Note: The default value is also presented to the user in the help
 string, so it is important that it be a legal value for this flag.</p>
-
 <h2 id="__init__"><code>__init__</code></h2>
 
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">parser</span><span class="p">,</span>
+    <span class="n">serializer</span><span class="p">,</span>
+    <span class="n">name</span><span class="p">,</span>
+    <span class="n">default</span><span class="p">,</span>
+    <span class="n">help_string</span><span class="p">,</span>
+    <span class="n">short_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">boolean</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">allow_override</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">allow_override_cpp</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">allow_hide_cpp</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">allow_overwrite</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">allow_using_method_names</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__init__(
-    parser,
-    serializer,
-    name,
-    default,
-    help_string,
-    short_name=None,
-    boolean=False,
-    allow_override=False,
-    allow_override_cpp=False,
-    allow_hide_cpp=False,
-    allow_overwrite=True,
-    allow_using_method_names=False
-)
-</code></p>
 
 <p>Initialize self.  See help(type(self)) for accurate signature.</p>
-
-<h2>Properties</h2>
-
+<h2 id="properties">Properties</h2>
 <h3 id="value"><code>value</code></h3>
 
-
-<h2>Methods</h2>
-
+<h2 id="methods">Methods</h2>
 <h3 id="__eq__"><code>__eq__</code></h3>
 
+<div class="codehilite"><pre><span></span><span class="fm">__eq__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__eq__(other)
-</code></p>
 
 <p>Return self==value.</p>
-
 <h3 id="__ge__"><code>__ge__</code></h3>
 
+<div class="codehilite"><pre><span></span><span class="fm">__ge__</span><span class="p">(</span>
+    <span class="n">other</span><span class="p">,</span>
+    <span class="bp">NotImplemented</span><span class="o">=</span><span class="bp">NotImplemented</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__ge__(
-    other,
-    NotImplemented=NotImplemented
-)
-</code></p>
 
-<p>Return a >= b.  Computed by @total_ordering from (not a &lt; b).</p>
-
+<p>Return a &gt;= b.  Computed by @total_ordering from (not a &lt; b).</p>
 <h3 id="__gt__"><code>__gt__</code></h3>
 
+<div class="codehilite"><pre><span></span><span class="fm">__gt__</span><span class="p">(</span>
+    <span class="n">other</span><span class="p">,</span>
+    <span class="bp">NotImplemented</span><span class="o">=</span><span class="bp">NotImplemented</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__gt__(
-    other,
-    NotImplemented=NotImplemented
-)
-</code></p>
 
-<p>Return a > b.  Computed by @total_ordering from (not a &lt; b) and (a != b).</p>
-
+<p>Return a &gt; b.  Computed by @total_ordering from (not a &lt; b) and (a != b).</p>
 <h3 id="__le__"><code>__le__</code></h3>
 
+<div class="codehilite"><pre><span></span><span class="fm">__le__</span><span class="p">(</span>
+    <span class="n">other</span><span class="p">,</span>
+    <span class="bp">NotImplemented</span><span class="o">=</span><span class="bp">NotImplemented</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__le__(
-    other,
-    NotImplemented=NotImplemented
-)
-</code></p>
 
 <p>Return a &lt;= b.  Computed by @total_ordering from (a &lt; b) or (a == b).</p>
-
 <h3 id="__lt__"><code>__lt__</code></h3>
 
+<div class="codehilite"><pre><span></span><span class="fm">__lt__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__lt__(other)
-</code></p>
 
 <p>Return self&lt;value.</p>
-
 <h3 id="flag_type"><code>flag_type</code></h3>
 
+<div class="codehilite"><pre><span></span><span class="n">flag_type</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-flag_type()
-</code></p>
 
 <p>Returns a str that describes the type of the flag.</p>
-
 <p>NOTE: we use strings, and not the types.*Type constants because
-our flags can have more exotic types, e.g., &lsquo;comma separated list
-of strings&rsquo;, &lsquo;whitespace separated list of strings&rsquo;, etc.</p>
-
+our flags can have more exotic types, e.g., 'comma separated list
+of strings', 'whitespace separated list of strings', etc.</p>
 <h3 id="parse"><code>parse</code></h3>
 
+<div class="codehilite"><pre><span></span><span class="n">parse</span><span class="p">(</span><span class="n">argument</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-parse(argument)
-</code></p>
 
 <p>Parses string and sets flag value.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>argument</code></b>: str or the correct flag value type, argument to be parsed.</li>
 </ul>
-
-
 <h3 id="serialize"><code>serialize</code></h3>
 
+<div class="codehilite"><pre><span></span><span class="n">serialize</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-serialize()
-</code></p>
 
 <p>Serializes the flag.</p>
-
 <h3 id="unparse"><code>unparse</code></h3>
 
-
-<p><code>python
-unparse()
-</code></p>
+<div class="codehilite"><pre><span></span><span class="n">unparse</span><span class="p">()</span>
+</pre></div>
+    </body>
+    </html>
+   

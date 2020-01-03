@@ -1,71 +1,66 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.keras.backend.local_conv1d" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.keras.backend.local_conv1d</h1>
-
+<h1 id="tfkerasbackendlocal_conv1d">tf.keras.backend.local_conv1d</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/backend.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Apply 1D conv with un-shared weights.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.keras.backend.local_conv1d</code></li>
 <li><code>tf.compat.v2.keras.backend.local_conv1d</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">backend</span><span class="o">.</span><span class="n">local_conv1d</span><span class="p">(</span>
+    <span class="n">inputs</span><span class="p">,</span>
+    <span class="n">kernel</span><span class="p">,</span>
+    <span class="n">kernel_size</span><span class="p">,</span>
+    <span class="n">strides</span><span class="p">,</span>
+    <span class="n">data_format</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.keras.backend.local_conv1d(
-    inputs,
-    kernel,
-    kernel_size,
-    strides,
-    data_format=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
-<h4>Arguments:</h4>
-
+<h4 id="arguments">Arguments:</h4>
 <ul>
 <li><b><code>inputs</code></b>: 3D tensor with shape:
-  (batch_size, steps, input_dim)
-  if data_format is &ldquo;channels_last&rdquo; or
-  (batch_size, input_dim, steps)
-  if data_format is &ldquo;channels_first&rdquo;.</li>
+    (batch_size, steps, input_dim)
+    if data_format is "channels_last" or
+    (batch_size, input_dim, steps)
+    if data_format is "channels_first".</li>
 <li><b><code>kernel</code></b>: the unshared weight for convolution,
-  with shape (output_length, feature_dim, filters).</li>
+    with shape (output_length, feature_dim, filters).</li>
 <li><b><code>kernel_size</code></b>: a tuple of a single integer,
-  specifying the length of the 1D convolution window.</li>
+    specifying the length of the 1D convolution window.</li>
 <li><b><code>strides</code></b>: a tuple of a single integer,
-  specifying the stride length of the convolution.</li>
+    specifying the stride length of the convolution.</li>
 <li><b><code>data_format</code></b>: the data format, channels_first or channels_last.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A 3d tensor with shape:
 (batch_size, output_length, filters)
-if data_format=&lsquo;channels_first&rsquo;
+if data_format='channels_first'
 or 3D tensor with shape:
 (batch_size, filters, output_length)
-if data_format=&lsquo;channels_last&rsquo;.</p>
+if data_format='channels_last'.</p>
+    </body>
+    </html>
+   

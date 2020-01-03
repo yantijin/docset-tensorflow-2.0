@@ -1,96 +1,89 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.keras.preprocessing.sequence.skipgrams" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.keras.preprocessing.sequence.skipgrams</h1>
-
+<h1 id="tfkeraspreprocessingsequenceskipgrams">tf.keras.preprocessing.sequence.skipgrams</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
-
-
 <!-- Start diff -->
 
-
 <p>Generates skipgram word pairs.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.keras.preprocessing.sequence.skipgrams</code></li>
 <li><code>tf.compat.v2.keras.preprocessing.sequence.skipgrams</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">preprocessing</span><span class="o">.</span><span class="n">sequence</span><span class="o">.</span><span class="n">skipgrams</span><span class="p">(</span>
+    <span class="n">sequence</span><span class="p">,</span>
+    <span class="n">vocabulary_size</span><span class="p">,</span>
+    <span class="n">window_size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+    <span class="n">negative_samples</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+    <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">categorical</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">sampling_table</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">seed</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.keras.preprocessing.sequence.skipgrams(
-    sequence,
-    vocabulary_size,
-    window_size=4,
-    negative_samples=1.0,
-    shuffle=True,
-    categorical=False,
-    sampling_table=None,
-    seed=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>This function transforms a sequence of word indexes (list of integers)
 into tuples of words of the form:</p>
-
 <ul>
 <li>(word, word in the same window), with label 1 (positive samples).</li>
 <li>(word, random word from the vocabulary), with label 0 (negative samples).</li>
 </ul>
-
-
 <p>Read more about Skipgram in this gnomic paper by Mikolov et al.:
 <a href="http://arxiv.org/pdf/1301.3781v3.pdf">Efficient Estimation of Word Representations in
 Vector Space</a></p>
+<h1 id="arguments">Arguments</h1>
+<div class="codehilite"><pre><span></span><span class="n">sequence</span><span class="p">:</span> <span class="n">A</span> <span class="n">word</span> <span class="nf">sequence</span> <span class="p">(</span><span class="n">sentence</span><span class="p">),</span> <span class="n">encoded</span> <span class="k">as</span> <span class="n">a</span> <span class="n">list</span>
+    <span class="n">of</span> <span class="n">word</span> <span class="nf">indices</span> <span class="p">(</span><span class="n">integers</span><span class="p">).</span> <span class="k">If</span> <span class="k">using</span> <span class="n">a</span> <span class="ss">`sampling_table`</span><span class="p">,</span>
+    <span class="n">word</span> <span class="n">indices</span> <span class="n">are</span> <span class="n">expected</span> <span class="k">to</span> <span class="k">match</span> <span class="n">the</span> <span class="n">rank</span>
+    <span class="n">of</span> <span class="n">the</span> <span class="n">words</span> <span class="k">in</span> <span class="n">a</span> <span class="n">reference</span> <span class="nf">dataset</span> <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">g</span><span class="p">.</span> <span class="mi">10</span> <span class="n">would</span> <span class="n">encode</span>
+    <span class="n">the</span> <span class="mi">10</span><span class="o">-</span><span class="n">th</span> <span class="n">most</span> <span class="n">frequently</span> <span class="n">occurring</span> <span class="n">token</span><span class="p">).</span>
+    <span class="n">Note</span> <span class="n">that</span> <span class="k">index</span> <span class="mi">0</span> <span class="k">is</span> <span class="n">expected</span> <span class="k">to</span> <span class="n">be</span> <span class="n">a</span> <span class="n">non</span><span class="o">-</span><span class="n">word</span> <span class="k">and</span> <span class="n">will</span> <span class="n">be</span> <span class="n">skipped</span><span class="p">.</span>
+<span class="n">vocabulary_size</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="n">maximum</span> <span class="n">possible</span> <span class="n">word</span> <span class="k">index</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">window_size</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="n">size</span> <span class="n">of</span> <span class="n">sampling</span> <span class="nf">windows</span> <span class="p">(</span><span class="n">technically</span> <span class="n">half</span><span class="o">-</span><span class="n">window</span><span class="p">).</span>
+    <span class="n">The</span> <span class="n">window</span> <span class="n">of</span> <span class="n">a</span> <span class="n">word</span> <span class="ss">`w_i`</span> <span class="n">will</span> <span class="n">be</span>
+    <span class="ss">`[i - window_size, i + window_size+1]`</span><span class="p">.</span>
+<span class="n">negative_samples</span><span class="p">:</span> <span class="kt">Float</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">.</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">no</span> <span class="nf">negative</span> <span class="p">(</span><span class="n">i</span><span class="p">.</span><span class="n">e</span><span class="p">.</span> <span class="n">random</span><span class="p">)</span> <span class="n">samples</span><span class="p">.</span>
+    <span class="mi">1</span> <span class="k">for</span> <span class="n">same</span> <span class="n">number</span> <span class="k">as</span> <span class="n">positive</span> <span class="n">samples</span><span class="p">.</span>
+<span class="n">shuffle</span><span class="p">:</span> <span class="n">Whether</span> <span class="k">to</span> <span class="n">shuffle</span> <span class="n">the</span> <span class="n">word</span> <span class="n">couples</span> <span class="k">before</span> <span class="n">returning</span> <span class="n">them</span><span class="p">.</span>
+<span class="n">categorical</span><span class="p">:</span> <span class="kt">bool</span><span class="p">.</span> <span class="k">if</span> <span class="no">False</span><span class="p">,</span> <span class="n">labels</span> <span class="n">will</span> <span class="n">be</span>
+    <span class="nf">integers</span> <span class="p">(</span><span class="n">eg</span><span class="p">.</span> <span class="ss">`[0, 1, 1 .. ]`</span><span class="p">),</span>
+    <span class="k">if</span> <span class="ss">`True`</span><span class="p">,</span> <span class="n">labels</span> <span class="n">will</span> <span class="n">be</span> <span class="n">categorical</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">g</span><span class="p">.</span>
+    <span class="ss">`[[1,0],[0,1],[0,1] .. ]`</span><span class="p">.</span>
+<span class="n">sampling_table</span><span class="p">:</span> <span class="mi">1</span><span class="n">D</span> <span class="n">array</span> <span class="n">of</span> <span class="n">size</span> <span class="ss">`vocabulary_size`</span> <span class="k">where</span> <span class="n">the</span> <span class="n">entry</span> <span class="n">i</span>
+    <span class="n">encodes</span> <span class="n">the</span> <span class="n">probability</span> <span class="k">to</span> <span class="n">sample</span> <span class="n">a</span> <span class="n">word</span> <span class="n">of</span> <span class="n">rank</span> <span class="n">i</span><span class="p">.</span>
+<span class="n">seed</span><span class="p">:</span> <span class="n">Random</span> <span class="n">seed</span><span class="p">.</span>
+</pre></div>
 
-<h1>Arguments</h1>
 
-<pre><code>sequence: A word sequence (sentence), encoded as a list
-    of word indices (integers). If using a `sampling_table`,
-    word indices are expected to match the rank
-    of the words in a reference dataset (e.g. 10 would encode
-    the 10-th most frequently occurring token).
-    Note that index 0 is expected to be a non-word and will be skipped.
-vocabulary_size: Int, maximum possible word index + 1
-window_size: Int, size of sampling windows (technically half-window).
-    The window of a word `w_i` will be
-    `[i - window_size, i + window_size+1]`.
-negative_samples: Float &gt;= 0. 0 for no negative (i.e. random) samples.
-    1 for same number as positive samples.
-shuffle: Whether to shuffle the word couples before returning them.
-categorical: bool. if False, labels will be
-    integers (eg. `[0, 1, 1 .. ]`),
-    if `True`, labels will be categorical, e.g.
-    `[[1,0],[0,1],[0,1] .. ]`.
-sampling_table: 1D array of size `vocabulary_size` where the entry i
-    encodes the probability to sample a word of rank i.
-seed: Random seed.
-</code></pre>
+<h1 id="returns">Returns</h1>
+<div class="codehilite"><pre><span></span><span class="n">couples</span><span class="p">,</span> <span class="n">labels</span><span class="p">:</span> <span class="k">where</span> <span class="ss">`couples`</span> <span class="n">are</span> <span class="kt">int</span> <span class="n">pairs</span> <span class="k">and</span>
+    <span class="ss">`labels`</span> <span class="n">are</span> <span class="n">either</span> <span class="mi">0</span> <span class="k">or</span> <span class="mi">1</span><span class="p">.</span>
+</pre></div>
 
-<h1>Returns</h1>
 
-<pre><code>couples, labels: where `couples` are int pairs and
-    `labels` are either 0 or 1.
-</code></pre>
-
-<h1>Note</h1>
-
-<pre><code>By convention, index 0 in the vocabulary is
-a non-word and will be skipped.
-</code></pre>
+<h1 id="note">Note</h1>
+<div class="codehilite"><pre><span></span><span class="err">By convention, index 0 in the vocabulary is</span>
+<span class="err">a non-word and will be skipped.</span>
+</pre></div>
+    </body>
+    </html>
+   

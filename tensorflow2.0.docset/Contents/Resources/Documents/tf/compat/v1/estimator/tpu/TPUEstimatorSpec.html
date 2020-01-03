@@ -1,4 +1,13 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.estimator.tpu.TPUEstimatorSpec" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="mode"/>
@@ -16,13 +25,8 @@
 <meta itemprop="property" content="as_estimator_spec"/>
 </div>
 
-
-<h1>tf.compat.v1.estimator.tpu.TPUEstimatorSpec</h1>
-
+<h1 id="tfcompatv1estimatortputpuestimatorspec">tf.compat.v1.estimator.tpu.TPUEstimatorSpec</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 
@@ -33,20 +37,14 @@
   </a>
 </td></table>
 
-
-<h2>Class <code>TPUEstimatorSpec</code></h2>
-
+<h2 id="class-tpuestimatorspec">Class <code>TPUEstimatorSpec</code></h2>
 <!-- Start diff -->
 
-
 <p>Ops and objects returned from a <code>model_fn</code> and passed to <code>TPUEstimator</code>.</p>
-
 <!-- Placeholder for "Used in" -->
-
 
 <p>See <code>EstimatorSpec</code> for <code>mode</code>, <code>predictions</code>, <code>loss</code>, <code>train_op</code>, and
 <code>export_outputs</code>.</p>
-
 <p>For evaluation, <code>eval_metrics</code>is a tuple of <code>metric_fn</code> and <code>tensors</code>, where
 <code>metric_fn</code> runs on CPU to generate metrics and <code>tensors</code> represents the
 <code>Tensor</code>s transferred from TPU system to CPU host and passed to <code>metric_fn</code>.
@@ -63,108 +61,70 @@ a dict. <code>metric_fn</code> takes the <code>tensors</code> and returns a dict
 name to the result of calling a metric function, namely a <code>(metric_tensor,
 update_op)</code> tuple. See <code>TPUEstimator</code> for MNIST example how to specify the
 <code>eval_metrics</code>.</p>
-
 <p><code>scaffold_fn</code> is a function running on CPU to generate the <code>Scaffold</code>. This
 function should not capture any Tensors in <code>model_fn</code>.</p>
-
 <p><code>host_call</code> is a tuple of a <code>function</code> and a list or dictionary of <code>tensors</code>
 to pass to that function and returns a list of Tensors. <code>host_call</code> currently
 works for train() and evaluate(). The Tensors returned by the function is
 executed on the CPU on every step, so there is communication overhead when
 sending tensors from TPU to CPU. To reduce the overhead, try reducing the
 size of the tensors. The <code>tensors</code> are concatenated along their major (batch)
-dimension, and so must be >= rank 1. The <code>host_call</code> is useful for writing
+dimension, and so must be &gt;= rank 1. The <code>host_call</code> is useful for writing
 summaries with <code>tf.contrib.summary.create_file_writer</code>.</p>
-
 <h2 id="__new__"><code>__new__</code></h2>
 
-
 <p><a target="_blank" href="https://github.com/tensorflow/estimator/tree/master/tensorflow_estimator/python/estimator/tpu/tpu_estimator.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="nd">@staticmethod</span>
+<span class="fm">__new__</span><span class="p">(</span>
+    <span class="bp">cls</span><span class="p">,</span>
+    <span class="n">mode</span><span class="p">,</span>
+    <span class="n">predictions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">loss</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">train_op</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">eval_metrics</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">export_outputs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">scaffold_fn</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">host_call</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">training_hooks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">evaluation_hooks</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">prediction_hooks</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-@staticmethod
-__new__(
-    cls,
-    mode,
-    predictions=None,
-    loss=None,
-    train_op=None,
-    eval_metrics=None,
-    export_outputs=None,
-    scaffold_fn=None,
-    host_call=None,
-    training_hooks=None,
-    evaluation_hooks=None,
-    prediction_hooks=None
-)
-</code></p>
 
 <p>Creates a validated <code>TPUEstimatorSpec</code> instance.</p>
-
-<h2>Properties</h2>
-
+<h2 id="properties">Properties</h2>
 <h3 id="mode"><code>mode</code></h3>
-
-
-
 
 <h3 id="predictions"><code>predictions</code></h3>
 
-
-
-
 <h3 id="loss"><code>loss</code></h3>
-
-
-
 
 <h3 id="train_op"><code>train_op</code></h3>
 
-
-
-
 <h3 id="eval_metrics"><code>eval_metrics</code></h3>
-
-
-
 
 <h3 id="export_outputs"><code>export_outputs</code></h3>
 
-
-
-
 <h3 id="scaffold_fn"><code>scaffold_fn</code></h3>
-
-
-
 
 <h3 id="host_call"><code>host_call</code></h3>
 
-
-
-
 <h3 id="training_hooks"><code>training_hooks</code></h3>
-
-
-
 
 <h3 id="evaluation_hooks"><code>evaluation_hooks</code></h3>
 
-
-
-
 <h3 id="prediction_hooks"><code>prediction_hooks</code></h3>
 
-
-<h2>Methods</h2>
-
+<h2 id="methods">Methods</h2>
 <h3 id="as_estimator_spec"><code>as_estimator_spec</code></h3>
 
-
 <p><a target="_blank" href="https://github.com/tensorflow/estimator/tree/master/tensorflow_estimator/python/estimator/tpu/tpu_estimator.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">as_estimator_spec</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-as_estimator_spec()
-</code></p>
 
 <p>Creates an equivalent <code>EstimatorSpec</code> used by CPU train/eval.</p>
+    </body>
+    </html>
+   

@@ -1,77 +1,69 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.setdiff1d" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.compat.v1.setdiff1d</h1>
-
+<h1 id="tfcompatv1setdiff1d">tf.compat.v1.setdiff1d</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/array_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Computes the difference between two lists of numbers or strings.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">setdiff1d</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">,</span>
+    <span class="n">index_dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">int32</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-tf.compat.v1.setdiff1d(
-    x,
-    y,
-    index_dtype=tf.dtypes.int32,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>Given a list <code>x</code> and a list <code>y</code>, this operation returns a list <code>out</code> that
 represents all values that are in <code>x</code> but not in <code>y</code>. The returned list <code>out</code>
 is sorted in the same order that the numbers appear in <code>x</code> (duplicates are
 preserved). This operation also returns a list <code>idx</code> that represents the
 position of each <code>out</code> element in <code>x</code>. In other words:</p>
-
 <p><code>out[i] = x[idx[i]] for i in [0, 1, ..., len(out) - 1]</code></p>
-
 <p>For example, given this input:</p>
+<div class="codehilite"><pre><span></span><span class="err">x = [1, 2, 3, 4, 5, 6]</span>
+<span class="err">y = [1, 3, 5]</span>
+</pre></div>
 
-<p><code>
-x = [1, 2, 3, 4, 5, 6]
-y = [1, 3, 5]
-</code></p>
 
 <p>This operation would return:</p>
+<div class="codehilite"><pre><span></span><span class="err">out ==&gt; [2, 4, 6]</span>
+<span class="err">idx ==&gt; [1, 3, 5]</span>
+</pre></div>
 
-<p><code>
-out ==&gt; [2, 4, 6]
-idx ==&gt; [1, 3, 5]
-</code></p>
 
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>x</code></b>: A <code>Tensor</code>. 1-D. Values to keep.</li>
 <li><b><code>y</code></b>: A <code>Tensor</code>. Must have the same type as <code>x</code>. 1-D. Values to remove.</li>
 <li><b><code>out_idx</code></b>: An optional <a href="../../../tf/dtypes/DType.html"><code>tf.DType</code></a> from: <code>tf.int32, tf.int64</code>. Defaults to <a href="../../../tf.html#int32"><code>tf.int32</code></a>.</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A tuple of <code>Tensor</code> objects (out, idx).</p>
-
 <ul>
 <li><b><code>out</code></b>: A <code>Tensor</code>. Has the same type as <code>x</code>.</li>
 <li><b><code>idx</code></b>: A <code>Tensor</code> of type <code>out_idx</code>.</li>
 </ul>
-
+    </body>
+    </html>
+   

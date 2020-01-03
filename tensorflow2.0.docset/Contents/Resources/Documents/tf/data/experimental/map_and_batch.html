@@ -1,52 +1,47 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.data.experimental.map_and_batch" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.data.experimental.map_and_batch</h1>
-
+<h1 id="tfdataexperimentalmap_and_batch">tf.data.experimental.map_and_batch</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/data/experimental/ops/batching.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Fused implementation of <code>map</code> and <code>batch</code>. (deprecated)</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.data.experimental.map_and_batch</code></li>
 <li><code>tf.compat.v2.data.experimental.map_and_batch</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">map_and_batch</span><span class="p">(</span>
+    <span class="n">map_func</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="p">,</span>
+    <span class="n">num_parallel_batches</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">drop_remainder</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">num_parallel_calls</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.data.experimental.map_and_batch(
-    map_func,
-    batch_size,
-    num_parallel_batches=None,
-    drop_remainder=False,
-    num_parallel_calls=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
 Instructions for updating:
 Use <a href="../../../tf/data/Dataset.html#map"><code>tf.data.Dataset.map(map_func, num_parallel_calls)</code></a> followed by <a href="../../../tf/data/Dataset.html#batch"><code>tf.data.Dataset.batch(batch_size, drop_remainder)</code></a>. Static tf.data optimizations will take care of using the fused implementation.</p>
-
 <p>Maps <code>map_func</code> across <code>batch_size</code> consecutive elements of this dataset
 and then combines them into a batch. Functionally, it is equivalent to <code>map</code>
 followed by <code>batch</code>. However, by fusing the two transformations together, the
@@ -54,38 +49,33 @@ implementation can be more efficient. Surfacing this transformation in the API
 is temporary. Once automatic input pipeline optimization is implemented,
 the fusing of <code>map</code> and <code>batch</code> will happen automatically and this API will be
 deprecated.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>map_func</code></b>: A function mapping a nested structure of tensors to another
-nested structure of tensors.</li>
+  nested structure of tensors.</li>
 <li><b><code>batch_size</code></b>: A <a href="../../../tf.html#int64"><code>tf.int64</code></a> scalar <a href="../../../tf/Tensor.html"><code>tf.Tensor</code></a>, representing the number of
-consecutive elements of this dataset to combine in a single batch.</li>
+  consecutive elements of this dataset to combine in a single batch.</li>
 <li><b><code>num_parallel_batches</code></b>: (Optional.) A <a href="../../../tf.html#int64"><code>tf.int64</code></a> scalar <a href="../../../tf/Tensor.html"><code>tf.Tensor</code></a>,
-representing the number of batches to create in parallel. On one hand,
-higher values can help mitigate the effect of stragglers. On the other
-hand, higher values can increase contention if CPU is scarce.</li>
+  representing the number of batches to create in parallel. On one hand,
+  higher values can help mitigate the effect of stragglers. On the other
+  hand, higher values can increase contention if CPU is scarce.</li>
 <li><b><code>drop_remainder</code></b>: (Optional.) A <a href="../../../tf.html#bool"><code>tf.bool</code></a> scalar <a href="../../../tf/Tensor.html"><code>tf.Tensor</code></a>, representing
-whether the last batch should be dropped in case its size is smaller than
-desired; the default behavior is not to drop the smaller batch.</li>
+  whether the last batch should be dropped in case its size is smaller than
+  desired; the default behavior is not to drop the smaller batch.</li>
 <li><b><code>num_parallel_calls</code></b>: (Optional.) A <a href="../../../tf.html#int32"><code>tf.int32</code></a> scalar <a href="../../../tf/Tensor.html"><code>tf.Tensor</code></a>,
-representing the number of elements to process in parallel. If not
-specified, <code>batch_size * num_parallel_batches</code> elements will be processed
-in parallel. If the value <a href="../../../tf/data/experimental.html#AUTOTUNE"><code>tf.data.experimental.AUTOTUNE</code></a> is used, then
-the number of parallel calls is set dynamically based on available CPU.</li>
+  representing the number of elements to process in parallel. If not
+  specified, <code>batch_size * num_parallel_batches</code> elements will be processed
+  in parallel. If the value <a href="../../../tf/data/experimental.html#AUTOTUNE"><code>tf.data.experimental.AUTOTUNE</code></a> is used, then
+  the number of parallel calls is set dynamically based on available CPU.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>Dataset</code> transformation function, which can be passed to
 <a href="../../../tf/data/Dataset.html#apply"><code>tf.data.Dataset.apply</code></a>.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: If both <code>num_parallel_batches</code> and <code>num_parallel_calls</code> are
-specified.</li>
+  specified.</li>
 </ul>
-
+    </body>
+    </html>
+   

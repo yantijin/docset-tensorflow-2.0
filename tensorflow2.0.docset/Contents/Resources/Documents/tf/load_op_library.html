@@ -1,66 +1,57 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../default.css" rel="stylesheet">
+    <link href="
+   ../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.load_op_library" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.load_op_library</h1>
-
+<h1 id="tfload_op_library">tf.load_op_library</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/framework/load_library.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Loads a TensorFlow plugin, containing custom ops and kernels.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.load_op_library</code></li>
 <li><code>tf.compat.v2.load_op_library</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">load_op_library</span><span class="p">(</span><span class="n">library_filename</span><span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.load_op_library(library_filename)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
-<p>Pass &ldquo;library_filename&rdquo; to a platform-specific mechanism for dynamically
+<p>Pass "library_filename" to a platform-specific mechanism for dynamically
 loading a library. The rules for determining the exact location of the
 library are platform-specific and are not documented here. When the
 library is loaded, ops and kernels registered in the library via the
 <code>REGISTER_*</code> macros are made available in the TensorFlow process. Note
 that ops with the same name as an existing op are rejected and not
 registered with the process.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>library_filename</code></b>: Path to the plugin.
-Relative or absolute filesystem path to a dynamic library file.</li>
+  Relative or absolute filesystem path to a dynamic library file.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A python module containing the Python wrappers for Ops defined in
 the plugin.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>RuntimeError</code></b>: when unable to load the library or get the python wrappers.</li>
 </ul>
-
+    </body>
+    </html>
+   

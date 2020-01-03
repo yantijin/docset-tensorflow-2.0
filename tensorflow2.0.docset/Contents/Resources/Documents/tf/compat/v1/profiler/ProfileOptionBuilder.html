@@ -1,4 +1,13 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.profiler.ProfileOptionBuilder" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="__init__"/>
@@ -25,597 +34,422 @@
 <meta itemprop="property" content="with_timeline_output"/>
 </div>
 
-
-<h1>tf.compat.v1.profiler.ProfileOptionBuilder</h1>
-
+<h1 id="tfcompatv1profilerprofileoptionbuilder">tf.compat.v1.profiler.ProfileOptionBuilder</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/profiler/option_builder.py">View source</a></p>
-
-<h2>Class <code>ProfileOptionBuilder</code></h2>
-
+<h2 id="class-profileoptionbuilder">Class <code>ProfileOptionBuilder</code></h2>
 <!-- Start diff -->
 
-
 <p>Option Builder for Profiling API.</p>
-
 <!-- Placeholder for "Used in" -->
-
 
 <p>For tutorial on the options, see
 https://github.com/tensorflow/tensorflow/tree/master/tensorflow/core/profiler/g3doc/options.html</p>
+<div class="codehilite"><pre><span></span><span class="c1"># Users can use pre-built options:</span>
+<span class="n">opts</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">profiler</span><span class="o">.</span><span class="n">ProfileOptionBuilder</span><span class="o">.</span><span class="n">trainable_variables_parameter</span><span class="p">())</span>
 
-<p>```python</p>
+<span class="c1"># Or, build your own options:</span>
+<span class="n">opts</span> <span class="o">=</span> <span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">profiler</span><span class="o">.</span><span class="n">ProfileOptionBuilder</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">with_max_depth</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">with_min_micros</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="s1">&#39;accelerator_micros&#39;</span><span class="p">])</span>
+    <span class="o">.</span><span class="n">with_stdout_output</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">build</span><span class="p">()</span>
 
-<h1>Users can use pre-built options:</h1>
+<span class="c1"># Or customize the pre-built options:</span>
+<span class="n">opts</span> <span class="o">=</span> <span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">profiler</span><span class="o">.</span><span class="n">ProfileOptionBuilder</span><span class="p">(</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">profiler</span><span class="o">.</span><span class="n">ProfileOptionBuilder</span><span class="o">.</span><span class="n">time_and_memory</span><span class="p">())</span>
+    <span class="o">.</span><span class="n">with_displaying_options</span><span class="p">(</span><span class="n">show_name_regexes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;.*rnn.*&#39;</span><span class="p">])</span>
+    <span class="o">.</span><span class="n">build</span><span class="p">())</span>
 
-<p>opts = (
-    tf.profiler.ProfileOptionBuilder.trainable_variables_parameter())</p>
+<span class="c1"># Finally, profiling with the options:</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">profiler</span><span class="o">.</span><span class="n">profile</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">get_default_graph</span><span class="p">(),</span>
+                        <span class="n">run_meta</span><span class="o">=</span><span class="n">run_meta</span><span class="p">,</span>
+                        <span class="n">.html</span><span class="o">=</span><span class="s1">&#39;scope&#39;</span><span class="p">,</span>
+                        <span class="n">options</span><span class="o">=</span><span class="n">opts</span><span class="p">)</span>
+</pre></div>
 
-<h1>Or, build your own options:</h1>
-
-<p>opts = (tf.compat.v1.profiler.ProfileOptionBuilder()
-    .with_max_depth(10)
-    .with_min_micros(1000)
-    .select([&lsquo;accelerator_micros&rsquo;])
-    .with_stdout_output()
-    .build()</p>
-
-<h1>Or customize the pre-built options:</h1>
-
-<p>opts = (tf.compat.v1.profiler.ProfileOptionBuilder(
-    tf.profiler.ProfileOptionBuilder.time_and_memory())
-    .with_displaying_options(show_name_regexes=[&lsquo;.<em>rnn.</em>&rsquo;])
-    .build())</p>
-
-<h1>Finally, profiling with the options:</h1>
-
-<p>_ = tf.compat.v1.profiler.profile(tf.compat.v1.get_default_graph(),
-                        run_meta=run_meta,
-                        chtml=&lsquo;scope&rsquo;,
-                        options=opts)
-```</p>
 
 <h2 id="__init__"><code>__init__</code></h2>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/profiler/option_builder.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__init__(options=None)
-</code></p>
 
 <p>Constructor.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>options</code></b>: Optional initial option dict to start with.</li>
 </ul>
-
-
-<h2>Methods</h2>
-
+<h2 id="methods">Methods</h2>
 <h3 id="account_displayed_op_only"><code>account_displayed_op_only</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/profiler/option_builder.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">account_displayed_op_only</span><span class="p">(</span><span class="n">is_true</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-account_displayed_op_only(is_true)
-</code></p>
 
 <p>Whether only account the statistics of displayed profiler nodes.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_1">Args:</h4>
 <ul>
 <li><b><code>is_true</code></b>: If true, only account statistics of nodes eventually
-  displayed by the outputs.
-  Otherwise, a node&rsquo;s statistics are accounted by its parents
-  as long as it&rsquo;s types match &lsquo;account_type_regexes&rsquo;, even if
-  it is hidden from the output, say, by hide_name_regexes.</li>
+    displayed by the outputs.
+    Otherwise, a node's statistics are accounted by its parents
+    as long as it's types match 'account_type_regexes', even if
+    it is hidden from the output, say, by hide_name_regexes.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>self</p>
-
 <h3 id="build"><code>build</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/profiler/option_builder.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">build</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-build()
-</code></p>
 
 <p>Build a profiling option.</p>
-
-<h4>Returns:</h4>
-
+<h4 id="returns_1">Returns:</h4>
 <p>A dict of profiling options.</p>
-
 <h3 id="float_operation"><code>float_operation</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/profiler/option_builder.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="nd">@staticmethod</span>
+<span class="n">float_operation</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-@staticmethod
-float_operation()
-</code></p>
 
 <p>Options used to profile float operations.</p>
-
 <p>Please see https://github.com/tensorflow/tensorflow/tree/master/tensorflow/core/profiler/g3doc/profile_model_architecture.html
 on the caveats of calculating float operations.</p>
-
-<h4>Returns:</h4>
-
+<h4 id="returns_2">Returns:</h4>
 <p>A dict of profiling options.</p>
-
 <h3 id="order_by"><code>order_by</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/profiler/option_builder.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">order_by</span><span class="p">(</span><span class="n">attribute</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-order_by(attribute)
-</code></p>
 
 <p>Order the displayed profiler nodes based on a attribute.</p>
-
 <p>Supported attribute includes micros, bytes, occurrence, params, etc.
 https://github.com/tensorflow/tensorflow/tree/master/tensorflow/core/profiler/g3doc/options.html</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_2">Args:</h4>
 <ul>
 <li><b><code>attribute</code></b>: An attribute the profiler node has.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_3">Returns:</h4>
 <p>self</p>
-
 <h3 id="select"><code>select</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/profiler/option_builder.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">select</span><span class="p">(</span><span class="n">attributes</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-select(attributes)
-</code></p>
 
 <p>Select the attributes to display.</p>
-
 <p>See https://github.com/tensorflow/tensorflow/tree/master/tensorflow/core/profiler/g3doc/options.html
 for supported attributes.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_3">Args:</h4>
 <ul>
 <li><b><code>attributes</code></b>: A list of attribute the profiler node has.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_4">Returns:</h4>
 <p>self</p>
-
 <h3 id="time_and_memory"><code>time_and_memory</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/profiler/option_builder.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="nd">@staticmethod</span>
+<span class="n">time_and_memory</span><span class="p">(</span>
+    <span class="n">min_micros</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">min_bytes</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">min_accelerator_micros</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">min_cpu_micros</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">min_peak_bytes</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">min_residual_bytes</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">min_output_bytes</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-@staticmethod
-time_and_memory(
-    min_micros=1,
-    min_bytes=1,
-    min_accelerator_micros=0,
-    min_cpu_micros=0,
-    min_peak_bytes=0,
-    min_residual_bytes=0,
-    min_output_bytes=0
-)
-</code></p>
 
 <p>Show operation time and memory consumptions.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_4">Args:</h4>
 <ul>
 <li><b><code>min_micros</code></b>: Only show profiler nodes with execution time
-  no less than this. It sums accelerator and cpu times.</li>
+    no less than this. It sums accelerator and cpu times.</li>
 <li><b><code>min_bytes</code></b>: Only show profiler nodes requested to allocate no less bytes
-  than this.</li>
+    than this.</li>
 <li><b><code>min_accelerator_micros</code></b>: Only show profiler nodes spend no less than
-  this time on accelerator (e.g. GPU).</li>
+    this time on accelerator (e.g. GPU).</li>
 <li><b><code>min_cpu_micros</code></b>: Only show profiler nodes spend no less than
-  this time on cpu.</li>
+    this time on cpu.</li>
 <li><b><code>min_peak_bytes</code></b>: Only show profiler nodes using no less than this bytes
-  at peak (high watermark). For profiler nodes consist of multiple
-  graph nodes, it sums the graph nodes' peak_bytes.</li>
+    at peak (high watermark). For profiler nodes consist of multiple
+    graph nodes, it sums the graph nodes' peak_bytes.</li>
 <li><b><code>min_residual_bytes</code></b>: Only show profiler nodes have no less than
-  this bytes not being de-allocated after Compute() ends. For
-  profiler nodes consist of multiple graph nodes, it sums the
-  graph nodes' residual_bytes.</li>
+    this bytes not being de-allocated after Compute() ends. For
+    profiler nodes consist of multiple graph nodes, it sums the
+    graph nodes' residual_bytes.</li>
 <li><b><code>min_output_bytes</code></b>: Only show profiler nodes have no less than this bytes
-  output. The output are not necessarily allocated by this profiler
-  nodes.</li>
+    output. The output are not necessarily allocated by this profiler
+    nodes.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_5">Returns:</h4>
 <p>A dict of profiling options.</p>
-
 <h3 id="trainable_variables_parameter"><code>trainable_variables_parameter</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/profiler/option_builder.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="nd">@staticmethod</span>
+<span class="n">trainable_variables_parameter</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-@staticmethod
-trainable_variables_parameter()
-</code></p>
 
 <p>Options used to profile trainable variable parameters.</p>
-
-<p>Normally used together with &lsquo;scope&rsquo; view.</p>
-
-<h4>Returns:</h4>
-
+<p>Normally used together with 'scope' view.</p>
+<h4 id="returns_6">Returns:</h4>
 <p>A dict of profiling options.</p>
-
 <h3 id="with_accounted_types"><code>with_accounted_types</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/profiler/option_builder.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">with_accounted_types</span><span class="p">(</span><span class="n">account_type_regexes</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-with_accounted_types(account_type_regexes)
-</code></p>
 
 <p>Selectively counting statistics based on node types.</p>
-
-<p>Here, &lsquo;types&rsquo; means the profiler nodes' properties. Profiler by default
-consider device name (e.g. /job:xx/&hellip;/device:GPU:0) and operation type
+<p>Here, 'types' means the profiler nodes' properties. Profiler by default
+consider device name (e.g. /job:xx/.../device:GPU:0) and operation type
 (e.g. MatMul) as profiler nodes' properties. User can also associate
-customized &lsquo;types&rsquo; to profiler nodes through OpLogProto proto.</p>
-
+customized 'types' to profiler nodes through OpLogProto proto.</p>
 <p>For example, user can select profiler nodes placed on gpu:0 with:
 <code>account_type_regexes=['.*gpu:0.*']</code></p>
-
-<p>If none of a node&rsquo;s properties match the specified regexes, the node is
+<p>If none of a node's properties match the specified regexes, the node is
 not displayed nor accounted.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_5">Args:</h4>
 <ul>
 <li><b><code>account_type_regexes</code></b>: A list of regexes specifying the types.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_7">Returns:</h4>
 <p>self.</p>
-
 <h3 id="with_empty_output"><code>with_empty_output</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/profiler/option_builder.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">with_empty_output</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-with_empty_output()
-</code></p>
 
 <p>Do not generate side-effect outputs.</p>
-
 <h3 id="with_file_output"><code>with_file_output</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/profiler/option_builder.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">with_file_output</span><span class="p">(</span><span class="n">outfile</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-with_file_output(outfile)
-</code></p>
 
 <p>Print the result to a file.</p>
-
 <h3 id="with_max_depth"><code>with_max_depth</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/profiler/option_builder.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">with_max_depth</span><span class="p">(</span><span class="n">max_depth</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-with_max_depth(max_depth)
-</code></p>
 
 <p>Set the maximum depth of display.</p>
-
-<p>The depth depends on profiling view. For &lsquo;scope&rsquo; view, it&rsquo;s the
-depth of name scope hierarchy (tree), for &lsquo;op&rsquo; view, it&rsquo;s the number
+<p>The depth depends on profiling view. For 'scope' view, it's the
+depth of name scope hierarchy (tree), for 'op' view, it's the number
 of operation types (list), etc.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_6">Args:</h4>
 <ul>
 <li><b><code>max_depth</code></b>: Maximum depth of the data structure to display.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_8">Returns:</h4>
 <p>self</p>
-
 <h3 id="with_min_execution_time"><code>with_min_execution_time</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/profiler/option_builder.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">with_min_execution_time</span><span class="p">(</span>
+    <span class="n">min_micros</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">min_accelerator_micros</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">min_cpu_micros</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-with_min_execution_time(
-    min_micros=0,
-    min_accelerator_micros=0,
-    min_cpu_micros=0
-)
-</code></p>
 
-<p>Only show profiler nodes consuming no less than &lsquo;min_micros&rsquo;.</p>
-
-<h4>Args:</h4>
-
+<p>Only show profiler nodes consuming no less than 'min_micros'.</p>
+<h4 id="args_7">Args:</h4>
 <ul>
 <li><b><code>min_micros</code></b>: Only show profiler nodes with execution time
-  no less than this. It sums accelerator and cpu times.</li>
+    no less than this. It sums accelerator and cpu times.</li>
 <li><b><code>min_accelerator_micros</code></b>: Only show profiler nodes spend no less than
-  this time on accelerator (e.g. GPU).</li>
+    this time on accelerator (e.g. GPU).</li>
 <li><b><code>min_cpu_micros</code></b>: Only show profiler nodes spend no less than
-  this time on cpu.</li>
+    this time on cpu.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_9">Returns:</h4>
 <p>self</p>
-
 <h3 id="with_min_float_operations"><code>with_min_float_operations</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/profiler/option_builder.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">with_min_float_operations</span><span class="p">(</span><span class="n">min_float_ops</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-with_min_float_operations(min_float_ops)
-</code></p>
 
-<p>Only show profiler nodes consuming no less than &lsquo;min_float_ops&rsquo;.</p>
-
+<p>Only show profiler nodes consuming no less than 'min_float_ops'.</p>
 <p>Please see https://github.com/tensorflow/tensorflow/tree/master/tensorflow/core/profiler/g3doc/profile_model_architecture.html
 on the caveats of calculating float operations.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_8">Args:</h4>
 <ul>
 <li><b><code>min_float_ops</code></b>: Only show profiler nodes with float operations
-  no less than this.</li>
+    no less than this.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_10">Returns:</h4>
 <p>self</p>
-
 <h3 id="with_min_memory"><code>with_min_memory</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/profiler/option_builder.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">with_min_memory</span><span class="p">(</span>
+    <span class="n">min_bytes</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">min_peak_bytes</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">min_residual_bytes</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">min_output_bytes</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-with_min_memory(
-    min_bytes=0,
-    min_peak_bytes=0,
-    min_residual_bytes=0,
-    min_output_bytes=0
-)
-</code></p>
 
-<p>Only show profiler nodes consuming no less than &lsquo;min_bytes&rsquo;.</p>
-
-<h4>Args:</h4>
-
+<p>Only show profiler nodes consuming no less than 'min_bytes'.</p>
+<h4 id="args_9">Args:</h4>
 <ul>
 <li><b><code>min_bytes</code></b>: Only show profiler nodes requested to allocate no less bytes
-  than this.</li>
+    than this.</li>
 <li><b><code>min_peak_bytes</code></b>: Only show profiler nodes using no less than this bytes
-  at peak (high watermark). For profiler nodes consist of multiple
-  graph nodes, it sums the graph nodes' peak_bytes.</li>
+    at peak (high watermark). For profiler nodes consist of multiple
+    graph nodes, it sums the graph nodes' peak_bytes.</li>
 <li><b><code>min_residual_bytes</code></b>: Only show profiler nodes have no less than
-  this bytes not being de-allocated after Compute() ends. For
-  profiler nodes consist of multiple graph nodes, it sums the
-  graph nodes' residual_bytes.</li>
+    this bytes not being de-allocated after Compute() ends. For
+    profiler nodes consist of multiple graph nodes, it sums the
+    graph nodes' residual_bytes.</li>
 <li><b><code>min_output_bytes</code></b>: Only show profiler nodes have no less than this bytes
-  output. The output are not necessarily allocated by this profiler
-  nodes.</li>
+    output. The output are not necessarily allocated by this profiler
+    nodes.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_11">Returns:</h4>
 <p>self</p>
-
 <h3 id="with_min_occurrence"><code>with_min_occurrence</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/profiler/option_builder.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">with_min_occurrence</span><span class="p">(</span><span class="n">min_occurrence</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-with_min_occurrence(min_occurrence)
-</code></p>
 
-<p>Only show profiler nodes including no less than &lsquo;min_occurrence&rsquo; graph nodes.</p>
-
-<p>A &ldquo;node&rdquo; means a profiler output node, which can be a python line
+<p>Only show profiler nodes including no less than 'min_occurrence' graph nodes.</p>
+<p>A "node" means a profiler output node, which can be a python line
 (code view), an operation type (op view), or a graph node
 (graph/scope view). A python line includes all graph nodes created by that
 line, while an operation type includes all graph nodes of that type.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_10">Args:</h4>
 <ul>
 <li><b><code>min_occurrence</code></b>: Only show nodes including no less than this.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_12">Returns:</h4>
 <p>self</p>
-
 <h3 id="with_min_parameters"><code>with_min_parameters</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/profiler/option_builder.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">with_min_parameters</span><span class="p">(</span><span class="n">min_params</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-with_min_parameters(min_params)
-</code></p>
 
-<p>Only show profiler nodes holding no less than &lsquo;min_params&rsquo; parameters.</p>
-
-<p>&lsquo;Parameters&rsquo; normally refers the weights of in TensorFlow variables.
-It reflects the &lsquo;capacity&rsquo; of models.</p>
-
-<h4>Args:</h4>
-
+<p>Only show profiler nodes holding no less than 'min_params' parameters.</p>
+<p>'Parameters' normally refers the weights of in TensorFlow variables.
+It reflects the 'capacity' of models.</p>
+<h4 id="args_11">Args:</h4>
 <ul>
 <li><b><code>min_params</code></b>: Only show profiler nodes holding number parameters
-  no less than this.</li>
+    no less than this.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_13">Returns:</h4>
 <p>self</p>
-
 <h3 id="with_node_names"><code>with_node_names</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/profiler/option_builder.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">with_node_names</span><span class="p">(</span>
+    <span class="n">start_name_regexes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">show_name_regexes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">hide_name_regexes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">trim_name_regexes</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-with_node_names(
-    start_name_regexes=None,
-    show_name_regexes=None,
-    hide_name_regexes=None,
-    trim_name_regexes=None
-)
-</code></p>
 
 <p>Regular expressions used to select profiler nodes to display.</p>
-
-<p>After &lsquo;with_accounted_types&rsquo; is evaluated, &lsquo;with_node_names&rsquo; are
+<p>After 'with_accounted_types' is evaluated, 'with_node_names' are
 evaluated as follows:</p>
-
-<p>  For a profile data structure, profiler first finds the profiler
-  nodes matching &lsquo;start_name_regexes&rsquo;, and starts displaying profiler
-  nodes from there. Then, if a node matches &lsquo;show_name_regexes&rsquo; and
-  doesn&rsquo;t match &lsquo;hide_name_regexes&rsquo;, it&rsquo;s displayed. If a node matches
-  &lsquo;trim_name_regexes&rsquo;, profiler stops further searching that branch.</p>
-
-<h4>Args:</h4>
-
+<p>For a profile data structure, profiler first finds the profiler
+  nodes matching 'start_name_regexes', and starts displaying profiler
+  nodes from there. Then, if a node matches 'show_name_regexes' and
+  doesn't match 'hide_name_regexes', it's displayed. If a node matches
+  'trim_name_regexes', profiler stops further searching that branch.</p>
+<h4 id="args_12">Args:</h4>
 <ul>
 <li><b><code>start_name_regexes</code></b>: list of node name regexes to start displaying.</li>
 <li><b><code>show_name_regexes</code></b>: list of node names regexes to display.</li>
 <li><b><code>hide_name_regexes</code></b>: list of node_names regexes that should be hidden.</li>
 <li><b><code>trim_name_regexes</code></b>: list of node name regexes from where to stop.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_14">Returns:</h4>
 <p>self</p>
-
 <h3 id="with_pprof_output"><code>with_pprof_output</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/profiler/option_builder.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">with_pprof_output</span><span class="p">(</span><span class="n">pprof_file</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-with_pprof_output(pprof_file)
-</code></p>
 
 <p>Generate a pprof profile gzip file.</p>
-
-<h4>To use the pprof file:</h4>
-
-<p>pprof -png &ndash;nodecount=100 &ndash;sample_index=1 &lt;pprof_file></p>
-
-<h4>Args:</h4>
-
+<h4 id="to-use-the-pprof-file">To use the pprof file:</h4>
+<p>pprof -png --nodecount=100 --sample_index=1 <pprof_file></p>
+<h4 id="args_13">Args:</h4>
 <ul>
 <li><b><code>pprof_file</code></b>: filename for output, usually suffixed with .pb.gz.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_15">Returns:</h4>
 <p>self.</p>
-
 <h3 id="with_stdout_output"><code>with_stdout_output</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/profiler/option_builder.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">with_stdout_output</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-with_stdout_output()
-</code></p>
 
 <p>Print the result to stdout.</p>
-
 <h3 id="with_step"><code>with_step</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/profiler/option_builder.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">with_step</span><span class="p">(</span><span class="n">step</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-with_step(step)
-</code></p>
 
 <p>Which profile step to use for profiling.</p>
-
-<p>The &lsquo;step&rsquo; here refers to the step defined by <code>Profiler.add_step()</code> API.</p>
-
-<h4>Args:</h4>
-
+<p>The 'step' here refers to the step defined by <code>Profiler.add_step()</code> API.</p>
+<h4 id="args_14">Args:</h4>
 <ul>
-<li><b><code>step</code></b>: When multiple steps of profiles are available, select which step&rsquo;s
- profile to use. If -1, use average of all available steps.</li>
+<li><b><code>step</code></b>: When multiple steps of profiles are available, select which step's
+   profile to use. If -1, use average of all available steps.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_16">Returns:</h4>
 <p>self</p>
-
 <h3 id="with_timeline_output"><code>with_timeline_output</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/profiler/option_builder.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">with_timeline_output</span><span class="p">(</span><span class="n">timeline_file</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-with_timeline_output(timeline_file)
-</code></p>
 
 <p>Generate a timeline json file.</p>
+    </body>
+    </html>
+   

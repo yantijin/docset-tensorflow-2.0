@@ -1,30 +1,32 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v2.ragged" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>Module: tf.compat.v2.ragged</h1>
-
+<h1 id="module-tfcompatv2ragged">Module: tf.compat.v2.ragged</h1>
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p>Ragged Tensors.</p>
-
 <p>This package defines ops for manipulating ragged tensors (<a href="../../../tf/RaggedTensor.html"><code>tf.RaggedTensor</code></a>),
 which are tensors with non-uniform shapes.  In particular, each <code>RaggedTensor</code>
 has one or more <em>ragged dimensions</em>, which are dimensions whose slices may have
 different lengths.  For example, the inner (column) dimension of
 <code>rt=[[3, 1, 4, 1], [], [5, 9, 2], [6], []]</code> is ragged, since the column slices
-(<code>rt[0, :]</code>, &hellip;, <code>rt[4, :]</code>) have different lengths.  For a more detailed
+(<code>rt[0, :]</code>, ..., <code>rt[4, :]</code>) have different lengths.  For a more detailed
 description of ragged tensors, see the <a href="../../../tf/RaggedTensor.html"><code>tf.RaggedTensor</code></a> class documentation
 and the <a href="/guide/ragged_tensors">Ragged Tensor Guide</a>.</p>
-
-<h3>Additional ops that support <code>RaggedTensor</code></h3>
-
+<h3 id="additional-ops-that-support-raggedtensor">Additional ops that support <code>RaggedTensor</code></h3>
 <p>Arguments that accept <code>RaggedTensor</code>s are marked in <strong>bold</strong>.</p>
-
 <ul>
 <li><code>tf.batch_gather</code>(<strong>params</strong>, <strong>indices</strong>, name=<code>None</code>)</li>
 <li><a href="../../../tf/bitwise/bitwise_and.html"><code>tf.bitwise.bitwise_and</code></a>(<strong>x</strong>, <strong>y</strong>, name=<code>None</code>)</li>
@@ -148,22 +150,15 @@ and the <a href="/guide/ragged_tensors">Ragged Tensor Guide</a>.</p>
 <li><a href="../../../tf/where.html"><code>tf.where</code></a>(<strong>condition</strong>, <strong>x</strong>=<code>None</code>, <strong>y</strong>=<code>None</code>, name=<code>None</code>)</li>
 <li><a href="../../../tf/zeros_like.html"><code>tf.zeros_like</code></a>(<strong>tensor</strong>, dtype=<code>None</code>, name=<code>None</code>, optimize=<code>True</code>)n</li>
 </ul>
-
-
-<h2>Functions</h2>
-
+<h2 id="functions">Functions</h2>
 <p><a href="../../../tf/ragged/boolean_mask.html"><code>boolean_mask(...)</code></a>: Applies a boolean mask to <code>data</code> without flattening the mask dimensions.</p>
-
 <p><a href="../../../tf/ragged/constant.html"><code>constant(...)</code></a>: Constructs a constant RaggedTensor from a nested Python list.</p>
-
 <p><a href="../../../tf/ragged/map_flat_values.html"><code>map_flat_values(...)</code></a>: Applies <code>op</code> to the values of one or more RaggedTensors.</p>
-
 <p><a href="../../../tf/ragged/range.html"><code>range(...)</code></a>: Returns a <code>RaggedTensor</code> containing the specified sequences of numbers.</p>
-
 <p><a href="../../../tf/ragged/row_splits_to_segment_ids.html"><code>row_splits_to_segment_ids(...)</code></a>: Generates the segmentation corresponding to a RaggedTensor <code>row_splits</code>.</p>
-
 <p><a href="../../../tf/ragged/segment_ids_to_row_splits.html"><code>segment_ids_to_row_splits(...)</code></a>: Generates the RaggedTensor <code>row_splits</code> corresponding to a segmentation.</p>
-
 <p><a href="../../../tf/ragged/stack.html"><code>stack(...)</code></a>: Stacks a list of rank-<code>R</code> tensors into one rank-<code>(R+1)</code> <code>RaggedTensor</code>.</p>
-
 <p><a href="../../../tf/ragged/stack_dynamic_partitions.html"><code>stack_dynamic_partitions(...)</code></a>: Stacks dynamic partitions of a Tensor or RaggedTensor.</p>
+    </body>
+    </html>
+   

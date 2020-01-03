@@ -1,107 +1,100 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.sets.intersection" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.sets.intersection</h1>
-
+<h1 id="tfsetsintersection">tf.sets.intersection</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/sets_impl.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Compute set intersection of elements in last dimension of <code>a</code> and <code>b</code>.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.sets.intersection</code></li>
 <li><code>tf.compat.v1.sets.set_intersection</code></li>
 <li><code>tf.compat.v2.sets.intersection</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">sets</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span>
+    <span class="n">a</span><span class="p">,</span>
+    <span class="n">b</span><span class="p">,</span>
+    <span class="n">validate_indices</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.sets.intersection(
-    a,
-    b,
-    validate_indices=True
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>All but the last dimension of <code>a</code> and <code>b</code> must match.</p>
+<h4 id="example">Example:</h4>
+<div class="codehilite"><pre><span></span>  <span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+  <span class="kn">import</span> <span class="nn">collections</span>
 
-<h4>Example:</h4>
+  <span class="c1"># Represent the following array of sets as a sparse tensor:</span>
+  <span class="c1"># a = np.array([[{1, 2}, {3}], [{4}, {5, 6}]])</span>
+  <span class="n">a</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">OrderedDict</span><span class="p">([</span>
+      <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">1</span><span class="p">),</span>
+      <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">2</span><span class="p">),</span>
+      <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">3</span><span class="p">),</span>
+      <span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">4</span><span class="p">),</span>
+      <span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">5</span><span class="p">),</span>
+      <span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">6</span><span class="p">),</span>
+  <span class="p">])</span>
+  <span class="n">a</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">SparseTensor</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="nb">list</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="n">dense_shape</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
 
-<p>```python
-  import tensorflow as tf
-  import collections</p>
+  <span class="c1"># b = np.array([[{1}, {}], [{4}, {5, 6, 7, 8}]])</span>
+  <span class="n">b</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">OrderedDict</span><span class="p">([</span>
+      <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">1</span><span class="p">),</span>
+      <span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">4</span><span class="p">),</span>
+      <span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">5</span><span class="p">),</span>
+      <span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">6</span><span class="p">),</span>
+      <span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">7</span><span class="p">),</span>
+      <span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="mi">8</span><span class="p">),</span>
+  <span class="p">])</span>
+  <span class="n">b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">SparseTensor</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="nb">list</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span> <span class="n">dense_shape</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
 
-<p>  # Represent the following array of sets as a sparse tensor:
-  # a = np.array([[{1, 2}, {3}], [{4}, {5, 6}]])
-  a = collections.OrderedDict([
-      ((0, 0, 0), 1),
-      ((0, 0, 1), 2),
-      ((0, 1, 0), 3),
-      ((1, 0, 0), 4),
-      ((1, 1, 0), 5),
-      ((1, 1, 1), 6),
-  ])
-  a = tf.SparseTensor(list(a.keys()), list(a.values()), dense_shape=[2,2,2])</p>
+  <span class="c1"># `tf.sets.intersection` is applied to each aligned pair of sets.</span>
+  <span class="n">tf</span><span class="o">.</span><span class="n">sets</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
 
-<p>  # b = np.array([[{1}, {}], [{4}, {5, 6, 7, 8}]])
-  b = collections.OrderedDict([
-      ((0, 0, 0), 1),
-      ((1, 0, 0), 4),
-      ((1, 1, 0), 5),
-      ((1, 1, 1), 6),
-      ((1, 1, 2), 7),
-      ((1, 1, 3), 8),
-  ])
-  b = tf.SparseTensor(list(b.keys()), list(b.values()), dense_shape=[2, 2, 4])</p>
+  <span class="c1"># The result will be equivalent to either of:</span>
+  <span class="c1">#</span>
+  <span class="c1"># np.array([[{1}, {}], [{4}, {5, 6}]])</span>
+  <span class="c1">#</span>
+  <span class="c1"># collections.OrderedDict([</span>
+  <span class="c1">#     ((0, 0, 0), 1),</span>
+  <span class="c1">#     ((1, 0, 0), 4),</span>
+  <span class="c1">#     ((1, 1, 0), 5),</span>
+  <span class="c1">#     ((1, 1, 1), 6),</span>
+  <span class="c1"># ])</span>
+</pre></div>
 
-<p>  # <code>tf.sets.intersection</code> is applied to each aligned pair of sets.
-  tf.sets.intersection(a, b)</p>
 
-<p>  # The result will be equivalent to either of:
-  #
-  # np.array([[{1}, {}], [{4}, {5, 6}]])
-  #
-  # collections.OrderedDict([
-  #     ((0, 0, 0), 1),
-  #     ((1, 0, 0), 4),
-  #     ((1, 1, 0), 5),
-  #     ((1, 1, 1), 6),
-  # ])
-```</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>a</code></b>: <code>Tensor</code> or <code>SparseTensor</code> of the same type as <code>b</code>. If sparse, indices
-  must be sorted in row-major order.</li>
+    must be sorted in row-major order.</li>
 <li><b><code>b</code></b>: <code>Tensor</code> or <code>SparseTensor</code> of the same type as <code>a</code>. If sparse, indices
-  must be sorted in row-major order.</li>
+    must be sorted in row-major order.</li>
 <li><b><code>validate_indices</code></b>: Whether to validate the order and range of sparse indices
- in <code>a</code> and <code>b</code>.</li>
+   in <code>a</code> and <code>b</code>.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>SparseTensor</code> whose shape is the same rank as <code>a</code> and <code>b</code>, and all but
 the last dimension the same. Elements along the last dimension contain the
 intersections.</p>
+    </body>
+    </html>
+   

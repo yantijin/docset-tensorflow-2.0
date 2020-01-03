@@ -1,4 +1,13 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../default.css" rel="stylesheet">
+    <link href="
+   ../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.IndexedSlicesSpec" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="value_type"/>
@@ -9,137 +18,97 @@
 <meta itemprop="property" content="most_specific_compatible_type"/>
 </div>
 
-
-<h1>tf.IndexedSlicesSpec</h1>
-
+<h1 id="tfindexedslicesspec">tf.IndexedSlicesSpec</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/framework/indexed_slices.py">View source</a></p>
-
-<h2>Class <code>IndexedSlicesSpec</code></h2>
-
+<h2 id="class-indexedslicesspec">Class <code>IndexedSlicesSpec</code></h2>
 <!-- Start diff -->
 
-
 <p>Type specification for a <a href="../tf/IndexedSlices.html"><code>tf.IndexedSlices</code></a>.</p>
-
 <p>Inherits From: <a href="../tf/TypeSpec.html"><code>TypeSpec</code></a></p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li>Class <code>tf.compat.v1.IndexedSlicesSpec</code></li>
 <li>Class <code>tf.compat.v2.IndexedSlicesSpec</code></li>
 </ul>
-
-
 <!-- Placeholder for "Used in" -->
-
-
-
 
 <h2 id="__init__"><code>__init__</code></h2>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/framework/indexed_slices.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
+    <span class="n">indices_dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span>
+    <span class="n">dense_shape_dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">indices_shape</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__init__(
-    shape=None,
-    dtype=tf.dtypes.float32,
-    indices_dtype=tf.dtypes.int64,
-    dense_shape_dtype=None,
-    indices_shape=None
-)
-</code></p>
 
 <p>Constructs a type specification for a <a href="../tf/IndexedSlices.html"><code>tf.IndexedSlices</code></a>.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>shape</code></b>: The dense shape of the <code>IndexedSlices</code>, or <code>None</code> to allow any
-dense shape.</li>
+  dense shape.</li>
 <li><b><code>dtype</code></b>: <a href="../tf/dtypes/DType.html"><code>tf.DType</code></a> of values in the <code>IndexedSlices</code>.</li>
 <li><b><code>indices_dtype</code></b>: <a href="../tf/dtypes/DType.html"><code>tf.DType</code></a> of the <code>indices</code> in the <code>IndexedSlices</code>.  One
-of <a href="../tf.html#int32"><code>tf.int32</code></a> or <a href="../tf.html#int64"><code>tf.int64</code></a>.</li>
+  of <a href="../tf.html#int32"><code>tf.int32</code></a> or <a href="../tf.html#int64"><code>tf.int64</code></a>.</li>
 <li><b><code>dense_shape_dtype</code></b>: <a href="../tf/dtypes/DType.html"><code>tf.DType</code></a> of the <code>dense_shape</code> in the <code>IndexedSlices</code>.
-One of <a href="../tf.html#int32"><code>tf.int32</code></a>, <a href="../tf.html#int64"><code>tf.int64</code></a>, or <code>None</code> (if the <code>IndexedSlices</code> has
-no <code>dense_shape</code> tensor).</li>
+  One of <a href="../tf.html#int32"><code>tf.int32</code></a>, <a href="../tf.html#int64"><code>tf.int64</code></a>, or <code>None</code> (if the <code>IndexedSlices</code> has
+  no <code>dense_shape</code> tensor).</li>
 <li><b><code>indices_shape</code></b>: The shape of the <code>indices</code> component, which indicates
-how many slices are in the <code>IndexedSlices</code>.</li>
+  how many slices are in the <code>IndexedSlices</code>.</li>
 </ul>
-
-
-<h2>Properties</h2>
-
+<h2 id="properties">Properties</h2>
 <h3 id="value_type"><code>value_type</code></h3>
 
-
-<h2>Methods</h2>
-
+<h2 id="methods">Methods</h2>
 <h3 id="__eq__"><code>__eq__</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/framework/type_spec.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__eq__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__eq__(other)
-</code></p>
 
 <p>Return self==value.</p>
-
 <h3 id="__ne__"><code>__ne__</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/framework/type_spec.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__ne__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__ne__(other)
-</code></p>
 
 <p>Return self!=value.</p>
-
 <h3 id="is_compatible_with"><code>is_compatible_with</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/framework/type_spec.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">is_compatible_with</span><span class="p">(</span><span class="n">spec_or_value</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-is_compatible_with(spec_or_value)
-</code></p>
 
 <p>Returns true if <code>spec_or_value</code> is compatible with this TypeSpec.</p>
-
 <h3 id="most_specific_compatible_type"><code>most_specific_compatible_type</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/framework/type_spec.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">most_specific_compatible_type</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-most_specific_compatible_type(other)
-</code></p>
 
 <p>Returns the most specific TypeSpec compatible with <code>self</code> and <code>other</code>.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_1">Args:</h4>
 <ul>
 <li><b><code>other</code></b>: A <code>TypeSpec</code>.</li>
 </ul>
-
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: If there is no TypeSpec that is compatible with both <code>self</code>
-and <code>other</code>.</li>
+  and <code>other</code>.</li>
 </ul>
-
+    </body>
+    </html>
+   

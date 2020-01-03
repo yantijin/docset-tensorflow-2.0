@@ -1,4 +1,13 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.train.experimental.DynamicLossScale" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="increment_period"/>
@@ -11,143 +20,103 @@
 <meta itemprop="property" content="update"/>
 </div>
 
-
-<h1>tf.train.experimental.DynamicLossScale</h1>
-
+<h1 id="tftrainexperimentaldynamiclossscale">tf.train.experimental.DynamicLossScale</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/training/experimental/loss_scale.py">View source</a></p>
-
-<h2>Class <code>DynamicLossScale</code></h2>
-
+<h2 id="class-dynamiclossscale">Class <code>DynamicLossScale</code></h2>
 <!-- Start diff -->
 
-
 <p>Loss scale that dynamically adjusts itself.</p>
-
 <p>Inherits From: <a href="../../../tf/train/experimental/LossScale.html"><code>LossScale</code></a></p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li>Class <code>tf.compat.v1.train.experimental.DynamicLossScale</code></li>
 <li>Class <code>tf.compat.v2.train.experimental.DynamicLossScale</code></li>
 </ul>
-
-
 <!-- Placeholder for "Used in" -->
-
 
 <p>Dynamic loss scaling works by adjusting the loss scale as training progresses.
 The goal is to keep the loss scale as high as possible without overflowing the
 gradients. As long as the gradients do not overflow, raising the loss scale
 never hurts.</p>
-
 <p>The algorithm starts by setting the loss scale to an initial value. Every N
 steps that the gradients are finite, the loss scale is increased by some
 factor. However, if a NaN or Inf gradient is found, the gradients for that
 step are not applied, and the loss scale is decreased by the factor. This
 process tends to keep the loss scale as high as possible without gradients
 overflowing.</p>
-
 <h2 id="__init__"><code>__init__</code></h2>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/training/experimental/loss_scale.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">initial_loss_scale</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="mi">15</span><span class="p">),</span>
+    <span class="n">increment_period</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span>
+    <span class="n">multiplier</span><span class="o">=</span><span class="mf">2.0</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__init__(
-    initial_loss_scale=(2 ** 15),
-    increment_period=2000,
-    multiplier=2.0
-)
-</code></p>
 
 <p>Creates the dynamic loss scale.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>initial_loss_scale</code></b>: A Python float.  The loss scale to use at the
-beginning. It&rsquo;s better to start this at a very high number, because a
-loss scale that is too high gets lowered far more quickly than a loss
-scale that is too low gets raised. The default is 2 ** 15, which is
-approximately half the maximum float16 value.</li>
+  beginning. It's better to start this at a very high number, because a
+  loss scale that is too high gets lowered far more quickly than a loss
+  scale that is too low gets raised. The default is 2 ** 15, which is
+  approximately half the maximum float16 value.</li>
 <li><b><code>increment_period</code></b>: Increases loss scale every <code>increment_period</code>
-consecutive steps that finite gradients are encountered. If a nonfinite
-gradient is encountered, the count is reset back to zero.</li>
+  consecutive steps that finite gradients are encountered. If a nonfinite
+  gradient is encountered, the count is reset back to zero.</li>
 <li><b><code>multiplier</code></b>: The multiplier to use when increasing or decreasing the loss
-scale.</li>
+  scale.</li>
 </ul>
-
-
-<h2>Properties</h2>
-
+<h2 id="properties">Properties</h2>
 <h3 id="increment_period"><code>increment_period</code></h3>
-
-
-
 
 <h3 id="initial_loss_scale"><code>initial_loss_scale</code></h3>
 
-
-
-
 <h3 id="multiplier"><code>multiplier</code></h3>
 
-
-<h2>Methods</h2>
-
+<h2 id="methods">Methods</h2>
 <h3 id="__call__"><code>__call__</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/training/experimental/loss_scale.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__call__</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-__call__()
-</code></p>
 
 <p>Returns the current loss scale as a scalar <code>float32</code> tensor.</p>
-
 <h3 id="from_config"><code>from_config</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/training/experimental/loss_scale.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">from_config</span><span class="p">(</span>
+    <span class="bp">cls</span><span class="p">,</span>
+    <span class="n">config</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-from_config(
-    cls,
-    config
-)
-</code></p>
 
 <p>Creates the LossScale from its config.</p>
-
 <h3 id="get_config"><code>get_config</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/training/experimental/loss_scale.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_config</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-get_config()
-</code></p>
 
 <p>Returns the config of this loss scale.</p>
-
 <h3 id="update"><code>update</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/training/experimental/loss_scale.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">update</span><span class="p">(</span><span class="n">grads</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-update(grads)
-</code></p>
 
 <p>Updates loss scale based on if gradients are finite in current step.</p>
+    </body>
+    </html>
+   

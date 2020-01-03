@@ -1,73 +1,65 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.signal.overlap_and_add" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.signal.overlap_and_add</h1>
-
+<h1 id="tfsignaloverlap_and_add">tf.signal.overlap_and_add</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/signal/reconstruction_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Reconstructs a signal from a framed representation.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.signal.overlap_and_add</code></li>
 <li><code>tf.compat.v2.signal.overlap_and_add</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">overlap_and_add</span><span class="p">(</span>
+    <span class="n">signal</span><span class="p">,</span>
+    <span class="n">frame_step</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.signal.overlap_and_add(
-    signal,
-    frame_step,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>Adds potentially overlapping frames of a signal with shape
 <code>[..., frames, frame_length]</code>, offsetting subsequent frames by <code>frame_step</code>.
 The resulting tensor has shape <code>[..., output_size]</code> where</p>
+<div class="codehilite"><pre><span></span><span class="err">output_size = (frames - 1) * frame_step + frame_length</span>
+</pre></div>
 
-<pre><code>output_size = (frames - 1) * frame_step + frame_length
-</code></pre>
 
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
-<li><b><code>signal</code></b>: A [&hellip;, frames, frame_length] <code>Tensor</code>. All dimensions may be
-unknown, and rank must be at least 2.</li>
+<li><b><code>signal</code></b>: A [..., frames, frame_length] <code>Tensor</code>. All dimensions may be
+  unknown, and rank must be at least 2.</li>
 <li><b><code>frame_step</code></b>: An integer or scalar <code>Tensor</code> denoting overlap offsets. Must be
-less than or equal to <code>frame_length</code>.</li>
+  less than or equal to <code>frame_length</code>.</li>
 <li><b><code>name</code></b>: An optional name for the operation.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>Tensor</code> with shape <code>[..., output_size]</code> containing the overlap-added
-frames of <code>signal</code>&rsquo;s inner-most two dimensions.</p>
-
-<h4>Raises:</h4>
-
+frames of <code>signal</code>'s inner-most two dimensions.</p>
+<h4 id="raises">Raises:</h4>
 <ul>
-<li><b><code>ValueError</code></b>: If <code>signal</code>&rsquo;s rank is less than 2, or <code>frame_step</code> is not a
-scalar integer.</li>
+<li><b><code>ValueError</code></b>: If <code>signal</code>'s rank is less than 2, or <code>frame_step</code> is not a
+  scalar integer.</li>
 </ul>
-
+    </body>
+    </html>
+   

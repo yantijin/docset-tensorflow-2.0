@@ -1,88 +1,80 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.ragged.stack" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.ragged.stack</h1>
-
+<h1 id="tfraggedstack">tf.ragged.stack</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/ragged/ragged_concat_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Stacks a list of rank-<code>R</code> tensors into one rank-<code>(R+1)</code> <code>RaggedTensor</code>.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.ragged.stack</code></li>
 <li><code>tf.compat.v2.ragged.stack</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">ragged</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span>
+    <span class="n">values</span><span class="p">,</span>
+    <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.ragged.stack(
-    values,
-    axis=0,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>Given a list of tensors or ragged tensors with the same rank <code>R</code>
 (<code>R &gt;= axis</code>), returns a rank-<code>R+1</code> <code>RaggedTensor</code> <code>result</code> such that
 <code>result[i0...iaxis]</code> is <code>[value[i0...iaxis] for value in values]</code>.</p>
-
-<p>  ```</p>
-
-<h4>Example:</h4>
-
-<p>  ```python</p>
-
-<blockquote><blockquote><blockquote><p>t1 = tf.ragged.constant([[1, 2], [3, 4, 5]])
+<p>```</p>
+<h4 id="example">Example:</h4>
+<p>```python</p>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>t1 = tf.ragged.constant([[1, 2], [3, 4, 5]])
 t2 = tf.ragged.constant([[6], [7, 8, 9]])
 tf.ragged.stack([t1, t2], axis=0)
   [[[1, 2], [3, 4, 5]], [[6], [7, 9, 0]]]
 tf.ragged.stack([t1, t2], axis=1)
   [[[1, 2], [6]], [[3, 4, 5], [7, 8, 9]]]
-  <code>
- </code></p></blockquote></blockquote></blockquote>
-
-<h4>Args:</h4>
-
+  <code></code></p>
+</blockquote>
+</blockquote>
+</blockquote>
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>values</code></b>: A list of <a href="../../tf/Tensor.html"><code>tf.Tensor</code></a> or <a href="../../tf/RaggedTensor.html"><code>tf.RaggedTensor</code></a>.  May not be empty. All
-<code>values</code> must have the same rank and the same dtype; but unlike
-<a href="../../tf/stack.html"><code>tf.stack</code></a>, they can have arbitrary dimension sizes.</li>
+  <code>values</code> must have the same rank and the same dtype; but unlike
+  <a href="../../tf/stack.html"><code>tf.stack</code></a>, they can have arbitrary dimension sizes.</li>
 <li><b><code>axis</code></b>: A python integer, indicating the dimension along which to stack.
-(Note: Unlike <a href="../../tf/stack.html"><code>tf.stack</code></a>, the <code>axis</code> parameter must be statically known.)
-Negative values are supported only if the rank of at least one
-<code>values</code> value is statically known.</li>
+  (Note: Unlike <a href="../../tf/stack.html"><code>tf.stack</code></a>, the <code>axis</code> parameter must be statically known.)
+  Negative values are supported only if the rank of at least one
+  <code>values</code> value is statically known.</li>
 <li><b><code>name</code></b>: A name prefix for the returned tensor (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>RaggedTensor</code> with rank <code>R+1</code>.
 <code>result.ragged_rank=1+max(axis, max(rt.ragged_rank for rt in values]))</code>.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: If <code>values</code> is empty, if <code>axis</code> is out of bounds or if
-the input tensors have different ranks.</li>
+  the input tensors have different ranks.</li>
 </ul>
-
+    </body>
+    </html>
+   

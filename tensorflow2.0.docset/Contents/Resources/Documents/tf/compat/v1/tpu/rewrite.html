@@ -1,72 +1,65 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.tpu.rewrite" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.compat.v1.tpu.rewrite</h1>
-
+<h1 id="tfcompatv1tpurewrite">tf.compat.v1.tpu.rewrite</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/tpu/tpu.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Rewrites <code>computation</code> for execution on a TPU system.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">tpu</span><span class="o">.</span><span class="n">rewrite</span><span class="p">(</span>
+    <span class="n">computation</span><span class="p">,</span>
+    <span class="n">inputs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">infeed_queue</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">device_assignment</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-tf.compat.v1.tpu.rewrite(
-    computation,
-    inputs=None,
-    infeed_queue=None,
-    device_assignment=None,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
-<li><p><b><code>computation</code></b>: A Python function that builds a computation to apply to the
-input. If the function takes n inputs, &lsquo;inputs&rsquo; should be a list of n
-tensors.</p>
-
-<p><code>computation</code> may return a list of operations and tensors. Tensors must
-come before operations in the returned list.  The return value of
-<code>rewrite</code> is a list of tensors corresponding to the tensors from the
-output of <code>computation</code>.</p>
-
-<p>All <code>Operation</code>s constructed during <code>computation</code> will be executed when
-evaluating any of the returned output tensors, not just the ones returned.</p></li>
-<li><b><code>inputs</code></b>: A list of input tensors or <code>None</code> (equivalent to an empty list).
-Each input can be a nested structure containing values that are
-convertible to tensors. Note that passing an N-dimension list of
-compatible values will result in a N-dimention list of scalar tensors
-rather than a single Rank-N tensors. If you need different behavior,
-convert part of inputs to tensors with <a href="../../../../tf/convert_to_tensor.html"><code>tf.convert_to_tensor</code></a>.</li>
-<li><b><code>infeed_queue</code></b>: If not <code>None</code>, the <code>InfeedQueue</code> from which to append a tuple
-of arguments as inputs to <code>computation</code>.</li>
-<li><b><code>device_assignment</code></b>: if not <code>None</code>, a <code>DeviceAssignment</code> describing the
-mapping between logical cores in the computation with physical cores in
-the TPU topology. May be omitted for a single-core computation, in which
-case the core attached to task 0, TPU device 0 is used.</li>
-<li><b><code>name</code></b>: (Deprecated) Does nothing.</li>
+<li><b><code>computation</code></b>: A Python function that builds a computation to apply to the
+  input. If the function takes n inputs, 'inputs' should be a list of n
+  tensors.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<p><code>computation</code> may return a list of operations and tensors. Tensors must
+  come before operations in the returned list.  The return value of
+  <code>rewrite</code> is a list of tensors corresponding to the tensors from the
+  output of <code>computation</code>.</p>
+<p>All <code>Operation</code>s constructed during <code>computation</code> will be executed when
+  evaluating any of the returned output tensors, not just the ones returned.
+* <b><code>inputs</code></b>: A list of input tensors or <code>None</code> (equivalent to an empty list).
+  Each input can be a nested structure containing values that are
+  convertible to tensors. Note that passing an N-dimension list of
+  compatible values will result in a N-dimention list of scalar tensors
+  rather than a single Rank-N tensors. If you need different behavior,
+  convert part of inputs to tensors with <a href="../../../../tf/convert_to_tensor.html"><code>tf.convert_to_tensor</code></a>.
+* <b><code>infeed_queue</code></b>: If not <code>None</code>, the <code>InfeedQueue</code> from which to append a tuple
+  of arguments as inputs to <code>computation</code>.
+* <b><code>device_assignment</code></b>: if not <code>None</code>, a <code>DeviceAssignment</code> describing the
+  mapping between logical cores in the computation with physical cores in
+  the TPU topology. May be omitted for a single-core computation, in which
+  case the core attached to task 0, TPU device 0 is used.
+* <b><code>name</code></b>: (Deprecated) Does nothing.</p>
+<h4 id="returns">Returns:</h4>
 <p>Same data structure as if computation(*inputs) is called directly with some
 exceptions for correctness. Exceptions include:
   1) None output: a NoOp would be returned which control-depends on
@@ -75,3 +68,6 @@ exceptions for correctness. Exceptions include:
   3) Operation-only outputs: a NoOp would be returned which
      control-depends on computation.
   TODO(b/121383831): Investigate into removing these special cases.</p>
+    </body>
+    </html>
+   

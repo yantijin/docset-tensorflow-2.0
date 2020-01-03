@@ -1,4 +1,13 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.keras.metrics.BinaryCrossentropy" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="__init__"/>
@@ -8,181 +17,135 @@
 <meta itemprop="property" content="update_state"/>
 </div>
 
-
-<h1>tf.keras.metrics.BinaryCrossentropy</h1>
-
+<h1 id="tfkerasmetricsbinarycrossentropy">tf.keras.metrics.BinaryCrossentropy</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/metrics.py">View source</a></p>
-
-<h2>Class <code>BinaryCrossentropy</code></h2>
-
+<h2 id="class-binarycrossentropy">Class <code>BinaryCrossentropy</code></h2>
 <!-- Start diff -->
 
-
 <p>Computes the crossentropy metric between the labels and predictions.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li>Class <code>tf.compat.v1.keras.metrics.BinaryCrossentropy</code></li>
 <li>Class <code>tf.compat.v2.keras.metrics.BinaryCrossentropy</code></li>
 <li>Class <code>tf.compat.v2.metrics.BinaryCrossentropy</code></li>
 <li>Class <code>tf.metrics.BinaryCrossentropy</code></li>
 </ul>
-
-
 <!-- Placeholder for "Used in" -->
-
 
 <p>This is the crossentropy metric class to be used when there are only two
 label classes (0 and 1).</p>
+<h4 id="usage">Usage:</h4>
+<div class="codehilite"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">BinaryCrossentropy</span><span class="p">()</span>
+<span class="n">m</span><span class="o">.</span><span class="n">update_state</span><span class="p">([</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">])</span>
 
-<h4>Usage:</h4>
+<span class="c1"># EPSILON = 1e-7, y = y_true, y` = y_pred, Y_MAX = 0.9999999</span>
+<span class="c1"># y` = clip_ops.clip_by_value(output, EPSILON, 1. - EPSILON)</span>
+<span class="c1"># y` = [Y_MAX, Y_MAX, Y_MAX, EPSILON]</span>
 
-<p>```python
-m = tf.keras.metrics.BinaryCrossentropy()
-m.update_state([1., 0., 1., 0.], [1., 1., 1., 0.])</p>
+<span class="c1"># Metric = -(y log(y` + EPSILON) + (1 - y) log(1 - y` + EPSILON))</span>
+<span class="c1">#        = [-log(Y_MAX + EPSILON), -log(1 - Y_MAX + EPSILON),</span>
+<span class="c1">#           -log(Y_MAX + EPSILON), -log(1)]</span>
+<span class="c1">#        = [(0 + 15.33) / 2, (0 + 0) / 2]</span>
+<span class="c1"># Reduced metric = 7.665 / 2</span>
 
-<h1>EPSILON = 1e-7, y = y_true, y` = y_pred, Y_MAX = 0.9999999</h1>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Final result: &#39;</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">result</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>  <span class="c1"># Final result: 3.833</span>
+</pre></div>
 
-<h1>y` = clip_ops.clip_by_value(output, EPSILON, 1. - EPSILON)</h1>
-
-<h1>y` = [Y_MAX, Y_MAX, Y_MAX, EPSILON]</h1>
-
-<h1>Metric = -(y log(y<code>+ EPSILON) + (1 - y) log(1 - y</code> + EPSILON))</h1>
-
-<h1>= [-log(Y_MAX + EPSILON), -log(1 - Y_MAX + EPSILON),</h1>
-
-<h1>-log(Y_MAX + EPSILON), -log(1)]</h1>
-
-<h1>= [(0 + 15.33) / 2, (0 + 0) / 2]</h1>
-
-<h1>Reduced metric = 7.665 / 2</h1>
-
-<p>print(&lsquo;Final result: &rsquo;, m.result().numpy())  # Final result: 3.833
-```</p>
 
 <p>Usage with tf.keras API:</p>
+<div class="codehilite"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">outputs</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+    <span class="s1">&#39;sgd&#39;</span><span class="p">,</span>
+    <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;mse&#39;</span><span class="p">,</span>
+    <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">BinaryCrossentropy</span><span class="p">()])</span>
+</pre></div>
 
-<p><code>python
-model = tf.keras.Model(inputs, outputs)
-model.compile(
-    'sgd',
-    loss='mse',
-    metrics=[tf.keras.metrics.BinaryCrossentropy()])
-</code></p>
 
 <h2 id="__init__"><code>__init__</code></h2>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/metrics.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;binary_crossentropy&#39;</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">from_logits</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">label_smoothing</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__init__(
-    name='binary_crossentropy',
-    dtype=None,
-    from_logits=False,
-    label_smoothing=0
-)
-</code></p>
 
 <p>Creates a <code>BinaryCrossentropy</code> instance.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>name</code></b>: (Optional) string name of the metric instance.</li>
 <li><b><code>dtype</code></b>: (Optional) data type of the metric result.</li>
 <li><b><code>from_logits</code></b>: (Optional )Whether output is expected to be a logits tensor.
-By default, we consider that output encodes a probability distribution.</li>
-<li><b><code>label_smoothing</code></b>: (Optional) Float in [0, 1]. When > 0, label values are
-smoothed, meaning the confidence on label values are relaxed.
-e.g. <code>label_smoothing=0.2</code> means that we will use a value of <code>0.1</code> for
-label <code>0</code> and <code>0.9</code> for label <code>1</code>"</li>
+  By default, we consider that output encodes a probability distribution.</li>
+<li><b><code>label_smoothing</code></b>: (Optional) Float in [0, 1]. When &gt; 0, label values are
+  smoothed, meaning the confidence on label values are relaxed.
+  e.g. <code>label_smoothing=0.2</code> means that we will use a value of <code>0.1</code> for
+  label <code>0</code> and <code>0.9</code> for label <code>1</code>"</li>
 </ul>
-
-
 <h2 id="__new__"><code>__new__</code></h2>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/metrics.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__new__</span><span class="p">(</span>
+    <span class="bp">cls</span><span class="p">,</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__new__(
-    cls,
-    *args,
-    **kwargs
-)
-</code></p>
 
 <p>Create and return a new object.  See help(type) for accurate signature.</p>
-
-<h2>Methods</h2>
-
+<h2 id="methods">Methods</h2>
 <h3 id="reset_states"><code>reset_states</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/metrics.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">reset_states</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-reset_states()
-</code></p>
 
 <p>Resets all of the metric state variables.</p>
-
 <p>This function is called between epochs/steps,
 when a metric is evaluated during training.</p>
-
 <h3 id="result"><code>result</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/metrics.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">result</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-result()
-</code></p>
 
 <p>Computes and returns the metric value tensor.</p>
-
 <p>Result computation is an idempotent operation that simply calculates the
 metric value using the state variables.</p>
-
 <h3 id="update_state"><code>update_state</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/metrics.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">update_state</span><span class="p">(</span>
+    <span class="n">y_true</span><span class="p">,</span>
+    <span class="n">y_pred</span><span class="p">,</span>
+    <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-update_state(
-    y_true,
-    y_pred,
-    sample_weight=None
-)
-</code></p>
 
 <p>Accumulates metric statistics.</p>
-
 <p><code>y_true</code> and <code>y_pred</code> should have the same shape.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_1">Args:</h4>
 <ul>
 <li><b><code>y_true</code></b>: The ground truth values.</li>
 <li><b><code>y_pred</code></b>: The predicted values.</li>
 <li><b><code>sample_weight</code></b>: Optional weighting of each example. Defaults to 1. Can be
-a <code>Tensor</code> whose rank is either 0, or the same rank as <code>y_true</code>,
-and must be broadcastable to <code>y_true</code>.</li>
+  a <code>Tensor</code> whose rank is either 0, or the same rank as <code>y_true</code>,
+  and must be broadcastable to <code>y_true</code>.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>Update op.</p>
+    </body>
+    </html>
+   

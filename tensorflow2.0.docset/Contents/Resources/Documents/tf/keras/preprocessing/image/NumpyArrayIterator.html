@@ -1,4 +1,13 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.keras.preprocessing.image.NumpyArrayIterator" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="__getitem__"/>
@@ -11,172 +20,133 @@
 <meta itemprop="property" content="white_list_formats"/>
 </div>
 
-
-<h1>tf.keras.preprocessing.image.NumpyArrayIterator</h1>
-
+<h1 id="tfkeraspreprocessingimagenumpyarrayiterator">tf.keras.preprocessing.image.NumpyArrayIterator</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/preprocessing/image.py">View source</a></p>
-
-<h2>Class <code>NumpyArrayIterator</code></h2>
-
+<h2 id="class-numpyarrayiterator">Class <code>NumpyArrayIterator</code></h2>
 <!-- Start diff -->
 
-
 <p>Iterator yielding data from a Numpy array.</p>
-
 <p>Inherits From: <a href="../../../../tf/keras/preprocessing/image/Iterator.html"><code>Iterator</code></a></p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li>Class <code>tf.compat.v1.keras.preprocessing.image.NumpyArrayIterator</code></li>
 <li>Class <code>tf.compat.v2.keras.preprocessing.image.NumpyArrayIterator</code></li>
 </ul>
-
-
 <!-- Placeholder for "Used in" -->
 
-
-<h4>Arguments:</h4>
-
+<h4 id="arguments">Arguments:</h4>
 <ul>
 <li><b><code>x</code></b>: Numpy array of input data or tuple.
-  If tuple, the second elements is either
-  another numpy array or a list of numpy arrays,
-  each of which gets passed
-  through as an output without any modifications.</li>
+    If tuple, the second elements is either
+    another numpy array or a list of numpy arrays,
+    each of which gets passed
+    through as an output without any modifications.</li>
 <li><b><code>y</code></b>: Numpy array of targets data.</li>
 <li><b><code>image_data_generator</code></b>: Instance of <code>ImageDataGenerator</code>
-  to use for random transformations and normalization.</li>
+    to use for random transformations and normalization.</li>
 <li><b><code>batch_size</code></b>: Integer, size of a batch.</li>
 <li><b><code>shuffle</code></b>: Boolean, whether to shuffle the data between epochs.</li>
 <li><b><code>sample_weight</code></b>: Numpy array of sample weights.</li>
 <li><b><code>seed</code></b>: Random seed for data shuffling.</li>
 <li><b><code>data_format</code></b>: String, one of <code>channels_first</code>, <code>channels_last</code>.</li>
 <li><b><code>save_to_dir</code></b>: Optional directory where to save the pictures
-  being yielded, in a viewable format. This is useful
-  for visualizing the random transformations being
-  applied, for debugging purposes.</li>
+    being yielded, in a viewable format. This is useful
+    for visualizing the random transformations being
+    applied, for debugging purposes.</li>
 <li><b><code>save_prefix</code></b>: String prefix to use for saving sample
-  images (if <code>save_to_dir</code> is set).</li>
+    images (if <code>save_to_dir</code> is set).</li>
 <li><b><code>save_format</code></b>: Format to use for saving sample images
-  (if <code>save_to_dir</code> is set).</li>
+    (if <code>save_to_dir</code> is set).</li>
 <li><b><code>subset</code></b>: Subset of data (<code>"training"</code> or <code>"validation"</code>) if
-  validation_split is set in ImageDataGenerator.</li>
+    validation_split is set in ImageDataGenerator.</li>
 <li><b><code>dtype</code></b>: Dtype to use for the generated arrays.</li>
 </ul>
-
-
 <h2 id="__init__"><code>__init__</code></h2>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/preprocessing/image.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">,</span>
+    <span class="n">image_data_generator</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>
+    <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">data_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">save_to_dir</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">save_prefix</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">save_format</span><span class="o">=</span><span class="s1">&#39;png&#39;</span><span class="p">,</span>
+    <span class="n">subset</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__init__(
-    x,
-    y,
-    image_data_generator,
-    batch_size=32,
-    shuffle=False,
-    sample_weight=None,
-    seed=None,
-    data_format=None,
-    save_to_dir=None,
-    save_prefix='',
-    save_format='png',
-    subset=None,
-    dtype=None
-)
-</code></p>
 
 <p>Initialize self.  See help(type(self)) for accurate signature.</p>
-
-<h2>Methods</h2>
-
+<h2 id="methods">Methods</h2>
 <h3 id="__getitem__"><code>__getitem__</code></h3>
 
+<div class="codehilite"><pre><span></span><span class="fm">__getitem__</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__getitem__(idx)
-</code></p>
 
 <p>Gets batch at position <code>index</code>.</p>
-
-<h4>Arguments:</h4>
-
+<h4 id="arguments_1">Arguments:</h4>
 <ul>
 <li><b><code>index</code></b>: position of the batch in the Sequence.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A batch</p>
-
 <h3 id="__iter__"><code>__iter__</code></h3>
 
+<div class="codehilite"><pre><span></span><span class="fm">__iter__</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-__iter__()
-</code></p>
 
 <p>Create a generator that iterate over the Sequence.</p>
-
 <h3 id="__len__"><code>__len__</code></h3>
 
+<div class="codehilite"><pre><span></span><span class="fm">__len__</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-__len__()
-</code></p>
 
 <p>Number of batch in the Sequence.</p>
-
-<h4>Returns:</h4>
-
+<h4 id="returns_1">Returns:</h4>
 <p>The number of batches in the Sequence.</p>
-
 <h3 id="next"><code>next</code></h3>
 
+<div class="codehilite"><pre><span></span><span class="nb">next</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-next()
-</code></p>
 
 <p>For python 2.x.</p>
+<h1 id="returns_2">Returns</h1>
+<div class="codehilite"><pre><span></span><span class="err">The next batch.</span>
+</pre></div>
 
-<h1>Returns</h1>
-
-<pre><code>The next batch.
-</code></pre>
 
 <h3 id="on_epoch_end"><code>on_epoch_end</code></h3>
 
+<div class="codehilite"><pre><span></span><span class="n">on_epoch_end</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-on_epoch_end()
-</code></p>
 
 <p>Method called at the end of every epoch.</p>
-
 <h3 id="reset"><code>reset</code></h3>
 
+<div class="codehilite"><pre><span></span><span class="n">reset</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-reset()
-</code></p>
 
-<h2>Class Members</h2>
-
+<h2 id="class-members">Class Members</h2>
 <ul>
 <li><code>white_list_formats</code> <a id="white_list_formats"></a></li>
 </ul>
-
+    </body>
+    </html>
+   

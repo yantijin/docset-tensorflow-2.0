@@ -1,61 +1,56 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.layers.experimental.set_keras_style" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.compat.v1.layers.experimental.set_keras_style</h1>
-
+<h1 id="tfcompatv1layersexperimentalset_keras_style">tf.compat.v1.layers.experimental.set_keras_style</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/layers/base.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Use Keras-style variable management.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">set_keras_style</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-tf.compat.v1.layers.experimental.set_keras_style()
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>All tf.layers and tf RNN cells created after keras style ha been enabled
 use Keras-style variable management.  Creating such layers with a
 scope= argument is disallowed, and reuse=True is disallowed.</p>
-
 <p>The purpose of this function is to allow users of existing layers to
 slowly transition to Keras layers API without breaking existing
 functionality.</p>
-
 <p>For more details, see the documentation for <code>keras_style_scope</code>.</p>
-
 <p>Note, once keras style has been set, it is set globally for the entire
 program and cannot be unset.</p>
+<h4 id="example">Example:</h4>
+<div class="codehilite"><pre><span></span><span class="n">set_keras_style</span><span class="p">()</span>
 
-<h4>Example:</h4>
+<span class="n">model_1</span> <span class="o">=</span> <span class="n">RNNModel</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;model_1&quot;</span><span class="p">)</span>
+<span class="n">model_2</span> <span class="o">=</span> <span class="n">RNNModel</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;model_2&quot;</span><span class="p">)</span>
 
-<p>```python
-set_keras_style()</p>
+<span class="c1"># model_1 and model_2 are guaranteed to create their own variables.</span>
+<span class="n">output_1</span><span class="p">,</span> <span class="n">next_state_1</span> <span class="o">=</span> <span class="n">model_1</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span>
+<span class="n">output_2</span><span class="p">,</span> <span class="n">next_state_2</span> <span class="o">=</span> <span class="n">model_2</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span>
 
-<p>model_1 = RNNModel(name=&ldquo;model_1&rdquo;)
-model_2 = RNNModel(name=&ldquo;model_2&rdquo;)</p>
-
-<h1>model_1 and model_2 are guaranteed to create their own variables.</h1>
-
-<p>output_1, next_state_1 = model_1(input, state)
-output_2, next_state_2 = model_2(input, state)</p>
-
-<p>assert len(model_1.weights) > 0
-assert len(model_2.weights) > 0
-assert(model_1.weights != model_2.weights)
-```</p>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">model_1</span><span class="o">.</span><span class="n">weights</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">model_2</span><span class="o">.</span><span class="n">weights</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+<span class="k">assert</span><span class="p">(</span><span class="n">model_1</span><span class="o">.</span><span class="n">weights</span> <span class="o">!=</span> <span class="n">model_2</span><span class="o">.</span><span class="n">weights</span><span class="p">)</span>
+</pre></div>
+    </body>
+    </html>
+   

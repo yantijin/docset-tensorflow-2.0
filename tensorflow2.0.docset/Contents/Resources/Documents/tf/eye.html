@@ -1,29 +1,28 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../default.css" rel="stylesheet">
+    <link href="
+   ../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.eye" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.eye</h1>
-
+<h1 id="tfeye">tf.eye</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/linalg_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Construct an identity matrix, or a batch of matrices.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.eye</code></li>
 <li><code>tf.compat.v1.linalg.eye</code></li>
@@ -31,57 +30,48 @@
 <li><code>tf.compat.v2.linalg.eye</code></li>
 <li><code>tf.linalg.eye</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span>
+    <span class="n">num_rows</span><span class="p">,</span>
+    <span class="n">num_columns</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">batch_shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.eye(
-    num_rows,
-    num_columns=None,
-    batch_shape=None,
-    dtype=tf.dtypes.float32,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
+<div class="codehilite"><pre><span></span><span class="c1"># Construct one identity matrix.</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="o">==&gt;</span> <span class="p">[[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">],</span>
+     <span class="p">[</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">]]</span>
 
-<p>```python</p>
+<span class="c1"># Construct a batch of 3 identity matricies, each 2 x 2.</span>
+<span class="c1"># batch_identity[i, :, :] is a 2 x 2 identity matrix, i = 0, 1, 2.</span>
+<span class="n">batch_identity</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">batch_shape</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
 
-<h1>Construct one identity matrix.</h1>
+<span class="c1"># Construct one 2 x 3 &quot;identity&quot; matrix</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">num_columns</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="o">==&gt;</span> <span class="p">[[</span> <span class="mf">1.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">],</span>
+     <span class="p">[</span> <span class="mf">0.</span><span class="p">,</span>  <span class="mf">1.</span><span class="p">,</span>  <span class="mf">0.</span><span class="p">]]</span>
+</pre></div>
 
-<p>tf.eye(2)
-==> [[1., 0.],
-     [0., 1.]]</p>
 
-<h1>Construct a batch of 3 identity matricies, each 2 x 2.</h1>
-
-<h1>batch_identity[i, :, :] is a 2 x 2 identity matrix, i = 0, 1, 2.</h1>
-
-<p>batch_identity = tf.eye(2, batch_shape=[3])</p>
-
-<h1>Construct one 2 x 3 &ldquo;identity&rdquo; matrix</h1>
-
-<p>tf.eye(2, num_columns=3)
-==> [[ 1.,  0.,  0.],
-     [ 0.,  1.,  0.]]
-```</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>num_rows</code></b>: Non-negative <code>int32</code> scalar <code>Tensor</code> giving the number of rows
-in each batch matrix.</li>
+  in each batch matrix.</li>
 <li><b><code>num_columns</code></b>: Optional non-negative <code>int32</code> scalar <code>Tensor</code> giving the number
-of columns in each batch matrix.  Defaults to <code>num_rows</code>.</li>
+  of columns in each batch matrix.  Defaults to <code>num_rows</code>.</li>
 <li><b><code>batch_shape</code></b>:  A list or tuple of Python integers or a 1-D <code>int32</code> <code>Tensor</code>.
-If provided, the returned <code>Tensor</code> will have leading batch dimensions of
-this shape.</li>
+  If provided, the returned <code>Tensor</code> will have leading batch dimensions of
+  this shape.</li>
 <li><b><code>dtype</code></b>:  The type of an element in the resulting <code>Tensor</code></li>
-<li><b><code>name</code></b>:  A name for this <code>Op</code>.  Defaults to &ldquo;eye&rdquo;.</li>
+<li><b><code>name</code></b>:  A name for this <code>Op</code>.  Defaults to "eye".</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>Tensor</code> of shape <code>batch_shape + [num_rows, num_columns]</code></p>
+    </body>
+    </html>
+   

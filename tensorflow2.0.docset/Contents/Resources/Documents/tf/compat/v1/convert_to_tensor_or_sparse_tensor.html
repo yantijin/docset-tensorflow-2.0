@@ -1,56 +1,51 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.convert_to_tensor_or_sparse_tensor" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.compat.v1.convert_to_tensor_or_sparse_tensor</h1>
-
+<h1 id="tfcompatv1convert_to_tensor_or_sparse_tensor">tf.compat.v1.convert_to_tensor_or_sparse_tensor</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/framework/sparse_tensor.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Converts value to a <code>SparseTensor</code> or <code>Tensor</code>.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">convert_to_tensor_or_sparse_tensor</span><span class="p">(</span>
+    <span class="n">value</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-tf.compat.v1.convert_to_tensor_or_sparse_tensor(
-    value,
-    dtype=None,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>value</code></b>: A <code>SparseTensor</code>, <code>SparseTensorValue</code>, or an object whose type has a
-registered <code>Tensor</code> conversion function.</li>
+  registered <code>Tensor</code> conversion function.</li>
 <li><b><code>dtype</code></b>: Optional element type for the returned tensor. If missing, the type
-is inferred from the type of <code>value</code>.</li>
+  is inferred from the type of <code>value</code>.</li>
 <li><b><code>name</code></b>: Optional name to use if a new <code>Tensor</code> is created.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>SparseTensor</code> or <code>Tensor</code> based on <code>value</code>.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>RuntimeError</code></b>: If result type is incompatible with <code>dtype</code>.</li>
 </ul>
-
+    </body>
+    </html>
+   

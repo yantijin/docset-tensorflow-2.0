@@ -1,41 +1,40 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.nn.depthwise_conv2d_native" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.compat.v1.nn.depthwise_conv2d_native</h1>
-
+<h1 id="tfcompatv1nndepthwise_conv2d_native">tf.compat.v1.nn.depthwise_conv2d_native</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p>Defined in generated file: <code>python/ops/gen_nn_ops.py</code></p>
-
 <!-- Start diff -->
 
-
 <p>Computes a 2-D depthwise convolution given 4-D <code>input</code> and <code>filter</code> tensors.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">depthwise_conv2d_native</span><span class="p">(</span>
+    <span class="nb">input</span><span class="p">,</span>
+    <span class="nb">filter</span><span class="p">,</span>
+    <span class="n">strides</span><span class="p">,</span>
+    <span class="n">padding</span><span class="p">,</span>
+    <span class="n">data_format</span><span class="o">=</span><span class="s1">&#39;NHWC&#39;</span><span class="p">,</span>
+    <span class="n">dilations</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-tf.compat.v1.nn.depthwise_conv2d_native(
-    input,
-    filter,
-    strides,
-    padding,
-    data_format='NHWC',
-    dilations=[1, 1, 1, 1],
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>Given an input tensor of shape <code>[batch, in_height, in_width, in_channels]</code>
 and a filter / kernel tensor of shape
@@ -44,44 +43,41 @@ and a filter / kernel tensor of shape
 a different filter to each input channel (expanding from 1 channel to
 <code>channel_multiplier</code> channels for each), then concatenates the results
 together. Thus, the output has <code>in_channels * channel_multiplier</code> channels.</p>
+<div class="codehilite"><pre><span></span><span class="err">for k in 0..in_channels-1</span>
+<span class="err">  for q in 0..channel_multiplier-1</span>
+<span class="err">    output[b, i, j, k * channel_multiplier + q] =</span>
+<span class="err">      sum_{di, dj} input[b, strides[1] * i + di, strides[2] * j + dj, k] *</span>
+<span class="err">                        filter[di, dj, k, q]</span>
+</pre></div>
 
-<p><code>
-for k in 0..in_channels-1
-  for q in 0..channel_multiplier-1
-    output[b, i, j, k * channel_multiplier + q] =
-      sum_{di, dj} input[b, strides[1] * i + di, strides[2] * j + dj, k] *
-                        filter[di, dj, k, q]
-</code></p>
 
 <p>Must have <code>strides[0] = strides[3] = 1</code>.  For the most common case of the same
 horizontal and vertices strides, <code>strides = [1, stride, stride, 1]</code>.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>input</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>half</code>, <code>bfloat16</code>, <code>float32</code>, <code>float64</code>.</li>
 <li><b><code>filter</code></b>: A <code>Tensor</code>. Must have the same type as <code>input</code>.</li>
 <li><b><code>strides</code></b>: A list of <code>ints</code>.
-1-D of length 4.  The stride of the sliding window for each dimension
-of <code>input</code>.</li>
+  1-D of length 4.  The stride of the sliding window for each dimension
+  of <code>input</code>.</li>
 <li><b><code>padding</code></b>: A <code>string</code> from: <code>"SAME", "VALID"</code>.
-The type of padding algorithm to use.</li>
+  The type of padding algorithm to use.</li>
 <li><b><code>data_format</code></b>: An optional <code>string</code> from: <code>"NHWC", "NCHW"</code>. Defaults to <code>"NHWC"</code>.
-Specify the data format of the input and output data. With the
-default format &ldquo;NHWC&rdquo;, the data is stored in the order of:
-    [batch, height, width, channels].
-Alternatively, the format could be &ldquo;NCHW&rdquo;, the data storage order of:
-    [batch, channels, height, width].</li>
+  Specify the data format of the input and output data. With the
+  default format "NHWC", the data is stored in the order of:
+      [batch, height, width, channels].
+  Alternatively, the format could be "NCHW", the data storage order of:
+      [batch, channels, height, width].</li>
 <li><b><code>dilations</code></b>: An optional list of <code>ints</code>. Defaults to <code>[1, 1, 1, 1]</code>.
-1-D tensor of length 4.  The dilation factor for each dimension of
-<code>input</code>. If set to k > 1, there will be k-1 skipped cells between each filter
-element on that dimension. The dimension order is determined by the value of
-<code>data_format</code>, see above for details. Dilations in the batch and depth
-dimensions must be 1.</li>
+  1-D tensor of length 4.  The dilation factor for each dimension of
+  <code>input</code>. If set to k &gt; 1, there will be k-1 skipped cells between each filter
+  element on that dimension. The dimension order is determined by the value of
+  <code>data_format</code>, see above for details. Dilations in the batch and depth
+  dimensions must be 1.</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>Tensor</code>. Has the same type as <code>input</code>.</p>
+    </body>
+    </html>
+   

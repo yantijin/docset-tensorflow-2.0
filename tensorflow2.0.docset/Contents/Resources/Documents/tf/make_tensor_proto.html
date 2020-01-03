@@ -1,104 +1,87 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../default.css" rel="stylesheet">
+    <link href="
+   ../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.make_tensor_proto" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.make_tensor_proto</h1>
-
+<h1 id="tfmake_tensor_proto">tf.make_tensor_proto</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/framework/tensor_util.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Create a TensorProto.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.make_tensor_proto</code></li>
 <li><code>tf.compat.v2.make_tensor_proto</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">make_tensor_proto</span><span class="p">(</span>
+    <span class="n">values</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">shape</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">verify_shape</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">allow_broadcast</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.make_tensor_proto(
-    values,
-    dtype=None,
-    shape=None,
-    verify_shape=False,
-    allow_broadcast=False
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>In TensorFlow 2.0, representing tensors as protos should no longer be a
 common workflow. That said, this utility function is still useful for
 generating TF Serving request protos:</p>
-
-<p>  request = tensorflow_serving.apis.predict_pb2.PredictRequest()
-  request.model_spec.name = &ldquo;my_model&rdquo;
-  request.model_spec.signature_name = &ldquo;serving_default&rdquo;
-  request.inputs[&ldquo;images&rdquo;].CopyFrom(tf.make_tensor_proto(X_new))</p>
-
-<p>make_tensor_proto accepts &ldquo;values&rdquo; of a python scalar, a python list, a
+<p>request = tensorflow_serving.apis.predict_pb2.PredictRequest()
+  request.model_spec.name = "my_model"
+  request.model_spec.signature_name = "serving_default"
+  request.inputs["images"].CopyFrom(tf.make_tensor_proto(X_new))</p>
+<p>make_tensor_proto accepts "values" of a python scalar, a python list, a
 numpy ndarray, or a numpy scalar.</p>
-
-<p>If &ldquo;values&rdquo; is a python scalar or a python list, make_tensor_proto
+<p>If "values" is a python scalar or a python list, make_tensor_proto
 first convert it to numpy ndarray. If dtype is None, the
 conversion tries its best to infer the right numpy data
 type. Otherwise, the resulting numpy array has a compatible data
 type with the given dtype.</p>
-
 <p>In either case above, the numpy ndarray (either the caller provided
 or the auto converted) must have the compatible type with dtype.</p>
-
 <p>make_tensor_proto then converts the numpy array to a tensor proto.</p>
-
-<p>If &ldquo;shape&rdquo; is None, the resulting tensor proto represents the numpy
+<p>If "shape" is None, the resulting tensor proto represents the numpy
 array precisely.</p>
-
-<p>Otherwise, &ldquo;shape&rdquo; specifies the tensor&rsquo;s shape and the numpy array
-can not have more elements than what &ldquo;shape&rdquo; specifies.</p>
-
-<h4>Args:</h4>
-
+<p>Otherwise, "shape" specifies the tensor's shape and the numpy array
+can not have more elements than what "shape" specifies.</p>
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>values</code></b>:         Values to put in the TensorProto.</li>
 <li><b><code>dtype</code></b>:          Optional tensor_pb2 DataType value.</li>
 <li><b><code>shape</code></b>:          List of integers representing the dimensions of tensor.</li>
 <li><b><code>verify_shape</code></b>:   Boolean that enables verification of a shape of values.</li>
 <li><b><code>allow_broadcast</code></b>:  Boolean that enables allowing scalars and 1 length vector
-  broadcasting. Cannot be true when verify_shape is true.</li>
+    broadcasting. Cannot be true when verify_shape is true.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>TensorProto</code>. Depending on the type, it may contain data in the
-&ldquo;tensor_content&rdquo; attribute, which is not directly useful to Python programs.
+"tensor_content" attribute, which is not directly useful to Python programs.
 To access the values you should convert the proto back to a numpy ndarray
 with <a href="../tf/make_ndarray.html"><code>tf.make_ndarray(proto)</code></a>.</p>
-
 <p>If <code>values</code> is a <code>TensorProto</code>, it is immediately returned; <code>dtype</code> and
 <code>shape</code> are ignored.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>TypeError</code></b>:  if unsupported types are provided.</li>
 <li><b><code>ValueError</code></b>: if arguments have inappropriate values or if verify_shape is
-True and shape of values is not equals to a shape from the argument.</li>
+ True and shape of values is not equals to a shape from the argument.</li>
 </ul>
-
+    </body>
+    </html>
+   

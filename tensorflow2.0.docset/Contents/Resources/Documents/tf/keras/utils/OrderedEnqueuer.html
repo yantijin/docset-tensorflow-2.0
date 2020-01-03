@@ -1,4 +1,13 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.keras.utils.OrderedEnqueuer" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="__init__"/>
@@ -8,135 +17,95 @@
 <meta itemprop="property" content="stop"/>
 </div>
 
-
-<h1>tf.keras.utils.OrderedEnqueuer</h1>
-
+<h1 id="tfkerasutilsorderedenqueuer">tf.keras.utils.OrderedEnqueuer</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/utils/data_utils.py">View source</a></p>
-
-<h2>Class <code>OrderedEnqueuer</code></h2>
-
+<h2 id="class-orderedenqueuer">Class <code>OrderedEnqueuer</code></h2>
 <!-- Start diff -->
 
-
 <p>Builds a Enqueuer from a Sequence.</p>
-
 <p>Inherits From: <a href="../../../tf/keras/utils/SequenceEnqueuer.html"><code>SequenceEnqueuer</code></a></p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li>Class <code>tf.compat.v1.keras.utils.OrderedEnqueuer</code></li>
 <li>Class <code>tf.compat.v2.keras.utils.OrderedEnqueuer</code></li>
 </ul>
-
-
 <!-- Placeholder for "Used in" -->
 
-
 <p>Used in <code>fit_generator</code>, <code>evaluate_generator</code>, <code>predict_generator</code>.</p>
-
-<h4>Arguments:</h4>
-
+<h4 id="arguments">Arguments:</h4>
 <ul>
 <li><b><code>sequence</code></b>: A <code>tf.keras.utils.data_utils.Sequence</code> object.</li>
 <li><b><code>use_multiprocessing</code></b>: use multiprocessing if True, otherwise threading</li>
 <li><b><code>shuffle</code></b>: whether to shuffle the data at the beginning of each epoch</li>
 </ul>
-
-
 <h2 id="__init__"><code>__init__</code></h2>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/utils/data_utils.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">sequence</span><span class="p">,</span>
+    <span class="n">use_multiprocessing</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__init__(
-    sequence,
-    use_multiprocessing=False,
-    shuffle=False
-)
-</code></p>
 
 <p>Initialize self.  See help(type(self)) for accurate signature.</p>
-
-<h2>Methods</h2>
-
+<h2 id="methods">Methods</h2>
 <h3 id="get"><code>get</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/utils/data_utils.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-get()
-</code></p>
 
 <p>Creates a generator to extract data from the queue.</p>
-
 <p>Skip the data if it is <code>None</code>.</p>
-
-<h4>Yields:</h4>
-
+<h4 id="yields">Yields:</h4>
 <p>The next element in the queue, i.e. a tuple
 <code>(inputs, targets)</code> or
 <code>(inputs, targets, sample_weights)</code>.</p>
-
 <h3 id="is_running"><code>is_running</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/utils/data_utils.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">is_running</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-is_running()
-</code></p>
 
 <h3 id="start"><code>start</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/utils/data_utils.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">start</span><span class="p">(</span>
+    <span class="n">workers</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">max_queue_size</span><span class="o">=</span><span class="mi">10</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-start(
-    workers=1,
-    max_queue_size=10
-)
-</code></p>
 
-<p>Starts the handler&rsquo;s workers.</p>
-
-<h4>Arguments:</h4>
-
+<p>Starts the handler's workers.</p>
+<h4 id="arguments_1">Arguments:</h4>
 <ul>
 <li><b><code>workers</code></b>: Number of workers.</li>
 <li><b><code>max_queue_size</code></b>: queue size
-  (when full, workers could block on <code>put()</code>)</li>
+    (when full, workers could block on <code>put()</code>)</li>
 </ul>
-
-
 <h3 id="stop"><code>stop</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/utils/data_utils.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">stop</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-stop(timeout=None)
-</code></p>
 
 <p>Stops running threads and wait for them to exit, if necessary.</p>
-
 <p>Should be called by the same thread which called <code>start()</code>.</p>
-
-<h4>Arguments:</h4>
-
+<h4 id="arguments_2">Arguments:</h4>
 <ul>
 <li><b><code>timeout</code></b>: maximum time to wait on <code>thread.join()</code></li>
 </ul>
-
+    </body>
+    </html>
+   

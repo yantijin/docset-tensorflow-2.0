@@ -1,29 +1,28 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.math.top_k" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.math.top_k</h1>
-
+<h1 id="tfmathtop_k">tf.math.top_k</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/nn_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Finds values and indices of the <code>k</code> largest entries for the last dimension.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.math.top_k</code></li>
 <li><code>tf.compat.v1.nn.top_k</code></li>
@@ -31,48 +30,41 @@
 <li><code>tf.compat.v2.nn.top_k</code></li>
 <li><code>tf.nn.top_k</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">top_k</span><span class="p">(</span>
+    <span class="nb">input</span><span class="p">,</span>
+    <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="nb">sorted</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.math.top_k(
-    input,
-    k=1,
-    sorted=True,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>If the input is a vector (rank=1), finds the <code>k</code> largest entries in the vector
 and outputs their values and indices as vectors.  Thus <code>values[j]</code> is the
 <code>j</code>-th largest entry in <code>input</code>, and its index is <code>indices[j]</code>.</p>
-
 <p>For matrices (resp. higher rank input), computes the top <code>k</code> entries in each
 row (resp. vector along the last dimension).  Thus,</p>
+<div class="codehilite"><pre><span></span><span class="s s-Atom">values</span><span class="p">.</span><span class="s s-Atom">shape</span> <span class="o">=</span> <span class="s s-Atom">indices</span><span class="p">.</span><span class="s s-Atom">shape</span> <span class="o">=</span> <span class="s s-Atom">input</span><span class="p">.</span><span class="s s-Atom">shape</span><span class="p">[:-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="s s-Atom">k</span><span class="p">]</span>
+</pre></div>
 
-<pre><code>values.shape = indices.shape = input.shape[:-1] + [k]
-</code></pre>
 
 <p>If two elements are equal, the lower-index element appears first.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>input</code></b>: 1-D or higher <code>Tensor</code> with last dimension at least <code>k</code>.</li>
 <li><b><code>k</code></b>: 0-D <code>int32</code> <code>Tensor</code>.  Number of top elements to look for along the last
-dimension (along each row for matrices).</li>
+  dimension (along each row for matrices).</li>
 <li><b><code>sorted</code></b>: If true the resulting <code>k</code> elements will be sorted by the values in
-descending order.</li>
+  descending order.</li>
 <li><b><code>name</code></b>: Optional name for the operation.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <ul>
 <li><b><code>values</code></b>: The <code>k</code> largest elements along each last dimensional slice.</li>
 <li><b><code>indices</code></b>: The indices of <code>values</code> within the last dimension of <code>input</code>.</li>
 </ul>
-
+    </body>
+    </html>
+   

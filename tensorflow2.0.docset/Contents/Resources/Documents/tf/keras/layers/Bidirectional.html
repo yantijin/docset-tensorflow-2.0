@@ -1,4 +1,13 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.keras.layers.Bidirectional" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="constraints"/>
@@ -6,129 +15,96 @@
 <meta itemprop="property" content="reset_states"/>
 </div>
 
-
-<h1>tf.keras.layers.Bidirectional</h1>
-
+<h1 id="tfkeraslayersbidirectional">tf.keras.layers.Bidirectional</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/wrappers.py">View source</a></p>
-
-<h2>Class <code>Bidirectional</code></h2>
-
+<h2 id="class-bidirectional">Class <code>Bidirectional</code></h2>
 <!-- Start diff -->
 
-
 <p>Bidirectional wrapper for RNNs.</p>
-
 <p>Inherits From: <a href="../../../tf/keras/layers/Wrapper.html"><code>Wrapper</code></a></p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li>Class <code>tf.compat.v1.keras.layers.Bidirectional</code></li>
 <li>Class <code>tf.compat.v2.keras.layers.Bidirectional</code></li>
 </ul>
-
-
 <!-- Placeholder for "Used in" -->
 
-
-<h4>Arguments:</h4>
-
+<h4 id="arguments">Arguments:</h4>
 <ul>
 <li><b><code>layer</code></b>: <code>Recurrent</code> instance.</li>
 <li><b><code>merge_mode</code></b>: Mode by which outputs of the
-forward and backward RNNs will be combined.
-One of {&lsquo;sum&rsquo;, &lsquo;mul&rsquo;, &lsquo;concat&rsquo;, &lsquo;ave&rsquo;, None}.
-If None, the outputs will not be combined,
-they will be returned as a list.</li>
+  forward and backward RNNs will be combined.
+  One of {'sum', 'mul', 'concat', 'ave', None}.
+  If None, the outputs will not be combined,
+  they will be returned as a list.</li>
 <li><b><code>backward_layer</code></b>: Optional <code>Recurrent</code> instance to be used to handle
-backwards input processing. If <code>backward_layer</code> is not provided,
-the layer instance passed as the <code>layer</code> argument will be used to
-generate the backward layer automatically.
-Note that the provided <code>backward_layer</code> layer should have properties
-matching those of the <code>layer</code> argument, in particular it should have the
-same values for <code>stateful</code>, <code>return_states</code>, <code>return_sequence</code>, etc.
-In addition, <code>backward_layer</code> and <code>layer</code> should have
-different <code>go_backwards</code> argument values.
-A <code>ValueError</code> will be raised if these requirements are not met.</li>
+  backwards input processing. If <code>backward_layer</code> is not provided,
+  the layer instance passed as the <code>layer</code> argument will be used to
+  generate the backward layer automatically.
+  Note that the provided <code>backward_layer</code> layer should have properties
+  matching those of the <code>layer</code> argument, in particular it should have the
+  same values for <code>stateful</code>, <code>return_states</code>, <code>return_sequence</code>, etc.
+  In addition, <code>backward_layer</code> and <code>layer</code> should have
+  different <code>go_backwards</code> argument values.
+  A <code>ValueError</code> will be raised if these requirements are not met.</li>
 </ul>
-
-
-<h4>Call arguments:</h4>
-
+<h4 id="call-arguments">Call arguments:</h4>
 <p>The call arguments for this layer are the same as those of the wrapped RNN
   layer.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
-<li><b><code>ValueError</code></b>:   1. If <code>layer</code> or <code>backward_layer</code> is not a <code>Layer</code> instance.
-
-<ol>
+<li><b><code>ValueError</code></b>:   1. If <code>layer</code> or <code>backward_layer</code> is not a <code>Layer</code> instance.</li>
 <li>In case of invalid <code>merge_mode</code> argument.</li>
 <li>If <code>backward_layer</code> has mismatched properties compared to <code>layer</code>.</li>
-</ol>
-</li>
 </ul>
+<h4 id="examples">Examples:</h4>
+<div class="codehilite"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Bidirectional</span><span class="p">(</span><span class="n">LSTM</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">return_sequences</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Bidirectional</span><span class="p">(</span><span class="n">LSTM</span><span class="p">(</span><span class="mi">10</span><span class="p">)))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Activation</span><span class="p">(</span><span class="s1">&#39;softmax&#39;</span><span class="p">))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s1">&#39;categorical_crossentropy&#39;</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;rmsprop&#39;</span><span class="p">)</span>
 
+ <span class="c1"># With custom backward layer</span>
+ <span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
+ <span class="n">forward_layer</span> <span class="o">=</span> <span class="n">LSTM</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">return_sequences</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+ <span class="n">backard_layer</span> <span class="o">=</span> <span class="n">LSTM</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">return_sequences</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                      <span class="n">go_backwards</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+ <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Bidirectional</span><span class="p">(</span><span class="n">forward_layer</span><span class="p">,</span> <span class="n">backward_layer</span><span class="o">=</span><span class="n">backward_layer</span><span class="p">,</span>
+                         <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)))</span>
+ <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+ <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Activation</span><span class="p">(</span><span class="s1">&#39;softmax&#39;</span><span class="p">))</span>
+ <span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s1">&#39;categorical_crossentropy&#39;</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;rmsprop&#39;</span><span class="p">)</span>
+</pre></div>
 
-<h4>Examples:</h4>
-
-<p>```python
-model = Sequential()
-model.add(Bidirectional(LSTM(10, return_sequences=True), input_shape=(5, 10)))
-model.add(Bidirectional(LSTM(10)))
-model.add(Dense(5))
-model.add(Activation(&lsquo;softmax&rsquo;))
-model.compile(loss=&lsquo;categorical_crossentropy&rsquo;, optimizer=&lsquo;rmsprop&rsquo;)</p>
-
-<p> # With custom backward layer
- model = Sequential()
- forward_layer = LSTM(10, return_sequences=True)
- backard_layer = LSTM(10, activation=&lsquo;relu&rsquo;, return_sequences=True,
-                      go_backwards=True)
- model.add(Bidirectional(forward_layer, backward_layer=backward_layer,
-                         input_shape=(5, 10)))
- model.add(Dense(5))
- model.add(Activation(&lsquo;softmax&rsquo;))
- model.compile(loss=&lsquo;categorical_crossentropy&rsquo;, optimizer=&lsquo;rmsprop&rsquo;)
-```</p>
 
 <h2 id="__init__"><code>__init__</code></h2>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/wrappers.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">layer</span><span class="p">,</span>
+    <span class="n">merge_mode</span><span class="o">=</span><span class="s1">&#39;concat&#39;</span><span class="p">,</span>
+    <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">backward_layer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__init__(
-    layer,
-    merge_mode='concat',
-    weights=None,
-    backward_layer=None,
-    **kwargs
-)
-</code></p>
 
-<h2>Properties</h2>
-
+<h2 id="properties">Properties</h2>
 <h3 id="constraints"><code>constraints</code></h3>
 
-
-<h2>Methods</h2>
-
+<h2 id="methods">Methods</h2>
 <h3 id="reset_states"><code>reset_states</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/wrappers.py">View source</a></p>
-
-<p><code>python
-reset_states()
-</code></p>
+<div class="codehilite"><pre><span></span><span class="n">reset_states</span><span class="p">()</span>
+</pre></div>
+    </body>
+    </html>
+   

@@ -1,60 +1,54 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.keras.losses.logcosh" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.keras.losses.logcosh</h1>
-
+<h1 id="tfkeraslosseslogcosh">tf.keras.losses.logcosh</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/losses.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Logarithm of the hyperbolic cosine of the prediction error.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.keras.losses.logcosh</code></li>
 <li><code>tf.compat.v2.keras.losses.logcosh</code></li>
 <li><code>tf.compat.v2.losses.logcosh</code></li>
 <li><code>tf.losses.logcosh</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">logcosh</span><span class="p">(</span>
+    <span class="n">y_true</span><span class="p">,</span>
+    <span class="n">y_pred</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.keras.losses.logcosh(
-    y_true,
-    y_pred
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p><code>log(cosh(x))</code> is approximately equal to <code>(x ** 2) / 2</code> for small <code>x</code> and
-to <code>abs(x) - log(2)</code> for large <code>x</code>. This means that &lsquo;logcosh&rsquo; works mostly
+to <code>abs(x) - log(2)</code> for large <code>x</code>. This means that 'logcosh' works mostly
 like the mean squared error, but will not be so strongly affected by the
 occasional wildly incorrect prediction.</p>
-
-<h4>Arguments:</h4>
-
+<h4 id="arguments">Arguments:</h4>
 <ul>
 <li><b><code>y_true</code></b>: tensor of true targets.</li>
 <li><b><code>y_pred</code></b>: tensor of predicted targets.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>Tensor with one scalar loss entry per sample.</p>
+    </body>
+    </html>
+   

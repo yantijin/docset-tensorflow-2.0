@@ -1,140 +1,120 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.linalg.tridiagonal_solve" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.linalg.tridiagonal_solve</h1>
-
+<h1 id="tflinalgtridiagonal_solve">tf.linalg.tridiagonal_solve</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/linalg/linalg_impl.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Solves tridiagonal systems of equations.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.linalg.tridiagonal_solve</code></li>
 <li><code>tf.compat.v2.linalg.tridiagonal_solve</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">tridiagonal_solve</span><span class="p">(</span>
+    <span class="n">diagonals</span><span class="p">,</span>
+    <span class="n">rhs</span><span class="p">,</span>
+    <span class="n">diagonals_format</span><span class="o">=</span><span class="s1">&#39;compact&#39;</span><span class="p">,</span>
+    <span class="n">transpose_rhs</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">conjugate_rhs</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">partial_pivoting</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.linalg.tridiagonal_solve(
-    diagonals,
-    rhs,
-    diagonals_format='compact',
-    transpose_rhs=False,
-    conjugate_rhs=False,
-    name=None,
-    partial_pivoting=True
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>The input can be supplied in various formats: <code>matrix</code>, <code>sequence</code> and
 <code>compact</code>, specified by the <code>diagonals_format</code> arg.</p>
-
 <p>In <code>matrix</code> format, <code>diagonals</code> must be a tensor of shape <code>[..., M, M]</code>, with
 two inner-most dimensions representing the square tridiagonal matrices.
 Elements outside of the three diagonals will be ignored.</p>
-
 <p>In <code>sequence</code> format, <code>diagonals</code> are supplied as a tuple or list of three
 tensors of shapes <code>[..., N]</code>, <code>[..., M]</code>, <code>[..., N]</code> representing
 superdiagonals, diagonals, and subdiagonals, respectively. <code>N</code> can be either
 <code>M-1</code> or <code>M</code>; in the latter case, the last element of superdiagonal and the
 first element of subdiagonal will be ignored.</p>
-
 <p>In <code>compact</code> format the three diagonals are brought together into one tensor
 of shape <code>[..., 3, M]</code>, with last two dimensions containing superdiagonals,
 diagonals, and subdiagonals, in order. Similarly to <code>sequence</code> format,
 elements <code>diagonals[..., 0, M-1]</code> and <code>diagonals[..., 2, 0]</code> are ignored.</p>
-
 <p>The <code>compact</code> format is recommended as the one with best performance. In case
 you need to cast a tensor into a compact format manually, use <a href="../../tf/gather_nd.html"><code>tf.gather_nd</code></a>.
 An example for a tensor of shape [m, m]:</p>
+<div class="codehilite"><pre><span></span><span class="n">rhs</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="o">...</span><span class="p">])</span>
+<span class="n">matrix</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="o">...</span><span class="p">]])</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">dummy_idx</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># An arbitrary element to use as a dummy</span>
+<span class="n">indices</span> <span class="o">=</span> <span class="p">[[[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)]</span> <span class="o">+</span> <span class="p">[</span><span class="n">dummy_idx</span><span class="p">],</span>  <span class="c1"># Superdiagonal</span>
+         <span class="p">[[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">)],</span>                          <span class="c1"># Diagonal</span>
+         <span class="p">[</span><span class="n">dummy_idx</span><span class="p">]</span> <span class="o">+</span> <span class="p">[[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)]]</span>    <span class="c1"># Subdiagonal</span>
+<span class="n">diagonals</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">gather_nd</span><span class="p">(</span><span class="n">matrix</span><span class="p">,</span> <span class="n">indices</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">tridiagonal_solve</span><span class="p">(</span><span class="n">diagonals</span><span class="p">,</span> <span class="n">rhs</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-rhs = tf.constant([...])
-matrix = tf.constant([[...]])
-m = matrix.shape[0]
-dummy_idx = [0, 0]  # An arbitrary element to use as a dummy
-indices = [[[i, i + 1] for i in range(m - 1)] + [dummy_idx],  # Superdiagonal
-         [[i, i] for i in range(m)],                          # Diagonal
-         [dummy_idx] + [[i + 1, i] for i in range(m - 1)]]    # Subdiagonal
-diagonals=tf.gather_nd(matrix, indices)
-x = tf.linalg.tridiagonal_solve(diagonals, rhs)
-</code></p>
 
 <p>Regardless of the <code>diagonals_format</code>, <code>rhs</code> is a tensor of shape <code>[..., M]</code> or
 <code>[..., M, K]</code>. The latter allows to simultaneously solve K systems with the
 same left-hand sides and K different right-hand sides. If <code>transpose_rhs</code>
 is set to <code>True</code> the expected shape is <code>[..., M]</code> or <code>[..., K, M]</code>.</p>
-
 <p>The batch dimensions, denoted as <code>...</code>, must be the same in <code>diagonals</code> and
 <code>rhs</code>.</p>
-
 <p>The output is a tensor of the same shape as <code>rhs</code>: either <code>[..., M]</code> or
 <code>[..., M, K]</code>.</p>
-
-<p>The op isn&rsquo;t guaranteed to raise an error if the input matrix is not
+<p>The op isn't guaranteed to raise an error if the input matrix is not
 invertible. <a href="../../tf/debugging/check_numerics.html"><code>tf.debugging.check_numerics</code></a> can be applied to the output to
 detect invertibility problems.</p>
-
 <p><strong>Note</strong>: with large batch sizes, the computation on the GPU may be slow, if
 either <code>partial_pivoting=True</code> or there are multiple right-hand sides
-(<code>K &gt; 1</code>). If this issue arises, consider if it&rsquo;s possible to disable pivoting
+(<code>K &gt; 1</code>). If this issue arises, consider if it's possible to disable pivoting
 and have <code>K = 1</code>, or, alternatively, consider using CPU.</p>
-
 <p>On CPU, solution is computed via Gaussian elimination with or without partial
-pivoting, depending on <code>partial_pivoting</code> parameter. On GPU, Nvidia&rsquo;s cuSPARSE
+pivoting, depending on <code>partial_pivoting</code> parameter. On GPU, Nvidia's cuSPARSE
 library is used: https://docs.nvidia.com/cuda/cusparse/index.html#gtsv</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>diagonals</code></b>: A <code>Tensor</code> or tuple of <code>Tensor</code>s describing left-hand sides. The
-shape depends of <code>diagonals_format</code>, see description above. Must be
-<code>float32</code>, <code>float64</code>, <code>complex64</code>, or <code>complex128</code>.</li>
-<li><b><code>rhs</code></b>: A <code>Tensor</code> of shape [&hellip;, M] or [&hellip;, M, K] and with the same dtype as
-<code>diagonals</code>.</li>
+  shape depends of <code>diagonals_format</code>, see description above. Must be
+  <code>float32</code>, <code>float64</code>, <code>complex64</code>, or <code>complex128</code>.</li>
+<li><b><code>rhs</code></b>: A <code>Tensor</code> of shape [..., M] or [..., M, K] and with the same dtype as
+  <code>diagonals</code>.</li>
 <li><b><code>diagonals_format</code></b>: one of <code>matrix</code>, <code>sequence</code>, or <code>compact</code>. Default is
-<code>compact</code>.</li>
+  <code>compact</code>.</li>
 <li><b><code>transpose_rhs</code></b>: If <code>True</code>, <code>rhs</code> is transposed before solving (has no effect
-if the shape of rhs is [&hellip;, M]).</li>
+  if the shape of rhs is [..., M]).</li>
 <li><b><code>conjugate_rhs</code></b>: If <code>True</code>, <code>rhs</code> is conjugated before solving.</li>
 <li><b><code>name</code></b>:  A name to give this <code>Op</code> (optional).</li>
 <li><b><code>partial_pivoting</code></b>: whether to perform partial pivoting. <code>True</code> by default.
-Partial pivoting makes the procedure more stable, but slower. Partial
-pivoting is unnecessary in some cases, including diagonally dominant and
-symmetric positive definite matrices (see e.g. theorem 9.12 in [1]).</li>
+  Partial pivoting makes the procedure more stable, but slower. Partial
+  pivoting is unnecessary in some cases, including diagonally dominant and
+  symmetric positive definite matrices (see e.g. theorem 9.12 in [1]).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
-<p>A <code>Tensor</code> of shape [&hellip;, M] or [&hellip;, M, K] containing the solutions.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="returns">Returns:</h4>
+<p>A <code>Tensor</code> of shape [..., M] or [..., M, K] containing the solutions.</p>
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: An unsupported type is provided as input, or when the input
 tensors have incorrect shapes.</li>
 </ul>
-
-
 <p>[1] Nicholas J. Higham (2002). Accuracy and Stability of Numerical Algorithms:
 Second Edition. SIAM. p. 175. ISBN 978-0-89871-802-7.</p>
+    </body>
+    </html>
+   

@@ -1,4 +1,13 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.nn.RNNCellResidualWrapper" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="output_size"/>
@@ -8,98 +17,68 @@
 <meta itemprop="property" content="zero_state"/>
 </div>
 
-
-<h1>tf.nn.RNNCellResidualWrapper</h1>
-
+<h1 id="tfnnrnncellresidualwrapper">tf.nn.RNNCellResidualWrapper</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/rnn_cell_wrapper_v2.py">View source</a></p>
-
-<h2>Class <code>RNNCellResidualWrapper</code></h2>
-
+<h2 id="class-rnncellresidualwrapper">Class <code>RNNCellResidualWrapper</code></h2>
 <!-- Start diff -->
 
-
 <p>RNNCell wrapper that ensures cell inputs are added to the outputs.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li>Class <code>tf.compat.v2.nn.RNNCellResidualWrapper</code></li>
 </ul>
-
-
 <!-- Placeholder for "Used in" -->
-
-
-
 
 <h2 id="__init__"><code>__init__</code></h2>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/rnn_cell_wrapper_v2.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__init__(
-    *args,
-    **kwargs
-)
-</code></p>
 
 <p>Constructs a <code>ResidualWrapper</code> for <code>cell</code>.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>cell</code></b>: An instance of <code>RNNCell</code>.</li>
 <li><b><code>residual_fn</code></b>: (Optional) The function to map raw cell inputs and raw cell
-outputs to the actual cell outputs of the residual network.
-Defaults to calling nest.map_structure on (lambda i, o: i + o), inputs
-  and outputs.</li>
+  outputs to the actual cell outputs of the residual network.
+  Defaults to calling nest.map_structure on (lambda i, o: i + o), inputs
+    and outputs.</li>
 <li><b><code>**kwargs</code></b>: dict of keyword arguments for base layer.</li>
 </ul>
-
-
-<h2>Properties</h2>
-
+<h2 id="properties">Properties</h2>
 <h3 id="output_size"><code>output_size</code></h3>
-
-
-
 
 <h3 id="state_size"><code>state_size</code></h3>
 
-
-<h2>Methods</h2>
-
+<h2 id="methods">Methods</h2>
 <h3 id="get_initial_state"><code>get_initial_state</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/recurrent.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_initial_state</span><span class="p">(</span>
+    <span class="n">inputs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-get_initial_state(
-    inputs=None,
-    batch_size=None,
-    dtype=None
-)
-</code></p>
 
 <h3 id="zero_state"><code>zero_state</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/rnn_cell_wrapper_impl.py">View source</a></p>
-
-<p><code>python
-zero_state(
-    batch_size,
-    dtype
-)
-</code></p>
+<div class="codehilite"><pre><span></span><span class="n">zero_state</span><span class="p">(</span>
+    <span class="n">batch_size</span><span class="p">,</span>
+    <span class="n">dtype</span>
+<span class="p">)</span>
+</pre></div>
+    </body>
+    </html>
+   

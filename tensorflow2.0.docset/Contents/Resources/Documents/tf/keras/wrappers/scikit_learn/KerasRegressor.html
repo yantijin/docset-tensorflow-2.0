@@ -1,4 +1,13 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.keras.wrappers.scikit_learn.KerasRegressor" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="__init__"/>
@@ -11,256 +20,179 @@
 <meta itemprop="property" content="set_params"/>
 </div>
 
-
-<h1>tf.keras.wrappers.scikit_learn.KerasRegressor</h1>
-
+<h1 id="tfkeraswrappersscikit_learnkerasregressor">tf.keras.wrappers.scikit_learn.KerasRegressor</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/wrappers/scikit_learn.py">View source</a></p>
-
-<h2>Class <code>KerasRegressor</code></h2>
-
+<h2 id="class-kerasregressor">Class <code>KerasRegressor</code></h2>
 <!-- Start diff -->
 
-
 <p>Implementation of the scikit-learn regressor API for Keras.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li>Class <code>tf.compat.v1.keras.wrappers.scikit_learn.KerasRegressor</code></li>
 <li>Class <code>tf.compat.v2.keras.wrappers.scikit_learn.KerasRegressor</code></li>
 </ul>
-
-
 <!-- Placeholder for "Used in" -->
-
-
-
 
 <h2 id="__init__"><code>__init__</code></h2>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/wrappers/scikit_learn.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">build_fn</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">sk_params</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__init__(
-    build_fn=None,
-    **sk_params
-)
-</code></p>
 
 <p>Initialize self.  See help(type(self)) for accurate signature.</p>
-
-<h2>Methods</h2>
-
+<h2 id="methods">Methods</h2>
 <h3 id="check_params"><code>check_params</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/wrappers/scikit_learn.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">check_params</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-check_params(params)
-</code></p>
 
 <p>Checks for user typos in <code>params</code>.</p>
-
-<h4>Arguments:</h4>
-
+<h4 id="arguments">Arguments:</h4>
 <ul>
 <li><b><code>params</code></b>: dictionary; the parameters to be checked</li>
 </ul>
-
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: if any member of <code>params</code> is not a valid argument.</li>
 </ul>
-
-
 <h3 id="filter_sk_params"><code>filter_sk_params</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/wrappers/scikit_learn.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">filter_sk_params</span><span class="p">(</span>
+    <span class="n">fn</span><span class="p">,</span>
+    <span class="n">override</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-filter_sk_params(
-    fn,
-    override=None
-)
-</code></p>
 
-<p>Filters <code>sk_params</code> and returns those in <code>fn</code>&rsquo;s arguments.</p>
-
-<h4>Arguments:</h4>
-
+<p>Filters <code>sk_params</code> and returns those in <code>fn</code>'s arguments.</p>
+<h4 id="arguments_1">Arguments:</h4>
 <ul>
 <li><b><code>fn</code></b>: arbitrary function</li>
 <li><b><code>override</code></b>: dictionary, values to override <code>sk_params</code></li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <ul>
 <li><b><code>res</code></b>: dictionary containing variables
-  in both <code>sk_params</code> and <code>fn</code>&rsquo;s arguments.</li>
+    in both <code>sk_params</code> and <code>fn</code>'s arguments.</li>
 </ul>
-
-
 <h3 id="fit"><code>fit</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/wrappers/scikit_learn.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">fit</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-fit(
-    x,
-    y,
-    **kwargs
-)
-</code></p>
 
 <p>Constructs a new model with <code>build_fn</code> &amp; fit the model to <code>(x, y)</code>.</p>
-
-<h4>Arguments:</h4>
-
+<h4 id="arguments_2">Arguments:</h4>
 <ul>
 <li><b><code>x</code></b>: array-like, shape <code>(n_samples, n_features)</code>
-  Training samples where <code>n_samples</code> is the number of samples
-  and <code>n_features</code> is the number of features.</li>
+    Training samples where <code>n_samples</code> is the number of samples
+    and <code>n_features</code> is the number of features.</li>
 <li><b><code>y</code></b>: array-like, shape <code>(n_samples,)</code> or <code>(n_samples, n_outputs)</code>
-  True labels for <code>x</code>.</li>
+    True labels for <code>x</code>.</li>
 <li><b><code>**kwargs</code></b>: dictionary arguments
-  Legal arguments are the arguments of <a href="../../../../tf/keras/Model.html#fit"><code>Sequential.fit</code></a></li>
+    Legal arguments are the arguments of <a href="../../../../tf/keras/Model.html#fit"><code>Sequential.fit</code></a></li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_1">Returns:</h4>
 <ul>
 <li><b><code>history</code></b>: object
-  details about the training history at each epoch.</li>
+    details about the training history at each epoch.</li>
 </ul>
-
-
 <h3 id="get_params"><code>get_params</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/wrappers/scikit_learn.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_params</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-get_params(**params)
-</code></p>
 
 <p>Gets parameters for this estimator.</p>
-
-<h4>Arguments:</h4>
-
+<h4 id="arguments_3">Arguments:</h4>
 <ul>
 <li><b><code>**params</code></b>: ignored (exists for API compatibility).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_2">Returns:</h4>
 <p>Dictionary of parameter names mapped to their values.</p>
-
 <h3 id="predict"><code>predict</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/wrappers/scikit_learn.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">predict</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-predict(
-    x,
-    **kwargs
-)
-</code></p>
 
 <p>Returns predictions for the given test data.</p>
-
-<h4>Arguments:</h4>
-
+<h4 id="arguments_4">Arguments:</h4>
 <ul>
 <li><b><code>x</code></b>: array-like, shape <code>(n_samples, n_features)</code>
-  Test samples where <code>n_samples</code> is the number of samples
-  and <code>n_features</code> is the number of features.</li>
+    Test samples where <code>n_samples</code> is the number of samples
+    and <code>n_features</code> is the number of features.</li>
 <li><b><code>**kwargs</code></b>: dictionary arguments
-  Legal arguments are the arguments of <a href="../../../../tf/keras/Model.html#predict"><code>Sequential.predict</code></a>.</li>
+    Legal arguments are the arguments of <a href="../../../../tf/keras/Model.html#predict"><code>Sequential.predict</code></a>.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_3">Returns:</h4>
 <ul>
 <li><b><code>preds</code></b>: array-like, shape <code>(n_samples,)</code>
-  Predictions.</li>
+    Predictions.</li>
 </ul>
-
-
 <h3 id="score"><code>score</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/wrappers/scikit_learn.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">score</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-score(
-    x,
-    y,
-    **kwargs
-)
-</code></p>
 
 <p>Returns the mean loss on the given test data and labels.</p>
-
-<h4>Arguments:</h4>
-
+<h4 id="arguments_5">Arguments:</h4>
 <ul>
 <li><b><code>x</code></b>: array-like, shape <code>(n_samples, n_features)</code>
-  Test samples where <code>n_samples</code> is the number of samples
-  and <code>n_features</code> is the number of features.</li>
+    Test samples where <code>n_samples</code> is the number of samples
+    and <code>n_features</code> is the number of features.</li>
 <li><b><code>y</code></b>: array-like, shape <code>(n_samples,)</code>
-  True labels for <code>x</code>.</li>
+    True labels for <code>x</code>.</li>
 <li><b><code>**kwargs</code></b>: dictionary arguments
-  Legal arguments are the arguments of <a href="../../../../tf/keras/Model.html#evaluate"><code>Sequential.evaluate</code></a>.</li>
+    Legal arguments are the arguments of <a href="../../../../tf/keras/Model.html#evaluate"><code>Sequential.evaluate</code></a>.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_4">Returns:</h4>
 <ul>
 <li><b><code>score</code></b>: float
-  Mean accuracy of predictions on <code>x</code> wrt. <code>y</code>.</li>
+    Mean accuracy of predictions on <code>x</code> wrt. <code>y</code>.</li>
 </ul>
-
-
 <h3 id="set_params"><code>set_params</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/wrappers/scikit_learn.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">set_params</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-set_params(**params)
-</code></p>
 
 <p>Sets the parameters of this estimator.</p>
-
-<h4>Arguments:</h4>
-
+<h4 id="arguments_6">Arguments:</h4>
 <ul>
 <li><b><code>**params</code></b>: Dictionary of parameter names mapped to their values.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_5">Returns:</h4>
 <p>self</p>
+    </body>
+    </html>
+   

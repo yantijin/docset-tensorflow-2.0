@@ -1,4 +1,13 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.estimator.MultiHead" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="logits_dimension"/>
@@ -12,13 +21,8 @@
 <meta itemprop="property" content="update_metrics"/>
 </div>
 
-
-<h1>tf.estimator.MultiHead</h1>
-
+<h1 id="tfestimatormultihead">tf.estimator.MultiHead</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 
@@ -29,281 +33,226 @@
   </a>
 </td></table>
 
-
-<h2>Class <code>MultiHead</code></h2>
-
+<h2 id="class-multihead">Class <code>MultiHead</code></h2>
 <!-- Start diff -->
 
-
 <p>Creates a <code>Head</code> for multi-objective learning.</p>
-
 <p>Inherits From: <a href="../../tf/estimator/Head.html"><code>Head</code></a></p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li>Class <code>tf.compat.v1.estimator.MultiHead</code></li>
 <li>Class <code>tf.compat.v2.estimator.MultiHead</code></li>
 </ul>
-
-
 <!-- Placeholder for "Used in" -->
 
-
 <p>This class merges the output of multiple <code>Head</code> objects. Specifically:</p>
-
 <ul>
 <li>For training, sums losses of each head, calls <code>train_op_fn</code> with this
-final loss.</li>
+  final loss.</li>
 <li>For eval, merges metrics by adding <code>head.name</code> suffix to the keys in eval
-metrics, such as <code>precision/head1.name</code>, <code>precision/head2.name</code>.</li>
+  metrics, such as <code>precision/head1.name</code>, <code>precision/head2.name</code>.</li>
 <li>For prediction, merges predictions and updates keys in prediction dict to a
-2-tuple, <code>(head.name, prediction_key)</code>. Merges <code>export_outputs</code> such that
-by default the first head is served.</li>
+  2-tuple, <code>(head.name, prediction_key)</code>. Merges <code>export_outputs</code> such that
+  by default the first head is served.</li>
 </ul>
+<h4 id="usage">Usage:</h4>
+<div class="codehilite"><pre><span></span><span class="c1"># In `input_fn`, specify labels as a dict keyed by head name:</span>
+<span class="k">def</span> <span class="nf">input_fn</span><span class="p">():</span>
+  <span class="n">features</span> <span class="o">=</span> <span class="o">...</span>
+  <span class="n">labels1</span> <span class="o">=</span> <span class="o">...</span>
+  <span class="n">labels2</span> <span class="o">=</span> <span class="o">...</span>
+  <span class="k">return</span> <span class="n">features</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;head1.name&#39;</span><span class="p">:</span> <span class="n">labels1</span><span class="p">,</span> <span class="s1">&#39;head2.name&#39;</span><span class="p">:</span> <span class="n">labels2</span><span class="p">}</span>
 
+<span class="c1"># In `model_fn`, specify logits as a dict keyed by head name:</span>
+<span class="k">def</span> <span class="nf">model_fn</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">mode</span><span class="p">):</span>
+  <span class="c1"># Create simple heads and specify head name.</span>
+  <span class="n">head1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">MultiClassHead</span><span class="p">(</span><span class="n">n_classes</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;head1&#39;</span><span class="p">)</span>
+  <span class="n">head2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">BinaryClassHead</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;head2&#39;</span><span class="p">)</span>
+  <span class="c1"># Create MultiHead from two simple heads.</span>
+  <span class="n">head</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">MultiHead</span><span class="p">([</span><span class="n">head1</span><span class="p">,</span> <span class="n">head2</span><span class="p">])</span>
+  <span class="c1"># Create logits for each head, and combine them into a dict.</span>
+  <span class="n">logits1</span><span class="p">,</span> <span class="n">logits2</span> <span class="o">=</span> <span class="n">logit_fn</span><span class="p">()</span>
+  <span class="n">logits</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;head1.name&#39;</span><span class="p">:</span> <span class="n">logits1</span><span class="p">,</span> <span class="s1">&#39;head2.name&#39;</span><span class="p">:</span> <span class="n">logits2</span><span class="p">}</span>
+  <span class="c1"># Return the merged EstimatorSpec</span>
+  <span class="k">return</span> <span class="n">head</span><span class="o">.</span><span class="n">create_estimator_spec</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">logits</span><span class="o">=</span><span class="n">logits</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
 
-<h4>Usage:</h4>
+<span class="c1"># Create an estimator with this model_fn.</span>
+<span class="n">estimator</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">Estimator</span><span class="p">(</span><span class="n">model_fn</span><span class="o">=</span><span class="n">model_fn</span><span class="p">)</span>
+<span class="n">estimator</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">input_fn</span><span class="o">=</span><span class="n">input_fn</span><span class="p">)</span>
+</pre></div>
 
-<p>```python</p>
-
-<h1>In <code>input_fn</code>, specify labels as a dict keyed by head name:</h1>
-
-<p>def input_fn():
-  features = &hellip;
-  labels1 = &hellip;
-  labels2 = &hellip;
-  return features, {&lsquo;head1.name&rsquo;: labels1, &lsquo;head2.name&rsquo;: labels2}</p>
-
-<h1>In <code>model_fn</code>, specify logits as a dict keyed by head name:</h1>
-
-<p>def model_fn(features, labels, mode):
-  # Create simple heads and specify head name.
-  head1 = tf.estimator.MultiClassHead(n_classes=3, name=&lsquo;head1&rsquo;)
-  head2 = tf.estimator.BinaryClassHead(name=&lsquo;head2&rsquo;)
-  # Create MultiHead from two simple heads.
-  head = tf.estimator.MultiHead([head1, head2])
-  # Create logits for each head, and combine them into a dict.
-  logits1, logits2 = logit_fn()
-  logits = {&lsquo;head1.name&rsquo;: logits1, &lsquo;head2.name&rsquo;: logits2}
-  # Return the merged EstimatorSpec
-  return head.create_estimator_spec(&hellip;, logits=logits, &hellip;)</p>
-
-<h1>Create an estimator with this model_fn.</h1>
-
-<p>estimator = tf.estimator.Estimator(model_fn=model_fn)
-estimator.train(input_fn=input_fn)
-```</p>
 
 <p>Also supports <code>logits</code> as a <code>Tensor</code> of shape
 <code>[D0, D1, ... DN, logits_dimension]</code>. It will split the <code>Tensor</code> along the
 last dimension and distribute it appropriately among the heads. E.g.:</p>
+<h1 id="input-logits">Input logits.</h1>
+<h1 id="logits-nparray-1-1-2-2-2-15-1-3-2-2">logits = np.array([[-1., 1., 2., -2., 2.], [-1.5, 1., -3., 2., -2.]],</h1>
+<div class="codehilite"><pre><span></span><span class="err">                dtype=np.float32)</span>
+</pre></div>
 
-<h1>Input logits.</h1>
 
-<h1>logits = np.array([[-1., 1., 2., -2., 2.], [-1.5, 1., -3., 2., -2.]],</h1>
+<h1 id="suppose-head1logits_dimension-2-and-head2logits_dimension-3-after">Suppose head1.logits_dimension = 2 and head2.logits_dimension = 3. After</h1>
+<h1 id="splitting-the-result-is">splitting, the result is:</h1>
+<h1 id="logits_dict-head1_name-1-1-15-1">logits_dict = {'head1_name': [[-1., 1.], [-1.5, 1.]],</h1>
+<div class="codehilite"><pre><span></span><span class="err">             &#39;head2_name&#39;:  [[2., -2., 2.], [-3., 2., -2.]]}</span>
+</pre></div>
 
-<pre><code>                dtype=np.float32)
-</code></pre>
-
-<h1>Suppose head1.logits_dimension = 2 and head2.logits_dimension = 3. After</h1>
-
-<h1>splitting, the result is:</h1>
-
-<h1>logits_dict = {&lsquo;head1_name&rsquo;: [[-1., 1.], [-1.5, 1.]],</h1>
-
-<pre><code>             'head2_name':  [[2., -2., 2.], [-3., 2., -2.]]}
-</code></pre>
 
 <p>Usage:</p>
+<div class="codehilite"><pre><span></span><span class="k">def</span> <span class="nf">model_fn</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">mode</span><span class="p">):</span>
+  <span class="c1"># Create simple heads and specify head name.</span>
+  <span class="n">head1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">MultiClassHead</span><span class="p">(</span><span class="n">n_classes</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;head1&#39;</span><span class="p">)</span>
+  <span class="n">head2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">BinaryClassHead</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;head2&#39;</span><span class="p">)</span>
+  <span class="c1"># Create multi-head from two simple heads.</span>
+  <span class="n">head</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">MultiHead</span><span class="p">([</span><span class="n">head1</span><span class="p">,</span> <span class="n">head2</span><span class="p">])</span>
+  <span class="c1"># Create logits for the multihead. The result of logits is a `Tensor`.</span>
+  <span class="n">logits</span> <span class="o">=</span> <span class="n">logit_fn</span><span class="p">(</span><span class="n">logits_dimension</span><span class="o">=</span><span class="n">head</span><span class="o">.</span><span class="n">logits_dimension</span><span class="p">)</span>
+  <span class="c1"># Return the merged EstimatorSpec</span>
+  <span class="k">return</span> <span class="n">head</span><span class="o">.</span><span class="n">create_estimator_spec</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">logits</span><span class="o">=</span><span class="n">logits</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-def model_fn(features, labels, mode):
-  # Create simple heads and specify head name.
-  head1 = tf.estimator.MultiClassHead(n_classes=3, name='head1')
-  head2 = tf.estimator.BinaryClassHead(name='head2')
-  # Create multi-head from two simple heads.
-  head = tf.estimator.MultiHead([head1, head2])
-  # Create logits for the multihead. The result of logits is a `Tensor`.
-  logits = logit_fn(logits_dimension=head.logits_dimension)
-  # Return the merged EstimatorSpec
-  return head.create_estimator_spec(..., logits=logits, ...)
-</code></p>
 
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>heads</code></b>: List or tuple of <code>Head</code> instances. All heads must have <code>name</code>
-specified. The first head in the list is the default used at serving time.</li>
+  specified. The first head in the list is the default used at serving time.</li>
 <li><b><code>head_weights</code></b>: Optional list of weights, same length as <code>heads</code>. Used when
-merging losses to calculate the weighted sum of losses from each head. If
-<code>None</code>, all losses are weighted equally.</li>
+  merging losses to calculate the weighted sum of losses from each head. If
+  <code>None</code>, all losses are weighted equally.</li>
 </ul>
-
-
 <h2 id="__init__"><code>__init__</code></h2>
 
-
 <p><a target="_blank" href="https://github.com/tensorflow/estimator/tree/master/tensorflow_estimator/python/estimator/head/multi_head.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">heads</span><span class="p">,</span>
+    <span class="n">head_weights</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__init__(
-    heads,
-    head_weights=None
-)
-</code></p>
 
 <p>Initialize self.  See help(type(self)) for accurate signature.</p>
-
-<h2>Properties</h2>
-
+<h2 id="properties">Properties</h2>
 <h3 id="logits_dimension"><code>logits_dimension</code></h3>
 
-
 <p>See <code>base_head.Head</code> for details.</p>
-
 <h3 id="loss_reduction"><code>loss_reduction</code></h3>
 
-
 <p>See <code>base_head.Head</code> for details.</p>
-
 <h3 id="name"><code>name</code></h3>
 
-
 <p>See <code>base_head.Head</code> for details.</p>
-
-<h2>Methods</h2>
-
+<h2 id="methods">Methods</h2>
 <h3 id="create_estimator_spec"><code>create_estimator_spec</code></h3>
 
-
 <p><a target="_blank" href="https://github.com/tensorflow/estimator/tree/master/tensorflow_estimator/python/estimator/head/multi_head.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">create_estimator_spec</span><span class="p">(</span>
+    <span class="n">features</span><span class="p">,</span>
+    <span class="n">mode</span><span class="p">,</span>
+    <span class="n">logits</span><span class="p">,</span>
+    <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">optimizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">trainable_variables</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">train_op_fn</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">update_ops</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">regularization_losses</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-create_estimator_spec(
-    features,
-    mode,
-    logits,
-    labels=None,
-    optimizer=None,
-    trainable_variables=None,
-    train_op_fn=None,
-    update_ops=None,
-    regularization_losses=None
-)
-</code></p>
 
 <p>Returns a <code>model_fn.EstimatorSpec</code>.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_1">Args:</h4>
 <ul>
 <li><b><code>features</code></b>: Input <code>dict</code> of <code>Tensor</code> or <code>SparseTensor</code> objects.</li>
-<li><b><code>mode</code></b>: Estimator&rsquo;s <code>ModeKeys</code>.</li>
+<li><b><code>mode</code></b>: Estimator's <code>ModeKeys</code>.</li>
 <li><b><code>logits</code></b>: Input <code>dict</code> keyed by head name, or logits <code>Tensor</code> with shape
-<code>[D0, D1, ... DN, logits_dimension]</code>. For many applications, the
-<code>Tensor</code> shape is <code>[batch_size, logits_dimension]</code>. If logits is a
-<code>Tensor</code>, it  will split the <code>Tensor</code> along the last dimension and
-distribute it appropriately among the heads. Check <code>MultiHead</code> for
-examples.</li>
+  <code>[D0, D1, ... DN, logits_dimension]</code>. For many applications, the
+  <code>Tensor</code> shape is <code>[batch_size, logits_dimension]</code>. If logits is a
+  <code>Tensor</code>, it  will split the <code>Tensor</code> along the last dimension and
+  distribute it appropriately among the heads. Check <code>MultiHead</code> for
+  examples.</li>
 <li><b><code>labels</code></b>: Input <code>dict</code> keyed by head name. For each head, the label value
-can be integer or string <code>Tensor</code> with shape matching its corresponding
-<code>logits</code>.<code>labels</code> is a required argument when <code>mode</code> equals <code>TRAIN</code> or
-<code>EVAL</code>.</li>
+  can be integer or string <code>Tensor</code> with shape matching its corresponding
+  <code>logits</code>.<code>labels</code> is a required argument when <code>mode</code> equals <code>TRAIN</code> or
+  <code>EVAL</code>.</li>
 <li><b><code>optimizer</code></b>: An <a href="../../tf/keras/optimizers/Optimizer.html"><code>tf.keras.optimizers.Optimizer</code></a> instance to optimize the
-loss in TRAIN mode. Namely, sets <code>train_op = optimizer.get_updates(loss,
-trainable_variables)</code>, which updates variables to minimize <code>loss</code>.</li>
+  loss in TRAIN mode. Namely, sets <code>train_op = optimizer.get_updates(loss,
+  trainable_variables)</code>, which updates variables to minimize <code>loss</code>.</li>
 <li><b><code>trainable_variables</code></b>: A list or tuple of <code>Variable</code> objects to update to
-minimize <code>loss</code>. In Tensorflow 1.x, by default these are the list of
-variables collected in the graph under the key
-<code>GraphKeys.TRAINABLE_VARIABLES</code>. As Tensorflow 2.x doesn&rsquo;t have
-collections and GraphKeys, trainable_variables need to be passed
-explicitly here.</li>
+  minimize <code>loss</code>. In Tensorflow 1.x, by default these are the list of
+  variables collected in the graph under the key
+  <code>GraphKeys.TRAINABLE_VARIABLES</code>. As Tensorflow 2.x doesn't have
+  collections and GraphKeys, trainable_variables need to be passed
+  explicitly here.</li>
 <li><b><code>train_op_fn</code></b>: Function that takes a scalar loss <code>Tensor</code> and returns
-<code>train_op</code>. Used if <code>optimizer</code> is <code>None</code>.</li>
+  <code>train_op</code>. Used if <code>optimizer</code> is <code>None</code>.</li>
 <li><b><code>update_ops</code></b>: A list or tuple of update ops to be run at training time. For
-example, layers such as BatchNormalization create mean and variance
-update ops that need to be run at training time. In Tensorflow 1.x,
-these are thrown into an UPDATE_OPS collection. As Tensorflow 2.x
-doesn&rsquo;t have collections, update_ops need to be passed explicitly here.</li>
+  example, layers such as BatchNormalization create mean and variance
+  update ops that need to be run at training time. In Tensorflow 1.x,
+  these are thrown into an UPDATE_OPS collection. As Tensorflow 2.x
+  doesn't have collections, update_ops need to be passed explicitly here.</li>
 <li><b><code>regularization_losses</code></b>: A list of additional scalar losses to be added to
-the training loss, such as regularization losses. These losses are
-usually expressed as a batch average, so for best results, in each head,
-users need to use the default <code>loss_reduction=SUM_OVER_BATCH_SIZE</code> to
-avoid scaling errors.  Compared to the regularization losses for each
-head, this loss is to regularize the merged loss of all heads in multi
-head, and will be added to the overall training loss of multi head.</li>
+  the training loss, such as regularization losses. These losses are
+  usually expressed as a batch average, so for best results, in each head,
+  users need to use the default <code>loss_reduction=SUM_OVER_BATCH_SIZE</code> to
+  avoid scaling errors.  Compared to the regularization losses for each
+  head, this loss is to regularize the merged loss of all heads in multi
+  head, and will be added to the overall training loss of multi head.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>model_fn.EstimatorSpec</code> instance.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: If both <code>train_op_fn</code> and <code>optimizer</code> are <code>None</code> in TRAIN
 mode, or if both are set.
-If <code>mode</code> is not in Estimator&rsquo;s <code>ModeKeys</code>.</li>
+If <code>mode</code> is not in Estimator's <code>ModeKeys</code>.</li>
 </ul>
-
-
 <h3 id="loss"><code>loss</code></h3>
 
-
 <p><a target="_blank" href="https://github.com/tensorflow/estimator/tree/master/tensorflow_estimator/python/estimator/head/multi_head.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">loss</span><span class="p">(</span>
+    <span class="n">labels</span><span class="p">,</span>
+    <span class="n">logits</span><span class="p">,</span>
+    <span class="n">features</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">mode</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">regularization_losses</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-loss(
-    labels,
-    logits,
-    features=None,
-    mode=None,
-    regularization_losses=None
-)
-</code></p>
 
 <p>Returns regularized training loss. See <code>base_head.Head</code> for details.</p>
-
 <h3 id="metrics"><code>metrics</code></h3>
 
-
 <p><a target="_blank" href="https://github.com/tensorflow/estimator/tree/master/tensorflow_estimator/python/estimator/head/multi_head.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">metrics</span><span class="p">(</span><span class="n">regularization_losses</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-metrics(regularization_losses=None)
-</code></p>
 
 <p>Creates metrics. See <code>base_head.Head</code> for details.</p>
-
 <h3 id="predictions"><code>predictions</code></h3>
 
-
 <p><a target="_blank" href="https://github.com/tensorflow/estimator/tree/master/tensorflow_estimator/python/estimator/head/multi_head.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">predictions</span><span class="p">(</span>
+    <span class="n">logits</span><span class="p">,</span>
+    <span class="n">keys</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-predictions(
-    logits,
-    keys=None
-)
-</code></p>
 
 <p>Create predictions. See <code>base_head.Head</code> for details.</p>
-
 <h3 id="update_metrics"><code>update_metrics</code></h3>
 
-
 <p><a target="_blank" href="https://github.com/tensorflow/estimator/tree/master/tensorflow_estimator/python/estimator/head/multi_head.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">update_metrics</span><span class="p">(</span>
+    <span class="n">eval_metrics</span><span class="p">,</span>
+    <span class="n">features</span><span class="p">,</span>
+    <span class="n">logits</span><span class="p">,</span>
+    <span class="n">labels</span><span class="p">,</span>
+    <span class="n">regularization_losses</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-update_metrics(
-    eval_metrics,
-    features,
-    logits,
-    labels,
-    regularization_losses=None
-)
-</code></p>
 
 <p>Updates eval metrics. See <code>base_head.Head</code> for details.</p>
+    </body>
+    </html>
+   

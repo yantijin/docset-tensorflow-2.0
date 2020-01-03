@@ -1,71 +1,63 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.signal.irfft" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.signal.irfft</h1>
-
+<h1 id="tfsignalirfft">tf.signal.irfft</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/signal/fft_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Inverse real-valued fast Fourier transform.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.signal.irfft</code></li>
 <li><code>tf.compat.v1.spectral.irfft</code></li>
 <li><code>tf.compat.v2.signal.irfft</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">irfft</span><span class="p">(</span>
+    <span class="n">input_tensor</span><span class="p">,</span>
+    <span class="n">fft_length</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.signal.irfft(
-    input_tensor,
-    fft_length=None,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>Computes the inverse 1-dimensional discrete Fourier transform of a real-valued
 signal over the inner-most dimension of <code>input</code>.</p>
-
 <p>The inner-most dimension of <code>input</code> is assumed to be the result of <code>RFFT</code>: the
 <code>fft_length / 2 + 1</code> unique components of the DFT of a real-valued signal. If
 <code>fft_length</code> is not provided, it is computed from the size of the inner-most
 dimension of <code>input</code> (<code>fft_length = 2 * (inner - 1)</code>). If the FFT length used to
 compute <code>input</code> is odd, it should be provided since it cannot be inferred
 properly.</p>
-
 <p>Along the axis <code>IRFFT</code> is computed on, if <code>fft_length / 2 + 1</code> is smaller
 than the corresponding dimension of <code>input</code>, the dimension is cropped. If it is
 larger, the dimension is padded with zeros.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>input</code></b>: A <code>Tensor</code> of type <code>complex64</code>. A complex64 tensor.</li>
 <li><b><code>fft_length</code></b>: A <code>Tensor</code> of type <code>int32</code>.
-An int32 tensor of shape [1]. The FFT length.</li>
+  An int32 tensor of shape [1]. The FFT length.</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>Tensor</code> of type <code>float32</code>.</p>
+    </body>
+    </html>
+   

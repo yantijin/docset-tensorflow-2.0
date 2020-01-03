@@ -1,62 +1,55 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.autograph.to_code" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.autograph.to_code</h1>
-
+<h1 id="tfautographto_code">tf.autograph.to_code</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/autograph/impl/api.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Similar to <code>to_graph</code>, but returns Python source code as a string.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v2.autograph.to_code</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">autograph</span><span class="o">.</span><span class="n">to_code</span><span class="p">(</span>
+    <span class="n">entity</span><span class="p">,</span>
+    <span class="n">recursive</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">experimental_optional_features</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.autograph.to_code(
-    entity,
-    recursive=True,
-    experimental_optional_features=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>Also see: <a href="../../tf/autograph/to_graph.html"><code>tf.autograph.to_graph</code></a>.</p>
-
 <p><code>to_graph</code> returns the Python source code that can be used to generate a
 TensorFlow graph that is functionally identical to the input Python code.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>entity</code></b>: Python callable or class to convert.</li>
 <li><b><code>recursive</code></b>: Whether to recursively convert any functions that the converted
-function may call.</li>
+  function may call.</li>
 <li><b><code>experimental_optional_features</code></b>: <code>None</code>, a tuple of, or a single
-<a href="../../tf/autograph/experimental/Feature.html"><code>tf.autograph.experimental.Feature</code></a> value. Controls the use of optional
-features in the conversion process.</li>
+  <a href="../../tf/autograph/experimental/Feature.html"><code>tf.autograph.experimental.Feature</code></a> value. Controls the use of optional
+  features in the conversion process.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>The converted code as string.</p>
+    </body>
+    </html>
+   

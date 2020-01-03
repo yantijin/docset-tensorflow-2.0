@@ -1,86 +1,81 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.tpu.experimental.AdamParameters" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="__init__"/>
 </div>
 
-
-<h1>tf.compat.v1.tpu.experimental.AdamParameters</h1>
-
+<h1 id="tfcompatv1tpuexperimentaladamparameters">tf.compat.v1.tpu.experimental.AdamParameters</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/tpu/tpu_embedding.py">View source</a></p>
-
-<h2>Class <code>AdamParameters</code></h2>
-
+<h2 id="class-adamparameters">Class <code>AdamParameters</code></h2>
 <!-- Start diff -->
 
-
 <p>Optimization parameters for Adam with TPU embeddings.</p>
-
 <!-- Placeholder for "Used in" -->
-
 
 <p>Pass this to <code>tf.estimator.tpu.experimental.EmbeddingConfigSpec</code> via the
 <code>optimization_parameters</code> argument to set the optimizer and its parameters.
 See the documentation for <code>tf.estimator.tpu.experimental.EmbeddingConfigSpec</code>
 for more details.</p>
+<div class="codehilite"><pre><span></span><span class="err">estimator = tf.estimator.tpu.TPUEstimator(</span>
+<span class="err">    ...</span>
+<span class="err">    embedding_config_spec=tf.estimator.tpu.experimental.EmbeddingConfigSpec(</span>
+<span class="err">        ...</span>
+<span class="err">        optimization_parameters=tf.tpu.experimental.AdamParameters(0.1),</span>
+<span class="err">        ...))</span>
+</pre></div>
 
-<p><code>
-estimator = tf.estimator.tpu.TPUEstimator(
-    ...
-    embedding_config_spec=tf.estimator.tpu.experimental.EmbeddingConfigSpec(
-        ...
-        optimization_parameters=tf.tpu.experimental.AdamParameters(0.1),
-        ...))
-</code></p>
 
 <h2 id="__init__"><code>__init__</code></h2>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/tpu/tpu_embedding.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">learning_rate</span><span class="p">,</span>
+    <span class="n">beta1</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
+    <span class="n">beta2</span><span class="o">=</span><span class="mf">0.999</span><span class="p">,</span>
+    <span class="n">epsilon</span><span class="o">=</span><span class="mf">1e-08</span><span class="p">,</span>
+    <span class="n">lazy_adam</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">sum_inside_sqrt</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">use_gradient_accumulation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">clip_weight_min</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">clip_weight_max</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__init__(
-    learning_rate,
-    beta1=0.9,
-    beta2=0.999,
-    epsilon=1e-08,
-    lazy_adam=True,
-    sum_inside_sqrt=True,
-    use_gradient_accumulation=True,
-    clip_weight_min=None,
-    clip_weight_max=None
-)
-</code></p>
 
 <p>Optimization parameters for Adam.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>learning_rate</code></b>: a floating point value. The learning rate.</li>
 <li><b><code>beta1</code></b>: A float value.
-The exponential decay rate for the 1st moment estimates.</li>
+  The exponential decay rate for the 1st moment estimates.</li>
 <li><b><code>beta2</code></b>: A float value.
-The exponential decay rate for the 2nd moment estimates.</li>
+  The exponential decay rate for the 2nd moment estimates.</li>
 <li><b><code>epsilon</code></b>: A small constant for numerical stability.</li>
 <li><b><code>lazy_adam</code></b>: Use lazy Adam instead of Adam. Lazy Adam trains faster.
-Please see <code>optimization_parameters.proto</code> for details.</li>
+  Please see <code>optimization_parameters.proto</code> for details.</li>
 <li><b><code>sum_inside_sqrt</code></b>: This improves training speed. Please see
-<code>optimization_parameters.proto</code> for details.</li>
+  <code>optimization_parameters.proto</code> for details.</li>
 <li><b><code>use_gradient_accumulation</code></b>: setting this to <code>False</code> makes embedding
-gradients calculation less accurate but faster. Please see
-<code>optimization_parameters.proto</code> for details.
-for details.</li>
+  gradients calculation less accurate but faster. Please see
+  <code>optimization_parameters.proto</code> for details.
+  for details.</li>
 <li><b><code>clip_weight_min</code></b>: the minimum value to clip by; None means -infinity.</li>
 <li><b><code>clip_weight_max</code></b>: the maximum value to clip by; None means +infinity.</li>
 </ul>
-
+    </body>
+    </html>
+   

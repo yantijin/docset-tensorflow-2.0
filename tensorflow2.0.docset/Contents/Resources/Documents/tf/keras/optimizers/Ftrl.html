@@ -1,4 +1,13 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.keras.optimizers.Ftrl" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="iterations"/>
@@ -19,412 +28,311 @@
 <meta itemprop="property" content="variables"/>
 </div>
 
-
-<h1>tf.keras.optimizers.Ftrl</h1>
-
+<h1 id="tfkerasoptimizersftrl">tf.keras.optimizers.Ftrl</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/ftrl.py">View source</a></p>
-
-<h2>Class <code>Ftrl</code></h2>
-
+<h2 id="class-ftrl">Class <code>Ftrl</code></h2>
 <!-- Start diff -->
 
-
 <p>Optimizer that implements the FTRL algorithm.</p>
-
 <p>Inherits From: <a href="../../../tf/keras/optimizers/Optimizer.html"><code>Optimizer</code></a></p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li>Class <code>tf.compat.v1.keras.optimizers.Ftrl</code></li>
 <li>Class <code>tf.compat.v2.keras.optimizers.Ftrl</code></li>
 <li>Class <code>tf.compat.v2.optimizers.Ftrl</code></li>
 <li>Class <code>tf.optimizers.Ftrl</code></li>
 </ul>
-
-
 <!-- Placeholder for "Used in" -->
-
 
 <p>See Algorithm 1 of this <a href="https://www.eecs.tufts.edu/~dsculley/papers/ad-click-prediction.pdf">paper</a>.
 This version has support for both online L2 (the L2 penalty given in the paper
 above) and shrinkage-type L2 (which is the addition of an L2 penalty to the
 loss function).</p>
-
-<h4>Initialization:</h4>
-
+<h4 id="initialization">Initialization:</h4>
 <p>$$t = 0$$
-$$n<em>{0} = 0$$
-$$\sigma</em>{0} = 0$$
+$$n_{0} = 0$$
+$$\sigma_{0} = 0$$
 $$z_{0} = 0$$</p>
-
 <p>Update ($$i$$ is variable index):
 $$t = t + 1$$
-$$n<em>{t,i} = n</em>{t-1,i} + g<em>{t,i}^{2}$$
-$$\sigma</em>{t,i} = (\sqrt{n<em>{t,i}} - \sqrt{n</em>{t-1,i}}) / \alpha$$
-$$z<em>{t,i} = z</em>{t-1,i} + g<em>{t,i} - \sigma</em>{t,i} * w<em>{t,i}$$
-$$w</em>{t,i} = - ((\beta+\sqrt{n+{t}}) / \alpha + \lambda<em>{2})^{-1} * (z</em>{i} -
-             sgn(z<em>{i}) * \lambda</em>{1}) if \abs{z<em>{i}} > \lambda</em>{i} else 0$$</p>
-
+$$n_{t,i} = n_{t-1,i} + g_{t,i}^{2}$$
+$$\sigma_{t,i} = (\sqrt{n_{t,i}} - \sqrt{n_{t-1,i}}) / \alpha$$
+$$z_{t,i} = z_{t-1,i} + g_{t,i} - \sigma_{t,i} * w_{t,i}$$
+$$w_{t,i} = - ((\beta+\sqrt{n+{t}}) / \alpha + \lambda_{2})^{-1} * (z_{i} -
+             sgn(z_{i}) * \lambda_{1}) if \abs{z_{i}} &gt; \lambda_{i} else 0$$</p>
 <p>Check the documentation for the l2_shrinkage_regularization_strength
 parameter for more details when shrinkage is enabled, where gradient is
 replaced with gradient_with_shrinkage.</p>
-
 <h2 id="__init__"><code>__init__</code></h2>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/ftrl.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span>
+    <span class="n">learning_rate_power</span><span class="o">=-</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">initial_accumulator_value</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">l1_regularization_strength</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">l2_regularization_strength</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Ftrl&#39;</span><span class="p">,</span>
+    <span class="n">l2_shrinkage_regularization_strength</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__init__(
-    learning_rate=0.001,
-    learning_rate_power=-0.5,
-    initial_accumulator_value=0.1,
-    l1_regularization_strength=0.0,
-    l2_regularization_strength=0.0,
-    name='Ftrl',
-    l2_shrinkage_regularization_strength=0.0,
-    **kwargs
-)
-</code></p>
 
 <p>Construct a new FTRL optimizer.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>learning_rate</code></b>: A float value or a constant float <code>Tensor</code>.</li>
 <li><b><code>learning_rate_power</code></b>: A float value, must be less or equal to zero.
-Controls how the learning rate decreases during training. Use zero for
-a fixed learning rate.</li>
+  Controls how the learning rate decreases during training. Use zero for
+  a fixed learning rate.</li>
 <li><b><code>initial_accumulator_value</code></b>: The starting value for accumulators.
-Only zero or positive values are allowed.</li>
+  Only zero or positive values are allowed.</li>
 <li><b><code>l1_regularization_strength</code></b>: A float value, must be greater than or
-equal to zero.</li>
+  equal to zero.</li>
 <li><b><code>l2_regularization_strength</code></b>: A float value, must be greater than or
-equal to zero.</li>
+  equal to zero.</li>
 <li><b><code>name</code></b>: Optional name prefix for the operations created when applying
-gradients.  Defaults to &ldquo;Ftrl&rdquo;.</li>
+  gradients.  Defaults to "Ftrl".</li>
 <li><b><code>l2_shrinkage_regularization_strength</code></b>: A float value, must be greater than
-or equal to zero. This differs from L2 above in that the L2 above is a
-stabilization penalty, whereas this L2 shrinkage is a magnitude penalty.
-The FTRL formulation can be written as:
-w<em>{t+1} = argmin_w(\hat{g}</em>{1:t}w + L1<em>||w||_1 + L2</em>||w||<em>2<sup>2</sup>), where
-\hat{g} = g + (2<em>L2_shrinkage</em>w), and g is the gradient of the loss
-function w.r.t. the weights w.
-Specifically, in the absence of L1 regularization, it is equivalent to
-the following update rule:
-w</em>{t+1} = w_t - lr_t / (1 + 2<em>L2</em>lr_t) * g_t -
-          2<em>L2_shrinkage</em>lr_t / (1 + 2<em>L2</em>lr_t) * w_t
-where lr_t is the learning rate at t.
-When input is sparse shrinkage will only happen on the active weights.\</li>
+  or equal to zero. This differs from L2 above in that the L2 above is a
+  stabilization penalty, whereas this L2 shrinkage is a magnitude penalty.
+  The FTRL formulation can be written as:
+  w_{t+1} = argmin_w(\hat{g}<em t_1="t+1">{1:t}w + L1<em>||w||_1 + L2</em>||w||_2^2), where
+  \hat{g} = g + (2<em>L2_shrinkage</em>w), and g is the gradient of the loss
+  function w.r.t. the weights w.
+  Specifically, in the absence of L1 regularization, it is equivalent to
+  the following update rule:
+  w</em> = w_t - lr_t / (1 + 2<em>L2</em>lr_t) * g_t -
+            2<em>L2_shrinkage</em>lr_t / (1 + 2<em>L2</em>lr_t) * w_t
+  where lr_t is the learning rate at t.
+  When input is sparse shrinkage will only happen on the active weights.\</li>
 <li><b><code>**kwargs</code></b>: keyword arguments. Allowed to be {<code>clipnorm</code>, <code>clipvalue</code>, <code>lr</code>,
-<code>decay</code>}. <code>clipnorm</code> is clip gradients by norm; <code>clipvalue</code> is clip
-gradients by value, <code>decay</code> is included for backward compatibility to
-allow time inverse decay of learning rate. <code>lr</code> is included for backward
-compatibility, recommended to use <code>learning_rate</code> instead.</li>
+  <code>decay</code>}. <code>clipnorm</code> is clip gradients by norm; <code>clipvalue</code> is clip
+  gradients by value, <code>decay</code> is included for backward compatibility to
+  allow time inverse decay of learning rate. <code>lr</code> is included for backward
+  compatibility, recommended to use <code>learning_rate</code> instead.</li>
 </ul>
-
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: If one of the arguments is invalid.</li>
 </ul>
-
-
 <p>References
   See [paper]
     (https://www.eecs.tufts.edu/~dsculley/papers/ad-click-prediction.pdf)</p>
-
-<h2>Properties</h2>
-
+<h2 id="properties">Properties</h2>
 <h3 id="iterations"><code>iterations</code></h3>
 
-
 <p>Variable. The number of training steps this Optimizer has run.</p>
-
 <h3 id="weights"><code>weights</code></h3>
 
-
 <p>Returns variables of this Optimizer based on the order created.</p>
-
-<h2>Methods</h2>
-
+<h2 id="methods">Methods</h2>
 <h3 id="add_slot"><code>add_slot</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/optimizer_v2.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">add_slot</span><span class="p">(</span>
+    <span class="n">var</span><span class="p">,</span>
+    <span class="n">slot_name</span><span class="p">,</span>
+    <span class="n">initializer</span><span class="o">=</span><span class="s1">&#39;zeros&#39;</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-add_slot(
-    var,
-    slot_name,
-    initializer='zeros'
-)
-</code></p>
 
 <p>Add a new slot variable for <code>var</code>.</p>
-
 <h3 id="add_weight"><code>add_weight</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/optimizer_v2.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">add_weight</span><span class="p">(</span>
+    <span class="n">name</span><span class="p">,</span>
+    <span class="n">shape</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">initializer</span><span class="o">=</span><span class="s1">&#39;zeros&#39;</span><span class="p">,</span>
+    <span class="n">trainable</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">synchronization</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">VariableSynchronization</span><span class="o">.</span><span class="n">AUTO</span><span class="p">,</span>
+    <span class="n">aggregation</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">VariableAggregation</span><span class="o">.</span><span class="n">NONE</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-add_weight(
-    name,
-    shape,
-    dtype=None,
-    initializer='zeros',
-    trainable=None,
-    synchronization=tf.VariableSynchronization.AUTO,
-    aggregation=tf.compat.v1.VariableAggregation.NONE
-)
-</code></p>
 
 <h3 id="apply_gradients"><code>apply_gradients</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/optimizer_v2.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">apply_gradients</span><span class="p">(</span>
+    <span class="n">grads_and_vars</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-apply_gradients(
-    grads_and_vars,
-    name=None
-)
-</code></p>
 
 <p>Apply gradients to variables.</p>
-
 <p>This is the second part of <code>minimize()</code>. It returns an <code>Operation</code> that
 applies gradients.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_1">Args:</h4>
 <ul>
 <li><b><code>grads_and_vars</code></b>: List of (gradient, variable) pairs.</li>
 <li><b><code>name</code></b>: Optional name for the returned operation.  Default to the name
-passed to the <code>Optimizer</code> constructor.</li>
+  passed to the <code>Optimizer</code> constructor.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>An <code>Operation</code> that applies the specified gradients. If <code>global_step</code>
 was not None, that operation also increments <code>global_step</code>.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises_1">Raises:</h4>
 <ul>
 <li><b><code>TypeError</code></b>: If <code>grads_and_vars</code> is malformed.</li>
 <li><b><code>ValueError</code></b>: If none of the variables have gradients.</li>
 </ul>
-
-
 <h3 id="from_config"><code>from_config</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/optimizer_v2.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">from_config</span><span class="p">(</span>
+    <span class="bp">cls</span><span class="p">,</span>
+    <span class="n">config</span><span class="p">,</span>
+    <span class="n">custom_objects</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-from_config(
-    cls,
-    config,
-    custom_objects=None
-)
-</code></p>
 
 <p>Creates an optimizer from its config.</p>
-
 <p>This method is the reverse of <code>get_config</code>,
 capable of instantiating the same optimizer from the config
 dictionary.</p>
-
-<h4>Arguments:</h4>
-
+<h4 id="arguments">Arguments:</h4>
 <ul>
 <li><b><code>config</code></b>: A Python dictionary, typically the output of get_config.</li>
 <li><b><code>custom_objects</code></b>: A Python dictionary mapping names to additional Python
-objects used to create this optimizer, such as a function used for a
-hyperparameter.</li>
+  objects used to create this optimizer, such as a function used for a
+  hyperparameter.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_1">Returns:</h4>
 <p>An optimizer instance.</p>
-
 <h3 id="get_config"><code>get_config</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/ftrl.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_config</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-get_config()
-</code></p>
 
 <p>Returns the config of the optimimizer.</p>
-
 <p>An optimizer config is a Python dictionary (serializable)
 containing the configuration of an optimizer.
 The same optimizer can be reinstantiated later
 (without any saved state) from this configuration.</p>
-
-<h4>Returns:</h4>
-
+<h4 id="returns_2">Returns:</h4>
 <p>Python dictionary.</p>
-
 <h3 id="get_gradients"><code>get_gradients</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/optimizer_v2.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_gradients</span><span class="p">(</span>
+    <span class="n">loss</span><span class="p">,</span>
+    <span class="n">params</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-get_gradients(
-    loss,
-    params
-)
-</code></p>
 
 <p>Returns gradients of <code>loss</code> with respect to <code>params</code>.</p>
-
-<h4>Arguments:</h4>
-
+<h4 id="arguments_1">Arguments:</h4>
 <ul>
 <li><b><code>loss</code></b>: Loss tensor.</li>
 <li><b><code>params</code></b>: List of variables.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_3">Returns:</h4>
 <p>List of gradient tensors.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises_2">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: In case any gradient cannot be computed (e.g. if gradient
-function not implemented).</li>
+  function not implemented).</li>
 </ul>
-
-
 <h3 id="get_slot"><code>get_slot</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/optimizer_v2.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_slot</span><span class="p">(</span>
+    <span class="n">var</span><span class="p">,</span>
+    <span class="n">slot_name</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-get_slot(
-    var,
-    slot_name
-)
-</code></p>
 
 <h3 id="get_slot_names"><code>get_slot_names</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/optimizer_v2.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_slot_names</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-get_slot_names()
-</code></p>
 
-<p>A list of names for this optimizer&rsquo;s slots.</p>
-
+<p>A list of names for this optimizer's slots.</p>
 <h3 id="get_updates"><code>get_updates</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/optimizer_v2.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_updates</span><span class="p">(</span>
+    <span class="n">loss</span><span class="p">,</span>
+    <span class="n">params</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-get_updates(
-    loss,
-    params
-)
-</code></p>
 
 <h3 id="get_weights"><code>get_weights</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/optimizer_v2.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_weights</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-get_weights()
-</code></p>
 
 <h3 id="minimize"><code>minimize</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/optimizer_v2.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">minimize</span><span class="p">(</span>
+    <span class="n">loss</span><span class="p">,</span>
+    <span class="n">var_list</span><span class="p">,</span>
+    <span class="n">grad_loss</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-minimize(
-    loss,
-    var_list,
-    grad_loss=None,
-    name=None
-)
-</code></p>
 
 <p>Minimize <code>loss</code> by updating <code>var_list</code>.</p>
-
 <p>This method simply computes gradient using <a href="../../../tf/GradientTape.html"><code>tf.GradientTape</code></a> and calls
 <code>apply_gradients()</code>. If you want to process the gradient before applying
 then call <a href="../../../tf/GradientTape.html"><code>tf.GradientTape</code></a> and <code>apply_gradients()</code> explicitly instead
 of using this function.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_2">Args:</h4>
 <ul>
 <li><b><code>loss</code></b>: A callable taking no arguments which returns the value to minimize.</li>
 <li><b><code>var_list</code></b>: list or tuple of <code>Variable</code> objects to update to minimize
-<code>loss</code>, or a callable returning the list or tuple of <code>Variable</code> objects.
-Use callable when the variable list would otherwise be incomplete before
-<code>minimize</code> since the variables are created at the first time <code>loss</code> is
-called.</li>
+  <code>loss</code>, or a callable returning the list or tuple of <code>Variable</code> objects.
+  Use callable when the variable list would otherwise be incomplete before
+  <code>minimize</code> since the variables are created at the first time <code>loss</code> is
+  called.</li>
 <li><b><code>grad_loss</code></b>: Optional. A <code>Tensor</code> holding the gradient computed for <code>loss</code>.</li>
 <li><b><code>name</code></b>: Optional name for the returned operation.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_4">Returns:</h4>
 <p>An Operation that updates the variables in <code>var_list</code>.  If <code>global_step</code>
 was not <code>None</code>, that operation also increments <code>global_step</code>.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises_3">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: If some of the variables are not <code>Variable</code> objects.</li>
 </ul>
-
-
 <h3 id="set_weights"><code>set_weights</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/optimizer_v2.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">set_weights</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-set_weights(weights)
-</code></p>
 
 <h3 id="variables"><code>variables</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/optimizer_v2/optimizer_v2.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">variables</span><span class="p">()</span>
+</pre></div>
 
-<p><code>python
-variables()
-</code></p>
 
 <p>Returns variables of this Optimizer based on the order created.</p>
+    </body>
+    </html>
+   

@@ -1,67 +1,59 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.signal.hann_window" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.signal.hann_window</h1>
-
+<h1 id="tfsignalhann_window">tf.signal.hann_window</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/signal/window_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Generate a <a href="https://en.wikipedia.org/wiki/Window_function#Hann_and_Hamming_windows">Hann window</a>.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.signal.hann_window</code></li>
 <li><code>tf.compat.v2.signal.hann_window</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="n">hann_window</span><span class="p">(</span>
+    <span class="n">window_length</span><span class="p">,</span>
+    <span class="n">periodic</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.signal.hann_window(
-    window_length,
-    periodic=True,
-    dtype=tf.dtypes.float32,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>window_length</code></b>: A scalar <code>Tensor</code> indicating the window length to generate.</li>
 <li><b><code>periodic</code></b>: A bool <code>Tensor</code> indicating whether to generate a periodic or
-symmetric window. Periodic windows are typically used for spectral
-analysis while symmetric windows are typically used for digital
-filter design.</li>
+  symmetric window. Periodic windows are typically used for spectral
+  analysis while symmetric windows are typically used for digital
+  filter design.</li>
 <li><b><code>dtype</code></b>: The data type to produce. Must be a floating point type.</li>
 <li><b><code>name</code></b>: An optional name for the operation.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>Tensor</code> of shape <code>[window_length]</code> of type <code>dtype</code>.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: If <code>dtype</code> is not a floating point type.</li>
 </ul>
-
+    </body>
+    </html>
+   

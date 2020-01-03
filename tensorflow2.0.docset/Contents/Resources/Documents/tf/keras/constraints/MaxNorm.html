@@ -1,4 +1,13 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.keras.constraints.MaxNorm" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="__call__"/>
@@ -6,31 +15,19 @@
 <meta itemprop="property" content="get_config"/>
 </div>
 
-
-<h1>tf.keras.constraints.MaxNorm</h1>
-
+<h1 id="tfkerasconstraintsmaxnorm">tf.keras.constraints.MaxNorm</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/constraints.py">View source</a></p>
-
-<h2>Class <code>MaxNorm</code></h2>
-
+<h2 id="class-maxnorm">Class <code>MaxNorm</code></h2>
 <!-- Start diff -->
 
-
 <p>MaxNorm weight constraint.</p>
-
 <p>Inherits From: <a href="../../../tf/keras/constraints/Constraint.html"><code>Constraint</code></a></p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li>Class <code>tf.compat.v1.keras.constraints.MaxNorm</code></li>
 <li>Class <code>tf.compat.v1.keras.constraints.max_norm</code></li>
@@ -38,64 +35,50 @@
 <li>Class <code>tf.compat.v2.keras.constraints.max_norm</code></li>
 <li>Class <code>tf.keras.constraints.max_norm</code></li>
 </ul>
-
-
 <!-- Placeholder for "Used in" -->
-
 
 <p>Constrains the weights incident to each hidden unit
 to have a norm less than or equal to a desired value.</p>
-
-<h4>Arguments:</h4>
-
+<h4 id="arguments">Arguments:</h4>
 <ul>
 <li><b><code>m</code></b>: the maximum norm for the incoming weights.</li>
 <li><b><code>axis</code></b>: integer, axis along which to calculate weight norms.
-  For instance, in a <code>Dense</code> layer the weight matrix
-  has shape <code>(input_dim, output_dim)</code>,
-  set <code>axis</code> to <code>0</code> to constrain each weight vector
-  of length <code>(input_dim,)</code>.
-  In a <code>Conv2D</code> layer with <code>data_format="channels_last"</code>,
-  the weight tensor has shape
-  <code>(rows, cols, input_depth, output_depth)</code>,
-  set <code>axis</code> to <code>[0, 1, 2]</code>
-  to constrain the weights of each filter tensor of size
-  <code>(rows, cols, input_depth)</code>.</li>
+    For instance, in a <code>Dense</code> layer the weight matrix
+    has shape <code>(input_dim, output_dim)</code>,
+    set <code>axis</code> to <code>0</code> to constrain each weight vector
+    of length <code>(input_dim,)</code>.
+    In a <code>Conv2D</code> layer with <code>data_format="channels_last"</code>,
+    the weight tensor has shape
+    <code>(rows, cols, input_depth, output_depth)</code>,
+    set <code>axis</code> to <code>[0, 1, 2]</code>
+    to constrain the weights of each filter tensor of size
+    <code>(rows, cols, input_depth)</code>.</li>
 </ul>
-
-
 <h2 id="__init__"><code>__init__</code></h2>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/constraints.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">max_value</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">axis</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__init__(
-    max_value=2,
-    axis=0
-)
-</code></p>
 
 <p>Initialize self.  See help(type(self)) for accurate signature.</p>
-
-<h2>Methods</h2>
-
+<h2 id="methods">Methods</h2>
 <h3 id="__call__"><code>__call__</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/constraints.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__call__</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__call__(w)
-</code></p>
 
 <p>Call self as a function.</p>
-
 <h3 id="get_config"><code>get_config</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/constraints.py">View source</a></p>
-
-<p><code>python
-get_config()
-</code></p>
+<div class="codehilite"><pre><span></span><span class="n">get_config</span><span class="p">()</span>
+</pre></div>
+    </body>
+    </html>
+   

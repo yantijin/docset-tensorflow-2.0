@@ -1,71 +1,60 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.flags.mark_flag_as_required" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.compat.v1.flags.mark_flag_as_required</h1>
-
+<h1 id="tfcompatv1flagsmark_flag_as_required">tf.compat.v1.flags.mark_flag_as_required</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
-
-
 <!-- Start diff -->
 
-
 <p>Ensures that flag is not None during program execution.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.app.flags.mark_flag_as_required</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">flags</span><span class="o">.</span><span class="n">mark_flag_as_required</span><span class="p">(</span>
+    <span class="n">flag_name</span><span class="p">,</span>
+    <span class="n">flag_values</span><span class="o">=</span><span class="n">_flagvalues</span><span class="o">.</span><span class="n">FLAGS</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.compat.v1.flags.mark_flag_as_required(
-    flag_name,
-    flag_values=_flagvalues.FLAGS
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>Registers a flag validator, which will follow usual validator rules.
 Important note: validator will pass for any non-None value, such as False,
-0 (zero), &lsquo;&rsquo; (empty string) and so on.</p>
-
+0 (zero), '' (empty string) and so on.</p>
 <p>It is recommended to call this method like this:</p>
-
-<p>  if <strong>name</strong> == &lsquo;<strong>main</strong>&rsquo;:
-    flags.mark_flag_as_required(&lsquo;your_flag_name&rsquo;)
+<p>if <strong>name</strong> == '<strong>main</strong>':
+    flags.mark_flag_as_required('your_flag_name')
     app.run()</p>
-
 <p>Because validation happens at app.run() we want to ensure required-ness
 is enforced at that time. You generally do not want to force users who import
 your code to have additional required flags for their own binaries or tests.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>flag_name</code></b>: str, name of the flag</li>
 <li><b><code>flag_values</code></b>: flags.FlagValues, optional FlagValues instance where the flag
-  is defined.</li>
+    is defined.</li>
 </ul>
-
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>AttributeError</code></b>: Raised when flag_name is not registered as a valid flag
-  name.</li>
+    name.</li>
 </ul>
-
+    </body>
+    </html>
+   

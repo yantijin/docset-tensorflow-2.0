@@ -1,4 +1,13 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.keras.layers.RNN" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="states"/>
@@ -7,161 +16,128 @@
 <meta itemprop="property" content="reset_states"/>
 </div>
 
-
-<h1>tf.keras.layers.RNN</h1>
-
+<h1 id="tfkeraslayersrnn">tf.keras.layers.RNN</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/recurrent.py">View source</a></p>
-
-<h2>Class <code>RNN</code></h2>
-
+<h2 id="class-rnn">Class <code>RNN</code></h2>
 <!-- Start diff -->
 
-
 <p>Base class for recurrent layers.</p>
-
 <p>Inherits From: <a href="../../../tf/keras/layers/Layer.html"><code>Layer</code></a></p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li>Class <code>tf.compat.v1.keras.layers.RNN</code></li>
 <li>Class <code>tf.compat.v2.keras.layers.RNN</code></li>
 </ul>
-
-
 <!-- Placeholder for "Used in" -->
 
-
-<h4>Arguments:</h4>
-
+<h4 id="arguments">Arguments:</h4>
 <ul>
 <li><b><code>cell</code></b>: A RNN cell instance or a list of RNN cell instances.
-A RNN cell is a class that has:
-
-<ul>
+  A RNN cell is a class that has:</li>
 <li>A <code>call(input_at_t, states_at_t)</code> method, returning
-<code>(output_at_t, states_at_t_plus_1)</code>. The call method of the
-cell can also take the optional argument <code>constants</code>, see
-section &ldquo;Note on passing external constants&rdquo; below.</li>
+    <code>(output_at_t, states_at_t_plus_1)</code>. The call method of the
+    cell can also take the optional argument <code>constants</code>, see
+    section "Note on passing external constants" below.</li>
 <li>A <code>state_size</code> attribute. This can be a single integer
-(single state) in which case it is the size of the recurrent
-state. This can also be a list/tuple of integers (one size per
-state).
-The <code>state_size</code> can also be TensorShape or tuple/list of
-TensorShape, to represent high dimension state.</li>
+    (single state) in which case it is the size of the recurrent
+    state. This can also be a list/tuple of integers (one size per
+    state).
+    The <code>state_size</code> can also be TensorShape or tuple/list of
+    TensorShape, to represent high dimension state.</li>
 <li>A <code>output_size</code> attribute. This can be a single integer or a
-TensorShape, which represent the shape of the output. For backward
-compatible reason, if this attribute is not available for the
-cell, the value will be inferred by the first element of the
-<code>state_size</code>.</li>
+    TensorShape, which represent the shape of the output. For backward
+    compatible reason, if this attribute is not available for the
+    cell, the value will be inferred by the first element of the
+    <code>state_size</code>.</li>
 <li>A <code>get_initial_state(inputs=None, batch_size=None, dtype=None)</code>
-method that creates a tensor meant to be fed to <code>call()</code> as the
-initial state, if the user didn&rsquo;t specify any initial state via other
-means. The returned initial state should have a shape of
-[batch_size, cell.state_size]. The cell might choose to create a
-tensor full of zeros, or full of other values based on the cell&rsquo;s
-implementation.
-<code>inputs</code> is the input tensor to the RNN layer, which should
-contain the batch size as its shape[0], and also dtype. Note that
-the shape[0] might be <code>None</code> during the graph construction. Either
-the <code>inputs</code> or the pair of <code>batch_size</code> and <code>dtype</code> are provided.
-<code>batch_size</code> is a scalar tensor that represents the batch size
-of the inputs. <code>dtype</code> is <a href="../../../tf/dtypes/DType.html"><code>tf.DType</code></a> that represents the dtype of
-the inputs.
-For backward compatible reason, if this method is not implemented
-by the cell, the RNN layer will create a zero filled tensor with the
-size of [batch_size, cell.state_size].
-In the case that <code>cell</code> is a list of RNN cell instances, the cells
-will be stacked on top of each other in the RNN, resulting in an
-efficient stacked RNN.</li>
-</ul>
-</li>
+    method that creates a tensor meant to be fed to <code>call()</code> as the
+    initial state, if the user didn't specify any initial state via other
+    means. The returned initial state should have a shape of
+    [batch_size, cell.state_size]. The cell might choose to create a
+    tensor full of zeros, or full of other values based on the cell's
+    implementation.
+    <code>inputs</code> is the input tensor to the RNN layer, which should
+    contain the batch size as its shape[0], and also dtype. Note that
+    the shape[0] might be <code>None</code> during the graph construction. Either
+    the <code>inputs</code> or the pair of <code>batch_size</code> and <code>dtype</code> are provided.
+    <code>batch_size</code> is a scalar tensor that represents the batch size
+    of the inputs. <code>dtype</code> is <a href="../../../tf/dtypes/DType.html"><code>tf.DType</code></a> that represents the dtype of
+    the inputs.
+    For backward compatible reason, if this method is not implemented
+    by the cell, the RNN layer will create a zero filled tensor with the
+    size of [batch_size, cell.state_size].
+  In the case that <code>cell</code> is a list of RNN cell instances, the cells
+  will be stacked on top of each other in the RNN, resulting in an
+  efficient stacked RNN.</li>
 <li><b><code>return_sequences</code></b>: Boolean. Whether to return the last output
-in the output sequence, or the full sequence.</li>
+  in the output sequence, or the full sequence.</li>
 <li><b><code>return_state</code></b>: Boolean. Whether to return the last state
-in addition to the output.</li>
+  in addition to the output.</li>
 <li><b><code>go_backwards</code></b>: Boolean (default False).
-If True, process the input sequence backwards and return the
-reversed sequence.</li>
+  If True, process the input sequence backwards and return the
+  reversed sequence.</li>
 <li><b><code>stateful</code></b>: Boolean (default False). If True, the last state
-for each sample at index i in a batch will be used as initial
-state for the sample of index i in the following batch.</li>
+  for each sample at index i in a batch will be used as initial
+  state for the sample of index i in the following batch.</li>
 <li><b><code>unroll</code></b>: Boolean (default False).
-If True, the network will be unrolled, else a symbolic loop will be used.
-Unrolling can speed-up a RNN,
-although it tends to be more memory-intensive.
-Unrolling is only suitable for short sequences.</li>
+  If True, the network will be unrolled, else a symbolic loop will be used.
+  Unrolling can speed-up a RNN,
+  although it tends to be more memory-intensive.
+  Unrolling is only suitable for short sequences.</li>
 <li><b><code>time_major</code></b>: The shape format of the <code>inputs</code> and <code>outputs</code> tensors.
-If True, the inputs and outputs will be in shape
-<code>(timesteps, batch, ...)</code>, whereas in the False case, it will be
-<code>(batch, timesteps, ...)</code>. Using <code>time_major = True</code> is a bit more
-efficient because it avoids transposes at the beginning and end of the
-RNN calculation. However, most TensorFlow data is batch-major, so by
-default this function accepts input and emits output in batch-major
-form.</li>
+  If True, the inputs and outputs will be in shape
+  <code>(timesteps, batch, ...)</code>, whereas in the False case, it will be
+  <code>(batch, timesteps, ...)</code>. Using <code>time_major = True</code> is a bit more
+  efficient because it avoids transposes at the beginning and end of the
+  RNN calculation. However, most TensorFlow data is batch-major, so by
+  default this function accepts input and emits output in batch-major
+  form.</li>
 </ul>
-
-
-<h4>Call arguments:</h4>
-
+<h4 id="call-arguments">Call arguments:</h4>
 <ul>
 <li><b><code>inputs</code></b>: Input tensor.</li>
 <li><b><code>mask</code></b>: Binary tensor of shape <code>(samples, timesteps)</code> indicating whether
-a given timestep should be masked.</li>
+  a given timestep should be masked.</li>
 <li><b><code>training</code></b>: Python boolean indicating whether the layer should behave in
-training mode or in inference mode. This argument is passed to the cell
-when calling it. This is for use with cells that use dropout.</li>
+  training mode or in inference mode. This argument is passed to the cell
+  when calling it. This is for use with cells that use dropout.</li>
 <li><b><code>initial_state</code></b>: List of initial state tensors to be passed to the first
-call of the cell.</li>
+  call of the cell.</li>
 <li><b><code>constants</code></b>: List of constant tensors to be passed to the cell at each
-timestep.</li>
+  timestep.</li>
 </ul>
-
-
-<h4>Input shape:</h4>
-
+<h4 id="input-shape">Input shape:</h4>
 <p>N-D tensor with shape <code>(batch_size, timesteps, ...)</code> or
 <code>(timesteps, batch_size, ...)</code> when time_major is True.</p>
-
-<h4>Output shape:</h4>
-
+<h4 id="output-shape">Output shape:</h4>
 <ul>
 <li>If <code>return_state</code>: a list of tensors. The first tensor is
-the output. The remaining tensors are the last states,
-each with shape <code>(batch_size, state_size)</code>, where <code>state_size</code> could
-be a high dimension tensor shape.</li>
+  the output. The remaining tensors are the last states,
+  each with shape <code>(batch_size, state_size)</code>, where <code>state_size</code> could
+  be a high dimension tensor shape.</li>
 <li>If <code>return_sequences</code>: N-D tensor with shape
-<code>(batch_size, timesteps, output_size)</code>, where <code>output_size</code> could
-be a high dimension tensor shape, or
-<code>(timesteps, batch_size, output_size)</code> when <code>time_major</code> is True.</li>
+  <code>(batch_size, timesteps, output_size)</code>, where <code>output_size</code> could
+  be a high dimension tensor shape, or
+  <code>(timesteps, batch_size, output_size)</code> when <code>time_major</code> is True.</li>
 <li>Else, N-D tensor with shape <code>(batch_size, output_size)</code>, where
-<code>output_size</code> could be a high dimension tensor shape.</li>
+  <code>output_size</code> could be a high dimension tensor shape.</li>
 </ul>
-
-
-<h4>Masking:</h4>
-
+<h4 id="masking">Masking:</h4>
 <p>This layer supports masking for input data with a variable number
 of timesteps. To introduce masks to your data,
 use an <a href="embeddings.html">Embedding</a> layer with the <code>mask_zero</code> parameter
 set to <code>True</code>.</p>
-
 <p>Note on using statefulness in RNNs:
-  You can set RNN layers to be &lsquo;stateful&rsquo;, which means that the states
+  You can set RNN layers to be 'stateful', which means that the states
   computed for the samples in one batch will be reused as initial states
   for the samples in the next batch. This assumes a one-to-one mapping
   between samples in different successive batches.</p>
-
-<p>  To enable statefulness:
+<p>To enable statefulness:
     - Specify <code>stateful=True</code> in the layer constructor.
     - Specify a fixed batch size for your model, by passing
       If sequential model:
@@ -172,113 +148,98 @@ set to <code>True</code>.</p>
       <em>including the batch size</em>.
       It should be a tuple of integers, e.g. <code>(32, 10, 100)</code>.
     - Specify <code>shuffle=False</code> when calling fit().</p>
-
-<p>  To reset the states of your model, call <code>.reset_states()</code> on either
+<p>To reset the states of your model, call <code>.reset_states()</code> on either
   a specific layer, or on your entire model.</p>
-
 <p>Note on specifying the initial state of RNNs:
   You can specify the initial state of RNN layers symbolically by
   calling them with the keyword argument <code>initial_state</code>. The value of
   <code>initial_state</code> should be a tensor or list of tensors representing
   the initial state of the RNN layer.</p>
-
-<p>  You can specify the initial state of RNN layers numerically by
+<p>You can specify the initial state of RNN layers numerically by
   calling <code>reset_states</code> with the keyword argument <code>states</code>. The value of
   <code>states</code> should be a numpy array or list of numpy arrays representing
   the initial state of the RNN layer.</p>
-
 <p>Note on passing external constants to RNNs:
-  You can pass &ldquo;external&rdquo; constants to the cell using the <code>constants</code>
+  You can pass "external" constants to the cell using the <code>constants</code>
   keyword argument of <a href="../../../tf/keras/layers/RNN.html#__call__"><code>RNN.<strong>call</strong></code></a> (as well as <a href="../../../tf/keras/layers/RNN.html#call"><code>RNN.call</code></a>) method. This
   requires that the <code>cell.call</code> method accepts the same keyword argument
   <code>constants</code>. Such constants can be used to condition the cell
   transformation on additional static inputs (not changing over time),
   a.k.a. an attention mechanism.</p>
+<h4 id="examples">Examples:</h4>
+<div class="codehilite"><pre><span></span><span class="c1"># First, let&#39;s define a RNN Cell, as a layer subclass.</span>
 
-<h4>Examples:</h4>
+<span class="k">class</span> <span class="nc">MinimalRNNCell</span><span class="p">(</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Layer</span><span class="p">):</span>
 
-<p>```python</p>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">units</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="n">units</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state_size</span> <span class="o">=</span> <span class="n">units</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">MinimalRNNCell</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-<h1>First, let&rsquo;s define a RNN Cell, as a layer subclass.</h1>
+    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_shape</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kernel</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_weight</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">input_shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">units</span><span class="p">),</span>
+                                      <span class="n">initializer</span><span class="o">=</span><span class="s1">&#39;uniform&#39;</span><span class="p">,</span>
+                                      <span class="n">name</span><span class="o">=</span><span class="s1">&#39;kernel&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">recurrent_kernel</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_weight</span><span class="p">(</span>
+            <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">units</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">units</span><span class="p">),</span>
+            <span class="n">initializer</span><span class="o">=</span><span class="s1">&#39;uniform&#39;</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="s1">&#39;recurrent_kernel&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">built</span> <span class="o">=</span> <span class="kc">True</span>
 
-<p>class MinimalRNNCell(keras.layers.Layer):</p>
+    <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">states</span><span class="p">):</span>
+        <span class="n">prev_output</span> <span class="o">=</span> <span class="n">states</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kernel</span><span class="p">)</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">h</span> <span class="o">+</span> <span class="n">K</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">prev_output</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">recurrent_kernel</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">output</span><span class="p">,</span> <span class="p">[</span><span class="n">output</span><span class="p">]</span>
 
-<pre><code>def __init__(self, units, **kwargs):
-    self.units = units
-    self.state_size = units
-    super(MinimalRNNCell, self).__init__(**kwargs)
+<span class="c1"># Let&#39;s use this cell in a RNN layer:</span>
 
-def build(self, input_shape):
-    self.kernel = self.add_weight(shape=(input_shape[-1], self.units),
-                                  initializer='uniform',
-                                  name='kernel')
-    self.recurrent_kernel = self.add_weight(
-        shape=(self.units, self.units),
-        initializer='uniform',
-        name='recurrent_kernel')
-    self.built = True
+<span class="n">cell</span> <span class="o">=</span> <span class="n">MinimalRNNCell</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">Input</span><span class="p">((</span><span class="kc">None</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">layer</span> <span class="o">=</span> <span class="n">RNN</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">layer</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
-def call(self, inputs, states):
-    prev_output = states[0]
-    h = K.dot(inputs, self.kernel)
-    output = h + K.dot(prev_output, self.recurrent_kernel)
-    return output, [output]
-</code></pre>
+<span class="c1"># Here&#39;s how to use the cell to build a stacked RNN:</span>
 
-<h1>Let&rsquo;s use this cell in a RNN layer:</h1>
+<span class="n">cells</span> <span class="o">=</span> <span class="p">[</span><span class="n">MinimalRNNCell</span><span class="p">(</span><span class="mi">32</span><span class="p">),</span> <span class="n">MinimalRNNCell</span><span class="p">(</span><span class="mi">64</span><span class="p">)]</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">Input</span><span class="p">((</span><span class="kc">None</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">layer</span> <span class="o">=</span> <span class="n">RNN</span><span class="p">(</span><span class="n">cells</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">layer</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
 
-<p>cell = MinimalRNNCell(32)
-x = keras.Input((None, 5))
-layer = RNN(cell)
-y = layer(x)</p>
-
-<h1>Here&rsquo;s how to use the cell to build a stacked RNN:</h1>
-
-<p>cells = [MinimalRNNCell(32), MinimalRNNCell(64)]
-x = keras.Input((None, 5))
-layer = RNN(cells)
-y = layer(x)
-```</p>
 
 <h2 id="__init__"><code>__init__</code></h2>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/recurrent.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">cell</span><span class="p">,</span>
+    <span class="n">return_sequences</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">return_state</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">go_backwards</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">stateful</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">unroll</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">time_major</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__init__(
-    cell,
-    return_sequences=False,
-    return_state=False,
-    go_backwards=False,
-    stateful=False,
-    unroll=False,
-    time_major=False,
-    **kwargs
-)
-</code></p>
 
-<h2>Properties</h2>
-
+<h2 id="properties">Properties</h2>
 <h3 id="states"><code>states</code></h3>
 
-
-<h2>Methods</h2>
-
+<h2 id="methods">Methods</h2>
 <h3 id="get_initial_state"><code>get_initial_state</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/recurrent.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_initial_state</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-get_initial_state(inputs)
-</code></p>
 
 <h3 id="reset_states"><code>reset_states</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/recurrent.py">View source</a></p>
-
-<p><code>python
-reset_states(states=None)
-</code></p>
+<div class="codehilite"><pre><span></span><span class="n">reset_states</span><span class="p">(</span><span class="n">states</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</pre></div>
+    </body>
+    </html>
+   

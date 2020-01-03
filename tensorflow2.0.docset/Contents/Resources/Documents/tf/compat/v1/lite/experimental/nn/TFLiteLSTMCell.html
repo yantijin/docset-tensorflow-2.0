@@ -1,4 +1,13 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.lite.experimental.nn.TFLiteLSTMCell" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="graph"/>
@@ -10,191 +19,145 @@
 <meta itemprop="property" content="zero_state"/>
 </div>
 
-
-<h1>tf.compat.v1.lite.experimental.nn.TFLiteLSTMCell</h1>
-
+<h1 id="tfcompatv1liteexperimentalnntflitelstmcell">tf.compat.v1.lite.experimental.nn.TFLiteLSTMCell</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/lite/experimental/examples/lstm/rnn_cell.py">View source</a></p>
-
-<h2>Class <code>TFLiteLSTMCell</code></h2>
-
+<h2 id="class-tflitelstmcell">Class <code>TFLiteLSTMCell</code></h2>
 <!-- Start diff -->
 
-
 <p>Long short-term memory unit (LSTM) recurrent network cell.</p>
-
 <!-- Placeholder for "Used in" -->
-
 
 <p>This is used only for TfLite, it provides hints and it also makes the
 variables in the desired for the tflite ops  (transposed and seaparated).</p>
-
 <p>The default non-peephole implementation is based on:</p>
-
-<p>  https://pdfs.semanticscholar.org/1154/0131eae85b2e11d53df7f1360eeb6476e7f4.pdf</p>
-
+<p>https://pdfs.semanticscholar.org/1154/0131eae85b2e11d53df7f1360eeb6476e7f4.pdf</p>
 <p>Felix Gers, Jurgen Schmidhuber, and Fred Cummins.
-&ldquo;Learning to forget: Continual prediction with LSTM.&rdquo; IET, 850-855, 1999.</p>
-
+"Learning to forget: Continual prediction with LSTM." IET, 850-855, 1999.</p>
 <p>The peephole implementation is based on:</p>
-
-<p>  https://research.google.com/pubs/archive/43905.pdf</p>
-
+<p>https://research.google.com/pubs/archive/43905.pdf</p>
 <p>Hasim Sak, Andrew Senior, and Francoise Beaufays.
-&ldquo;Long short-term memory recurrent neural network architectures for
- large scale acoustic modeling.&rdquo; INTERSPEECH, 2014.</p>
-
+"Long short-term memory recurrent neural network architectures for
+ large scale acoustic modeling." INTERSPEECH, 2014.</p>
 <p>The class uses optional peep-hole connections, optional cell clipping, and
 an optional projection layer.</p>
-
 <p>Note that this cell is not optimized for performance. Please use
 <code>tf.contrib.cudnn_rnn.CudnnLSTM</code> for better performance on GPU, or
 <code>tf.contrib.rnn.LSTMBlockCell</code> and <code>tf.contrib.rnn.LSTMBlockFusedCell</code> for
 better performance on CPU.</p>
-
 <h2 id="__init__"><code>__init__</code></h2>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/lite/experimental/examples/lstm/rnn_cell.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">num_units</span><span class="p">,</span>
+    <span class="n">use_peepholes</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">cell_clip</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">initializer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">num_proj</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">proj_clip</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">num_unit_shards</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">num_proj_shards</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">forget_bias</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+    <span class="n">state_is_tuple</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">activation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">reuse</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__init__(
-    num_units,
-    use_peepholes=False,
-    cell_clip=None,
-    initializer=None,
-    num_proj=None,
-    proj_clip=None,
-    num_unit_shards=None,
-    num_proj_shards=None,
-    forget_bias=1.0,
-    state_is_tuple=True,
-    activation=None,
-    reuse=None,
-    name=None,
-    dtype=None
-)
-</code></p>
 
 <p>Initialize the parameters for an LSTM cell.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>num_units</code></b>: int, The number of units in the LSTM cell.</li>
 <li><b><code>use_peepholes</code></b>: bool, set True to enable diagonal/peephole connections.</li>
 <li><b><code>cell_clip</code></b>: (optional) A float value, if provided the cell state is clipped
-by this value prior to the cell output activation.</li>
+  by this value prior to the cell output activation.</li>
 <li><b><code>initializer</code></b>: (optional) The initializer to use for the weight and
-projection matrices.</li>
+  projection matrices.</li>
 <li><b><code>num_proj</code></b>: (optional) int, The output dimensionality for the projection
-matrices.  If None, no projection is performed.</li>
+  matrices.  If None, no projection is performed.</li>
 <li><b><code>proj_clip</code></b>: (optional) A float value.  If <code>num_proj &gt; 0</code> and <code>proj_clip</code> is
-provided, then the projected values are clipped elementwise to within
-<code>[-proj_clip, proj_clip]</code>.</li>
+  provided, then the projected values are clipped elementwise to within
+  <code>[-proj_clip, proj_clip]</code>.</li>
 <li><b><code>num_unit_shards</code></b>: Deprecated, will be removed by Jan. 2017. Use a
-variable_scope partitioner instead.</li>
+  variable_scope partitioner instead.</li>
 <li><b><code>num_proj_shards</code></b>: Deprecated, will be removed by Jan. 2017. Use a
-variable_scope partitioner instead.</li>
+  variable_scope partitioner instead.</li>
 <li><b><code>forget_bias</code></b>: Biases of the forget gate are initialized by default to 1 in
-order to reduce the scale of forgetting at the beginning of the
-training. Must set it manually to <code>0.0</code> when restoring from CudnnLSTM
-trained checkpoints.</li>
+  order to reduce the scale of forgetting at the beginning of the
+  training. Must set it manually to <code>0.0</code> when restoring from CudnnLSTM
+  trained checkpoints.</li>
 <li><b><code>state_is_tuple</code></b>: If True, accepted and returned states are 2-tuples of the
-<code>c_state</code> and <code>m_state</code>.  If False, they are concatenated along the
-column axis.  This latter behavior will soon be deprecated.</li>
+  <code>c_state</code> and <code>m_state</code>.  If False, they are concatenated along the
+  column axis.  This latter behavior will soon be deprecated.</li>
 <li><b><code>activation</code></b>: Activation function of the inner states.  Default: <code>tanh</code>.</li>
 <li><b><code>reuse</code></b>: (optional) Python boolean describing whether to reuse variables in
-an existing scope.  If not <code>True</code>, and the existing scope already has
-the given variables, an error is raised.</li>
+  an existing scope.  If not <code>True</code>, and the existing scope already has
+  the given variables, an error is raised.</li>
 <li><b><code>name</code></b>: String, the name of the layer. Layers with the same name will share
-weights, but to avoid mistakes we require reuse=True in such cases.</li>
+  weights, but to avoid mistakes we require reuse=True in such cases.</li>
 <li><b><code>dtype</code></b>: Default dtype of the layer (default of <code>None</code> means use the type of
-the first input). Required when <code>build</code> is called before <code>call</code>.  When
-restoring from CudnnLSTM-trained checkpoints, use
-<code>CudnnCompatibleLSTMCell</code> instead.</li>
+  the first input). Required when <code>build</code> is called before <code>call</code>.  When
+  restoring from CudnnLSTM-trained checkpoints, use
+  <code>CudnnCompatibleLSTMCell</code> instead.</li>
 </ul>
-
-
-<h2>Properties</h2>
-
+<h2 id="properties">Properties</h2>
 <h3 id="graph"><code>graph</code></h3>
 
-
 <p>DEPRECATED FUNCTION</p>
-
 <p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
 Instructions for updating:
 Stop using this property because tf.layers layers no longer track their graph.</p>
-
 <h3 id="output_size"><code>output_size</code></h3>
 
-
 <p>Integer or TensorShape: size of outputs produced by this cell.</p>
-
 <h3 id="scope_name"><code>scope_name</code></h3>
-
-
-
 
 <h3 id="state_size"><code>state_size</code></h3>
 
-
 <p>size(s) of state(s) used by this cell.</p>
-
 <p>It can be represented by an Integer, a TensorShape or a tuple of Integers
 or TensorShapes.</p>
-
-<h2>Methods</h2>
-
+<h2 id="methods">Methods</h2>
 <h3 id="get_initial_state"><code>get_initial_state</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/rnn_cell_impl.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_initial_state</span><span class="p">(</span>
+    <span class="n">inputs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-get_initial_state(
-    inputs=None,
-    batch_size=None,
-    dtype=None
-)
-</code></p>
 
 <h3 id="zero_state"><code>zero_state</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/rnn_cell_impl.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">zero_state</span><span class="p">(</span>
+    <span class="n">batch_size</span><span class="p">,</span>
+    <span class="n">dtype</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-zero_state(
-    batch_size,
-    dtype
-)
-</code></p>
 
 <p>Return zero-filled state tensor(s).</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_1">Args:</h4>
 <ul>
 <li><b><code>batch_size</code></b>: int, float, or unit Tensor representing the batch size.</li>
 <li><b><code>dtype</code></b>: the data type to use for the state.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>If <code>state_size</code> is an int or TensorShape, then the return value is a
 <code>N-D</code> tensor of shape <code>[batch_size, state_size]</code> filled with zeros.</p>
-
 <p>If <code>state_size</code> is a nested list or tuple, then the return value is
 a nested list or tuple (of the same structure) of <code>2-D</code> tensors with
 the shapes <code>[batch_size, s]</code> for each s in <code>state_size</code>.</p>
+    </body>
+    </html>
+   

@@ -1,115 +1,99 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../default.css" rel="stylesheet">
+    <link href="
+   ../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.transpose" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.transpose</h1>
-
+<h1 id="tftranspose">tf.transpose</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/array_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Transposes <code>a</code>.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v2.transpose</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span>
+    <span class="n">a</span><span class="p">,</span>
+    <span class="n">perm</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">conjugate</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;transpose&#39;</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.transpose(
-    a,
-    perm=None,
-    conjugate=False,
-    name='transpose'
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>Permutes the dimensions according to <code>perm</code>.</p>
-
-<p>The returned tensor&rsquo;s dimension i will correspond to the input dimension
-<code>perm[i]</code>. If <code>perm</code> is not given, it is set to (n-1&hellip;0), where n is
+<p>The returned tensor's dimension i will correspond to the input dimension
+<code>perm[i]</code>. If <code>perm</code> is not given, it is set to (n-1...0), where n is
 the rank of the input tensor. Hence by default, this operation performs a
 regular matrix transpose on 2-D input Tensors. If conjugate is True and
 <code>a.dtype</code> is either <code>complex64</code> or <code>complex128</code> then the values of <code>a</code>
 are conjugated and transposed.</p>
+<h4 id="for-example">For example:</h4>
+<div class="codehilite"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># [[1, 4]</span>
+                 <span class="c1">#  [2, 5]</span>
+                 <span class="c1">#  [3, 6]]</span>
 
-<h4>For example:</h4>
+<span class="c1"># Equivalently</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">perm</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>  <span class="c1"># [[1, 4]</span>
+                              <span class="c1">#  [2, 5]</span>
+                              <span class="c1">#  [3, 6]]</span>
 
-<p>```python
-x = tf.constant([[1, 2, 3], [4, 5, 6]])
-tf.transpose(x)  # [[1, 4]
-                 #  [2, 5]
-                 #  [3, 6]]</p>
+<span class="c1"># If x is complex, setting conjugate=True gives the conjugate transpose</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span><span class="p">,</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="n">j</span><span class="p">,</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">3</span><span class="n">j</span><span class="p">],</span>
+                 <span class="p">[</span><span class="mi">4</span> <span class="o">+</span> <span class="mi">4</span><span class="n">j</span><span class="p">,</span> <span class="mi">5</span> <span class="o">+</span> <span class="mi">5</span><span class="n">j</span><span class="p">,</span> <span class="mi">6</span> <span class="o">+</span> <span class="mi">6</span><span class="n">j</span><span class="p">]])</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">conjugate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># [[1 - 1j, 4 - 4j],</span>
+                                 <span class="c1">#  [2 - 2j, 5 - 5j],</span>
+                                 <span class="c1">#  [3 - 3j, 6 - 6j]]</span>
 
-<h1>Equivalently</h1>
+<span class="c1"># &#39;perm&#39; is more useful for n-dimensional tensors, for n &gt; 2</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([[[</span> <span class="mi">1</span><span class="p">,</span>  <span class="mi">2</span><span class="p">,</span>  <span class="mi">3</span><span class="p">],</span>
+                  <span class="p">[</span> <span class="mi">4</span><span class="p">,</span>  <span class="mi">5</span><span class="p">,</span>  <span class="mi">6</span><span class="p">]],</span>
+                 <span class="p">[[</span> <span class="mi">7</span><span class="p">,</span>  <span class="mi">8</span><span class="p">,</span>  <span class="mi">9</span><span class="p">],</span>
+                  <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">]]])</span>
 
-<p>tf.transpose(x, perm=[1, 0])  # [[1, 4]
-                              #  [2, 5]
-                              #  [3, 6]]</p>
+<span class="c1"># Take the transpose of the matrices in dimension-0</span>
+<span class="c1"># (this common operation has a shorthand `linalg.matrix_transpose`)</span>
+<span class="n">tf</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">perm</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>  <span class="c1"># [[[1,  4],</span>
+                                 <span class="c1">#   [2,  5],</span>
+                                 <span class="c1">#   [3,  6]],</span>
+                                 <span class="c1">#  [[7, 10],</span>
+                                 <span class="c1">#   [8, 11],</span>
+                                 <span class="c1">#   [9, 12]]]</span>
+</pre></div>
 
-<h1>If x is complex, setting conjugate=True gives the conjugate transpose</h1>
 
-<p>x = tf.constant([[1 + 1j, 2 + 2j, 3 + 3j],
-                 [4 + 4j, 5 + 5j, 6 + 6j]])
-tf.transpose(x, conjugate=True)  # [[1 - 1j, 4 - 4j],
-                                 #  [2 - 2j, 5 - 5j],
-                                 #  [3 - 3j, 6 - 6j]]</p>
-
-<h1>&lsquo;perm&rsquo; is more useful for n-dimensional tensors, for n > 2</h1>
-
-<p>x = tf.constant([[[ 1,  2,  3],
-                  [ 4,  5,  6]],
-                 [[ 7,  8,  9],
-                  [10, 11, 12]]])</p>
-
-<h1>Take the transpose of the matrices in dimension-0</h1>
-
-<h1>(this common operation has a shorthand <code>linalg.matrix_transpose</code>)</h1>
-
-<p>tf.transpose(x, perm=[0, 2, 1])  # [[[1,  4],
-                                 #   [2,  5],
-                                 #   [3,  6]],
-                                 #  [[7, 10],
-                                 #   [8, 11],
-                                 #   [9, 12]]]
-```</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>a</code></b>: A <code>Tensor</code>.</li>
 <li><b><code>perm</code></b>: A permutation of the dimensions of <code>a</code>.</li>
 <li><b><code>conjugate</code></b>: Optional bool. Setting it to <code>True</code> is mathematically equivalent
-to tf.math.conj(tf.transpose(input)).</li>
+  to tf.math.conj(tf.transpose(input)).</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A transposed <code>Tensor</code>.</p>
-
-<h4>Numpy Compatibility</h4>
-
+<h4 id="numpy-compatibility">Numpy Compatibility</h4>
 <p>In <code>numpy</code> transposes are memory-efficient constant time operations as they
 simply return a new view of the same data with adjusted <code>strides</code>.</p>
-
 <p>TensorFlow does not support strides, so <code>transpose</code> returns a new tensor with
 the items permuted.</p>
+    </body>
+    </html>
+   

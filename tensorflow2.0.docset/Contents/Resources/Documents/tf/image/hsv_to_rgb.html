@@ -1,60 +1,53 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.image.hsv_to_rgb" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.image.hsv_to_rgb</h1>
-
+<h1 id="tfimagehsv_to_rgb">tf.image.hsv_to_rgb</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p>Defined in generated file: <code>python/ops/gen_image_ops.py</code></p>
-
 <!-- Start diff -->
 
-
 <p>Convert one or more images from HSV to RGB.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.image.hsv_to_rgb</code></li>
 <li><code>tf.compat.v2.image.hsv_to_rgb</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">hsv_to_rgb</span><span class="p">(</span>
+    <span class="n">images</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.image.hsv_to_rgb(
-    images,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>Outputs a tensor of the same shape as the <code>images</code> tensor, containing the RGB
 value of the pixels. The output is only well defined if the value in <code>images</code>
 are in <code>[0,1]</code>.</p>
-
 <p>See <code>rgb_to_hsv</code> for a description of the HSV encoding.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>images</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>half</code>, <code>bfloat16</code>, <code>float32</code>, <code>float64</code>.
-1-D or higher rank. HSV data to convert. Last dimension must be size 3.</li>
+  1-D or higher rank. HSV data to convert. Last dimension must be size 3.</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>Tensor</code>. Has the same type as <code>images</code>.</p>
+    </body>
+    </html>
+   

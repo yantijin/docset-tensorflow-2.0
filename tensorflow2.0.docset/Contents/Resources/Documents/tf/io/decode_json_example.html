@@ -1,45 +1,41 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.io.decode_json_example" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.io.decode_json_example</h1>
-
+<h1 id="tfiodecode_json_example">tf.io.decode_json_example</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p>Defined in generated file: <code>python/ops/gen_parsing_ops.py</code></p>
-
 <!-- Start diff -->
 
-
 <p>Convert JSON-encoded Example records to binary protocol buffer strings.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.decode_json_example</code></li>
 <li><code>tf.compat.v1.io.decode_json_example</code></li>
 <li><code>tf.compat.v2.io.decode_json_example</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">decode_json_example</span><span class="p">(</span>
+    <span class="n">json_examples</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.io.decode_json_example(
-    json_examples,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>This op translates a tensor containing Example records, encoded using
 the <a href="https://developers.google.com/protocol-buffers/docs/proto3#json">standard JSON
@@ -47,17 +43,15 @@ mapping</a>,
 into a tensor containing the same records encoded as binary protocol
 buffers. The resulting tensor can then be fed to any of the other
 Example-parsing ops.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>json_examples</code></b>: A <code>Tensor</code> of type <code>string</code>.
-Each string is a JSON object serialized according to the JSON
-mapping of the Example proto.</li>
+  Each string is a JSON object serialized according to the JSON
+  mapping of the Example proto.</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>Tensor</code> of type <code>string</code>.</p>
+    </body>
+    </html>
+   

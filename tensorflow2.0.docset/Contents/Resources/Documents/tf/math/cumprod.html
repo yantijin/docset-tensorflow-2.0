@@ -1,92 +1,83 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.math.cumprod" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.math.cumprod</h1>
-
+<h1 id="tfmathcumprod">tf.math.cumprod</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/math_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Compute the cumulative product of the tensor <code>x</code> along <code>axis</code>.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.cumprod</code></li>
 <li><code>tf.compat.v1.math.cumprod</code></li>
 <li><code>tf.compat.v2.math.cumprod</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">cumprod</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">exclusive</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">reverse</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.math.cumprod(
-    x,
-    axis=0,
-    exclusive=False,
-    reverse=False,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>By default, this op performs an inclusive cumprod, which means that the
 first element of the input is identical to the first element of the output:</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">cumprod</span><span class="p">([</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">])</span>  <span class="c1"># [a, a * b, a * b * c]</span>
+</pre></div>
 
-<p><code>python
-tf.math.cumprod([a, b, c])  # [a, a * b, a * b * c]
-</code></p>
 
 <p>By setting the <code>exclusive</code> kwarg to <code>True</code>, an exclusive cumprod is
 performed
 instead:</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">cumprod</span><span class="p">([</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">],</span> <span class="n">exclusive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># [1, a, a * b]</span>
+</pre></div>
 
-<p><code>python
-tf.math.cumprod([a, b, c], exclusive=True)  # [1, a, a * b]
-</code></p>
 
 <p>By setting the <code>reverse</code> kwarg to <code>True</code>, the cumprod is performed in the
 opposite direction:</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">cumprod</span><span class="p">([</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># [a * b * c, b * c, c]</span>
+</pre></div>
 
-<p><code>python
-tf.math.cumprod([a, b, c], reverse=True)  # [a * b * c, b * c, c]
-</code></p>
 
 <p>This is more efficient than using separate <a href="../../tf/reverse.html"><code>tf.reverse</code></a> ops.
 The <code>reverse</code> and <code>exclusive</code> kwargs can also be combined:</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">cumprod</span><span class="p">([</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">],</span> <span class="n">exclusive</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># [b * c, c, 1]</span>
+</pre></div>
 
-<p><code>python
-tf.math.cumprod([a, b, c], exclusive=True, reverse=True)  # [b * c, c, 1]
-</code></p>
 
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>x</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>float32</code>, <code>float64</code>,
-<code>int64</code>, <code>int32</code>, <code>uint8</code>, <code>uint16</code>, <code>int16</code>, <code>int8</code>, <code>complex64</code>,
-<code>complex128</code>, <code>qint8</code>, <code>quint8</code>, <code>qint32</code>, <code>half</code>.</li>
+  <code>int64</code>, <code>int32</code>, <code>uint8</code>, <code>uint16</code>, <code>int16</code>, <code>int8</code>, <code>complex64</code>,
+  <code>complex128</code>, <code>qint8</code>, <code>quint8</code>, <code>qint32</code>, <code>half</code>.</li>
 <li><b><code>axis</code></b>: A <code>Tensor</code> of type <code>int32</code> (default: 0). Must be in the range
-<code>[-rank(x), rank(x))</code>.</li>
+  <code>[-rank(x), rank(x))</code>.</li>
 <li><b><code>exclusive</code></b>: If <code>True</code>, perform exclusive cumprod.</li>
 <li><b><code>reverse</code></b>: A <code>bool</code> (default: False).</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>Tensor</code>. Has the same type as <code>x</code>.</p>
+    </body>
+    </html>
+   

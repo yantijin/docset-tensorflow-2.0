@@ -1,49 +1,47 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.image.crop_and_resize" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.compat.v1.image.crop_and_resize</h1>
-
+<h1 id="tfcompatv1imagecrop_and_resize">tf.compat.v1.image.crop_and_resize</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/image_ops_impl.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Extracts crops from the input image tensor and resizes them.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">crop_and_resize</span><span class="p">(</span>
+    <span class="n">image</span><span class="p">,</span>
+    <span class="n">boxes</span><span class="p">,</span>
+    <span class="n">box_ind</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">crop_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">method</span><span class="o">=</span><span class="s1">&#39;bilinear&#39;</span><span class="p">,</span>
+    <span class="n">extrapolation_value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">box_indices</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-tf.compat.v1.image.crop_and_resize(
-    image,
-    boxes,
-    box_ind=None,
-    crop_size=None,
-    method='bilinear',
-    extrapolation_value=0,
-    name=None,
-    box_indices=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>Extracts crops from the input image tensor and resizes them using bilinear
 sampling or nearest neighbor sampling (possibly with aspect ratio change) to a
 common output size specified by <code>crop_size</code>. This is more general than the
 <code>crop_to_bounding_box</code> op which extracts a fixed size slice from the input image
 and does not allow resizing or aspect ratio change.</p>
-
 <p>Returns a tensor with <code>crops</code> from the input <code>image</code> at positions defined at the
 bounding box locations in <code>boxes</code>. The cropped boxes are all resized (with
 bilinear or nearest neighbor interpolation) to a fixed
@@ -53,42 +51,40 @@ In particular, if <code>boxes = [[0, 0, 1, 1]]</code>, the method will give iden
 results to using <code>tf.image.resize_bilinear()</code> or
 <code>tf.image.resize_nearest_neighbor()</code>(depends on the <code>method</code> argument) with
 <code>align_corners=True</code>.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>image</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>uint8</code>, <code>uint16</code>, <code>int8</code>, <code>int16</code>, <code>int32</code>, <code>int64</code>, <code>half</code>, <code>float32</code>, <code>float64</code>.
-A 4-D tensor of shape <code>[batch, image_height, image_width, depth]</code>.
-Both <code>image_height</code> and <code>image_width</code> need to be positive.</li>
+  A 4-D tensor of shape <code>[batch, image_height, image_width, depth]</code>.
+  Both <code>image_height</code> and <code>image_width</code> need to be positive.</li>
 <li><b><code>boxes</code></b>: A <code>Tensor</code> of type <code>float32</code>.
-A 2-D tensor of shape <code>[num_boxes, 4]</code>. The <code>i</code>-th row of the tensor
-specifies the coordinates of a box in the <code>box_ind[i]</code> image and is specified
-in normalized coordinates <code>[y1, x1, y2, x2]</code>. A normalized coordinate value of
-<code>y</code> is mapped to the image coordinate at <code>y * (image_height - 1)</code>, so as the
-<code>[0, 1]</code> interval of normalized image height is mapped to
-<code>[0, image_height - 1]</code> in image height coordinates. We do allow <code>y1</code> > <code>y2</code>, in
-which case the sampled crop is an up-down flipped version of the original
-image. The width dimension is treated similarly. Normalized coordinates
-outside the <code>[0, 1]</code> range are allowed, in which case we use
-<code>extrapolation_value</code> to extrapolate the input image values.</li>
+  A 2-D tensor of shape <code>[num_boxes, 4]</code>. The <code>i</code>-th row of the tensor
+  specifies the coordinates of a box in the <code>box_ind[i]</code> image and is specified
+  in normalized coordinates <code>[y1, x1, y2, x2]</code>. A normalized coordinate value of
+  <code>y</code> is mapped to the image coordinate at <code>y * (image_height - 1)</code>, so as the
+  <code>[0, 1]</code> interval of normalized image height is mapped to
+  <code>[0, image_height - 1]</code> in image height coordinates. We do allow <code>y1</code> &gt; <code>y2</code>, in
+  which case the sampled crop is an up-down flipped version of the original
+  image. The width dimension is treated similarly. Normalized coordinates
+  outside the <code>[0, 1]</code> range are allowed, in which case we use
+  <code>extrapolation_value</code> to extrapolate the input image values.</li>
 <li><b><code>box_ind</code></b>: A <code>Tensor</code> of type <code>int32</code>.
-A 1-D tensor of shape <code>[num_boxes]</code> with int32 values in <code>[0, batch)</code>.
-The value of <code>box_ind[i]</code> specifies the image that the <code>i</code>-th box refers to.</li>
+  A 1-D tensor of shape <code>[num_boxes]</code> with int32 values in <code>[0, batch)</code>.
+  The value of <code>box_ind[i]</code> specifies the image that the <code>i</code>-th box refers to.</li>
 <li><b><code>crop_size</code></b>: A <code>Tensor</code> of type <code>int32</code>.
-A 1-D tensor of 2 elements, <code>size = [crop_height, crop_width]</code>. All
-cropped image patches are resized to this size. The aspect ratio of the image
-content is not preserved. Both <code>crop_height</code> and <code>crop_width</code> need to be
-positive.</li>
+  A 1-D tensor of 2 elements, <code>size = [crop_height, crop_width]</code>. All
+  cropped image patches are resized to this size. The aspect ratio of the image
+  content is not preserved. Both <code>crop_height</code> and <code>crop_width</code> need to be
+  positive.</li>
 <li><b><code>method</code></b>: An optional <code>string</code> from: <code>"bilinear", "nearest"</code>. Defaults to <code>"bilinear"</code>.
-A string specifying the sampling method for resizing. It can be either
-<code>"bilinear"</code> or <code>"nearest"</code> and default to <code>"bilinear"</code>. Currently two sampling
-methods are supported: Bilinear and Nearest Neighbor.</li>
+  A string specifying the sampling method for resizing. It can be either
+  <code>"bilinear"</code> or <code>"nearest"</code> and default to <code>"bilinear"</code>. Currently two sampling
+  methods are supported: Bilinear and Nearest Neighbor.</li>
 <li><b><code>extrapolation_value</code></b>: An optional <code>float</code>. Defaults to <code>0</code>.
-Value used for extrapolation, when applicable.</li>
+  Value used for extrapolation, when applicable.</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>Tensor</code> of type <code>float32</code>.</p>
+    </body>
+    </html>
+   

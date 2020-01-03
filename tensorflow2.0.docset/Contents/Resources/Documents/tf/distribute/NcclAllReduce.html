@@ -1,4 +1,13 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.distribute.NcclAllReduce" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="__init__"/>
@@ -7,170 +16,116 @@
 <meta itemprop="property" content="reduce"/>
 </div>
 
-
-<h1>tf.distribute.NcclAllReduce</h1>
-
+<h1 id="tfdistributencclallreduce">tf.distribute.NcclAllReduce</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/distribute/cross_device_ops.py">View source</a></p>
-
-<h2>Class <code>NcclAllReduce</code></h2>
-
+<h2 id="class-ncclallreduce">Class <code>NcclAllReduce</code></h2>
 <!-- Start diff -->
 
-
 <p>Reduction using NCCL all-reduce.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li>Class <code>tf.compat.v1.distribute.NcclAllReduce</code></li>
 <li>Class <code>tf.compat.v2.distribute.NcclAllReduce</code></li>
 </ul>
-
-
 <!-- Placeholder for "Used in" -->
-
-
-
 
 <h2 id="__init__"><code>__init__</code></h2>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/distribute/cross_device_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span><span class="n">num_packs</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__init__(num_packs=1)
-</code></p>
 
 <p>NCCL all-reduce implementation of CrossDeviceOps.</p>
-
 <p>It uses Nvidia NCCL for all-reduce. Before performing all-reduce, tensors
 will be repacked or aggregated for more efficient cross-device
 transportation.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>num_packs</code></b>: values will be packed in this many splits.  <code>num_packs</code> should
-be greater than 0.</li>
+  be greater than 0.</li>
 </ul>
-
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <p>ValueError if <code>num_packs</code> is zero or negative.</p>
-
-<h2>Methods</h2>
-
+<h2 id="methods">Methods</h2>
 <h3 id="batch_reduce"><code>batch_reduce</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/distribute/cross_device_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">batch_reduce</span><span class="p">(</span>
+    <span class="n">reduce_op</span><span class="p">,</span>
+    <span class="n">value_destination_pairs</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-batch_reduce(
-    reduce_op,
-    value_destination_pairs
-)
-</code></p>
 
 <p>Reduce PerReplica objects in a batch.</p>
-
 <p>Reduce each first element in <code>value_destination_pairs</code> to each second
 element which indicates the destinations.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_1">Args:</h4>
 <ul>
 <li><b><code>reduce_op</code></b>: Indicates how per_replica_value will be reduced. Accepted
-values are <a href="../../tf/distribute/ReduceOp.html#SUM"><code>tf.distribute.ReduceOp.SUM</code></a>, <a href="../../tf/distribute/ReduceOp.html#MEAN"><code>tf.distribute.ReduceOp.MEAN</code></a>.</li>
+  values are <a href="../../tf/distribute/ReduceOp.html#SUM"><code>tf.distribute.ReduceOp.SUM</code></a>, <a href="../../tf/distribute/ReduceOp.html#MEAN"><code>tf.distribute.ReduceOp.MEAN</code></a>.</li>
 <li><b><code>value_destination_pairs</code></b>: a list or a tuple of tuples of PerReplica objects
-(or tensors with device set if there is one device) and destinations.</li>
+  (or tensors with device set if there is one device) and destinations.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>a list of Mirrored objects.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises_1">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: if <code>value_destination_pairs</code> is not a list or a tuple of
-tuples of PerReplica objects and destinations</li>
+  tuples of PerReplica objects and destinations</li>
 </ul>
-
-
 <h3 id="broadcast"><code>broadcast</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/distribute/cross_device_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">broadcast</span><span class="p">(</span>
+    <span class="n">tensor</span><span class="p">,</span>
+    <span class="n">destinations</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-broadcast(
-    tensor,
-    destinations
-)
-</code></p>
 
 <p>Broadcast the <code>tensor</code> to destinations.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_2">Args:</h4>
 <ul>
 <li><b><code>tensor</code></b>: the tensor to broadcast.</li>
 <li><b><code>destinations</code></b>: the broadcast destinations.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_1">Returns:</h4>
 <p>a Mirrored object.</p>
-
 <h3 id="reduce"><code>reduce</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/distribute/cross_device_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">reduce</span><span class="p">(</span>
+    <span class="n">reduce_op</span><span class="p">,</span>
+    <span class="n">per_replica_value</span><span class="p">,</span>
+    <span class="n">destinations</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-reduce(
-    reduce_op,
-    per_replica_value,
-    destinations
-)
-</code></p>
 
 <p>Reduce <code>per_replica_value</code> to <code>destinations</code>.</p>
-
 <p>It runs the reduction operation defined by <code>reduce_op</code> and put the
 result on <code>destinations</code>.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_3">Args:</h4>
 <ul>
 <li><b><code>reduce_op</code></b>: Indicates how per_replica_value will be reduced. Accepted
-values are <a href="../../tf/distribute/ReduceOp.html#SUM"><code>tf.distribute.ReduceOp.SUM</code></a>, <a href="../../tf/distribute/ReduceOp.html#MEAN"><code>tf.distribute.ReduceOp.MEAN</code></a>.</li>
+  values are <a href="../../tf/distribute/ReduceOp.html#SUM"><code>tf.distribute.ReduceOp.SUM</code></a>, <a href="../../tf/distribute/ReduceOp.html#MEAN"><code>tf.distribute.ReduceOp.MEAN</code></a>.</li>
 <li><b><code>per_replica_value</code></b>: a PerReplica object or a tensor with device set.</li>
 <li><b><code>destinations</code></b>: the reduction destinations.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns_2">Returns:</h4>
 <p>a Mirrored object.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises_2">Raises:</h4>
 <ul>
-<li><b><code>ValueError</code></b>: if per_replica_value can&rsquo;t be converted to a PerReplica
-object.</li>
+<li><b><code>ValueError</code></b>: if per_replica_value can't be converted to a PerReplica
+  object.</li>
 </ul>
-
+    </body>
+    </html>
+   

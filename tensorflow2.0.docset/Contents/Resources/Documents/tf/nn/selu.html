@@ -1,61 +1,53 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.nn.selu" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.nn.selu</h1>
-
+<h1 id="tfnnselu">tf.nn.selu</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p>Defined in generated file: <code>python/ops/gen_nn_ops.py</code></p>
-
 <!-- Start diff -->
 
-
 <p>Computes scaled exponential linear: <code>scale * alpha * (exp(features) - 1)</code></p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.nn.selu</code></li>
 <li><code>tf.compat.v2.nn.selu</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">selu</span><span class="p">(</span>
+    <span class="n">features</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.nn.selu(
-    features,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>if &lt; 0, <code>scale * features</code> otherwise.</p>
-
 <p>To be used together with
 <code>initializer = tf.variance_scaling_initializer(factor=1.0, mode='FAN_IN')</code>.
 For correct dropout, use <code>tf.contrib.nn.alpha_dropout</code>.</p>
-
 <p>See <a href="https://arxiv.org/abs/1706.02515">Self-Normalizing Neural Networks</a></p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>features</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>half</code>, <code>bfloat16</code>, <code>float32</code>, <code>float64</code>.</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>Tensor</code>. Has the same type as <code>features</code>.</p>
+    </body>
+    </html>
+   

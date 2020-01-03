@@ -1,92 +1,85 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.keras.utils.get_file" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.keras.utils.get_file</h1>
-
+<h1 id="tfkerasutilsget_file">tf.keras.utils.get_file</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/utils/data_utils.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Downloads a file from a URL if it not already in the cache.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.keras.utils.get_file</code></li>
 <li><code>tf.compat.v2.keras.utils.get_file</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">get_file</span><span class="p">(</span>
+    <span class="n">fname</span><span class="p">,</span>
+    <span class="n">origin</span><span class="p">,</span>
+    <span class="n">untar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n".html5_hash</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">file_hash</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">cache_subdir</span><span class="o">=</span><span class="s1">&#39;datasets&#39;</span><span class="p">,</span>
+    <span class="n">hash_algorithm</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span>
+    <span class="n">extract</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">archive_format</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span>
+    <span class="n">cache_dir</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.keras.utils.get_file(
-    fname,
-    origin,
-    untar=False,
-    html5_hash=None,
-    file_hash=None,
-    cache_subdir='datasets',
-    hash_algorithm='auto',
-    extract=False,
-    archive_format='auto',
-    cache_dir=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>By default the file at the url <code>origin</code> is downloaded to the
 cache_dir <code>~/.keras</code>, placed in the cache_subdir <code>datasets</code>,
 and given the filename <code>fname</code>. The final location of a file
 <code>example.txt</code> would therefore be <code>~/.keras/datasets/example.txt</code>.</p>
-
 <p>Files in tar, tar.gz, tar.bz, and zip formats can also be extracted.
 Passing a hash will verify the file after download. The command line
 programs <code>shasum</code> and <code>sha256sum</code> can compute the hash.</p>
-
-<h4>Arguments:</h4>
-
+<h4 id="arguments">Arguments:</h4>
 <ul>
 <li><b><code>fname</code></b>: Name of the file. If an absolute path <code>/path/to/file.txt</code> is
-  specified the file will be saved at that location.</li>
+    specified the file will be saved at that location.</li>
 <li><b><code>origin</code></b>: Original URL of the file.</li>
-<li><b><code>untar</code></b>: Deprecated in favor of &lsquo;extract&rsquo;.
-  boolean, whether the file should be decompressed</li>
-<li><b><code>html5_hash</code></b>: Deprecated in favor of &lsquo;file_hash&rsquo;.
-  html5 hash of the file for verification</li>
+<li><b><code>untar</code></b>: Deprecated in favor of 'extract'.
+    boolean, whether the file should be decompressed</li>
+<li><b><code.html5_hash</code></b>: Deprecated in favor of 'file_hash'.
+   .html5 hash of the file for verification</li>
 <li><b><code>file_hash</code></b>: The expected hash string of the file after download.
-  The sha256 and html5 hash algorithms are both supported.</li>
+    The sha256 and.html5 hash algorithms are both supported.</li>
 <li><b><code>cache_subdir</code></b>: Subdirectory under the Keras cache dir where the file is
-  saved. If an absolute path <code>/path/to/folder</code> is
-  specified the file will be saved at that location.</li>
+    saved. If an absolute path <code>/path/to/folder</code> is
+    specified the file will be saved at that location.</li>
 <li><b><code>hash_algorithm</code></b>: Select the hash algorithm to verify the file.
-  options are &lsquo;html5&rsquo;, &lsquo;sha256&rsquo;, and &lsquo;auto&rsquo;.
-  The default &lsquo;auto&rsquo; detects the hash algorithm in use.</li>
+    options are .html5', 'sha256', and 'auto'.
+    The default 'auto' detects the hash algorithm in use.</li>
 <li><b><code>extract</code></b>: True tries extracting the file as an Archive, like tar or zip.</li>
 <li><b><code>archive_format</code></b>: Archive format to try for extracting the file.
-  Options are &lsquo;auto&rsquo;, &lsquo;tar&rsquo;, &lsquo;zip&rsquo;, and None.
-  &lsquo;tar&rsquo; includes tar, tar.gz, and tar.bz files.
-  The default &lsquo;auto&rsquo; is [&lsquo;tar&rsquo;, &lsquo;zip&rsquo;].
-  None or an empty list will return no matches found.</li>
+    Options are 'auto', 'tar', 'zip', and None.
+    'tar' includes tar, tar.gz, and tar.bz files.
+    The default 'auto' is ['tar', 'zip'].
+    None or an empty list will return no matches found.</li>
 <li><b><code>cache_dir</code></b>: Location to store cached files, when None it
-  defaults to the <a href="/faq/#where-is-the-keras-configuration-filed-stored">Keras
-    Directory</a>.</li>
+    defaults to the <a href="/faq/#where-is-the-keras-configuration-filed-stored">Keras
+      Directory</a>.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>Path to the downloaded file</p>
+    </body>
+    </html>
+   

@@ -1,4 +1,13 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.nn.rnn_cell.ResidualWrapper" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="graph"/>
@@ -10,105 +19,72 @@
 <meta itemprop="property" content="zero_state"/>
 </div>
 
-
-<h1>tf.compat.v1.nn.rnn_cell.ResidualWrapper</h1>
-
+<h1 id="tfcompatv1nnrnn_cellresidualwrapper">tf.compat.v1.nn.rnn_cell.ResidualWrapper</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/rnn_cell_impl.py">View source</a></p>
-
-<h2>Class <code>ResidualWrapper</code></h2>
-
+<h2 id="class-residualwrapper">Class <code>ResidualWrapper</code></h2>
 <!-- Start diff -->
 
-
 <p>RNNCell wrapper that ensures cell inputs are added to the outputs.</p>
-
 <!-- Placeholder for "Used in" -->
-
-
-
 
 <h2 id="__init__"><code>__init__</code></h2>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/rnn_cell_impl.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__init__(
-    *args,
-    **kwargs
-)
-</code></p>
 
 <p>Constructs a <code>ResidualWrapper</code> for <code>cell</code>.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>cell</code></b>: An instance of <code>RNNCell</code>.</li>
 <li><b><code>residual_fn</code></b>: (Optional) The function to map raw cell inputs and raw cell
-outputs to the actual cell outputs of the residual network.
-Defaults to calling nest.map_structure on (lambda i, o: i + o), inputs
-  and outputs.</li>
+  outputs to the actual cell outputs of the residual network.
+  Defaults to calling nest.map_structure on (lambda i, o: i + o), inputs
+    and outputs.</li>
 <li><b><code>**kwargs</code></b>: dict of keyword arguments for base layer.</li>
 </ul>
-
-
-<h2>Properties</h2>
-
+<h2 id="properties">Properties</h2>
 <h3 id="graph"><code>graph</code></h3>
 
-
 <p>DEPRECATED FUNCTION</p>
-
 <p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
 Instructions for updating:
 Stop using this property because tf.layers layers no longer track their graph.</p>
-
 <h3 id="output_size"><code>output_size</code></h3>
-
-
-
 
 <h3 id="scope_name"><code>scope_name</code></h3>
 
-
-
-
 <h3 id="state_size"><code>state_size</code></h3>
 
-
-<h2>Methods</h2>
-
+<h2 id="methods">Methods</h2>
 <h3 id="get_initial_state"><code>get_initial_state</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/rnn_cell_impl.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_initial_state</span><span class="p">(</span>
+    <span class="n">inputs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-get_initial_state(
-    inputs=None,
-    batch_size=None,
-    dtype=None
-)
-</code></p>
 
 <h3 id="zero_state"><code>zero_state</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/rnn_cell_wrapper_impl.py">View source</a></p>
-
-<p><code>python
-zero_state(
-    batch_size,
-    dtype
-)
-</code></p>
+<div class="codehilite"><pre><span></span><span class="n">zero_state</span><span class="p">(</span>
+    <span class="n">batch_size</span><span class="p">,</span>
+    <span class="n">dtype</span>
+<span class="p">)</span>
+</pre></div>
+    </body>
+    </html>
+   

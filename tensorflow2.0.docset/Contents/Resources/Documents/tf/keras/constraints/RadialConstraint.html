@@ -1,35 +1,32 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.keras.constraints.RadialConstraint" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="__call__"/>
 <meta itemprop="property" content="get_config"/>
 </div>
 
-
-<h1>tf.keras.constraints.RadialConstraint</h1>
-
+<h1 id="tfkerasconstraintsradialconstraint">tf.keras.constraints.RadialConstraint</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/constraints.py">View source</a></p>
-
-<h2>Class <code>RadialConstraint</code></h2>
-
+<h2 id="class-radialconstraint">Class <code>RadialConstraint</code></h2>
 <!-- Start diff -->
 
-
 <p>Constrains <code>Conv2D</code> kernel weights to be the same for each radius.</p>
-
 <p>Inherits From: <a href="../../../tf/keras/constraints/Constraint.html"><code>Constraint</code></a></p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li>Class <code>tf.compat.v1.keras.constraints.RadialConstraint</code></li>
 <li>Class <code>tf.compat.v1.keras.constraints.radial_constraint</code></li>
@@ -37,52 +34,42 @@
 <li>Class <code>tf.compat.v2.keras.constraints.radial_constraint</code></li>
 <li>Class <code>tf.keras.constraints.radial_constraint</code></li>
 </ul>
-
-
 <!-- Placeholder for "Used in" -->
 
-
 <p>For example, the desired output for the following 4-by-4 kernel::</p>
+<div class="codehilite"><pre><span></span><span class="err">    kernel = [[v_00, v_01, v_02, v_03],</span>
+<span class="err">              [v_10, v_11, v_12, v_13],</span>
+<span class="err">              [v_20, v_21, v_22, v_23],</span>
+<span class="err">              [v_30, v_31, v_32, v_33]]</span>
+</pre></div>
 
-<p><code>
-    kernel = [[v_00, v_01, v_02, v_03],
-              [v_10, v_11, v_12, v_13],
-              [v_20, v_21, v_22, v_23],
-              [v_30, v_31, v_32, v_33]]
-</code></p>
 
 <p>is this::</p>
+<div class="codehilite"><pre><span></span><span class="err">    kernel = [[v_11, v_11, v_11, v_11],</span>
+<span class="err">              [v_11, v_33, v_33, v_11],</span>
+<span class="err">              [v_11, v_33, v_33, v_11],</span>
+<span class="err">              [v_11, v_11, v_11, v_11]]</span>
+</pre></div>
 
-<p><code>
-    kernel = [[v_11, v_11, v_11, v_11],
-              [v_11, v_33, v_33, v_11],
-              [v_11, v_33, v_33, v_11],
-              [v_11, v_11, v_11, v_11]]
-</code></p>
 
 <p>This constraint can be applied to any <code>Conv2D</code> layer version, including
 <code>Conv2DTranspose</code> and <code>SeparableConv2D</code>, and with either <code>"channels_last"</code> or
 <code>"channels_first"</code> data format. The method assumes the weight tensor is of
 shape <code>(rows, cols, input_depth, output_depth)</code>.</p>
-
-<h2>Methods</h2>
-
+<h2 id="methods">Methods</h2>
 <h3 id="__call__"><code>__call__</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/constraints.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__call__</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__call__(w)
-</code></p>
 
 <p>Call self as a function.</p>
-
 <h3 id="get_config"><code>get_config</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/constraints.py">View source</a></p>
-
-<p><code>python
-get_config()
-</code></p>
+<div class="codehilite"><pre><span></span><span class="n">get_config</span><span class="p">()</span>
+</pre></div>
+    </body>
+    </html>
+   

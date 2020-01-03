@@ -1,68 +1,58 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.keras.backend.repeat_elements" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.keras.backend.repeat_elements</h1>
-
+<h1 id="tfkerasbackendrepeat_elements">tf.keras.backend.repeat_elements</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/backend.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Repeats the elements of a tensor along an axis, like <code>np.repeat</code>.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.keras.backend.repeat_elements</code></li>
 <li><code>tf.compat.v2.keras.backend.repeat_elements</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">backend</span><span class="o">.</span><span class="n">repeat_elements</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">rep</span><span class="p">,</span>
+    <span class="n">axis</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.keras.backend.repeat_elements(
-    x,
-    rep,
-    axis
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>If <code>x</code> has shape <code>(s1, s2, s3)</code> and <code>axis</code> is <code>1</code>, the output
 will have shape <code>(s1, s2 * rep, s3)</code>.</p>
-
-<h4>Arguments:</h4>
-
+<h4 id="arguments">Arguments:</h4>
 <ul>
 <li><b><code>x</code></b>: Tensor or variable.</li>
 <li><b><code>rep</code></b>: Python integer, number of times to repeat.</li>
 <li><b><code>axis</code></b>: Axis along which to repeat.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A tensor.</p>
-
-<h4>Example:</h4>
-
-<p>```python</p>
-
-<blockquote><blockquote><blockquote><p>b = tf.constant([1, 2, 3])
-tf.keras.backend.repeat_elements(b, rep=2, axis=0)
-  &lt;tf.Tensor: id=70, shape=(6,), dtype=int32,
-      numpy=array([1, 1, 2, 2, 3, 3], dtype=int32)>
-```</p></blockquote></blockquote></blockquote>
+<h4 id="example">Example:</h4>
+<div class="codehilite"><pre><span></span>  <span class="o">&gt;&gt;&gt;</span> <span class="n">b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+  <span class="o">&gt;&gt;&gt;</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">backend</span><span class="o">.</span><span class="n">repeat_elements</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">rep</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+  <span class="o">&lt;</span><span class="n">tf</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span> <span class="nb">id</span><span class="o">=</span><span class="mi">70</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">int32</span><span class="p">,</span>
+      <span class="n">numpy</span><span class="o">=</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">int32</span><span class="p">)</span><span class="o">&gt;</span>
+</pre></div>
+    </body>
+    </html>
+   

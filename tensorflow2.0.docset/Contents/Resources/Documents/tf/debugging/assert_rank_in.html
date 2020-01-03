@@ -1,77 +1,65 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.debugging.assert_rank_in" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.debugging.assert_rank_in</h1>
-
+<h1 id="tfdebuggingassert_rank_in">tf.debugging.assert_rank_in</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/check_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Assert that <code>x</code> has a rank in <code>ranks</code>.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v2.debugging.assert_rank_in</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">debugging</span><span class="o">.</span><span class="n">assert_rank_in</span><span class="p">(</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">ranks</span><span class="p">,</span>
+    <span class="n">message</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.debugging.assert_rank_in(
-    x,
-    ranks,
-    message=None,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>This Op checks that the rank of <code>x</code> is in <code>ranks</code>.</p>
-
 <p>If <code>x</code> has a different rank, <code>message</code>, as well as the shape of <code>x</code> are
 printed, and <code>InvalidArgumentError</code> is raised.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>x</code></b>: <code>Tensor</code>.</li>
 <li><b><code>ranks</code></b>: <code>Iterable</code> of scalar <code>Tensor</code> objects.</li>
 <li><b><code>message</code></b>: A string to prefix to the default message.</li>
-<li><b><code>name</code></b>: A name for this operation (optional). Defaults to &ldquo;assert_rank_in&rdquo;.</li>
+<li><b><code>name</code></b>: A name for this operation (optional). Defaults to "assert_rank_in".</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>Op raising <code>InvalidArgumentError</code> unless rank of <code>x</code> is in <code>ranks</code>.
 If static checks determine <code>x</code> has matching rank, a <code>no_op</code> is returned.
 This can be used with <a href="../../tf/control_dependencies.html"><code>tf.control_dependencies</code></a> inside of <a href="../../tf/function.html"><code>tf.function</code></a>s
 to block followup computation until the check has executed.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>InvalidArgumentError</code></b>: <code>x</code> does not have rank in <code>ranks</code>, but the rank cannot
-be statically determined.</li>
+  be statically determined.</li>
 <li><b><code>ValueError</code></b>: If static checks determine <code>x</code> has mismatched rank.</li>
 </ul>
-
-
-<h4>Eager Compatibility</h4>
-
+<h4 id="eager-compatibility">Eager Compatibility</h4>
 <p>returns None</p>
+    </body>
+    </html>
+   

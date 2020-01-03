@@ -1,69 +1,58 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.math.igamma" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.math.igamma</h1>
-
+<h1 id="tfmathigamma">tf.math.igamma</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p>Defined in generated file: <code>python/ops/gen_math_ops.py</code></p>
-
 <!-- Start diff -->
 
-
 <p>Compute the lower regularized incomplete Gamma function <code>P(a, x)</code>.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.igamma</code></li>
 <li><code>tf.compat.v1.math.igamma</code></li>
 <li><code>tf.compat.v2.math.igamma</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">igamma</span><span class="p">(</span>
+    <span class="n">a</span><span class="p">,</span>
+    <span class="n">x</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.math.igamma(
-    a,
-    x,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>The lower regularized incomplete Gamma function is defined as:</p>
-
 <p>\(P(a, x) = gamma(a, x) / Gamma(a) = 1 - Q(a, x)\)</p>
-
 <p>where</p>
-
 <p>\(gamma(a, x) = \int_{0}^{x} t^{a-1} exp(-t) dt\)</p>
-
 <p>is the lower incomplete Gamma function.</p>
-
 <p>Note, above <code>Q(a, x)</code> (<code>Igammac</code>) is the upper regularized complete
 Gamma function.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>a</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>float32</code>, <code>float64</code>.</li>
 <li><b><code>x</code></b>: A <code>Tensor</code>. Must have the same type as <code>a</code>.</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>Tensor</code>. Has the same type as <code>a</code>.</p>
+    </body>
+    </html>
+   

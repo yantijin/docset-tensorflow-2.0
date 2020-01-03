@@ -1,85 +1,76 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.io.decode_csv" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.io.decode_csv</h1>
-
+<h1 id="tfiodecode_csv">tf.io.decode_csv</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/parsing_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Convert CSV records to tensors. Each column maps to one tensor.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v2.io.decode_csv</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">decode_csv</span><span class="p">(</span>
+    <span class="n">records</span><span class="p">,</span>
+    <span class="n">record_defaults</span><span class="p">,</span>
+    <span class="n">field_delim</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span>
+    <span class="n">use_quote_delim</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">na_value</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">select_cols</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.io.decode_csv(
-    records,
-    record_defaults,
-    field_delim=',',
-    use_quote_delim=True,
-    na_value='',
-    select_cols=None,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>RFC 4180 format is expected for the CSV records.
 (https://tools.ietf.org/html/rfc4180)
 Note that we allow leading and trailing spaces with int or float field.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>records</code></b>: A <code>Tensor</code> of type <code>string</code>.
-Each string is a record/row in the csv and all records should have
-the same format.</li>
+  Each string is a record/row in the csv and all records should have
+  the same format.</li>
 <li><b><code>record_defaults</code></b>: A list of <code>Tensor</code> objects with specific types.
-Acceptable types are <code>float32</code>, <code>float64</code>, <code>int32</code>, <code>int64</code>, <code>string</code>.
-One tensor per column of the input record, with either a
-scalar default value for that column or an empty vector if the column is
-required.</li>
+  Acceptable types are <code>float32</code>, <code>float64</code>, <code>int32</code>, <code>int64</code>, <code>string</code>.
+  One tensor per column of the input record, with either a
+  scalar default value for that column or an empty vector if the column is
+  required.</li>
 <li><b><code>field_delim</code></b>: An optional <code>string</code>. Defaults to <code>","</code>.
-char delimiter to separate fields in a record.</li>
+  char delimiter to separate fields in a record.</li>
 <li><b><code>use_quote_delim</code></b>: An optional <code>bool</code>. Defaults to <code>True</code>.
-If false, treats double quotation marks as regular
-characters inside of the string fields (ignoring RFC 4180, Section 2,
-Bullet 5).</li>
+  If false, treats double quotation marks as regular
+  characters inside of the string fields (ignoring RFC 4180, Section 2,
+  Bullet 5).</li>
 <li><b><code>na_value</code></b>: Additional string to recognize as NA/NaN.</li>
 <li><b><code>select_cols</code></b>: Optional sorted list of column indices to select. If specified,
-only this subset of columns will be parsed and returned.</li>
+  only this subset of columns will be parsed and returned.</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A list of <code>Tensor</code> objects. Has the same type as <code>record_defaults</code>.
 Each tensor will have the same shape as records.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: If any of the arguments is malformed.</li>
 </ul>
-
+    </body>
+    </html>
+   

@@ -1,55 +1,50 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.nn.weighted_cross_entropy_with_logits" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.nn.weighted_cross_entropy_with_logits</h1>
-
+<h1 id="tfnnweighted_cross_entropy_with_logits">tf.nn.weighted_cross_entropy_with_logits</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/nn_impl.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Computes a weighted cross entropy.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v2.nn.weighted_cross_entropy_with_logits</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">weighted_cross_entropy_with_logits</span><span class="p">(</span>
+    <span class="n">labels</span><span class="p">,</span>
+    <span class="n">logits</span><span class="p">,</span>
+    <span class="n">pos_weight</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.nn.weighted_cross_entropy_with_logits(
-    labels,
-    logits,
-    pos_weight,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>This is like <code>sigmoid_cross_entropy_with_logits()</code> except that <code>pos_weight</code>,
 allows one to trade off recall and precision by up- or down-weighting the
 cost of a positive error relative to a negative error.</p>
-
 <p>The usual cross-entropy cost is defined as:</p>
+<div class="codehilite"><pre><span></span><span class="err">labels * -log(sigmoid(logits)) +</span>
+<span class="err">    (1 - labels) * -log(1 - sigmoid(logits))</span>
+</pre></div>
 
-<pre><code>labels * -log(sigmoid(logits)) +
-    (1 - labels) * -log(1 - sigmoid(logits))
-</code></pre>
 
 <p>A value <code>pos_weight &gt; 1</code> decreases the false negative count, hence increasing
 the recall.
@@ -58,48 +53,43 @@ increases the precision.
 This can be seen from the fact that <code>pos_weight</code> is introduced as a
 multiplicative coefficient for the positive labels term
 in the loss expression:</p>
+<div class="codehilite"><pre><span></span><span class="err">labels * -log(sigmoid(logits)) * pos_weight +</span>
+<span class="err">    (1 - labels) * -log(1 - sigmoid(logits))</span>
+</pre></div>
 
-<pre><code>labels * -log(sigmoid(logits)) * pos_weight +
-    (1 - labels) * -log(1 - sigmoid(logits))
-</code></pre>
 
 <p>For brevity, let <code>x = logits</code>, <code>z = labels</code>, <code>q = pos_weight</code>.
 The loss is:</p>
+<div class="codehilite"><pre><span></span><span class="err">  qz * -log(sigmoid(x)) + (1 - z) * -log(1 - sigmoid(x))</span>
+<span class="err">= qz * -log(1 / (1 + exp(-x))) + (1 - z) * -log(exp(-x) / (1 + exp(-x)))</span>
+<span class="err">= qz * log(1 + exp(-x)) + (1 - z) * (-log(exp(-x)) + log(1 + exp(-x)))</span>
+<span class="err">= qz * log(1 + exp(-x)) + (1 - z) * (x + log(1 + exp(-x))</span>
+<span class="err">= (1 - z) * x + (qz +  1 - z) * log(1 + exp(-x))</span>
+<span class="err">= (1 - z) * x + (1 + (q - 1) * z) * log(1 + exp(-x))</span>
+</pre></div>
 
-<pre><code>  qz * -log(sigmoid(x)) + (1 - z) * -log(1 - sigmoid(x))
-= qz * -log(1 / (1 + exp(-x))) + (1 - z) * -log(exp(-x) / (1 + exp(-x)))
-= qz * log(1 + exp(-x)) + (1 - z) * (-log(exp(-x)) + log(1 + exp(-x)))
-= qz * log(1 + exp(-x)) + (1 - z) * (x + log(1 + exp(-x))
-= (1 - z) * x + (qz +  1 - z) * log(1 + exp(-x))
-= (1 - z) * x + (1 + (q - 1) * z) * log(1 + exp(-x))
-</code></pre>
 
 <p>Setting <code>l = (1 + (q - 1) * z)</code>, to ensure stability and avoid overflow,
 the implementation uses</p>
+<div class="codehilite"><pre><span></span><span class="err">(1 - z) * x + l * (log(1 + exp(-abs(x))) + max(-x, 0))</span>
+</pre></div>
 
-<pre><code>(1 - z) * x + l * (log(1 + exp(-abs(x))) + max(-x, 0))
-</code></pre>
 
 <p><code>logits</code> and <code>labels</code> must have the same type and shape.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>labels</code></b>: A <code>Tensor</code> of the same type and shape as <code>logits</code>.</li>
 <li><b><code>logits</code></b>: A <code>Tensor</code> of type <code>float32</code> or <code>float64</code>.</li>
 <li><b><code>pos_weight</code></b>: A coefficient to use on the positive examples.</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>Tensor</code> of the same shape as <code>logits</code> with the componentwise
 weighted logistic losses.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: If <code>logits</code> and <code>labels</code> do not have the same shape.</li>
 </ul>
-
+    </body>
+    </html>
+   

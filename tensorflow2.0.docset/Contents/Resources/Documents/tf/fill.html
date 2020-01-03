@@ -1,83 +1,71 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../default.css" rel="stylesheet">
+    <link href="
+   ../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.fill" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.fill</h1>
-
+<h1 id="tffill">tf.fill</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/array_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Creates a tensor filled with a scalar value.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.fill</code></li>
 <li><code>tf.compat.v2.fill</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span>
+    <span class="n">dims</span><span class="p">,</span>
+    <span class="n">value</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.fill(
-    dims,
-    value,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>This operation creates a tensor of shape <code>dims</code> and fills it with <code>value</code>.</p>
+<h4 id="for-example">For example:</h4>
+<div class="codehilite"><pre><span></span><span class="err"># Output tensor has shape [2, 3].</span>
+<span class="err">fill([2, 3], 9) ==&gt; [[9, 9, 9]</span>
+<span class="err">                     [9, 9, 9]]</span>
+</pre></div>
 
-<h4>For example:</h4>
-
-<p>```</p>
-
-<h1>Output tensor has shape [2, 3].</h1>
-
-<p>fill([2, 3], 9) ==> [[9, 9, 9]
-                     [9, 9, 9]]
-```</p>
 
 <p><a href="../tf/fill.html"><code>tf.fill</code></a> differs from <a href="../tf/constant.html"><code>tf.constant</code></a> in a few ways:</p>
-
 <ul>
 <li><a href="../tf/fill.html"><code>tf.fill</code></a> only supports scalar contents, whereas <a href="../tf/constant.html"><code>tf.constant</code></a> supports
-Tensor values.</li>
+    Tensor values.</li>
 <li><a href="../tf/fill.html"><code>tf.fill</code></a> creates an Op in the computation graph that constructs the
 actual
-Tensor value at runtime. This is in contrast to <a href="../tf/constant.html"><code>tf.constant</code></a> which embeds
-the entire Tensor into the graph with a <code>Const</code> node.</li>
+    Tensor value at runtime. This is in contrast to <a href="../tf/constant.html"><code>tf.constant</code></a> which embeds
+    the entire Tensor into the graph with a <code>Const</code> node.</li>
 <li>Because <a href="../tf/fill.html"><code>tf.fill</code></a> evaluates at graph runtime, it supports dynamic shapes
-based on other runtime Tensors, unlike <a href="../tf/constant.html"><code>tf.constant</code></a>.</li>
+    based on other runtime Tensors, unlike <a href="../tf/constant.html"><code>tf.constant</code></a>.</li>
 </ul>
-
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>dims</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>int32</code>, <code>int64</code>. 1-D.
-Represents the shape of the output tensor.</li>
+  Represents the shape of the output tensor.</li>
 <li><b><code>value</code></b>: A <code>Tensor</code>. 0-D (scalar). Value to fill the returned tensor.
-@compatibility(numpy) Equivalent to np.full @end_compatibility</li>
+  @compatibility(numpy) Equivalent to np.full @end_compatibility</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>Tensor</code>. Has the same type as <code>value</code>.</p>
+    </body>
+    </html>
+   

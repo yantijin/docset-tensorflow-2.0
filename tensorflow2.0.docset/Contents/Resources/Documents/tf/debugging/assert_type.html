@@ -1,62 +1,55 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.debugging.assert_type" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.debugging.assert_type</h1>
-
+<h1 id="tfdebuggingassert_type">tf.debugging.assert_type</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/check_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Asserts that the given <code>Tensor</code> is of the specified type.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v2.debugging.assert_type</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">debugging</span><span class="o">.</span><span class="n">assert_type</span><span class="p">(</span>
+    <span class="n">tensor</span><span class="p">,</span>
+    <span class="n">tf_type</span><span class="p">,</span>
+    <span class="n">message</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.debugging.assert_type(
-    tensor,
-    tf_type,
-    message=None,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>This can always be checked statically, so this method returns nothing.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>tensor</code></b>: A <code>Tensor</code>.</li>
 <li><b><code>tf_type</code></b>: A tensorflow type (<a href="../../tf/dtypes.html#float32"><code>dtypes.float32</code></a>, <a href="../../tf.html#int64"><code>tf.int64</code></a>, <a href="../../tf/dtypes.html#bool"><code>dtypes.bool</code></a>,
-etc).</li>
+  etc).</li>
 <li><b><code>message</code></b>: A string to prefix to the default message.</li>
-<li><b><code>name</code></b>:  A name for this operation. Defaults to &ldquo;assert_type&rdquo;</li>
+<li><b><code>name</code></b>:  A name for this operation. Defaults to "assert_type"</li>
 </ul>
-
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
-<li><b><code>TypeError</code></b>: If the tensor&rsquo;s data type doesn&rsquo;t match <code>tf_type</code>.</li>
+<li><b><code>TypeError</code></b>: If the tensor's data type doesn't match <code>tf_type</code>.</li>
 </ul>
-
+    </body>
+    </html>
+   

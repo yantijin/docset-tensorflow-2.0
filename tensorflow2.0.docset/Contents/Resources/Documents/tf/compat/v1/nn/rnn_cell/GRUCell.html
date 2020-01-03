@@ -1,4 +1,13 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.nn.rnn_cell.GRUCell" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="graph"/>
@@ -10,151 +19,111 @@
 <meta itemprop="property" content="zero_state"/>
 </div>
 
-
-<h1>tf.compat.v1.nn.rnn_cell.GRUCell</h1>
-
+<h1 id="tfcompatv1nnrnn_cellgrucell">tf.compat.v1.nn.rnn_cell.GRUCell</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/rnn_cell_impl.py">View source</a></p>
-
-<h2>Class <code>GRUCell</code></h2>
-
+<h2 id="class-grucell">Class <code>GRUCell</code></h2>
 <!-- Start diff -->
 
-
 <p>Gated Recurrent Unit cell (cf.</p>
-
 <!-- Placeholder for "Used in" -->
 
-
 <p>http://arxiv.org/abs/1406.1078).</p>
-
 <p>Note that this cell is not optimized for performance. Please use
 <code>tf.contrib.cudnn_rnn.CudnnGRU</code> for better performance on GPU, or
 <code>tf.contrib.rnn.GRUBlockCellV2</code> for better performance on CPU.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>num_units</code></b>: int, The number of units in the GRU cell.</li>
 <li><b><code>activation</code></b>: Nonlinearity to use.  Default: <code>tanh</code>.</li>
 <li><b><code>reuse</code></b>: (optional) Python boolean describing whether to reuse variables in an
-existing scope.  If not <code>True</code>, and the existing scope already has the
-given variables, an error is raised.</li>
+  existing scope.  If not <code>True</code>, and the existing scope already has the
+  given variables, an error is raised.</li>
 <li><b><code>kernel_initializer</code></b>: (optional) The initializer to use for the weight and
-projection matrices.</li>
+  projection matrices.</li>
 <li><b><code>bias_initializer</code></b>: (optional) The initializer to use for the bias.</li>
 <li><b><code>name</code></b>: String, the name of the layer. Layers with the same name will share
-weights, but to avoid mistakes we require reuse=True in such cases.</li>
+  weights, but to avoid mistakes we require reuse=True in such cases.</li>
 <li><b><code>dtype</code></b>: Default dtype of the layer (default of <code>None</code> means use the type of
-the first input). Required when <code>build</code> is called before <code>call</code>.</li>
+  the first input). Required when <code>build</code> is called before <code>call</code>.</li>
 <li><b><code>**kwargs</code></b>: Dict, keyword named properties for common layer attributes, like
-<code>trainable</code> etc when constructing the cell from configs of get_config().</li>
+  <code>trainable</code> etc when constructing the cell from configs of get_config().</li>
 </ul>
-
-
 <h2 id="__init__"><code>__init__</code></h2>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/rnn_cell_impl.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">num_units</span><span class="p">,</span>
+    <span class="n">activation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">reuse</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">kernel_initializer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">bias_initializer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__init__(
-    num_units,
-    activation=None,
-    reuse=None,
-    kernel_initializer=None,
-    bias_initializer=None,
-    name=None,
-    dtype=None,
-    **kwargs
-)
-</code></p>
 
 <p>DEPRECATED FUNCTION</p>
-
 <p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
 Instructions for updating:
 This class is equivalent as tf.keras.layers.GRUCell, and will be replaced by that in Tensorflow 2.0.</p>
-
-<h2>Properties</h2>
-
+<h2 id="properties">Properties</h2>
 <h3 id="graph"><code>graph</code></h3>
 
-
 <p>DEPRECATED FUNCTION</p>
-
 <p>Warning: THIS FUNCTION IS DEPRECATED. It will be removed in a future version.
 Instructions for updating:
 Stop using this property because tf.layers layers no longer track their graph.</p>
-
 <h3 id="output_size"><code>output_size</code></h3>
 
-
 <p>Integer or TensorShape: size of outputs produced by this cell.</p>
-
 <h3 id="scope_name"><code>scope_name</code></h3>
-
-
-
 
 <h3 id="state_size"><code>state_size</code></h3>
 
-
 <p>size(s) of state(s) used by this cell.</p>
-
 <p>It can be represented by an Integer, a TensorShape or a tuple of Integers
 or TensorShapes.</p>
-
-<h2>Methods</h2>
-
+<h2 id="methods">Methods</h2>
 <h3 id="get_initial_state"><code>get_initial_state</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/rnn_cell_impl.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">get_initial_state</span><span class="p">(</span>
+    <span class="n">inputs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-get_initial_state(
-    inputs=None,
-    batch_size=None,
-    dtype=None
-)
-</code></p>
 
 <h3 id="zero_state"><code>zero_state</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/rnn_cell_impl.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">zero_state</span><span class="p">(</span>
+    <span class="n">batch_size</span><span class="p">,</span>
+    <span class="n">dtype</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-zero_state(
-    batch_size,
-    dtype
-)
-</code></p>
 
 <p>Return zero-filled state tensor(s).</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_1">Args:</h4>
 <ul>
 <li><b><code>batch_size</code></b>: int, float, or unit Tensor representing the batch size.</li>
 <li><b><code>dtype</code></b>: the data type to use for the state.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>If <code>state_size</code> is an int or TensorShape, then the return value is a
 <code>N-D</code> tensor of shape <code>[batch_size, state_size]</code> filled with zeros.</p>
-
 <p>If <code>state_size</code> is a nested list or tuple, then the return value is
 a nested list or tuple (of the same structure) of <code>2-D</code> tensors with
 the shapes <code>[batch_size, s]</code> for each s in <code>state_size</code>.</p>
+    </body>
+    </html>
+   

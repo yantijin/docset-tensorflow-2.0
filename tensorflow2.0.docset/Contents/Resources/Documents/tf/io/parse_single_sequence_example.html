@@ -1,61 +1,54 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.io.parse_single_sequence_example" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.io.parse_single_sequence_example</h1>
-
+<h1 id="tfioparse_single_sequence_example">tf.io.parse_single_sequence_example</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/parsing_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Parses a single <code>SequenceExample</code> proto.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.io.parse_single_sequence_example</code></li>
 <li><code>tf.compat.v1.parse_single_sequence_example</code></li>
 <li><code>tf.compat.v2.io.parse_single_sequence_example</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">parse_single_sequence_example</span><span class="p">(</span>
+    <span class="n">serialized</span><span class="p">,</span>
+    <span class="n">context_features</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">sequence_features</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">example_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.io.parse_single_sequence_example(
-    serialized,
-    context_features=None,
-    sequence_features=None,
-    example_name=None,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>Parses a single serialized <a href="https://www.tensorflow.org/code/tensorflow/core/example/example.proto"><code>SequenceExample</code></a>
 proto given in <code>serialized</code>.</p>
-
 <p>This op parses a serialized sequence example into a tuple of dictionaries,
 each mapping keys to <code>Tensor</code> and <code>SparseTensor</code> objects.
 The first dictionary contains mappings for keys appearing in
 <code>context_features</code>, and the second dictionary contains mappings for keys
 appearing in <code>sequence_features</code>.</p>
-
 <p>At least one of <code>context_features</code> and <code>sequence_features</code> must be provided
 and non-empty.</p>
-
 <p>The <code>context_features</code> keys are associated with a <code>SequenceExample</code> as a
 whole, independent of time / frame.  In contrast, the <code>sequence_features</code> keys
 provide a way to access variable-length data within the <code>FeatureList</code> section
@@ -63,11 +56,9 @@ of the <code>SequenceExample</code> proto.  While the shapes of <code>context_fe
 are fixed with respect to frame, the frame dimension (the first dimension)
 of <code>sequence_features</code> values may vary between <code>SequenceExample</code> protos,
 and even between <code>feature_list</code> keys within the same <code>SequenceExample</code>.</p>
-
 <p><code>context_features</code> contains <code>VarLenFeature</code> and <code>FixedLenFeature</code> objects.
 Each <code>VarLenFeature</code> is mapped to a <code>SparseTensor</code>, and each <code>FixedLenFeature</code>
 is mapped to a <code>Tensor</code>, of the specified type, shape, and default value.</p>
-
 <p><code>sequence_features</code> contains <code>VarLenFeature</code> and <code>FixedLenSequenceFeature</code>
 objects. Each <code>VarLenFeature</code> is mapped to a <code>SparseTensor</code>, and each
 <code>FixedLenSequenceFeature</code> is mapped to a <code>Tensor</code>, each of the specified type.
@@ -77,51 +68,42 @@ For instance, <code>FixedLenSequenceFeature([])</code> yields a scalar 1-D <code
 static shape <code>[None]</code> and dynamic shape <code>[T]</code>, while
 <code>FixedLenSequenceFeature([k])</code> (for <code>int k &gt;= 1</code>) yields a 2-D matrix <code>Tensor</code>
 of static shape <code>[None, k]</code> and dynamic shape <code>[T, k]</code>.</p>
-
 <p>Each <code>SparseTensor</code> corresponding to <code>sequence_features</code> represents a ragged
 vector.  Its indices are <code>[time, index]</code>, where <code>time</code> is the <code>FeatureList</code>
-entry and <code>index</code> is the value&rsquo;s index in the list of values associated with
+entry and <code>index</code> is the value's index in the list of values associated with
 that time.</p>
-
 <p><code>FixedLenFeature</code> entries with a <code>default_value</code> and <code>FixedLenSequenceFeature</code>
 entries with <code>allow_missing=True</code> are optional; otherwise, we will fail if
 that <code>Feature</code> or <code>FeatureList</code> is missing from any example in <code>serialized</code>.</p>
-
 <p><code>example_name</code> may contain a descriptive name for the corresponding serialized
 proto. This may be useful for debugging purposes, but it has no effect on the
 output. If not <code>None</code>, <code>example_name</code> must be a scalar.</p>
-
 <p>Note that the batch version of this function, <code>tf.parse_sequence_example</code>,
 is written for better memory efficiency and will be faster on large
 <code>SequenceExample</code>s.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>serialized</code></b>: A scalar (0-D Tensor) of type string, a single binary
-serialized <code>SequenceExample</code> proto.</li>
+  serialized <code>SequenceExample</code> proto.</li>
 <li><b><code>context_features</code></b>: A <code>dict</code> mapping feature keys to <code>FixedLenFeature</code> or
-<code>VarLenFeature</code> values. These features are associated with a
-<code>SequenceExample</code> as a whole.</li>
+  <code>VarLenFeature</code> values. These features are associated with a
+  <code>SequenceExample</code> as a whole.</li>
 <li><b><code>sequence_features</code></b>: A <code>dict</code> mapping feature keys to
-<code>FixedLenSequenceFeature</code> or <code>VarLenFeature</code> values. These features are
-associated with data within the <code>FeatureList</code> section of the
-<code>SequenceExample</code> proto.</li>
+  <code>FixedLenSequenceFeature</code> or <code>VarLenFeature</code> values. These features are
+  associated with data within the <code>FeatureList</code> section of the
+  <code>SequenceExample</code> proto.</li>
 <li><b><code>example_name</code></b>: A scalar (0-D Tensor) of strings (optional), the name of
-the serialized proto.</li>
+  the serialized proto.</li>
 <li><b><code>name</code></b>: A name for this operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A tuple of two <code>dict</code>s, each mapping keys to <code>Tensor</code>s and <code>SparseTensor</code>s.
 The first dict contains the context key/values.
 The second dict contains the feature_list key/values.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: if any feature is invalid.</li>
 </ul>
-
+    </body>
+    </html>
+   

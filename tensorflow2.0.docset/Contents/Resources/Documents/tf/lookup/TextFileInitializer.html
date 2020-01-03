@@ -1,4 +1,13 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.lookup.TextFileInitializer" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="key_dtype"/>
@@ -7,199 +16,148 @@
 <meta itemprop="property" content="initialize"/>
 </div>
 
-
-<h1>tf.lookup.TextFileInitializer</h1>
-
+<h1 id="tflookuptextfileinitializer">tf.lookup.TextFileInitializer</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/lookup_ops.py">View source</a></p>
-
-<h2>Class <code>TextFileInitializer</code></h2>
-
+<h2 id="class-textfileinitializer">Class <code>TextFileInitializer</code></h2>
 <!-- Start diff -->
 
-
 <p>Table initializers from a text file.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li>Class <code>tf.compat.v1.lookup.TextFileInitializer</code></li>
 <li>Class <code>tf.compat.v2.lookup.TextFileInitializer</code></li>
 </ul>
-
-
 <!-- Placeholder for "Used in" -->
 
-
 <p>This initializer assigns one entry in the table for each line in the file.</p>
-
 <p>The key and value type of the table to initialize is given by <code>key_dtype</code> and
 <code>value_dtype</code>.</p>
-
 <p>The key and value content to get from each line is specified by
 the <code>key_index</code> and <code>value_index</code>.</p>
-
 <ul>
 <li><a href="../../tf/lookup/TextFileIndex.html#LINE_NUMBER"><code>TextFileIndex.LINE_NUMBER</code></a> means use the line number starting from zero,
-expects data type int64.</li>
+  expects data type int64.</li>
 <li><a href="../../tf/lookup/TextFileIndex.html#WHOLE_LINE"><code>TextFileIndex.WHOLE_LINE</code></a> means use the whole line content, expects data
-type string.</li>
+  type string.</li>
 <li>A value <code>&gt;=0</code> means use the index (starting at zero) of the split line based
-  on <code>delimiter</code>.</li>
+    on <code>delimiter</code>.</li>
 </ul>
-
-
 <p>For example if we have a file with the following content:</p>
+<div class="codehilite"><pre><span></span><span class="err">emerson 10</span>
+<span class="err">lake 20</span>
+<span class="err">palmer 30</span>
+</pre></div>
 
-<p><code>
-emerson 10
-lake 20
-palmer 30
-</code></p>
 
 <p>The following snippet initializes a table with the first column as keys and
 second column as values:</p>
-
 <ul>
 <li><code>emerson -&gt; 10</code></li>
 <li><code>lake -&gt; 20</code></li>
 <li><code>palmer -&gt; 30</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">table</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">lookup</span><span class="o">.</span><span class="n">StaticHashTable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">lookup</span><span class="o">.</span><span class="n">TextFileInitializer</span><span class="p">(</span>
+    <span class="s2">&quot;test.txt&quot;</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">string</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="o">...</span>
+<span class="n">table</span><span class="o">.</span><span class="n">init</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
 
-
-<p><code>python
-table = tf.lookup.StaticHashTable(tf.lookup.TextFileInitializer(
-    "test.txt", tf.string, 0, tf.int64, 1, delimiter=" "), -1)
-...
-table.init.run()
-</code></p>
 
 <p>Similarly to initialize the whole line as keys and the line number as values.</p>
-
 <ul>
 <li><code>emerson 10 -&gt; 0</code></li>
 <li><code>lake 20 -&gt; 1</code></li>
 <li><code>palmer 30 -&gt; 2</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">table</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">lookup</span><span class="o">.</span><span class="n">StaticHashTable</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">lookup</span><span class="o">.</span><span class="n">TextFileInitializer</span><span class="p">(</span>
+    <span class="s2">&quot;test.txt&quot;</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">string</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">lookup</span><span class="o">.</span><span class="n">TextFileIndex</span><span class="o">.</span><span class="n">WHOLE_LINE</span><span class="p">,</span>
+    <span class="n">tf</span><span class="o">.</span><span class="n">int64</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">lookup</span><span class="o">.</span><span class="n">TextFileIndex</span><span class="o">.</span><span class="n">LINE_NUMBER</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="o">...</span>
+<span class="n">table</span><span class="o">.</span><span class="n">init</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
 
-
-<p><code>python
-table = tf.lookup.StaticHashTable(tf.lookup.TextFileInitializer(
-    "test.txt", tf.string, tf.lookup.TextFileIndex.WHOLE_LINE,
-    tf.int64, tf.lookup.TextFileIndex.LINE_NUMBER, delimiter=" "), -1)
-...
-table.init.run()
-</code></p>
 
 <h2 id="__init__"><code>__init__</code></h2>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/lookup_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">filename</span><span class="p">,</span>
+    <span class="n">key_dtype</span><span class="p">,</span>
+    <span class="n">key_index</span><span class="p">,</span>
+    <span class="n">value_dtype</span><span class="p">,</span>
+    <span class="n">value_index</span><span class="p">,</span>
+    <span class="n">vocab_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-__init__(
-    filename,
-    key_dtype,
-    key_index,
-    value_dtype,
-    value_index,
-    vocab_size=None,
-    delimiter='\t',
-    name=None
-)
-</code></p>
 
 <p>Constructs a table initializer object to populate from a text file.</p>
-
 <p>It generates one key-value pair per line. The type of table key and
 value are specified by <code>key_dtype</code> and <code>value_dtype</code>, respectively.
 Similarly the content of the key and value are specified by the key_index
 and value_index.</p>
-
 <ul>
 <li>TextFileIndex.LINE_NUMBER means use the line number starting from zero,
-expects data type int64.</li>
+  expects data type int64.</li>
 <li>TextFileIndex.WHOLE_LINE means use the whole line content, expects data
-type string.</li>
-<li>A value >=0 means use the index (starting at zero) of the split line based
-on <code>delimiter</code>.</li>
+  type string.</li>
+<li>A value &gt;=0 means use the index (starting at zero) of the split line based
+  on <code>delimiter</code>.</li>
 </ul>
-
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>filename</code></b>: The filename of the text file to be used for initialization. The
-path must be accessible from wherever the graph is initialized (eg.
-trainer or eval workers). The filename may be a scalar <code>Tensor</code>.</li>
+  path must be accessible from wherever the graph is initialized (eg.
+  trainer or eval workers). The filename may be a scalar <code>Tensor</code>.</li>
 <li><b><code>key_dtype</code></b>: The <code>key</code> data type.</li>
 <li><b><code>key_index</code></b>: the index that represents information of a line to get the
-table &lsquo;key&rsquo; values from.</li>
+  table 'key' values from.</li>
 <li><b><code>value_dtype</code></b>: The <code>value</code> data type.</li>
 <li><b><code>value_index</code></b>: the index that represents information of a line to get the
-table &lsquo;value&rsquo; values from.'</li>
+  table 'value' values from.'</li>
 <li><b><code>vocab_size</code></b>: The number of elements in the file, if known.</li>
 <li><b><code>delimiter</code></b>: The delimiter to separate fields in a line.</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: when the filename is empty, or when the table key and value
 data types do not match the expected data types.</li>
 </ul>
-
-
-<h2>Properties</h2>
-
+<h2 id="properties">Properties</h2>
 <h3 id="key_dtype"><code>key_dtype</code></h3>
 
-
 <p>The expected table key dtype.</p>
-
 <h3 id="value_dtype"><code>value_dtype</code></h3>
 
-
 <p>The expected table value dtype.</p>
-
-<h2>Methods</h2>
-
+<h2 id="methods">Methods</h2>
 <h3 id="initialize"><code>initialize</code></h3>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/lookup_ops.py">View source</a></p>
+<div class="codehilite"><pre><span></span><span class="n">initialize</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
+</pre></div>
 
-<p><code>python
-initialize(table)
-</code></p>
 
 <p>Initializes the table from a text file.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args_1">Args:</h4>
 <ul>
 <li><b><code>table</code></b>: The table to be initialized.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>The operation that initializes the table.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises_1">Raises:</h4>
 <ul>
 <li><b><code>TypeError</code></b>: when the keys and values data types do not match the table
 key and value data types.</li>
 </ul>
-
+    </body>
+    </html>
+   

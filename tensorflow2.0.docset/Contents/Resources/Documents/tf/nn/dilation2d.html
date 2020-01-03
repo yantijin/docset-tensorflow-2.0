@@ -1,48 +1,44 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.nn.dilation2d" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.nn.dilation2d</h1>
-
+<h1 id="tfnndilation2d">tf.nn.dilation2d</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/nn_ops.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Computes the grayscale dilation of 4-D <code>input</code> and 3-D <code>filters</code> tensors.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v2.nn.dilation2d</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">dilation2d</span><span class="p">(</span>
+    <span class="nb">input</span><span class="p">,</span>
+    <span class="n">filters</span><span class="p">,</span>
+    <span class="n">strides</span><span class="p">,</span>
+    <span class="n">padding</span><span class="p">,</span>
+    <span class="n">data_format</span><span class="p">,</span>
+    <span class="n">dilations</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.nn.dilation2d(
-    input,
-    filters,
-    strides,
-    padding,
-    data_format,
-    dilations,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>The <code>input</code> tensor has shape <code>[batch, in_height, in_width, depth]</code> and the
 <code>filters</code> tensor has shape <code>[filter_height, filter_width, depth]</code>, i.e., each
@@ -50,47 +46,43 @@ input channel is processed independently of the others with its own
 structuring function. The <code>output</code> tensor has shape
 <code>[batch, out_height, out_width, depth]</code>. The spatial dimensions of the output
 tensor depend on the <code>padding</code> algorithm. We currently only support the
-default &ldquo;NHWC&rdquo; <code>data_format</code>.</p>
-
+default "NHWC" <code>data_format</code>.</p>
 <p>In detail, the grayscale morphological 2-D dilation is the max-sum correlation
 (for consistency with <code>conv2d</code>, we use unmirrored filters):</p>
+<div class="codehilite"><pre><span></span><span class="err">output[b, y, x, c] =</span>
+<span class="err">   max_{dy, dx} input[b,</span>
+<span class="err">                      strides[1] * y + rates[1] * dy,</span>
+<span class="err">                      strides[2] * x + rates[2] * dx,</span>
+<span class="err">                      c] +</span>
+<span class="err">                filters[dy, dx, c]</span>
+</pre></div>
 
-<pre><code>output[b, y, x, c] =
-   max_{dy, dx} input[b,
-                      strides[1] * y + rates[1] * dy,
-                      strides[2] * x + rates[2] * dx,
-                      c] +
-                filters[dy, dx, c]
-</code></pre>
 
 <p>Max-pooling is a special case when the filter has size equal to the pooling
 kernel size and contains all zeros.</p>
-
 <p>Note on duality: The dilation of <code>input</code> by the <code>filters</code> is equal to the
 negation of the erosion of <code>-input</code> by the reflected <code>filters</code>.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>input</code></b>: A <code>Tensor</code>. Must be one of the following types: <code>float32</code>, <code>float64</code>,
-<code>int32</code>, <code>uint8</code>, <code>int16</code>, <code>int8</code>, <code>int64</code>, <code>bfloat16</code>, <code>uint16</code>, <code>half</code>,
-<code>uint32</code>, <code>uint64</code>.
-4-D with shape <code>[batch, in_height, in_width, depth]</code>.</li>
+  <code>int32</code>, <code>uint8</code>, <code>int16</code>, <code>int8</code>, <code>int64</code>, <code>bfloat16</code>, <code>uint16</code>, <code>half</code>,
+  <code>uint32</code>, <code>uint64</code>.
+  4-D with shape <code>[batch, in_height, in_width, depth]</code>.</li>
 <li><b><code>filters</code></b>: A <code>Tensor</code>. Must have the same type as <code>input</code>.
-3-D with shape <code>[filter_height, filter_width, depth]</code>.</li>
+  3-D with shape <code>[filter_height, filter_width, depth]</code>.</li>
 <li><b><code>strides</code></b>: A list of <code>ints</code> that has length <code>&gt;= 4</code>.
-The stride of the sliding window for each dimension of the input
-tensor. Must be: <code>[1, stride_height, stride_width, 1]</code>.</li>
+  The stride of the sliding window for each dimension of the input
+  tensor. Must be: <code>[1, stride_height, stride_width, 1]</code>.</li>
 <li><b><code>padding</code></b>: A <code>string</code> from: <code>"SAME", "VALID"</code>.
-The type of padding algorithm to use.</li>
+  The type of padding algorithm to use.</li>
 <li><b><code>data_format</code></b>: A <code>string</code>, only <code>"NHWC"</code> is currently supported.</li>
 <li><b><code>dilations</code></b>: A list of <code>ints</code> that has length <code>&gt;= 4</code>.
-The input stride for atrous morphological dilation. Must be:
-<code>[1, rate_height, rate_width, 1]</code>.</li>
+  The input stride for atrous morphological dilation. Must be:
+  <code>[1, rate_height, rate_width, 1]</code>.</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>Tensor</code>. Has the same type as <code>input</code>.</p>
+    </body>
+    </html>
+   

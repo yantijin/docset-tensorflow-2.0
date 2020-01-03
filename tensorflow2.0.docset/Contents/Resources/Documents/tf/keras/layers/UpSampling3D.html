@@ -1,89 +1,75 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.keras.layers.UpSampling3D" />
 <meta itemprop="path" content="Stable" />
 <meta itemprop="property" content="__init__"/>
 </div>
 
-
-<h1>tf.keras.layers.UpSampling3D</h1>
-
+<h1 id="tfkeraslayersupsampling3d">tf.keras.layers.UpSampling3D</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/convolutional.py">View source</a></p>
-
-<h2>Class <code>UpSampling3D</code></h2>
-
+<h2 id="class-upsampling3d">Class <code>UpSampling3D</code></h2>
 <!-- Start diff -->
 
-
 <p>Upsampling layer for 3D inputs.</p>
-
 <p>Inherits From: <a href="../../../tf/keras/layers/Layer.html"><code>Layer</code></a></p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li>Class <code>tf.compat.v1.keras.layers.UpSampling3D</code></li>
 <li>Class <code>tf.compat.v2.keras.layers.UpSampling3D</code></li>
 </ul>
-
-
 <!-- Placeholder for "Used in" -->
-
 
 <p>Repeats the 1st, 2nd and 3rd dimensions
 of the data by <code>size[0]</code>, <code>size[1]</code> and <code>size[2]</code> respectively.</p>
-
-<h4>Arguments:</h4>
-
+<h4 id="arguments">Arguments:</h4>
 <ul>
 <li><b><code>size</code></b>: Int, or tuple of 3 integers.
-The upsampling factors for dim1, dim2 and dim3.</li>
+  The upsampling factors for dim1, dim2 and dim3.</li>
 <li><b><code>data_format</code></b>: A string,
-one of <code>channels_last</code> (default) or <code>channels_first</code>.
-The ordering of the dimensions in the inputs.
-<code>channels_last</code> corresponds to inputs with shape
-<code>(batch, spatial_dim1, spatial_dim2, spatial_dim3, channels)</code>
-while <code>channels_first</code> corresponds to inputs with shape
-<code>(batch, channels, spatial_dim1, spatial_dim2, spatial_dim3)</code>.
-It defaults to the <code>image_data_format</code> value found in your
-Keras config file at <code>~/.keras/keras.json</code>.
-If you never set it, then it will be &ldquo;channels_last&rdquo;.</li>
+  one of <code>channels_last</code> (default) or <code>channels_first</code>.
+  The ordering of the dimensions in the inputs.
+  <code>channels_last</code> corresponds to inputs with shape
+  <code>(batch, spatial_dim1, spatial_dim2, spatial_dim3, channels)</code>
+  while <code>channels_first</code> corresponds to inputs with shape
+  <code>(batch, channels, spatial_dim1, spatial_dim2, spatial_dim3)</code>.
+  It defaults to the <code>image_data_format</code> value found in your
+  Keras config file at <code>~/.keras/keras.json</code>.
+  If you never set it, then it will be "channels_last".</li>
 </ul>
-
-
-<h4>Input shape:</h4>
-
+<h4 id="input-shape">Input shape:</h4>
 <p>5D tensor with shape:
 - If <code>data_format</code> is <code>"channels_last"</code>:
     <code>(batch, dim1, dim2, dim3, channels)</code>
 - If <code>data_format</code> is <code>"channels_first"</code>:
     <code>(batch, channels, dim1, dim2, dim3)</code></p>
-
-<h4>Output shape:</h4>
-
+<h4 id="output-shape">Output shape:</h4>
 <p>5D tensor with shape:
 - If <code>data_format</code> is <code>"channels_last"</code>:
     <code>(batch, upsampled_dim1, upsampled_dim2, upsampled_dim3, channels)</code>
 - If <code>data_format</code> is <code>"channels_first"</code>:
     <code>(batch, channels, upsampled_dim1, upsampled_dim2, upsampled_dim3)</code></p>
-
 <h2 id="__init__"><code>__init__</code></h2>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/convolutional.py">View source</a></p>
-
-<p><code>python
-__init__(
-    size=(2, 2, 2),
-    data_format=None,
-    **kwargs
-)
-</code></p>
+<div class="codehilite"><pre><span></span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+    <span class="n">data_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
+    </body>
+    </html>
+   

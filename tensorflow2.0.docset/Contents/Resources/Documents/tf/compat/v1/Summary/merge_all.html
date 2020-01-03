@@ -1,0 +1,54 @@
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
+<meta itemprop="name" content="tf.compat.v1.summary.merge_all" />
+<meta itemprop="path" content="Stable" />
+</div>
+
+<h1 id="tfcompatv1summarymerge_all">tf.compat.v1.summary.merge_all</h1>
+<!-- Insert buttons -->
+
+<table class="tfo-notebook-buttons tfo-api" align="left">
+</table>
+
+<p><a target="_blank" href="/code/stable/tensorflow/python/summary/summary.py">View source</a></p>
+<!-- Start diff -->
+
+<p>Merges all summaries collected in the default graph.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">summary</span><span class="o">.</span><span class="n">merge_all</span><span class="p">(</span>
+    <span class="n">key</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">GraphKeys</span><span class="o">.</span><span class="n">SUMMARIES</span><span class="p">,</span>
+    <span class="n">scope</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<!-- Placeholder for "Used in" -->
+
+<h4 id="args">Args:</h4>
+<ul>
+<li><b><code>key</code></b>: <code>GraphKey</code> used to collect the summaries.  Defaults to
+  <code>GraphKeys.SUMMARIES</code>.</li>
+<li><b><code>scope</code></b>: Optional scope used to filter the summary ops, using <code>re.match</code></li>
+</ul>
+<h4 id="returns">Returns:</h4>
+<p>If no summaries were collected, returns None.  Otherwise returns a scalar
+<code>Tensor</code> of type <code>string</code> containing the serialized <code>Summary</code> protocol
+buffer resulting from the merging.</p>
+<h4 id="raises">Raises:</h4>
+<ul>
+<li><b><code>RuntimeError</code></b>: If called with eager execution enabled.</li>
+</ul>
+<h4 id="eager-compatibility">Eager Compatibility</h4>
+<p>Not compatible with eager execution. To write TensorBoard
+summaries under eager execution, use <code>tf.contrib.summary</code> instead.</p>
+    </body>
+    </html>
+   

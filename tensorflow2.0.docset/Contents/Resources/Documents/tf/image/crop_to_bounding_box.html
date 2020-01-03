@@ -1,79 +1,70 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.image.crop_to_bounding_box" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.image.crop_to_bounding_box</h1>
-
+<h1 id="tfimagecrop_to_bounding_box">tf.image.crop_to_bounding_box</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/ops/image_ops_impl.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Crops an image to a specified bounding box.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.image.crop_to_bounding_box</code></li>
 <li><code>tf.compat.v2.image.crop_to_bounding_box</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">image</span><span class="o">.</span><span class="n">crop_to_bounding_box</span><span class="p">(</span>
+    <span class="n">image</span><span class="p">,</span>
+    <span class="n">offset_height</span><span class="p">,</span>
+    <span class="n">offset_width</span><span class="p">,</span>
+    <span class="n">target_height</span><span class="p">,</span>
+    <span class="n">target_width</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.image.crop_to_bounding_box(
-    image,
-    offset_height,
-    offset_width,
-    target_height,
-    target_width
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
-
 
 <p>This op cuts a rectangular part out of <code>image</code>. The top-left corner of the
 returned image is at <code>offset_height, offset_width</code> in <code>image</code>, and its
 lower-right corner is at
 <code>offset_height + target_height, offset_width + target_width</code>.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>image</code></b>: 4-D Tensor of shape <code>[batch, height, width, channels]</code> or 3-D Tensor
-of shape <code>[height, width, channels]</code>.</li>
+  of shape <code>[height, width, channels]</code>.</li>
 <li><b><code>offset_height</code></b>: Vertical coordinate of the top-left corner of the result in
-the input.</li>
+  the input.</li>
 <li><b><code>offset_width</code></b>: Horizontal coordinate of the top-left corner of the result in
-the input.</li>
+  the input.</li>
 <li><b><code>target_height</code></b>: Height of the result.</li>
 <li><b><code>target_width</code></b>: Width of the result.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>If <code>image</code> was 4-D, a 4-D float Tensor of shape
 <code>[batch, target_height, target_width, channels]</code>
 If <code>image</code> was 3-D, a 3-D float Tensor of shape
 <code>[target_height, target_width, channels]</code></p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: If the shape of <code>image</code> is incompatible with the <code>offset_*</code> or
-<code>target_*</code> arguments, or either <code>offset_height</code> or <code>offset_width</code> is
-negative, or either <code>target_height</code> or <code>target_width</code> is not positive.</li>
+  <code>target_*</code> arguments, or either <code>offset_height</code> or <code>offset_width</code> is
+  negative, or either <code>target_height</code> or <code>target_width</code> is not positive.</li>
 </ul>
-
+    </body>
+    </html>
+   

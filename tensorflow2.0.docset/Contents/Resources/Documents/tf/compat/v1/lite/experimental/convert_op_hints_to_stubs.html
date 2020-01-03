@@ -1,59 +1,53 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.compat.v1.lite.experimental.convert_op_hints_to_stubs" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.compat.v1.lite.experimental.convert_op_hints_to_stubs</h1>
-
+<h1 id="tfcompatv1liteexperimentalconvert_op_hints_to_stubs">tf.compat.v1.lite.experimental.convert_op_hints_to_stubs</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/lite/python/op_hint.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Converts a graphdef with LiteOp hints into stub operations.</p>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">lite</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">convert_op_hints_to_stubs</span><span class="p">(</span>
+    <span class="n">session</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">graph_def</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">write_callback</span><span class="o">=</span><span class="p">(</span><span class="k">lambda</span> <span class="n">graph_def</span><span class="p">,</span> <span class="n">comments</span><span class="p">:</span> <span class="kc">None</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
 
-<p><code>python
-tf.compat.v1.lite.experimental.convert_op_hints_to_stubs(
-    session=None,
-    graph_def=None,
-    write_callback=(lambda graph_def, comments: None)
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>This is used to prepare for toco conversion of complex intrinsic usages.
 Note: only one of session or graph_def should be used, not both.</p>
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>session</code></b>: A TensorFlow session that contains the graph to convert.</li>
 <li><b><code>graph_def</code></b>: A graph def that we should convert.</li>
 <li><b><code>write_callback</code></b>: A function pointer that can be used to write intermediate
-steps of graph transformation (optional).</li>
+  steps of graph transformation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A new graphdef with all ops contained in OpHints being replaced by
 a single op call with the right parameters.</p>
-
-<h4>Raises:</h4>
-
+<h4 id="raises">Raises:</h4>
 <ul>
 <li><b><code>ValueError</code></b>: If both session and graph_def are provided.</li>
 </ul>
-
+    </body>
+    </html>
+   

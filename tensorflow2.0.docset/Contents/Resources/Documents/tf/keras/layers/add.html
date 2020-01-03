@@ -1,70 +1,60 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.keras.layers.add" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.keras.layers.add</h1>
-
+<h1 id="tfkeraslayersadd">tf.keras.layers.add</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p><a target="_blank" href="/code/stable/tensorflow/python/keras/layers/merge.py">View source</a></p>
-
 <!-- Start diff -->
 
-
 <p>Functional interface to the <code>Add</code> layer.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.keras.layers.add</code></li>
 <li><code>tf.compat.v2.keras.layers.add</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+    <span class="n">inputs</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.keras.layers.add(
-    inputs,
-    **kwargs
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
-<h4>Arguments:</h4>
-
+<h4 id="arguments">Arguments:</h4>
 <ul>
 <li><b><code>inputs</code></b>: A list of input tensors (at least 2).</li>
 <li><b><code>**kwargs</code></b>: Standard layer keyword arguments.</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A tensor, the sum of the inputs.</p>
+<h4 id="examples">Examples:</h4>
+<div class="codehilite"><pre><span></span>    <span class="kn">import</span> <span class="nn">keras</span>
 
-<h4>Examples:</h4>
+    <span class="n">input1</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,))</span>
+    <span class="n">x1</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">)(</span><span class="n">input1</span><span class="p">)</span>
+    <span class="n">input2</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">32</span><span class="p">,))</span>
+    <span class="n">x2</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">)(</span><span class="n">input2</span><span class="p">)</span>
+    <span class="n">added</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">add</span><span class="p">([</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">])</span>
 
-<p>```python
-    import keras</p>
-
-<pre><code>input1 = keras.layers.Input(shape=(16,))
-x1 = keras.layers.Dense(8, activation='relu')(input1)
-input2 = keras.layers.Input(shape=(32,))
-x2 = keras.layers.Dense(8, activation='relu')(input2)
-added = keras.layers.add([x1, x2])
-
-out = keras.layers.Dense(4)(added)
-model = keras.models.Model(inputs=[input1, input2], outputs=out)
-</code></pre>
-
-<p>```</p>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">4</span><span class="p">)(</span><span class="n">added</span><span class="p">)</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">inputs</span><span class="o">=</span><span class="p">[</span><span class="n">input1</span><span class="p">,</span> <span class="n">input2</span><span class="p">],</span> <span class="n">outputs</span><span class="o">=</span><span class="n">out</span><span class="p">)</span>
+</pre></div>
+    </body>
+    </html>
+   

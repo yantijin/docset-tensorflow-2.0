@@ -1,29 +1,28 @@
-<div itemscope itemtype="http://developers.google.com/ReferenceObject">
+
+    <html lang="zh-cn">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <link href=../../../default.css" rel="stylesheet">
+    <link href="
+   ../../../github.css" rel="stylesheet">
+    </head>
+    <body>
+    <div itemscope itemtype="http://developers.google.com/ReferenceObject">
 <meta itemprop="name" content="tf.io.decode_bmp" />
 <meta itemprop="path" content="Stable" />
 </div>
 
-
-<h1>tf.io.decode_bmp</h1>
-
+<h1 id="tfiodecode_bmp">tf.io.decode_bmp</h1>
 <!-- Insert buttons -->
-
-
-
 
 <table class="tfo-notebook-buttons tfo-api" align="left">
 </table>
 
-
 <p>Defined in generated file: <code>python/ops/gen_image_ops.py</code></p>
-
 <!-- Start diff -->
 
-
 <p>Decode the first frame of a BMP-encoded image to a uint8 tensor.</p>
-
-<h3>Aliases:</h3>
-
+<h3 id="aliases">Aliases:</h3>
 <ul>
 <li><code>tf.compat.v1.image.decode_bmp</code></li>
 <li><code>tf.compat.v1.io.decode_bmp</code></li>
@@ -31,40 +30,32 @@
 <li><code>tf.compat.v2.io.decode_bmp</code></li>
 <li><code>tf.image.decode_bmp</code></li>
 </ul>
+<div class="codehilite"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">decode_bmp</span><span class="p">(</span>
+    <span class="n">contents</span><span class="p">,</span>
+    <span class="n">channels</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</pre></div>
 
-
-<p><code>python
-tf.io.decode_bmp(
-    contents,
-    channels=0,
-    name=None
-)
-</code></p>
 
 <!-- Placeholder for "Used in" -->
 
-
 <p>The attr <code>channels</code> indicates the desired number of color channels for the
 decoded image.</p>
-
-<h4>Accepted values are:</h4>
-
+<h4 id="accepted-values-are">Accepted values are:</h4>
 <ul>
 <li>0: Use the number of channels in the BMP-encoded image.</li>
 <li>3: output an RGB image.</li>
 <li>4: output an RGBA image.</li>
 </ul>
-
-
-<h4>Args:</h4>
-
+<h4 id="args">Args:</h4>
 <ul>
 <li><b><code>contents</code></b>: A <code>Tensor</code> of type <code>string</code>. 0-D.  The BMP-encoded image.</li>
 <li><b><code>channels</code></b>: An optional <code>int</code>. Defaults to <code>0</code>.</li>
 <li><b><code>name</code></b>: A name for the operation (optional).</li>
 </ul>
-
-
-<h4>Returns:</h4>
-
+<h4 id="returns">Returns:</h4>
 <p>A <code>Tensor</code> of type <code>uint8</code>.</p>
+    </body>
+    </html>
+   
